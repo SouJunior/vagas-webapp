@@ -25,8 +25,6 @@ function App() {
   function handleFormSubmit(e: FormEvent) {
     e.preventDefault();
 
-    console.log("Você apertou no botão de cadastrar!");
-
     /**** CREATE ****
      ** Aqui vai o código necessário para cadastrar uma vaga corretamente */
   }
@@ -108,9 +106,6 @@ function App() {
         </div>
       </main>
 
-      <hr />
-
-      <footer className="p-4">Todos os direitos reservados &copy;</footer>
     </div>
   );
 }
