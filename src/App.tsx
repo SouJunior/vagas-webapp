@@ -2,8 +2,6 @@ import { ChangeEvent, FormEvent, useId, useState } from "react";
 import "./App.css";
 import JobCard from "./components/JobCard";
 
-type JobsList = JobData[];
-
 interface JobData {
   id: string;
   title: string;
@@ -13,7 +11,7 @@ interface JobData {
 
 function App() {
   // Esse será nosso array de objetos (cada objeto é uma vaga)
-  const [jobsList, setJobsList] = useState<JobsList>([
+  const [jobsList, setJobsList] = useState<JobData[]>([
     {
       id: useId(),
       title: "Desenvolvedor",
@@ -44,7 +42,7 @@ function App() {
 
   function deleteJobCard(id: string) {
     if(!id){
-      alert('Erro ao apagar a vaga selcionada. Por favor, tente novamente\n\nSe persistir o erro, contacte-nos através do número: 61 9 9917-9736')
+      alert('Erro ao apagar a vaga selcionada. Por favor, tente novamente\n\nSe persistir o erro, contacte-nos através do nosso Discord: https://discord.gg/R5RAxFVC')
       throw new Error("Passed ID argument is invalid.\nThe argument is " + id);
     }
 
@@ -53,7 +51,6 @@ function App() {
     setJobsList(result);
   }
 
-  // FUNÇÃO PRA monitorar mudanças no campos
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setJobData({
       ...jobData,
