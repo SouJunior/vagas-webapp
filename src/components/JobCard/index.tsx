@@ -10,12 +10,20 @@ import {
 import { BsPencilSquare as PencilIcon } from "react-icons/bs";
 
 interface JobCardProps {
+  id: string;
   title: string;
   description: string;
   jobType: "Estágio" | "Trainee" | "Júnior";
+  deleteJobCard: (id: string) => void;
 }
 
-export default function JobCard({ title, description, jobType }: JobCardProps) {
+export default function JobCard({
+  id,
+  title,
+  description,
+  jobType,
+  deleteJobCard,
+}: JobCardProps) {
   return (
     <Wrapper className="rounded-md border p-5 mb-4 hover:shadow-lg cursor-pointer">
       <Header className="pb-4 border-b-2 flex gap-2 items-center">
@@ -26,9 +34,9 @@ export default function JobCard({ title, description, jobType }: JobCardProps) {
         >
           {jobType}
         </JobType>
-        <PencilIcon 
-        // ** UPDATE - Aqui vai o código necessário para atualizar uma vaga existente  */}
-        className="absolute right-5 hover:text-orange-500 text-xl"
+        <PencilIcon
+          // ** UPDATE - Aqui vai o código necessário para atualizar uma vaga existente  */}
+          className="absolute right-5 hover:text-orange-500 text-xl"
         />
       </Header>
       <Description className="py-4 border-b-2">
@@ -37,6 +45,7 @@ export default function JobCard({ title, description, jobType }: JobCardProps) {
       <Footer className="pt-4">
         <button
           /**** DELETE - Aqui vai o código necessário para deletar uma vaga especifica */
+          onClick={() => deleteJobCard (id)}
           type="button"
           className="rounded font-semibold bg-red-500 text-white px-2 py-1 text-sm hover:bg-red-700 active:bg-red-500 focus:ring focus:ring-red-300"
         >
