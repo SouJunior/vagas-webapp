@@ -31,8 +31,8 @@ function App() {
   const id = useId();
 
   // FUNÇÕES
-  function handleFormSubmit(e: FormEvent) {
-    e.preventDefault();
+  function handleFormSubmit(event: FormEvent) {
+    event.preventDefault();
     /**** CREATE ****
      ** Aqui vai o código necessário para cadastrar uma vaga corretamente */
 
@@ -42,7 +42,7 @@ function App() {
 
   function deleteJobCard(id: string) {
     if(!id){
-      alert('Erro ao apagar a vaga selcionada. Por favor, tente novamente\n\nSe persistir o erro, contacte-nos através do nosso Discord: https://discord.gg/R5RAxFVC')
+      alert('Erro ao apagar a vaga selecionada. Por favor, tente novamente\n\nSe persistir o erro, contacte-nos através do nosso Discord:\nhttps://discord.gg/R5RAxFVC')
       throw new Error("Passed ID argument is invalid.\nThe argument is " + id);
     }
 
@@ -51,10 +51,20 @@ function App() {
     setJobsList(result);
   }
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: any) {
     setJobData({
       ...jobData,
       [event.target.name]: event.target.value,
+    });
+  }
+
+  function handleSelectOption(event: any) {
+    let select = document.getElementById('jobType') as HTMLSelectElement;
+	  let value = select.options[select.selectedIndex].text;
+
+    setJobData({
+      ...jobData,
+      [event.target.name]: value,
     });
   }
 
@@ -64,7 +74,7 @@ function App() {
       <hr />
       <main className="grid grid-cols-1 md:grid-cols-2 py-4">
         <form
-          onSubmit={(e) => handleFormSubmit(e)}
+          onSubmit={(event) => handleFormSubmit(event)}
           className="m-4 p-4 border h-min"
         >
           <h1 className="font-bold text-lg">Preencha os campos</h1>
@@ -84,6 +94,7 @@ function App() {
             <textarea
               name="description"
               id="description"
+              onChange={(event) => handleChange(event)}
               className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
             />
           </div>
@@ -93,6 +104,7 @@ function App() {
             <select
               name="jobType"
               id="jobType"
+              onChange={(event) => handleSelectOption(event)}
               required
               defaultValue={"- Selecione aqui -"}
               className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
