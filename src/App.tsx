@@ -138,7 +138,7 @@ function App() {
          ** Aqui vai o código necessário para ler todas as vagas cadastradas e atualizar a View do React com elas
          */}
         <div className="m-4">
-          {jobsList.map((job) => (
+          {jobsList.length > 0 ? jobsList.map((job) => (
             <JobCard 
               key={job.id}
               id={job.id}
@@ -147,7 +147,7 @@ function App() {
               jobType={job.jobType}
               deleteJobCard={() => deleteJobCard(job.id)}
             />
-          ))}
+          )) : 'Não há vagas disponíveis :('}
         </div>
       </main>
     </div>
