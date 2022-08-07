@@ -129,9 +129,9 @@ function App() {
             </button>
             <button
               type="reset"
-              className="w-1/5 inline-block rounded font-semibold bg-slate-500 px-2 py-1 hover:bg-slate-600 active:bg-slate-500 focus:ring focus:ring-slate-300 text-white"
+              className="w-1/5 text-sm inline-block rounded font-semibold bg-slate-500 px-2 py-1 hover:bg-slate-600 active:bg-slate-500 focus:ring focus:ring-slate-300 text-white"
             >
-              Reset
+              Limpar
             </button>
           </div>
         </form>
