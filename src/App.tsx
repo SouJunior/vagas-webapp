@@ -41,13 +41,15 @@ function App() {
   }
 
   function deleteJobCard(id: string) {
-    if(!id){
-      alert('Erro ao apagar a vaga selecionada. Por favor, tente novamente\n\nSe persistir o erro, contacte-nos através do nosso Discord:\nhttps://discord.gg/R5RAxFVC')
+    if (!id) {
+      alert(
+        "Erro ao apagar a vaga selecionada. Por favor, tente novamente\n\nSe persistir o erro, contacte-nos através do nosso Discord:\nhttps://discord.gg/R5RAxFVC"
+      );
       throw new Error("Passed ID argument is invalid.\nThe argument is " + id);
     }
 
-    const result = jobsList.filter((job) => job.id !== id )
-  
+    const result = jobsList.filter((job) => job.id !== id);
+
     setJobsList(result);
   }
 
@@ -59,8 +61,8 @@ function App() {
   }
 
   function handleSelectOption(event: any) {
-    let select = document.getElementById('jobType') as HTMLSelectElement;
-	  let value = select.options[select.selectedIndex].text;
+    let select = document.getElementById("jobType") as HTMLSelectElement;
+    let value = select.options[select.selectedIndex].text;
 
     setJobData({
       ...jobData,
@@ -138,16 +140,18 @@ function App() {
          ** Aqui vai o código necessário para ler todas as vagas cadastradas e atualizar a View do React com elas
          */}
         <div className="m-4">
-          {jobsList.length > 0 ? jobsList.map((job) => (
-            <JobCard 
-              key={job.id}
-              id={job.id}
-              title={job.title}
-              description={job.description}
-              jobType={job.jobType}
-              deleteJobCard={() => deleteJobCard(job.id)}
-            />
-          )) : 'Não há vagas disponíveis :('}
+          {jobsList.length > 0
+            ? jobsList.map((job) => (
+                <JobCard
+                  key={job.id}
+                  id={job.id}
+                  title={job.title}
+                  description={job.description}
+                  jobType={job.jobType}
+                  deleteJobCard={() => deleteJobCard(job.id)}
+                />
+              ))
+            : "Não há vagas disponíveis :("}
         </div>
       </main>
     </div>
