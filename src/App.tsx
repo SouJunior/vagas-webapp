@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useId, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import "./App.css";
 import JobCard from "./components/JobCard";
 
@@ -10,10 +10,12 @@ interface JobData {
 }
 
 function App() {
+  const generateID = () => Math.floor(Date.now() * Math.random()).toString(36)
+
   // Esse será nosso array de objetos (cada objeto é uma vaga)
   const [jobsList, setJobsList] = useState<JobData[]>([
     {
-      id: useId(),
+      id: generateID(),
       title: "Desenvolvedor",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
@@ -28,15 +30,13 @@ function App() {
     jobType: "Estágio",
   });
 
-  const id = useId();
-
   // FUNÇÕES
   function handleFormSubmit(event: FormEvent) {
     event.preventDefault();
     /**** CREATE ****
      ** Aqui vai o código necessário para cadastrar uma vaga corretamente */
 
-    setJobData({ ...jobData, id: id });
+    setJobData({ ...jobData, id: generateID() });
     setJobsList([...jobsList, jobData]);
   }
 
