@@ -31,8 +31,8 @@ function App() {
   const id = useId();
 
   // FUNÇÕES
-  function handleFormSubmit(e: FormEvent) {
-    e.preventDefault();
+  function handleFormSubmit(event: FormEvent) {
+    event.preventDefault();
     /**** CREATE ****
      ** Aqui vai o código necessário para cadastrar uma vaga corretamente */
 
@@ -41,20 +41,32 @@ function App() {
   }
 
   function deleteJobCard(id: string) {
-    if(!id){
-      alert('Erro ao apagar a vaga selcionada. Por favor, tente novamente\n\nSe persistir o erro, contacte-nos através do nosso Discord: https://discord.gg/R5RAxFVC')
+    if (!id) {
+      alert(
+        "Erro ao apagar a vaga selecionada. Por favor, tente novamente\n\nSe persistir o erro, contacte-nos através do nosso Discord:\nhttps://discord.gg/R5RAxFVC"
+      );
       throw new Error("Passed ID argument is invalid.\nThe argument is " + id);
     }
 
-    const result = jobsList.filter((job) => job.id !== id )
-  
+    const result = jobsList.filter((job) => job.id !== id);
+
     setJobsList(result);
   }
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: any) {
     setJobData({
       ...jobData,
       [event.target.name]: event.target.value,
+    });
+  }
+
+  function handleSelectOption(event: any) {
+    let select = document.getElementById("jobType") as HTMLSelectElement;
+    let value = select.options[select.selectedIndex].text;
+
+    setJobData({
+      ...jobData,
+      [event.target.name]: value,
     });
   }
 
@@ -64,7 +76,7 @@ function App() {
       <hr />
       <main className="grid grid-cols-1 md:grid-cols-2 py-4">
         <form
-          onSubmit={(e) => handleFormSubmit(e)}
+          onSubmit={(event) => handleFormSubmit(event)}
           className="m-4 p-4 border h-min"
         >
           <h1 className="font-bold text-lg">Preencha os campos</h1>
@@ -84,6 +96,7 @@ function App() {
             <textarea
               name="description"
               id="description"
+              onChange={(event) => handleChange(event)}
               className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
             />
           </div>
@@ -93,6 +106,7 @@ function App() {
             <select
               name="jobType"
               id="jobType"
+              onChange={(event) => handleSelectOption(event)}
               required
               defaultValue={"- Selecione aqui -"}
               className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
@@ -115,9 +129,9 @@ function App() {
             </button>
             <button
               type="reset"
-              className="w-1/5 inline-block rounded font-semibold bg-slate-500 px-2 py-1 hover:bg-slate-600 active:bg-slate-500 focus:ring focus:ring-slate-300 text-white"
+              className="w-1/5 text-sm inline-block rounded font-semibold bg-slate-500 px-2 py-1 hover:bg-slate-600 active:bg-slate-500 focus:ring focus:ring-slate-300 text-white"
             >
-              Reset
+              Limpar
             </button>
           </div>
         </form>
@@ -126,16 +140,18 @@ function App() {
          ** Aqui vai o código necessário para ler todas as vagas cadastradas e atualizar a View do React com elas
          */}
         <div className="m-4">
-          {jobsList.map((job) => (
-            <JobCard 
-              key={job.id}
-              id={job.id}
-              title={job.title}
-              description={job.description}
-              jobType={job.jobType}
-              deleteJobCard={() => deleteJobCard(job.id)}
-            />
-          ))}
+          {jobsList.length > 0
+            ? jobsList.map((job) => (
+                <JobCard
+                  key={job.id}
+                  id={job.id}
+                  title={job.title}
+                  description={job.description}
+                  jobType={job.jobType}
+                  deleteJobCard={() => deleteJobCard(job.id)}
+                />
+              ))
+            : "Não há vagas disponíveis :("}
         </div>
       </main>
     </div>

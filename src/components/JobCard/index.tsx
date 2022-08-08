@@ -45,7 +45,7 @@ export default function JobCard({
       <Footer className="pt-4">
         <button
           /**** DELETE - Aqui vai o código necessário para deletar uma vaga especifica */
-          onClick={() => deleteJobCard (id)}
+          onClick={() => deleteJobCard(id)}
           type="button"
           className="rounded font-semibold bg-red-500 text-white px-2 py-1 text-sm hover:bg-red-700 active:bg-red-500 focus:ring focus:ring-red-300"
         >
