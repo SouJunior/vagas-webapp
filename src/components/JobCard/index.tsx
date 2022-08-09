@@ -13,7 +13,7 @@ interface JobCardProps {
   id: string;
   title: string;
   description: string;
-  jobType: "Estágio" | "Trainee" | "Júnior";
+  jobType: "Estágio" | "Trainee" | "Júnior" | '';
   deleteJobCard: (id: string) => void;
 }
 

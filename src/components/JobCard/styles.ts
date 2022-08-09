@@ -25,4 +25,6 @@ export const JobType = styled.span<JobTypeSC>`
 `;
 export const Description = styled.div``;
 export const Footer = styled.footer``;
-export const Text = styled.p``;
+export const Text = styled.p`
+word-wrap: break-word;
+`;
