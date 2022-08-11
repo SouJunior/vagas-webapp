@@ -12,7 +12,6 @@ interface JobData {
 function App() {
   const generateID = () => Math.floor(Date.now() * Math.random()).toString(36)
 
-  // Esse será nosso array de objetos (cada objeto é uma vaga)
   const [jobsList, setJobsList] = useState<JobData[]>([
     {
       id: generateID(),
@@ -149,9 +148,6 @@ function App() {
           </div>
         </form>
 
-        {/* /**** READ ****
-         ** Aqui vai o código necessário para ler todas as vagas cadastradas e atualizar a View do React com elas
-         */}
         <div className="m-4 col-span-3 h-96 overflow-scroll border-b-4">
           {jobsList.length > 0 ? (
             jobsList.map((job) => (
