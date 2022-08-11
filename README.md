@@ -57,7 +57,8 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 ## Autor(es) 🙎🏻‍♂️
 
-- Nome | Redes sociais
+- Alberto Vinícius | [GitHub](https://github.com/allbertuu) - [LinkedIn](https://www.linkedin.com/in/albertov-albuquerque/) - [Portfólio](https://portfolio-allbertuu.vercel.app/)
+- Silvia Luiza | [GitHub](https://github.com/SilviaLTeixeira) - [LinkedIn](https://www.linkedin.com/in/silvialuiza/)
 
 ## Feedback
 
