@@ -123,7 +123,7 @@ function App() {
               defaultValue={"- Selecione aqui -"}
               className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
             >
-              <option selected disabled>
+              <option disabled>
                 - Selecione aqui -
               </option>
               <option value="Estágio">Estágio</option>
