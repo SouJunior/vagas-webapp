@@ -9,7 +9,7 @@ Projeto Opensource que visa melhorar o match entre os profissionais Juniors e Em
 Clone o projeto
 
 ```bash
-  git clone https://github.com/wouerner/linkedin-frontend
+  git clone https://github.com/SouJunior/linkedin-frontend
 ```
 
 Entre no diretório do projeto
