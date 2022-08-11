@@ -10,7 +10,7 @@ interface JobData {
 }
 
 function App() {
-  const generateID = () => Math.floor(Date.now() * Math.random()).toString(36)
+  const generateID = () => Math.floor(Date.now() * Math.random()).toString(36);
 
   const [jobsList, setJobsList] = useState<JobData[]>([
     {
@@ -48,7 +48,7 @@ function App() {
     if (isValuesValid(jobData)) {
       // criar card com os dados
       createJobCard();
-      alert('Vaga criada com sucesso. ✅')
+      alert("Vaga criada com sucesso. ✅");
       // resetar campos do formulário
       resetForm();
       // resetar jobData
@@ -70,7 +70,7 @@ function App() {
       );
       throw new Error("Passed ID argument is invalid.\nThe argument is " + id);
     }
-    alert(`Vaga de ID: ${id} foi excluída com sucesso. ✅`)
+    alert(`Vaga de ID: ${id} foi excluída com sucesso. ✅`);
     setJobsList(jobsList.filter((job) => job.id !== id));
   }
 
@@ -123,9 +123,7 @@ function App() {
               defaultValue={"- Selecione aqui -"}
               className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
             >
-              <option disabled>
-                - Selecione aqui -
-              </option>
+              <option disabled>- Selecione aqui -</option>
               <option value="Estágio">Estágio</option>
               <option value="Júnior">Júnior</option>
               <option value="Trainee">Trainee</option>
