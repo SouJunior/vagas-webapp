@@ -2,7 +2,7 @@
 
 Projeto Opensource que visa melhorar o match entre os profissionais Juniors e Empresas.
 
-![Logo](https://raw.githubusercontent.com/SouJunior/ui-ux/main/Identidade%20Visual/logo%20desk%20soujunior.png)
+![Logo](./logo-soujunior.png)
 
 ## Instalação
 
