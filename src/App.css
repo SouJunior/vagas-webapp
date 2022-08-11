@@ -1,5 +1,17 @@
 .App-wrapper {
   padding: 1rem 1.5rem;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 900px;
+}
+
+*::-webkit-scrollbar {
+  width: 1rem;
+}
+*::-webkit-scrollbar-track {
+  background: white;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #d6d6d6;
+  border-radius: 1.2rem;
+  border: 4px solid #FFF;
 }

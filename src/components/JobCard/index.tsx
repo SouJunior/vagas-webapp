@@ -13,7 +13,7 @@ interface JobCardProps {
   id: string;
   title: string;
   description: string;
-  jobType: "Estágio" | "Trainee" | "Júnior";
+  jobType: "Estágio" | "Trainee" | "Júnior" | '';
   deleteJobCard: (id: string) => void;
 }
 
@@ -35,7 +35,6 @@ export default function JobCard({
           {jobType}
         </JobType>
         <PencilIcon
-          // ** UPDATE - Aqui vai o código necessário para atualizar uma vaga existente  */}
           className="absolute right-5 hover:text-orange-500 text-xl"
         />
       </Header>
@@ -44,7 +43,6 @@ export default function JobCard({
       </Description>
       <Footer className="pt-4">
         <button
-          /**** DELETE - Aqui vai o código necessário para deletar uma vaga especifica */
           onClick={() => deleteJobCard(id)}
           type="button"
           className="rounded font-semibold bg-red-500 text-white px-2 py-1 text-sm hover:bg-red-700 active:bg-red-500 focus:ring focus:ring-red-300"
