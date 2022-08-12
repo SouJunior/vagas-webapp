@@ -2,14 +2,14 @@
 
 Projeto Opensource que visa melhorar o match entre os profissionais Juniors e Empresas.
 
-![Logo](https://raw.githubusercontent.com/SouJunior/ui-ux/main/Identidade%20Visual/logo%20desk%20soujunior.png)
+![Logo](./logo-soujunior.png)
 
 ## Instalação
 
 Clone o projeto
 
 ```bash
-  git clone https://github.com/wouerner/linkedin-frontend
+  git clone https://github.com/SouJunior/linkedin-frontend
 ```
 
 Entre no diretório do projeto
@@ -57,7 +57,8 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 ## Autor(es) 🙎🏻‍♂️
 
-- Nome | Redes sociais
+- Alberto Vinícius | [GitHub](https://github.com/allbertuu) - [LinkedIn](https://www.linkedin.com/in/albertov-albuquerque/) - [Portfólio](https://portfolio-allbertuu.vercel.app/)
+- Silvia Luiza | [GitHub](https://github.com/SilviaLTeixeira) - [LinkedIn](https://www.linkedin.com/in/silvialuiza/)
 
 ## Feedback
 
