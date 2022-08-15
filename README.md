@@ -62,7 +62,7 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 ## Feedback
 
-Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [Discord](https://discord.gg/R5RAxFVC). Ou fazendo uma [contribuição](#contribuição).
+Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [Discord](https://discord.gg/naTaHgZZpz). Ou fazendo uma [contribuição](#contribuição).
 
 ## Contribuição
 
