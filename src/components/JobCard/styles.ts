@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-interface JobTypeSC {
+interface JobTypeProps {
   backgroundColor: string;
 }
 
@@ -9,7 +9,7 @@ export const Wrapper = styled.article`
 `;
 export const Header = styled.header``;
 export const Title = styled.h1``;
-export const JobType = styled.span<JobTypeSC>`
+export const JobType = styled.span<JobTypeProps>`
   background-color: ${(p) => {
     switch (p.backgroundColor) {
       case "Júnior":
@@ -26,5 +26,5 @@ export const JobType = styled.span<JobTypeSC>`
 export const Description = styled.div``;
 export const Footer = styled.footer``;
 export const Text = styled.p`
-word-wrap: break-word;
+  word-wrap: break-word;
 `;
