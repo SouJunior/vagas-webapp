@@ -1,0 +1,165 @@
+[
+    {
+        "codigo": 11,
+        "nome": "Rondônia",
+        "sigla": "RO",
+        "codigoCapital": 1100205
+    },
+    {
+        "codigo": 12,
+        "nome": "Acre",
+        "sigla": "AC",
+        "codigoCapital": 1200401
+    },
+    {
+        "codigo": 13,
+        "nome": "Amazonas",
+        "sigla": "AM",
+        "codigoCapital": 1302603
+    },
+    {
+        "codigo": 14,
+        "nome": "Roraima",
+        "sigla": "RR",
+        "codigoCapital": 1400100
+    },
+    {
+        "codigo": 15,
+        "nome": "Pará",
+        "sigla": "PA",
+        "codigoCapital": 1501402
+    },
+    {
+        "codigo": 16,
+        "nome": "Amapá",
+        "sigla": "AP",
+        "codigoCapital": 1600303
+    },
+    {
+        "codigo": 17,
+        "nome": "Tocantins",
+        "sigla": "TO",
+        "codigoCapital": 1721000
+    },
+    {
+        "codigo": 21,
+        "nome": "Maranhão",
+        "sigla": "MA",
+        "codigoCapital": 2111300
+    },
+    {
+        "codigo": 22,
+        "nome": "Piauí",
+        "sigla": "PI",
+        "codigoCapital": 2211001
+    },
+    {
+        "codigo": 23,
+        "nome": "Ceará",
+        "sigla": "CE",
+        "codigoCapital": 2304400
+    },
+    {
+        "codigo": 24,
+        "nome": "Rio Grande do Norte",
+        "sigla": "RN",
+        "codigoCapital": 2408102
+    },
+    {
+        "codigo": 25,
+        "nome": "Paraíba",
+        "sigla": "PB",
+        "codigoCapital": 2507507
+    },
+    {
+        "codigo": 26,
+        "nome": "Pernambuco",
+        "sigla": "PE",
+        "codigoCapital": 2611606
+    },
+    {
+        "codigo": 27,
+        "nome": "Alagoas",
+        "sigla": "AL",
+        "codigoCapital": 2704302
+    },
+    {
+        "codigo": 28,
+        "nome": "Sergipe",
+        "sigla": "SE",
+        "codigoCapital": 2800308
+    },
+    {
+        "codigo": 29,
+        "nome": "Bahia",
+        "sigla": "BA",
+        "codigoCapital": 2927408
+    },
+    {
+        "codigo": 31,
+        "nome": "Minas Gerais",
+        "sigla": "MG",
+        "codigoCapital": 3106200
+    },
+    {
+        "codigo": 32,
+        "nome": "Espírito Santo",
+        "sigla": "ES",
+        "codigoCapital": 3205309
+    },
+    {
+        "codigo": 33,
+        "nome": "Rio de Janeiro",
+        "sigla": "RJ",
+        "codigoCapital": 3304557
+    },
+    {
+        "codigo": 35,
+        "nome": "São Paulo",
+        "sigla": "SP",
+        "codigoCapital": 3550308
+    },
+    {
+        "codigo": 41,
+        "nome": "Paraná",
+        "sigla": "PR",
+        "codigoCapital": 4106902
+    },
+    {
+        "codigo": 42,
+        "nome": "Santa Catarina",
+        "sigla": "SC",
+        "codigoCapital": 4205407
+    },
+    {
+        "codigo": 43,
+        "nome": "Rio Grande do Sul",
+        "sigla": "RS",
+        "codigoCapital": 4314902
+    },
+    {
+        "codigo": 50,
+        "nome": "Mato Grosso do Sul",
+        "sigla": "MS",
+        "codigoCapital": 5002704
+    },
+    {
+        "codigo": 51,
+        "nome": "Mato Grosso",
+        "sigla": "MT",
+        "codigoCapital": 5103403
+    },
+    {
+        "codigo": 52,
+        "nome": "Goiás",
+        "sigla": "GO",
+        "codigoCapital": 5208707
+    },
+    {
+        "codigo": 53,
+        "nome": "Distrito Federal",
+        "sigla": "DF",
+        "codigoCapital": 5300108
+    }
+]
+
