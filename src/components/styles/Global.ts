@@ -13,8 +13,8 @@ export const GlobalStyle = createGlobalStyle`
   }
   /* ESTILOS GERAIS */
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem /* 16px */;
-    color: #000;
+    color: ${({theme}) => theme.colors.black};
   }
 `;

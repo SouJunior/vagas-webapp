@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
 
 export const Button = styled.button`
   padding: 8px 12px;
-  background-color: ${colors.primary};
+  background-color: ${({theme}) => theme.colors.primary};
   border: 0;
   border-radius: 10px;
   color: #FFF;
@@ -18,6 +17,6 @@ export const Button = styled.button`
   outline: none;
 
   &:active {
-    background-color: ${colors.primaryDark};
+    background-color: ${({theme}) => theme.colors.primaryDark};
   }
 `;
