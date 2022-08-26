@@ -3,6 +3,7 @@ import "../App.css";
 import JobCard from "../components/JobCard";
 
 interface JobData {
+  [index: string]: string;
   readonly id: string;
   title: string;
   description: string;
@@ -31,7 +32,7 @@ function InsertJobs() {
   ]);
 
   // VALIDAR VALORES DE UM OBJETO
-  function isValuesValid(object: any) {
+  function isValuesValid(object: { [index: string | number]: string }) {
     return !Object.values(object).includes("");
   }
   function resetForm() {
