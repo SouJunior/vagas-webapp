@@ -9,9 +9,17 @@ interface JobData {
   jobType: "Estágio" | "Trainee" | "Júnior" | "";
 }
 
-function InsertJobs() {
-  const generateID = () => Math.floor(Date.now() * Math.random()).toString(36);
+const generateID = () => Math.floor(Date.now() * Math.random()).toString(36);
 
+const emptyJobData: JobData = {
+  id: generateID(),
+  title: "",
+  description: "",
+  jobType: "",
+};
+
+function InsertJobs() {
+  const [jobData, setJobData] = useState<JobData>(emptyJobData);
   const [jobsList, setJobsList] = useState<JobData[]>([
     {
       id: generateID(),
@@ -22,16 +30,6 @@ function InsertJobs() {
     },
   ]);
 
-  const emptyJobData: JobData = {
-    id: generateID(),
-    title: "",
-    description: "",
-    jobType: "",
-  };
-
-  const [jobData, setJobData] = useState<JobData>(emptyJobData);
-
-  // FUNÇÕES
   // VALIDAR VALORES DE UM OBJETO
   function isValuesValid(object: any) {
     return !Object.values(object).includes("");
