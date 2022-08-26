@@ -3,7 +3,7 @@ import "../App.css";
 import JobCard from "../components/JobCard";
 
 interface JobData {
-  id: string;
+  readonly id: string;
   title: string;
   description: string;
   jobType: "Estágio" | "Trainee" | "Júnior" | "";
