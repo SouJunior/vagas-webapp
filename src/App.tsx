@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route index element={<Login />} />
         <Route path="/" element={<Layout />}>
-          <Route path="/insertjobs" element={<InsertJobs />} />
+          <Route path="insertjobs" element={<InsertJobs />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
