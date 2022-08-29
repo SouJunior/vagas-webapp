@@ -7,12 +7,14 @@ export const mainTheme: DefaultTheme = {
     primaryDark: "#014C97",
  
     secondary: "#C1DFFF",
-    secondaryLight: "#ECF5FF",
+    secondaryLight: "#FCFCFC",
     secondaryDark: "#84BBF8",
 
     // success: "#00C851",
     danger: "#BD0000",
     muted: "#F3F3F3",
+    mutedDark: "#D9D9D9",
+    mutedDarker: "#5E5E5E",
     black: "#151515",
   },
 
