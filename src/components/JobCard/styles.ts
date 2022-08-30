@@ -9,9 +9,9 @@ export const Wrapper = styled.article`
 `;
 export const Header = styled.header``;
 export const Title = styled.h1``;
-export const JobType = styled.span<JobTypeProps>`
-  background-color: ${(p) => {
-    switch (p.backgroundColor) {
+export const JobType = styled.small<JobTypeProps>`
+  background-color: ${({backgroundColor}) => {
+    switch (backgroundColor) {
       case "Júnior":
         return `rgb(99 102 241);`;
       case "Trainee":

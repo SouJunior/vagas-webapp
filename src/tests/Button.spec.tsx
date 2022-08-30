@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Button } from './styles';
+import { Button } from '../components/Button';
 
 test('componente Button permite cliques', () => {
   render(<Button />);

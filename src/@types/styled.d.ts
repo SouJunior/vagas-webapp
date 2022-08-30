@@ -14,6 +14,8 @@ declare module "styled-components" {
       warning?: string;
       info?: string;
       muted?: string;
+      mutedDark?: string;
+      mutedDarker?: string;
       black?: string;
     };
 
