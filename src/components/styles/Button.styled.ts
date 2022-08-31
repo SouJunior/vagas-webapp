@@ -1,7 +1,7 @@
 import styled, {css} from "styled-components";
 
 interface ButtonWrapperProps {
-    background : string;
+    background?: "outline";
 }
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   padding: 8px 12px;
