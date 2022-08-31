@@ -1,11 +1,18 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
-export const ButtonWrapper = styled.button`
+interface ButtonWrapperProps {
+    background?: "outline";
+}
+export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   padding: 8px 12px;
   background-color: ${({theme}) => theme.colors.primary};
-  border: 0;
-  border-radius: 10px;
+  border: 1px solid #004892;
+  border-radius: 4px;
   color: #FFF;
+
+  min-width: fit-content;
+
+  box-sizing: boder-box;
   
   font-size: 14px;
 
@@ -19,4 +26,14 @@ export const ButtonWrapper = styled.button`
   &:active {
     background-color: ${({theme}) => theme.colors.primaryDark};
   }
+
+  ${({background}) => background === "outline" && css`
+    background: transparent;
+    border-color: ${({theme}) => theme.colors.primary};
+    color: ${({theme}) => theme.colors.primary};
+    
+  `}
+
+
+
 `;

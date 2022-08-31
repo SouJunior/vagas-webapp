@@ -1,6 +1,6 @@
 /* aqui estara a pagina de login */
 
-import React from "react";
+import React from "react"
 
 const Login = () => {
     return (
