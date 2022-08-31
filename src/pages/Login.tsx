@@ -1,7 +1,6 @@
 /* aqui estara a pagina de login */
 
-import React from "react";
-import { Button } from "../components/Button";
+import React from "react"
 
 const Login = () => {
     return (
