@@ -1,9 +1,10 @@
+import React from "react"
 import { ButtonWrapper } from "./styles/Button.styled"
 
-export const Button = () => {
+export const Button : React.FC<any> = ({background, children}) => {
   return(
-    <ButtonWrapper>
-      Primeiro botão
+    <ButtonWrapper background={background}>
+      {children}
     </ButtonWrapper>
   )
 }
