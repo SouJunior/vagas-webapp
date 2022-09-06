@@ -37,7 +37,6 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   ${({border}) => border === "white" && css`
     border-color: ${({theme}) => theme.colors.muted};
     color: ${({theme}) => theme.colors.muted};
-    
   `}
 
 
