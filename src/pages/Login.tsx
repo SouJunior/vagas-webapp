@@ -7,7 +7,7 @@ const Login = () => {
       <section className="lg:pl-16">
         <img src="#" alt="Logo-sou-junior-square" />
         <h1>Onde o Júnior tem vez!</h1>
-        <Button background="outline">Saiba mais</Button>
+        <Button background="outline" border="white">Saiba mais</Button>
       </section>
 
       <section>

@@ -2,6 +2,7 @@ import styled, {css} from "styled-components";
 
 interface ButtonWrapperProps {
     background?: "outline";
+    border?: "white";
 }
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   padding: 8px 12px;
@@ -31,6 +32,11 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
     background: transparent;
     border-color: ${({theme}) => theme.colors.primary};
     color: ${({theme}) => theme.colors.primary};
+    
+  `}
+  ${({border}) => border === "white" && css`
+    border-color: ${({theme}) => theme.colors.muted};
+    color: ${({theme}) => theme.colors.muted};
     
   `}
 
