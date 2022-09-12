@@ -44,7 +44,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const InputWrapper = ({ children }: any) => {
+const InputWrapper: React.FC<any> = ({ children }: any) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
