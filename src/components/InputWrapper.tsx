@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface InputWrapperProps {
+  children: React.ReactNode;
+}
+
 const Wrapper = styled.div`
   position: relative;
 
@@ -44,7 +48,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const InputWrapper: React.FC<any> = ({ children }: any) => {
+const InputWrapper: React.FC<any> = ({ children }: InputWrapperProps) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
