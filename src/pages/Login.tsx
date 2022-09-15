@@ -1,13 +1,27 @@
 import React from "react";
 import { Button } from "../components/Button";
+import extendedLogoImg from "../assets/imgs/logotipo-icone-extendida.svg";
 
 const Login = () => {
   return (
-    <main className="grid lg:grid-cols-2 mx-5">
-      <section className="lg:pl-16">
-        <img src="#" alt="Logo-sou-junior-square" />
-        <h1>Onde o Júnior tem vez!</h1>
-        <Button background="outline" border="white">Saiba mais</Button>
+    <main className="grid lg:grid-cols-2 px-4 bg-blue-gradient h-screen">
+      <section className="lg:pl-16 pl-24 mt-44">
+        <img
+          className="w-[450px]"
+          src={extendedLogoImg}
+          alt="Logo-sou-junior-square"
+        />
+        <h1 className="text-white text-[78px] leading-[94px] my-8">
+          Onde o Júnior
+          <br /> tem vez!
+        </h1>
+        <Button
+          background="outline"
+          border="white"
+          className="w-[283px] h-[67px] text-2xl"
+        >
+          Saiba mais
+        </Button>
       </section>
 
       <section>
