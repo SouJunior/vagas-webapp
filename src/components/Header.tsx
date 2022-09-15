@@ -1,4 +1,5 @@
 import { RiArrowLeftLine as ArrowLeftIcon } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logoIconName from "../assets/imgs/logo-icon-name-h.svg";
 
@@ -31,7 +32,9 @@ export const Divider = styled.div`
 export default function Header() {
   return (
     <HeaderWrapper className="relative flex items-center justify-center p-5 mb-4 h-16">
-      <ArrowLeftIcon className="absolute left-8 text-3xl" />
+      <Link to="/" className="absolute left-8 text-3xl">
+        <ArrowLeftIcon />
+      </Link>
       <img
         width={130}
         src={logoIconName}
