@@ -43,7 +43,7 @@ export default function Header({ backTo, title }: HeaderProps) {
       <img
         width={130}
         src={logoIconName}
-        alt="Logotipo estendida mais ícone à esquerda da SouJunior"
+        alt="Logotipo-estendida-com-ícone-da-SouJunior"
       />
       <Divider />
       <h2 className="text-base font-semibold">{title}</h2>
