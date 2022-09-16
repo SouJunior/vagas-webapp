@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react";
 import { RiArrowLeftLine as ArrowLeftIcon } from "react-icons/ri";
 import { Link, Path } from "react-router-dom";
 import logoIconName from "../assets/imgs/logo-icon-name-h.svg";
@@ -7,9 +8,14 @@ interface HeaderProps {
   title: string;
 }
 
-export default function Header({ backTo, title }: HeaderProps) {
+export default function Header({
+  backTo,
+  title,
+  ...props
+}: HeaderProps & HTMLAttributes<HTMLElement>) {
   return (
     <header
+      {...props}
       className="bg-gray-light border-b border-gray absolute left-0
       right-0 flex items-center justify-center p-5 mb-4 h-16"
     >
