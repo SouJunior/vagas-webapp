@@ -1,7 +1,12 @@
 import { RiArrowLeftLine as ArrowLeftIcon } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, Path } from "react-router-dom";
 import styled from "styled-components";
 import logoIconName from "../assets/imgs/logo-icon-name-h.svg";
+
+interface HeaderProps {
+  backTo: string | Partial<Path>; // esse tipo vem da assinatura que o attr 'to' do component Link do react-router-dom pode receber
+  title: string;
+}
 
 const HeaderWrapper = styled.header`
   background-color: ${({ theme }) => theme.colors.secondaryLight};
@@ -29,10 +34,10 @@ export const Divider = styled.div`
   border-radius: 100%;
 `;
 
-export default function Header() {
+export default function Header({ backTo, title }: HeaderProps) {
   return (
     <HeaderWrapper className="relative flex items-center justify-center p-5 mb-4 h-16">
-      <Link to="/" className="absolute left-8 text-3xl">
+      <Link to={backTo} className="absolute left-8 text-3xl">
         <ArrowLeftIcon />
       </Link>
       <img
@@ -41,7 +46,7 @@ export default function Header() {
         alt="Logotipo estendida mais ícone à esquerda da SouJunior"
       />
       <Divider />
-      <h2 className="text-base font-semibold">Criar vaga</h2>
+      <h2 className="text-base font-semibold">{title}</h2>
     </HeaderWrapper>
   );
 }
