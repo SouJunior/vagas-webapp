@@ -3,12 +3,13 @@ import ErrorPage from "./pages/ErrorPage";
 import InsertJobs from "./pages/InsertJobs";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
+import Report from "./pages/Report";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route index element={<Login />} />
+        <Route index element={<Report />} />
         <Route path="/" element={<Layout />}>
           <Route path="insertjobs" element={<InsertJobs />} />
           <Route path="*" element={<ErrorPage />} />
