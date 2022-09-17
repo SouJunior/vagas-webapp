@@ -13,6 +13,7 @@ const Report = () => {
                 <h2>Após denuncias a vaga nossa equipe ira tomar as devidas providëncias em relação a denúncia.</h2>
                 <hr className="mb-7" />
                 <Outlet />
+                <h1> oI OI </h1>
                 
             </Container>
             <Footer/>
