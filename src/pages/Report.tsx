@@ -13,8 +13,8 @@ const Report = () => {
                 <h2>Após denuncias a vaga nossa equipe ira tomar as devidas providëncias em relação a denúncia.</h2>
                 <hr className="mb-7" />
                 <Outlet />
-            <div className='grid grid-cols-2 gap-2'>
-                <div>
+            <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8'>
+                <div className='w-96 h-96 '>
                 Denunciar esta Vaga
 
                 UX Designer Junior
@@ -38,8 +38,8 @@ const Report = () => {
                 
                 Responsabilidades e atribuições: 
                 </div>
-                    <div>
-                    Por que está denunciando esta vaga?
+                    <div className='m-4 p-4 rounded-md border h-min col-span-2'>
+                    Por que está denunciando esta vaga?<br></br>
                     Informe abaixo a informação mais relevante para a denuncia da vaga!
                 <hr></hr>
                 <br></br>
