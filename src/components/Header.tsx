@@ -1,44 +1,34 @@
+import { HTMLAttributes } from "react";
 import { RiArrowLeftLine as ArrowLeftIcon } from "react-icons/ri";
-import styled from "styled-components";
+import { Link, Path } from "react-router-dom";
 import logoIconName from "../assets/imgs/logo-icon-name-h.svg";
 
-const HeaderWrapper = styled.header`
-  background-color: ${({ theme }) => theme.colors.secondaryLight};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.muted};
+interface HeaderProps {
+  backTo: string | Partial<Path>; // esse tipo vem da assinatura que o attr 'to' do component Link do react-router-dom pode receber
+  title: string;
+}
 
-  svg {
-    fill: ${({ theme }) => theme.colors.primary};
-  }
-
-  h1 {
-    color: ${({ theme }) => theme.colors.primary};
-  }
-
-  h2 {
-    color: ${({ theme }) => theme.colors.mutedDarker};
-  }
-`;
-
-export const Divider = styled.div`
-  height: 5px;
-  width: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: ${({ theme }) => theme.colors.mutedDark};
-  border-radius: 100%;
-`;
-
-export default function Header() {
+export default function Header({
+  backTo,
+  title,
+  ...props
+}: HeaderProps & HTMLAttributes<HTMLElement>) {
   return (
-    <HeaderWrapper className="relative flex items-center justify-center p-5 mb-4 h-16">
-      <ArrowLeftIcon className="absolute left-8 text-3xl" />
+    <header
+      {...props}
+      className="bg-gray-light border-b border-gray absolute left-0
+      right-0 flex items-center justify-center p-5 mb-4 h-16"
+    >
+      <Link to={backTo} className="absolute left-16 text-3xl">
+        <ArrowLeftIcon className="text-blue" />
+      </Link>
       <img
         width={130}
         src={logoIconName}
-        alt="Logotipo estendida mais ícone à esquerda da SouJunior"
+        alt="Logotipo-estendida-com-ícone-da-SouJunior"
       />
-      <Divider />
-      <h2 className="text-base font-semibold">Criar vaga</h2>
-    </HeaderWrapper>
+      <span className="h-1 w-1 mx-3 bg-gray-dark rounded-full" />
+      <h2 className="text-base text-gray-darker font-normal">{title}</h2>
+    </header>
   );
 }
