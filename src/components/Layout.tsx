@@ -7,6 +7,10 @@ export default function Layout() {
       <Container>
         <Outlet />
       </Container>
+      {/* Aqui irá o Footer (rodapé) da página.
+      *** Sinta-se livre para nomeá-lo como quiser. Abaixo há uma recomendação,
+      *** baseado na issue criada para essa adição. (remova esse comentário)
+      */}
       {/* <ExtendedFooter /> */}
     </>
   );
