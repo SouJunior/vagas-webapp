@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+      canada : ['Radio Canada', 'sans-serif']
+    },
     extend: {
       colors: {
         blue: {
@@ -20,9 +24,6 @@ module.exports = {
       backgroundImage: {
         "blue-gradient":
           "linear-gradient(294.77deg, #0A67C7 50.32%, rgba(0, 114, 231, 0.67) 100%)",
-      },
-      fontFamily: {
-        canada : ['Radio Canada', 'sans-serif']
       },
     },
   },
