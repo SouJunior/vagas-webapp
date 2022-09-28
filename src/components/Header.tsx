@@ -16,11 +16,11 @@ export default function Header({
   return (
     <header
       {...props}
-      className="bg-gray-light border-b border-gray absolute left-0
+      className="bg-gray-light border-b border-gray absolute top-0 left-0
       right-0 flex items-center justify-center p-5 mb-4 h-16"
     >
       <Link to={backTo} className="absolute left-16 text-3xl">
-        <ArrowLeftIcon className="text-blue" />
+        <ArrowLeftIcon className="text-blue w-8 h-8" />
       </Link>
       <img
         width={130}
