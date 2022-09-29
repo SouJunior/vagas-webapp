@@ -1,37 +1,41 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/HeaderReport";
 import { Outlet } from "react-router-dom";
 import { Container } from "../components/styles/Container.styled";
 
-import mailIcon from '../assets/imgs/mail.svg'
-import importantIcon from '../assets/imgs/important_vector.png';
-import { SimpleFooter } from '../components/SimpleFooter';
+import mailIcon from "../assets/imgs/mail.svg";
+import importantIcon from "../assets/imgs/important_vector.png";
+import { SimpleFooter } from "../components/SimpleFooter";
 
 const Report = () => {
+  const [count, setCount] = useState(0);
+  const [message, setMessage] = useState("");
 
-    const [count, setCount] = useState(0);
-    const [message, setMessage] = useState('');
+  function handleMessage(e: any): void {
+    setMessage(() => e.target.value);
+    setCount(e.target.value.length);
+  }
+  
+  const MAX_LENGTH = 2000;
+  return (
+    <div>
+      <Header />
+      <Container>
+        <header className="text-center align-middle">
+          <h1 className="font-semibold text-gray-600 text-3xl tracking-wide">
+            Informe a equipe do SouJunior o problema desta vaga
+          </h1>
+          <h2 className="mb-[28px]">
+            Após denunciar a vaga nossa equipe ira tomar as devidas providências
+            em relação a denúncia.
+          </h2>
+          <hr className="mb-7" />
+        </header>
 
-    function handleMessage(e: any): void {
-        setMessage(() => e.target.value);
-        setCount(e.target.value.length);
-    }
+        <Outlet />
 
-    const MAX_LENGTH = 2000;
-    return (
-        <div>
-            <Header/>
-            <Container>
-                <header className='text-center align-middle'>
-                    <h1 className='font-semibold text-gray-600 text-3xl tracking-wide'>Informe a equipe do SouJunior o problema desta vaga</h1>
-                    <h2 className='mb-[28px]'>Após denunciar a vaga nossa equipe ira tomar as devidas providências em relação a denúncia.</h2>
-                    <hr className="mb-7" />
-                </header>
-                
-                <Outlet />
-
-                <section className="min-h-[530px]  sm:flex sm:justify-between gap-5 relative mb-[77px] ">
+        <section className="min-h-[530px]  sm:flex sm:justify-between gap-5 relative mb-[77px] ">
           <div className="relative flex ">
             <div className="h-9 w-full  bg-red-700 rounded-t-md absolute flex justify-between items-center px-2 ">
               <p className="text-white font-semibold text-base">
@@ -84,7 +88,7 @@ const Report = () => {
                     </li>
                   </ul>
                   <p className="font-medium  text-gray-600 my-3">
-                    {' '}
+                    {" "}
                     Responsabilidades e atribuições:
                   </p>
                   <p className="font-medium  text-gray-600 my-3">
@@ -105,7 +109,7 @@ const Report = () => {
                     </li>
                   </ul>
                   <p className="font-medium  text-gray-600 my-3">
-                    {' '}
+                    {" "}
                     Responsabilidades e atribuições:
                   </p>
                   <p className="font-medium  text-gray-600 my-3">
@@ -126,7 +130,7 @@ const Report = () => {
                     </li>
                   </ul>
                   <p className="font-medium  text-gray-600 my-3">
-                    {' '}
+                    {" "}
                     Responsabilidades e atribuições:
                   </p>
                   <p className="font-medium  text-gray-600 my-3">
@@ -147,7 +151,7 @@ const Report = () => {
                     </li>
                   </ul>
                   <p className="font-medium  text-gray-600 my-3">
-                    {' '}
+                    {" "}
                     Responsabilidades e atribuições:
                   </p>
                 </div>
@@ -200,11 +204,11 @@ const Report = () => {
               </button>
             </div>
           </div>
-          </section>
-        <SimpleFooter/>
-        </Container>
-        </div>
-        )
-}
+        </section>
+        <SimpleFooter />
+      </Container>
+    </div>
+  );
+};
 
 export default Report;
