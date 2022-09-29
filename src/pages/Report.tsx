@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/HeaderReport";
 import { Outlet } from "react-router-dom";
 import { Container } from "../components/styles/Container.styled";
 
