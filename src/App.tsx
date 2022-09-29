@@ -10,9 +10,9 @@ function App() {
     <Router>
       <Routes>
         <Route index element={<Login />} />
-        <Route index element={<Report />} />
         <Route path="/" element={<Layout />}>
           <Route path="insertjobs" element={<InsertJobs />} />
+          <Route path="report/:id" element={<Report />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
