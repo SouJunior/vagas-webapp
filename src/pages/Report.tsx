@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/HeaderReport";
 import { Outlet } from "react-router-dom";
 import { Container } from "../components/styles/Container.styled";
-
+import Header from "../components/Header";
 import mailIcon from "../assets/imgs/mail.svg";
 import importantIcon from "../assets/imgs/important_vector.png";
 import { SimpleFooter } from "../components/SimpleFooter";
@@ -20,31 +19,31 @@ const Report = () => {
   const MAX_LENGTH = 2000;
   return (
     <div>
-      <Header />
+      <Header title="Central de denúncias" backTo="component"/>
       <Container>
         <header className="text-center align-middle">
-          <h1 className="font-semibold text-gray-600 text-3xl tracking-wide">
+          <h4 className="font-semibold text-gray-600 text-3xl tracking-wide mt-24">
             Informe a equipe do SouJunior o problema desta vaga
-          </h1>
-          <h2 className="mb-[28px]">
+          </h4>
+          <h4 className="mb-[28px]">
             Após denunciar a vaga nossa equipe ira tomar as devidas providências
             em relação a denúncia.
-          </h2>
-          <hr className="mb-7" />
+          </h4>
+          <hr className="mb-7"/>
         </header>
 
         <Outlet />
 
-        <section className="min-h-[530px]  sm:flex sm:justify-between gap-5 relative mb-[77px] ">
+        <section className="min-h-[530px] sm:flex sm:justify-between gap-5 relative mb-[77px]">
           <div className="relative flex ">
-            <div className="h-9 w-full  bg-red-700 rounded-t-md absolute flex justify-between items-center px-2 ">
+            <div className="h-9 w-full bg-red-700 rounded-t-md absolute flex justify-between items-center px-2">
               <p className="text-white font-semibold text-base">
                 Denunciar está vaga
               </p>
-              <img src={importantIcon} alt="Warning Icon" />
+              <img src={importantIcon} alt="Warning Icon"/>
             </div>
             <div className="flex flex-col flex-1 mb-5 sm:mb-0">
-              <div className="flex h-[600px] max-w-[583px] rounded-t-none border-2  border-red-700 mt-9 relative rounded-md   h-96 overflow-scroll  z-50">
+              <div className="flex h-[600px] max-w-[583px] rounded-t-none border-2 border-red-700 mt-9 relative rounded-md h-96 overflow-scroll z-50">
                 <div className="px-5 my-4 w-full ">
                   <h2 className="font-bold text-2xl text-gray-para text-gray-600">
                     UX Designer Junior
@@ -70,7 +69,7 @@ const Report = () => {
                     imunobiológicos (vacinas) e análises laboratoriais
                     veterinários.
                   </p>
-                  <p className="font-medium  text-gray-600 my-3">
+                  <p className="font-medium text-gray-600 my-3">
                     Culturalmente, procuramos uma pessoa que:
                   </p>
                   <ul className="list-disc ml-5 text-gray-600 text-sm">
@@ -87,11 +86,11 @@ const Report = () => {
                       com autonomia dentro de suas responsabilidades.
                     </li>
                   </ul>
-                  <p className="font-medium  text-gray-600 my-3">
+                  <p className="font-medium text-gray-600 my-3">
                     {" "}
                     Responsabilidades e atribuições:
                   </p>
-                  <p className="font-medium  text-gray-600 my-3">
+                  <p className="font-medium text-gray-600 my-3">
                     Culturalmente, procuramos uma pessoa que:
                   </p>
                   <ul className="list-disc ml-5 text-gray-600 text-sm">
@@ -108,11 +107,11 @@ const Report = () => {
                       com autonomia dentro de suas responsabilidades.
                     </li>
                   </ul>
-                  <p className="font-medium  text-gray-600 my-3">
+                  <p className="font-medium text-gray-600 my-3">
                     {" "}
                     Responsabilidades e atribuições:
                   </p>
-                  <p className="font-medium  text-gray-600 my-3">
+                  <p className="font-medium text-gray-600 my-3">
                     Culturalmente, procuramos uma pessoa que:
                   </p>
                   <ul className="list-disc ml-5 text-gray-600 text-sm">
@@ -129,11 +128,11 @@ const Report = () => {
                       com autonomia dentro de suas responsabilidades.
                     </li>
                   </ul>
-                  <p className="font-medium  text-gray-600 my-3">
+                  <p className="font-medium text-gray-600 my-3">
                     {" "}
                     Responsabilidades e atribuições:
                   </p>
-                  <p className="font-medium  text-gray-600 my-3">
+                  <p className="font-medium text-gray-600 my-3">
                     Culturalmente, procuramos uma pessoa que:
                   </p>
                   <ul className="list-disc ml-5 text-gray-600 text-sm">
@@ -150,7 +149,7 @@ const Report = () => {
                       com autonomia dentro de suas responsabilidades.
                     </li>
                   </ul>
-                  <p className="font-medium  text-gray-600 my-3">
+                  <p className="font-medium text-gray-600 my-3">
                     {" "}
                     Responsabilidades e atribuições:
                   </p>
@@ -158,7 +157,7 @@ const Report = () => {
               </div>
               <div className="bg-[#FCFCFC] border rounded-lg mt-6 py-4 px-6 flex items-center justify-between hidden md:flex">
                 <div>
-                  <h4 className="font-semibold  text-gray-600">
+                  <h4 className="font-semibold text-gray-600">
                     Contate o suporte SouJunior
                   </h4>
                   <Link to="/suporte" className="underline text-blue-500">
@@ -184,22 +183,21 @@ const Report = () => {
             <div className="relative mb-8">
               <textarea
                 name="message_report"
-                id=""
                 placeholder="Descreva a causa da denúncia?"
-                className="px-4 border py-4 rounded-lg mt-5 min-h-[527px] resize-none w-full "
+                className="px-4 border py-4 rounded-lg mt-5 min-h-[527px] resize-none w-full"
                 value={message}
                 onChange={handleMessage}
                 maxLength={MAX_LENGTH}
               ></textarea>
-              <span className="text-sm text-gray-600 absolute bottom-4 right-4    ">
+              <span className="text-sm text-gray-600 absolute bottom-4 right-4">
                 {count}/{MAX_LENGTH}
               </span>
             </div>
             <div className="w-full md:flex">
-              <button className="bg-red-600 md:flex md:flex-1 md:w-auto w-full hover:bg-red-700  text-white py-3 px-6 font-semibold rounded md:mb-0 mb-4 md:mb-0 flex flex-1 justify-center items-center md:mr-4 mr-0">
-                Denúnciar
+              <button className="bg-red-600 md:flex md:flex-1 md:w-auto w-full hover:bg-red-700 text-white py-3 px-6 font-semibold rounded md:mb-0 mb-4 md:mb-0 flex flex-1 justify-center items-center md:mr-4 mr-0">
+                Denunciar
               </button>
-              <button className="bg-transparent border border-blue-600  py-3 px-6 md:flex md:flex-1 md:w-auto w-full rounded md:mr-0 mr-0  text-blue-600 flex flex-1 justify-center items-center">
+              <button className="bg-transparent border border-blue-600 py-3 px-6 md:flex md:flex-1 md:w-auto w-full rounded md:mr-0 mr-0 text-blue-600 flex flex-1 justify-center items-center">
                 Cancelar
               </button>
             </div>
