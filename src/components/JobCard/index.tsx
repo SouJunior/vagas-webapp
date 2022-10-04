@@ -7,10 +7,7 @@ import {
   Title,
   Wrapper,
 } from "./styles";
-import {
-  RiEditFill as PencilIcon,
-  RiDeleteBin6Fill as DeleteIcon,
-} from "react-icons/ri";
+import { BsPencilSquare as PencilIcon } from "react-icons/bs";
 
 interface JobCardProps {
   id: string;
@@ -28,32 +25,27 @@ export default function JobCard({
   deleteJobCard,
 }: JobCardProps) {
   return (
-    <Wrapper className="rounded-md border p-6 mb-4 hover:shadow-lg cursor-pointer shadow-md">
-      <Header className="p-4 border-[1px] rounded-md flex gap-2 items-center">
-        <div className="ml-1">
-          <Title className="text-[26px] font-semibold text-gray-darker">
-            {title}
-          </Title>
-          <JobType
-            backgroundColor={jobType}
-            className="text-gray-darker text-base font-semibold"
-          >
-            {jobType}
-          </JobType>
-        </div>
-        <PencilIcon className="absolute right-12 hover:text-orange-500 text-[44px] text-blue align-middle bg-blue-lighter border-2 border-blue p-[6px] rounded" />
+    <Wrapper className="rounded-md border p-5 mb-4 hover:shadow-lg cursor-pointer">
+      <Header className="pb-4 border-b-2 flex gap-2 items-center">
+        <Title className="text-xl">{title}</Title>
+        <JobType
+          backgroundColor={jobType}
+          className="rounded-full px-3 text-white"
+        >
+          {jobType}
+        </JobType>
+        <PencilIcon className="absolute right-5 hover:text-orange-500 text-xl" />
       </Header>
-      <Description className="px-6 py-4 border-b-[1px] text-gray-darker text-sm">
+      <Description className="py-4 border-b-2">
         <Text className="text-justify">{description}</Text>
       </Description>
       <Footer className="pt-4">
         <button
           onClick={() => deleteJobCard(id)}
           type="button"
-          className="rounded px-16 gap-1 m-1 border-[1px] border-[#930000] py-3 align-middle items-center flex font-semibold bg-[#BD0000] text-white text-sm hover:bg-red-600 active:bg-red-600 focus:ring focus:ring-red-300"
+          className="rounded font-semibold bg-red-500 text-white px-2 py-1 text-sm hover:bg-red-700 active:bg-red-500 focus:ring focus:ring-red-300"
         >
-          <DeleteIcon className="text-base" />
-          Remover
+          Remover vaga
         </button>
       </Footer>
     </Wrapper>
