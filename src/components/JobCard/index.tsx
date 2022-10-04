@@ -43,7 +43,7 @@ export default function JobCard({
         <button
           onClick={() => deleteJobCard(id)}
           type="button"
-          className="rounded font-semibold bg-red-500 text-white px-2 py-1 text-sm hover:bg-red-700 active:bg-red-500 focus:ring focus:ring-red-300"
+          className="rounded font-semibold bg-red-700 text-white px-2 py-1 text-sm hover:bg-red-700 active:bg-red-500 focus:ring focus:ring-red-300"
         >
           Remover vaga
         </button>
