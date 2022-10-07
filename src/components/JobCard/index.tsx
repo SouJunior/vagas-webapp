@@ -7,6 +7,7 @@ import {
   Title,
   Wrapper,
 } from "./styles";
+
 import { BsPencilSquare as PencilIcon } from "react-icons/bs";
 
 interface JobCardProps {
@@ -24,21 +25,33 @@ export default function JobCard({
   jobType,
   deleteJobCard,
 }: JobCardProps) {
+	
   return (
     <Wrapper className="rounded-md border p-5 mb-4 hover:shadow-lg cursor-pointer">
+	
       <Header className="pb-4 border-b-2 flex gap-2 items-center">
-        <Title className="text-xl">{title}</Title>
+        <Title className="text-xl">
+			{title}
+		</Title>
+		
         <JobType
           backgroundColor={jobType}
           className="rounded-full px-3 text-white"
         >
           {jobType}
         </JobType>
-        <PencilIcon className="absolute right-5 hover:text-orange-500 text-xl" />
+		
+        <PencilIcon 
+			className="absolute right-5 hover:text-orange-500 text-xl" 
+		/>
       </Header>
+	  
       <Description className="py-4 border-b-2">
-        <Text className="text-justify">{description}</Text>
+        <Text className="text-justify">
+			{description}
+		</Text>
       </Description>
+	  
       <Footer className="pt-4">
         <button
           onClick={() => deleteJobCard(id)}
@@ -48,6 +61,8 @@ export default function JobCard({
           Remover vaga
         </button>
       </Footer>
+	  
     </Wrapper>
   );
+
 }

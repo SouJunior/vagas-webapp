@@ -1,5 +1,6 @@
 import React from "react";
-import { ButtonWrapper } from "./styles/Button.styled";
+
+import { ButtonWrapper } from "./style.ts";
 
 export const Button: React.FC<any> = ({
   background,
@@ -8,7 +9,11 @@ export const Button: React.FC<any> = ({
   ...props
 }) => {
   return (
-    <ButtonWrapper background={background} border={border} {...props}>
+    <ButtonWrapper 
+		background={background} 
+		border={border} 
+		{...props}
+	>
       {children}
     </ButtonWrapper>
   );

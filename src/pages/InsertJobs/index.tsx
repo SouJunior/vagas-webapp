@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
-import "../App.css";
-import JobCard from "../components/JobCard";
+import "../../App.css";
+import JobCard from "../../components/JobCard";
 
 interface JobData {
   [index: string]: string;
@@ -35,40 +35,56 @@ function InsertJobs() {
   function isValuesValid(object: { [index: string | number]: string }) {
     return !Object.values(object).includes("");
   }
+  
+  // RESETAR O FORM
   function resetForm() {
     const form = document.getElementById("form") as HTMLFormElement;
     form.reset();
   }
+  
   // LIDAR COM O SUBMIT DO FORM
   function handleFormSubmit(event: FormEvent) {
+	  
     // prevenir comportamento padrão (reload)
     event.preventDefault();
+	
     // validar dados preenchidos
     if (isValuesValid(jobData)) {
+		
       // criar card com os dados
       createJobCard();
       alert("Vaga criada com sucesso. ✅");
+	  
       // resetar campos do formulário
       resetForm();
+	  
       // resetar jobData
       setJobData(emptyJobData);
+	  
     } else {
+		
       alert("Por favor, preencha os campos corretamente.");
+	  
     }
   }
+  
   // CRIAR UMA VAGA (CREATE)
-  function createJobCard() {
+  function createJobCard() {  
     setJobData({ ...jobData, id: generateID() });
+	
     setJobsList([...jobsList, jobData]);
   }
+  
   // DELETAR UMA VAGA (DELETE)
   function deleteJobCard(id: string) {
     if (!id) {
       alert(
         "Erro ao apagar a vaga selecionada. Por favor, tente novamente ❌\n\nSe persistir o erro, contacte-nos através do nosso Discord:\nhttps://discord.gg/R5RAxFVC"
       );
+	  
       throw new Error("Passed ID argument is invalid.\nThe argument is " + id);
     }
+	
     alert(`Vaga de ID: ${id} foi excluída com sucesso. ✅`);
     setJobsList(jobsList.filter((job) => job.id !== id));
   }
@@ -82,12 +98,15 @@ function InsertJobs() {
 
   return (
     <main className="grid grid-cols-1 md:grid-cols-5 py-4">
+	
       <form
         onSubmit={(event) => handleFormSubmit(event)}
         className="m-4 p-4 border h-min col-span-2"
         id="form"
       >
+	  
         <h1 className="font-bold text-lg">Preencha os campos</h1>
+
         <div className="py-2">
           <label htmlFor="title">Titulo da vaga</label>
           <input
@@ -110,7 +129,10 @@ function InsertJobs() {
         </div>
 
         <div className="py-2">
-          <label htmlFor="jobType">Tipo da vaga</label>
+          <label htmlFor="jobType">
+			Tipo da vaga
+		  </label>
+		  
           <select
             name="jobType"
             id="jobType"
@@ -125,6 +147,7 @@ function InsertJobs() {
             <option value="Trainee">Trainee</option>
           </select>
         </div>
+		
         <div className="flex gap-2">
           <button
             type="submit"
@@ -133,6 +156,7 @@ function InsertJobs() {
           >
             Cadastrar
           </button>
+		  
           <button
             type="reset"
             className="w-fit text-sm inline-block rounded font-semibold bg-slate-500 px-2 py-1 hover:bg-slate-600 active:bg-slate-500 focus:ring focus:ring-slate-300 text-white"
@@ -140,6 +164,7 @@ function InsertJobs() {
             Limpar
           </button>
         </div>
+		
       </form>
 
       <div className="m-4 col-span-3 h-96 overflow-scroll border-b-4">
@@ -158,6 +183,7 @@ function InsertJobs() {
           <b>Sem vagas registradas até o momento :(</b>
         )}
       </div>
+	  
     </main>
   );
 }
