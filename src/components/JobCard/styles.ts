@@ -10,7 +10,7 @@ export const Wrapper = styled.article`
 export const Header = styled.header``;
 export const Title = styled.h1``;
 export const JobType = styled.small<JobTypeProps>`
-  background-color: ${({backgroundColor}) => {
+  background-color: ${({ backgroundColor }) => {
     switch (backgroundColor) {
       case "Júnior":
         return `rgb(99 102 241);`;

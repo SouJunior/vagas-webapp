@@ -13,7 +13,7 @@ interface JobCardProps {
   id: string;
   title: string;
   description: string;
-  jobType: "Estágio" | "Trainee" | "Júnior" | '';
+  jobType: "Estágio" | "Trainee" | "Júnior" | "";
   deleteJobCard: (id: string) => void;
 }
 
@@ -34,9 +34,7 @@ export default function JobCard({
         >
           {jobType}
         </JobType>
-        <PencilIcon
-          className="absolute right-5 hover:text-orange-500 text-xl"
-        />
+        <PencilIcon className="absolute right-5 hover:text-orange-500 text-xl" />
       </Header>
       <Description className="py-4 border-b-2">
         <Text className="text-justify">{description}</Text>
