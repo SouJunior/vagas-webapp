@@ -24,9 +24,9 @@ function InsertJobs() {
   const [jobsList, setJobsList] = useState<JobData[]>([
     {
       id: generateID(),
-      title: "Desenvolvedor",
+      title: "UX Designer Junior",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+        "Procuramos um profissional para ocupar a posição de UX Designer em um cliente referência no setor de produção de imunobiológicos (vacinas) e análises laboratoriais veterinários. Culturalmente, procuramos uma pessoa que: seja curiosa por natureza; perfil mão na massa e ágil; sabe ouvir e se comunicar; busca e tenha um histórico de aprendizado contínuo; busca e fomenta a colaboração, mas também tenha as suas contribuições individuais inovadoras; entenda o objetivo e propósito da empresa, e consiga atuar com autonomia dentro de suas responsabilidades. Responsabilidades e atribuições:",
       jobType: "Júnior",
     },
   ]);
@@ -81,7 +81,7 @@ function InsertJobs() {
   }
 
   return (
-    <main className="grid grid-cols-1 md:grid-cols-5 py-4">
+    <main className="grid justify-center md:grid-cols-4 py-4 border-b-2">
       <form
         onSubmit={(event) => handleFormSubmit(event)}
         className="m-4 p-4 border h-min col-span-2"
@@ -142,7 +142,7 @@ function InsertJobs() {
         </div>
       </form>
 
-      <div className="m-4 col-span-3 h-96 overflow-scroll border-b-4">
+      <div className="m-4 col-span-2 justify-center h-[700px] max-w-[591px] pr-2 overflow-scroll">
         {jobsList.length > 0 ? (
           jobsList.map((job) => (
             <JobCard

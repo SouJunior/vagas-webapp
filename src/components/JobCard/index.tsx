@@ -6,6 +6,8 @@ import {
   Text,
   Title,
   Wrapper,
+  Button,
+  Date,
 } from "./styles";
 import {
   RiEditFill as PencilIcon,
@@ -28,33 +30,25 @@ export default function JobCard({
   deleteJobCard,
 }: JobCardProps) {
   return (
-    <Wrapper className="rounded-md border p-6 mb-4 hover:shadow-lg cursor-pointer shadow-md">
-      <Header className="p-4 border-[1px] rounded-md flex gap-2 items-center">
+    <Wrapper className="hover:shadow-lg">
+      <Header>
         <div className="ml-1">
-          <Title className="text-[26px] font-semibold text-gray-darker">
-            {title}
-          </Title>
-          <JobType
-            backgroundColor={jobType}
-            className="text-gray-darker text-base font-semibold"
-          >
+          <Title>{title}</Title>
+          <JobType backgroundColor={jobType}>
             {jobType}
+            <Date>02/08/2022 17:23{/*Dados da data e hora irão aqui*/}</Date>
           </JobType>
         </div>
-        <PencilIcon className="absolute right-12 hover:text-orange-500 text-[44px] text-blue align-middle bg-blue-lighter border-2 border-blue p-[6px] rounded" />
+        <PencilIcon className="absolute right-12 hover:text-blue-500 text-[44px] text-blue align-middle bg-blue-lighter border-2 border-blue p-[6px] rounded" />
       </Header>
-      <Description className="px-6 py-4 border-b-[1px] text-gray-darker text-sm">
-        <Text className="text-justify">{description}</Text>
+      <Description>
+        <Text>{description}</Text>
       </Description>
-      <Footer className="pt-4">
-        <button
-          onClick={() => deleteJobCard(id)}
-          type="button"
-          className="rounded px-16 gap-1 m-1 border-[1px] border-[#930000] py-3 align-middle items-center flex font-semibold bg-[#BD0000] text-white text-sm hover:bg-red-600 active:bg-red-600 focus:ring focus:ring-red-300"
-        >
+      <Footer>
+        <Button onClick={() => deleteJobCard(id)} type="button">
           <DeleteIcon className="text-base" />
           Remover
-        </button>
+        </Button>
       </Footer>
     </Wrapper>
   );
