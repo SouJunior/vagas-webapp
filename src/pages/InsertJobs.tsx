@@ -26,10 +26,10 @@ function InsertJobs() {
   const [jobsList, setJobsList] = useState<JobData[]>([]);
   const DISCORD_LINK = "https://discord.gg/R5RAxFVC"
 
-  // VALIDAR VALORES DE UM OBJETO
-  function isValuesValid(object: { [index: string | number]: string }) {
-    return !Object.values(object).includes("");
+  function isObjectValid(o: { [index: string | number]: string }) {
+    return !Object.values(o).includes("");
   }
+
   function resetForm() {
     const form = document.getElementById("form") as HTMLFormElement;
     form.reset();
@@ -39,7 +39,7 @@ function InsertJobs() {
     // prevenir comportamento padrão (reload)
     event.preventDefault();
     // validar dados preenchidos
-    if (isValuesValid(jobData)) {
+    if (isObjectValid(jobData)) {
       // criar card com os dados
       createJobCard();
       alert("Vaga criada com sucesso. ✅");
