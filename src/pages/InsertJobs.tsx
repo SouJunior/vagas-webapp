@@ -126,7 +126,6 @@ function InsertJobs() {
         <div className="flex gap-2">
           <button
             type="submit"
-            onClick={(event) => handleFormSubmit(event)}
             className="w-full inline-block rounded font-semibold bg-yellow-500 px-2 py-1 hover:bg-yellow-600 active:bg-yellow-500 focus:ring focus:ring-yellow-300 text-white"
           >
             Cadastrar
