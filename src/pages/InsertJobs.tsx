@@ -10,7 +10,9 @@ interface JobData {
   jobType: "Estágio" | "Trainee" | "Júnior" | "";
 }
 
-const generateID = () => Math.floor(Date.now() * Math.random()).toString(36);
+const generateID = (): string => {
+  return Math.floor(Date.now() * Math.random()).toString(36);
+};
 
 const emptyJobData: JobData = {
   id: generateID(),
