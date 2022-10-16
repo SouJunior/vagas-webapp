@@ -21,15 +21,7 @@ const emptyJobData: JobData = {
 
 function InsertJobs() {
   const [jobData, setJobData] = useState<JobData>(emptyJobData);
-  const [jobsList, setJobsList] = useState<JobData[]>([
-    {
-      id: generateID(),
-      title: "Desenvolvedor",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
-      jobType: "Júnior",
-    },
-  ]);
+  const [jobsList, setJobsList] = useState<JobData[]>([]);
 
   // VALIDAR VALORES DE UM OBJETO
   function isValuesValid(object: { [index: string | number]: string }) {
