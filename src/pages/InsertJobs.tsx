@@ -24,6 +24,7 @@ const emptyJobData: JobData = {
 function InsertJobs() {
   const [jobData, setJobData] = useState<JobData>(emptyJobData);
   const [jobsList, setJobsList] = useState<JobData[]>([]);
+  const DISCORD_LINK = "https://discord.gg/R5RAxFVC"
 
   // VALIDAR VALORES DE UM OBJETO
   function isValuesValid(object: { [index: string | number]: string }) {
@@ -59,7 +60,7 @@ function InsertJobs() {
   function deleteJobCard(id: string) {
     if (!id) {
       alert(
-        "Erro ao apagar a vaga selecionada. Por favor, tente novamente ❌\n\nSe persistir o erro, contacte-nos através do nosso Discord:\nhttps://discord.gg/R5RAxFVC"
+        `Erro ao apagar a vaga selecionada. Por favor, tente novamente ❌\n\nSe persistir o erro, contacte-nos através do nosso Discord:\n${DISCORD_LINK}`
       );
       throw new Error("Passed ID argument is invalid.\nThe argument is " + id);
     }
