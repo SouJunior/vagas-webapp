@@ -30,8 +30,11 @@ function InsertJobs() {
     return !Object.values(o).includes("");
   }
 
-  function resetForm() {
-    const form = document.getElementById("form") as HTMLFormElement;
+  function resetForm(formId: string) {
+    const form = document.getElementById(formId) as HTMLFormElement;
+    if(!form) {
+      throw new Error("Não foi possível localizar o formulário no DOM (Document Object Model) pelo ID passado.");
+    }
     form.reset();
   }
   // LIDAR COM O SUBMIT DO FORM
@@ -44,7 +47,7 @@ function InsertJobs() {
       createJobCard();
       alert("Vaga criada com sucesso. ✅");
       // resetar campos do formulário
-      resetForm();
+      resetForm(event.currentTarget.id);
       // resetar jobData
       setJobData(emptyJobData);
     } else {
