@@ -9,7 +9,9 @@ interface JobData {
   description: string;
   jobType: "Estágio" | "Trainee" | "Júnior" | "";
 }
-
+/**
+ * Gera uma sequência de letras e números de 8 caracteres de forma aleatória
+ */
 const generateID = (): string => {
   return Math.floor(Date.now() * Math.random()).toString(36);
 };
@@ -20,12 +22,17 @@ const emptyJobData: JobData = {
   description: "",
   jobType: "",
 };
-
+/**
+ * Página de criação das vagas de emprego
+ */
 function InsertJobs() {
   const [jobData, setJobData] = useState<JobData>(emptyJobData);
   const [jobsList, setJobsList] = useState<JobData[]>([]);
   const DISCORD_LINK = "https://discord.gg/R5RAxFVC"
-
+  /**
+   * Determina se um objeto é válido, verificando se existe ao menos uma propriedade que seja uma string vazia. Retorna verdadeiro se não existir, ou falso se existir.
+   * @param o Um objeto com propriedades e métodos.
+   */
   function isObjectValid(o: { [index: string | number]: string }) {
     return !Object.values(o).includes("");
   }
