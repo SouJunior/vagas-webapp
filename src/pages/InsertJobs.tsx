@@ -68,17 +68,17 @@ function InsertJobs() {
     setJobsList(jobsList.filter((job) => job.id !== id));
   }
 
-  function handleFieldChange(event: any) {
+  function handleFieldChange(e: any) {
     setJobData({
       ...jobData,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   }
 
   return (
     <main className="grid grid-cols-1 md:grid-cols-5 py-4">
       <form
-        onSubmit={(event) => handleFormSubmit(event)}
+        onSubmit={(e) => handleFormSubmit(e)}
         className="m-4 p-4 border h-min col-span-2"
         id="form"
       >
@@ -89,7 +89,7 @@ function InsertJobs() {
             type="text"
             name="title"
             id="title"
-            onChange={(event) => handleFieldChange(event)}
+            onChange={(e) => handleFieldChange(e)}
             className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
           />
         </div>
@@ -99,7 +99,7 @@ function InsertJobs() {
           <textarea
             name="description"
             id="description"
-            onChange={(event) => handleFieldChange(event)}
+            onChange={(e) => handleFieldChange(e)}
             className="w-full h-40 border-2 py-1 px-3 block outline-none focus:border-blue-600"
           />
         </div>
@@ -109,7 +109,7 @@ function InsertJobs() {
           <select
             name="jobType"
             id="jobType"
-            onChange={(event) => handleFieldChange(event)}
+            onChange={(e) => handleFieldChange(e)}
             required
             defaultValue={"- Selecione aqui -"}
             className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
