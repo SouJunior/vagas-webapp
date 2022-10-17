@@ -37,7 +37,7 @@ function InsertJobs() {
     }
     form.reset();
   }
-  // LIDAR COM O SUBMIT DO FORM
+
   function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -51,12 +51,12 @@ function InsertJobs() {
     resetForm(e.currentTarget.id);
     setJobData(emptyJobData);
   }
-  // CRIAR UMA VAGA (CREATE)
+
   function createJobCard() {
     setJobData({ ...jobData, id: generateID() });
     setJobsList([...jobsList, jobData]);
   }
-  // DELETAR UMA VAGA (DELETE)
+
   function deleteJobCard(id: string) {
     if (!id) {
       alert(
