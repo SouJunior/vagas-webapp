@@ -38,21 +38,18 @@ function InsertJobs() {
     form.reset();
   }
   // LIDAR COM O SUBMIT DO FORM
-  function handleFormSubmit(event: FormEvent) {
-    // prevenir comportamento padrão (reload)
-    event.preventDefault();
-    // validar dados preenchidos
-    if (isObjectValid(jobData)) {
-      // criar card com os dados
-      createJobCard();
-      alert("Vaga criada com sucesso. ✅");
-      // resetar campos do formulário
-      resetForm(event.currentTarget.id);
-      // resetar jobData
-      setJobData(emptyJobData);
-    } else {
-      alert("Por favor, preencha os campos corretamente.");
+  function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!isObjectValid(jobData)) {
+      return alert("Por favor, preencha os campos corretamente.");
     }
+    // criar card com os dados - lógica mudará com Promises e integração com o backend
+    createJobCard();
+    alert("Vaga criada com sucesso. ✅");
+
+    resetForm(e.currentTarget.id);
+    setJobData(emptyJobData);
   }
   // CRIAR UMA VAGA (CREATE)
   function createJobCard() {
