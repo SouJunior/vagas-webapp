@@ -10,19 +10,17 @@ import {
 import { BsPencilSquare as PencilIcon } from "react-icons/bs";
 
 interface JobCardProps {
-  id: string;
   title: string;
   description: string;
   jobType: "Estágio" | "Trainee" | "Júnior" | "";
-  deleteJobCard: (id: string) => void;
+  onDeleteJobCard: () => void;
 }
 
 export default function JobCard({
-  id,
   title,
   description,
   jobType,
-  deleteJobCard,
+  onDeleteJobCard,
 }: JobCardProps) {
   return (
     <Wrapper className="rounded-md border p-5 mb-4 hover:shadow-lg cursor-pointer">
@@ -41,7 +39,7 @@ export default function JobCard({
       </Description>
       <Footer className="pt-4">
         <button
-          onClick={() => deleteJobCard(id)}
+          onClick={onDeleteJobCard}
           type="button"
           className="rounded font-semibold bg-red-500 text-white px-2 py-1 text-sm hover:bg-red-700 active:bg-red-500 focus:ring focus:ring-red-300"
         >

@@ -57,7 +57,7 @@ function InsertJobs() {
     setJobsList([...jobsList, jobData]);
   }
 
-  function deleteJobCard(id: string) {
+  function handleDeleteJobCard(id: string) {
     if (!id) {
       alert(
         `Erro ao apagar a vaga selecionada. Por favor, tente novamente ❌\n\nSe persistir o erro, contacte-nos através do nosso Discord:\n${DISCORD_LINK}`
@@ -141,11 +141,10 @@ function InsertJobs() {
           jobsList.map((job) => (
             <JobCard
               key={job.id}
-              id={job.id}
               title={job.title}
               description={job.description}
               jobType={job.jobType}
-              deleteJobCard={() => deleteJobCard(job.id)}
+              onDeleteJobCard={() => handleDeleteJobCard(job.id)}
             />
           ))
         ) : (
