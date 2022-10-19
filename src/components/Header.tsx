@@ -10,11 +10,7 @@ interface HeaderProps extends HTMLAttributes<HTMLElement> {
 /**
  * Variação 2 do cabeçalho do website
  */
-export default function Header({
-    backTo,
-    pageName,
-    ...props
-}: HeaderProps) {
+export default function Header({ backTo, pageName, ...props }: HeaderProps) {
     return (
         <header
             {...props}
@@ -30,7 +26,9 @@ export default function Header({
                 alt="Logotipo-estendida-com-ícone-da-SouJunior"
             />
             <span className="h-1 w-1 mx-3 bg-gray-dark rounded-full" />
-            <h2 className="text-base text-gray-darker font-normal">{pageName}</h2>
+            <h2 className="text-base text-gray-darker font-normal">
+                {pageName}
+            </h2>
         </header>
     );
 }
