@@ -7,7 +7,9 @@ interface HeaderProps extends HTMLAttributes<HTMLElement> {
     backTo: To;
     title: string;
 }
-
+/**
+ * Variação 2 do cabeçalho do website
+ */
 export default function Header({
     backTo,
     title,
