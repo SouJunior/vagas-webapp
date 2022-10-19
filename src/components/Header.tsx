@@ -1,10 +1,10 @@
 import { HTMLAttributes } from 'react';
 import { RiArrowLeftLine as ArrowLeftIcon } from 'react-icons/ri';
-import { Link, Path } from 'react-router-dom';
+import { Link, To } from 'react-router-dom';
 import logoIconName from '../assets/imgs/logo-icon-name-h.svg';
 
 interface HeaderProps {
-    backTo: string | Partial<Path>; // esse tipo vem da assinatura que o attr 'to' do component Link do react-router-dom pode receber
+    backTo: To;
     title: string;
 }
 
@@ -17,7 +17,7 @@ export default function Header({
         <header
             {...props}
             className="bg-gray-light border-b border-gray absolute top-0 left-0
-      right-0 flex items-center justify-center p-5 mb-4 h-16"
+            right-0 flex items-center justify-center p-5 mb-4 h-16"
         >
             <Link to={backTo} className="absolute left-16 text-3xl">
                 <ArrowLeftIcon className="text-blue w-8 h-8" />
