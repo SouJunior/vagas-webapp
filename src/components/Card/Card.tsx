@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Card = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function login(e) {
+        console.log(email,password)
+        e.preventDefault()
+        
+    }
+
   return (
     <>
+    
+    <form>
       <section>
-        {/* aqui irá o login card */}
-        <div className="relative w-[464px] flex flex-col justify-center min-h-screen overflow-hidden">
-          <div className="w-full p-6 m-auto bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
+        <div className="w-[464px] relative left-96 min-h-screen overflow-hidden mt-20">
+          <div className="w-full h-[700px] p-6 m-auto bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
             <h1 className="text-3xl font-extrabold text-center text-blue-600 mb-4">
               SouJunior
             </h1>
             <h2 className="text-center">Entrar</h2>
             <hr className="my-8 h-px bg-gray-200 border-0 gray:bg-gray-700 mb-20" />
-            <form className="mt-6">
-              <div className="mb-2">
+            <form>
+              <div>
                 <label className="block text-sm font-semibold text-gray-800"></label>
                 <div className="relative flex w-full flex-wrap items-strech mb-3">
                   <span className="absolute inset-y-[30%] right-[2%] z-10 h-full leading-snuf font-normal">
@@ -33,13 +44,14 @@ const Card = () => {
                   </span>
                   <input
                     type="email"
+                    onChange={(e) => setEmail(e.target.value)}
                     className="relative w-full px-4 py-2 mt-2 text-blue-700 border rounded-md focus:border-purple-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="E-mail"
                   />
                 </div>
               </div>
 
-              <div className="mb-2">
+              <div>
                 <label className="block text-sm font-semibold text-gray-800"></label>
                 <div className="relative">
                   <span className="absolute inset-y-[20%] right-[2%] z-10 h-full leading-snuf font-normal">
@@ -58,6 +70,7 @@ const Card = () => {
                   </span>
                   <input
                     type="password"
+                    onChange={(e) => setPassword(e.target.value)}
                     className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 mb-20"
                     placeholder="Password"
                   />
@@ -74,7 +87,7 @@ const Card = () => {
                 Me mantenha conectado
               </label>
               <div className="mt-6">
-                <button className="w-full h-12 rounded mb-5 text-white bg-blue-600">
+                <button className="w-full h-12 rounded mb-5 text-white bg-blue-600" onClick={login} id='submit-button'>
                   Entrar
                 </button>
                 <button className="border-2 h-12 border-blue-600 text-blue w-full rounded">
@@ -85,6 +98,7 @@ const Card = () => {
           </div>
         </div>
       </section>
+      </form>
     </>
   );
 };
