@@ -1,0 +1,15 @@
+# See more on https://prettier.io/docs/en/ignore.html
+
+# Ignore artifacts:
+build
+coverage
+
+# Docs
+README.md
+contribuindo.md
+LICENSE.md
+
+# Packages
+package.json
+package-lock.json
+yarn.lock
