@@ -1,13 +1,15 @@
 import { FormEvent, useState } from 'react';
 import JobCard from '../components/JobCard';
 import { v4 as uuidv4 } from 'uuid';
+import { format } from 'date-fns';
+import { pt } from 'date-fns/locale';
 
 export interface JobData {
     readonly id: string;
     title: string;
     description: string;
     jobType: 'Estágio' | 'Trainee' | 'Júnior' | string;
-    created_at: {
+    createdAt: {
         hour: string;
         date: string;
     };
@@ -18,9 +20,9 @@ const emptyJobData: JobData = {
     title: '',
     description: '',
     jobType: '',
-    created_at: {
-        hour: '',
-        date: '',
+    createdAt: {
+        hour: format(new Date(), 'p', { locale: pt }),
+        date: format(new Date(), 'P', { locale: pt }),
     },
 };
 /**
@@ -44,17 +46,12 @@ function InsertJobs() {
         if (!isObjectValid(jobData)) {
             return alert('Por favor, preencha os campos corretamente.');
         }
-        // criar card com os dados - lógica mudará com Promises e integração com o backend
-        createJobCard();
+
+        setJobsList((prevState) => [...prevState, jobData]);
         alert('Vaga criada com sucesso. ✅');
 
         e.currentTarget.reset();
         setJobData(emptyJobData);
-    }
-
-    function createJobCard() {
-        setJobData({ ...jobData, id: uuidv4() });
-        setJobsList([...jobsList, jobData]);
     }
 
     function handleDeleteJobCard(id: string) {
@@ -147,7 +144,7 @@ function InsertJobs() {
                             title={job.title}
                             description={job.description}
                             jobType={job.jobType}
-                            created_at={job.created_at}
+                            createdAt={job.createdAt}
                             onDeleteJobCard={() => handleDeleteJobCard(job.id)}
                         />
                     ))
