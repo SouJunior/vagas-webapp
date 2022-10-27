@@ -1,26 +1,28 @@
 import { FormEvent, useState } from 'react';
 import '../App.css';
 import JobCard from '../components/JobCard';
+import { v4 as uuidv4 } from 'uuid';
 
-interface JobData {
-    [index: string]: string;
+export interface JobData {
     readonly id: string;
     title: string;
     description: string;
-    jobType: 'Estágio' | 'Trainee' | 'Júnior' | '';
+    jobType: 'Estágio' | 'Trainee' | 'Júnior' | string;
+    created_at: {
+        hour: string;
+        date: string;
+    };
 }
-/**
- * Gera uma sequência de letras e números de 8 caracteres de forma aleatória
- */
-const generateID = (): string => {
-    return Math.floor(Date.now() * Math.random()).toString(36);
-};
 
 const emptyJobData: JobData = {
-    id: generateID(),
+    id: uuidv4(),
     title: '',
     description: '',
     jobType: '',
+    created_at: {
+        hour: '',
+        date: '',
+    },
 };
 /**
  * Página de criação das vagas de emprego
@@ -33,7 +35,7 @@ function InsertJobs() {
      * Determina se um objeto é válido, verificando se existe ao menos uma propriedade que seja uma string vazia. Retorna verdadeiro se não existir, ou falso se existir.
      * @param o Um objeto com propriedades e métodos.
      */
-    function isObjectValid(o: { [index: string | number]: string }) {
+    function isObjectValid(o: any) {
         return !Object.values(o).includes('');
     }
 
@@ -52,7 +54,7 @@ function InsertJobs() {
     }
 
     function createJobCard() {
-        setJobData({ ...jobData, id: generateID() });
+        setJobData({ ...jobData, id: uuidv4() });
         setJobsList([...jobsList, jobData]);
     }
 
@@ -142,9 +144,11 @@ function InsertJobs() {
                     jobsList.map((job) => (
                         <JobCard
                             key={job.id}
+                            id={job.id}
                             title={job.title}
                             description={job.description}
                             jobType={job.jobType}
+                            created_at={job.created_at}
                             onDeleteJobCard={() => handleDeleteJobCard(job.id)}
                         />
                     ))
