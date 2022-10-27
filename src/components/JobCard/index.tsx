@@ -8,22 +8,25 @@ import {
     Wrapper,
 } from './styles';
 import { BsPencilSquare as PencilIcon } from 'react-icons/bs';
+import { JobData } from '../../pages/InsertJobs';
 
-interface JobCardProps {
-    title: string;
-    description: string;
-    jobType: 'Estágio' | 'Trainee' | 'Júnior' | '';
+interface JobCardProps extends JobData {
     onDeleteJobCard: () => void;
 }
 
 export default function JobCard({
+    id,
     title,
     description,
     jobType,
+    created_at,
     onDeleteJobCard,
 }: JobCardProps) {
     return (
-        <Wrapper className="rounded-md border p-5 mb-4 hover:shadow-lg cursor-pointer">
+        <Wrapper
+            id={id}
+            className="rounded-md border p-5 mb-4 hover:shadow-lg cursor-pointer"
+        >
             <Header className="pb-4 border-b-2 flex gap-2 items-center">
                 <Title className="text-xl">{title}</Title>
                 <JobType
