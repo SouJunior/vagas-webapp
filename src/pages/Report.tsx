@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { Container } from "../components/styles/Container.styled";
