@@ -4,7 +4,6 @@ import extendedLogoImg from "../assets/imgs/logotipo-icone-extendida.svg";
 import Card from "../components/Card/Card"
 
 const Login = () => {
-
   return (
     <main className="grid lg:grid-cols-2 px-4 bg-blue-gradient h-full">
       <section className="lg:pl-16 pl-24 mt-44">
