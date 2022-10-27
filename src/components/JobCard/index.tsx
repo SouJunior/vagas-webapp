@@ -19,7 +19,7 @@ export default function JobCard({
     title,
     description,
     jobType,
-    created_at,
+    createdAt,
     onDeleteJobCard,
 }: JobCardProps) {
     return (
