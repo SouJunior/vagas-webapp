@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+      canada : ['Radio Canada', 'sans-serif']
+    },
     extend: {
       colors: {
         blue: {

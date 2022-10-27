@@ -11,7 +11,7 @@ const Report = () => {
   const [count, setCount] = useState(0);
   const [message, setMessage] = useState("");
 
-  function handleMessage(e: any): void {
+  const handleMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(() => e.target.value);
     setCount(e.target.value.length);
   }
@@ -19,7 +19,7 @@ const Report = () => {
   const MAX_LENGTH = 2000;
   return (
     <div>
-      <Header title="Central de denúncias" backTo="component"/>
+      <Header title="Central de denúncias" backTo="/"/>
       <Container>
         <header className="text-center align-middle">
           <h4 className="font-semibold text-gray-600 text-3xl tracking-wide mt-24">
