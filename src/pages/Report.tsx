@@ -19,7 +19,7 @@ const Report = () => {
     const MAX_LENGTH = 2000;
     return (
         <div>
-            <Header title="Central de denúncias" backTo="/" />
+            <Header pageName="Central de denúncias" backTo="/" />
             <Container>
                 <header className="text-center align-middle">
                     <h4 className="font-semibold text-gray-600 text-3xl tracking-wide mt-24">
