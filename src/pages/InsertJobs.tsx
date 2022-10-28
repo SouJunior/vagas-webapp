@@ -75,7 +75,7 @@ function InsertJobs() {
             [e.target.name]: e.target.value,
         });
     }
-
+    
     return (
         <main className="grid grid-cols-1 md:grid-cols-5 py-4">
             <form
