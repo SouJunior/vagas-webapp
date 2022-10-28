@@ -3,7 +3,6 @@ import { RiArrowLeftLine as ArrowLeftIcon } from 'react-icons/ri';
 import { Link, To } from 'react-router-dom';
 import logoIconName from '../assets/imgs/logo-icon-name-h.svg';
 
-
 interface HeaderProps extends HTMLAttributes<HTMLElement> {
     backTo: To;
     pageName: string;
