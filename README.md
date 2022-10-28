@@ -54,7 +54,7 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 ## Relacionados
 
-[SouJunior Backend](https://github.com/wouerner/linkedin-backend)
+[Projeto Vagas - Backend](https://github.com/SouJunior/vagas-backend)
 
 ## Autor(es) 🙎🏻‍♂️
 
