@@ -5,7 +5,7 @@ import { Container } from '../components/styles/Container.styled';
 import Header from '../components/Header';
 import mailIcon from '../assets/imgs/mail.svg';
 import importantIcon from '../assets/imgs/important_vector.png';
-import { SimpleFooter } from '../components/SimpleFooter';
+import Footer from '../components/Footer';
 
 const Report = () => {
     const [count, setCount] = useState(0);
@@ -19,7 +19,7 @@ const Report = () => {
     const MAX_LENGTH = 2000;
     return (
         <div>
-            <Header title="Central de denúncias" backTo="/" />
+            <Header pageName="Central de denúncias" backTo="/" />
             <Container>
                 <header className="text-center align-middle">
                     <h4 className="font-semibold text-gray-600 text-3xl tracking-wide mt-24">
@@ -240,7 +240,7 @@ const Report = () => {
                         </div>
                     </div>
                 </section>
-                <SimpleFooter />
+                <Footer />
             </Container>
         </div>
     );

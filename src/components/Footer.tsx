@@ -7,7 +7,7 @@ import {
 } from 'react-icons/ri';
 import logoIcon from '../assets/imgs/logo-icon-name-h.svg';
 
-export function ExtendedFooter() {
+export function Footer() {
     return (
         <footer className="border-t-2 border-[#E0EDFD]">
             <div className="flex my-14 ml-14 bg-gray-light">
@@ -138,3 +138,5 @@ export function ExtendedFooter() {
         </footer>
     );
 }
+
+export default Footer;

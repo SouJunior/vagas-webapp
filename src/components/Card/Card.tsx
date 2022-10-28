@@ -5,7 +5,7 @@ const Card = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function login(e) {
+    function login(e: any) {
         console.log(email,password)
         e.preventDefault()
         

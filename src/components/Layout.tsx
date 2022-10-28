@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Container } from './styles/Container.styled';
-import { ExtendedFooter } from './ExtendedFooter';
+import { Footer } from './Footer';
 
 export default function Layout() {
     return (
@@ -8,7 +8,7 @@ export default function Layout() {
             <Container>
                 <Outlet />
             </Container>
-            <ExtendedFooter />
+            <Footer />
         </>
     );
 }
