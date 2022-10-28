@@ -15,19 +15,17 @@ import {
 } from "react-icons/ri";
 
 interface JobCardProps {
-  id: string;
-  title: string;
-  description: string;
-  jobType: "Estágio" | "Trainee" | "Júnior" | "";
-  deleteJobCard: (id: string) => void;
+    title: string;
+    description: string;
+    jobType: 'Estágio' | 'Trainee' | 'Júnior' | '';
+    onDeleteJobCard: () => void;
 }
 
 export default function JobCard({
-  id,
-  title,
-  description,
-  jobType,
-  deleteJobCard,
+    title,
+    description,
+    jobType,
+    onDeleteJobCard,
 }: JobCardProps) {
   return (
     <Wrapper className="hover:shadow-lg">

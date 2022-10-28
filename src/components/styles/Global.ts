@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   /* RESET CSS */
@@ -15,6 +15,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Inter', sans-serif;
     font-size: 1rem /* 16px */;
-    color: ${({theme}) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.black};
   }
 `;
