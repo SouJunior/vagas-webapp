@@ -36,11 +36,11 @@ function InsertJobs() {
      * Determina se um objeto é válido, verificando se existe ao menos uma propriedade que seja uma string vazia. Retorna verdadeiro se não existir, ou falso se existir.
      * @param o Um objeto com propriedades e métodos.
      */
-    function isObjectValid(o: any) {
+    const isObjectValid = (o: any) => {
         return !Object.values(o).includes('');
     }
 
-    function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
+    const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!isObjectValid(jobData)) {
@@ -54,7 +54,7 @@ function InsertJobs() {
         setJobData(emptyJobData);
     }
 
-    function handleDeleteJobCard(id: string) {
+    const handleDeleteJobCard = (id: string) => {
         if (!id) {
             alert(
                 `Erro ao apagar a vaga selecionada. Por favor, tente novamente ❌\n\nSe persistir o erro, contacte-nos através do nosso Discord:\n${DISCORD_LINK}`,
@@ -67,7 +67,7 @@ function InsertJobs() {
         setJobsList(jobsList.filter((job) => job.id !== id));
     }
 
-    function handleFieldChange(e: any) {
+    const handleFieldChange = (e: any) => {
         setJobData({
             ...jobData,
             [e.target.name]: e.target.value,
