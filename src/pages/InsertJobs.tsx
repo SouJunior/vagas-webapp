@@ -21,8 +21,8 @@ const emptyJobData: JobData = {
     description: '',
     jobType: '',
     createdAt: {
-        hour: format(new Date(), 'p', { locale: pt }),
-        date: format(new Date(), 'P', { locale: pt }),
+        hour: '',
+        date: '',
     },
 };
 /**
@@ -74,6 +74,16 @@ function InsertJobs() {
         });
     }
 
+    const updatedJobDataCreatedAt = () => {
+        setJobData({
+            ...jobData,
+            createdAt: {
+                hour: format(new Date(), 'p', { locale: pt }),
+                date: format(new Date(), 'P', { locale: pt }),
+            },
+        });
+    }
+
     return (
         <main className="grid grid-cols-1 md:grid-cols-5 py-4">
             <form
@@ -122,6 +132,7 @@ function InsertJobs() {
                 <div className="flex gap-2">
                     <button
                         type="submit"
+                        onClick={updatedJobDataCreatedAt}
                         className="w-full inline-block rounded font-semibold bg-yellow-500 px-2 py-1 hover:bg-yellow-600 active:bg-yellow-500 focus:ring focus:ring-yellow-300 text-white"
                     >
                         Cadastrar
