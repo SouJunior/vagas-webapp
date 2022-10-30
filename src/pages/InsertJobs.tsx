@@ -38,7 +38,7 @@ function InsertJobs() {
      */
     const isObjectValid = (o: any) => {
         return !Object.values(o).includes('');
-    }
+    };
 
     const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -52,7 +52,7 @@ function InsertJobs() {
 
         e.currentTarget.reset();
         setJobData(emptyJobData);
-    }
+    };
 
     const handleDeleteJobCard = (id: string) => {
         if (!id) {
@@ -65,14 +65,14 @@ function InsertJobs() {
         }
         alert(`Vaga de ID: ${id} foi excluída com sucesso. ✅`);
         setJobsList(jobsList.filter((job) => job.id !== id));
-    }
+    };
 
     const handleFieldChange = (e: any) => {
         setJobData({
             ...jobData,
             [e.target.name]: e.target.value,
         });
-    }
+    };
 
     const updatedJobDataCreatedAt = () => {
         setJobData({
@@ -82,7 +82,7 @@ function InsertJobs() {
                 date: format(new Date(), 'P', { locale: pt }),
             },
         });
-    }
+    };
 
     return (
         <main className="grid grid-cols-1 md:grid-cols-5 py-4">
