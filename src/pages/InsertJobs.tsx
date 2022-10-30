@@ -33,18 +33,11 @@ function InsertJobs() {
     const [jobData, setJobData] = useState<JobData>(emptyJobData);
     const [jobsList, setJobsList] = useState<JobData[]>([]);
     const DISCORD_LINK = 'https://discord.gg/R5RAxFVC';
-    /**
-     * Determina se um objeto é válido, verificando se existe ao menos uma propriedade que seja uma string vazia. Retorna verdadeiro se não existir, ou falso se existir.
-     * @param o Um objeto com propriedades e métodos.
-     */
-    const isObjectValid = (o: any) => {
-        return !Object.values(o).includes('');
-    };
 
     const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!isObjectValid(jobData)) {
+        if (Object.values(jobData).some((value) => !value)) {
             return alert('Por favor, preencha os campos corretamente.');
         }
 
