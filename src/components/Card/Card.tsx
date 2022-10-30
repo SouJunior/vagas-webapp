@@ -4,7 +4,7 @@ const Card = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function login(e) {
+    function handleFormOnSubmit(e) {
         e.preventDefault()
     }
 
