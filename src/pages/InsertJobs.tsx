@@ -7,23 +7,23 @@ import Header from '../components/Header';
 
 export interface JobData {
     readonly id: string;
-    title: string;
-    description: string;
-    jobType: 'Estágio' | 'Trainee' | 'Júnior' | string;
+    title?: string;
+    description?: string;
+    jobType?: 'Estágio' | 'Trainee' | 'Júnior';
     createdAt: {
-        hour: string;
-        date: string;
-    };
+        hour?: string;
+        date?: string;
+    } | null;
 }
 
 const emptyJobData: JobData = {
     id: uuidv4(),
-    title: '',
-    description: '',
-    jobType: '',
+    title: undefined,
+    description: undefined,
+    jobType: undefined,
     createdAt: {
-        hour: '',
-        date: '',
+        hour: undefined,
+        date: undefined,
     },
 };
 /**
