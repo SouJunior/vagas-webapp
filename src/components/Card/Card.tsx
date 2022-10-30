@@ -6,7 +6,6 @@ const Card = () => {
 
     function login(e) {
         e.preventDefault()
-        
     }
 
   return (
