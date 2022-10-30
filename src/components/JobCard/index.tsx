@@ -16,7 +16,7 @@ import {
 import { JobData } from '../../pages/InsertJobs';
 
 interface JobCardProps extends JobData {
-    onDeleteJobCard: () => void;
+    onDeleteJobCard: (id: string) => void;
 }
 
 export default function JobCard({
@@ -45,7 +45,7 @@ export default function JobCard({
                 <Text>{description}</Text>
             </Description>
             <Footer>
-                <Button onClick={onDeleteJobCard} type="button">
+                <Button onClick={() => onDeleteJobCard(id)} type="button">
                     <DeleteIcon className="text-base" />
                     Remover
                 </Button>

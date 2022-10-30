@@ -46,7 +46,7 @@ function InsertJobs() {
         alert('Vaga criada com sucesso. ✅');
 
         e.currentTarget.reset();
-        setJobData(emptyJobData);
+        setJobData({ ...emptyJobData, id: uuidv4() });
     };
 
     const handleDeleteJobCard = (id: string) => {
@@ -221,9 +221,7 @@ function InsertJobs() {
                                 description={job.description}
                                 jobType={job.jobType}
                                 createdAt={job.createdAt}
-                                onDeleteJobCard={() =>
-                                    handleDeleteJobCard(job.id)
-                                }
+                                onDeleteJobCard={handleDeleteJobCard}
                             />
                         ))
                     ) : (
