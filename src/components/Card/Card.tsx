@@ -20,7 +20,7 @@ const Card = () => {
             </h1>
             <h2 className="text-center">Entrar</h2>
             <hr className="my-8 h-px bg-gray-200 border-0 gray:bg-gray-700 mb-20" />
-            <form>
+            <form id="login-form" onSubmit={(e) => handleFormOnSubmit(e)}>
               <div>
                 <label className="block text-sm font-semibold text-gray-800"></label>
                 <div className="relative flex w-full flex-wrap items-strech mb-3">
