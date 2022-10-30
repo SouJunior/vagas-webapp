@@ -69,7 +69,7 @@ function InsertJobs() {
         });
     };
 
-    const updatedJobDataCreatedAt = () => {
+    const addUpdatedCreatedAtToJobData = () => {
         setJobData({
             ...jobData,
             createdAt: {
@@ -174,7 +174,7 @@ function InsertJobs() {
                         <div className="flex gap-3">
                             <button
                                 type="submit"
-                                onClick={updatedJobDataCreatedAt}
+                                onClick={addUpdatedCreatedAtToJobData}
                                 className="flex-1 rounded font-semibold p-4 text-white bg-blue"
                             >
                                 Criar
