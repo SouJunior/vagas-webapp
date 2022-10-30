@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import Header from '../components/Header';
+import { RiArrowDropDownLine as ArrowDropdown } from 'react-icons/ri';
 
 export interface JobData {
     readonly id: string;
@@ -83,10 +84,10 @@ function InsertJobs() {
             <Header pageName="Criar vaga" backTo={'/'} />
 
             <main className="grid grid-cols-1 md:grid-cols-2 gap-7 py-8 mt-[80px]">
-                <div>
+                <div className="w-full max-w-[583px] justify-self-end">
                     <form
                         onSubmit={(e) => handleFormSubmit(e)}
-                        className="p-6 h-min border rounded-md max-w-[583px] text-gray-darker shadow-md shadow-[#1a1a1a]/5"
+                        className="p-6 h-min border rounded-md text-gray-darker shadow-md shadow-[#1a1a1a]/5"
                         id="form"
                     >
                         <h1 className="font-semibold text-2xl mt-1 mb-5">
@@ -106,7 +107,7 @@ function InsertJobs() {
                                 id="title"
                                 onChange={(e) => handleFieldChange(e)}
                                 placeholder="Título da vaga"
-                                className="w-full border p-3 px-4 mt-[10px] block rounded-md outline-none focus:border-blue placeholder:text-gray-dark/70"
+                                className="w-full border py-3 px-4 mt-[10px] block rounded-md outline-none focus:border-blue placeholder:text-gray-dark/70"
                             />
                         </div>
 
@@ -123,7 +124,7 @@ function InsertJobs() {
                                 id="description"
                                 onChange={(e) => handleFieldChange(e)}
                                 placeholder="Descrição da vaga"
-                                className="w-full h-32 border p-3 px-4 mt-[10px] rounded-md block outline-none focus:border-blue placeholder:text-gray-dark/70"
+                                className="w-full h-32 border py-3 px-4 mt-[10px] rounded-md block outline-none focus:border-blue placeholder:text-gray-dark/70"
                             />
                         </div>
 
@@ -132,36 +133,42 @@ function InsertJobs() {
                                 Tipo
                             </label>
 
-                            <select
-                                name="jobType"
-                                id="jobType"
-                                onChange={(e) => handleFieldChange(e)}
-                                required
-                                defaultValue={'Tipo da vaga'}
-                                className="w-full border p-3 block mt-[10px] outline-none rounded-md focus:border-blue cursor-pointer text-gray-dark/70"
-                            >
-                                <option disabled className="text-gray-dark/60">
-                                    Tipo da vaga
-                                </option>
-                                <option
-                                    value="Estágio"
-                                    className="text-gray-darker"
+                            <div className="relative">
+                                <select
+                                    name="jobType"
+                                    id="jobType"
+                                    onChange={(e) => handleFieldChange(e)}
+                                    required
+                                    defaultValue={'Tipo da vaga'}
+                                    className="w-full border appearance-none py-3 px-4 block mt-[10px] outline-none rounded-md focus:border-blue cursor-pointer"
                                 >
-                                    Estágio
-                                </option>
-                                <option
-                                    value="Júnior"
-                                    className="text-gray-darker"
-                                >
-                                    Júnior
-                                </option>
-                                <option
-                                    value="Trainee"
-                                    className="text-gray-darker"
-                                >
-                                    Trainee
-                                </option>
-                            </select>
+                                    <option
+                                        disabled
+                                        className="text-gray-dark/60"
+                                    >
+                                        Tipo da vaga
+                                    </option>
+                                    <option
+                                        value="Estágio"
+                                        className="text-gray-darker"
+                                    >
+                                        Estágio
+                                    </option>
+                                    <option
+                                        value="Júnior"
+                                        className="text-gray-darker"
+                                    >
+                                        Júnior
+                                    </option>
+                                    <option
+                                        value="Trainee"
+                                        className="text-gray-darker"
+                                    >
+                                        Trainee
+                                    </option>
+                                </select>
+                                <ArrowDropdown className="text-gray-darker/60 text-4xl absolute top-2 right-3" />
+                            </div>
                         </div>
 
                         <div className="flex gap-3">
