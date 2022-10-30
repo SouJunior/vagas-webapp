@@ -84,7 +84,7 @@ const Card = () => {
                 Me mantenha conectado
               </label>
               <div className="mt-6">
-                <button className="w-full h-12 rounded mb-5 text-white bg-blue-600" onClick={login} id='submit-button'>
+                <button type="submit" className="w-full h-12 rounded mb-5 text-white bg-blue-600" id='submit-button'>
                   Entrar
                 </button>
                 <button className="border-2 h-12 border-blue-600 text-blue w-full rounded">
