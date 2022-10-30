@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import JobCard from '../components/JobCard';
 import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
@@ -62,7 +62,11 @@ function InsertJobs() {
         setJobsList(jobsList.filter((job) => job.id !== id));
     };
 
-    const handleFieldChange = (e: any) => {
+    const handleFieldChange = (
+        e: ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >,
+    ) => {
         setJobData({
             ...jobData,
             [e.target.name]: e.target.value,
