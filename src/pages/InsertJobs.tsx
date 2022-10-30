@@ -89,74 +89,120 @@ function InsertJobs() {
         <>
             <Header pageName="Criar vaga" backTo={'/'} />
 
-            <main className="grid grid-cols-1 md:grid-cols-5 py-4">
-                <form
-                    onSubmit={(e) => handleFormSubmit(e)}
-                    className="m-4 p-4 border h-min col-span-2"
-                    id="form"
-                >
-                    <h1 className="font-bold text-lg">Preencha os campos</h1>
+            <main className="grid grid-cols-1 md:grid-cols-2 gap-7 py-8 mt-[80px]">
+                <div>
+                    <form
+                        onSubmit={(e) => handleFormSubmit(e)}
+                        className="p-6 h-min border rounded-md max-w-[583px] text-gray-darker shadow-md shadow-[#1a1a1a]/5"
+                        id="form"
+                    >
+                        <h1 className="font-semibold text-2xl mt-1 mb-5">
+                            Preencha os campos
+                        </h1>
 
-                    <div className="py-2">
-                        <label htmlFor="title">Titulo da vaga</label>
+                        <span className="border-t-[1px] block w-full mb-6"></span>
 
-                        <input
-                            type="text"
-                            name="title"
-                            id="title"
-                            onChange={(e) => handleFieldChange(e)}
-                            className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
-                        />
-                    </div>
+                        <div className="mb-3">
+                            <label htmlFor="title" className="font-semibold">
+                                Título
+                            </label>
 
-                    <div className="py-2">
-                        <label htmlFor="description">Descrição da vaga</label>
+                            <input
+                                type="text"
+                                name="title"
+                                id="title"
+                                onChange={(e) => handleFieldChange(e)}
+                                placeholder="Título da vaga"
+                                className="w-full border p-3 px-4 mt-[10px] block rounded-md outline-none focus:border-blue placeholder:text-gray-dark/70"
+                            />
+                        </div>
 
-                        <textarea
-                            name="description"
-                            id="description"
-                            onChange={(e) => handleFieldChange(e)}
-                            className="w-full h-40 border-2 py-1 px-3 block outline-none focus:border-blue-600"
-                        />
-                    </div>
+                        <div className="mb-3">
+                            <label
+                                htmlFor="description"
+                                className="font-semibold"
+                            >
+                                Descrição
+                            </label>
 
-                    <div className="py-2">
-                        <label htmlFor="jobType">Tipo da vaga</label>
+                            <textarea
+                                name="description"
+                                id="description"
+                                onChange={(e) => handleFieldChange(e)}
+                                placeholder="Descrição da vaga"
+                                className="w-full h-32 border p-3 px-4 mt-[10px] rounded-md block outline-none focus:border-blue placeholder:text-gray-dark/70"
+                            />
+                        </div>
 
-                        <select
-                            name="jobType"
-                            id="jobType"
-                            onChange={(e) => handleFieldChange(e)}
-                            required
-                            defaultValue={'- Selecione aqui -'}
-                            className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
+                        <div className="mb-5">
+                            <label htmlFor="jobType" className="font-semibold">
+                                Tipo
+                            </label>
+
+                            <select
+                                name="jobType"
+                                id="jobType"
+                                onChange={(e) => handleFieldChange(e)}
+                                required
+                                defaultValue={'Tipo da vaga'}
+                                className="w-full border p-3 block mt-[10px] outline-none rounded-md focus:border-blue cursor-pointer text-gray-dark/70"
+                            >
+                                <option disabled className="text-gray-dark/60">
+                                    Tipo da vaga
+                                </option>
+                                <option
+                                    value="Estágio"
+                                    className="text-gray-darker"
+                                >
+                                    Estágio
+                                </option>
+                                <option
+                                    value="Júnior"
+                                    className="text-gray-darker"
+                                >
+                                    Júnior
+                                </option>
+                                <option
+                                    value="Trainee"
+                                    className="text-gray-darker"
+                                >
+                                    Trainee
+                                </option>
+                            </select>
+                        </div>
+
+                        <div className="flex gap-3">
+                            <button
+                                type="submit"
+                                onClick={updatedJobDataCreatedAt}
+                                className="flex-1 rounded font-semibold p-4 text-white bg-blue"
+                            >
+                                Criar
+                            </button>
+
+                            <button
+                                type="reset"
+                                className="flex-1 rounded font-semibold p-4 text-blue border border-blue"
+                            >
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+
+                    <p className="text-center mt-7 block">
+                        Está tendo algum problema? Consulte nosso{' '}
+                        <a
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue underline"
                         >
-                            <option disabled>- Selecione aqui -</option>
-                            <option value="Estágio">Estágio</option>
-                            <option value="Júnior">Júnior</option>
-                            <option value="Trainee">Trainee</option>
-                        </select>
-                    </div>
+                            suporte
+                        </a>
+                    </p>
+                </div>
 
-                    <div className="flex gap-2">
-                        <button
-                            type="submit"
-                            onClick={updatedJobDataCreatedAt}
-                            className="w-full inline-block rounded font-semibold bg-yellow-500 px-2 py-1 hover:bg-yellow-600 active:bg-yellow-500 focus:ring focus:ring-yellow-300 text-white"
-                        >
-                            Cadastrar
-                        </button>
-
-                        <button
-                            type="reset"
-                            className="w-fit text-sm inline-block rounded font-semibold bg-slate-500 px-2 py-1 hover:bg-slate-600 active:bg-slate-500 focus:ring focus:ring-slate-300 text-white"
-                        >
-                            Limpar
-                        </button>
-                    </div>
-                </form>
-
-                <div className="m-4 col-span-3 h-96 overflow-scroll border-b-4">
+                <div className="m-4 h-96 overflow-scroll border-b-4">
                     {jobsList.length > 0 ? (
                         jobsList.map((job) => (
                             <JobCard
