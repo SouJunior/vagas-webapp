@@ -25,7 +25,9 @@ const Login = () => {
         </Button>
       </section>
 
-      <Card />
+      <section>
+          <Card />
+      </section>
      
     </main>
   );
