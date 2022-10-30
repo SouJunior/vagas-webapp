@@ -79,6 +79,10 @@ function InsertJobs() {
         });
     };
 
+    const cleanJobData = () => {
+        setJobData(emptyJobData);
+    };
+
     return (
         <>
             <Header pageName="Criar vaga" backTo={'/'} />
@@ -182,6 +186,7 @@ function InsertJobs() {
 
                             <button
                                 type="reset"
+                                onClick={cleanJobData}
                                 className="flex-1 rounded font-semibold p-4 text-blue border border-blue"
                             >
                                 Cancelar
