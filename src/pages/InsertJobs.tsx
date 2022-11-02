@@ -8,23 +8,23 @@ import { RiArrowDropDownLine as ArrowDropdown } from 'react-icons/ri';
 
 export interface JobData {
     readonly id: string;
-    title?: string;
-    description?: string;
-    jobType?: 'Estágio' | 'Trainee' | 'Júnior';
+    title: string;
+    description: string;
+    jobType: 'Estágio' | 'Trainee' | 'Júnior' | string;
     createdAt: {
-        hour?: string;
-        date?: string;
-    } | null;
+        hour: string;
+        date: string;
+    };
 }
 
 const emptyJobData: JobData = {
     id: uuidv4(),
-    title: undefined,
-    description: undefined,
-    jobType: undefined,
+    title: '',
+    description: '',
+    jobType: '',
     createdAt: {
-        hour: undefined,
-        date: undefined,
+        hour: '',
+        date: '',
     },
 };
 /**
