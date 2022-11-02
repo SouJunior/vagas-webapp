@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react';
 import JobCard from '../components/JobCard';
 import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
@@ -30,7 +30,7 @@ const emptyJobData: JobData = {
 /**
  * Página de criação das vagas de emprego
  */
-function InsertJobs() {
+export const InsertJobs: FunctionComponent<any> = () => {
     const [jobData, setJobData] = useState<JobData>(emptyJobData);
     const [jobsList, setJobsList] = useState<JobData[]>([]);
     const DISCORD_LINK = 'https://discord.gg/R5RAxFVC';
@@ -231,6 +231,4 @@ function InsertJobs() {
             </main>
         </>
     );
-}
-
-export default InsertJobs;
+};
