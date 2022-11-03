@@ -15,18 +15,18 @@ export default function Header({ backTo, pageName, ...props }: HeaderProps) {
         <header
             {...props}
             className="bg-gray-light border-b border-gray absolute top-0 left-0
-            right-0 flex items-center justify-center p-5 mb-4 h-16"
+            right-0 flex items-center justify-center p-5 mb-4 h-[6.1875rem]"
         >
             <Link to={backTo} className="absolute left-16 text-3xl">
-                <ArrowLeftIcon className="text-blue w-8 h-8" />
+                <ArrowLeftIcon size={44} className="text-blue" />
             </Link>
             <img
-                width={130}
+                width={198}
                 src={logoIconName}
                 alt="Logotipo-estendida-com-ícone-da-SouJunior"
             />
             <span className="h-1 w-1 mx-3 bg-gray-dark rounded-full" />
-            <h2 className="text-base text-gray-darker font-normal">
+            <h2 className="text-2xl text-gray-darker font-normal">
                 {pageName}
             </h2>
         </header>
