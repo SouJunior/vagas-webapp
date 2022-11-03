@@ -240,7 +240,10 @@ export const InsertJobs: FunctionComponent<any> = () => {
                     ) : (
                         <div className="border border-dashed border-blue rounded-md text-center font-canada p-24">
                             <div className="mb-[47px] mx-auto border border-blue rounded-full w-[10.625rem] p-9">
-                                <RiInformationLine size={96} className='text-blue' />
+                                <RiInformationLine
+                                    size={96}
+                                    className="text-blue"
+                                />
                             </div>
                             <p className="text-[1.5625rem] leading-[1.875rem] font-medium mb-[0.4375rem]">
                                 Você ou sua Organização, não possuem vagas em
