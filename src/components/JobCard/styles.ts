@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-interface JobTypeProps {
-    backgroundColor: string;
-}
-
 export const Wrapper = styled.article`
     position: relative;
     cursor: pointer;
@@ -11,7 +7,6 @@ export const Wrapper = styled.article`
     padding: 24px;
     border-width: 1px;
     border-radius: 6px;
-    box-shadow: 0px 2px 5px #1b1e2114;
 `;
 
 export const Header = styled.header`
@@ -27,14 +22,10 @@ export const Title = styled.h1`
     font-size: 26px;
     font-weight: 600;
     color: #515050;
-    position: relative;
 `;
 
-export const JobType = styled.small<JobTypeProps>`
+export const JobType = styled.p`
     font-weight: 600;
-    display: flex;
-    margin-top: 3px;
-    align-items: center;
     font-size: 16px;
     line-height: 19px;
     color: #515050;
@@ -45,7 +36,6 @@ export const Date = styled.p`
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    margin-left: 7px;
 `;
 
 export const Description = styled.div`
