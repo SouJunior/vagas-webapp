@@ -91,8 +91,8 @@ export const InsertJobs: FunctionComponent<any> = () => {
         <>
             <Header pageName="Criar vaga" backTo={'/'} />
 
-            <main className="grid grid-cols-1 md:grid-cols-2 gap-7 py-8 mt-[80px]">
-                <section className="w-full max-w-[583px] justify-self-end">
+            <main className="grid grid-cols-1 md:grid-cols-2 gap-7 py-8 mt-[5rem] w-full max-w-[74.5625rem] mx-auto">
+                <section className="w-full">
                     <form
                         onSubmit={handleFormSubmit}
                         className="p-6 h-min border rounded-md text-gray-darker shadow-md shadow-[#1a1a1a]/5"
@@ -179,11 +179,11 @@ export const InsertJobs: FunctionComponent<any> = () => {
                             </div>
                         </div>
 
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 h-[3.25rem]">
                             <button
                                 type="submit"
                                 onClick={addUpdatedCreatedAtToJobData}
-                                className="flex-1 rounded font-semibold p-4 text-white bg-blue"
+                                className="flex-1 rounded font-semibold text-white bg-blue hover:bg-blue-light active:bg-blue-dark"
                             >
                                 Criar
                             </button>
@@ -191,7 +191,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
                             <button
                                 type="reset"
                                 onClick={cleanJobData}
-                                className="flex-1 rounded font-semibold p-4 text-blue border border-blue"
+                                className="flex-1 rounded font-semibold text-blue border border-blue"
                             >
                                 Cancelar
                             </button>
@@ -211,7 +211,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
                     </p>
                 </section>
 
-                <section className="m-4 h-96 overflow-scroll border-b-4">
+                <section className="w-full overflow-scroll border-b-4">
                     {jobsList.length > 0 ? (
                         jobsList.map((job) => (
                             <JobCard
