@@ -4,7 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import Header from '../components/Header';
-import { RiArrowDropDownLine as ArrowDropdown } from 'react-icons/ri';
+import {
+    RiArrowDropDownLine as ArrowDropdown,
+    RiInformationLine,
+} from 'react-icons/ri';
+import logoNameEmpresa from '../assets/imgs/logo-name-empresa.svg';
 
 export interface JobData {
     readonly id: string;
@@ -91,7 +95,16 @@ export const InsertJobs: FunctionComponent<any> = () => {
         <>
             <Header pageName="Criar vaga" backTo={'/'} />
 
-            <main className="grid grid-cols-1 md:grid-cols-2 gap-7 py-8 mt-[5rem] w-full max-w-[74.5625rem] mx-auto">
+            <main className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-[6.1875rem] mb-32 w-full max-w-[74.5625rem] mx-auto">
+                <div className="col-span-full">
+                    <img
+                        src={logoNameEmpresa}
+                        alt="Logo SouJunior Empresa"
+                        className="mx-auto my-4 w-[315px]"
+                    />
+                    <span className="border-t-[1px] block w-full"></span>
+                </div>
+
                 <section className="w-full">
                     <form
                         onSubmit={handleFormSubmit}
@@ -225,7 +238,19 @@ export const InsertJobs: FunctionComponent<any> = () => {
                             />
                         ))
                     ) : (
-                        <b>Sem vagas registradas até o momento :(</b>
+                        <div className="border border-dashed border-blue rounded-md text-center font-canada p-24">
+                            <div className="mb-[47px] mx-auto border border-blue rounded-full w-[10.625rem] p-9">
+                                <RiInformationLine size={96} className='text-blue' />
+                            </div>
+                            <p className="text-[1.5625rem] leading-[1.875rem] font-medium mb-[0.4375rem]">
+                                Você ou sua Organização, não possuem vagas em
+                                aberto.
+                            </p>
+                            <p className="text-blue text-[1.4375rem] leading-[1.6875rem] font-normal">
+                                Crie uma vaga ao lado para adicionar a lista de
+                                vagas!
+                            </p>
+                        </div>
                     )}
                 </section>
             </main>
