@@ -28,18 +28,19 @@ export default function JobCard({
     onDeleteJobCard,
 }: JobCardProps) {
     return (
-        <Wrapper id={id} className="hover:shadow-lg">
+        <Wrapper id={id} className="shadow-md shadow-[#1a1a1a]/5 hover:shadow-md">
             <Header>
-                <div className="ml-1">
-                    <Title>{title}</Title>
-                    <JobType backgroundColor={jobType}>
-                        {jobType}
-                        <Date>
-                            02/08/2022 17:23{/*Dados da data e hora irão aqui*/}
-                        </Date>
-                    </JobType>
+                <div>
+                    <Title className="block">{title}</Title>
+                    <div className="flex items-center gap-[0.375rem]">
+                        <JobType>{jobType}</JobType>
+                        <span className="h-1 w-1 bg-gray-dark/70 rounded-full" />
+                        <Date>{createdAt?.date}</Date>
+                        <span className="h-1 w-1 bg-gray-dark/70 rounded-full" />
+                        <Date>{createdAt?.hour}</Date>
+                    </div>
                 </div>
-                <PencilIcon className="absolute right-12 hover:text-blue-500 text-[44px] text-blue align-middle bg-blue-lighter border-2 border-blue p-[6px] rounded" />
+                <PencilIcon className="absolute right-12 hover:text-blue-500 text-[2.75rem] text-blue align-middle bg-blue-lighter border-2 border-blue p-[0.375rem] rounded" />
             </Header>
             <Description>
                 <Text>{description}</Text>
