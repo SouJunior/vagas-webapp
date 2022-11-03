@@ -92,7 +92,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
             <Header pageName="Criar vaga" backTo={'/'} />
 
             <main className="grid grid-cols-1 md:grid-cols-2 gap-7 py-8 mt-[80px]">
-                <div className="w-full max-w-[583px] justify-self-end">
+                <section className="w-full max-w-[583px] justify-self-end">
                     <form
                         onSubmit={handleFormSubmit}
                         className="p-6 h-min border rounded-md text-gray-darker shadow-md shadow-[#1a1a1a]/5"
@@ -209,9 +209,9 @@ export const InsertJobs: FunctionComponent<any> = () => {
                             suporte
                         </a>
                     </p>
-                </div>
+                </section>
 
-                <div className="m-4 h-96 overflow-scroll border-b-4">
+                <section className="m-4 h-96 overflow-scroll border-b-4">
                     {jobsList.length > 0 ? (
                         jobsList.map((job) => (
                             <JobCard
@@ -227,7 +227,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
                     ) : (
                         <b>Sem vagas registradas até o momento :(</b>
                     )}
-                </div>
+                </section>
             </main>
         </>
     );
