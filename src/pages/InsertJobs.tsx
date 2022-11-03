@@ -211,7 +211,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
                     </p>
                 </section>
 
-                <section className="w-full overflow-scroll border-b-4">
+                <section className="w-full max-h-[44.625rem] overflow-scroll">
                     {jobsList.length > 0 ? (
                         jobsList.map((job) => (
                             <JobCard
