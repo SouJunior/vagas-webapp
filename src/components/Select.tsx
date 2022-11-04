@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SelectWrapper = styled.select`
-    
    height: 50px;
    width: 535px;
    border: 1px solid #E8E8E8;
