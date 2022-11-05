@@ -5,7 +5,6 @@ import { Container } from '../components/styles/Container.styled';
 import Header from '../components/Header';
 import mailIcon from '../assets/imgs/mail.svg';
 import importantIcon from '../assets/imgs/important_vector.png';
-import { SimpleFooter } from '../components/SimpleFooter';
 
 const Report = () => {
     const [count, setCount] = useState(0);
@@ -240,7 +239,6 @@ const Report = () => {
                         </div>
                     </div>
                 </section>
-                <SimpleFooter />
             </Container>
         </div>
     );
