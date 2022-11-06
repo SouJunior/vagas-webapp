@@ -13,5 +13,7 @@ export const SelectWrapper = styled.select`
 `;
 
 export const Select: FunctionComponent<SelectWrapperProps> = ({ children }) => {
-  return <SelectWrapper>{children}</SelectWrapper>;
+  return <SelectWrapper>
+            {children}
+         </SelectWrapper>;
 };
