@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import styled from "styled-components";
 
-interface SelectWrapperProps {
+interface SelectProps {
     children: React.ReactNode;
 }
 
@@ -12,6 +12,6 @@ export const SelectWrapper = styled.select`
     border-radius: 6px;
 `;
 
-export const Select: FunctionComponent<SelectWrapperProps> = ({ children }) => {
+export const Select: FunctionComponent<SelectProps> = ({ children }) => {
     return <SelectWrapper>{children}</SelectWrapper>;
 };
