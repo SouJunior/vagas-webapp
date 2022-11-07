@@ -9,23 +9,22 @@ import logoIcon from '../assets/imgs/logo-icon-name-h.svg';
 
 export function Footer() {
     return (
-        <footer className="border-t-2 border-[#E0EDFD]">
-            <div className="flex my-14 ml-14 bg-gray-light">
-                <div className="mr-14">
-                    <img src={logoIcon} width="265px" />
-                    <h2 className="font-semibold text-gray-darker text-[25px] mt-2 ">
+        <footer className="border-t-[1px] border-[#E0EDFD] bg-gray-light w-full h-72">
+            <div className="flex md:flex-row flex-col my-14 ">
+                <div className="md:mr-12 flex flex-col text-center md:text-start items-center md:items-start md:ml-14">
+                    <img src={logoIcon} width="265px" alt="Logo SouJunior" />
+                    <h2 className="font-semibold text-gray-darker text-[25px] mt-1 ">
                         #MovimentoSouJunior
                     </h2>
-                    <p className="text-gray-darker text-sm leading-4">
-                        O SouJunior ajuda você a encontrar um lugar de
-                        <br /> destaque para sua primeira experiência
-                        profissional!
+                    <p className="text-gray-darker text-sm leading-4 max-w-[355px]">
+                        O SouJunior ajuda você a encontrar um lugar de destaque
+                        para sua primeira experiência profissional!
                     </p>
-                    <a className="text-blue text-xs mt-2">
+                    <p className="text-blue text-xs mt-2">
                         © 2022 SouJunior Todos os direitos reservados.
-                    </a>
-                    <div className="flex text-blue text-3xl mt-2">
-                        <a href="" className="">
+                    </p>
+                    <div className="flex text-blue text-3xl mt-3 mb-10 md:mb-0">
+                        <a href="https://www.facebook.com">
                             <RiFacebookCircleFill />
                         </a>
                         <a
@@ -43,96 +42,107 @@ export function Footer() {
                         <a href="https://github.com/SouJunior" className="ml-3">
                             <RiGithubFill />
                         </a>
-                        <a href="https://discord.gg/F2F2WqmB" className="ml-3">
+                        <a
+                            href="https://discord.gg/BQcsFyR335"
+                            className="ml-3"
+                        >
                             <RiDiscordFill />
                         </a>
                     </div>
                 </div>
-                <div className="flex flex-col pl-16 border-l-2 border-[#DEDEDE] font-canada">
-                    <h3 className="text-blue text-xl font-semibold">
-                        SouJunior
-                    </h3>
-                    <a
-                        href="/"
-                        className="text-gray-darker mt-1.5 text-[17px] leading-5"
-                    >
-                        Sobre nós
-                    </a>
-                    <a
-                        href="https://github.com/SouJunior"
-                        className="text-gray-darker mt-1 text-[17px] leading-5"
-                    >
-                        Github
-                    </a>
-                    <a
-                        href="https://github.com/SouJunior"
-                        className="text-gray-darker mt-1 text-[17px] leading-5"
-                    >
-                        Github
-                    </a>
-                </div>
-                <div className="flex flex-col ml-20 font-canada">
-                    <h3 className="text-blue text-xl font-semibold">Suporte</h3>
-                    <a
-                        href="/"
-                        className="text-gray-darker mt-1.5 text-[17px] leading-5"
-                    >
-                        Cadastro
-                    </a>
-                    <a
-                        href="https://github.com/SouJunior"
-                        className="text-gray-darker mt-1 text-[17px] leading-5"
-                    >
-                        Github
-                    </a>
-                    <a
-                        href="https://github.com/SouJunior"
-                        className="text-gray-darker mt-1 text-[17px] leading-5"
-                    >
-                        Github
-                    </a>
-                </div>
-                <div className="flex flex-col ml-20 font-canada">
-                    <h3 className="text-blue text-xl font-semibold">Time</h3>
-                    <a
-                        href="/"
-                        className="text-gray-darker mt-1.5 text-[17px] leading-5"
-                    >
-                        Cadastro
-                    </a>
-                    <a
-                        href="https://github.com/SouJunior"
-                        className="text-gray-darker mt-1 text-[17px] leading-5"
-                    >
-                        Github
-                    </a>
-                    <a
-                        href="https://github.com/SouJunior"
-                        className="text-gray-darker mt-1 text-[17px] leading-5"
-                    >
-                        Github
-                    </a>
-                </div>
-                <div className="flex flex-col ml-20 font-canada">
-                    <h3 className="text-blue text-xl font-semibold">Apoio</h3>
-                    <a
-                        href="/"
-                        className="text-gray-darker mt-1.5 text-[17px] leading-5"
-                    >
-                        Cadastro
-                    </a>
-                    <a
-                        href="https://github.com/SouJunior"
-                        className="text-gray-darker mt-1 text-[17px] leading-5"
-                    >
-                        Github
-                    </a>
-                    <a
-                        href="https://github.com/SouJunior"
-                        className="text-gray-darker mt-1 text-[17px] leading-5"
-                    >
-                        Github
-                    </a>
+                <div className="md:border-l-[1px] border-[#DEDEDE] grid grid-cols-2 md:grid-cols-4">
+                    <div className="flex flex-col items-center md:items-start md:pl-[66px] mt-1 font-canada">
+                        <h3 className="text-blue text-xl font-semibold">
+                            SouJunior
+                        </h3>
+                        <a
+                            href="/"
+                            className="text-gray-darker mt-1.5 text-[17px] leading-5"
+                        >
+                            Sobre nós
+                        </a>
+                        <a
+                            href="https://github.com/SouJunior"
+                            className="text-gray-darker mt-1 text-[17px] leading-5"
+                        >
+                            Github
+                        </a>
+                        <a
+                            href="https://github.com/SouJunior"
+                            className="text-gray-darker mt-1 text-[17px] leading-5"
+                        >
+                            Github
+                        </a>
+                    </div>
+                    <div className="flex flex-col items-center md:items-start md:ml-20 mt-1 font-canada">
+                        <h3 className="text-blue text-xl font-semibold">
+                            Suporte
+                        </h3>
+                        <a
+                            href="/"
+                            className="text-gray-darker mt-1.5 text-[17px] leading-5"
+                        >
+                            Cadastro
+                        </a>
+                        <a
+                            href="https://github.com/SouJunior"
+                            className="text-gray-darker mt-1 text-[17px] leading-5"
+                        >
+                            Github
+                        </a>
+                        <a
+                            href="https://github.com/SouJunior"
+                            className="text-gray-darker mt-1 text-[17px] leading-5"
+                        >
+                            Github
+                        </a>
+                    </div>
+                    <div className="flex flex-col items-center md:items-start md:ml-20 mt-1 font-canada">
+                        <h3 className="text-blue text-xl font-semibold">
+                            Time
+                        </h3>
+                        <a
+                            href="/"
+                            className="text-gray-darker mt-1.5 text-[17px] leading-5"
+                        >
+                            Cadastro
+                        </a>
+                        <a
+                            href="https://github.com/SouJunior"
+                            className="text-gray-darker mt-1 text-[17px] leading-5"
+                        >
+                            Github
+                        </a>
+                        <a
+                            href="https://github.com/SouJunior"
+                            className="text-gray-darker mt-1 text-[17px] leading-5"
+                        >
+                            Github
+                        </a>
+                    </div>
+                    <div className="flex flex-col items-center md:items-start md:ml-20 mt-1 mb-5 font-canada">
+                        <h3 className="text-blue text-xl font-semibold">
+                            Apoio
+                        </h3>
+                        <a
+                            href="/"
+                            className="text-gray-darker mt-1.5 text-[17px] leading-5"
+                        >
+                            Cadastro
+                        </a>
+                        <a
+                            href="https://github.com/SouJunior"
+                            className="text-gray-darker mt-1 text-[17px] leading-5"
+                        >
+                            Github
+                        </a>
+                        <a
+                            href="https://github.com/SouJunior"
+                            className="text-gray-darker mt-1 text-[17px] leading-5"
+                        >
+                            Github
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>
