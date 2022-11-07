@@ -1,61 +1,56 @@
 import {
-  Description,
-  Footer,
-  Header,
-  JobType,
-  Text,
-  Title,
-  Wrapper,
-} from "./styles";
+    Description,
+    Footer,
+    Header,
+    JobType,
+    Text,
+    Title,
+    Wrapper,
+    Button,
+    Date,
+} from './styles';
 import {
-  RiEditFill as PencilIcon,
-  RiDeleteBin6Fill as DeleteIcon,
-} from "react-icons/ri";
+    RiEditFill as PencilIcon,
+    RiDeleteBin6Fill as DeleteIcon,
+} from 'react-icons/ri';
+import { JobData } from '../../pages/InsertJobs';
 
-interface JobCardProps {
-  id: string;
-  title: string;
-  description: string;
-  jobType: "Estágio" | "Trainee" | "Júnior" | "";
-  deleteJobCard: (id: string) => void;
+interface JobCardProps extends JobData {
+    onDeleteJobCard: (id: string) => void;
 }
 
 export default function JobCard({
-  id,
-  title,
-  description,
-  jobType,
-  deleteJobCard,
+    id,
+    title,
+    description,
+    jobType,
+    createdAt,
+    onDeleteJobCard,
 }: JobCardProps) {
-  return (
-    <Wrapper className="rounded-md border p-6 mb-4 hover:shadow-lg cursor-pointer shadow-md">
-      <Header className="p-4 border-[1px] rounded-md flex gap-2 items-center">
-        <div className="ml-1">
-          <Title className="text-[26px] font-semibold text-gray-darker">
-            {title}
-          </Title>
-          <JobType
-            backgroundColor={jobType}
-            className="text-gray-darker text-base font-semibold"
-          >
-            {jobType}
-          </JobType>
-        </div>
-        <PencilIcon className="absolute right-12 hover:text-orange-500 text-[44px] text-blue align-middle bg-blue-lighter border-2 border-blue p-[6px] rounded" />
-      </Header>
-      <Description className="px-6 py-4 border-b-[1px] text-gray-darker text-sm">
-        <Text className="text-justify">{description}</Text>
-      </Description>
-      <Footer className="pt-4">
-        <button
-          onClick={() => deleteJobCard(id)}
-          type="button"
-          className="rounded px-16 gap-1 m-1 border-[1px] border-[#930000] py-3 align-middle items-center flex font-semibold bg-[#BD0000] text-white text-sm hover:bg-red-600 active:bg-red-600 focus:ring focus:ring-red-300"
-        >
-          <DeleteIcon className="text-base" />
-          Remover
-        </button>
-      </Footer>
-    </Wrapper>
-  );
+    return (
+        <Wrapper id={id} className="shadow-md shadow-[#1a1a1a]/5 hover:shadow-md">
+            <Header>
+                <div>
+                    <Title className="block">{title}</Title>
+                    <div className="flex items-center gap-[0.375rem]">
+                        <JobType>{jobType}</JobType>
+                        <span className="h-1 w-1 bg-gray-dark/70 rounded-full" />
+                        <Date>{createdAt?.date}</Date>
+                        <span className="h-1 w-1 bg-gray-dark/70 rounded-full" />
+                        <Date>{createdAt?.hour}</Date>
+                    </div>
+                </div>
+                <PencilIcon className="absolute right-12 hover:text-blue-500 text-[2.75rem] text-blue align-middle bg-blue-lighter border-2 border-blue p-[0.375rem] rounded" />
+            </Header>
+            <Description>
+                <Text>{description}</Text>
+            </Description>
+            <Footer>
+                <Button onClick={() => onDeleteJobCard(id)} type="button">
+                    <DeleteIcon className="text-base" />
+                    Remover
+                </Button>
+            </Footer>
+        </Wrapper>
+    );
 }

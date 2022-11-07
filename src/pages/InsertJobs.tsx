@@ -1,165 +1,262 @@
-import { FormEvent, useState } from "react";
-import "../App.css";
-import JobCard from "../components/JobCard";
+import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react';
+import JobCard from '../components/JobCard';
+import { v4 as uuidv4 } from 'uuid';
+import { format } from 'date-fns';
+import { pt } from 'date-fns/locale';
+import Header from '../components/Header';
+import {
+    RiArrowDropDownLine as ArrowDropdown,
+    RiInformationLine,
+} from 'react-icons/ri';
+import logoNameEmpresa from '../assets/imgs/logo-name-empresa.svg';
 
-interface JobData {
-  [index: string]: string;
-  readonly id: string;
-  title: string;
-  description: string;
-  jobType: "Estágio" | "Trainee" | "Júnior" | "";
+export interface JobData {
+    readonly id: string;
+    title: string;
+    description: string;
+    jobType: 'Estágio' | 'Trainee' | 'Júnior' | string;
+    createdAt: {
+        hour: string;
+        date: string;
+    };
 }
-
-const generateID = () => Math.floor(Date.now() * Math.random()).toString(36);
 
 const emptyJobData: JobData = {
-  id: generateID(),
-  title: "",
-  description: "",
-  jobType: "",
-};
-
-function InsertJobs() {
-  const [jobData, setJobData] = useState<JobData>(emptyJobData);
-  const [jobsList, setJobsList] = useState<JobData[]>([
-    {
-      id: generateID(),
-      title: "Desenvolvedor",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
-      jobType: "Júnior",
+    id: uuidv4(),
+    title: '',
+    description: '',
+    jobType: '',
+    createdAt: {
+        hour: '',
+        date: '',
     },
-  ]);
+};
+/**
+ * Página de criação das vagas de emprego
+ */
+export const InsertJobs: FunctionComponent<any> = () => {
+    const [jobData, setJobData] = useState<JobData>(emptyJobData);
+    const [jobsList, setJobsList] = useState<JobData[]>([]);
+    const DISCORD_LINK = 'https://discord.gg/R5RAxFVC';
 
-  // VALIDAR VALORES DE UM OBJETO
-  function isValuesValid(object: { [index: string | number]: string }) {
-    return !Object.values(object).includes("");
-  }
-  function resetForm() {
-    const form = document.getElementById("form") as HTMLFormElement;
-    form.reset();
-  }
-  // LIDAR COM O SUBMIT DO FORM
-  function handleFormSubmit(event: FormEvent) {
-    // prevenir comportamento padrão (reload)
-    event.preventDefault();
-    // validar dados preenchidos
-    if (isValuesValid(jobData)) {
-      // criar card com os dados
-      createJobCard();
-      alert("Vaga criada com sucesso. ✅");
-      // resetar campos do formulário
-      resetForm();
-      // resetar jobData
-      setJobData(emptyJobData);
-    } else {
-      alert("Por favor, preencha os campos corretamente.");
-    }
-  }
-  // CRIAR UMA VAGA (CREATE)
-  function createJobCard() {
-    setJobData({ ...jobData, id: generateID() });
-    setJobsList([...jobsList, jobData]);
-  }
-  // DELETAR UMA VAGA (DELETE)
-  function deleteJobCard(id: string) {
-    if (!id) {
-      alert(
-        "Erro ao apagar a vaga selecionada. Por favor, tente novamente ❌\n\nSe persistir o erro, contacte-nos através do nosso Discord:\nhttps://discord.gg/R5RAxFVC"
-      );
-      throw new Error("Passed ID argument is invalid.\nThe argument is " + id);
-    }
-    alert(`Vaga de ID: ${id} foi excluída com sucesso. ✅`);
-    setJobsList(jobsList.filter((job) => job.id !== id));
-  }
+    const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-  function handleFieldChange(event: any) {
-    setJobData({
-      ...jobData,
-      [event.target.name]: event.target.value,
-    });
-  }
+        if (Object.values(jobData).some((value) => !value)) {
+            return alert('Por favor, preencha os campos corretamente.');
+        }
 
-  return (
-    <main className="grid grid-cols-1 md:grid-cols-5 py-4">
-      <form
-        onSubmit={(event) => handleFormSubmit(event)}
-        className="m-4 p-4 border h-min col-span-2"
-        id="form"
-      >
-        <h1 className="font-bold text-lg">Preencha os campos</h1>
-        <div className="py-2">
-          <label htmlFor="title">Titulo da vaga</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            onChange={(event) => handleFieldChange(event)}
-            className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
-          />
-        </div>
+        setJobsList((prevState) => [...prevState, jobData]);
+        alert('Vaga criada com sucesso. ✅');
 
-        <div className="py-2">
-          <label htmlFor="description">Descrição da vaga</label>
-          <textarea
-            name="description"
-            id="description"
-            onChange={(event) => handleFieldChange(event)}
-            className="w-full h-40 border-2 py-1 px-3 block outline-none focus:border-blue-600"
-          />
-        </div>
+        e.currentTarget.reset();
+        setJobData({ ...emptyJobData, id: uuidv4() });
+    };
 
-        <div className="py-2">
-          <label htmlFor="jobType">Tipo da vaga</label>
-          <select
-            name="jobType"
-            id="jobType"
-            onChange={(event) => handleFieldChange(event)}
-            required
-            defaultValue={"- Selecione aqui -"}
-            className="w-full border-2 py-1 px-3 block outline-none focus:border-blue-600"
-          >
-            <option disabled>- Selecione aqui -</option>
-            <option value="Estágio">Estágio</option>
-            <option value="Júnior">Júnior</option>
-            <option value="Trainee">Trainee</option>
-          </select>
-        </div>
-        <div className="flex gap-2">
-          <button
-            type="submit"
-            onClick={(event) => handleFormSubmit(event)}
-            className="w-full inline-block rounded font-semibold bg-yellow-500 px-2 py-1 hover:bg-yellow-600 active:bg-yellow-500 focus:ring focus:ring-yellow-300 text-white"
-          >
-            Cadastrar
-          </button>
-          <button
-            type="reset"
-            className="w-fit text-sm inline-block rounded font-semibold bg-slate-500 px-2 py-1 hover:bg-slate-600 active:bg-slate-500 focus:ring focus:ring-slate-300 text-white"
-          >
-            Limpar
-          </button>
-        </div>
-      </form>
+    const handleDeleteJobCard = (id: string) => {
+        if (!id) {
+            alert(
+                `Erro ao apagar a vaga selecionada. Por favor, tente novamente ❌\n\nSe persistir o erro, contacte-nos através do nosso Discord:\n${DISCORD_LINK}`,
+            );
+            throw new Error(
+                'Passed ID argument is invalid.\nThe argument is ' + id,
+            );
+        }
+        alert(`Vaga de ID: ${id} foi excluída com sucesso. ✅`);
+        setJobsList(jobsList.filter((job) => job.id !== id));
+    };
 
-      <div className="m-4 col-span-3 h-96 overflow-scroll border-b-4">
-        {jobsList.length > 0 ? (
-          jobsList.map((job) => (
-            <JobCard
-              key={job.id}
-              id={job.id}
-              title={job.title}
-              description={job.description}
-              jobType={job.jobType}
-              deleteJobCard={() => deleteJobCard(job.id)}
-            />
-          ))
-        ) : (
-          <b>Sem vagas registradas até o momento :(</b>
-        )}
-      </div>
-    </main>
-  );
-}
+    const handleFieldChange = (
+        e: ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >,
+    ) => {
+        setJobData({
+            ...jobData,
+            [e.target.name]: e.target.value,
+        });
+    };
 
-export default InsertJobs;
+    const addUpdatedCreatedAtToJobData = () => {
+        setJobData({
+            ...jobData,
+            createdAt: {
+                hour: format(new Date(), 'p', { locale: pt }),
+                date: format(new Date(), 'P', { locale: pt }),
+            },
+        });
+    };
+
+    const cleanJobData = () => {
+        setJobData(emptyJobData);
+    };
+
+    return (
+        <>
+            <Header pageName="Criar vaga" backTo={'/'} />
+
+            <main className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-[6.1875rem] mb-32 w-full max-w-[74.5625rem] mx-auto">
+                <div className="col-span-full">
+                    <img
+                        src={logoNameEmpresa}
+                        alt="Logo SouJunior Empresa"
+                        className="mx-auto my-4 w-[315px]"
+                    />
+                    <span className="border-t-[1px] block w-full"></span>
+                </div>
+
+                <section className="w-full">
+                    <form
+                        onSubmit={handleFormSubmit}
+                        className="p-6 h-min border rounded-md text-gray-darker shadow-md shadow-[#1a1a1a]/5"
+                        id="form"
+                    >
+                        <h1 className="font-semibold text-2xl mt-1 mb-5">
+                            Preencha os campos
+                        </h1>
+
+                        <span className="border-t-[1px] block w-full mb-6"></span>
+
+                        <div className="mb-3">
+                            <label htmlFor="title" className="font-semibold">
+                                Título
+                            </label>
+
+                            <input
+                                type="text"
+                                name="title"
+                                id="title"
+                                onChange={handleFieldChange}
+                                placeholder="Título da vaga"
+                                className="w-full border py-3 px-4 mt-[10px] block rounded-md outline-none focus:border-blue placeholder:text-gray-dark/70"
+                            />
+                        </div>
+
+                        <div className="mb-3">
+                            <label
+                                htmlFor="description"
+                                className="font-semibold"
+                            >
+                                Descrição
+                            </label>
+
+                            <textarea
+                                name="description"
+                                id="description"
+                                onChange={handleFieldChange}
+                                placeholder="Descrição da vaga"
+                                className="w-full h-32 border py-3 px-4 mt-[10px] rounded-md block outline-none focus:border-blue placeholder:text-gray-dark/70"
+                            />
+                        </div>
+
+                        <div className="mb-5">
+                            <label htmlFor="jobType" className="font-semibold">
+                                Tipo
+                            </label>
+
+                            <div className="relative">
+                                <select
+                                    name="jobType"
+                                    id="jobType"
+                                    onChange={handleFieldChange}
+                                    required
+                                    defaultValue={'Tipo da vaga'}
+                                    className="w-full border appearance-none py-3 px-4 block mt-[10px] outline-none rounded-md focus:border-blue cursor-pointer"
+                                >
+                                    <option
+                                        disabled
+                                        className="text-gray-dark/60"
+                                    >
+                                        Tipo da vaga
+                                    </option>
+                                    <option
+                                        value="Estágio"
+                                        className="text-gray-darker"
+                                    >
+                                        Estágio
+                                    </option>
+                                    <option
+                                        value="Júnior"
+                                        className="text-gray-darker"
+                                    >
+                                        Júnior
+                                    </option>
+                                    <option
+                                        value="Trainee"
+                                        className="text-gray-darker"
+                                    >
+                                        Trainee
+                                    </option>
+                                </select>
+                                <ArrowDropdown className="text-gray-darker/60 text-4xl absolute top-2 right-3" />
+                            </div>
+                        </div>
+
+                        <div className="flex gap-3 h-[3.25rem]">
+                            <button
+                                type="submit"
+                                onClick={addUpdatedCreatedAtToJobData}
+                                className="flex-1 rounded font-semibold text-white bg-blue hover:bg-blue-light active:bg-blue-dark"
+                            >
+                                Criar
+                            </button>
+
+                            <button
+                                type="reset"
+                                onClick={cleanJobData}
+                                className="flex-1 rounded font-semibold text-blue border border-blue"
+                            >
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+
+                    <p className="text-center mt-7 block">
+                        Está tendo algum problema? Consulte nosso{' '}
+                        <a
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue underline"
+                        >
+                            suporte
+                        </a>
+                    </p>
+                </section>
+
+                <section className="w-full max-h-[44.625rem] overflow-scroll">
+                    {jobsList.length > 0 ? (
+                        jobsList.map((job) => (
+                            <JobCard
+                                key={job.id}
+                                id={job.id}
+                                title={job.title}
+                                description={job.description}
+                                jobType={job.jobType}
+                                createdAt={job.createdAt}
+                                onDeleteJobCard={handleDeleteJobCard}
+                            />
+                        ))
+                    ) : (
+                        <div className="border border-dashed border-blue rounded-md text-center font-canada p-24">
+                            <div className="mb-[47px] mx-auto border border-blue rounded-full w-[10.625rem] p-9">
+                                <RiInformationLine
+                                    size={96}
+                                    className="text-blue"
+                                />
+                            </div>
+                            <p className="text-[1.5625rem] leading-[1.875rem] font-medium mb-[0.4375rem]">
+                                Você ou sua Organização, não possuem vagas em
+                                aberto.
+                            </p>
+                            <p className="text-blue text-[1.4375rem] leading-[1.6875rem] font-normal">
+                                Crie uma vaga ao lado para adicionar a lista de
+                                vagas!
+                            </p>
+                        </div>
+                    )}
+                </section>
+            </main>
+        </>
+    );
+};
