@@ -9,7 +9,7 @@ import logoIcon from '../assets/imgs/logo-icon-name-h.svg';
 
 export function Footer() {
     return (
-        <footer className="border-t-[1px] border-[#E0EDFD] bg-gray-light w-full h-72">
+        <footer className="border-t border-gray-dark/30 bg-gray-light w-full h-72">
             <div className="flex md:flex-row flex-col my-14 ">
                 <div className="md:mr-12 flex flex-col text-center md:text-start items-center md:items-start md:ml-14">
                     <img src={logoIcon} width="265px" alt="Logo SouJunior" />
@@ -42,15 +42,12 @@ export function Footer() {
                         <a href="https://github.com/SouJunior" className="ml-3">
                             <RiGithubFill />
                         </a>
-                        <a
-                            href="https://discord.gg/BQcsFyR335"
-                            className="ml-3"
-                        >
+                        <a href="https://discord.gg/R5RAxFVC" className="ml-3">
                             <RiDiscordFill />
                         </a>
                     </div>
                 </div>
-                <div className="md:border-l-[1px] border-[#DEDEDE] grid grid-cols-2 md:grid-cols-4">
+                <div className="md:border-l border-gray-dark/50 grid grid-cols-2 md:grid-cols-4">
                     <div className="flex flex-col items-center md:items-start md:pl-[66px] mt-1 font-canada">
                         <h3 className="text-blue text-xl font-semibold">
                             SouJunior
