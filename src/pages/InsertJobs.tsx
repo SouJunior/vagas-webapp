@@ -95,7 +95,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
         <>
             <Header pageName="Criar vaga" backTo={'/'} />
 
-            <main className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-[6.1875rem] mb-32 w-full max-w-[74.5625rem] mx-auto">
+            <main className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-[6.1875rem] w-full max-w-[74.5625rem] mx-auto border-b mb-0.5">
                 <div className="col-span-full">
                     <img
                         src={logoNameEmpresa}
@@ -105,7 +105,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
                     <span className="border-t-[1px] block w-full"></span>
                 </div>
 
-                <section className="w-full">
+                <section className="w-full mb-32">
                     <form
                         onSubmit={handleFormSubmit}
                         className="p-6 h-min border rounded-md text-gray-darker shadow-md shadow-[#1a1a1a]/5"
@@ -224,7 +224,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
                     </p>
                 </section>
 
-                <section className="w-full max-h-[44.625rem] overflow-scroll">
+                <section className="w-full max-h-[46.125rem] overflow-scroll">
                     {jobsList.length > 0 ? (
                         jobsList.map((job) => (
                             <JobCard
