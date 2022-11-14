@@ -49,7 +49,7 @@ export const Description = styled.div`
     font-size: 14px;
     line-height: 17px;
     color: #515050;
-    max-height: 330px;
+    height: 330px;
     overflow: scroll;
 `;
 
