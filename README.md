@@ -4,7 +4,7 @@ Projeto Opensource que visa melhorar o match entre os profissionais Juniors e Em
 
 ![Logo](./logo-soujunior.png)
 
-## Instalação  
+## Instalação 🔽
 > Nesse projeto é usado apenas o Yarn como gerenciador de pacotes. Para prevenir erros e conflitos com outro package manager (e.g. NPM), recomendamos que também utilize o Yarn. Veja o website oficial do Yarn [aqui](https://yarnpkg.com/).
 
 Clone o projeto
@@ -25,7 +25,7 @@ Instale as dependências
   yarn install
 ```
 
-## Rodando localmente▶
+## Rodando localmente ▶
 
 Inicie o servidor
 
@@ -33,7 +33,7 @@ Inicie o servidor
   yarn start
 ```
 
-## Usado por
+## Usado por 🛰
 
 Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
@@ -53,7 +53,7 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 <img align="center" alt="Webpack badge" src="https://img.shields.io/badge/WEBPACK-2d7eee?style=for-the-badge&logo=webpack&logoColor=white">
 <img align="center" alt="Babel badge" src="https://img.shields.io/badge/babel-f5da55?style=for-the-badge&logo=babel&logoColor=white">
 
-## Relacionados
+## Relacionados ⚡
 
 [Projeto Vagas - Backend](https://github.com/SouJunior/vagas-backend)
 
@@ -64,14 +64,14 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 - Filipe Reis | [GitHub](https://github.com/FilipeLeoni) - [LinkedIn](https://www.linkedin.com/in/filipe-leoni-5745551a8/)
 - Carlos Junior | [GitHub](https://github.com/CarlosJunioor) - [LinkedIn](https://www.linkedin.com/in/carlosjuniordev/)
 
-## Feedback
+## Feedback 💬
 
 Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [Discord](https://discord.gg/naTaHgZZpz). Ou fazendo uma [contribuição](#contribuição).
 
-## Contribuição
+## Contribuição 💙
 
 Contribuições são sempre bem-vindas!
 
 Veja `contribuindo.md` para saber como começar.
 
-[Voltar ao 🔝](#linkedin-frontend)
+[Voltar ao 🔝](#vagas-frontend)
