@@ -1,38 +1,51 @@
-# linkedin-frontend
+<div align="center">
+  <img src="https://img.shields.io/badge/status-developing-blue" />
+</div>
+<div align="center">
+  <img src="https://img.shields.io/badge/React-%2320232a.svg?&logo=react&logoColor=%2361DAFB" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Axios-%23000000" />
+  <img src="https://img.shields.io/badge/TailwindCSS-%2338B2AC.svg?&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/styled--components-DB7093?&logo=styled-components&logoColor=white" />
+  <img src="https://img.shields.io/badge/prettier-1A2C34?&logo=prettier&logoColor=F7BA3E" />
+</div>
+
+# vagas-frontend
 
 Projeto Opensource que visa melhorar o match entre os profissionais Juniors e Empresas.
 
 ![Logo](./logo-soujunior.png)
 
-## Instalação
+## Instalação 🔽
+> Nesse projeto é usado apenas o Yarn como gerenciador de pacotes. Para prevenir erros e conflitos com outro package manager (e.g. NPM), recomendamos que também utilize o Yarn. Veja o website oficial do Yarn [aqui](https://yarnpkg.com/).
 
 Clone o projeto
 
 ```bash
-  git clone https://github.com/SouJunior/linkedin-frontend
+  git clone https://github.com/SouJunior/vagas-frontend
 ```
 
 Entre no diretório do projeto
 
 ```bash
-  cd linkedin-frontend
+  cd vagas-frontend
 ```
 
 Instale as dependências
 
 ```bash
-  npm install
+  yarn install
 ```
 
-## Rodando localmente
+## Rodando localmente ▶
 
 Inicie o servidor
 
 ```bash
-  npm start
+  yarn start
 ```
 
-## Usado por
+## Usado por 🛰
 
 Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
@@ -52,7 +65,7 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 <img align="center" alt="Webpack badge" src="https://img.shields.io/badge/WEBPACK-2d7eee?style=for-the-badge&logo=webpack&logoColor=white">
 <img align="center" alt="Babel badge" src="https://img.shields.io/badge/babel-f5da55?style=for-the-badge&logo=babel&logoColor=white">
 
-## Relacionados
+## Relacionados ⚡
 
 [Projeto Vagas - Backend](https://github.com/SouJunior/vagas-backend)
 
@@ -63,14 +76,14 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 - Filipe Reis | [GitHub](https://github.com/FilipeLeoni) - [LinkedIn](https://www.linkedin.com/in/filipe-leoni-5745551a8/)
 - Carlos Junior | [GitHub](https://github.com/CarlosJunioor) - [LinkedIn](https://www.linkedin.com/in/carlosjuniordev/)
 
-## Feedback
+## Feedback 💬
 
 Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [Discord](https://discord.gg/naTaHgZZpz). Ou fazendo uma [contribuição](#contribuição).
 
-## Contribuição
+## Contribuição 💙
 
 Contribuições são sempre bem-vindas!
 
 Veja `contribuindo.md` para saber como começar.
 
-[Voltar ao 🔝](#linkedin-frontend)
+[Voltar ao 🔝](#vagas-frontend)
