@@ -1,35 +1,36 @@
-# linkedin-frontend
+# vagas-frontend
 
 Projeto Opensource que visa melhorar o match entre os profissionais Juniors e Empresas.
 
 ![Logo](./logo-soujunior.png)
 
-## Instalação
+## Instalação  
+> Nesse projeto é usado apenas o Yarn como gerenciador de pacotes. Para prevenir erros e conflitos com outro package manager (e.g. NPM), recomendamos que também utilize o Yarn. Veja o website oficial do Yarn [aqui](https://yarnpkg.com/).
 
 Clone o projeto
 
 ```bash
-  git clone https://github.com/SouJunior/linkedin-frontend
+  git clone https://github.com/SouJunior/vagas-frontend
 ```
 
 Entre no diretório do projeto
 
 ```bash
-  cd linkedin-frontend
+  cd vagas-frontend
 ```
 
 Instale as dependências
 
 ```bash
-  npm install
+  yarn install
 ```
 
-## Rodando localmente
+## Rodando localmente▶
 
 Inicie o servidor
 
 ```bash
-  npm start
+  yarn start
 ```
 
 ## Usado por
