@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.article`
     position: relative;
     cursor: pointer;
+    height: 557px;
     margin-bottom: 16px;
     padding: 24px;
     border-width: 1px;
@@ -20,6 +21,7 @@ export const Header = styled.header`
 
 export const Title = styled.h1`
     font-size: 26px;
+    max-width: 300px;
     font-weight: 600;
     color: #515050;
 `;
@@ -47,7 +49,7 @@ export const Description = styled.div`
     font-size: 14px;
     line-height: 17px;
     color: #515050;
-    max-height: 300px;
+    height: 330px;
     overflow: scroll;
 `;
 

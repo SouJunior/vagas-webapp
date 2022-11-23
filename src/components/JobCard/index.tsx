@@ -28,7 +28,10 @@ export default function JobCard({
     onDeleteJobCard,
 }: JobCardProps) {
     return (
-        <Wrapper id={id} className="shadow-md shadow-[#1a1a1a]/5 hover:shadow-md">
+        <Wrapper
+            id={id}
+            className="shadow-md shadow-[#1a1a1a]/5 hover:shadow-md"
+        >
             <Header>
                 <div>
                     <Title className="block">{title}</Title>
@@ -40,7 +43,7 @@ export default function JobCard({
                         <Date>{createdAt?.hour}</Date>
                     </div>
                 </div>
-                <PencilIcon className="absolute right-12 hover:text-blue-500 text-[2.75rem] text-blue align-middle bg-blue-lighter border-2 border-blue p-[0.375rem] rounded" />
+                <PencilIcon className="absolute right-12 hover:text-blue-500 text-[2.75rem] text-blue align-middle bg-blue-lighter border border-blue p-[0.4375rem] rounded" />
             </Header>
             <Description>
                 <Text>{description}</Text>
