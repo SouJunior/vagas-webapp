@@ -1,3 +1,15 @@
+<div align="center">
+  <img src="https://img.shields.io/badge/status-developing-blue" />
+</div>
+<div align="center">
+  <img src="https://img.shields.io/badge/React-%2320232a.svg?&logo=react&logoColor=%2361DAFB" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Axios-%23000000" />
+  <img src="https://img.shields.io/badge/TailwindCSS-%2338B2AC.svg?&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/styled--components-DB7093?&logo=styled-components&logoColor=white" />
+  <img src="https://img.shields.io/badge/prettier-1A2C34?&logo=prettier&logoColor=F7BA3E" />
+</div>
+
 # vagas-frontend
 
 Projeto Opensource que visa melhorar o match entre os profissionais Juniors e Empresas.
