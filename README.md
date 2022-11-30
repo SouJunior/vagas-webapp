@@ -74,6 +74,8 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 - Alberto Santos | [GitHub](https://github.com/allbertuu) - [LinkedIn](https://www.linkedin.com/in/albertov-albuquerque/) - [Portfólio](https://portfolio-allbertuu.vercel.app/)
 - Silvia Luiza | [GitHub](https://github.com/SilviaLTeixeira) - [LinkedIn](https://www.linkedin.com/in/silvialuiza/)
 - Filipe Reis | [GitHub](https://github.com/FilipeLeoni) - [LinkedIn](https://www.linkedin.com/in/filipe-leoni-5745551a8/)
+- Igor Gonçalves | [GitHub](https://github.com/igords-goncalves) - [Linkedin](https://www.linkedin.com/in/igords-goncalves/) 
+- Rafael Pires | [GitHub](https://github.com/RafaelPires2) - [Linkedin](https://www.linkedin.com/in/rafael-pires-075891212/)
 - Carlos Junior | [GitHub](https://github.com/CarlosJunioor) - [LinkedIn](https://www.linkedin.com/in/carlosjuniordev/)
 
 ## Feedback 💬
