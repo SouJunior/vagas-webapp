@@ -13,10 +13,10 @@ const Card = () => {
     return (
         <div className="relative overflow-hidden mt-20">
             <div className="w-[464px] p-8 ml-10 bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
-                <h1 className="text-3xl font-extrabold text-center text-blue-600 mb-4">
-                    SouJunior
+                <h1 className="text-5xl font-extrabold text-center text-blue-600 mb-4 mt-6">
+                    <span className='font-normal'>Sou</span>Junior
                 </h1>
-                <h2 className="text-center">Entrar</h2>
+                <h2 className="text-center text-2xl">Entrar</h2>
                 <hr className="my-8 h-px bg-gray-200 border-0 gray:bg-gray-700 mb-20" />
                 <form id="login-form" onSubmit={(e) => handleFormOnSubmit(e)}>
                     <div>
