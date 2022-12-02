@@ -9,9 +9,6 @@ const LoginCard = () => {
     }
 
     return (
-      <>
-      <form>
-        <section>
         <div className="relative overflow-hidden mt-20">
             <div className="w-[464px] p-8 ml-10 bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
                 <h1 className="text-3xl font-extrabold text-center text-blue-600 mb-4">
@@ -96,9 +93,6 @@ const LoginCard = () => {
                 </form>
             </div>
         </div>
-        </section>
-      </form>
-    </>
     );
 };
 
