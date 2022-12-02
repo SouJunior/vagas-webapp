@@ -83,7 +83,7 @@ const Card = () => {
                     <div className="mt-6">
                         <button
                             type="submit"
-                            className="w-full h-12 rounded mb-5 text-white bg-blue-600"
+                            className="w-full h-12 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600"
                             id="submit-button"
                         >
                             Entrar
