@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const LoginCard = () => {
+const Card = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -98,4 +98,4 @@ const LoginCard = () => {
     );
 };
 
-export default LoginCard;
+export default Card;

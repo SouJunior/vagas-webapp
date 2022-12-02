@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../components/Button';
 import extendedLogoImg from '../assets/imgs/logotipo-icone-extendida.svg';
-import LoginCard from '../components/LoginCard/index';
+import Card from '../components/Card/index';
 
 const Login = () => {
     return (
@@ -27,7 +27,7 @@ const Login = () => {
 
             <section>
                 <div>
-                    <LoginCard />
+                    <Card />
                 </div>
             </section>
         </main>
