@@ -22,7 +22,7 @@ const Card = () => {
                     <div>
                         <label className="block text-sm font-semibold text-gray-800"></label>
                         <div className="relative flex w-full flex-wrap items-strech mb-3">
-                            <span className="absolute inset-y-[30%] right-[2%] z-10 h-full leading-snuf font-normal">
+                            <span className="absolute inset-y-[30%] right-[6%] z-10 h-full leading-snuf font-normal">
                                 <svg
                                     width="23"
                                     height="23"
@@ -48,7 +48,7 @@ const Card = () => {
                     <div>
                         <label className="block text-sm font-semibold text-gray-800"></label>
                         <div className="relative">
-                            <span className="absolute inset-y-[20%] right-[2%] z-10 h-full leading-snuf font-normal">
+                            <span className="absolute inset-y-[20%] right-[6%] z-10 h-full leading-snuf font-normal">
                                 <svg
                                     width="21"
                                     height="24"
