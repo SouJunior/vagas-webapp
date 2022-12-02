@@ -39,7 +39,7 @@ const Card = () => {
                             <input
                                 type="email"
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="relative w-full px-4 py-2 mt-2 text-blue-700 border rounded-md focus:border-purple-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                className="h-14 relative w-full px-4 py-2 mt-2 text-blue-700 border rounded-md focus:border-purple-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 placeholder="E-mail"
                             />
                         </div>
@@ -65,7 +65,7 @@ const Card = () => {
                             <input
                                 type="password"
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 mb-20"
+                                className="h-14 block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 mb-20"
                                 placeholder="Password"
                             />
                         </div>
@@ -83,12 +83,12 @@ const Card = () => {
                     <div className="mt-6">
                         <button
                             type="submit"
-                            className="w-full h-12 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600"
+                            className="w-full h-16 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600"
                             id="submit-button"
                         >
                             Entrar
                         </button>
-                        <button className="border-2 h-12 border-blue-600 text-blue w-full rounded">
+                        <button className="border-2 h-16 border-blue-600 text-blue w-full rounded">
                             Criar conta
                         </button>
                     </div>
