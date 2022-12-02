@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../components/Button';
 import extendedLogoImg from '../assets/imgs/logotipo-icone-extendida.svg';
-import LoginCard from '../components/LoginCard/LoginCard';
+import LoginCard from '../components/LoginCard/index';
 
 const Login = () => {
     return (
