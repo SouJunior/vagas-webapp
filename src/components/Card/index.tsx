@@ -12,12 +12,12 @@ const Card = () => {
 
     return (
         <div className=" overflow-hidden left-0 flex flex-col items-end mt-[54px] mr-[74px]">
-            <div className="w-[464px] p-8 bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
+            <div className="w-[464px] p-10 bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
                 <h1 className="text-5xl font-extrabold text-center text-blue-600 mb-4 mt-6">
                     <span className='font-normal'>Sou</span>Junior
                 </h1>
                 <h2 className="text-center text-2xl">Entrar</h2>
-                <hr className="my-2 h-px bg-gray-200 border-0 gray:bg-gray-700 mb-20" />
+                <hr className="my-8 h-px bg-gray-200 border-0 gray:bg-gray-700 mb-20" />
                 <form id="login-form" onSubmit={(e) => handleFormOnSubmit(e)}>
                     <div>
                         <label className="block text-sm font-semibold text-gray-800"></label>
@@ -70,7 +70,7 @@ const Card = () => {
                             />
                         </div>
                     </div>
-                    <hr className="my-2 h-px bg-gray-200 border-0 gray:bg-gray-700" />
+                    <hr className="my-8 h-px bg-gray-200 border-0 gray:bg-gray-700" />
                     <input
                         id="default-checkbox"
                         type="checkbox"
@@ -80,7 +80,7 @@ const Card = () => {
                     <label className="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">
                         Me mantenha conectado
                     </label>
-                    <div className="mt-6">
+                    <div className="mt-8">
                         <button
                             type="submit"
                             className="w-full h-16 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600"
