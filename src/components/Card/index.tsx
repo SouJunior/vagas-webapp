@@ -89,7 +89,7 @@ const Card = () => {
                             Entrar
                         </button>
                         <button className="border-2 h-16 border-blue-600 text-blue w-full rounded">
-                            Criar conta
+                        <a href="https://google.com">Criar conta</a>
                         </button>
                     </div>
                 </form>
