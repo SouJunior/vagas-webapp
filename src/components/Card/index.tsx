@@ -13,7 +13,7 @@ const Card = () => {
     return (
         <div className="container h-screen flex flex-col items-center justify-center">
             <div className="login-card w-[464px] p-10 bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
-                <h1 className="text-5xl font-extrabold text-center text-blue-600 mb-4 mt-6">
+                <h1 className=" mb-4 mt-0 hd:mt-6 text-5xl font-extrabold text-center text-blue-600">
                     <span className='font-normal'>Sou</span>Junior
                 </h1>
                 <h2 className="text-center text-2xl">Entrar</h2>
@@ -75,16 +75,18 @@ const Card = () => {
                         <a href="https://www.google.com">Esqueci minha senha</a>
                     </label>
 
-                    <hr className="my-4 h-px hd:mt-16 xl:my-8 bg-gray-200 border-0 gray:bg-gray-700"/>
-                    <input
-                        id="default-checkbox"
-                        type="checkbox"
-                        value=""
-                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label className="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">
-                        Me mantenha conectado
-                    </label>
+                    <hr className="my-6 h-px hd:mt-16 hd:my-8 bg-gray-200 border-0 gray:bg-gray-700"/>
+                    <div className='flex items-center'>
+                        <input
+                            id="default-checkbox"
+                            type="checkbox"
+                            value=""
+                            className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
+                        <label className="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">
+                            Me mantenha conectado
+                        </label>
+                    </div>
                     <div className="mt-8">
                         <button
                             type="submit"
