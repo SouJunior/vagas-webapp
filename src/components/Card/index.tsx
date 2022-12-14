@@ -11,7 +11,7 @@ const Card = () => {
     }
 
     return (
-        <div className="container overflow-hidden left-0 flex flex-col items-end mt-[54px] mr-[74px]">
+        <div className="container h-screen flex flex-col items-center justify-center">
             <div className="login-card w-[464px] p-10 bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
                 <h1 className="text-5xl font-extrabold text-center text-blue-600 mb-4 mt-6">
                     <span className='font-normal'>Sou</span>Junior
