@@ -17,7 +17,7 @@ const Card = () => {
                     <span className='font-normal'>Sou</span>Junior
                 </h1>
                 <h2 className="text-center text-2xl">Entrar</h2>
-                <hr className="my-8 h-px bg-gray-200 border-0 gray:bg-gray-700 mb-10" />
+                <hr className="my-4 h-px hd:mb-20 xl:my-4 bg-gray-200 border-0 gray:bg-gray-700" />
                 <form id="login-form" onSubmit={(e) => handleFormOnSubmit(e)}>
                     <div>
                         <label className="block text-sm font-semibold text-gray-800"></label>
@@ -75,7 +75,7 @@ const Card = () => {
                         <a href="https://www.google.com">Esqueci minha senha</a>
                     </label>
 
-                    <hr className="my-8 h-px bg-gray-200 border-0 gray:bg-gray-700" />
+                    <hr className="my-4 h-px hd:mt-16 xl:my-8 bg-gray-200 border-0 gray:bg-gray-700"/>
                     <input
                         id="default-checkbox"
                         type="checkbox"
