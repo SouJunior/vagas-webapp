@@ -1,6 +1,6 @@
 import { Button } from '../components/Button';
 import extendedLogoImg from '../assets/imgs/logotipo-icone-extendida.svg';
-import Card from '../components/Card/index';
+import Card from '../components/Card';
 
 const Login = () => {
     return (
