@@ -70,7 +70,7 @@ const Card = () => {
                     </div>
 
                     <label className="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">
-                        <a href="https://www.google.com">Esqueci minha senha</a>
+                        <a href="#">Esqueci minha senha</a>
                     </label>
 
                     <hr className="my-6 h-px hd:mt-16 hd:my-8 bg-gray-200 border-0 gray:bg-gray-700"/>
@@ -94,7 +94,7 @@ const Card = () => {
                             Entrar
                         </button>
                         <button className="border-2 h-16 border-blue-600 text-blue w-full rounded">
-                        <a href="https://google.com">Criar conta</a>
+                        <a href='#'>Criar conta</a>
                         </button>
                     </div>
                 </form>
