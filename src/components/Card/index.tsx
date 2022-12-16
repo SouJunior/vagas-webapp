@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */ //remover essa linha depois
-
 import React, { useState } from 'react';
 
 const Card = () => {
