@@ -20,7 +20,7 @@ const Login = () => {
                     border="white"
                     className="w-[283px] h-[67px] text-2xl"
                 >
-                    <a href="https://soujunior.netlify.app" target="blank">Saiba mais</a>
+                    <a href="https://www.soujunior.tech" target="blank">Saiba mais</a>
                 </Button>
             </section>
 
