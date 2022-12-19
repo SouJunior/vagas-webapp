@@ -8,8 +8,6 @@ const Card = () => {
         e.preventDefault();
     }
 
-    // "abrindo o pull request"
-
     return (
         <div className="container h-screen flex flex-col items-center justify-center">
             <div className="login-card w-[464px] p-10 bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
