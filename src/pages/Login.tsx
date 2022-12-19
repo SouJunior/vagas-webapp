@@ -1,6 +1,6 @@
-import React from 'react';
 import { Button } from '../components/Button';
 import extendedLogoImg from '../assets/imgs/logotipo-icone-extendida.svg';
+import Card from '../components/Card';
 
 const Login = () => {
     return (
@@ -25,8 +25,9 @@ const Login = () => {
             </section>
 
             <section>
-                {/* aqui irá o login card */}
-                <div>Login Card</div>
+                <div>
+                    <Card />
+                </div>
             </section>
         </main>
     );
