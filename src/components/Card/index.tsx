@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaValidationPasswordAndEmail } from '../formValidation/formValidation';
+import { MessageError, MessageError2 } from './styles';
 
 
 const Card = () => {
@@ -58,7 +59,7 @@ const Card = () => {
                                 placeholder="E-mail"
                             />
                             {/* @ts-ignore */}
-                            <p className="message-error error1">{errors?.email?.message}</p>
+                            <MessageError>{errors?.email?.message}</MessageError>
                         </div> 
                     </div>
 
@@ -82,11 +83,11 @@ const Card = () => {
                             <input
                                 type="password"
                                 {...register("password")}
-                                className="h-14 block w-full px-4 py-2 mt-2 mb-4 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                className="h-14 block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 placeholder="Password"
                             />
                             {/* @ts-ignore */}
-                            <p className="message-error">{errors?.password?.message}</p>
+                            <MessageError2>{errors?.password?.message}</MessageError2>
                         </div>
                     </div>
 
