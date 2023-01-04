@@ -6,12 +6,7 @@ import { MessageError, MessageError2 } from './styles';
 
 
 const Card = () => {
-    //const [email, setEmail] = useState('');
-    //const [password, setPassword] = useState('');
-
-    // function handleFormOnSubmit(e: any) {
-    //     e.preventDefault();
-    // }
+    const [validated, setValidated] = useState(false);
 
     const {
         register,
@@ -22,9 +17,20 @@ const Card = () => {
         resolver: yupResolver(schemaValidationPasswordAndEmail),
     });
 
-    function handleFormOnSubmit() {
-        console.log('logando...')
+    function handleFormOnSubmit(data: any) {
+        console.log(data)
     }
+
+   let checkFilling = watch(['email', 'password'])
+
+    schemaValidationPasswordAndEmail
+        .isValid({email: checkFilling[0], password: checkFilling[1]})
+        .then( valid => {
+            if(valid) setValidated(true);
+                else{
+            if(validated) setValidated(false);
+            }
+    });
 
     return (
         <div className="container h-screen flex flex-col items-center justify-center">
@@ -110,8 +116,9 @@ const Card = () => {
                     <div className="mt-8">
                         <button
                             type="submit"
-                            className="w-full h-16 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600"
+                            className="w-full h-16 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600 disabled:bg-blue-300 disabled:border-blue-300"
                             id="submit-button"
+                            disabled={!validated}                           
                         >
                             Entrar
                         </button>
