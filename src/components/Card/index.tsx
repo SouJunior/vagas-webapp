@@ -21,8 +21,10 @@ const Card = () => {
         console.log(data)
     }
 
+    // monitora os campos email e password enquanto são preenchidos
    let checkFilling = watch(['email', 'password'])
 
+   // verifica se os campos preenchidos são válidos, função usada para desabilitar e abilitar o botão entrar
     schemaValidationPasswordAndEmail
         .isValid({email: checkFilling[0], password: checkFilling[1]})
         .then( valid => {
