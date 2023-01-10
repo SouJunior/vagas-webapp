@@ -162,6 +162,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
                                 id="description"
                             />
                         </div>
+
                         <div className="mb-5">
                             <label htmlFor="jobType" className="font-semibold">
                                 Tipo
