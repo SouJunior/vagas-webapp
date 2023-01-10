@@ -1072,16 +1072,6 @@
   "resolved" "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   "version" "0.2.3"
 
-"@codexteam/icons@^0.0.4":
-  "integrity" "sha512-V8N/TY2TGyas4wLrPIFq7bcow68b3gu8DfDt1+rrHPtXxcexadKauRJL6eQgfG7Z0LCrN4boLRawR4S9gjIh/Q=="
-  "resolved" "https://registry.npmjs.org/@codexteam/icons/-/icons-0.0.4.tgz"
-  "version" "0.0.4"
-
-"@codexteam/icons@0.1.0":
-  "integrity" "sha512-jW1fWnwtWzcP4FBGsaodbJY3s1ZaRU+IJy1pvJ7ygNQxkQinybJcwXoyt0a5mWwu/4w30A42EWhCrZn8lp4fdw=="
-  "resolved" "https://registry.npmjs.org/@codexteam/icons/-/icons-0.1.0.tgz"
-  "version" "0.1.0"
-
 "@csstools/normalize.css@*":
   "integrity" "sha512-M0qqxAcwCsIVfpFQSlGN5XjXWu8l5JDZN+fPt1LeW5SZexQTgnaEvgXAY+CeygRw0EeppWHi12JxESWiWrB0Sg=="
   "resolved" "https://registry.npmjs.org/@csstools/normalize.css/-/normalize.css-12.0.0.tgz"
@@ -1178,29 +1168,6 @@
   "integrity" "sha512-IkpVW/ehM1hWKln4fCA3NzJU8KwD+kIOvPZA4cqxoJHtE21CCzjyp+Kxbu0i5I4tBNOlXPL9mjwnWlL0VEG4Fg=="
   "resolved" "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-2.0.2.tgz"
   "version" "2.0.2"
-
-"@editorjs/editorjs@*", "@editorjs/editorjs@^2.26.4":
-  "integrity" "sha512-yuJ2NM1Y5+8DDNWr4C00tHMVHKy0uCqK1HS4pwFPVcXUawgJnU2Li2vKGvPLuf0Jj2ir7MVgADO6oC1TbYBOYQ=="
-  "resolved" "https://registry.npmjs.org/@editorjs/editorjs/-/editorjs-2.26.4.tgz"
-  "version" "2.26.4"
-  dependencies:
-    "@codexteam/icons" "0.1.0"
-    "codex-notifier" "^1.1.2"
-    "codex-tooltip" "^1.0.5"
-    "html-janitor" "^2.0.4"
-    "nanoid" "^3.1.22"
-
-"@editorjs/embed@^2.5.3":
-  "integrity" "sha512-+X0xX2tiwQjU/B2rPDv8DOwg0suiqrt2h/o9frjR308YuY1VTpqjLRF1lIV4TmelQyVr9cXkZruaa4Ty1wvfJg=="
-  "resolved" "https://registry.npmjs.org/@editorjs/embed/-/embed-2.5.3.tgz"
-  "version" "2.5.3"
-
-"@editorjs/paragraph@*", "@editorjs/paragraph@^2.9.0":
-  "integrity" "sha512-lI6x1eiqFx2X3KmMak6gBlimFqXhG35fQpXMxzrjIphNLr4uPsXhVbyMPimPoLUnS9rM6Q00vptXmP2QNDd0zg=="
-  "resolved" "https://registry.npmjs.org/@editorjs/paragraph/-/paragraph-2.9.0.tgz"
-  "version" "2.9.0"
-  dependencies:
-    "@codexteam/icons" "^0.0.4"
 
 "@emotion/is-prop-valid@^1.1.0":
   "integrity" "sha512-RFg04p6C+1uO19uG8N+vqanzKqiM9eeV1LDOG3bmkYmuOj7NbKNlFC/4EZq5gnwAIlcC/jOT24f8Td0iax2SXA=="
@@ -1581,25 +1548,6 @@
   "integrity" "sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw=="
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   "version" "2.11.6"
-
-"@react-editor-js/client@2.1.0":
-  "integrity" "sha512-X/OwqY2KKUUVIy24zvubHTI4qhiVIWMxGlU/Bc6tkf9gcsWgQjPvn75DwrQ5SIGBOYpSBcHY01JX0RRtJHRumw=="
-  "resolved" "https://registry.npmjs.org/@react-editor-js/client/-/client-2.1.0.tgz"
-  "version" "2.1.0"
-  dependencies:
-    "@react-editor-js/core" "2.1.0"
-
-"@react-editor-js/core@2.1.0":
-  "integrity" "sha512-6h98D5g2RatdCDQRW/+N+eiMtjoq0n1n02m8oA7FrlEzEaOUyV+J+rmtmRS8OexLVOiNeWaSPDpVJ3MNiVLq8Q=="
-  "resolved" "https://registry.npmjs.org/@react-editor-js/core/-/core-2.1.0.tgz"
-  "version" "2.1.0"
-
-"@react-editor-js/server@2.1.0":
-  "integrity" "sha512-RnTbCmzCHbjcjPNKhr9FaehItHgAZyd47Lq+iIGynFqWSsrwGy46LgOXSvb50DYbwDyT0GtxaXBIk6aiFki1Dg=="
-  "resolved" "https://registry.npmjs.org/@react-editor-js/server/-/server-2.1.0.tgz"
-  "version" "2.1.0"
-  dependencies:
-    "@react-editor-js/core" "2.1.0"
 
 "@rollup/plugin-babel@^5.2.0":
   "integrity" "sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q=="
@@ -3340,16 +3288,6 @@
     "chalk" "^2.4.1"
     "q" "^1.1.2"
 
-"codex-notifier@^1.1.2":
-  "integrity" "sha512-DCp6xe/LGueJ1N5sXEwcBc3r3PyVkEEDNWCVigfvywAkeXcZMk9K41a31tkEFBW0Ptlwji6/JlAb49E3Yrxbtg=="
-  "resolved" "https://registry.npmjs.org/codex-notifier/-/codex-notifier-1.1.2.tgz"
-  "version" "1.1.2"
-
-"codex-tooltip@^1.0.5":
-  "integrity" "sha512-IuA8LeyLU5p1B+HyhOsqR6oxyFQ11k3i9e9aXw40CrHFTRO2Y1npNBVU3W1SvhKAbUU7R/YikUBdcYFP0RcJag=="
-  "resolved" "https://registry.npmjs.org/codex-tooltip/-/codex-tooltip-1.0.5.tgz"
-  "version" "1.0.5"
-
 "collect-v8-coverage@^1.0.0":
   "integrity" "sha512-iBPtljfCNcTKNAto0KEtDfZ3qzjJvqE3aTGZsbhjSBlorqpXJlaWWtPO35D+ZImoC3KWejX64o+yPGxhWSTzfg=="
   "resolved" "https://registry.npmjs.org/collect-v8-coverage/-/collect-v8-coverage-1.0.1.tgz"
@@ -4071,11 +4009,6 @@
   "integrity" "sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg=="
   "resolved" "https://registry.npmjs.org/duplexer/-/duplexer-0.1.2.tgz"
   "version" "0.1.2"
-
-"editorjs-html@^3.4.2":
-  "integrity" "sha512-Gy8FV4oHMvnPDXLsdpZYW0Dgjaagff9bPd28/WW9aFdy87FvktJxQz8H+NKpxiGcGoNY27MmjFffurK2yhXjEg=="
-  "resolved" "https://registry.npmjs.org/editorjs-html/-/editorjs-html-3.4.2.tgz"
-  "version" "3.4.2"
 
 "ee-first@1.1.1":
   "integrity" "sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow=="
@@ -5100,11 +5033,6 @@
   "integrity" "sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg=="
   "resolved" "https://registry.npmjs.org/html-escaper/-/html-escaper-2.0.2.tgz"
   "version" "2.0.2"
-
-"html-janitor@^2.0.4":
-  "integrity" "sha512-92J5h9jNZRk30PMHapjHEJfkrBWKCOy0bq3oW2pBungky6lzYSoboBGPMvxl1XRKB2q+kniQmsLsPbdpY7RM2g=="
-  "resolved" "https://registry.npmjs.org/html-janitor/-/html-janitor-2.0.4.tgz"
-  "version" "2.0.4"
 
 "html-minifier-terser@^6.0.2":
   "integrity" "sha512-YXxSlJBZTP7RS3tWnQw74ooKa6L9b9i9QYXY21eUEvhZ3u9XLfv6OnFsQq6RxkhHygsaUMvYsZRV5rU/OVNZxw=="
@@ -6518,7 +6446,7 @@
     "dns-packet" "^5.2.2"
     "thunky" "^1.0.2"
 
-"nanoid@^3.1.22", "nanoid@^3.3.4":
+"nanoid@^3.3.4":
   "integrity" "sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw=="
   "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
   "version" "3.3.4"
@@ -7782,15 +7710,6 @@
   dependencies:
     "loose-envify" "^1.1.0"
     "scheduler" "^0.23.0"
-
-"react-editor-js@^2.1.0":
-  "integrity" "sha512-unI9D2pTH/2gBenc6LgCXJm8iqnrzB71CHgfjQmaB+lGR0Njx+ZXydgUQm1VofMmvF6vcCNVDE1Eb47zQbm14g=="
-  "resolved" "https://registry.npmjs.org/react-editor-js/-/react-editor-js-2.1.0.tgz"
-  "version" "2.1.0"
-  dependencies:
-    "@react-editor-js/client" "2.1.0"
-    "@react-editor-js/core" "2.1.0"
-    "@react-editor-js/server" "2.1.0"
 
 "react-error-overlay@^6.0.11":
   "integrity" "sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg=="
