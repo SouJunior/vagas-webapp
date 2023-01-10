@@ -46,7 +46,7 @@ export default function JobCard({
                 <PencilIcon className="absolute right-12 hover:text-blue-500 text-[2.75rem] text-blue align-middle bg-blue-lighter border border-blue p-[0.4375rem] rounded" />
             </Header>
             <Description>
-                <Text>{description}</Text>
+                <Text dangerouslySetInnerHTML={{ __html: description }}></Text>
             </Description>
             <Footer>
                 <Button onClick={() => onDeleteJobCard(id)} type="button">
