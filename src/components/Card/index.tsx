@@ -3,10 +3,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaValidationPasswordAndEmail } from '../formValidation/formValidation';
 import { MessageError, MessageError2 } from './styles';
-
+import user from '../../mock/user.json'
+import { useNavigate } from "react-router-dom";
 
 const Card = () => {
     const [validated, setValidated] = useState(false);
+    // Esses estados foram criados para validação dos dados de usuario e senha e mostrar o erro.
+    const [showError, setShowError] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const navigate = useNavigate();
 
     const {
         register,
@@ -19,7 +24,13 @@ const Card = () => {
     });
 
     function handleFormOnSubmit(data: any) {
-        console.log(data)
+        setFormSubmitted(true)
+        if(data.email !== user.email || data.password !== user.password){
+            setShowError(true)
+        }else {
+            // colocar a rota correta quando estiver pronta US_Feed_de_Vagas
+            navigate("/report/1")
+        }
     }
 
     // monitora os campos email e password enquanto são preenchidos
@@ -97,6 +108,7 @@ const Card = () => {
                             />
                             {/* @ts-ignore */}
                             <MessageError2>{errors?.password?.message}</MessageError2>
+                            <MessageError2>{formSubmitted && showError && "Email ou Senha inválidos"}</MessageError2>
                         </div>
                     </div>
 
