@@ -10,6 +10,7 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.206",
     "@tiptap/extension-bullet-list": "^2.0.0-beta.209",
     "@tiptap/extension-hard-break": "^2.0.0-beta.209",
@@ -22,11 +23,13 @@
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.41.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.8",
