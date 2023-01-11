@@ -1,12 +1,50 @@
 import { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaValidationPasswordAndEmail } from '../formValidation/formValidation';
+import { MessageError, MessageError2 } from './styles';
+import user from '../../mock/user.json'
+import { useNavigate } from "react-router-dom";
 
 const Card = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [validated, setValidated] = useState(false);
+    // Esses estados foram criados para validação dos dados de usuario e senha e mostrar o erro.
+    const [showError, setShowError] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const navigate = useNavigate();
 
-    function handleFormOnSubmit(e: any) {
-        e.preventDefault();
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm({
+        mode: "onChange",
+        resolver: yupResolver(schemaValidationPasswordAndEmail),
+    });
+
+    function handleFormOnSubmit(data: any) {
+        setFormSubmitted(true)
+        if(data.email !== user.email || data.password !== user.password){
+            setShowError(true)
+        }else {
+            // colocar a rota correta quando estiver pronta US_Feed_de_Vagas
+            navigate("/report/1")
+        }
     }
+
+    // monitora os campos email e password enquanto são preenchidos
+   let checkFilling = watch(['email', 'password'])
+
+   // verifica se os campos preenchidos são válidos, função usada para desabilitar e abilitar o botão entrar
+    schemaValidationPasswordAndEmail
+        .isValid({email: checkFilling[0], password: checkFilling[1]})
+        .then( valid => {
+            if(valid) setValidated(true);
+                else{
+            if(validated) setValidated(false);
+            }
+    });
 
     return (
         <div className="container h-screen flex flex-col items-center justify-center">
@@ -16,7 +54,7 @@ const Card = () => {
                 </h1>
                 <h2 className="text-center text-2xl">Entrar</h2>
                 <hr className="my-4 h-px hd:mb-20 xl:my-4 bg-gray-200 border-0 gray:bg-gray-700" />
-                <form id="login-form" onSubmit={(e) => handleFormOnSubmit(e)}>
+                <form id="login-form" onSubmit={handleSubmit(handleFormOnSubmit)}>
                     <div>
                         <label className="block text-sm font-semibold text-gray-800"></label>
                         <div className="relative flex w-full flex-wrap items-strech mb-3">
@@ -35,12 +73,15 @@ const Card = () => {
                                 </svg>
                             </span>
                             <input
-                                type="email"
-                                onChange={(e) => setEmail(e.target.value)}
+                                type="text"
+                                {...register("email")}
                                 className="h-14 relative w-full px-4 py-2 mt-2 text-blue-700 border rounded-md focus:border-purple-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 placeholder="E-mail"
+                                aria-label="Email"
                             />
-                        </div>
+                            {/* @ts-ignore */}
+                            <MessageError>{errors?.email?.message}</MessageError>
+                        </div> 
                     </div>
 
                     <div>
@@ -62,10 +103,14 @@ const Card = () => {
                             </span>
                             <input
                                 type="password"
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="h-14 block w-full px-4 py-2 mt-2 mb-4 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                {...register("password")}
+                                className="h-14 block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 placeholder="Password"
+                                aria-label="Senha"
                             />
+                            {/* @ts-ignore */}
+                            <MessageError2>{errors?.password?.message}</MessageError2>
+                            <MessageError2>{formSubmitted && showError && "Email ou Senha inválidos"}</MessageError2>
                         </div>
                     </div>
 
@@ -88,8 +133,9 @@ const Card = () => {
                     <div className="mt-8">
                         <button
                             type="submit"
-                            className="w-full h-16 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600"
+                            className="w-full h-16 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600 disabled:bg-blue-300 disabled:border-blue-300"
                             id="submit-button"
+                            disabled={!validated}                           
                         >
                             Entrar
                         </button>
