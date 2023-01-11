@@ -14,6 +14,7 @@ const Card = () => {
         watch,
         formState: { errors },
     } = useForm({
+        mode: "onChange",
         resolver: yupResolver(schemaValidationPasswordAndEmail),
     });
 
