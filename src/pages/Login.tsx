@@ -1,6 +1,6 @@
 import { Button } from '../components/Button';
 import extendedLogoImg from '../assets/imgs/logotipo-icone-extendida.svg';
-import Card from '../components/Card';
+import LoginCard from '../components/LoginCard';
 
 const Login = () => {
     return (
@@ -26,7 +26,7 @@ const Login = () => {
 
             <section>
                 <div>
-                    <Card />
+                    <LoginCard />
                 </div>
             </section>
         </main>
