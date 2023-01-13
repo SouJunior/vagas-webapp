@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaValidationPasswordAndEmail } from '../formValidation/formValidation';
+import { schemaValidationPasswordAndEmail } from '../../validations';
 import { MessageError, MessageError2 } from './styles';
 import user from '../../mock/user.json'
 import { useNavigate } from "react-router-dom";
