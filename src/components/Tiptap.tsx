@@ -9,6 +9,14 @@ import {
     RiStrikethrough,
     RiListUnordered,
 } from 'react-icons/ri';
+import ToggleOptions from './ToggleOption';
+
+type Options = {
+    bold: any;
+    italic: any;
+    strike: any;
+    bulletlist: any;
+};
 
 const Tiptap = forwardRef(({ onFieldChange }: any, ref: any) => {
     const LineBreak = HardBreak.extend({
@@ -48,67 +56,42 @@ const Tiptap = forwardRef(({ onFieldChange }: any, ref: any) => {
             editor.commands.clearContent();
         },
     }));
-
+    const ToggleOption = ['bold', 'italic', 'strike', 'bulletlist'];
+    const ToggleFunctions: Options = {
+        bold: () => editor.chain().focus().toggleBold().run(),
+        italic: () => editor.chain().focus().toggleItalic().run(),
+        strike: () => editor.chain().focus().toggleStrike().run(),
+        bulletlist: () => editor.chain().focus().toggleBulletList().run(),
+    };
     return (
         <>
             {editor && (
                 <BubbleMenu
                     editor={editor}
                     tippyOptions={{ duration: 100 }}
-                    className="bg-white text-lg rounded shadow text-blue shadow-black/20 border border-gray"
+                    className="bg-white text-lg rounded shadow text-blue shadow-black/20 border border-gray flex "
                 >
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            editor.chain().focus().toggleBold().run();
-                        }}
-                        className={
-                            editor.isActive('bold')
-                                ? 'is-active hover:bg-gray-dark py-2 px-1 rounded'
-                                : 'text-gray-darker hover:bg-gray-dark py-2 px-1 rounded'
-                        }
-                    >
-                        <RiBold title="Negrito" />
-                    </button>
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            editor.chain().focus().toggleItalic().run();
-                        }}
-                        className={
-                            editor.isActive('italic')
-                                ? 'is-active hover:bg-gray-dark py-2 px-1 rounded'
-                                : 'text-gray-darker hover:bg-gray-dark py-2 px-1 rounded'
-                        }
-                    >
-                        <RiItalic title="Italico" />
-                    </button>
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            editor.chain().focus().toggleStrike().run();
-                        }}
-                        className={
-                            editor.isActive('strike')
-                                ? 'is-active hover:bg-gray-dark py-2 px-1 rounded'
-                                : 'text-gray-darker hover:bg-gray-dark py-2 px-1 rounded'
-                        }
-                    >
-                        <RiStrikethrough title="Rasura" />
-                    </button>
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            editor.chain().focus().toggleBulletList().run();
-                        }}
-                        className={
-                            editor.isActive('bulletList')
-                                ? 'is-active hover:bg-gray-dark py-2 px-1 rounded'
-                                : 'text-gray-darker hover:bg-gray-dark py-2 px-1 rounded'
-                        }
-                    >
-                        <RiListUnordered title="Lista" />
-                    </button>
+                    {ToggleOption.map((option, index) => {
+                        return (
+                            <ToggleOptions
+                                editor={editor}
+                                type={option}
+                                toggleType={() =>
+                                    ToggleFunctions[option as keyof Options]()
+                                }
+                            >
+                                {option === 'bold' ? (
+                                    <RiBold title="Negrito" />
+                                ) : option === 'strike' ? (
+                                    <RiStrikethrough title="Rasura" />
+                                ) : option === 'italic' ? (
+                                    <RiItalic title="Italico" />
+                                ) : (
+                                    <RiListUnordered title="Lista" />
+                                )}
+                            </ToggleOptions>
+                        );
+                    })}
                 </BubbleMenu>
             )}
             <EditorContent editor={editor} />
