@@ -9,13 +9,13 @@ import {
     RiStrikethrough,
     RiListUnordered,
 } from 'react-icons/ri';
-import ToggleOptions from './ToggleOption';
+import ToggleOption from './ToggleOption';
 
 type Options = {
     bold: any;
     italic: any;
     strike: any;
-    bulletlist: any;
+    bulletList: any;
 };
 
 const Tiptap = forwardRef(({ onFieldChange }: any, ref: any) => {
@@ -56,12 +56,12 @@ const Tiptap = forwardRef(({ onFieldChange }: any, ref: any) => {
             editor.commands.clearContent();
         },
     }));
-    const ToggleOption = ['bold', 'italic', 'strike', 'bulletlist'];
-    const ToggleFunctions: Options = {
+    const TOGGLE_OPTIONS = ['bold', 'italic', 'strike', 'bulletList'];
+    const TOGGLE_FUNCTIONS: Options = {
         bold: () => editor.chain().focus().toggleBold().run(),
         italic: () => editor.chain().focus().toggleItalic().run(),
         strike: () => editor.chain().focus().toggleStrike().run(),
-        bulletlist: () => editor.chain().focus().toggleBulletList().run(),
+        bulletList: () => editor.chain().focus().toggleBulletList().run(),
     };
     return (
         <>
@@ -71,13 +71,13 @@ const Tiptap = forwardRef(({ onFieldChange }: any, ref: any) => {
                     tippyOptions={{ duration: 100 }}
                     className="bg-white text-lg rounded shadow text-blue shadow-black/20 border border-gray flex "
                 >
-                    {ToggleOption.map((option, index) => {
+                    {TOGGLE_OPTIONS.map((option, index) => {
                         return (
-                            <ToggleOptions
+                            <ToggleOption
                                 editor={editor}
                                 type={option}
                                 toggleType={() =>
-                                    ToggleFunctions[option as keyof Options]()
+                                    TOGGLE_FUNCTIONS[option as keyof Options]()
                                 }
                             >
                                 {option === 'bold' ? (
@@ -89,7 +89,7 @@ const Tiptap = forwardRef(({ onFieldChange }: any, ref: any) => {
                                 ) : (
                                     <RiListUnordered title="Lista" />
                                 )}
-                            </ToggleOptions>
+                            </ToggleOption>
                         );
                     })}
                 </BubbleMenu>

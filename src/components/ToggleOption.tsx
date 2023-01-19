@@ -1,4 +1,4 @@
-const ToggleOptions = ({ editor, children, type, toggleType }: any) => {
+const ToggleOption = ({ editor, children, type, toggleType }: any) => {
     return (
         <div>
             <button
@@ -18,4 +18,4 @@ const ToggleOptions = ({ editor, children, type, toggleType }: any) => {
     );
 };
 
-export default ToggleOptions;
+export default ToggleOption;

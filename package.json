@@ -19,6 +19,7 @@
     "@tiptap/extension-placeholder": "^2.0.0-beta.209",
     "@tiptap/react": "^2.0.0-beta.206",
     "@tiptap/starter-kit": "^2.0.0-beta.206",
+    "@types/node": "^18.11.18",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
