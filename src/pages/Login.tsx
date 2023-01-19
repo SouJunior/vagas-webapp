@@ -1,13 +1,13 @@
 import { Button } from '../components/Button';
+import { CirclesDetailsBackground } from './styles/Login.styled';
 import extendedLogoImg from '../assets/imgs/logotipo-icone-extendida.svg';
 import LoginCard from '../components/LoginCard';
 
-import CircleDetails from '../assets/imgs/Circles-details.svg'
 
 const Login = () => {
     return (
         <>
-        <div className='w-full h-screen absolute bg-cover bg-no-repeat' style={{ background: `url(${CircleDetails})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}></div>
+        <CirclesDetailsBackground />
         <main className="grid lg:grid-cols-2 px-4 bg-blue-gradient h-screen">
             <section className="lg:pl-16 pl-24 mt-44">
                 <img
