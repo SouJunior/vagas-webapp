@@ -1,7 +1,7 @@
 import { Button } from '../components/Button';
-import { CirclesDetailsBackground } from './styles/Login.styled';
 import extendedLogoImg from '../assets/imgs/logotipo-icone-extendida.svg';
 import LoginCard from '../components/LoginCard';
+import { CirclesDetailsBackground } from './styles/Login.styled';
 
 const Login = () => {
     return (
@@ -22,10 +22,11 @@ const Login = () => {
                         background="outline"
                         border="white"
                         className="w-[283px] h-[67px] text-2xl"
+                        style={{ position: 'absolute' }}
+                        onClick={()=> window.open('https://www.soujunior.tech', '_blank')}
                     >
-                        <a href="https://www.soujunior.tech" target="blank">
                             Saiba mais
-                        </a>
+    
                     </Button>
                 </section>
 
