@@ -1,8 +1,10 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 // TODO: ajustar componente styled para receber attrs próprios de um botão HTML
 
 interface ButtonWrapperProps {
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
     background?: 'outline';
     border?: 'white';
 }
