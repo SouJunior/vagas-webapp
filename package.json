@@ -11,6 +11,15 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
+    "@tiptap/extension-bubble-menu": "^2.0.0-beta.206",
+    "@tiptap/extension-bullet-list": "^2.0.0-beta.209",
+    "@tiptap/extension-hard-break": "^2.0.0-beta.209",
+    "@tiptap/extension-list-item": "^2.0.0-beta.209",
+    "@tiptap/extension-ordered-list": "^2.0.0-beta.209",
+    "@tiptap/extension-placeholder": "^2.0.0-beta.209",
+    "@tiptap/react": "^2.0.0-beta.206",
+    "@tiptap/starter-kit": "^2.0.0-beta.206",
+    "@types/node": "^18.11.18",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
@@ -24,11 +33,11 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.8",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^28.1.5",
-    "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/styled-components": "^5.1.25",

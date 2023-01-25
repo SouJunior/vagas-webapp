@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react';
+import {
+    ChangeEvent,
+    FormEvent,
+    FunctionComponent,
+    useRef,
+    useState,
+} from 'react';
 import JobCard from '../components/JobCard';
 import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
@@ -9,6 +15,7 @@ import {
     RiInformationLine,
 } from 'react-icons/ri';
 import logoNameEmpresa from '../assets/imgs/logo-name-empresa.svg';
+import Tiptap from '../components/Tiptap';
 
 export interface JobData {
     readonly id: string;
@@ -38,6 +45,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
     const [jobData, setJobData] = useState<JobData>(emptyJobData);
     const [jobsList, setJobsList] = useState<JobData[]>([]);
     const DISCORD_LINK = 'https://discord.gg/R5RAxFVC';
+    const titapRef = useRef<{ clearContent: () => void }>();
 
     const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -50,6 +58,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
         alert('Vaga criada com sucesso. ✅');
 
         e.currentTarget.reset();
+        titapRef.current?.clearContent();
         setJobData({ ...emptyJobData, id: uuidv4() });
     };
 
@@ -77,6 +86,13 @@ export const InsertJobs: FunctionComponent<any> = () => {
         });
     };
 
+    const handleDescriptionChange = (editorHTML: string) => {
+        setJobData((prevState) => ({
+            ...prevState,
+            description: editorHTML,
+        }));
+    };
+
     const addUpdatedCreatedAtToJobData = () => {
         setJobData({
             ...jobData,
@@ -89,6 +105,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
 
     const cleanJobData = () => {
         setJobData(emptyJobData);
+        titapRef.current?.clearContent();
     };
 
     return (
@@ -139,13 +156,10 @@ export const InsertJobs: FunctionComponent<any> = () => {
                             >
                                 Descrição
                             </label>
-
-                            <textarea
-                                name="description"
+                            <Tiptap
+                                ref={titapRef}
+                                onFieldChange={handleDescriptionChange}
                                 id="description"
-                                onChange={handleFieldChange}
-                                placeholder="Descrição da vaga"
-                                className="w-full h-32 border py-3 px-4 mt-[10px] rounded-md block outline-none focus:border-blue placeholder:text-gray-dark/70"
                             />
                         </div>
 
