@@ -6,7 +6,7 @@ import '../App.css'
 
 const Login = () => {
     return (
-            <main className="grid lg:grid-cols-2 px-4 bg-blue-gradient h-screen">
+        <main className="grid lg:grid-cols-2 px-4 bg-hero-pattern bg-cover bg-no-repeat z-50 h-screen">
                 <section className="lg:pl-16 pl-24 mt-44">
                     <img
                         className="w-[450px]"
