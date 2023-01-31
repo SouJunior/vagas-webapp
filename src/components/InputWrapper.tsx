@@ -22,8 +22,9 @@ const Wrapper = styled.div`
         outline: none;
 
         width: 100%;
+        height: 48px;
         padding: 0.7rem 1rem;
-        padding-right: 3rem;
+        padding-right: 5rem;
         margin-top: 6px;
 
         ::placeholder {
