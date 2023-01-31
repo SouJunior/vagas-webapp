@@ -76,6 +76,7 @@ const Tiptap = forwardRef(({ onFieldChange }: any, ref: any) => {
                             <ToggleOption
                                 editor={editor}
                                 type={option}
+                                key={index}
                                 toggleType={() =>
                                     TOGGLE_FUNCTIONS[option as keyof Options]()
                                 }
