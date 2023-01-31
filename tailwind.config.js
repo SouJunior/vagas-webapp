@@ -22,12 +22,12 @@ module.exports = {
                 },
             },
             backgroundImage: {
-                'blue-gradient':
-                    "linear-gradient(294.77deg, rgba(10, 103, 199, 1) 50.32%, rgba(0, 114, 231, 0.67) 100%)",
+                'hero-pattern':
+                    "url('https://cdn.discordapp.com/attachments/1053386017589178470/1069996612799189064/Circles-details.png'), linear-gradient(294.77deg, rgba(10, 103, 199, 1) 50.32%, rgba(0, 114, 231, 0.67) 100%)",
             },
             screens: {
-                'hd': '1456px',
-            }
+                hd: '1456px',
+            },
         },
     },
     plugins: [],
