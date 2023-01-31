@@ -23,7 +23,7 @@ module.exports = {
             },
             backgroundImage: {
                 'blue-gradient':
-                    'linear-gradient(294.77deg, #0A67C7 50.32%, rgba(0, 114, 231, 0.67) 100%)',
+                    "linear-gradient(294.77deg, rgba(10, 103, 199, 1) 50.32%, rgba(0, 114, 231, 0.67) 100%)",
             },
             screens: {
                 'hd': '1456px',
