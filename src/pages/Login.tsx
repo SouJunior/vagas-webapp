@@ -7,15 +7,15 @@ import '../App.css';
 const Login = () => {
     return (
         <main className="bg-hero-pattern bg-cover bg-no-repeat h-screen">
-            <div className="container max-w-screen-lg m-auto">
-                <section className="flex justify-center items-center">
-                    <div className="titles">
+            <div className="container max-w-screen-xl m-auto">
+                <section className="flex justify-between items-center">
+                    <div className="titles ml-8 mb-"> 
                         <img
                             className="w-[450px]"
                             src={extendedLogoImg}
                             alt="Logo-sou-junior-square"
                         />
-                        <h1 className="text-white text-[78px] leading-[94px] my-8">
+                        <h1 className="text-white text-7xl leading-normal my-8">
                             Onde o Júnior
                             <br /> tem vez!
                         </h1>
@@ -34,7 +34,7 @@ const Login = () => {
                             Saiba mais
                         </Button>
                     </div>
-                    <div className='login-card'>
+                    <div className='login-card mr-8'>
                         <LoginCard />
                     </div>
                 </section>
