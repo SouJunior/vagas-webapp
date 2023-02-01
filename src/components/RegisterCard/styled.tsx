@@ -4,8 +4,8 @@ export const ContainerCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 23.25rem;
-    height: 100%;
+    width: 29rem;
+    padding: 40px;
 
     border: 0.8px solid #BABABA;
     border-radius: 5.62px;
@@ -15,7 +15,6 @@ export const ContainerCard = styled.div`
     background-color: ${props => props.theme.colors.muted};
 
     .box-text-card{
-       margin-top: 1.563rem;
        display: flex;
        flex-direction: column;
        align-items: center;
@@ -33,7 +32,7 @@ export const ContainerCard = styled.div`
        h2{
         font-size: 1.625rem;
         font-weight: 400;
-        margin-bottom: 1.563rem;
+        margin-bottom: 1rem;
        }
        
     }
@@ -54,10 +53,10 @@ export const ContainerCard = styled.div`
     }
 
     .wrapper-button{
+       width: 23.12rem;
        display: flex;
        flex-direction: column;
        gap: 16px;
-       margin-bottom: 1.875rem;
     }
 
     .checkbox-termos{
@@ -82,14 +81,14 @@ export const ContainerCard = styled.div`
 
 `
 export const LineDivisor = styled.div`
-    width: 19.5rem;
+    width: 23.12rem;
     border: 1px solid #E8E8E8;
-    margin-bottom: 1.875rem;
+    margin-bottom: 1rem;
 
 `
 
 const WrapperStrengthIndicator = styled.div`
-    width: 77px;
+    width: 88px;
     height: 5px;
     border-radius: 3px;
     background-color: transparent; // alterar color fazendo a validação de força de senha

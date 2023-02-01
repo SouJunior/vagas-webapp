@@ -81,11 +81,11 @@ export const RegisterCard = () => {
           </div>
             
             <div className="wrapper-button">
-              <Button children="Criar Conta" height="51px" />
+              <Button children="Criar Conta" height="64px" />
               <Button
                 children="Fazer Login"
                 background="outline" 
-                height="51px" 
+                height="64px" 
                 onClick={() => window.open('www.soujunior.tech', '_black')}
               />
             </div>
