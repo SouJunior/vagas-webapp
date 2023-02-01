@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+    .ProseMirror ul,
+    ol {
+        list-style: revert;
+        margin-left: 25px;
+    }
+    li {
+        margin-left: 10px;
+        list-style-type: disc;
+    }
+}
