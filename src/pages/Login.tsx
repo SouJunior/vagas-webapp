@@ -6,24 +6,24 @@ import '../App.css';
 
 const Login = () => {
     return (
-        <main className="bg-hero-pattern bg-cover bg-no-repeat h-screen">
+        <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full">
             <div className="container max-w-screen-xl m-auto">
-                <section className="flex justify-between items-center">
-                    <div className="titles ml-8 mb-"> 
+                <section className="flex flex-col justify-between items-center lg:flex-row">
+                    <div className="titles flex flex-col items-center mb-0 mx-auto mt-10 lg:items-start lg:mt-0 lg:mb-36">
                         <img
-                            className="w-[450px]"
+                            className="max-w-md"
                             src={extendedLogoImg}
                             alt="Logo-sou-junior-square"
                         />
-                        <h1 className="text-white text-7xl leading-normal my-8">
-                            Onde o Júnior
-                            <br /> tem vez!
-                        </h1>
+                        <div className='max-w-xl text-center lg:text-start'>
+                            <h1 className="text-white text-7xl leading-normal my-8">
+                                Onde o Júnior tem vez!
+                            </h1>
+                        </div>
                         <Button
                             background="outline"
                             border="white"
                             className="w-[283px] h-[67px] text-2xl"
-                            style={{ position: 'absolute' }}
                             onClick={() =>
                                 window.open(
                                     'https://www.soujunior.tech',
@@ -34,7 +34,7 @@ const Login = () => {
                             Saiba mais
                         </Button>
                     </div>
-                    <div className='login-card mr-8'>
+                    <div className="login-card mx-auto">
                         <LoginCard />
                     </div>
                 </section>
