@@ -7,6 +7,7 @@ interface ButtonWrapperProps {
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
     background?: 'outline';
     border?: 'white';
+    height?: string;
 }
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps | any>`
@@ -17,6 +18,7 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps | any>`
     color: #fff;
 
     min-width: fit-content;
+    height: ${(props) => props.height};
 
     display: flex;
     align-items: center;
