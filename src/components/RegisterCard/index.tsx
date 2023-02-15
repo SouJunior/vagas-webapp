@@ -6,6 +6,7 @@ import { Button } from "../Button";
 import InputWrapper from "../InputWrapper"
 import { ContainerCard, LineDivisor, StrengthIndicator } from "./styled";
 
+// Opening a Draft Pull Request
 
 function handleFormOnSubmit (data: any){
   console.log(data)
