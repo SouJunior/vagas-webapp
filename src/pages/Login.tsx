@@ -16,8 +16,9 @@ const Login = () => {
                             alt="Logo-sou-junior-square"
                         />
                         <div className="max-w-xl text-center lg:text-start">
-                            <h1 className="text-white text-7xl leading-normal my-8">
-                                Onde o Júnior tem vez!
+                            <h1 className="text-white text-7xl font-canada leading-tight my-9">
+                                O <b>Júnior</b> de hoje é o <b>Sênior</b> de
+                                amanhã!
                             </h1>
                         </div>
                         <Button

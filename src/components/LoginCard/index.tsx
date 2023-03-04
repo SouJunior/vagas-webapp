@@ -2,40 +2,107 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaValidationPasswordAndEmail } from '../../validations';
-import { MessageError, MessageError2 } from './styles';
+import {
+    MessageError,
+    MessageError2,
+    Container,
+    Card,
+    LoginTypeButton,
+    Title,
+    Divider,
+    InputContainer,
+    IconWrapper,
+    Input,
+    Label,
+    CheckboxInput,
+    CheckboxContainer,
+    SecondDivider,
+    ButtonContainer,
+    LoginButton,
+    RegisterButton,
+    DivLogo,
+    RegisterSubmitButton,
+    TermsLink,
+    LoginLink,
+    Form,
+} from './styles';
 import user from '../../mock/user.json';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import EmpresaIcon from '../../assets/imgs/Buildings-icone.svg';
+import CandidatoIcon from '../../assets/imgs/Candidato-icone.svg';
 
 const PasswordIcon = () => {
     return (
         <svg
-            width="21"
-            height="24"
-            viewBox="0 0 21 24"
+            width="22"
+            height="16"
+            viewBox="0 0 22 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
             <path
-                d="M17.25 8H19.5C19.7984 8 20.0845 8.11853 20.2955 8.32951C20.5065 8.54048 20.625 8.82663 20.625 9.125V22.625C20.625 22.9234 20.5065 23.2095 20.2955 23.4205C20.0845 23.6315 19.7984 23.75 19.5 23.75H1.5C1.20163 23.75 0.915483 23.6315 0.704505 23.4205C0.493526 23.2095 0.375 22.9234 0.375 22.625V9.125C0.375 8.82663 0.493526 8.54048 0.704505 8.32951C0.915483 8.11853 1.20163 8 1.5 8H3.75V6.875C3.75 5.08479 4.46116 3.3679 5.72703 2.10203C6.9929 0.836159 8.70979 0.125 10.5 0.125C12.2902 0.125 14.0071 0.836159 15.273 2.10203C16.5388 3.3679 17.25 5.08479 17.25 6.875V8ZM15 8V6.875C15 5.68153 14.5259 4.53693 13.682 3.69302C12.8381 2.84911 11.6935 2.375 10.5 2.375C9.30653 2.375 8.16193 2.84911 7.31802 3.69302C6.47411 4.53693 6 5.68153 6 6.875V8H15ZM9.375 14.75V17H11.625V14.75H9.375ZM4.875 14.75V17H7.125V14.75H4.875ZM13.875 14.75V17H16.125V14.75H13.875Z"
-                fill="#E6E6E6"
+                d="M10.9067 0.830078C6.07607 0.830078 1.9507 3.94008 0.279297 8.33008C1.9507 12.7201 6.07607 15.8301 10.9067 15.8301C15.7422 15.8301 19.8627 12.7201 21.5341 8.33008C19.8627 3.94008 15.7422 0.830078 10.9067 0.830078ZM10.9067 13.3301C8.2402 13.3301 6.07607 11.0901 6.07607 8.33008C6.07607 5.57008 8.2402 3.33008 10.9067 3.33008C13.5732 3.33008 15.7374 5.57008 15.7374 8.33008C15.7374 11.0901 13.5732 13.3301 10.9067 13.3301ZM10.9067 5.33008C9.30777 5.33008 8.00833 6.67508 8.00833 8.33008C8.00833 9.98508 9.30777 11.3301 10.9067 11.3301C12.5057 11.3301 13.8051 9.98508 13.8051 8.33008C13.8051 6.67508 12.5057 5.33008 10.9067 5.33008Z"
+                fill="#D7D9D7"
             />
         </svg>
     );
 };
-
+const LogoIcon = () => {
+    return (
+        <svg
+            width="72"
+            height="71"
+            viewBox="0 0 72 71"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M17.1292 49.583H5.50242C3.0158 49.583 1 51.5778 1 54.0385V65.5442C1 68.0049 3.0158 69.9997 5.50242 69.9997H17.1292C19.6158 69.9997 21.6316 68.0049 21.6316 65.5442V54.0385C21.6316 51.5778 19.6158 49.583 17.1292 49.583Z"
+                fill="#1165BA"
+            />
+            <path
+                d="M40.8695 24.792H29.658C27.2602 24.792 25.3164 26.7868 25.3164 29.2475V40.7532C25.3164 43.2139 27.2602 45.2087 29.658 45.2087H40.8695C43.2673 45.2087 45.2111 43.2139 45.2111 40.7532V29.2475C45.2111 26.7868 43.2673 24.792 40.8695 24.792Z"
+                fill="#1165BA"
+            />
+            <path
+                d="M30.5552 0.5H42.1819C44.3973 0.5 46.1843 2.27588 46.1843 4.45554V15.9612C46.1843 18.1409 44.3973 19.9167 42.1819 19.9167H30.5552C28.3397 19.9167 26.5527 18.1409 26.5527 15.9612V4.45554C26.5527 2.27588 28.3397 0.5 30.5552 0.5Z"
+                stroke="#1165BA"
+            />
+            <path
+                d="M40.8695 49.583H29.658C27.2602 49.583 25.3164 51.5778 25.3164 54.0385V65.5442C25.3164 68.0049 27.2602 69.9997 29.658 69.9997H40.8695C43.2673 69.9997 45.2111 68.0049 45.2111 65.5442V54.0385C45.2111 51.5778 43.2673 49.583 40.8695 49.583Z"
+                stroke="#1165BA"
+                stroke-miterlimit="10"
+            />
+            <path
+                d="M66.4973 24.792H54.8706C52.384 24.792 50.3682 26.7868 50.3682 29.2475V40.7532C50.3682 43.2139 52.384 45.2087 54.8706 45.2087H66.4973C68.9839 45.2087 70.9997 43.2139 70.9997 40.7532V29.2475C70.9997 26.7868 68.9839 24.792 66.4973 24.792Z"
+                stroke="#1165BA"
+                stroke-miterlimit="10"
+            />
+            <path
+                d="M17.1292 24.792H5.50242C3.0158 24.792 1 26.7868 1 29.2475V40.7532C1 43.2139 3.0158 45.2087 5.50242 45.2087H17.1292C19.6158 45.2087 21.6316 43.2139 21.6316 40.7532V29.2475C21.6316 26.7868 19.6158 24.792 17.1292 24.792Z"
+                stroke="#1165BA"
+                stroke-miterlimit="10"
+            />
+            <path
+                d="M66.6586 0H55.4471C53.0493 0 51.1055 1.99481 51.1055 4.45554V15.9612C51.1055 18.4219 53.0493 20.4167 55.4471 20.4167H66.6586C69.0564 20.4167 71.0002 18.4219 71.0002 15.9612V4.45554C71.0002 1.99481 69.0564 0 66.6586 0Z"
+                fill="#1165BA"
+            />
+        </svg>
+    );
+};
 const EmailIcon = () => {
     return (
         <svg
-            width="23"
-            height="23"
+            width="18"
+            height="18"
             viewBox="0 0 23 23"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
             <path
                 d="M0.523375 6.7108L10.9262 0.4738C11.1011 0.368893 11.3012 0.313477 11.5051 0.313477C11.709 0.313477 11.909 0.368893 12.0839 0.4738L22.4766 6.71192C22.56 6.76189 22.629 6.83261 22.6769 6.9172C22.7248 7.00178 22.75 7.09734 22.75 7.19455V21.5001C22.75 21.7984 22.6315 22.0846 22.4205 22.2955C22.2095 22.5065 21.9234 22.6251 21.625 22.6251H1.375C1.07663 22.6251 0.790483 22.5065 0.579505 22.2955C0.368526 22.0846 0.25 21.7984 0.25 21.5001V7.19342C0.24998 7.09621 0.275153 7.00066 0.323064 6.91607C0.370975 6.83149 0.439989 6.76077 0.523375 6.7108ZM18.6393 8.27455L11.5686 14.3934L4.35287 8.2678L2.89713 9.9823L11.5821 17.3567L20.1107 9.97668L18.6393 8.27455V8.27455Z"
-                fill="#E6E6E6"
+                fill="#D7D9D7"
             />
         </svg>
     );
@@ -44,6 +111,9 @@ const EmailIcon = () => {
 const LoginCard = () => {
     const [isFieldsValid, setIsFieldsValid] = useState(false);
     const [hasError, setHasError] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const navigate = useNavigate();
 
@@ -94,105 +164,236 @@ const LoginCard = () => {
         });
 
     return (
-        <div className="container h-screen flex flex-col items-center justify-center">
-            <div className="login-card w-[464px] p-10 bg-[#F3F3F3] rounded-md shadow-md lg:max-w-xl">
-                <h1 className=" mb-4 mt-0 hd:mt-6 text-5xl font-extrabold text-center text-blue-600">
-                    <span className="font-normal">Sou</span>Junior
-                </h1>
+        <Container>
+            <Card>
+                <LoginTypeButton>
+                    <button>
+                        <img src={EmpresaIcon} alt="Empresa" />
+                        Empresa
+                    </button>
+                    <button>
+                        <img src={CandidatoIcon} alt="Candidato" />
+                        Candidato
+                    </button>
+                </LoginTypeButton>
 
-                <h2 className="text-center text-2xl">Entrar</h2>
-
-                <hr className="my-4 h-px hd:mb-20 xl:my-4 bg-gray-200 border-0 gray:bg-gray-700" />
-
-                <form
-                    id="login-form"
-                    onSubmit={handleSubmit(handleFormOnSubmit)}
+                <DivLogo
+                    style={{
+                        marginBottom: isLogin ? '42px' : '18px',
+                        marginTop: isLogin ? '22px' : '8px',
+                    }}
                 >
-                    <div>
-                        <label className="block text-sm font-semibold text-gray-800"></label>
-                        <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                            <span className="absolute inset-y-[30%] right-[6%] z-10 h-full leading-snug font-normal">
-                                <EmailIcon />
-                            </span>
+                    <LogoIcon />
+                </DivLogo>
 
-                            <input
-                                type="text"
-                                {...register('email')}
-                                className="h-14 relative w-full px-4 py-2 mt-2 text-blue-700 border rounded-md focus:border-purple-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                placeholder="E-mail"
-                                aria-label="Email"
-                            />
+                {isLogin ? (
+                    <Title>Entrar</Title>
+                ) : (
+                    <Title>Cadastro de empresa</Title>
+                )}
+
+                <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
+
+                {isLogin ? (
+                    <Form
+                        id="login-form"
+                        onSubmit={handleSubmit(handleFormOnSubmit)}
+                    >
+                        <InputContainer>
+                            <div>
+                                <Input
+                                    type="text"
+                                    {...register('email')}
+                                    placeholder="E-mail"
+                                    aria-label="Email"
+                                />
+                                <IconWrapper>
+                                    <EmailIcon />
+                                </IconWrapper>
+                            </div>
                             <MessageError>
                                 {/* @ts-ignore */}
                                 {errors?.email?.message}
                             </MessageError>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-semibold text-gray-800"></label>
-
-                        <div className="relative">
-                            <span className="absolute inset-y-[20%] right-[6%] z-10 h-full leading-snug font-normal">
-                                <PasswordIcon />
-                            </span>
-
-                            <input
-                                type="password"
-                                {...register('password')}
-                                className="h-14 block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                placeholder="Password"
-                                aria-label="Senha"
-                            />
-                            {/* TODO: refatorar esse erro abaixo. O react não entende objetos diretamente injetados na DOM. */}
-                            {/* @ts-ignore */}
-                            {/* <MessageError2>{errors}</MessageError2> */}
-
+                        </InputContainer>
+                        <InputContainer>
+                            <div>
+                                <Input
+                                    type={showPassword ? 'text' : 'password'}
+                                    {...register('password')}
+                                    placeholder="Senha"
+                                    aria-label="Senha"
+                                />
+                                <IconWrapper
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <PasswordIcon />
+                                </IconWrapper>
+                                {/* TODO: refatorar esse erro abaixo. O react não entende objetos diretamente injetados na DOM. */}
+                                {/* @ts-ignore */}
+                                {/* <MessageError2>{errors}</MessageError2> */}
+                            </div>
                             {hasError && (
                                 <MessageError2>
                                     Email ou Senha inválidos
                                 </MessageError2>
                             )}
-                        </div>
-                    </div>
+                        </InputContainer>
+                        <InputContainer>
+                            <CheckboxContainer>
+                                <Label>
+                                    {/* TODO: monitorar também o valor deste campo, pois será enviado à API */}
+                                    <CheckboxInput
+                                        id="default-checkbox"
+                                        value=""
+                                    />
+                                    Me mantenha conectado
+                                </Label>
+                                <a href="/">Esqueci minha senha</a>
+                            </CheckboxContainer>
+                        </InputContainer>
 
-                    <a
-                        href="#"
-                        className="text-blue-700 hover:font-semibold float-right mr-1 mt-2 text-sm font-medium"
-                    >
-                        Esqueci minha senha
-                    </a>
+                        <SecondDivider />
 
-                    <hr className="my-6 h-px hd:mt-16 hd:my-8 bg-gray-200 border-0 gray:bg-gray-700" />
+                        <ButtonContainer>
+                            <LoginButton
+                                type="submit"
+                                id="submit-button"
+                                disabled={!isFieldsValid}
+                            >
+                                Entrar
+                            </LoginButton>
 
-                    <label className="w-fit flex items-center gap-1 cursor-pointer text-sm font-medium text-gray-900 dark:text-black-300">
-                        {/* TODO: monitorar também o valor deste campo, pois será enviado à API */}
-                        <input
-                            id="default-checkbox"
-                            type="checkbox"
-                            value=""
-                            className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-1 dark:bg-gray-700 dark:border-gray-600"
-                        />
-                        Me mantenha conectado
-                    </label>
+                            <RegisterButton onClick={() => setIsLogin(false)}>
+                                Criar conta
+                            </RegisterButton>
+                        </ButtonContainer>
+                    </Form>
+                ) : (
+                    <Form>
+                        <InputContainer>
+                            <Input
+                                type="text"
+                                {...register('companyName')}
+                                placeholder="Nome da empresa"
+                                aria-label="Nome da empresa"
+                            ></Input>
+                        </InputContainer>
+                        <InputContainer>
+                            <Input
+                                type="number"
+                                {...register('cnpj')}
+                                placeholder="CNPJ da empresa"
+                                aria-label="CNPJ da empresa"
+                            ></Input>
+                        </InputContainer>
+                        <InputContainer>
+                            <div>
+                                <Input
+                                    type="text"
+                                    {...register('email')}
+                                    placeholder="E-mail"
+                                    aria-label="Email"
+                                ></Input>
+                                <IconWrapper>
+                                    <EmailIcon />
+                                </IconWrapper>
+                            </div>
+                            <MessageError>
+                                {/* @ts-ignore */}
+                                {errors?.email?.message}
+                            </MessageError>
+                        </InputContainer>
+                        <InputContainer>
+                            <div>
+                                <Input
+                                    type={showPassword ? 'text' : 'password'}
+                                    {...register('password')}
+                                    placeholder="Senha"
+                                    aria-label="Senha"
+                                />
+                                <IconWrapper
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <PasswordIcon />
+                                </IconWrapper>
+                                {/* TODO: refatorar esse erro abaixo. O react não entende objetos diretamente injetados na DOM. */}
+                                {/* @ts-ignore */}
+                                {/* <MessageError2>{errors}</MessageError2> */}
 
-                    <div className="mt-8">
-                        <button
+                                {hasError && (
+                                    <MessageError2>
+                                        Email ou Senha inválidos
+                                    </MessageError2>
+                                )}
+                            </div>
+                        </InputContainer>
+                        <InputContainer>
+                            <div>
+                                <Input
+                                    type={
+                                        showConfirmPassword
+                                            ? 'text'
+                                            : 'password'
+                                    }
+                                    {...register('confirmPassword')}
+                                    placeholder="Confirme sua senha"
+                                    aria-label="Senha"
+                                />
+                                <IconWrapper
+                                    onClick={() =>
+                                        setShowConfirmPassword(
+                                            !showConfirmPassword,
+                                        )
+                                    }
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <PasswordIcon />
+                                </IconWrapper>
+                                {/* TODO: refatorar esse erro abaixo. O react não entende objetos diretamente injetados na DOM. */}
+                                {/* @ts-ignore */}
+                                {/* <MessageError2>{errors}</MessageError2> */}
+
+                                {hasError && (
+                                    <MessageError2>
+                                        Email ou Senha inválidos
+                                    </MessageError2>
+                                )}
+                            </div>
+                        </InputContainer>
+                        <InputContainer>
+                            <Label>
+                                <CheckboxInput />
+                                <TermsLink>
+                                    Li e aceito os <a href="/">Termos de Uso</a>{' '}
+                                    e <a href="/">Política de Privacidade</a>
+                                </TermsLink>
+                            </Label>
+                        </InputContainer>
+
+                        <RegisterSubmitButton
                             type="submit"
-                            className="w-full h-16 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600 disabled:bg-blue-300 disabled:border-blue-300"
-                            id="submit-button"
+                            id="register-submit-button"
                             disabled={!isFieldsValid}
                         >
-                            Entrar
-                        </button>
-
-                        <button className="border-2 h-16 border-blue-600 text-blue w-full rounded">
-                            <a href="#">Criar conta</a>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                            Criar conta
+                        </RegisterSubmitButton>
+                        <LoginLink>
+                            Já tem conta?{' '}
+                            <button onClick={() => setIsLogin(true)}>
+                                Faça o Login
+                            </button>
+                        </LoginLink>
+                    </Form>
+                )}
+            </Card>
+        </Container>
     );
 };
 
