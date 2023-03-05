@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaValidationPasswordAndEmail } from '../../validations';
@@ -6,6 +6,7 @@ import { MessageError, MessageError2 } from './styles';
 import user from '../../mock/user.json';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 const PasswordIcon = () => {
     return (
@@ -46,6 +47,10 @@ const LoginCard = () => {
     const [hasError, setHasError] = useState(false);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const navigate = useNavigate();
+
+    const auth: any = useContext(AuthContext);
+
+    console.log(auth.user)
 
     const {
         register,
