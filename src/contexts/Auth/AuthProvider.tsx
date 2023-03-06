@@ -1,7 +1,8 @@
-import { User } from '../../@types/User';
-import { useApi } from '../../hooks/useApi';
-import { AuthContext } from './AuthContext';
 import { useState } from 'react';
+
+import { useApi } from '../../hooks/useApi';
+import { User } from '../../@types/User';
+import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [user, setUser] = useState<User | null>(null);
@@ -9,7 +10,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const api = useApi();
 
     const signin = async (email: string, password: string) => {
-        const data = await (await api).signin(email, password);
+        const data = await api.signin(email, password);
+        
         if (data.user) {
             setUser(user);
             return true;
@@ -18,8 +20,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     const signout = async () => {
-        (await api).signout();
-        setUser(null);
     };
 
     return (
