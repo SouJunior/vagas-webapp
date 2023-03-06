@@ -11,3 +11,6 @@ export const RequireAuth = ({ children }: { children: JSX.Element }) => {
 
     return children;
 };
+
+// UtiliZar o require auth quando a pagina Login
+// não for mais a pagina definida como home nas rotas
