@@ -15,14 +15,7 @@ export const AllRoutes: React.FC = () => {
             <Route index element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="/" element={<Layout />}>
-                <Route
-                    path="insertjobs"
-                    element={
-                        <RequireAuth>
-                            <InsertJobs />
-                        </RequireAuth>
-                    }
-                />
+                <Route path="insertjobs" element={<InsertJobs />} />
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
