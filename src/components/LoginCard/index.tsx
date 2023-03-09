@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaValidationPasswordAndEmail } from '../../validations';
 import { MessageError, MessageError2 } from './styles';
+
 import user from '../../mock/user.json';
-import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 const PasswordIcon = () => {
@@ -46,11 +48,9 @@ const LoginCard = () => {
     const [isFieldsValid, setIsFieldsValid] = useState(false);
     const [hasError, setHasError] = useState(false);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-    
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
-    const auth: any = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -70,22 +70,23 @@ const LoginCard = () => {
         }
     };
 
-    // async function handleFormOnSubmit(data: any) {
-    //     setIsFormSubmitted(true);
+    // TODO:Utilizar react hook form para realizar login
+    async function handleFormOnSubmit(data: any) {
+        setIsFormSubmitted(true);
 
-    //     // TODO: confirmar se a verificação dos campos e sua resposta irá vir do backend ou será feita no frontend, ou ambos
-    //     // checkFields(data);
+        // TODO: confirmar se a verificação dos campos e sua resposta irá vir do backend ou será feita no frontend, ou ambos
+        checkFields(data);
 
-    //     // chamada a API do backend
-    //     try {
-    //         const res = await api.post('/login', data);
-    //         // TODO: exibir mensagem de logado com sucesso
-    //         // TODO: colocar a rota correta quando estiver pronta - US_Feed_de_Vagas
-    //         // navigate('/');
-    //     } catch (err) {
-    //         // TODO: exibir a mensagem de erro, e a opção de recuperar a senha ou criar uma conta
-    //     }
-    // }
+        // chamada a API do backend
+        try {
+            const res = await api.post('/login', data);
+            // TODO: exibir mensagem de logado com sucesso
+            // TODO: colocar a rota correta quando estiver pronta - US_Feed_de_Vagas
+            // navigate('/');
+        } catch (err) {
+            // TODO: exibir a mensagem de erro, e a opção de recuperar a senha ou criar uma conta
+        }
+    }
 
     // monitora os campos email e password enquanto são preenchidos
     const checkFilling = watch(['email', 'password']);
@@ -100,18 +101,20 @@ const LoginCard = () => {
             }
         });
 
-
+    // Função usada temporariamente para realizar login,
+    // refatorar e utilizar react hook forms - handleFormOnSubmit
+    const auth: any = useContext(AuthContext);
     const handleLogin = async () => {
-        if(email && password) {
-            const isLogged = await auth.signin(email, password)
-
-            if(isLogged) {
-                navigate('/InsertJobs')
+        if (email && password) {
+            const isLogged = await auth.login(email, password);
+            if (isLogged) {
+                navigate('/InsertJobs');
+                setTimeout(() => alert('Login efetuado com sucesso'))
             } else {
-                alert("Não foi possível fazer login")
+                alert('Não foi possível fazer login');
             }
         }
-    }
+    };
 
     return (
         <div className="container h-screen flex flex-col items-center justify-center">
@@ -124,10 +127,7 @@ const LoginCard = () => {
 
                 <hr className="my-4 h-px hd:mb-20 xl:my-4 bg-gray-200 border-0 gray:bg-gray-700" />
 
-                <form
-                    id="login-form"
-                    // onSubmit={handleSubmit(handleFormOnSubmit)}
-                >
+                <form id="login-form" onSubmit={handleLogin}>
                     <div>
                         <label className="block text-sm font-semibold text-gray-800"></label>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -141,7 +141,7 @@ const LoginCard = () => {
                                 className="h-14 relative w-full px-4 py-2 mt-2 text-blue-700 border rounded-md focus:border-purple-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 placeholder="E-mail"
                                 aria-label="Email"
-                                onChange={e => setEmail(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <MessageError>
                                 {/* @ts-ignore */}
@@ -164,7 +164,7 @@ const LoginCard = () => {
                                 className="h-14 block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                 placeholder="Password"
                                 aria-label="Senha"
-                                onChange={e => setPassword(e.target.value)}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             {/* TODO: refatorar esse erro abaixo. O react não entende objetos diretamente injetados na DOM. */}
                             {/* @ts-ignore */}
@@ -203,7 +203,7 @@ const LoginCard = () => {
                             type="submit"
                             className="w-full h-16 rounded mb-5 text-white bg-blue-600 border-2 border-blue-600 disabled:bg-blue-300 disabled:border-blue-300"
                             id="submit-button"
-                            onClick={handleLogin}
+                            // Esssa funcionalidade de botão desabilitado não está mais presente nas US
                             // disabled={!isFieldsValid}
                         >
                             Entrar
