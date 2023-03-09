@@ -9,8 +9,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
     const api = useApi();
 
-    const signin = async (email: string, password: string) => {
-        const data: any = await api.signin(email, password);
+    const login = async (email: string, password: string) => {
+        const data: any = await api.login(email, password);
 
         if (data.user) {
             setUser(data.user);
@@ -19,10 +19,10 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         return false;
     };
 
-    const signout = async () => {};
+    const logout = async () => {};
 
     return (
-        <AuthContext.Provider value={{ user, signin, signout }}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
