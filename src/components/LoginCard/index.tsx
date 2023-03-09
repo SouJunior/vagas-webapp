@@ -109,7 +109,7 @@ const LoginCard = () => {
             const isLogged = await auth.login(email, password);
             if (isLogged) {
                 navigate('/InsertJobs');
-                setTimeout(() => alert('Login efetuado com sucesso'))
+                setTimeout(() => alert('Login efetuado com sucesso'));
             } else {
                 alert('Não foi possível fazer login');
             }
