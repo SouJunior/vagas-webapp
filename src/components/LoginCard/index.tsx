@@ -149,14 +149,15 @@ const LoginCard = () => {
         // confere se existe usuário e se está logado
         try {
             // TODO: confirmar se a verificação dos campos e sua resposta
-            // irá vir do backend ou será feita no frontend, ou ambos
+            // se senha e usuário serão válidas irá 
+            // vir do backend ou será feita no frontend, ou ambos
             compareEmailAndData(data);
 
             if (email && password && isLogged) {
                 navigate('/InsertJobs');
             }
         } catch (err) {
-            alert(`${err}}: Não foi possível fazer login!`);
+            setHasError(data);
         }
     }
 
