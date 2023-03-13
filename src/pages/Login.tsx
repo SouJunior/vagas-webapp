@@ -7,7 +7,7 @@ import '../App.css';
 const Login = () => {
     return (
         <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto">
-            <div className="container max-w-screen-xl m-auto flex justify-center items-center h-screen">
+            <div className="container max-w-screen-xl m-auto h-screen">
                 <section className="flex flex-col justify-between items-center lg:flex-row">
                     <div className="titles flex flex-col items-center mb-0 mx-auto mt-10 lg:items-start lg:mt-0 lg:mb-36">
                         <img
@@ -35,7 +35,7 @@ const Login = () => {
                             Saiba mais
                         </Button>
                     </div>
-                    <div className="login-card mx-auto h-screen">
+                    <div className="login-card flex mx-auto h-screen">
                         <LoginCard />
                     </div>
                 </section>
