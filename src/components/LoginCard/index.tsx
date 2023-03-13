@@ -132,7 +132,6 @@ const LoginCard = () => {
             setHasError(true);
         }
     };
-    console.log(errors);
     async function handleFormOnSubmit(data: any) {
         setIsFormSubmitted(true);
 
