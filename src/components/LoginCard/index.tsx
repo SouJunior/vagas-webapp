@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { formSchema } from '../../validations';
@@ -26,11 +26,12 @@ import {
     Form,
     MessageError2,
 } from './styles';
-import user from '../../mock/user.json';
-import { useNavigate } from 'react-router-dom';
-import api from '../../services/api';
 import EmpresaIcon from '../../assets/imgs/Buildings-icone.svg';
 import CandidatoIcon from '../../assets/imgs/Candidato-icone.svg';
+
+import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useApi } from '../../hooks/useApi';
 
 const PasswordIcon = () => {
     return (
@@ -72,17 +73,17 @@ const LogoIcon = () => {
             <path
                 d="M40.8695 49.583H29.658C27.2602 49.583 25.3164 51.5778 25.3164 54.0385V65.5442C25.3164 68.0049 27.2602 69.9997 29.658 69.9997H40.8695C43.2673 69.9997 45.2111 68.0049 45.2111 65.5442V54.0385C45.2111 51.5778 43.2673 49.583 40.8695 49.583Z"
                 stroke="#1165BA"
-                stroke-miterlimit="10"
+                strokeMiterlimit="10"
             />
             <path
                 d="M66.4973 24.792H54.8706C52.384 24.792 50.3682 26.7868 50.3682 29.2475V40.7532C50.3682 43.2139 52.384 45.2087 54.8706 45.2087H66.4973C68.9839 45.2087 70.9997 43.2139 70.9997 40.7532V29.2475C70.9997 26.7868 68.9839 24.792 66.4973 24.792Z"
                 stroke="#1165BA"
-                stroke-miterlimit="10"
+                strokeMiterlimit="10"
             />
             <path
                 d="M17.1292 24.792H5.50242C3.0158 24.792 1 26.7868 1 29.2475V40.7532C1 43.2139 3.0158 45.2087 5.50242 45.2087H17.1292C19.6158 45.2087 21.6316 43.2139 21.6316 40.7532V29.2475C21.6316 26.7868 19.6158 24.792 17.1292 24.792Z"
                 stroke="#1165BA"
-                stroke-miterlimit="10"
+                strokeMiterlimit="10"
             />
             <path
                 d="M66.6586 0H55.4471C53.0493 0 51.1055 1.99481 51.1055 4.45554V15.9612C51.1055 18.4219 53.0493 20.4167 55.4471 20.4167H66.6586C69.0564 20.4167 71.0002 18.4219 71.0002 15.9612V4.45554C71.0002 1.99481 69.0564 0 66.6586 0Z"
@@ -114,8 +115,15 @@ const LoginCard = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const navigate = useNavigate();
+    const api = useApi();
+    const auth: any = useContext(AuthContext);
 
     const {
         register,
@@ -127,25 +135,29 @@ const LoginCard = () => {
         resolver: yupResolver(formSchema),
     });
 
-    const checkFields = (data: any) => {
-        if (data.email !== user.email || data.password !== user.password) {
+    const compareEmailAndData = (data: any) => {
+        if (data.user.email !== email) {
             setHasError(true);
         }
     };
-    async function handleFormOnSubmit(data: any) {
+
+    async function handleFormOnSubmit() {
         setIsFormSubmitted(true);
+        const data = await api.login(email, password);
+        const isLogged = await auth.login(email, password);
 
-        // TODO: confirmar se a verificação dos campos e sua resposta irá vir do backend ou será feita no frontend, ou ambos
-        // checkFields(data);
-
-        // chamada a API do backend
+        // confere se existe usuário e se está logado
         try {
-            const res = await api.post('/login', data);
-            // TODO: exibir mensagem de logado com sucesso
-            // TODO: colocar a rota correta quando estiver pronta - US_Feed_de_Vagas
-            // navigate('/');
+            // TODO: confirmar se a verificação dos campos e sua resposta
+            // se senha e usuário serão válidas irá
+            // vir do backend ou será feita no frontend, ou ambos
+            compareEmailAndData(data);
+
+            if (email && password && isLogged) {
+                navigate('/InsertJobs');
+            }
         } catch (err) {
-            // TODO: exibir a mensagem de erro, e a opção de recuperar a senha ou criar uma conta
+            setHasError(data);
         }
     }
     // const isFormValid = Object.keys(formState.errors).length === 0;
@@ -203,7 +215,10 @@ const LoginCard = () => {
                             <div>
                                 <Input
                                     type="text"
-                                    {...register('email')}
+                                    {...register('email', {
+                                        onChange: (e) =>
+                                            setEmail(e.target.value),
+                                    })}
                                     placeholder="E-mail"
                                     aria-label="Email"
                                 />
@@ -219,7 +234,10 @@ const LoginCard = () => {
                             <div>
                                 <Input
                                     type={showPassword ? 'text' : 'password'}
-                                    {...register('password')}
+                                    {...register('password', {
+                                        onChange: (e) =>
+                                            setPassword(e.target.value),
+                                    })}
                                     placeholder="Senha"
                                     aria-label="Senha"
                                 />
