@@ -5,15 +5,18 @@ import { GlobalStyle } from './components/styles/Global';
 import './index.css';
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from './components/styles/Theme';
+import { AuthProvider } from './contexts/Auth/AuthProvider';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement,
 );
 root.render(
     <React.StrictMode>
-        <ThemeProvider theme={mainTheme}>
-            <GlobalStyle />
-            <App />
-        </ThemeProvider>
+        <AuthProvider>
+            <ThemeProvider theme={mainTheme}>
+                <GlobalStyle />
+                <App />
+            </ThemeProvider>
+        </AuthProvider>
     </React.StrictMode>,
 );
