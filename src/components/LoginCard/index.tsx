@@ -1,10 +1,9 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaValidationPasswordAndEmail } from '../../validations';
+import { formSchema } from '../../validations';
 import {
     MessageError,
-    MessageError2,
     Container,
     Card,
     LoginTypeButton,
@@ -25,6 +24,7 @@ import {
     TermsLink,
     LoginLink,
     Form,
+    MessageError2,
 } from './styles';
 import EmpresaIcon from '../../assets/imgs/Buildings-icone.svg';
 import CandidatoIcon from '../../assets/imgs/Candidato-icone.svg';
@@ -132,7 +132,7 @@ const LoginCard = () => {
         formState: { errors },
     } = useForm({
         mode: 'onChange',
-        resolver: yupResolver(schemaValidationPasswordAndEmail),
+        resolver: yupResolver(formSchema),
     });
 
     const compareEmailAndData = (data: any) => {
@@ -149,7 +149,7 @@ const LoginCard = () => {
         // confere se existe usuário e se está logado
         try {
             // TODO: confirmar se a verificação dos campos e sua resposta
-            // se senha e usuário serão válidas irá 
+            // se senha e usuário serão válidas irá
             // vir do backend ou será feita no frontend, ou ambos
             compareEmailAndData(data);
 
@@ -160,12 +160,13 @@ const LoginCard = () => {
             setHasError(data);
         }
     }
+    // const isFormValid = Object.keys(formState.errors).length === 0;
 
     // monitora os campos email e password enquanto são preenchidos
     const checkFilling = watch(['email', 'password']);
 
     // verifica se os campos preenchidos são válidos
-    schemaValidationPasswordAndEmail
+    formSchema
         .isValid({ email: checkFilling[0], password: checkFilling[1] })
         .then((valid) => {
             if (valid) setIsFieldsValid(true);
@@ -226,8 +227,7 @@ const LoginCard = () => {
                                 </IconWrapper>
                             </div>
                             <MessageError>
-                                {/* @ts-ignore, verificar o porque desses erros */}
-                                {errors?.email?.message}
+                                {errors.email && <>{errors.email.message}</>}
                             </MessageError>
                         </InputContainer>
                         <InputContainer>
@@ -250,11 +250,12 @@ const LoginCard = () => {
                                     <PasswordIcon />
                                 </IconWrapper>
                             </div>
-                            {hasError && (
-                                <MessageError2>
-                                    Email ou Senha inválidos
-                                </MessageError2>
-                            )}
+
+                            <MessageError>
+                                {errors.password && (
+                                    <>{errors.password.message}</>
+                                )}
+                            </MessageError>
                         </InputContainer>
                         <InputContainer>
                             <CheckboxContainer>
@@ -291,18 +292,24 @@ const LoginCard = () => {
                         <InputContainer>
                             <Input
                                 type="text"
-                                {...register('companyName')}
+                                {...register('name')}
                                 placeholder="Nome da empresa"
                                 aria-label="Nome da empresa"
                             ></Input>
+                            <MessageError>
+                                {errors.name && <>{errors.name.message}</>}
+                            </MessageError>
                         </InputContainer>
                         <InputContainer>
                             <Input
-                                type="number"
+                                type="text"
                                 {...register('cnpj')}
                                 placeholder="CNPJ da empresa"
                                 aria-label="CNPJ da empresa"
                             ></Input>
+                            <MessageError>
+                                {errors.cnpj && <>{errors.cnpj.message}</>}
+                            </MessageError>
                         </InputContainer>
                         <InputContainer>
                             <div>
@@ -317,8 +324,7 @@ const LoginCard = () => {
                                 </IconWrapper>
                             </div>
                             <MessageError>
-                                {/* @ts-ignore */}
-                                {errors?.email?.message}
+                                {errors.email && <>{errors.email.message}</>}
                             </MessageError>
                         </InputContainer>
                         <InputContainer>
@@ -337,16 +343,12 @@ const LoginCard = () => {
                                 >
                                     <PasswordIcon />
                                 </IconWrapper>
-                                {/* TODO: refatorar esse erro abaixo. O react não entende objetos diretamente injetados na DOM. */}
-                                {/* @ts-ignore */}
-                                {/* <MessageError2>{errors}</MessageError2> */}
-
-                                {hasError && (
-                                    <MessageError2>
-                                        Email ou Senha inválidos
-                                    </MessageError2>
-                                )}
                             </div>
+                            <MessageError>
+                                {errors.password && (
+                                    <>{errors.password.message}</>
+                                )}
+                            </MessageError>
                         </InputContainer>
                         <InputContainer>
                             <div>
@@ -370,31 +372,32 @@ const LoginCard = () => {
                                 >
                                     <PasswordIcon />
                                 </IconWrapper>
-                                {/* TODO: refatorar esse erro abaixo. O react não entende objetos diretamente injetados na DOM. */}
-                                {/* @ts-ignore */}
-                                {/* <MessageError2>{errors}</MessageError2> */}
-
-                                {hasError && (
-                                    <MessageError2>
-                                        Email ou Senha inválidos
-                                    </MessageError2>
-                                )}
                             </div>
+                            <MessageError>
+                                {errors.confirmPassword && (
+                                    <>{errors.confirmPassword.message}</>
+                                )}
+                            </MessageError>
                         </InputContainer>
                         <InputContainer>
                             <Label>
-                                <CheckboxInput />
+                                <CheckboxInput {...register('privacyTerms')} />
                                 <TermsLink>
                                     Li e aceito os <a href="/">Termos de Uso</a>{' '}
                                     e <a href="/">Política de Privacidade</a>
                                 </TermsLink>
                             </Label>
+                            <MessageError2>
+                                {errors.privacyTerms && (
+                                    <>{errors.privacyTerms.message}</>
+                                )}
+                            </MessageError2>
                         </InputContainer>
 
                         <RegisterSubmitButton
                             type="submit"
                             id="register-submit-button"
-                            disabled={!isFieldsValid}
+                            disabled={true}
                         >
                             Criar conta
                         </RegisterSubmitButton>

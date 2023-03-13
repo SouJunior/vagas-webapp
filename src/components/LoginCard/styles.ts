@@ -1,32 +1,34 @@
 import styled from 'styled-components';
 
 export const MessageError = styled.p`
-  font-size: 0.875rem;
   color: red;
-  margin-top: 8px;
+  font-size: 13px;
+  margin-top: 4px;
+  text-align: center;
 `
 
 export const MessageError2 = styled(MessageError)`
-  margin-bottom: 16px
+  font-size: 13px;
 `
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   align-items: center;
   justify-content: center;
+  margin-top: 14px;
 `
 
 export const Card = styled.div`
   width: 500px;
-  min-height: 684px;
+  min-height: 666px;
+  margin-bottom: 24px;
+  overflow-y: auto
   padding: 10px;
   background-color: #fdfffc;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  max-width: 900px;
-
+  max-height: 900px;
   @media (min-width: 1024px) {
     max-width: 1024px;
   }
@@ -83,10 +85,12 @@ align-items: center;
 `;
 
 export const Input = styled.input`
-  height: 48px;
+
+height: 48px;
   width: 300px;
   position: relative;
   padding-left: 16px;
+  padding-right: 44px;
   color: blue;
   border: 1px solid #CDCDCD;
   border-radius: 6px;
@@ -148,7 +152,7 @@ export const CheckboxContainer = styled.div`
 
 export const InputContainer = styled.div`
   display: flex;
-  max-width: 400px;
+  max-width: 340px;
   flex-wrap: wrap;
   align-items: stretch;
   margin-bottom: 15px;
@@ -210,6 +214,7 @@ font-size: 14px;
   button{
   color: #1165BA;
   font-weight: 600;
+  padding-bottom: 10px;
   &:hover {
     color: darkblue;
   }
