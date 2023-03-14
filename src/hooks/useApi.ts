@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import api from '../services/api';
 
 export const useApi = () => ({
@@ -18,6 +19,28 @@ export const useApi = () => ({
 
     logout: async () => {
         const res = await api.post('/logout');
+        return res.data;
+    },
+
+    register: async (name: string, email: string, password: string, cnpj: string) => {
+        const res: any = await api.post('/company', {
+            name,
+            email,
+            password,
+            cnpj,
+        })
+        .then((resolve) => {
+            toast.success('Conta criada com sucesso!', {
+                position: "top-center",
+                theme: "colored",
+                });
+        })
+        .catch((err) => {
+            toast.error('Ops! Algo deu errado. Por favor, tente novamente.', {
+                position: "top-center",
+                theme: "colored",
+                });
+        })
         return res.data;
     },
 });
