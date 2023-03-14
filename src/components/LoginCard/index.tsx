@@ -2,6 +2,9 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { formSchema } from '../../validations';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 import {
     MessageError,
     Container,
@@ -161,9 +164,32 @@ const LoginCard = () => {
         }
     }
     // const isFormValid = Object.keys(formState.errors).length === 0;
+    async function handleRegisterSubmit() {
+        console.log(
+            registerCheck[0],
+            registerCheck[1],
+            registerCheck[2],
+            registerCheck[3],
+        );
+        const registerData = await auth.register(
+            registerCheck[0],
+            registerCheck[1],
+            registerCheck[2],
+            registerCheck[3],
+        );
 
+        if (!registerData) {
+            setIsLogin(true);
+        }
+    }
     // monitora os campos email e password enquanto são preenchidos
     const checkFilling = watch(['email', 'password']);
+    const registerCheck = watch([
+        'registerName',
+        'registerEmail',
+        'registerPassword',
+        'registerCnpj',
+    ]);
 
     // verifica se os campos preenchidos são válidos
     formSchema
@@ -277,7 +303,7 @@ const LoginCard = () => {
                             <LoginButton
                                 type="submit"
                                 id="submit-button"
-                                disabled={!isFieldsValid}
+                                disabled={false}
                             >
                                 Entrar
                             </LoginButton>
@@ -288,34 +314,38 @@ const LoginCard = () => {
                         </ButtonContainer>
                     </Form>
                 ) : (
-                    <Form>
+                    <Form onSubmit={(e) => e.preventDefault()}>
                         <InputContainer>
                             <Input
                                 type="text"
-                                {...register('name')}
+                                {...register('registerName')}
                                 placeholder="Nome da empresa"
                                 aria-label="Nome da empresa"
                             ></Input>
                             <MessageError>
-                                {errors.name && <>{errors.name.message}</>}
+                                {errors.registerName && (
+                                    <>{errors.registerName.message}</>
+                                )}
                             </MessageError>
                         </InputContainer>
                         <InputContainer>
                             <Input
                                 type="text"
-                                {...register('cnpj')}
+                                {...register('registerCnpj')}
                                 placeholder="CNPJ da empresa"
                                 aria-label="CNPJ da empresa"
                             ></Input>
                             <MessageError>
-                                {errors.cnpj && <>{errors.cnpj.message}</>}
+                                {errors.registerCnpj && (
+                                    <>{errors.registerCnpj.message}</>
+                                )}
                             </MessageError>
                         </InputContainer>
                         <InputContainer>
                             <div>
                                 <Input
                                     type="text"
-                                    {...register('email')}
+                                    {...register('registerEmail')}
                                     placeholder="E-mail"
                                     aria-label="Email"
                                 ></Input>
@@ -324,14 +354,16 @@ const LoginCard = () => {
                                 </IconWrapper>
                             </div>
                             <MessageError>
-                                {errors.email && <>{errors.email.message}</>}
+                                {errors.registerEmail && (
+                                    <>{errors.registerEmail.message}</>
+                                )}
                             </MessageError>
                         </InputContainer>
                         <InputContainer>
                             <div>
                                 <Input
                                     type={showPassword ? 'text' : 'password'}
-                                    {...register('password')}
+                                    {...register('registerPassword')}
                                     placeholder="Senha"
                                     aria-label="Senha"
                                 />
@@ -345,8 +377,8 @@ const LoginCard = () => {
                                 </IconWrapper>
                             </div>
                             <MessageError>
-                                {errors.password && (
-                                    <>{errors.password.message}</>
+                                {errors.registerPassword && (
+                                    <>{errors.registerPassword.message}</>
                                 )}
                             </MessageError>
                         </InputContainer>
@@ -397,7 +429,8 @@ const LoginCard = () => {
                         <RegisterSubmitButton
                             type="submit"
                             id="register-submit-button"
-                            disabled={true}
+                            disabled={false}
+                            onClick={handleRegisterSubmit}
                         >
                             Criar conta
                         </RegisterSubmitButton>
@@ -410,6 +443,7 @@ const LoginCard = () => {
                     </Form>
                 )}
             </Card>
+            <ToastContainer />
         </Container>
     );
 };
