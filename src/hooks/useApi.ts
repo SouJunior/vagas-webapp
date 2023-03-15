@@ -9,11 +9,25 @@ export const useApi = () => ({
         return res.data
     },
 
-    login: async (email: string, password: string) => {
+    login: async (email: string, password: string, userType: string) => {
         const res: any = await api.post('/auth/login', {
             email,
             password,
-        });
+            userType,
+        })
+        .then(() => {
+            toast.success('Login efetuado com sucesso!', {
+                position: "top-center",
+                theme: "colored",
+                });
+        })
+        .catch(() => {
+            toast.error('Ops! Algo deu errado. Por favor, tente novamente.', {
+                position: "top-center",
+                theme: "colored",
+                });
+        })
+        console.log(res.data)
         return res.data;
     },
 
