@@ -22,8 +22,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         validateToken();
     }, [api]);
 
-    const login = async (email: string, password: string) => {
-        const data: any = await api.login(email, password);
+    const setToken = (token: string) => {
+        localStorage.setItem('authToken', token);
+    };
+
+    const login = async (email: string, password: string, userType: string) => {
+        const data: any = await api.login(email, password, userType);
+        console.log(data)
 
         if (data.user && data.token) {
             setUser(data.user);
@@ -50,10 +55,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     const logout = async () => {};
-
-    const setToken = (token: string) => {
-        localStorage.setItem('authToken', token);
-    };
 
     return (
         <AuthContext.Provider value={{ user, login, logout, register }}>
