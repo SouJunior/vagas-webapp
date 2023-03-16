@@ -39,10 +39,11 @@ export const LoginTypeButton = styled.div`
   justify-content: space-between;
   color: #1165BA;
   margin: 8px 10px 0 10px;
+  padding: 12px;
     button {
     width: 145px;
     height: 35px;
-    border: 1px solid blue;
+    border: 1px solid #1165BA;
     justify-content: center;
     display: flex;
     gap: 10px;
