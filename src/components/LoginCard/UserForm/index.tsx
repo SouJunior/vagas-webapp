@@ -62,7 +62,7 @@ const PasswordIcon = () => {
     );
 };
 
-export const UserForm: React.FC = (props) => {
+export const UserForm = (props: any): JSX.Element  => {
     const [isLogin, setIsLogin] = useState(true);
 
     const [isFieldsValid, setIsFieldsValid] = useState(false);
@@ -75,8 +75,7 @@ export const UserForm: React.FC = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [userType, setUserType] = useState('');
+    const [userType, setUserType] = useState(null);
 
     const navigate = useNavigate();
     const api = useApi();
@@ -99,7 +98,7 @@ export const UserForm: React.FC = (props) => {
     };
 
     async function handleFormOnSubmit() {
-        console.log('Teste');
+        setUserType(props.type)
         setIsFormSubmitted(true);
         const data = await api.login(email, password, userType);
         const isLogged = await auth.login(email, password, userType);
