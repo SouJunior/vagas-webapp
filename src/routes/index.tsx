@@ -10,7 +10,7 @@ import { InsertJobs } from '../pages/InsertJobs';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { RequireAuth } from '../contexts/Auth/RequireAuth';
 
-export const AllRoutes: React.FC = () => {
+export const NavRoutes: React.FC = () => {
     return (
         <Routes>
             <Route index element={<Login />} />
