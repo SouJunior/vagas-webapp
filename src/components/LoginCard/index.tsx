@@ -77,13 +77,13 @@ const LoginCard = () => {
         <Container>
             <Card>
                 <LoginTypeButton>
-                    <button onClick={companyHandler}>
-                        <img src={EmpresaIcon} alt="Empresa" />
-                        Empresa
-                    </button>
                     <button onClick={userHandler}>
                         <img src={CandidatoIcon} alt="Candidato" />
                         Candidato
+                    </button>
+                    <button onClick={companyHandler}>
+                        <img src={EmpresaIcon} alt="Empresa" />
+                        Empresa
                     </button>
                 </LoginTypeButton>
                 <DivLogo
