@@ -96,9 +96,9 @@ const LoginCard = () => {
                 </DivLogo>
                 
                 {/* Enviar tipo de usuário por parâmetro */}
-                {company && <CompanyForm />} 
+                {company && <CompanyForm type="COMPANY" />} 
 
-                {user && <UserForm />}
+                {user && <UserForm type="USER" />}
             </Card>
             <ToastContainer />
         </Container>
