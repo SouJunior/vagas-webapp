@@ -4,30 +4,21 @@ import api from '../services/api';
 export const useApi = () => ({
     //TODO: Entrar com as funções que salvam o token de usuário
 
-    validateToken: async (token: string) => {
-        const res: any = await api.post('/auth/user-logged', { token });
-        return res.data
+    validateToken: async () => {
+        const res: any = await api.get('/auth/user-logged');
+        return res.data;
     },
 
-    login: async (email: string, password: string, userType: string) => {
+    login: async (
+            email: string, 
+            password: string, 
+            type: string | any
+    ) => {
         const res: any = await api.post('/auth/login', {
             email,
             password,
-            userType,
-        })
-        .then(() => {
-            toast.success('Login efetuado com sucesso!', {
-                position: "top-center",
-                theme: "colored",
-                });
-        })
-        .catch(() => {
-            toast.error('Ops! Algo deu errado. Por favor, tente novamente.', {
-                position: "top-center",
-                theme: "colored",
-                });
-        })
-        console.log(res.data)
+            type,
+        });
         return res.data;
     },
 
@@ -36,25 +27,35 @@ export const useApi = () => ({
         return res.data;
     },
 
-    register: async (name: string, email: string, password: string, cnpj: string) => {
-        const res: any = await api.post('/company', {
-            name,
-            email,
-            password,
-            cnpj,
-        })
-        .then((resolve) => {
-            toast.success('Conta criada com sucesso!', {
-                position: "top-center",
-                theme: "colored",
-                });
-        })
-        .catch((err) => {
-            toast.error('Ops! Algo deu errado. Por favor, tente novamente.', {
-                position: "top-center",
-                theme: "colored",
-                });
-        })
+    register: async (
+        name: string,
+        email: string,
+        password: string,
+        cnpj: string,
+    ) => {
+        const res: any = await api
+            .post('/company', {
+                name,
+                email,
+                password,
+                cnpj,
+            })
+            // TODO: Remover tudo o que não é realizar requisições
+            // .then((resolve) => {
+            //     toast.success('Conta criada com sucesso!', {
+            //         position: 'top-center',
+            //         theme: 'colored',
+            //     });
+            // })
+            // .catch((err) => {
+            //     toast.error(
+            //         'Ops! Algo deu errado. Por favor, tente novamente.',
+            //         {
+            //             position: 'top-center',
+            //             theme: 'colored',
+            //         },
+            //     );
+            // });
         return res.data;
     },
 });
