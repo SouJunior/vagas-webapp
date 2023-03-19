@@ -112,7 +112,7 @@ export const CompanyForm = (props: any): JSX.Element => {
                 navigate('/InsertJobs');
             }
         } catch (err) {
-            setHasError(data);
+            setHasError(true);
         }
     }
     // const isFormValid = Object.keys(formState.errors).length === 0;
