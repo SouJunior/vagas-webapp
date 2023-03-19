@@ -5,7 +5,7 @@ function validarCNPJ(cnpj: string | undefined = ''):boolean {
    cnpj = cnpj?.replace(/[^\d]+/g, '') || '';
 
    
-  if (cnpj == '') return false;
+  if (cnpj === '') return false;
 
   if (cnpj.length !== 14) return false;
 
@@ -90,7 +90,7 @@ export const formSchema = yup.object().shape({
     registerCnpj: yup
     .string()
     .required("CNPJ é obrigatório")
-    .matches(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/, 'CNPJ inválido')
+    .matches(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/, 'CNPJ inválido')
     .test('test-cnpj', 'CNPJ inválido', (cnpj) => validarCNPJ(cnpj ?? '')),
     privacyTerms: yup
     .bool()
