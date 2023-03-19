@@ -7,7 +7,7 @@ export type AuthContextType = {
     login: (
         email: string,
         password: string,
-        userType: string,
+        type: string | any,
     ) => Promise<boolean>;
 
     register: (
