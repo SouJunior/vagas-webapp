@@ -27,6 +27,7 @@ import {
     Title,
     Divider,
 } from '../styles';
+import { toast } from 'react-toastify';
 
 const EmailIcon = () => {
     return (
@@ -62,11 +63,10 @@ const PasswordIcon = () => {
     );
 };
 
-export const UserForm = (props: any): JSX.Element  => {
+export const UserForm = (props: any): JSX.Element => {
     const [isLogin, setIsLogin] = useState(true);
 
     const [isFieldsValid, setIsFieldsValid] = useState(false);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [hasError, setHasError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -75,11 +75,11 @@ export const UserForm = (props: any): JSX.Element  => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [userType, setUserType] = useState(null);
 
     const navigate = useNavigate();
     const api = useApi();
     const auth: any = useContext(AuthContext);
+    const userType = props.type;
 
     const {
         register,
@@ -92,29 +92,37 @@ export const UserForm = (props: any): JSX.Element  => {
     });
 
     const compareEmailAndData = (data: any) => {
-        if (data.user.email !== email) {
+        if (data !== email) {
+            // TODO: Tratar os erros com as mensagens do backend
             setHasError(true);
         }
     };
 
     async function handleFormOnSubmit() {
-        setUserType(props.type)
         setIsFormSubmitted(true);
         const data = await api.login(email, password, userType);
+        // Vai receber os dados do contexto para verificação
         const isLogged = await auth.login(email, password, userType);
 
-        // confere se existe usuário e se está logado
         try {
-            compareEmailAndData(data);
+            compareEmailAndData(data.info.email);
+
+            toast.success(`Login efetuado com sucesso ${data.info.name}! `, {
+                position: 'top-right',
+                theme: 'light',
+            });
 
             if (email && password && isLogged && userType) {
-                navigate('/InsertJobs');
+                navigate('/feedjobs');
             }
         } catch (err) {
-            setHasError(data);
+            // TODO: Tratar os erros com as mensagens do backend
+            setHasError(data.message);
         }
     }
-    // const isFormValid = Object.keys(formState.errors).length === 0;
+
+    // const isFormValid = Object.keys(formState.erros).length === 0;
+
     async function handleRegisterSubmit() {
         const registerData = await auth.register(
             registerCheck[0],
@@ -129,6 +137,7 @@ export const UserForm = (props: any): JSX.Element  => {
     }
     // monitora os campos email e password enquanto são preenchidos
     const checkFilling = watch(['email', 'password']);
+
     const registerCheck = watch([
         'registerName',
         'registerEmail',
@@ -155,10 +164,13 @@ export const UserForm = (props: any): JSX.Element  => {
             )}
 
             <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
+
             {isLogin ? (
                 <Form
                     id="login-form"
-                    onSubmit={handleSubmit(handleFormOnSubmit)}
+                    // TODO: Retornar com submissão a partir do  Form
+                    // onSubmit={handleSubmit(handleFormOnSubmit)}
+                    onSubmit={(e) => e.preventDefault()}
                 >
                     <InputContainer>
                         <div>
@@ -197,9 +209,14 @@ export const UserForm = (props: any): JSX.Element  => {
                             </IconWrapper>
                         </div>
 
-                        <MessageError>
-                            {errors.password && <>{errors.password.message}</>}
-                        </MessageError>
+                        {/* TODO: Mensagem do backend não é mais inserida */}
+                        {hasError || (
+                            <MessageError2>
+                                {errors.password && (
+                                    <>{errors.password.message}</>
+                                )}
+                            </MessageError2>
+                        )}
                     </InputContainer>
                     <InputContainer>
                         <CheckboxContainer>
@@ -219,10 +236,11 @@ export const UserForm = (props: any): JSX.Element  => {
                             type="submit"
                             id="submit-button"
                             disabled={false}
+                            // TODO: Verificar porque disable não funciona
+                            onClick={handleFormOnSubmit}
                         >
                             Entrar
                         </LoginButton>
-
                         <RegisterButton onClick={() => setIsLogin(false)}>
                             Criar conta
                         </RegisterButton>
