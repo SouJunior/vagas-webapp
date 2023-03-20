@@ -27,6 +27,7 @@ import {
     Title,
     Divider,
 } from '../styles';
+import { toast } from 'react-toastify';
 
 const EmailIcon = () => {
     return (
@@ -75,12 +76,11 @@ export const CompanyForm = (props: any): JSX.Element => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [userType, setUserType] = useState(null);
 
     const navigate = useNavigate();
     const api = useApi();
     const auth: any = useContext(AuthContext);
+    const companyType = props.type;
 
     const {
         register,
@@ -93,26 +93,34 @@ export const CompanyForm = (props: any): JSX.Element => {
     });
 
     const compareEmailAndData = (data: any) => {
-        if (data.user.email !== email) {
+        if (data !== email) {
             setHasError(true);
         }
     };
 
     async function handleFormOnSubmit() {
-        setUserType(props.type)
         setIsFormSubmitted(true);
-        const data = await api.login(email, password, userType);
-        const isLogged = await auth.login(email, password, userType);
+        const data = await api.login(email, password, companyType);
+        // Vai receber os dados do contexto para verificação
+        const isLogged = await auth.login(email, password, companyType);
 
         // confere se existe usuário e se está logado
         try {
-            compareEmailAndData(data);
+            compareEmailAndData(data.info.email);
 
-            if (email && password && isLogged && userType) {
-                navigate('/InsertJobs');
+            toast.success(
+                `Login efetuado com sucesso ${data.info.companyName}!`,
+                {
+                    position: 'top-right',
+                    theme: 'light',
+                },
+            );
+            if (email && password && isLogged) {
+                navigate('/insertjob');
             }
         } catch (err) {
-            setHasError(true);
+            // TODO: Tratar os erros com as mensagens do backend
+            setHasError(data);
         }
     }
     // const isFormValid = Object.keys(formState.errors).length === 0;
@@ -159,7 +167,9 @@ export const CompanyForm = (props: any): JSX.Element => {
             {isLogin ? (
                 <Form
                     id="login-form"
-                    onSubmit={handleSubmit(handleFormOnSubmit)}
+                    // TODO: Retornar com submissão a partir do  Form
+                    // onSubmit={handleSubmit(handleFormOnSubmit)}
+                    onSubmit={(e) => e.preventDefault()}
                 >
                     <InputContainer>
                         <div>
@@ -220,6 +230,8 @@ export const CompanyForm = (props: any): JSX.Element => {
                             type="submit"
                             id="submit-button"
                             disabled={false}
+                            // TODO: Verificar porque disable não funciona
+                            onClick={handleFormOnSubmit}
                         >
                             Entrar
                         </LoginButton>
