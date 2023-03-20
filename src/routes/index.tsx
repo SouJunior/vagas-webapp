@@ -15,6 +15,7 @@ export const NavRoutes: React.FC = () => {
         <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
+            
             <Route
                 path="feedjobs"
                 element={
@@ -23,11 +24,19 @@ export const NavRoutes: React.FC = () => {
                     </RequireAuth>
                 }
             />
+            
+            <Route
+                path="insertjob"
+                element={
+                    <RequireAuth>
+                        <InsertJobs />
+                    </RequireAuth>
+                }
+            />
             {/*TODO: A pagina Layout já está com container definido
             e um rodapé, modificar isso, ou incluir os elementos acima
             sem esse estilo pré definido*/}
             <Route path="/" element={<Layout />}>
-                <Route path="insertjobs" element={<InsertJobs />} />
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
