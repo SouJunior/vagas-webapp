@@ -68,12 +68,15 @@ export const formSchema = yup.object().shape({
       "A senha deve conter 1 letra maiúscula, 1 minúscula, 1 número, 1 caracter especial !@#$% etc..."
     ),
     //~~! Essa parte da validação do formulário está causando
-    //~~! um erro no hookForm.
-    
+    //~~! um erro no hookForm o botão submit através do hook não funciona.
+    //~~> Pode ser algum problema de uso do mesmo componente
+
     // registerEmail: yup
     // .string()
     // .required("O campo Email é obrigatório")
     // .email("Email precisa ser válido. Exemplo: email@gmail.com"),
+
+    // Checagem de password
     // registerPassword: yup
     // .string()
     // .required("O campo Senha é obrigatório")
@@ -83,6 +86,8 @@ export const formSchema = yup.object().shape({
     //   /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W+)(?=^.{6,20}$).*$/,
     //   "A senha deve conter 1 letra maiúscula, 1 minúscula, 1 número, 1 caracter especial !@#$% etc..."
     // ),
+
+    // Confirmação de password
     // confirmPassword: yup
     // .string()
     // .required("Confirme sua senha")
@@ -90,6 +95,8 @@ export const formSchema = yup.object().shape({
     // registerName: yup
     // .string()
     // .required("O campo de nome é obrigatório"),
+    
+    // Checagem de CNPJ
     // registerCnpj: yup
     // .string()
     // .required("CNPJ é obrigatório")
