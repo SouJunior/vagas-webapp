@@ -9,6 +9,7 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 
 import {
     MessageError,
+    MessageError2,
     InputContainer,
     IconWrapper,
     Input,
@@ -23,7 +24,6 @@ import {
     TermsLink,
     LoginLink,
     Form,
-    MessageError2,
     Title,
     Divider,
 } from '../styles';
@@ -93,6 +93,7 @@ export const UserForm = (props: any): JSX.Element => {
 
     const compareEmailAndData = (data: any) => {
         if (data !== email) {
+            
             // TODO: Tratar os erros com as mensagens do backend
             setHasError(true);
         }
@@ -101,6 +102,7 @@ export const UserForm = (props: any): JSX.Element => {
     async function handleFormOnSubmit() {
         setIsFormSubmitted(true);
         const data = await api.login(email, password, userType);
+
         // Vai receber os dados do contexto para verificação
         const isLogged = await auth.login(email, password, userType);
 
@@ -117,7 +119,7 @@ export const UserForm = (props: any): JSX.Element => {
             }
         } catch (err) {
             // TODO: Tratar os erros com as mensagens do backend
-            setHasError(data.message);
+            setHasError(data);
         }
     }
 
@@ -168,9 +170,7 @@ export const UserForm = (props: any): JSX.Element => {
             {isLogin ? (
                 <Form
                     id="login-form"
-                    // TODO: Retornar com submissão a partir do  Form
-                    // onSubmit={handleSubmit(handleFormOnSubmit)}
-                    onSubmit={(e) => e.preventDefault()}
+                    onSubmit={handleSubmit(handleFormOnSubmit)}
                 >
                     <InputContainer>
                         <div>
@@ -210,13 +210,11 @@ export const UserForm = (props: any): JSX.Element => {
                         </div>
 
                         {/* TODO: Mensagem do backend não é mais inserida */}
-                        {hasError || (
-                            <MessageError2>
+                            <MessageError>
                                 {errors.password && (
                                     <>{errors.password.message}</>
                                 )}
-                            </MessageError2>
-                        )}
+                            </MessageError>
                     </InputContainer>
                     <InputContainer>
                         <CheckboxContainer>
@@ -237,16 +235,20 @@ export const UserForm = (props: any): JSX.Element => {
                             id="submit-button"
                             disabled={false}
                             // TODO: Verificar porque disable não funciona
-                            onClick={handleFormOnSubmit}
                         >
                             Entrar
                         </LoginButton>
+
                         <RegisterButton onClick={() => setIsLogin(false)}>
                             Criar conta
                         </RegisterButton>
                     </ButtonContainer>
                 </Form>
-            ) : (
+            ) 
+            
+            : 
+            
+            (
                 <Form onSubmit={(e) => e.preventDefault()}>
                     <InputContainer>
                         <Input
