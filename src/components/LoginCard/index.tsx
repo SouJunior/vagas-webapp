@@ -10,8 +10,8 @@ import {
 } from './styles';
 import EmpresaIcon from '../../assets/imgs/Buildings-icone.svg';
 import CandidatoIcon from '../../assets/imgs/Candidato-icone.svg';
-import { CompanyForm } from './CompanyForm';
-import { UserForm } from './UserForm';
+import { LoginCompany } from './LoginCompany';
+import { LoginUser } from './LoginUser';
 
 const LogoIcon = () => {
     return (
@@ -96,9 +96,9 @@ const LoginCard = () => {
                 </DivLogo>
                 
                 {/* Enviar tipo de usuário por parâmetro */}
-                {company && <CompanyForm type="COMPANY" />} 
+                {company && <LoginCompany type="COMPANY" />} 
 
-                {user && <UserForm type="USER" />}
+                {user && <LoginUser type="USER" />}
             </Card>
             <ToastContainer />
         </Container>
