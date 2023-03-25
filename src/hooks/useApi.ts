@@ -43,4 +43,23 @@ export const useApi = () => ({
         })
         return res.data;
     },
+
+    createJob: async (title: string, description: string, prerequisites: string, benefits: string, type: string, type_contract: string, salary: number, modality: string, headquarters: string, contract_time: string | boolean, affirmative: string | boolean , affirmative_type: string | undefined, company_id: string | undefined) => {
+        const res: any = await api.post('/job', {
+            title, 
+            description, 
+            prerequisites, 
+            benefits, 
+            type, 
+            type_contract, 
+            salary, 
+            modality, 
+            headquarters, 
+            contract_time, 
+            affirmative, 
+            affirmative_type,
+            company_id
+        })
+        return res.data;
+      },
 });
