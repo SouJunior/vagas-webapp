@@ -36,6 +36,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.0",
     "react-icons": "^4.4.0",
+    "react-number-format": "^5.1.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
