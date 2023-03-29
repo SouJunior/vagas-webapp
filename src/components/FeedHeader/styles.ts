@@ -14,7 +14,6 @@ export const Container = styled.nav`
 export const NavItem = styled.div<NavItemProps>`
   border: none;
   color: ${props => (props.active ? "#333" : "#78716c")};
-  color: ${props => (props.active ? "#333" : "#78716c")};
   font-weight: ${props => (props.active ? "bold" : "normal")};
   font-size: 16px;
   cursor: pointer;
