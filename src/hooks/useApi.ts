@@ -62,4 +62,40 @@ export const useApi = () => ({
         })
         return res.data;
       },
+    toggleActiveProfile: async (user: any, newValue: boolean) => { 
+        try {
+            // Faz a requisição GET para verificar se o recurso já existe
+            const response = await api.get(`/user/${user.id}/active`);
+            const currentValue = response.data;
+            // Faz a requisição PUT para atualizar o valor do recurso
+            await api.put(`/user/${user.id}/active`, {
+              ...currentValue,
+              value: newValue,
+            });
+          } catch (error: any) {
+            // Se o recurso não existir, faz apenas a requisição PUT para criá-lo
+            if (error.response.status === 404) {
+              await api.put(`/user/${user.id}`, { value: newValue });
+            } else {
+              throw error;
+            }
+          }  
+    },
+    getProfileImage: async (user: any) => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await api.get(`/user/${user.id}/image`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              responseType: 'arraybuffer',
+            });
+            const img = Buffer.from(response.data, 'binary').toString('base64');
+            return `data:image/png;base64,${img}`;
+          } catch (error) {
+            console.error(error);
+            return '';
+          }
+        },
+    
 });

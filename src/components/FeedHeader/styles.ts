@@ -7,7 +7,9 @@ interface NavItemProps {
 
 export const Container = styled.nav`
   display: flex;
-  padding: 10px;
+  justify-content: space-between;
+  height: 44px;
+  gap: 12px;
 `;
 
 
