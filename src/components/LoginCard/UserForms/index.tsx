@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { useApi } from '../../../hooks/useApi';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { toast } from 'react-toastify';
-import { schemaValidationLoginForm } from '../../../validations/loginValidations/index';
-import { schemaValidationRegisterForm } from '../../../validations/registerValidations';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
+import {
+    schemaUserLoginForm,
+    schemaUserRegisterForm,
+} from '../../../validations/UserValidations/index';
 
 import {
     MessageError,
@@ -32,12 +34,12 @@ import {
 } from '../styles';
 
 export const UserForms = (props: any): JSX.Element => {
-    const [isLogin, setIsLogin] = useState(true);
-
     const [hasError, setHasError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const [isLogin, setIsLogin] = useState(true);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -45,13 +47,13 @@ export const UserForms = (props: any): JSX.Element => {
     const navigate = useNavigate();
     const api = useApi();
     const auth: any = useContext(AuthContext);
+
+    // Recebe o tipo do usuário
     const userType = props.type;
 
     // Define qual formulário deverá ser validado
     const getValidityForm =
-        isLogin === true
-            ? schemaValidationLoginForm
-            : schemaValidationRegisterForm;
+        isLogin === true ? schemaUserLoginForm : schemaUserRegisterForm;
 
     const {
         register,
@@ -95,7 +97,7 @@ export const UserForms = (props: any): JSX.Element => {
         }
     }
 
-    // Validação do formulário de cadastro
+    // Validação e manipulação do formulário de cadastro
     async function handleRegisterSubmit() {
         try {
             const registerData = await auth.register(
