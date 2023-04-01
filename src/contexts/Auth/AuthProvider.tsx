@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useApi } from '../../hooks/useApi';
 import { User } from '../../@types/User';
 import { AuthContext } from './AuthContext';
@@ -10,21 +10,24 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
     // Vai executar uma vez sempre que o componente for renderizado
     // useEffect(() => {
-    //     const validateToken = async () => {
-    //         const storagedData = localStorage.getItem('authToken');
-    //         if (storagedData) {
-    //             const data = await api.validateToken();
-    //             if (data.user) {
-    //                 setUser(data.user);
-    //             }
+
+    // }, [api]);
+    
+    // const validateToken = async () => {
+    //     const storagedData = localStorage.getItem('authToken');
+        
+    //     if (storagedData) {
+    //         const res = await api.validateToken(storagedData);
+    //         if (res.info) {
+    //             setUser(res.info);
     //         }
-    //     };
-    //     validateToken();
-    // }, []);
+    //     }
+    // };
+    // validateToken();
 
     const login = async (email: string, password: string, type: string) => {
         const res = await api.login(email, password, type);
-
+        
         if (res.info && res.token) {
             setUser(res.info);
             setToken(res.token);
@@ -32,22 +35,37 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         }
         return false;
     };
-
+    
     const setToken = (token: string) => {
         localStorage.setItem('authToken', token);
     };
-
+    
     const register = async (
         name: string,
         email: string,
         password: string,
-        cnpj: string,
+        confirmPassword: string,
     ) => {
-        const res: any = await api.register(name, email, password, cnpj);
+        const res: any = await api.registerUser(name, email, password, confirmPassword);
 
-        if (res.data.info && res.data.token) {
+        if (res.data.info) {
             setUser(res.data.info);
-            setToken(res.data.token);
+            return true;
+        }
+        return false;
+    };
+
+    const registerCompany = async (
+        name: string,
+        cnpj: string,
+        email: string,
+        password: string,
+        confirmPassword: string,
+    ) => {
+        const res: any = await api.registerCompany(name, cnpj, email, password, confirmPassword);
+
+        if (res.data.info) {
+            setUser(res.data.info);
             return true;
         }
         return false;
@@ -56,7 +74,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const logout = async () => {};
 
     return (
-        <AuthContext.Provider value={{ user, login, register, logout }}>
+        <AuthContext.Provider value={{ user, login, register, registerCompany, logout }}>
             {children}
         </AuthContext.Provider>
     );
