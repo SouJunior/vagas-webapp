@@ -10,11 +10,19 @@ export type AuthContextType = {
         type: string | any,
     ) => Promise<boolean>;
 
-    register: (
+    registerUser: (
         name: string,
         email: string,
         password: string,
+        confirmPassword: string,
+    ) => Promise<boolean>;
+
+    registerCompany: (
+        name: string,
         cnpj: string,
+        email: string,
+        password: string,
+        confirmPassword: string,
     ) => Promise<boolean>;
 
     validateToken: (token: string) => Promise<any>;
