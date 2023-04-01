@@ -23,7 +23,7 @@ export const Card = styled.div`
   width: 500px;
   margin-bottom: 24px;
   overflow-y: auto
-  padding: 10px;
+  padding: 20px;
   background-color: #fdfffc;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -215,7 +215,7 @@ export const LoginLink = styled.p`
     button {
         color: #1165ba;
         font-weight: 600;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
         &:hover {
             color: darkblue;
         }
