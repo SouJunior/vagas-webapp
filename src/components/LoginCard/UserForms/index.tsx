@@ -104,6 +104,7 @@ export const UserForms = (props: any): JSX.Element => {
                 registerCheck[0],
                 registerCheck[1],
                 registerCheck[2],
+                registerCheck[3],
             );
 
             if (!registerData) {
@@ -119,6 +120,7 @@ export const UserForms = (props: any): JSX.Element => {
         'registerName',
         'registerEmail',
         'registerPassword',
+        'confirmPassword',
     ]);
 
     return (
