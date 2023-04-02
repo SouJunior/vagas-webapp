@@ -101,27 +101,38 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     // Validação e manipulação do formulário de cadastro
 
+    const removeSpecialCharCnpj = (cnpj: string) => {
+        if(cnpj) {
+            cnpj.replace(/[^\d]+/g, '');
+        }
+        return cnpj;
+    } 
+
+    // Manipula os dados e envia a requisição
     async function handleRegisterSubmit() {
-        const registerData = await auth.register(
+        const registerData = await auth.registerCompany(
             registerCheck[0],
             registerCheck[1],
             registerCheck[2],
             registerCheck[3],
+            registerCheck[4],
         );
-
+        console.log(registerCheck[1])
+        
         if (!registerData) {
             setIsLogin(true);
         }
     }
-
+    
     // Monitora os input enquanto preechidos
     const registerCheck = watch([
         'registerName',
+        'registerCnpj',
         'registerEmail',
         'registerPassword',
-        'registerCnpj',
+        'confirmPassword',
     ]);
-
+    
     return (
         <>
             {isLogin ? (
