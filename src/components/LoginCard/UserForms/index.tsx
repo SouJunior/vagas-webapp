@@ -36,6 +36,7 @@ import {
 export const UserForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -85,33 +86,53 @@ export const UserForms = (props: any): JSX.Element => {
 
             toast.success(`Login efetuado com sucesso ${data.info.name}! `, {
                 position: 'top-right',
-                theme: 'light',
+                theme: 'colored',
             });
 
             if (email && password && isLogged && userType) {
                 navigate('/feedjobs');
             }
         } catch (err) {
-            // TODO: Tratar os erros com as mensagens do backend
-            setHasError(data);
+            // TODO: Tratar os erros com as mensagens do backend e exibir em tela
+            // TODO: Fazer toastfy funcioinar
+            setHasError(data.message);
+            toast.error('Ops, algo não está certo!', {
+                position: 'top-right',
+                theme: 'colored',
+            });
         }
     }
 
     // Validação e manipulação do formulário de cadastro
     async function handleRegisterSubmit() {
-        try {
-            const registerData = await auth.register(
-                registerCheck[0],
-                registerCheck[1],
-                registerCheck[2],
-                registerCheck[3],
-            );
+        const registerData = await auth.register(
+            registerCheck[0],
+            registerCheck[1],
+            registerCheck[2],
+            registerCheck[3],
+        );
+        console.log(registerData);
 
-            if (!registerData) {
+        try {
+            toast.success('Conta criada com sucesso!', {
+                position: 'top-right',
+                theme: 'colored',
+            });
+
+            if (registerData) {
+                navigate('/login');
                 setIsLogin(true);
             }
         } catch (error) {
-            setHasError(true);
+            // TODO: Tratar os erros com as mensagens do backend e exibir em tela
+            // TODO: fazer toastfy funcionar
+            setHasError(registerData.message);
+            console.log('Passei aqui ...');
+
+            toast.error('Ops, algo não está certo!', {
+                position: 'top-right',
+                theme: 'colored',
+            });
         }
     }
 
@@ -176,9 +197,9 @@ export const UserForms = (props: any): JSX.Element => {
                         </div>
 
                         {/* TODO: Mensagem do backend não é mais inserida */}
-                        <MessageError>
+                        { hasError && (<MessageError>
                             {errors.password && <>{errors.password.message}</>}
-                        </MessageError>
+                        </MessageError>) }
                     </InputContainer>
                     <InputContainer>
                         <CheckboxContainer>
@@ -263,11 +284,13 @@ export const UserForms = (props: any): JSX.Element => {
                                 <PasswordIcon />
                             </IconWrapper>
                         </div>
-                        <MessageError>
-                            {errors.registerPassword && (
-                                <>{errors.registerPassword.message}</>
-                            )}
-                        </MessageError>
+                        {hasError && (
+                            <MessageError>
+                                {errors.registerPassword && (
+                                    <>{errors.registerPassword.message}</>
+                                )}
+                            </MessageError>
+                        )}
                     </InputContainer>
                     <InputContainer>
                         <div>
@@ -301,11 +324,13 @@ export const UserForms = (props: any): JSX.Element => {
                                 <a href="/">Política de Privacidade</a>
                             </TermsLink>
                         </Label>
-                        <MessageError2>
-                            {errors.privacyTerms && (
-                                <>{errors.privacyTerms.message}</>
-                            )}
-                        </MessageError2>
+                        {hasError && (
+                            <MessageError2>
+                                {errors.privacyTerms && (
+                                    <>{errors.privacyTerms.message}</>
+                                )}
+                            </MessageError2>
+                        )}
                     </InputContainer>
 
                     <RegisterSubmitButton
