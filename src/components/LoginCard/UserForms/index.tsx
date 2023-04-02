@@ -53,7 +53,7 @@ export const UserForms = (props: any): JSX.Element => {
     const userType = props.type;
 
     // Define qual formulário deverá ser validado
-    const getValidityForm =
+    const getFormValidation =
         isLogin === true ? schemaUserLoginForm : schemaUserRegisterForm;
 
     const {
@@ -63,13 +63,13 @@ export const UserForms = (props: any): JSX.Element => {
         formState: { errors },
     } = useForm({
         mode: 'onChange',
-        resolver: yupResolver(getValidityForm),
+        resolver: yupResolver(getFormValidation),
     });
 
     const compareEmailAndData = (data: any) => {
         if (data !== email) {
             // TODO: Tratar os erros com as  mensagens do backend
-            setHasError(true);
+            setHasError(data.message);
         }
     };
 
@@ -103,7 +103,10 @@ export const UserForms = (props: any): JSX.Element => {
         }
     }
 
+    // =================================================
     // Validação e manipulação do formulário de cadastro
+    // =================================================
+
     async function handleRegisterSubmit() {
         const registerData = await auth.register(
             registerCheck[0],
@@ -111,7 +114,6 @@ export const UserForms = (props: any): JSX.Element => {
             registerCheck[2],
             registerCheck[3],
         );
-        console.log(registerData);
 
         try {
             toast.success('Conta criada com sucesso!', {
@@ -153,7 +155,7 @@ export const UserForms = (props: any): JSX.Element => {
             )}
 
             <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
-
+            {/* renderiza se existe(true) um formulário do tipo login */}
             {isLogin ? (
                 <Form
                     id="login-form"
@@ -197,9 +199,13 @@ export const UserForms = (props: any): JSX.Element => {
                         </div>
 
                         {/* TODO: Mensagem do backend não é mais inserida */}
-                        { hasError && (<MessageError>
-                            {errors.password && <>{errors.password.message}</>}
-                        </MessageError>) }
+                        {hasError && (
+                            <MessageError>
+                                {errors.password && (
+                                    <>{errors.password.message}</>
+                                )}
+                            </MessageError>
+                        )}
                     </InputContainer>
                     <InputContainer>
                         <CheckboxContainer>
@@ -341,7 +347,7 @@ export const UserForms = (props: any): JSX.Element => {
                         Criar conta
                     </RegisterSubmitButton>
                     <LoginLink>
-                        Já tem conta?{' '}
+                        Já tem conta? {/* redireciona se isLogin === true */}
                         <button
                             onClick={() => {
                                 return setIsLogin(true);

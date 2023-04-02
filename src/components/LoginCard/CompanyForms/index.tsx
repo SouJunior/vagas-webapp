@@ -53,7 +53,7 @@ export const CompanyForms = (props: any): JSX.Element => {
     const companyType = props.type;
 
     // Define qual formulário deverá ser validado
-    const getValidityForm =
+    const getFormValidation =
         isLogin === true ? schemaCompanyLoginForm : schemaCompanyRegisterForm;
 
     const {
@@ -63,7 +63,7 @@ export const CompanyForms = (props: any): JSX.Element => {
         formState: { errors },
     } = useForm({
         mode: 'onChange',
-        resolver: yupResolver(getValidityForm),
+        resolver: yupResolver(getFormValidation),
     });
 
     const compareEmailAndData = (data: any) => {
@@ -99,14 +99,16 @@ export const CompanyForms = (props: any): JSX.Element => {
         }
     }
 
+    // =================================================
     // Validação e manipulação do formulário de cadastro
+    // =================================================
 
     const removeSpecialCharCnpj = (cnpj: string) => {
-        if(cnpj) {
+        if (cnpj) {
             cnpj.replace(/[^\d]+/g, '');
         }
         return cnpj;
-    } 
+    };
 
     // Manipula os dados e envia a requisição
     async function handleRegisterSubmit() {
@@ -117,13 +119,12 @@ export const CompanyForms = (props: any): JSX.Element => {
             registerCheck[3],
             registerCheck[4],
         );
-        console.log(registerCheck[1])
-        
+
         if (!registerData) {
             setIsLogin(true);
         }
     }
-    
+
     // Monitora os input enquanto preechidos
     const registerCheck = watch([
         'registerName',
@@ -132,7 +133,7 @@ export const CompanyForms = (props: any): JSX.Element => {
         'registerPassword',
         'confirmPassword',
     ]);
-    
+
     return (
         <>
             {isLogin ? (
@@ -142,6 +143,7 @@ export const CompanyForms = (props: any): JSX.Element => {
             )}
 
             <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
+            {/* renderiza se existe(true) um formulário do tipo login */}
             {isLogin ? (
                 <Form
                     id="login-form"
@@ -331,6 +333,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                     </RegisterSubmitButton>
                     <LoginLink>
                         Já tem conta?{' '}
+                        {/* redireciona se isLogin === true */}
                         <button onClick={() => setIsLogin(true)}>
                             Faça o Login
                         </button>
