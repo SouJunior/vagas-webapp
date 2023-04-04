@@ -10,11 +10,13 @@ import { InsertJobs } from '../pages/InsertJobs';
 import { RequireAuth } from '../contexts/Auth/RequireAuth';
 import AddJobs from '../pages/addJobs';
 import FeedVagas from '../pages/FeedVagas';
+import ConfirmEmail from '../pages/ConfirmEmail';
 
 export const AllRoutes: React.FC = () => {
     return (
         <Routes>
             <Route index element={<Login />} />
+            <Route path="confirmemail" element={<ConfirmEmail />}></Route>
             <Route path="register" element={<Register />} />
             <Route path="/" element={<Layout />}>
                 <Route path="insertjobs" element={<InsertJobs />} />
