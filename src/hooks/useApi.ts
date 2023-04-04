@@ -97,5 +97,11 @@ export const useApi = () => ({
             return '';
           }
         },
+      getJobs: async (id?: string) => {
+        const url = id ? `/job/${id}` : '/job?order=ASC&page=1&take=10&orderByColumn=id';
+        const res: any = await api.get(url);
+          return res.data;
+      },
+      
     
 });

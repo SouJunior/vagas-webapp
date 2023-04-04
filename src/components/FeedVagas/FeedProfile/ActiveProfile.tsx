@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { useApi } from '../../hooks/useApi';
-import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { useApi } from '../../../hooks/useApi';
+import { AuthContext } from '../../../contexts/Auth/AuthContext';
 
 import {
     CheckBoxWrapper,
@@ -12,16 +12,14 @@ import {
 const ActiveProfile: React.FC = () => {
     const { token }: any = useContext(AuthContext);
     const { toggleActiveProfile }: any = useApi();
-    let isActive = toggleActiveProfile.response;
+    let isActive = toggleActiveProfile.currentValue;
 
     const handleCheckboxChange = async (
         e: React.ChangeEvent<HTMLInputElement>,
     ) => {
         const active = e.target.checked;
         await toggleActiveProfile({ isActive: active }, token);
-        console.log(active);
     };
-    console.log(isActive);
     return (
         <CheckBoxContainer className="flex">
             <label htmlFor="checkbox">Perfil Ativo</label>
