@@ -40,7 +40,7 @@ export const schemaCompanyRegisterForm = yup.object().shape({
         ),
 
     // Confirma password
-    confirmPassword: yup
+    passwordConfirm: yup
         .string()
         .required('Confirme sua senha')
         .oneOf(
