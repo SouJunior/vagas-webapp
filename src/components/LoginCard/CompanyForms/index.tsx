@@ -87,7 +87,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                 `Login efetuado com sucesso ${data.info.companyName}!`,
                 {
                     position: 'top-right',
-                    theme: 'light',
+                    theme: 'colored',
                 },
             );
             if (email && password && isLogged) {
@@ -95,7 +95,7 @@ export const CompanyForms = (props: any): JSX.Element => {
             }
         } catch (err) {
             // TODO: Tratar os erros com as mensagens do backend
-            setHasError(data);
+            setHasError(data.message);
         }
     }
 
@@ -103,36 +103,42 @@ export const CompanyForms = (props: any): JSX.Element => {
     // Validação e manipulação do formulário de cadastro
     // =================================================
 
-    const removeSpecialCharCnpj = (cnpj: string) => {
-        if (cnpj) {
-            cnpj.replace(/[^\d]+/g, '');
-        }
-        return cnpj;
-    };
+    // Monitora os input enquanto preechidos
+
+    const registerCheck: string[] = watch([
+        'registerName',
+        'registerEmail',
+        'registerCnpj',
+        'registerPassword',
+        'passwordConfirm',
+    ]);
 
     // Manipula os dados e envia a requisição
     async function handleRegisterSubmit() {
+        const cnpj: string = registerCheck[2].replace(/[^\d]+/g, '');
+
         const registerData = await auth.registerCompany(
             registerCheck[0],
             registerCheck[1],
-            registerCheck[2],
+            cnpj,
             registerCheck[3],
             registerCheck[4],
         );
 
-        if (!registerData) {
-            setIsLogin(true);
+        try {
+            toast.success(`Conta criada com sucesso! `, {
+                position: 'top-right',
+                theme: 'colored',
+            });
+
+            if (registerData) {
+                setIsLogin(true);
+            }
+
+        } catch (error: any) {
+            setHasError(registerData.message)
         }
     }
-
-    // Monitora os input enquanto preechidos
-    const registerCheck = watch([
-        'registerName',
-        'registerCnpj',
-        'registerEmail',
-        'registerPassword',
-        'confirmPassword',
-    ]);
 
     return (
         <>
@@ -234,19 +240,6 @@ export const CompanyForms = (props: any): JSX.Element => {
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
-                        <Input
-                            type="text"
-                            {...register('registerCnpj')}
-                            placeholder="CNPJ da empresa"
-                            aria-label="CNPJ da empresa"
-                        ></Input>
-                        <MessageError>
-                            {errors.registerCnpj && (
-                                <>{errors.registerCnpj.message}</>
-                            )}
-                        </MessageError>
-                    </InputContainer>
-                    <InputContainer>
                         <div>
                             <Input
                                 type="text"
@@ -261,6 +254,19 @@ export const CompanyForms = (props: any): JSX.Element => {
                         <MessageError>
                             {errors.registerEmail && (
                                 <>{errors.registerEmail.message}</>
+                            )}
+                        </MessageError>
+                    </InputContainer>
+                    <InputContainer>
+                        <Input
+                            type="text"
+                            {...register('registerCnpj')}
+                            placeholder="CNPJ da empresa"
+                            aria-label="CNPJ da empresa"
+                        ></Input>
+                        <MessageError>
+                            {errors.registerCnpj && (
+                                <>{errors.registerCnpj.message}</>
                             )}
                         </MessageError>
                     </InputContainer>
@@ -289,7 +295,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                         <div>
                             <Input
                                 type={showConfirmPassword ? 'text' : 'password'}
-                                {...register('confirmPassword')}
+                                {...register('passwordConfirm')}
                                 placeholder="Confirme sua senha"
                                 aria-label="Senha"
                             />
@@ -332,8 +338,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                         Criar conta
                     </RegisterSubmitButton>
                     <LoginLink>
-                        Já tem conta?{' '}
-                        {/* redireciona se isLogin === true */}
+                        Já tem conta? {/* redireciona se isLogin === true */}
                         <button onClick={() => setIsLogin(true)}>
                             Faça o Login
                         </button>
