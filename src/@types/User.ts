@@ -3,4 +3,6 @@ export type User = {
     name: string;
     email: string;
     password: string;
+    cnpj: string;
+    type: string | any;
 };

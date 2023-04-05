@@ -1,18 +1,16 @@
-import { toast } from 'react-toastify';
 import api from '../services/api';
 
 export const useApi = () => ({
-    //TODO: Entrar com as funções que salvam o token de usuário
-
     validateToken: async (token: string) => {
-        const res: any = await api.post('/auth/user-logged', { token });
-        return res.data
+        const res: any = await api.post('/auth/login', { token });
+        return res.data;
     },
 
-    login: async (email: string, password: string) => {
+    login: async (email: string, password: string, type: string | any) => {
         const res: any = await api.post('/auth/login', {
             email,
             password,
+            type,
         });
         return res.data;
     },
@@ -22,25 +20,30 @@ export const useApi = () => ({
         return res.data;
     },
 
-    register: async (name: string, email: string, password: string, cnpj: string) => {
-        const res: any = await api.post('/company', {
+    registerUser: async (name: string, email: string, password: string, confirmPassword: string) => {
+        const res: any = await api.post('/user', {
             name,
             email,
             password,
+            confirmPassword,
+        });
+        return res.data;
+    },
+
+    registerCompany: async (
+        companyName: string,
+        email: string,
+        cnpj: string,
+        password: string,
+        passwordConfirmation: string,
+    ) => {
+        const res: any = await api.post('/company', {
+            companyName,
+            email,
             cnpj,
-        })
-        .then((resolve) => {
-            toast.success('Conta criada com sucesso!', {
-                position: "top-center",
-                theme: "colored",
-                });
-        })
-        .catch((err) => {
-            toast.error('Ops! Algo deu errado. Por favor, tente novamente.', {
-                position: "top-center",
-                theme: "colored",
-                });
-        })
+            password,
+            passwordConfirmation,
+        });
         return res.data;
     },
 
