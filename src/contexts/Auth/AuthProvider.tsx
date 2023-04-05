@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     ) => {
         const res: any = await api.registerUser(name, email, password, confirmPassword);
 
-        if (res.data.info) {
+        if (res.data) {
             setUser(res.data.info);
             return true;
         }
@@ -56,15 +56,15 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     const registerCompany = async (
-        name: string,
-        cnpj: string,
+        companyName: string,
         email: string,
+        cnpj: string,
         password: string,
-        confirmPassword: string,
+        passwordConfirmation: string,
     ) => {
-        const res: any = await api.registerCompany(name, cnpj, email, password, confirmPassword);
+        const res: any = await api.registerCompany(companyName, email, cnpj, password, passwordConfirmation);
 
-        if (res.data.info) {
+        if (res.data) {
             setUser(res.data.info);
             return true;
         }

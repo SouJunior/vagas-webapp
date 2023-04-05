@@ -31,18 +31,18 @@ export const useApi = () => ({
     },
 
     registerCompany: async (
-        name: string,
-        cnpj: string,
+        companyName: string,
         email: string,
+        cnpj: string,
         password: string,
-        confirmPassword: string,
+        passwordConfirmation: string,
     ) => {
         const res: any = await api.post('/company', {
-            name,
-            cnpj,
+            companyName,
             email,
+            cnpj,
             password,
-            confirmPassword,
+            passwordConfirmation,
         });
         return res.data;
     },

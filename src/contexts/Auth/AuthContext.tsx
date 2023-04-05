@@ -18,11 +18,11 @@ export type AuthContextType = {
     ) => Promise<boolean>;
 
     registerCompany: (
-        name: string,
-        cnpj: string,
+        companyName: string,
         email: string,
+        cnpj: string,
         password: string,
-        confirmPassword: string,
+        passwordConfirmation: string,
     ) => Promise<boolean>;
 
     validateToken: (token: string) => Promise<any>;
