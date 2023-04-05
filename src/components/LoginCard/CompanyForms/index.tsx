@@ -38,6 +38,7 @@ export const CompanyForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
     const [isLogin, setIsLogin] = useState(true);
