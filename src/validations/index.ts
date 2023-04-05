@@ -52,6 +52,13 @@ function validarCNPJ(cnpj: string | undefined = ''):boolean {
   return true;
 }
 
+export const emailSchema = yup.object().shape({
+  email: yup
+  .string()
+  .required("O campo e-mail é obrigatório")
+  .email("o e-mail precisa ser válido. Exemplo: email@gmail.com"),
+}
+);
 
 export const formSchema = yup.object().shape({
   email: yup
