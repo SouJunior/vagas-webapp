@@ -116,13 +116,12 @@ export const UserForms = (props: any): JSX.Element => {
         );
 
         try {
-            toast.success('Conta criada com sucesso!', {
+            toast.success(`Conta com sucesso! `, {
                 position: 'top-right',
                 theme: 'colored',
             });
 
             if (registerData) {
-                navigate('/login');
                 setIsLogin(true);
             }
         } catch (error) {
@@ -130,11 +129,6 @@ export const UserForms = (props: any): JSX.Element => {
             // TODO: fazer toastfy funcionar
             setHasError(registerData.message);
             console.log('Passei aqui ...');
-
-            toast.error('Ops, algo não está certo!', {
-                position: 'top-right',
-                theme: 'colored',
-            });
         }
     }
 
