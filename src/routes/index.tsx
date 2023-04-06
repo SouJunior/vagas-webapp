@@ -12,14 +12,15 @@ import { FeedJobs } from '../pages/FeedJobs';
 import AddJobs from '../pages/addJobs';
 import FeedVagas from '../pages/FeedVagas';
 import ConfirmEmail from '../pages/ConfirmEmail';
+import ResetPassword from '../pages/ResetPassword';
 
 export const NavRoutes: React.FC = () => {
     return (
         <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
-
             <Route path="confirmemail" element={<ConfirmEmail />}></Route>
+            <Route path="resetpassword" element={<ResetPassword/>}></Route>
             <Route
                 path="feedjobs"
                 element={
@@ -28,7 +29,6 @@ export const NavRoutes: React.FC = () => {
                     </RequireAuth>
                 }
             />
-
             <Route
                 path="insertjob"
                 element={
