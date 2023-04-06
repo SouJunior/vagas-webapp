@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { emailSchema } from '../validations';
+import { emailSchema } from '../validations/EmailValidation';
 import { Button } from '../components/Button';
 import circlesImage from '../assets/imgs/circles.svg';
 import lockImage from '../assets/imgs/lock.svg';
