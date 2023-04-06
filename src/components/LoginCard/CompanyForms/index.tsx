@@ -204,7 +204,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                                 <CheckboxInput id="default-checkbox" value="" />
                                 Me mantenha conectado
                             </Label>
-                            <a href="/">Esqueci minha senha</a>
+                            <a href="confirmemail">Esqueci minha senha</a>
                         </CheckboxContainer>
                     </InputContainer>
 
