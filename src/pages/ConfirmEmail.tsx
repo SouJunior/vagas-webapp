@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { emailSchema } from '../validations';
+import { emailSchema } from '../validations/EmailValidation';
 import { Button } from '../components/Button';
 import circlesImage from '../assets/imgs/circles.svg';
 import lockImage from '../assets/imgs/lock.svg';
@@ -13,7 +13,7 @@ const ConfirmEmail = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid, isSubmitted },
+        formState: { errors, isValid, isSubmitSuccessful },
     } = useForm({
         resolver: yupResolver(emailSchema),
     });
@@ -32,10 +32,10 @@ const ConfirmEmail = () => {
                     <img src={rowImage} alt="linha horizontal" width="100%" />
                 </div>
                 <div className="font-semibold text-center text-3xl py-8 text-blue">
-                    {isValid && !isSubmitted && (<h1>
+                    {isValid && !isSubmitSuccessful && (<h1>
                         Um e-mail de confirmação será enviado dentro de alguns minutos.
                     </h1>)}
-                    {isSubmitted && (<h1>
+                    {isSubmitSuccessful && (<h1>
                         Será encaminhada uma mensagem para o e-mail cadastrado, informando os próximos passos para a redefinição da senha.
                     </h1>)}
                 </div>
