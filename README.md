@@ -78,6 +78,7 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 - Isabela S. Hyeda Buitoni | [GitHub](https://github.com/isabelahyeda) - [Linkedin](https://www.linkedin.com/in/isabelahyeda/)
 - Rafael Pires | [GitHub](https://github.com/RafaelPires2) - [Linkedin](https://www.linkedin.com/in/rafael-pires-075891212/)
 - Carlos Junior | [GitHub](https://github.com/CarlosJunioor) - [LinkedIn](https://www.linkedin.com/in/carlosjuniordev/)
+- João Vitor Kremer | [GitHub](https://github.com/JoaoKremerDev) - [LinkedIn](https://www.linkedin.com/in/joaokremer/)
 
 ## Feedback 💬
 
