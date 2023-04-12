@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+export const MaskBackground = styled.div`
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+
+    background: rgba(93, 95, 93, 0.3);
+    backdrop-filter: blur(7px);
+
+    top: 0;
+    left: 0;
+`
+
 export const Popup = styled.div`
     display: flex;
     flex-direction: column;
@@ -26,6 +39,7 @@ export const Popup = styled.div`
     button {
         margin: 16px 24px 0 auto;
         cursor: default;
+        z-index: 999;
     }
 
     h2 {
