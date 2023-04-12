@@ -3,15 +3,15 @@ import close from '../../../assets/imgs/popup-cadastro-close.svg';
 
 import { Popup } from './styles';
 
-export const PopUpRegisterSucess = (): JSX.Element => {
+export const PopUpRegisterSucess = (props: any): JSX.Element => {
     return (
         <Popup>
-            <img src={close} alt="botão fechar" />
-            <img src={popup} alt="Email checked" />
+            <img className='close' src={close} alt="botão fechar" />
+            <img className='email' src={popup} alt="Email checked" />
             <h2>Cadastro concluído com sucesso!</h2>
             <p>
                 Enviamos um link de validação para o e-mail
-                {}. Verifique sua caixa de entrada
+                "{props.email}". Verifique sua caixa de entrada
                 para fazer o login.
             </p>
         </Popup>
