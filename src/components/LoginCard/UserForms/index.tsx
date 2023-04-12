@@ -113,7 +113,10 @@ export const UserForms = (props: any): JSX.Element => {
     // Abre popup quando cadastro concluído com sucesso
     const handlePopUp = () => setPopup(!popup);
 
-    const closePopup = () => setPopup(false);
+    const closePopup = () => { 
+        setPopup(false)
+        navigate('/login')
+    };
 
     async function handleRegisterSubmit() {
         const registerData = await auth.register(
