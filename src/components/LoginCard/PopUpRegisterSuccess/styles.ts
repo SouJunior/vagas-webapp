@@ -23,9 +23,9 @@ export const Popup = styled.div`
         margin: 13px;
     }
 
-    img.close {
-        width: 6%;
+    button {
         margin: 16px 24px 0 auto;
+        cursor: default;
     }
 
     h2 {
