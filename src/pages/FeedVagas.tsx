@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import FeedHeader from '../components/FeedVagas/FeedHeader';
 import FeedProfile from '../components/FeedVagas/FeedProfile';
 import ActiveProfile from '../components/FeedVagas/FeedProfile/ActiveProfile';
+import VagasCard from '../components/FeedVagas/VagasCard';
 import { AuthProvider } from '../contexts/Auth/AuthProvider';
-import JobCard from '../components/FeedVagas/VagasCard';
 import { useApi } from '../hooks/useApi';
 import JobDetails from '../components/FeedVagas/JobDetails';
 import {
@@ -14,6 +14,7 @@ import {
     JobsWrapper,
     Wrapper,
 } from './styles/feedvagasStyles';
+import { act } from 'react-dom/test-utils';
 
 interface Job {
     id: string;
@@ -29,6 +30,7 @@ const FeedVagas = () => {
     const [activePage, setActivePage] = useState('feedvagas');
     const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedJob, setSelectedJob] = useState<string | null>('');
+    const [active, setActive] = useState(false);
 
     const api = useApi();
 
@@ -61,7 +63,7 @@ const FeedVagas = () => {
                 <ContentWrapper>
                     <JobsWrapper>
                         {jobs.map((job: any) => (
-                            <JobCard
+                            <VagasCard
                                 key={job.id}
                                 id={job.id}
                                 title={job.title}
@@ -71,10 +73,12 @@ const FeedVagas = () => {
                                 jobType={job.type}
                                 typeContract={job.typeContract}
                                 publishedAt={job.createdAt}
+                                active={selectedJob === job.id}
                                 onClick={() => {
                                     selecionaVaga(job.id);
+                                    setActive(!active)
                                 }}
-                            />
+                                />
                         ))}
                     </JobsWrapper>
                     {selectedJob && (

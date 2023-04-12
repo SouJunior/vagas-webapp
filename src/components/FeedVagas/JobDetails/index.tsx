@@ -33,14 +33,13 @@ function JobDetails(id: any) {
 
         if (!jobDetails) {
             timeoutId = setTimeout(() => {
-                getJobDetails();
-            }, 500);
+            }, 200);
         }
-
+        getJobDetails();
         return () => {
             clearTimeout(timeoutId);
         };
-    }, []);
+    }, [id]);
 
     return (
         <Container>
@@ -68,6 +67,9 @@ function JobDetails(id: any) {
                     )}
                     {jobDetails?.benefits && (
                         <Benefits>{jobDetails.benefits}</Benefits>
+                    )}
+                    {jobDetails?.createdAt && (
+                        <Description>{jobDetails.createdAt}</Description>
                     )}
                 </div>
             )}

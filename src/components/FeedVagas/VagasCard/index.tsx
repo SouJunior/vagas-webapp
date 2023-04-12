@@ -11,8 +11,9 @@ import {
     Type,
 } from './styles';
 import { ptBR } from 'date-fns/locale';
+// import { isActive } from '@tiptap/react';
 
-interface Props {
+export interface Props {
     id: string;
     title: string;
     company: string;
@@ -22,9 +23,12 @@ interface Props {
     modality: string;
     publishedAt: string;
     onClick?: () => void;
+    active: boolean;
 }
 
-const JobCard: React.FC<Props> = ({
+
+
+const VagasCard: React.FC<Props> = ({
     id,
     title,
     company,
@@ -34,6 +38,7 @@ const JobCard: React.FC<Props> = ({
     modality,
     publishedAt,
     onClick,
+    active,
 }) => {
     const timeAgo = formatDistanceToNow(new Date(publishedAt), {
         locale: ptBR,
@@ -41,7 +46,7 @@ const JobCard: React.FC<Props> = ({
     });
 
     return (
-        <Card tabIndex={0} onClick={onClick}>
+        <Card tabIndex={0} onClick={onClick} active={active}>
             <Logo src="{companyLogoUrl}" alt={company} />
             <Content>
                 <Title>{title}</Title>
@@ -56,4 +61,4 @@ const JobCard: React.FC<Props> = ({
     );
 };
 
-export default JobCard;
+export default VagasCard;
