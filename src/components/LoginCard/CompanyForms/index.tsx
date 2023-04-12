@@ -7,6 +7,7 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
+import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
 
 import {
     schemaCompanyLoginForm,
@@ -45,6 +46,8 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
     const api = useApi();
@@ -114,6 +117,10 @@ export const CompanyForms = (props: any): JSX.Element => {
         'passwordConfirm',
     ]);
 
+    const handlePopUp = () => setPopup(!popup);
+
+    const closePopup = () => setPopup(false);
+
     // Manipula os dados e envia a requisição
     async function handleRegisterSubmit() {
         const cnpj: string = registerCheck[2].replace(/[^\d]+/g, '');
@@ -127,11 +134,7 @@ export const CompanyForms = (props: any): JSX.Element => {
         );
 
         try {
-            toast.success(`Conta criada com sucesso! `, {
-                position: 'top-right',
-                theme: 'colored',
-            });
-
+            handlePopUp()
             if (registerData) {
                 setIsLogin(true);
             }
@@ -346,6 +349,12 @@ export const CompanyForms = (props: any): JSX.Element => {
                     </LoginLink>
                 </Form>
             )}
+             {popup ? (
+                <PopUpRegisterSucess
+                    email={registerCheck[1]}
+                    close={closePopup}
+                />
+            ) : null}
         </>
     );
 };
