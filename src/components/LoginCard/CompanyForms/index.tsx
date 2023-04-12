@@ -119,7 +119,10 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     const handlePopUp = () => setPopup(!popup);
 
-    const closePopup = () => setPopup(false);
+    const closePopup = () => { 
+        setPopup(false) 
+        navigate('/login')
+    };
 
     // Manipula os dados e envia a requisição
     async function handleRegisterSubmit() {
