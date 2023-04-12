@@ -15,6 +15,7 @@ export const Card = styled.div<CardProps>`
   box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
   border: 1px solid  ${props => (props.active ? "#1165BA" : "#E8E8E8")};
   box-shadow: ${props => (props.active ? "none" : "0px 3px 6px rgba(27, 30, 33, 0.08);")};
+  opacity: ${props => (props.active ? "1" : "0.5")};
   border-radius: 6px;
 `;
 
