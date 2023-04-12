@@ -2170,6 +2170,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-hooks-helper@^1.6.4":
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/@types/react-hooks-helper/-/react-hooks-helper-1.6.4.tgz#0cacb40de7ab611f22a84fe74e9ce5a072140daa"
+  integrity sha512-vom1gfhYMKnsC38rqgKfk8YfnT9vZt331BAIQAKR/1YNuqniz321qeFl1LS5KNbUPrPAYcSjgH9lEYtLr4Pn/Q==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^18.0.0":
   version "18.0.15"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.0.15.tgz"

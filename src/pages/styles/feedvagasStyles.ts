@@ -25,12 +25,16 @@ export const ContentWrapper = styled.div`
     display: grid;
     gap: 28px;
     grid-template-columns: 493px 583px;
+    
 `;
 
 export const JobsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
   gap: 4px;
+
+  margin-right: 40px;
 `;
 
 export const JobDetailsWrapper = styled.div`

@@ -32,15 +32,13 @@ function JobDetails(id: any) {
         }
 
         if (!jobDetails) {
-            timeoutId = setTimeout(() => {
-                getJobDetails();
-            }, 500);
+            timeoutId = setTimeout(() => {}, 500);
         }
-
+        getJobDetails();
         return () => {
             clearTimeout(timeoutId);
         };
-    }, []);
+    }, [id]);
 
     return (
         <Container>
@@ -65,6 +63,9 @@ function JobDetails(id: any) {
                         )}
                     {jobDetails?.contractType && (
                         <Description>{jobDetails.contractType}</Description>
+                    )}
+                    {jobDetails?.createdAt && (
+                        <Description>{jobDetails.createdAt}</Description>
                     )}
                     {jobDetails?.benefits && (
                         <Benefits>{jobDetails.benefits}</Benefits>

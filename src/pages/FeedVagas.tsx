@@ -43,6 +43,7 @@ const FeedVagas = () => {
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
     }
+
     return (
         <Wrapper>
             <Content>

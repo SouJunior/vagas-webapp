@@ -105,6 +105,9 @@ export const useApi = () => ({
         const res: any = await api.get(url);
           return res.data;
       },
-      
+      getJobsByCompany: async (id: string) => {
+        const res: any = await api.get(`/job/all/${id}`);
+        return res.data;
+      }
     
 });

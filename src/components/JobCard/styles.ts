@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.article`
+export const Wrapper = styled.div`
     position: relative;
     cursor: pointer;
     height: 557px;
@@ -8,6 +8,24 @@ export const Wrapper = styled.article`
     padding: 24px;
     border-width: 1px;
     border-radius: 6px;
+`;
+
+export const WrapperPreview = styled(Wrapper)`
+    display: flex;
+    min-height: 330px;
+    flex-direction: column;
+    cursor: default;
+    border: 1px solid #E8E8E8;
+    width: 599px;
+    height: 655px;
+    margin-top: 32px;
+    box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
+`;
+
+export const Divider = styled.hr`
+    margin-top: auto;
+    margin-bottom: 30px;
+    background-color: #e8e8e8;
 `;
 
 export const Header = styled.header`
@@ -19,6 +37,19 @@ export const Header = styled.header`
     align-items: center;
 `;
 
+export const HeaderPreview = styled(Header)`
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    span {
+        gap: 26px;
+        display: flex;
+        flex-direction: row;
+    }
+`;
+
 export const Title = styled.h1`
     font-size: 26px;
     max-width: 300px;
@@ -27,13 +58,13 @@ export const Title = styled.h1`
 `;
 
 export const JobType = styled.p`
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
     line-height: 19px;
     color: #515050;
 `;
 
-export const Date = styled.p`
+export const DateText = styled.p`
     color: #aaaaaa;
     font-weight: 400;
     font-size: 14px;
@@ -50,11 +81,22 @@ export const Description = styled.div`
     line-height: 17px;
     color: #515050;
     height: 330px;
-    overflow: scroll;
 `;
 
-export const Footer = styled.footer`
-    padding-top: 1rem;
+export const DescriptionPreview = styled(Description)`
+    height: auto;
+    border: none;
+    padding-bottom: 0;
+    word-wrap: break-word;
+
+`;
+
+export const PreviewField = styled(DescriptionPreview)`
+    margin-top: 16px;
+`;
+export const Footer = styled.div`
+    padding-top: 5px;
+    margin-top: auto;
 `;
 
 export const Text = styled.p`
