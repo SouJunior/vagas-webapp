@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import FeedHeader from '../components/FeedVagas/FeedHeader';
 import FeedProfile from '../components/FeedVagas/FeedProfile';
 import ActiveProfile from '../components/FeedVagas/FeedProfile/ActiveProfile';
@@ -30,10 +30,11 @@ interface Job {
 }
 
 const FeedVagas = () => {
-    const [activePage, setActivePage] = useState('feedvagas');
+    const [activePage, setActivePage] = useState<string>('feedvagas');
     const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedJob, setSelectedJob] = useState<string | null>('');
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
 
     const api = useApi();
 
@@ -48,6 +49,15 @@ const FeedVagas = () => {
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
     }
+
+    const showMore =  async (e:FormEvent) => {
+        e.preventDefault();
+        setPage((old) => old + 1)
+        const jobs = await api.getJobs(page);
+        console.log(page)
+        setJobs((old) => ([...old, jobs]))
+    }
+
     return (
         <Wrapper>
             <Content>
@@ -79,10 +89,10 @@ const FeedVagas = () => {
                                     active={selectedJob === job.id}
                                     onClick={() => {
                                         selecionaVaga(job.id);
-                                        setActive(!active);
                                     }}
                                 />
                             ))}
+                            <button type="button" onClick={showMore}>Ver mais</button>
                         </JobsWrapper>
                     {selectedJob && (
                         <JobDetailsWrapper>

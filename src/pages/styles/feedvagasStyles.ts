@@ -36,13 +36,6 @@ export const JobsWrapper = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
 
-  ::-webkit-scrollbar {
-    width: 10px;
-    
-  }
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
 `;
 
 export const JobDetailsWrapper = styled.div`
