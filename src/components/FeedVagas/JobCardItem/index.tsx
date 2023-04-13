@@ -11,7 +11,6 @@ import {
     Type,
 } from './styles';
 import { ptBR } from 'date-fns/locale';
-// import { isActive } from '@tiptap/react';
 
 export interface Props {
     id: string;

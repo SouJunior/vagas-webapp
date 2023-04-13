@@ -7869,12 +7869,6 @@ react-icons@^4.8.0:
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.8.0.tgz"
   integrity sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==
 
-react-infinite-scroll-component@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/react-infinite-scroll-component/-/react-infinite-scroll-component-6.1.0.tgz#7e511e7aa0f728ac3e51f64a38a6079ac522407f"
-  integrity sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ==
-  dependencies:
-    throttle-debounce "^2.1.0"
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
