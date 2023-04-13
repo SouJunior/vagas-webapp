@@ -8,7 +8,6 @@ import ErrorPage from '../pages/ErrorPage';
 import { Home } from '../pages/Home';
 import { InsertJobs } from '../pages/InsertJobs';
 import { RequireAuth } from '../contexts/Auth/RequireAuth';
-import { FeedJobs } from '../pages/FeedJobs';
 import AddJobs from '../pages/addJobs';
 import FeedVagas from '../pages/FeedVagas';
 import ConfirmEmail from '../pages/ConfirmEmail';
@@ -20,15 +19,7 @@ export const NavRoutes: React.FC = () => {
             <Route path="/login" element={<Login />} />
 
             <Route path="confirm-email" element={<ConfirmEmail />}></Route>
-            <Route
-                path="feedjobs"
-                element={
-                    <RequireAuth>
-                        <FeedJobs />
-                    </RequireAuth>
-                }
-            />
-
+           
             <Route
                 path="insertjob"
                 element={
