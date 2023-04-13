@@ -13,66 +13,62 @@ import { useApi } from '../../../hooks/useApi';
 import { Job } from '../../../@types/jobs';
 import JobDetailsSkeleton from './jobDetailsSkeleton';
 
-function JobDetails(id: any) {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
     const [jobDetails, setJobDetails] = useState<Job | null>(null);
     const api = useApi();
 
-    useEffect(() => {
-        let timeoutId: NodeJS.Timeout;
+    // useEffect(() => {
+    //     let timeoutId: NodeJS.Timeout;
 
-        async function getJobDetails() {
-            try {
-                const jobDetailsData = await api.getJobs(id.id);
-                setJobDetails(jobDetailsData);
-                setIsLoading(false);
-            } catch (error) {
-                console.error(error);
-            }
-        }
+    //     async function getJobDetails() {
+    //         try {
+    //             const jobDetailsData = await api.getJob(id);
+    //             setJobDetails(jobDetailsData);
+    //             setIsLoading(false);
+    //             console.log(jobDetailsData);
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     }
 
-        if (!jobDetails) {
-            timeoutId = setTimeout(() => {
-            }, 200);
-        }
-        getJobDetails();
-        return () => {
-            clearTimeout(timeoutId);
-        };
-    }, [id]);
+    //     if (!jobDetails) {
+    //         timeoutId = setTimeout(() => {}, 200);
+    //     }
+    //     getJobDetails();
+    //     return () => {
+    //         clearTimeout(timeoutId);
+    //     };
+    // }, [id]);
+
+
+    // Tirei a requisição para testar uma possível melhoria na aquisição desses dados. Pois a requisição
+    // estava redundante e sendo feita "sem necessidade".
 
     return (
         <Container>
-            {isLoading ? (
-                <JobDetailsSkeleton />
-            ) : (
+            
                 <div>
-                    {jobDetails?.title && <Title>{jobDetails.title}</Title>}
-                    {jobDetails?.description && (
-                        <Description>{jobDetails.description}</Description>
+                    {clickedJob[0]?.title && (
+                        <Title>{clickedJob[0].title}</Title>
                     )}
-                    {jobDetails?.headquarters && (
-                        <Company>{jobDetails.headquarters}</Company>
+                    {clickedJob[0]?.description && (
+                        <Description>{clickedJob[0].description}</Description>
                     )}
-                    {jobDetails?.modality &&
-                        jobDetails?.type &&
-                        jobDetails?.typeContract && (
+                    {clickedJob[0]?.headquarters && (
+                        <Company>{clickedJob[0].headquarters}</Company>
+                    )}
+                    {clickedJob[0]?.modality &&
+                        clickedJob[0]?.type &&
+                        clickedJob[0]?.typeContract && (
                             <Type>
-                                {jobDetails.modality} - {jobDetails.type} -{' '}
-                                {jobDetails.typeContract}
+                                {clickedJob[0].modality} - {clickedJob[0].type}{' '}
+                                - {clickedJob[0].typeContract}
                             </Type>
                         )}
-                    {jobDetails?.contractType && (
-                        <Description>{jobDetails.contractType}</Description>
-                    )}
-                    {jobDetails?.benefits && (
-                        <Benefits>{jobDetails.benefits}</Benefits>
-                    )}
-                    {jobDetails?.createdAt && (
-                        <Description>{jobDetails.createdAt}</Description>
+                    {clickedJob[0]?.contractType && (
+                        <Description>{clickedJob[0].contractType}</Description>
                     )}
                 </div>
-            )}
         </Container>
     );
 }

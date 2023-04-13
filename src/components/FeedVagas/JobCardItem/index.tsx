@@ -28,7 +28,7 @@ export interface Props {
 
 
 
-const VagasCard: React.FC<Props> = ({
+const JobCardItem: React.FC<Props> = ({
     id,
     title,
     company,
@@ -40,10 +40,10 @@ const VagasCard: React.FC<Props> = ({
     onClick,
     active,
 }) => {
-    // const timeAgo = formatDistanceToNow(new Date(publishedAt), {
-    //     locale: ptBR,
-    //     addSuffix: true,
-    // });
+    const timeAgo = formatDistanceToNow(new Date(publishedAt), {
+        locale: ptBR,
+        addSuffix: true,
+    });
 
     return (
         <Card tabIndex={0} onClick={onClick} active={active}>
@@ -56,9 +56,9 @@ const VagasCard: React.FC<Props> = ({
                     {modality} - {jobType} - {typeContract}
                 </Type>
             </Content>
-            {/* <PublishedAt>{timeAgo}</PublishedAt> */}
+            <PublishedAt>{timeAgo}</PublishedAt>
         </Card>
     );
 };
 
-export default VagasCard;
+export default JobCardItem;

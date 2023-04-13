@@ -106,7 +106,7 @@ export const useApi = () => ({
           return res.data;
       },
 
-      getJob: async (id:number) => {
+      getJob: async (id: number) => {
         const url = `/job/${id}`
         const res: any = await api.get(url);
           return res.data;

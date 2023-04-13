@@ -2,12 +2,10 @@ import { FormEvent, useEffect, useState } from 'react';
 import FeedHeader from '../components/FeedVagas/FeedHeader';
 import FeedProfile from '../components/FeedVagas/FeedProfile';
 import ActiveProfile from '../components/FeedVagas/FeedProfile/ActiveProfile';
-import VagasCard from '../components/FeedVagas/VagasCard';
+import JobCardItem from '../components/FeedVagas/JobCardItem';
 import { AuthProvider } from '../contexts/Auth/AuthProvider';
 import { useApi } from '../hooks/useApi';
 import JobDetails from '../components/FeedVagas/JobDetails';
-
-//LIB DE LAZYLOADING
 
 import {
     Content,
@@ -15,9 +13,9 @@ import {
     JobContainer,
     JobDetailsWrapper,
     JobsWrapper,
+    ShowMore,
     Wrapper,
 } from './styles/feedvagasStyles';
-import { act } from 'react-dom/test-utils';
 
 interface Job {
     id: string;
@@ -33,8 +31,10 @@ const FeedVagas = () => {
     const [activePage, setActivePage] = useState<string>('feedvagas');
     const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedJob, setSelectedJob] = useState<string | null>('');
-    const [active, setActive] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
+    const [clickedJob, setClickedJob] = useState<any>();
+    const [loading, setLoading] = useState<boolean>(false);
+    const [hasMore, setHasMore] = useState<boolean>(true);
 
     const api = useApi();
 
@@ -48,14 +48,21 @@ const FeedVagas = () => {
 
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
+        const item: any = jobs.filter((item) => item.id === id);
+        setClickedJob(item);
     }
-
-    const showMore =  async (e:FormEvent) => {
+    async function showMore(e: FormEvent) {
         e.preventDefault();
-        setPage((old) => old + 1)
-        const jobs = await api.getJobs(page);
-        console.log(page)
-        setJobs((old) => ([...old, jobs]))
+        setLoading(true);
+        const newPage = page + 1;
+        const jobs = await api.getJobs(newPage);
+        if (jobs.data.length === 0) {
+            setHasMore(false);
+        } else {
+            setPage(newPage);
+            setJobs((oldJobs) => [...oldJobs, ...jobs.data]);
+        }
+        setLoading(false);
     }
 
     return (
@@ -74,30 +81,42 @@ const FeedVagas = () => {
             </Content>
             <JobContainer>
                 <ContentWrapper>
-                        <JobsWrapper>
-                            {jobs.map((job: any) => (
-                                <VagasCard
-                                    key={job.id}
-                                    id={job.id}
-                                    title={job.title}
-                                    company={job.company}
-                                    headquarters={job.headquarters}
-                                    modality={job.modality}
-                                    jobType={job.type}
-                                    typeContract={job.typeContract}
-                                    publishedAt={job.createdAt}
-                                    active={selectedJob === job.id}
-                                    onClick={() => {
-                                        selecionaVaga(job.id);
-                                    }}
-                                />
-                            ))}
-                            <button type="button" onClick={showMore}>Ver mais</button>
-                        </JobsWrapper>
+                    <JobsWrapper>
+                        {jobs.map((job: any) => (
+                            <JobCardItem
+                                key={job.id}
+                                id={job.id}
+                                title={job.title}
+                                company={job.company}
+                                headquarters={job.headquarters}
+                                modality={job.modality}
+                                jobType={job.type}
+                                typeContract={job.typeContract}
+                                publishedAt={job.createdAt}
+                                active={selectedJob === job.id}
+                                onClick={() => {
+                                    selecionaVaga(job.id);
+                                }}
+                            />
+                        ))}
+                    </JobsWrapper>
                     {selectedJob && (
                         <JobDetailsWrapper>
-                            <JobDetails id={selectedJob} />
+                            <JobDetails
+                                id={selectedJob}
+                                clickedJob={clickedJob}
+                            />
                         </JobDetailsWrapper>
+                    )}
+                    {!hasMore && (
+                        <ShowMore onClick={showMore} disabled={loading}>
+                            Todas as vagas já foram exibidas.
+                        </ShowMore>
+                    )}
+                    {hasMore && (
+                        <ShowMore onClick={showMore} disabled={loading}>
+                            {loading ? 'Carregando...' : 'Ver mais'}
+                        </ShowMore>
                     )}
                 </ContentWrapper>
             </JobContainer>

@@ -11,10 +11,10 @@ const FeedHeader: React.FC<Props> = ({ activePage, setActivePage }) => {
     return (
         <Container>
             <NavItem
-                active={activePage === 'feedvagas'}
-                onClick={() => setActivePage('feedvagas')}
+                active={activePage === 'FeedJobs'}
+                onClick={() => setActivePage('FeedJobs')}
             >
-                <Link to="/feedvagas">Buscar vagas</Link>
+                <Link to="/FeedJobs">Buscar vagas</Link>
             </NavItem>
 
             <NavItem
