@@ -23,7 +23,7 @@ export const JobContainer = styled.div`
 
 export const ContentWrapper = styled.div`
     display: grid;
-    gap: 28px;
+    gap: 30px;
     grid-template-columns: 493px 583px;
 `;
 
@@ -31,8 +31,34 @@ export const JobsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  max-height: 570px;
+  width: 518px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  ::-webkit-scrollbar {
+  width: 9px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #1165BA;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #1195BA;
+}
+
 `;
 
 export const JobDetailsWrapper = styled.div`
   width: 40%;
+`;
+
+
+export const ShowMore = styled.button `
+  font-weight: 600;
+  text-align: center;
+  color: #515050;
+  grid-column-start: 1;
 `;
