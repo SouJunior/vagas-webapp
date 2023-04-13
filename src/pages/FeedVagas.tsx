@@ -6,6 +6,9 @@ import VagasCard from '../components/FeedVagas/VagasCard';
 import { AuthProvider } from '../contexts/Auth/AuthProvider';
 import { useApi } from '../hooks/useApi';
 import JobDetails from '../components/FeedVagas/JobDetails';
+
+//LIB DE LAZYLOADING
+
 import {
     Content,
     ContentWrapper,
@@ -61,26 +64,26 @@ const FeedVagas = () => {
             </Content>
             <JobContainer>
                 <ContentWrapper>
-                    <JobsWrapper>
-                        {jobs.map((job: any) => (
-                            <VagasCard
-                                key={job.id}
-                                id={job.id}
-                                title={job.title}
-                                company={job.company}
-                                headquarters={job.headquarters}
-                                modality={job.modality}
-                                jobType={job.type}
-                                typeContract={job.typeContract}
-                                publishedAt={job.createdAt}
-                                active={selectedJob === job.id}
-                                onClick={() => {
-                                    selecionaVaga(job.id);
-                                    setActive(!active)
-                                }}
+                        <JobsWrapper>
+                            {jobs.map((job: any) => (
+                                <VagasCard
+                                    key={job.id}
+                                    id={job.id}
+                                    title={job.title}
+                                    company={job.company}
+                                    headquarters={job.headquarters}
+                                    modality={job.modality}
+                                    jobType={job.type}
+                                    typeContract={job.typeContract}
+                                    publishedAt={job.createdAt}
+                                    active={selectedJob === job.id}
+                                    onClick={() => {
+                                        selecionaVaga(job.id);
+                                        setActive(!active);
+                                    }}
                                 />
-                        ))}
-                    </JobsWrapper>
+                            ))}
+                        </JobsWrapper>
                     {selectedJob && (
                         <JobDetailsWrapper>
                             <JobDetails id={selectedJob} />

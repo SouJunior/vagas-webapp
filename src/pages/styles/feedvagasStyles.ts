@@ -23,7 +23,7 @@ export const JobContainer = styled.div`
 
 export const ContentWrapper = styled.div`
     display: grid;
-    gap: 28px;
+    gap: 30px;
     grid-template-columns: 493px 583px;
 `;
 
@@ -31,6 +31,18 @@ export const JobsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  max-height: 573px;
+  width: 518px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 `;
 
 export const JobDetailsWrapper = styled.div`
