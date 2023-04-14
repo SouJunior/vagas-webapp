@@ -21,14 +21,6 @@ export const NavRoutes: React.FC = () => {
             <Route path="confirm-email" element={<ConfirmEmail />}></Route>
             <Route path="reset-password" element={<ResetPassword/>}></Route>
             <Route
-                path="feedjobs"
-                element={
-                    <RequireAuth>
-                        <FeedJobs />
-                    </RequireAuth>
-                }
-            />
-            <Route
                 path="insertjob"
                 element={
                     <RequireAuth>
