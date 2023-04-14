@@ -47,7 +47,7 @@ const ResetPassword = () => {
           <h1>Redefinir senha</h1>
           <label>
             <span>Nova senha</span>
-            <ConfirmPasswordErrorMessage error={!!errors.confirmPassword}>
+            <ConfirmPasswordErrorMessage error={errors.confirmPassword !== undefined}>
               <input  
                 maxLength={20} 
                 type={visible ? "text" : "password"}
@@ -70,7 +70,7 @@ const ResetPassword = () => {
           </ErrorMessages>
           <label>
             <span>Repetir senha</span>
-            <ConfirmPasswordErrorMessage error={!!errors.confirmPassword}>
+            <ConfirmPasswordErrorMessage error={errors.confirmPassword !== undefined}>
               <input  
                 type={repeatVisible ? "text" : "password"}
                 onFocus={async () => await trigger("newPassword")}
