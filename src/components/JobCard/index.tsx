@@ -40,7 +40,7 @@ export default function JobCard({
                         <span className="h-1 w-1 bg-gray-dark/70 rounded-full" />
                         <Date>{createdAt?.date}</Date>
                         <span className="h-1 w-1 bg-gray-dark/70 rounded-full" />
-                        <Date>{createdAt?.hour}</Date>
+                        <Date>{createdAt?.hour}</Date>  
                     </div>
                 </div>
                 <PencilIcon className="absolute right-12 hover:text-blue-500 text-[2.75rem] text-blue align-middle bg-blue-lighter border border-blue p-[0.4375rem] rounded" />

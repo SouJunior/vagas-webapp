@@ -12,9 +12,13 @@
 
 # vagas-frontend
 
-Projeto Opensource que visa melhorar o match entre os profissionais Juniors e Empresas.
+Projeto Opensource que visa melhorar o match entre os profissionais Juniors e empresas. Saiba mais em [SouJunior](https://www.soujunior.tech/).
 
 ![Logo](./logo-soujunior.png)
+
+### Obs. Para colaboradores da organização
+>Antes dos passos de instalação do projeto lembre-se sempre de forkar o repositório oficial e só realizar alterações no repositório "forkado" enviando modificações através de Pull Requests.
+Nunca modifique diretamente o repositório oficial(upstream).
 
 ## Instalação 🔽
 > Nesse projeto é usado apenas o Yarn como gerenciador de pacotes. Para prevenir erros e conflitos com outro package manager (e.g. NPM), recomendamos que também utilize o Yarn. Veja o website oficial do Yarn [aqui](https://yarnpkg.com/).
@@ -71,18 +75,19 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 ## Autor(es) 🙎🏻‍♂️
 
-- Alberto Santos | [GitHub](https://github.com/allbertuu) - [LinkedIn](https://www.linkedin.com/in/albertov-albuquerque/) - [Portfólio](https://portfolio-allbertuu.vercel.app/)
-- Silvia Luiza | [GitHub](https://github.com/SilviaLTeixeira) - [LinkedIn](https://www.linkedin.com/in/silvialuiza/)
 - Filipe Reis | [GitHub](https://github.com/FilipeLeoni) - [LinkedIn](https://www.linkedin.com/in/filipe-leoni-5745551a8/)
 - Igor Gonçalves | [GitHub](https://github.com/igords-goncalves) - [Linkedin](https://www.linkedin.com/in/igords-goncalves/)
 - Isabela S. Hyeda Buitoni | [GitHub](https://github.com/isabelahyeda) - [Linkedin](https://www.linkedin.com/in/isabelahyeda/)
-- Rafael Pires | [GitHub](https://github.com/RafaelPires2) - [Linkedin](https://www.linkedin.com/in/rafael-pires-075891212/)
-- Carlos Junior | [GitHub](https://github.com/CarlosJunioor) - [LinkedIn](https://www.linkedin.com/in/carlosjuniordev/)
 - João Vitor Kremer | [GitHub](https://github.com/JoaoKremerDev) - [LinkedIn](https://www.linkedin.com/in/joaokremer/)
 
+## Ex-Autor(es) 🙎🏻‍♂️
+- Alberto Santos | [GitHub](https://github.com/allbertuu) - [LinkedIn](https://www.linkedin.com/in/albertov-albuquerque/) - [Portfólio](https://portfolio-allbertuu.vercel.app/)
+- Carlos Junior | [GitHub](https://github.com/CarlosJunioor) - [LinkedIn](https://www.linkedin.com/in/carlosjuniordev/)
+- Rafael Pires | [GitHub](https://github.com/RafaelPires2) - [Linkedin](https://www.linkedin.com/in/rafael-pires-075891212/)
+- Silvia Luiza | [GitHub](https://github.com/SilviaLTeixeira) - [LinkedIn](https://www.linkedin.com/in/silvialuiza/)
 ## Feedback 💬
 
-Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [Discord](https://discord.gg/naTaHgZZpz). Ou fazendo uma [contribuição](#contribuição).
+Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [site](https://soujunior.tech). Ou fazendo uma [contribuição](#contribuição).
 
 ## Contribuição 💙
 

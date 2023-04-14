@@ -7,6 +7,7 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
+import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
 import {
     schemaUserLoginForm,
     schemaUserRegisterForm,
@@ -44,6 +45,8 @@ export const UserForms = (props: any): JSX.Element => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
     const api = useApi();
@@ -107,6 +110,14 @@ export const UserForms = (props: any): JSX.Element => {
     // Validação e manipulação do formulário de cadastro
     // =================================================
 
+    // Abre popup quando cadastro concluído com sucesso
+    const handlePopUp = () => setPopup(!popup);
+
+    const closePopup = () => { 
+        setPopup(false)
+        navigate('/login')
+    };
+
     async function handleRegisterSubmit() {
         const registerData = await auth.register(
             registerCheck[0],
@@ -116,10 +127,7 @@ export const UserForms = (props: any): JSX.Element => {
         );
 
         try {
-            toast.success(`Conta com sucesso! `, {
-                position: 'top-right',
-                theme: 'colored',
-            });
+            handlePopUp();
 
             if (registerData) {
                 setIsLogin(true);
@@ -352,6 +360,12 @@ export const UserForms = (props: any): JSX.Element => {
                     </LoginLink>
                 </Form>
             )}
+            {popup ? (
+                <PopUpRegisterSucess
+                    email={registerCheck[1]}
+                    close={closePopup}
+                />
+            ) : null}
         </>
     );
 };

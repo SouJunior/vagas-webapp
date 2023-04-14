@@ -22,7 +22,7 @@ export const Container = styled.div`
 export const Card = styled.div`
   width: 500px;
   margin-bottom: 24px;
-  overflow-y: auto
+  overflow-y: auto;
   padding: 20px;
   background-color: #fdfffc;
   border-radius: 10px;
@@ -170,7 +170,6 @@ export const ButtonContainer = styled.div`
 `;
 
 export const LoginButton = styled.button`
-    z-index: 99999;
     width: 310px;
     height: 56px;
     border-radius: 3px;
