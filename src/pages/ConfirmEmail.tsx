@@ -61,7 +61,7 @@ const ConfirmEmail = () => {
                     {errors.email && <>{errors.email.message}</>}
                     <Button
                         type="submit"
-                        className="block border w-60 rounded hover:bg-blue-700"
+                        className="block border w-60 rounded hover:bg-blue-700 "
                     >
                         Enviar
                     </Button>
