@@ -11,15 +11,15 @@ import { RequireAuth } from '../contexts/Auth/RequireAuth';
 import AddJobs from '../pages/addJobs';
 import FeedVagas from '../pages/FeedVagas';
 import ConfirmEmail from '../pages/ConfirmEmail';
+import ResetPassword from '../pages/ResetPassword';
 
 export const NavRoutes: React.FC = () => {
     return (
         <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
-
             <Route path="confirm-email" element={<ConfirmEmail />}></Route>
-           
+            <Route path="reset-password" element={<ResetPassword/>}></Route>
             <Route
                 path="insertjob"
                 element={

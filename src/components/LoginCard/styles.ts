@@ -170,7 +170,6 @@ export const ButtonContainer = styled.div`
 `;
 
 export const LoginButton = styled.button`
-    z-index: 99999;
     width: 310px;
     height: 56px;
     border-radius: 3px;
