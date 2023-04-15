@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import FeedHeader from '../components/FeedVagas/FeedHeader';
 import FeedProfile from '../components/FeedVagas/FeedProfile';
 import ActiveProfile from '../components/FeedVagas/FeedProfile/ActiveProfile';
@@ -32,11 +32,29 @@ const FeedVagas = () => {
     const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedJob, setSelectedJob] = useState<string | null>('');
     const [page, setPage] = useState<number>(1);
-    const [clickedJob, setClickedJob] = useState<any>();
+    const [clickedJob, setClickedJob] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [hasMore, setHasMore] = useState<boolean>(true);
 
     const api = useApi();
+
+    const [jobIdFromUrl, setJobIdFromUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const jobId = urlSearchParams.get('jobId');
+        setJobIdFromUrl(jobId);
+    }, []);
+
+    useEffect(() => {
+        if (jobIdFromUrl && jobs ) {
+            const job = jobs.find((job) => job.id === jobIdFromUrl);
+            if (job) {
+                setSelectedJob(jobIdFromUrl);
+                setClickedJob(job);
+            }
+        }
+    }, [jobIdFromUrl, jobs]);
 
     useEffect(() => {
         async function getJobs() {
@@ -46,11 +64,14 @@ const FeedVagas = () => {
         getJobs();
     }, []);
 
+
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
         const item: any = jobs.filter((item) => item.id === id);
         setClickedJob(item);
+        window.history.pushState({}, '', `/feedVagas?jobId=${id}`);
     }
+
     async function showMore(e: FormEvent) {
         e.preventDefault();
         setLoading(true);
