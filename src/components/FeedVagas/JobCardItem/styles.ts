@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
+interface CardProps {
+  active: boolean;
+}
 
-export const Card = styled.div`
+export const Card = styled.div<CardProps>`
   border: 1px solid #A3CCFA;
   border-radius: 6px;
   display: flex;
@@ -10,7 +13,12 @@ export const Card = styled.div`
   height: 131px;
   margin-bottom: 16px;
   box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
+  border: 1px solid  ${props => (props.active ? "#1165BA" : "#E8E8E8")};
+  box-shadow: ${props => (props.active ? "none" : "0px 3px 6px rgba(27, 30, 33, 0.08);")};
+  opacity: ${props => (props.active ? "1" : "0.5")};
+  border-radius: 6px;
 `;
+
 
 export const Logo = styled.img`
   width: 56px;
@@ -29,7 +37,6 @@ export const Title = styled.h2`
     color: #515050;
     margin-bottom: 8px;
 `;
-
 
 export const Company = styled.p`
   font-size: 14px;

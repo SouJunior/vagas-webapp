@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import FeedHeader from '../components/FeedVagas/FeedHeader';
 import FeedProfile from '../components/FeedVagas/FeedProfile';
 import ActiveProfile from '../components/FeedVagas/FeedProfile/ActiveProfile';
+import JobCardItem from '../components/FeedVagas/JobCardItem';
 import { AuthProvider } from '../contexts/Auth/AuthProvider';
-import JobCard from '../components/FeedVagas/VagasCard';
 import { useApi } from '../hooks/useApi';
 import JobDetails from '../components/FeedVagas/JobDetails';
+
 import {
     Content,
     ContentWrapper,
     JobContainer,
     JobDetailsWrapper,
     JobsWrapper,
+    ShowMore,
     Wrapper,
 } from './styles/feedvagasStyles';
 
@@ -26,11 +28,33 @@ interface Job {
 }
 
 const FeedVagas = () => {
-    const [activePage, setActivePage] = useState('feedvagas');
+    const [activePage, setActivePage] = useState<string>('feedvagas');
     const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedJob, setSelectedJob] = useState<string | null>('');
+    const [page, setPage] = useState<number>(1);
+    const [clickedJob, setClickedJob] = useState<any>([]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [hasMore, setHasMore] = useState<boolean>(true);
 
     const api = useApi();
+
+    const [jobIdFromUrl, setJobIdFromUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const jobId = urlSearchParams.get('jobId');
+        setJobIdFromUrl(jobId);
+    }, []);
+
+    useEffect(() => {
+        if (jobIdFromUrl && jobs) {
+            const job = jobs.find((job) => job.id === jobIdFromUrl);
+            if (job) {
+                setSelectedJob(jobIdFromUrl);
+                setClickedJob(job);
+            }
+        }
+    }, [jobIdFromUrl, jobs]);
 
     useEffect(() => {
         async function getJobs() {
@@ -42,6 +66,9 @@ const FeedVagas = () => {
 
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
+        const item: any = jobs.filter((item) => item.id === id);
+        setClickedJob(item);
+        window.history.pushState({}, '', `/feedVagas?jobId=${id}`);
     }
 
     return (
@@ -62,7 +89,7 @@ const FeedVagas = () => {
                 <ContentWrapper>
                     <JobsWrapper>
                         {jobs.map((job: any) => (
-                            <JobCard
+                            <JobCardItem
                                 key={job.id}
                                 id={job.id}
                                 title={job.title}
@@ -72,6 +99,7 @@ const FeedVagas = () => {
                                 jobType={job.type}
                                 typeContract={job.typeContract}
                                 publishedAt={job.createdAt}
+                                active={selectedJob === job.id}
                                 onClick={() => {
                                     selecionaVaga(job.id);
                                 }}
@@ -80,8 +108,21 @@ const FeedVagas = () => {
                     </JobsWrapper>
                     {selectedJob && (
                         <JobDetailsWrapper>
-                            <JobDetails id={selectedJob} />
+                            <JobDetails
+                                id={selectedJob}
+                                clickedJob={clickedJob}
+                            />
                         </JobDetailsWrapper>
+                    )}
+                    {!hasMore && (
+                        <ShowMore onClick={showMore} disabled={loading}>
+                            Todas as vagas já foram exibidas.
+                        </ShowMore>
+                    )}
+                    {hasMore && (
+                        <ShowMore onClick={showMore} disabled={loading}>
+                            {loading ? 'Carregando...' : 'Ver mais'}
+                        </ShowMore>
                     )}
                 </ContentWrapper>
             </JobContainer>

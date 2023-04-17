@@ -100,14 +100,15 @@ export const useApi = () => ({
             return '';
           }
         },
-      getJobs: async (id?: string) => {
-        const url = id ? `/job/${id}` : '/job?order=ASC&page=1&take=10&orderByColumn=id';
+      getJobs: async (page: number = 1) => {
+        const url = `/job?order=ASC&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
           return res.data;
       },
-      getJobsByCompany: async (id: string) => {
-        const res: any = await api.get(`/job/all/${id}`);
-        return res.data;
+
+      getJob: async (id: number) => {
+        const url = `/job/${id}`
+        const res: any = await api.get(url);
+          return res.data;
       }
-    
 });
