@@ -216,7 +216,7 @@ export const UserForms = (props: any): JSX.Element => {
                                 <CheckboxInput id="default-checkbox" value="" />
                                 Me mantenha conectado
                             </Label>
-                            <a href="confirm-email">Esqueci minha senha</a>
+                            <a href="confirm-email?type=user">Esqueci minha senha</a>
                         </CheckboxContainer>
                     </InputContainer>
 

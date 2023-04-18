@@ -8,6 +8,9 @@ import rowImage from '../assets/imgs/row.svg';
 
 import '../App.css'
 
+import { useLocation } from 'react-router-dom';
+import { useApi } from '../hooks/useApi';
+
 const ConfirmEmail = () => {
 
     const {
@@ -18,9 +21,23 @@ const ConfirmEmail = () => {
         resolver: yupResolver(emailSchema),
     });
 
-    function onSubmitHandler() {
-        //TODO: falta integração com o back-end.
-    }
+    const api = useApi();
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+
+    const type = searchParams.get("type");
+
+    const onSubmitHandler = async (data:any, e:any) => {
+        
+        if (type === "user") {
+            api.userRecoveryPassword(data.email)
+        } else if (type === "company"){
+            api.companyRecoveryPassword(data.email)
+        } 
+
+        e.preventDefault();
+    }         
 
     return (
         <main
@@ -61,7 +78,7 @@ const ConfirmEmail = () => {
                     {errors.email && <>{errors.email.message}</>}
                     <Button
                         type="submit"
-                        className="block border w-60 rounded hover:bg-blue-700 "
+                        className="block border w-60 rounded hover:bg-blue-700"
                     >
                         Enviar
                     </Button>
