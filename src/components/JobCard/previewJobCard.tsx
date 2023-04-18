@@ -50,7 +50,7 @@ function JobPreview({
                 </PreviewField>
             )}
             <PreviewField>
-                {watch('modality')} - {watch('headquarters')}
+                {watch('modality')} - {watch('city')}
             </PreviewField>
             <Divider />
         </WrapperPreview>

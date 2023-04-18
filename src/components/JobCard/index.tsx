@@ -40,7 +40,8 @@ export default function JobCard({
     affirmative,
     affirmativeType,
     modality,
-    headquarters,
+    city,
+    uf,
 }: any) {
     const NewDate: any = format(new Date(createdAt), 'dd/MM/yyyy - HH:mm');
 
@@ -80,7 +81,7 @@ export default function JobCard({
                 </PreviewField>
             )}
             <PreviewField>
-                {modality} - {headquarters}
+                {modality} - {city}/{uf}
             </PreviewField>
 
             <Footer>

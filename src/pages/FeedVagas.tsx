@@ -71,6 +71,20 @@ const FeedVagas = () => {
         window.history.pushState({}, '', `/feedVagas?jobId=${id}`);
     }
 
+    async function showMore(e: FormEvent) {
+        e.preventDefault();
+        setLoading(true);
+        const newPage = page + 1;
+        const jobs = await api.getJobs(newPage);
+        if (jobs.data.length === 0) {
+            setHasMore(false);
+        } else {
+            setPage(newPage);
+            setJobs((oldJobs) => [...oldJobs, ...jobs.data]);
+        }
+        setLoading(false);
+    }
+
     return (
         <Wrapper>
             <Content>

@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import {
     Controller,
     FieldValues,
@@ -12,6 +12,7 @@ import { createJobForm } from '../validations/JobFormValidations';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Select from 'react-select';
 
 import Header from '../components/Header';
 import logoNameEmpresa from '../assets/imgs/logo-name-empresa.svg';
@@ -29,7 +30,7 @@ import {
     Label,
     LogoImage,
     MainGrid,
-    Select,
+    SelectInput,
     SeparatorLine,
     TextArea,
     Button,
@@ -77,9 +78,9 @@ interface FormData extends FieldValues {
     salary: number;
     modality: 'Presencial' | 'Remoto' | 'Híbrido';
     headquarters: string;
-    contract_time: string | boolean;
+    contractType: string | boolean;
     affirmative: string | boolean;
-    affirmative_type?: string | undefined;
+    affirmativeType?: any;
     company_id?: string | undefined;
 }
 
@@ -112,7 +113,15 @@ const AddJobs = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [step, setStep] = useState(1);
     const [jobs, setJobs] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [selectedOptions, setSelectedOptions] = useState<any>([]);
+
+    const options: any = [
+        { value: 'Mulheres Cis ou Trans', label: 'Mulheres Cis ou Trans' },
+        { value: 'Pessoa preta ou parda', label: 'Pessoa preta ou parda' },
+        { value: 'PCD', label: 'PCD' },
+        { value: '60+', label: '60+' },
+        { value: 'LGBTQIA+', label: 'LGBTQIA+' },
+    ];
 
     const api = useApi();
     const navigate = useNavigate();
@@ -144,70 +153,66 @@ const AddJobs = () => {
             setJobs(data);
         };
         fetchData();
+        console.log(jobs);
     }, []);
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         data.affirmative = data.affirmative === 'true' ? true : false;
-        data.contract_time =
-            data.contract_time === 'no'
-                ? contractTimeValue
-                : 'Contrato por tempo indeterminado';
-        if (data.type_contract === 'Outro') {
-            data.type_contract = data.other_type_contract ?? '';
-            delete data.other_type_contract;
-        } else {
-            delete data.other_type_contract;
-        }
+
+        console.log(data);
         const createJobCheck = watch([
             'title',
             'description',
             'prerequisites',
             'benefits',
             'type',
-            'type_contract',
-            'salary',
+            'typeContract',
+            'salaryMin',
+            'salaryMax',
             'modality',
-            'headquarters',
-            'contract_time',
+            'federalUnit',
+            'city',
+            'indefinideContract',
+            'contractType',
             'affirmative',
-            'affirmative_type',
+            'affirmativeType',
             'company_id',
         ]);
 
-        try {
-            await api
-                .createJob(
-                    createJobCheck[0],
-                    createJobCheck[1],
-                    createJobCheck[2],
-                    createJobCheck[3],
-                    createJobCheck[4],
-                    createJobCheck[5],
-                    createJobCheck[6],
-                    createJobCheck[7],
-                    createJobCheck[8],
-                    createJobCheck[9],
-                    createJobCheck[10],
-                    createJobCheck[11],
-                    createJobCheck[12],
-                )
-                .then((resolve: any) => {
-                    toast.success('Vaga criada com sucesso!', {
-                        position: 'top-center',
-                        theme: 'colored',
-                    });
-                    setIsModalOpen(true);
-                })
-                .catch((err: any) => {
-                    throw new Error(err.message);
-                });
-        } catch (error: any) {
-            console.log(error);
-            // toast.error(error.message, {
-            //     position: 'top-center',
-            //     theme: 'colored',
-            // });
-        }
+        // try {
+        //     await api
+        //         .createJob(
+        //             createJobCheck[0],
+        //             createJobCheck[1],
+        //             createJobCheck[2],
+        //             createJobCheck[3],
+        //             createJobCheck[4],
+        //             createJobCheck[5],
+        //             createJobCheck[6],
+        //             createJobCheck[7],
+        //             createJobCheck[8],
+        //             createJobCheck[9],
+        //             createJobCheck[10],
+        //             createJobCheck[11],
+        //             createJobCheck[12],
+        //         )
+        //         .then((resolve: any) => {
+        //             toast.success('Vaga criada com sucesso!', {
+        //                 position: 'top-center',
+        //                 theme: 'colored',
+        //             });
+        //             setIsModalOpen(true);
+        //         })
+        //         .catch((err: any) => {
+        //             throw new Error(err.message);
+        //         });
+        // } catch (error: any) {
+        //     console.log(error);
+        //     // toast.error(error.message, {
+        //     //     position: 'top-center',
+        //     //     theme: 'colored',
+        //     // });
+        // }
     };
 
     function handleSelectUf(event: ChangeEvent<HTMLSelectElement>) {
@@ -215,22 +220,15 @@ const AddJobs = () => {
         setSelectedUf(uf);
     }
 
-    function handleSelectCity(event: ChangeEvent<HTMLSelectElement>) {
-        const city = event.target.value;
-        const cityUf = `${city}/${selectedUf}`;
-        setValue('headquarters', cityUf);
-    }
-
     const handleClick = async () => {
         const isValid = await trigger([
             'title',
             'description',
-            'type',
-            'type_contract',
+            'prerequisites',
         ]);
         if (isValid) {
-            clearErrors();
             NextStep();
+            clearErrors();
         } else {
             alert('Por favor, preencha todos os campos obrigatórios.');
         }
@@ -238,10 +236,11 @@ const AddJobs = () => {
 
     const handleClickStep2 = async () => {
         const isValid = await trigger([
-            'minValue',
-            'maxValue',
-            'prerequisites',
-            'contract_time',
+            'salaryMin',
+            'salaryMax',
+            'type',
+            'typeContract',
+            'contractType',
         ]);
         if (isValid) {
             clearErrors();
@@ -265,7 +264,7 @@ const AddJobs = () => {
     ) => {
         const { value } = event.target;
         setAffirmativeVanancy(value === 'false');
-        setValue('affirmative_type', value === 'false' ? '' : value);
+        setValue('affirmativeType', value === 'false' ? '' : value);
     };
 
     const NextStep = async () => {
@@ -275,6 +274,8 @@ const AddJobs = () => {
     const PreviousStep = () => {
         setStep(step - 1);
     };
+
+    const modality = watch('modality');
 
     const formValues = watch();
     useEffect(() => {
@@ -312,6 +313,7 @@ const AddJobs = () => {
                                     maxLength={30}
                                     id="title"
                                     {...register('title')}
+                                    placeholder="Título da vaga"
                                 />
                                 <ErrorMessage>
                                     {errors.title && (
@@ -329,51 +331,32 @@ const AddJobs = () => {
                                     id="description"
                                     {...register('description')}
                                     aria-describedby="description-error"
+                                    placeholder="Descrição da vaga"
                                 />
                                 <ErrorMessage>
                                     {errors.description && (
                                         <>{errors.description.message}</>
                                     )}
                                 </ErrorMessage>
-                                <Label htmlFor="type">Tipo:</Label>
 
-                                <Select
-                                    {...register('type')}
-                                    id="type"
-                                    defaultValue="Selecione"
+                                <Label
+                                    htmlFor="prerequisites"
+                                    aria-label="Pré-requisitos"
                                 >
-                                    <option value="Selecione" disabled hidden>
-                                        Selecione
-                                    </option>
-                                    <option value="Estágio">Estágio</option>
-                                    <option value="Trainee">Trainee</option>
-                                    <option value="Júnior">Júnior</option>
-                                    <option value="Analista">Analista</option>
-                                </Select>
-                                <ErrorMessage>
-                                    {errors.type && <>{errors.type.message}</>}
-                                </ErrorMessage>
-                                <Label htmlFor="type_contract">
-                                    Tipo de contrato:
+                                    *Pré-requisitos:{' '}
                                 </Label>
-                                <Select
-                                    {...register('type_contract')}
-                                    id="type_contract"
-                                    defaultValue="Selecione"
-                                >
-                                    <option value="Selecione" disabled hidden>
-                                        Selecione
-                                    </option>
-                                    <option value="CLT">CLT</option>
-                                    <option value="PJ">PJ</option>
-                                    <option value="Outro">Outro</option>
-                                </Select>
-
+                                <TextArea
+                                    maxLength={3000}
+                                    id="prerequisites"
+                                    {...register('prerequisites')}
+                                    placeholder="Informe os pré-requisitos da vaga cadastrada"
+                                />
                                 <ErrorMessage>
-                                    {errors.type_contract && (
-                                        <>{errors.type_contract.message}</>
+                                    {errors.prerequisites && (
+                                        <>{errors.prerequisites.message}</>
                                     )}
                                 </ErrorMessage>
+
                                 <ButtonSection>
                                     <CancelButton
                                         onClick={() => setCancelModal(true)}
@@ -394,7 +377,7 @@ const AddJobs = () => {
                                     <SalaryInputContainer>
                                         <div>
                                             <Controller
-                                                {...register('minValue')}
+                                                {...register('salaryMin')}
                                                 control={control}
                                                 defaultValue=""
                                                 render={({
@@ -406,6 +389,7 @@ const AddJobs = () => {
                                                         thousandSeparator={'.'}
                                                         decimalSeparator={','}
                                                         prefix={'R$ '}
+                                                        placeholder="Informe um valor inicial"
                                                         onValueChange={(
                                                             values: any,
                                                         ) => {
@@ -420,10 +404,10 @@ const AddJobs = () => {
                                                 )}
                                             />
                                             <ErrorMessage>
-                                                {errors.minValue && (
+                                                {errors.salaryMin && (
                                                     <>
                                                         {
-                                                            errors.minValue
+                                                            errors.salaryMin
                                                                 .message
                                                         }
                                                     </>
@@ -432,7 +416,7 @@ const AddJobs = () => {
                                         </div>
                                         <div>
                                             <Controller
-                                                {...register('maxValue')}
+                                                {...register('salaryMax')}
                                                 control={control}
                                                 defaultValue=""
                                                 render={({
@@ -444,6 +428,7 @@ const AddJobs = () => {
                                                         thousandSeparator={'.'}
                                                         decimalSeparator={','}
                                                         prefix={'R$ '}
+                                                        placeholder="Informe um valor final"
                                                         onValueChange={(
                                                             values: any,
                                                         ) => {
@@ -459,10 +444,10 @@ const AddJobs = () => {
                                             />
 
                                             <ErrorMessage>
-                                                {errors.maxValue && (
+                                                {errors.salaryMax && (
                                                     <>
                                                         {
-                                                            errors.maxValue
+                                                            errors.salaryMax
                                                                 .message
                                                         }
                                                     </>
@@ -471,54 +456,79 @@ const AddJobs = () => {
                                         </div>
                                     </SalaryInputContainer>
                                 </SalarySection>
-                                <Label
-                                    htmlFor="prerequisites"
-                                    aria-label="Pré-requisitos"
+                                <Label htmlFor="type">Tipo:</Label>
+                                <SelectInput
+                                    {...register('type')}
+                                    id="type"
+                                    defaultValue="Selecione"
                                 >
-                                    *Pré-requisitos:{' '}
-                                </Label>
-                                <TextArea
-                                    maxLength={3000}
-                                    id="prerequisites"
-                                    {...register('prerequisites')}
-                                />
+                                    <option value="Selecione" disabled hidden>
+                                        Selecione
+                                    </option>
+                                    <option value="Estágio">Estágio</option>
+                                    <option value="Trainee">Trainee</option>
+                                    <option value="Júnior">Júnior</option>
+                                    <option value="Analista">Analista</option>
+                                </SelectInput>
                                 <ErrorMessage>
-                                    {errors.prerequisites && (
-                                        <>{errors.prerequisites.message}</>
+                                    {errors.type && <>{errors.type.message}</>}
+                                </ErrorMessage>
+                                <Label htmlFor="typeContract">
+                                    Tipo de contrato:
+                                </Label>
+                                <SelectInput
+                                    {...register('typeContract')}
+                                    id="typeContract"
+                                    defaultValue="Selecione"
+                                >
+                                    <option value="Selecione" disabled hidden>
+                                        Selecione
+                                    </option>
+                                    <option value="CLT">CLT</option>
+                                    <option value="PJ">PJ</option>
+                                    <option value="Outro">Outro</option>
+                                </SelectInput>
+
+                                <ErrorMessage>
+                                    {errors.typeContract && (
+                                        <>{errors.typeContract.message}</>
                                     )}
                                 </ErrorMessage>
+
                                 <Label>
                                     *Contrato por tempo indeterminado?
                                 </Label>
                                 <RadioInputContainer>
-                                    <Label>
+                                    <label>
                                         <RadioInput
                                             type="radio"
-                                            value="yes"
-                                            {...register('contract_time')}
-                                            name="contract_time"
+                                            value="true"
+                                            {...register('indefinideContract')}
+                                            name="indefinideContract"
                                             defaultChecked
-                                            onClick={() =>
-                                                setShowContractTimeInput(false)
-                                            }
+                                            onClick={() => {
+                                                setShowContractTimeInput(false);
+                                                setContractTimeValue('');
+                                            }}
                                         />
                                         Sim
-                                    </Label>
-                                    <Label>
+                                    </label>
+                                    <label>
                                         <RadioInput
                                             type="radio"
-                                            value="no"
-                                            {...register('contract_time')}
-                                            name="contract_time"
+                                            value="false"
+                                            {...register('indefinideContract')}
+                                            name="indefinideContract"
                                             onClick={() =>
                                                 setShowContractTimeInput(true)
                                             }
                                         />
                                         Não
-                                    </Label>
+                                    </label>
                                 </RadioInputContainer>
                                 <Label>Tempo do contrato</Label>
                                 <Input
+                                    {...register('contractType')}
                                     type="text"
                                     required
                                     disabled={!showContractTimeInput}
@@ -528,8 +538,8 @@ const AddJobs = () => {
                                     }
                                 />
                                 <ErrorMessage>
-                                    {errors.contract_time && (
-                                        <>{errors.contract_time.message}</>
+                                    {errors.contractType && (
+                                        <>{errors.contractType.message}</>
                                     )}
                                 </ErrorMessage>
                                 <ButtonSection>
@@ -547,82 +557,8 @@ const AddJobs = () => {
                             <>
                                 <Container>
                                     <div>
-                                        <Label>UF:</Label>
-                                        <Select
-                                            {...register('uf')}
-                                            name="uf"
-                                            id="uf"
-                                            onChange={(e) => {
-                                                handleSelectUf(e);
-                                                trigger('uf');
-                                            }}
-                                            defaultValue="Selecione"
-                                            width={126}
-                                        >
-                                            <option
-                                                value="Selecione"
-                                                disabled
-                                                hidden
-                                            >
-                                                Selecione
-                                            </option>
-                                            {ufs.map((uf) => (
-                                                <option
-                                                    key={uf.id}
-                                                    value={uf.sigla}
-                                                >
-                                                    {uf.sigla}
-                                                </option>
-                                            ))}
-                                        </Select>
-                                        <ErrorMessage>
-                                            {errors.uf && (
-                                                <>{errors.uf.message}</>
-                                            )}
-                                        </ErrorMessage>
-                                    </div>
-                                    <div>
-                                        <Label>Cidade: </Label>
-                                        <Select
-                                            name="headquarters"
-                                            id="headquarters"
-                                            onChange={(e) => {
-                                                handleSelectCity(e);
-                                                trigger('headquarters');
-                                            }}
-                                            defaultValue="Selecione"
-                                            width={205}
-                                        >
-                                            <option
-                                                value="Selecione"
-                                                disabled
-                                                hidden
-                                            >
-                                                Selecione
-                                            </option>
-                                            {cities.map((city) => (
-                                                <option
-                                                    key={city.id}
-                                                    value={city.nome}
-                                                >
-                                                    {city.nome}
-                                                </option>
-                                            ))}
-                                        </Select>
-                                        <div className="text-red-600 text-sm text-center">
-                                            {errors.headquarters && (
-                                                <>
-                                                    {
-                                                        errors.headquarters
-                                                            .message
-                                                    }
-                                                </>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <div>
                                         <Label>*Modalidade</Label>
-                                        <Select
+                                        <SelectInput
                                             {...register('modality')}
                                             defaultValue="Selecione"
                                             width={164}
@@ -643,12 +579,77 @@ const AddJobs = () => {
                                             <option value="Presencial">
                                                 Presencial
                                             </option>
-                                        </Select>
+                                        </SelectInput>
                                         <ErrorMessage>
                                             {errors.modality && (
                                                 <>{errors.modality.message}</>
                                             )}
                                         </ErrorMessage>
+                                    </div>
+                                    <div>
+                                        <Label>UF:</Label>
+                                        <SelectInput
+                                            {...register('federalUnit')}
+                                            name="federalUnit"
+                                            id="federalUnit"
+                                            onChange={(e) => {
+                                                handleSelectUf(e);
+                                                trigger('federalUnit');
+                                            }}
+                                            defaultValue=""
+                                            width={126}
+                                            disabled={modality === 'Remoto'}
+                                        >
+                                            <option value="" disabled>
+                                                Selecione
+                                            </option>
+                                            {ufs.map((uf) => (
+                                                <option
+                                                    key={uf.id}
+                                                    value={uf.sigla}
+                                                >
+                                                    {uf.sigla}
+                                                </option>
+                                            ))}
+                                        </SelectInput>
+                                        <ErrorMessage>
+                                            {errors.federalUnit && (
+                                                <>
+                                                    {errors.federalUnit.message}
+                                                </>
+                                            )}
+                                        </ErrorMessage>
+                                    </div>
+                                    <div>
+                                        <Label>Cidade: </Label>
+                                        <SelectInput
+                                            {...register('city')}
+                                            name="city"
+                                            id="city"
+                                            onChange={(e) => {
+                                                trigger('city');
+                                            }}
+                                            defaultValue=""
+                                            width={205}
+                                            disabled={modality === 'Remoto'}
+                                        >
+                                            <option value="" disabled>
+                                                Selecione
+                                            </option>
+                                            {cities.map((city) => (
+                                                <option
+                                                    key={city.id}
+                                                    value={city.nome}
+                                                >
+                                                    {city.nome}
+                                                </option>
+                                            ))}
+                                        </SelectInput>
+                                        <div className="text-red-600 text-sm text-center">
+                                            {errors.city && (
+                                                <>{errors.city.message}</>
+                                            )}
+                                        </div>
                                     </div>
                                 </Container>
                                 <Label htmlFor="benefits">Benefícios: </Label>
@@ -698,26 +699,27 @@ const AddJobs = () => {
                                 </RadioInputContainer>
                                 <Label>Selecione o grupo minoritário</Label>
                                 <Select
-                                    {...register('affirmative_type')}
-                                    disabled={affirmativeVanancy}
-                                    defaultValue="Selecione"
-                                >
-                                    <option value="Selecione" disabled hidden>
-                                        Selecione
-                                    </option>
-                                    <option value="Mulheres Cis ou Trans">
-                                        Mulheres Cis ou Trans
-                                    </option>
-                                    <option value="Pessoa preta ou parda">
-                                        Pessoa preta ou parda
-                                    </option>
-                                    <option value="PCD">PCD</option>
-                                    <option value="60+">60+</option>
-                                    <option value="LGBTQIA+">LGBTQIA+</option>
-                                </Select>
+                                    {...register('affirmativeType')}
+                                    name="affirmativeType"
+                                    isMulti
+                                    options={options}
+                                    value={selectedOptions}
+                                    onChange={(selectedOptions, actionMeta) => {
+                                        setSelectedOptions(selectedOptions);
+                                    }}
+                                    onBlur={() =>
+                                        setValue(
+                                            'affirmativeType',
+                                            selectedOptions.map(
+                                                (option: any) => option.value,
+                                            ),
+                                        )
+                                    }
+                                    placeholder="Selecione"
+                                />
                                 <ErrorMessage>
-                                    {errors.affirmative_type && (
-                                        <>{errors.affirmative_type.message}</>
+                                    {errors.affirmativeType && (
+                                        <>{errors.affirmativeType.message}</>
                                     )}
                                 </ErrorMessage>
                                 <ButtonSection>
@@ -788,7 +790,8 @@ const AddJobs = () => {
                         affirmative={job.affirmative}
                         affirmativeType={job.affirmativeType}
                         modality={job.modality}
-                        headquarters={job.headquarters}
+                        city={job.city}
+                        uf={job.uf}
                     />
                 ))}
             </ListJobsContainer>

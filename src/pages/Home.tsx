@@ -55,6 +55,9 @@ export const Home: React.FC = () => {
                 <LinkTag>
                     <Link to="FeedVagas">Feed de Vagas</Link>
                 </LinkTag>
+                <LinkTag>
+                    <Link to="addjobs">Criar vagas</Link>
+                </LinkTag>
             </LinkContainer>
             <Bar></Bar>
             <InputWrapper>

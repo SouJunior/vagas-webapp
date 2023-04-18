@@ -17,16 +17,19 @@ export const createJobForm = yup.object().shape({
         .string()
         .max(3000, 'Este campo deve ter no máximo 3000 caracteres'),
     type: yup.mixed().required('A opção é obrigatória'),
-    type_contract: yup
+    typeContract: yup
         .mixed()
         .oneOf(['CLT', 'PJ', 'Outro'], 'Selecione uma opção válida')
         .required('A opção é obrigatória'),
-    other_type_contract: yup.string().when('type_contract', {
-        is: (value: any) => value === 'Outro',
-        then: yup.string().required('Descreva o tipo de contrato'),
-    }),
-    contract_time: yup.string().required('Descreva o tempo de contrato'),
-    minValue: yup
+    indefinideContract: yup
+        .string()
+        .required('A opção é obrigatória'),
+        contractType: yup.string().when('indefinideContract', {
+            is: 'no',
+            then: yup.string().required('Campo obrigatório'),
+          }),
+        
+    salaryMin: yup
         .number()
         .typeError('O valor mínimo deve ser um número')
         .positive('O valor mínimo deve ser positivo')
@@ -40,7 +43,7 @@ export const createJobForm = yup.object().shape({
             },
         ),
 
-    maxValue: yup
+        salaryMax: yup
         .number()
         .typeError('O valor máximo deve ser um número')
         .positive('O valor máximo deve ser positivo')
@@ -60,33 +63,25 @@ export const createJobForm = yup.object().shape({
             'Selecione uma opção válida',
         )
         .required('A opção é obrigatória'),
-    uf: yup.mixed().when('modality', {
+
+    federalUnit: yup.string().when('modality', {
         is: (modality: string) => modality !== 'Remoto',
         then: yup
             .string()
             .required('O preenchimento do campo UF é obrigatório.'),
     }),
-    headquarters: yup.string().when('modality', {
+    city: yup.string().when('modality', {
         is: (modality: string) => modality !== 'Remoto',
         then: yup
             .string()
-            .required('O preenchimento do campo UF é obrigatório.'),
+            .required('O preenchimento do campo Cidade é obrigatório.'),
     }),
     affirmative: yup.string().required('A seleção é obrigatória'),
-    affirmative_type: yup.mixed().when('affirmative', {
+    affirmativeType: yup.array().when('affirmative', {
         is: 'true',
-        then: yup
-            .string()
-            .required('Descreva o tipo de contrato')
-            .oneOf(
-                [
-                    'Mulheres Cis ou Trans',
-                    'Pessoa preta ou parda',
-                    'PCD',
-                    '60+',
-                    'LGBTQIA+',
-                ],
-                'Selecione uma opção válida',
-            ),
-    }),
+        then: yup.array().test('is-selected', 'Selecione uma opção', (value: any) => value && value.length > 0),
+        otherwise: yup.array(),
+      }),
+      
+    
 });

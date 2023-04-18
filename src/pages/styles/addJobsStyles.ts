@@ -47,7 +47,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 583px;
-  height: 655px;
+  min-height: 655px;
   background: #FFFFFF;
   border: 1px solid #E8E8E8;
   box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
@@ -70,6 +70,10 @@ export const Input = styled.input`
   border-radius: 6px;
   height: 50px;
   padding-left: 16px;
+
+  ::placeholder {
+    color: #D8D8D8;
+  }
 `
 
 export const TextArea = styled.textarea`
@@ -77,6 +81,10 @@ export const TextArea = styled.textarea`
   border-radius: 6px;
   height: 100px;
   padding: 10px 16px;
+
+  ::placeholder {
+    color: #D8D8D8;
+  }
 `
 export const ErrorMessage = styled.span`
   color: #FF0000;
@@ -86,7 +94,7 @@ export const ErrorMessage = styled.span`
   margin-top: 4px;
 `;
 
-export const Select = styled.select<{ width?: number }>`
+export const SelectInput = styled.select<{ width?: number }>`
   height: 50px;
   background: #FFFFFF;
   border: 1px solid #E8E8E8;
@@ -137,6 +145,7 @@ export const Button = styled.button`
   background: #1165BA;
   border-radius: 4px;
   color: #FFFFFF;
+  margin-top: 23px;
 `;
 
 export const CancelButton = styled(Button)`
@@ -148,7 +157,7 @@ export const CancelButton = styled(Button)`
 export const ButtonSection = styled.div`
   display: flex;
   gap: 11px;
-  margin-top: 32px;
+  margin-top: auto;
 `;
 
 export const SalarySection = styled.div`
@@ -168,12 +177,25 @@ export const SalaryInput = styled(NumericFormat)`
   border-radius: 6px;
   padding-left: 12px;
   font-size: 18px;
+
+    ::placeholder {
+      color: #D8D8D8;
+      font-size: 16px;
+    }
 `;
 
 export const RadioInputContainer = styled.div`
   display: flex;
   gap: 50px;
-  margin-bottom: 16px;
+
+  label {
+  color: #515050;
+  font-size: 16px;
+  margin-top: 4px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  }
   `;
 
 export const RadioInput = styled.input.attrs({ type: 'radio' })`
@@ -184,7 +206,8 @@ export const RadioInput = styled.input.attrs({ type: 'radio' })`
 
 export const Container = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 10px;
+ 
 `;
 
 export const NoJobsContainer = styled.div`
