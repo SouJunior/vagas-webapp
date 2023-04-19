@@ -11,66 +11,88 @@ export const ProfileImage = styled.img`
 
 export const ProfileImageWrapper = styled.div`
   display: flex;
-  justify-content: center;
   margin-bottom: 12px;
-
 `;
 
-export const CheckBoxContainer = styled.div`
-    display: flex;
-    gap: 12px;
+export const ActiveProfile = styled.div`
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 auto;
+`
 
-    label {
-        color: #262626;
-    }
-`;
+export const ActiveProfileTitle = styled.h1`
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #515050;
+  text-align: center;
+  margin-top: 12px;
+`
 
+export const ActiveProfileStatus = styled.span`
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 700;
+`
+export const EditProfile = styled.span`
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  color: #1165BA;
+`
 
-export const CheckBoxWrapper = styled.div`
-  position: relative;
-`;
-export const CheckBoxLabel = styled.label`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 42px;
-  height: 26px;
-  border-radius: 15px;
-  background: #bebebe;
-  cursor: pointer;
-  &::after {
-    content: "";
-    display: block;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    margin: 3px;
-    background: #ffffff;
-    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-    transition: 0.2s;
-  }
-`;
-export const CheckBox = styled.input.attrs({ 'aria-checked': false })`
-  opacity: 0;
-  z-index: 1;
-  border-radius: 15px;
-  width: 42px;
-  height: 26px;
-  aria-checked: false;
-  &:checked + ${CheckBoxLabel} {
-    background: #4fbe79;
-    aria-checked: true;
-    &::after {
-      content: "";
-      display: block;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 21px;
-      transition: 0.2s;
-    }
-    &[aria-checked='true'] {
-      aria-checked: true;
-    }
-  }
-`;
+export const ActiveProfileDescription = styled.p`
+  text-align: center;
+  font-size: 14px;
+`
+
+export const DivisionBar = styled.div`
+  width: 100%;
+  margin: 28px auto;
+  background-color:#E8E8E8;
+  border: 1px solid #E8E8E8;
+  box-sizing: border-box;
+`
+
+export const ProfileJobsBoard = styled.div`
+  display: flex;
+  gap: 13px;
+  min-width: 200px;
+  margin-bottom: 18px;
+`
+export const ProfilesJobsInfo = styled.div`
+
+`
+
+export const ProfilesJobsBoardImg = styled.div`
+  width: 40px;
+  height: 40px;
+  justify-content: flex-start;
+  margin-top: 13px;
+  background-color: green;
+`
+
+export const YourJobsTitle = styled.h2`
+  font-size: 14px;
+  font-weight: 600;
+  color: #5E5E5E;
+  line-height: 17px;
+  margin-bottom: 32px;
+`
+
+export const ProfilesJobsInfoTitle = styled.h3`
+font-weight: 600;
+font-size: 16px;
+line-height: 19px;
+color: #515050;
+margin-bottom: 4px
+`
+
+export const ProfilesJobsInfoDescription = styled.span`
+font-size: 14px;
+line-height: 17px;
+color: #5E5E5E;
+`
+

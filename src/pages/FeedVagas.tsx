@@ -19,6 +19,8 @@ import {
     ShowMore,
     Wrapper,
 } from './styles/feedvagasStyles';
+import { DivisionBar, ProfileJobsBoard, ProfilesJobsBoardImg, ProfilesJobsInfo, ProfilesJobsInfoDescription, ProfilesJobsInfoTitle, YourJobsTitle } from '../components/FeedVagas/FeedProfile/styles';
+
 
 interface Job {
     id: string;
@@ -96,6 +98,34 @@ const FeedVagas = () => {
                         <FeedProfile />
                     </AuthProvider>
                     <ActiveProfile />
+                    <DivisionBar/>
+                    <YourJobsTitle>Suas vagas</YourJobsTitle>
+                    <ProfileJobsBoard>
+                        <ProfilesJobsBoardImg />
+                        <ProfilesJobsInfo>
+                            <ProfilesJobsInfoTitle>UX Designer Junior</ProfilesJobsInfoTitle>
+                            <ProfilesJobsInfoDescription>Empresa Verde</ProfilesJobsInfoDescription>
+                            <p>Status</p>
+                        </ProfilesJobsInfo>
+                    </ProfileJobsBoard>
+                    {/* Esses outros "profileJobsBoard" são temporários para demonstração estática por faltar 
+                    dados do back-end e não ser possível fazer o map com a renderização dos componentes. */}
+                                        <ProfileJobsBoard>
+                        <ProfilesJobsBoardImg />
+                        <ProfilesJobsInfo>
+                            <ProfilesJobsInfoTitle>UX Designer Junior</ProfilesJobsInfoTitle>
+                            <ProfilesJobsInfoDescription>Empresa Verde</ProfilesJobsInfoDescription>
+                            <p>Status</p>
+                        </ProfilesJobsInfo>
+                    </ProfileJobsBoard>
+                    <ProfileJobsBoard>
+                        <ProfilesJobsBoardImg />
+                        <ProfilesJobsInfo>
+                            <ProfilesJobsInfoTitle>UX Designer Junior</ProfilesJobsInfoTitle>
+                            <ProfilesJobsInfoDescription>Empresa Verde</ProfilesJobsInfoDescription>
+                            <p>Status</p>
+                        </ProfilesJobsInfo>
+                    </ProfileJobsBoard>
                 </ProfileStatusContent>
             </ProfileStatus>
             <Wrapper>

@@ -5,25 +5,30 @@ export const Wrapper = styled.div`
   flex-direction: column;
   height: 100%;
   gap: 56px;
+  justify-content: center;
 `;
 
-export const Grid = styled.section`
+export const Grid = styled.div`
     display: grid;
-    grid-template-columns: 10px 1fr;
+    grid-template-columns: 270px 1fr;
 `;
 
 export const ProfileStatus = styled.div`
-
+  min-width: 270px;
+  margin-top: 40px;
+  padding: 0px 20px;
+  box-sizing: border-box;
 `
 
 export const ProfileStatusContent = styled.div`
-  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const Content = styled.div`
     display: flex;
     margin-top: 18px;
-    justify-content: space-around;
     justify-content: space-around;
 `
 
@@ -31,7 +36,6 @@ export const JobContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 1000px;
     margin-bottom: 56px;
 `
 
