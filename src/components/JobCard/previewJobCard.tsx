@@ -20,16 +20,17 @@ function JobPreview({
                 <Title>{watch('title')}</Title>
                 <span>
                     <JobType>{watch('type')}</JobType>
-                    <JobType>{watch('type_contract')}</JobType>
+                    <JobType>{watch('typeContract')}</JobType>
                 </span>
             </HeaderPreview>
 
             <DescriptionPreview>{watch('description')}</DescriptionPreview>
 
-            {watch('minValue') !== undefined ||
-            watch('maxValue') !== undefined ? (
+            {watch('salaryMin') !== undefined ||
+            watch('salaryMax') !== undefined ? (
                 <PreviewField>
-                    Faixa Salarial: de {watch('minValue')} a {watch('maxValue')}{' '}
+                    Faixa Salarial: de {watch('salaryMin')} a{' '}
+                    {watch('salaryMax')}{' '}
                 </PreviewField>
             ) : null}
             <span>
@@ -37,8 +38,8 @@ function JobPreview({
                 <PreviewField>{watch('prerequisites')}</PreviewField>
             </span>
             <PreviewField>
-                {watch('contract_time') === 'no'
-                    ? contractTimeValue
+                {watch('indefinideContract') === 'false'
+                    ? watch('contractType')
                     : 'Contrato por tempo indeterminado'}
             </PreviewField>
             {watch('benefits') === null ? null : (
@@ -46,12 +47,21 @@ function JobPreview({
             )}
             {watch('affirmative') === 'false' ? null : (
                 <PreviewField>
-                    Grupo Minoritário: {watch('affirmative_type')}
+                    Grupo Minoritário:{' '}
+                    {watch('affirmativeType') &&
+                        watch('affirmativeType').join(' / ')}
                 </PreviewField>
             )}
-            <PreviewField>
-                {watch('modality')} - {watch('city')}
-            </PreviewField>
+            {watch('modality') !== undefined && (
+                <PreviewField>
+                    {watch('modality')}{' '}
+                    {watch('modality') !== 'Remoto' &&
+                    watch('city') &&
+                    watch('federalUnit')
+                        ? ` - ${watch('city')}/${watch('federalUnit')}`
+                        : null}
+                </PreviewField>
+            )}
             <Divider />
         </WrapperPreview>
     );

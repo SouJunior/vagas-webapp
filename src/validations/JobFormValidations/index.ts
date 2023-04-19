@@ -16,46 +16,36 @@ export const createJobForm = yup.object().shape({
     benefits: yup
         .string()
         .max(3000, 'Este campo deve ter no máximo 3000 caracteres'),
-    type: yup.mixed().required('A opção é obrigatória'),
-    typeContract: yup
-        .mixed()
-        .oneOf(['CLT', 'PJ', 'Outro'], 'Selecione uma opção válida')
-        .required('A opção é obrigatória'),
-    indefinideContract: yup
-        .string()
-        .required('A opção é obrigatória'),
-        contractType: yup.string().when('indefinideContract', {
-            is: 'no',
-            then: yup.string().required('Campo obrigatório'),
-          }),
-        
     salaryMin: yup
         .number()
         .typeError('O valor mínimo deve ser um número')
         .positive('O valor mínimo deve ser positivo')
         .required('O valor mínimo é obrigatório')
         .test(
-            'min-max',
+            'min-max-salaryMin',
             'O valor mínimo deve ser menor que o valor máximo',
             function (value: any) {
-                const { maxValue } = this.parent;
-                return !maxValue || value <= maxValue;
+                const { salaryMax } = this.parent;
+                return !salaryMax || value <= salaryMax;
             },
         ),
-
-        salaryMax: yup
+    salaryMax: yup
         .number()
         .typeError('O valor máximo deve ser um número')
         .positive('O valor máximo deve ser positivo')
-        .required('O valor máximo é obrigatório')
-        .test(
-            'min-max',
-            'O valor máximo deve ser maior que o valor mínimo',
-            function (value: any) {
-                const { minValue } = this.parent;
-                return !minValue || value >= minValue;
-            },
-        ),
+        .required('O valor máximo é obrigatório'),
+    type: yup.mixed().required('A opção é obrigatória'),
+    typeContract: yup
+            .mixed()
+            .oneOf(['CLT', 'PJ', 'Outro'], 'Selecione uma opção válida')
+            .required('A opção é obrigatória'),
+    indefinideContract: yup
+        .string()
+        .required('A opção é obrigatória'),
+    contractType: yup.string().when('indefinideContract', {
+            is: 'false',
+            then: yup.string().required('Campo obrigatório'),
+          }),
     modality: yup
         .mixed()
         .oneOf(

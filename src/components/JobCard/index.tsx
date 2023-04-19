@@ -69,7 +69,9 @@ export default function JobCard({
             </PreviewField>
             <span>
                 <PreviewField>Pré-requisitos:</PreviewField>
-                <PreviewField>{prerequisites}</PreviewField>
+                <PreviewField>
+                    <p>{prerequisites}</p>
+                </PreviewField>
             </span>
             <PreviewField>{contractType}</PreviewField>
             {benefits === null ? null : (
@@ -81,7 +83,9 @@ export default function JobCard({
                 </PreviewField>
             )}
             <PreviewField>
-                {modality} - {city}/{uf}
+                {modality !== 'Remoto'
+                    ? modality
+                    : `${modality} - ${city || ''}/${uf || ''}`}
             </PreviewField>
 
             <Footer>

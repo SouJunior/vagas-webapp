@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
     position: relative;
     cursor: pointer;
-    height: 557px;
     margin-bottom: 16px;
     padding: 24px;
     border-width: 1px;
     border-radius: 6px;
+    overflow-x: auto;
 `;
 
 export const WrapperPreview = styled(Wrapper)`
@@ -20,7 +20,9 @@ export const WrapperPreview = styled(Wrapper)`
     height: 655px;
     margin-top: 32px;
     box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
-`;
+    word-break: break-all;
+    overflow-wrap: break-word;
+`
 
 export const Divider = styled.hr`
     margin-top: auto;
@@ -87,12 +89,16 @@ export const DescriptionPreview = styled(Description)`
     height: auto;
     border: none;
     padding-bottom: 0;
-    word-wrap: break-word;
-
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word; 
 `;
 
 export const PreviewField = styled(DescriptionPreview)`
     margin-top: 16px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;  
 `;
 export const Footer = styled.div`
     padding-top: 5px;
