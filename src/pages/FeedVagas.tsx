@@ -10,9 +10,12 @@ import JobDetails from '../components/FeedVagas/JobDetails';
 import {
     Content,
     ContentWrapper,
+    Grid,
     JobContainer,
     JobDetailsWrapper,
     JobsWrapper,
+    ProfileStatus,
+    ProfileStatusContent,
     ShowMore,
     Wrapper,
 } from './styles/feedvagasStyles';
@@ -47,7 +50,7 @@ const FeedVagas = () => {
     }, []);
 
     useEffect(() => {
-        if (jobIdFromUrl && jobs ) {
+        if (jobIdFromUrl && jobs) {
             const job = jobs.find((job) => job.id === jobIdFromUrl);
             if (job) {
                 setSelectedJob(jobIdFromUrl);
@@ -63,7 +66,6 @@ const FeedVagas = () => {
         }
         getJobs();
     }, []);
-
 
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
@@ -87,61 +89,66 @@ const FeedVagas = () => {
     }
 
     return (
-        <Wrapper>
-            <Content>
-                <div>
+        <Grid>
+            <ProfileStatus>
+                <ProfileStatusContent>
                     <AuthProvider>
                         <FeedProfile />
                     </AuthProvider>
                     <ActiveProfile />
-                </div>
-                <FeedHeader
-                    activePage={activePage}
-                    setActivePage={setActivePage}
-                />
-            </Content>
-            <JobContainer>
-                <ContentWrapper>
-                    <JobsWrapper>
-                        {jobs.map((job: any) => (
-                            <JobCardItem
-                                key={job.id}
-                                id={job.id}
-                                title={job.title}
-                                company={job.company}
-                                headquarters={job.headquarters}
-                                modality={job.modality}
-                                jobType={job.type}
-                                typeContract={job.typeContract}
-                                publishedAt={job.createdAt}
-                                active={selectedJob === job.id}
-                                onClick={() => {
-                                    selecionaVaga(job.id);
-                                }}
-                            />
-                        ))}
-                    </JobsWrapper>
-                    {selectedJob && (
-                        <JobDetailsWrapper>
-                            <JobDetails
-                                id={selectedJob}
-                                clickedJob={clickedJob}
-                            />
-                        </JobDetailsWrapper>
-                    )}
-                    {!hasMore && (
-                        <ShowMore onClick={showMore} disabled={loading}>
-                            Todas as vagas já foram exibidas.
-                        </ShowMore>
-                    )}
-                    {hasMore && (
-                        <ShowMore onClick={showMore} disabled={loading}>
-                            {loading ? 'Carregando...' : 'Ver mais'}
-                        </ShowMore>
-                    )}
-                </ContentWrapper>
-            </JobContainer>
-        </Wrapper>
+                </ProfileStatusContent>
+            </ProfileStatus>
+            <Wrapper>
+                <Content>
+                    <FeedHeader
+                        activePage={activePage}
+                        setActivePage={setActivePage}
+                    />
+                </Content>
+
+                <JobContainer>
+                    <ContentWrapper>
+                        <JobsWrapper>
+                            {jobs.map((job: any) => (
+                                <JobCardItem
+                                    key={job.id}
+                                    id={job.id}
+                                    title={job.title}
+                                    company={job.company}
+                                    headquarters={job.headquarters}
+                                    modality={job.modality}
+                                    jobType={job.type}
+                                    typeContract={job.typeContract}
+                                    publishedAt={job.createdAt}
+                                    active={selectedJob === job.id}
+                                    onClick={() => {
+                                        selecionaVaga(job.id);
+                                    }}
+                                />
+                            ))}
+                        </JobsWrapper>
+                        {selectedJob && (
+                            <JobDetailsWrapper>
+                                <JobDetails
+                                    id={selectedJob}
+                                    clickedJob={clickedJob}
+                                />
+                            </JobDetailsWrapper>
+                        )}
+                        {!hasMore && (
+                            <ShowMore onClick={showMore} disabled={loading}>
+                                Todas as vagas já foram exibidas.
+                            </ShowMore>
+                        )}
+                        {hasMore && (
+                            <ShowMore onClick={showMore} disabled={loading}>
+                                {loading ? 'Carregando...' : 'Ver mais'}
+                            </ShowMore>
+                        )}
+                    </ContentWrapper>
+                </JobContainer>
+            </Wrapper>
+        </Grid>
     );
 };
 
