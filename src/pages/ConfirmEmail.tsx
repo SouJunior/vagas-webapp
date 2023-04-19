@@ -30,9 +30,9 @@ const ConfirmEmail = () => {
 
     const onSubmitHandler = async (data:any, e:any) => {
         
-        if (type === "user") {
+        if (type === "USER") {
             api.userRecoveryPassword(data.email)
-        } else if (type === "company"){
+        } else if (type === "COMPANY"){
             api.companyRecoveryPassword(data.email)
         } 
 
