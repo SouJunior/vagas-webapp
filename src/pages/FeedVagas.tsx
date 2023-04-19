@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import FeedHeader from '../components/FeedVagas/FeedHeader';
 import FeedProfile from '../components/FeedVagas/FeedProfile';
 import ActiveProfile from '../components/FeedVagas/FeedProfile/ActiveProfile';
@@ -16,6 +16,7 @@ import {
     ShowMore,
     Wrapper,
 } from './styles/feedvagasStyles';
+import FeedSearch from '../components/FeedVagas/FeedSearch';
 
 interface Job {
     id: string;
@@ -35,6 +36,7 @@ const FeedVagas = () => {
     const [clickedJob, setClickedJob] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [hasMore, setHasMore] = useState<boolean>(true);
+    const [selectedJobType, setSelectedJobType] = useState('Todas as vagas');
 
     const api = useApi();
 
@@ -47,7 +49,7 @@ const FeedVagas = () => {
     }, []);
 
     useEffect(() => {
-        if (jobIdFromUrl && jobs ) {
+        if (jobIdFromUrl && jobs) {
             const job = jobs.find((job) => job.id === jobIdFromUrl);
             if (job) {
                 setSelectedJob(jobIdFromUrl);
@@ -63,7 +65,6 @@ const FeedVagas = () => {
         }
         getJobs();
     }, []);
-
 
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
@@ -86,6 +87,30 @@ const FeedVagas = () => {
         setLoading(false);
     }
 
+    const onSubmit = () => {
+        console.log('Submited');
+    };
+
+    // const filteredJobs = jobs.filter((job: any) => {
+    //     // Verifica se o título da vaga contém o termo de pesquisa
+    //     const titleMatch = job.title
+    //         .toLowerCase()
+    //         .includes(searchTerm.toLowerCase());
+
+    //     // Verifica se o tipo de trabalho corresponde ao tipo de trabalho selecionado pelo usuário
+    //     const jobTypeMatch =
+    //         job.type === selectedJobType ||
+    //         selectedJobType === 'Todas as vagas';
+
+    //     // Verifica se a sede da empresa corresponde à localização selecionada pelo usuário
+    //     const locationMatch = job.headquarters
+    //         .toLowerCase()
+    //         .includes(location.toLowerCase());
+
+    //     // Retorna true se todos os critérios de pesquisa forem atendidos
+    //     return titleMatch && jobTypeMatch && locationMatch;
+    // });
+
     return (
         <Wrapper>
             <Content>
@@ -100,6 +125,7 @@ const FeedVagas = () => {
                     setActivePage={setActivePage}
                 />
             </Content>
+            <FeedSearch onSubmit={onSubmit} />
             <JobContainer>
                 <ContentWrapper>
                     <JobsWrapper>
