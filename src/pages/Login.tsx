@@ -1,13 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
 import extendedLogoImg from '../assets/imgs/logotipo-icone-extendida.svg';
 import loginPeople from '../assets/imgs/login-people.svg';
 import verticalLine from '../assets/imgs/verticalLine.svg';
 import LoginCard from '../components/LoginCard';
-
-import '../App.css';
 import { AchorLink } from './styles/Main.styled';
 
+import '../App.css';
+
 const Login = () => {
+    const navigate = useNavigate();
+
     return (
         <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto">
             <div className="container max-w-screen-xl m-auto h-screen">
@@ -25,7 +28,7 @@ const Login = () => {
                             background="outline"
                             border="white"
                             className="w-[283px] flex-shrink h-[67px] text-2xl"
-                            // inserir rota de navegação para voltar a página home
+                            onClick={() => navigate('/')}
                         >
                             Acessar portal de vagas
                         </Button>
