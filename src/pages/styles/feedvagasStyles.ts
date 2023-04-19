@@ -7,9 +7,23 @@ export const Wrapper = styled.div`
   gap: 56px;
 `;
 
+export const Grid = styled.section`
+    display: grid;
+    grid-template-columns: 10px 1fr;
+`;
+
+export const ProfileStatus = styled.div`
+
+`
+
+export const ProfileStatusContent = styled.div`
+  margin-top: 80px;
+`
+
 export const Content = styled.div`
     display: flex;
     margin-top: 18px;
+    justify-content: space-around;
     justify-content: space-around;
 `
 
@@ -62,3 +76,4 @@ export const ShowMore = styled.button `
   color: #515050;
   grid-column-start: 1;
 `;
+
