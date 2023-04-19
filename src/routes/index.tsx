@@ -19,7 +19,7 @@ export const NavRoutes: React.FC = () => {
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="confirm-email" element={<ConfirmEmail />}></Route>
-            <Route path="reset-password" element={<ResetPassword/>}></Route>
+            <Route path="recovery-password" element={<ResetPassword/>}></Route>
             <Route
                 path="insertjob"
                 element={

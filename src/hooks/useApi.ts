@@ -68,6 +68,39 @@ export const useApi = () => ({
         })
         return res.data;
       },
+
+    userRecoveryPassword: async (email: string) => {
+      const res: any = await api.patch('/user/recovery_password', {
+        email,
+      });
+      return res.data;
+    },
+  
+    companyRecoveryPassword: async (email: string) => {
+      const res: any = await api.patch('/company/recovery-password', {
+        email,
+      });
+      return res.data;
+    },
+    
+    userUpdatePassword: async (password: string, confirmPassword: string, recoverPasswordToken: string) => {
+      const res: any = await api.patch('/user/update_password', {
+        password,
+        confirmPassword,
+        recoverPasswordToken,
+      });
+      return res.data;
+    },
+
+    companyUpdatePassword: async (password: string, confirmPassword: string, recoverPasswordToken: string) => {
+      const res: any = await api.patch('/company/update_password', {
+        password,
+        confirmPassword,
+        recoverPasswordToken,
+      });
+      return res.data;
+    },
+
     toggleActiveProfile: async (user: any, newValue: boolean) => { 
         try {
             // Faz a requisição GET para verificar se o recurso já existe
