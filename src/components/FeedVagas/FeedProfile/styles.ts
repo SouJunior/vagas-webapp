@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const ProfileImage = styled.img`
   border-radius: 50%;
-  background-color: #fb923c;
-  width: 120px;
-  height: 120px;
+  background-color: #1165BA;
+  width: 100px;
+  height: 100px;
   cursor: pointer;
   overflow: hidden;
 `;
@@ -46,6 +46,7 @@ export const EditProfile = styled.span`
 export const ActiveProfileDescription = styled.p`
   text-align: center;
   font-size: 14px;
+  color: #515050;
 `
 
 export const DivisionBar = styled.div`
@@ -59,11 +60,14 @@ export const DivisionBar = styled.div`
 export const ProfileJobsBoard = styled.div`
   display: flex;
   gap: 13px;
-  min-width: 200px;
+  width: 100%;
+  max-width: 238px;
   margin-bottom: 18px;
 `
 export const ProfilesJobsInfo = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 `
 
 export const ProfilesJobsBoardImg = styled.div`
@@ -71,12 +75,12 @@ export const ProfilesJobsBoardImg = styled.div`
   height: 40px;
   justify-content: flex-start;
   margin-top: 13px;
-  background-color: green;
+  background-color: #00D98F;
 `
 
 export const YourJobsTitle = styled.h2`
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: #5E5E5E;
   line-height: 17px;
   margin-bottom: 32px;
@@ -87,12 +91,16 @@ font-weight: 600;
 font-size: 16px;
 line-height: 19px;
 color: #515050;
-margin-bottom: 4px
 `
 
-export const ProfilesJobsInfoDescription = styled.span`
+export const ProfilesJobsInfoDescription = styled.div`
 font-size: 14px;
 line-height: 17px;
 color: #5E5E5E;
+padding-bottom: 2px;
 `
+export const ProfilesJobsInfoStatus = styled(ProfilesJobsInfoDescription)`
+font-size: 12px;
+`
+
 
