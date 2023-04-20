@@ -7,7 +7,7 @@ interface ExtraInfoItemProps {
 export const Container = styled.div`
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
+  box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.10);
   border: 1px solid #1165BA;
   width: 583px;
   height: 557px;

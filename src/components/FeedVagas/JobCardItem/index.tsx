@@ -16,28 +16,30 @@ export interface Props {
     id: string;
     title: string;
     company: string;
-    headquarters: string;
+    city: string;
+    federalUnit: string;
     jobType: string;
     typeContract: string;
     modality: string;
     publishedAt: string;
     onClick?: () => void;
     active: boolean;
+    opacity: any;
 }
-
-
 
 const JobCardItem: React.FC<Props> = ({
     id,
     title,
     company,
-    headquarters,
+    city,
+    federalUnit,
     jobType,
     typeContract,
     modality,
     publishedAt,
     onClick,
     active,
+    opacity,
 }) => {
     const timeAgo = formatDistanceToNow(new Date(publishedAt), {
         locale: ptBR,
@@ -45,12 +47,14 @@ const JobCardItem: React.FC<Props> = ({
     });
 
     return (
-        <Card tabIndex={0} onClick={onClick} active={active}>
+        <Card tabIndex={0} onClick={onClick} active={active} opacity={opacity}>
             <Logo src="{companyLogoUrl}" alt={company} />
             <Content>
                 <Title>{title}</Title>
                 <Company>Autofalante Mkt</Company>
-                <Location>{headquarters}</Location>
+                <Location>
+                    {city}/{federalUnit}
+                </Location>
                 <Type>
                     {modality} - {jobType} - {typeContract}
                 </Type>
