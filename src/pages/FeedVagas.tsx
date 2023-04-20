@@ -6,6 +6,7 @@ import JobCardItem from '../components/FeedVagas/JobCardItem';
 import { AuthProvider } from '../contexts/Auth/AuthProvider';
 import { useApi } from '../hooks/useApi';
 import JobDetails from '../components/FeedVagas/JobDetails';
+import Fuse from 'fuse.js';
 
 import {
     Content,
@@ -14,12 +15,23 @@ import {
     JobContainer,
     JobDetailsWrapper,
     JobsWrapper,
+    NoResultsMessage,
     ProfileStatus,
     ProfileStatusContent,
     ShowMore,
     Wrapper,
 } from './styles/feedvagasStyles';
+import {
+    DivisionBar,
+    ProfileJobsBoard,
+    ProfilesJobsBoardImg,
+    ProfilesJobsInfo,
+    ProfilesJobsInfoDescription,
+    ProfilesJobsInfoTitle,
+    YourJobsTitle,
+} from '../components/FeedVagas/FeedProfile/styles';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
+import Header from '../components/Header';
 
 interface Job {
     id: string;
@@ -39,6 +51,7 @@ const FeedVagas = () => {
     const [clickedJob, setClickedJob] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [hasMore, setHasMore] = useState<boolean>(true);
+    const [filteredJobs, setFilteredJobs] = useState<any>(jobs);
 
     const api = useApi();
 
@@ -88,9 +101,8 @@ const FeedVagas = () => {
         }
         setLoading(false);
     }
-
-    const onSubmit = () => {
-        console.log('Submited');
+    const handleFilter = (filteredJobs: any) => {
+        setFilteredJobs(filteredJobs);
     };
 
     // const filteredJobs = jobs.filter((job: any) => {
@@ -114,66 +126,125 @@ const FeedVagas = () => {
     // });
 
     return (
-        <Grid>
-            <ProfileStatus>
-                <ProfileStatusContent>
-                    <AuthProvider>
-                        <FeedProfile />
-                    </AuthProvider>
-                    <ActiveProfile />
-                </ProfileStatusContent>
-            </ProfileStatus>
-            <Wrapper>
-                <Content>
-                    <FeedHeader
-                        activePage={activePage}
-                        setActivePage={setActivePage}
+        <>
+            <Header pageName="Feed de Vagas" backTo={'/'}></Header>
+
+            <Grid>
+                <ProfileStatus>
+                    <ProfileStatusContent>
+                        <AuthProvider>
+                            <FeedProfile />
+                        </AuthProvider>
+                        <ActiveProfile />
+                        <DivisionBar />
+                        <YourJobsTitle>Suas vagas</YourJobsTitle>
+                        <ProfileJobsBoard>
+                            <ProfilesJobsBoardImg />
+                            <ProfilesJobsInfo>
+                                <ProfilesJobsInfoTitle>
+                                    UX Designer Junior
+                                </ProfilesJobsInfoTitle>
+                                <ProfilesJobsInfoDescription>
+                                    Empresa Verde
+                                </ProfilesJobsInfoDescription>
+                                <p>Status</p>
+                            </ProfilesJobsInfo>
+                        </ProfileJobsBoard>
+                        {/* Esses outros "profileJobsBoard" são temporários para demonstração estática por faltar 
+                    dados do back-end e não ser possível fazer o map com a renderização dos componentes. */}
+                        <ProfileJobsBoard>
+                            <ProfilesJobsBoardImg />
+                            <ProfilesJobsInfo>
+                                <ProfilesJobsInfoTitle>
+                                    UX Designer Junior
+                                </ProfilesJobsInfoTitle>
+                                <ProfilesJobsInfoDescription>
+                                    Empresa Verde
+                                </ProfilesJobsInfoDescription>
+                                <p>Status</p>
+                            </ProfilesJobsInfo>
+                        </ProfileJobsBoard>
+                        <ProfileJobsBoard>
+                            <ProfilesJobsBoardImg />
+                            <ProfilesJobsInfo>
+                                <ProfilesJobsInfoTitle>
+                                    UX Designer Junior
+                                </ProfilesJobsInfoTitle>
+                                <ProfilesJobsInfoDescription>
+                                    Empresa Verde
+                                </ProfilesJobsInfoDescription>
+                                <p>Status</p>
+                            </ProfilesJobsInfo>
+                        </ProfileJobsBoard>
+                    </ProfileStatusContent>
+                </ProfileStatus>
+                <Wrapper>
+                    <FeedSearch
+                        data={jobs}
+                        onFilter={handleFilter}
+                        setFilteredJobs={setFilteredJobs}
                     />
-                </Content>
-                <FeedSearch onSubmit={onSubmit} data={jobs} />
-                <JobContainer>
-                    <ContentWrapper>
-                        <JobsWrapper>
-                            {jobs.map((job: any) => (
-                                <JobCardItem
-                                    key={job.id}
-                                    id={job.id}
-                                    title={job.title}
-                                    company={job.company}
-                                    headquarters={job.headquarters}
-                                    modality={job.modality}
-                                    jobType={job.type}
-                                    typeContract={job.typeContract}
-                                    publishedAt={job.createdAt}
-                                    active={selectedJob === job.id}
-                                    onClick={() => {
-                                        selecionaVaga(job.id);
-                                    }}
-                                />
-                            ))}
-                        </JobsWrapper>
-                        {selectedJob && (
-                            <JobDetailsWrapper>
-                                <JobDetails
-                                    id={selectedJob}
-                                    clickedJob={clickedJob}
-                                />
-                            </JobDetailsWrapper>
-                        )}
-                        {!hasMore && (
-                            <ShowMore onClick={showMore} disabled={loading}>
-                                Todas as vagas já foram exibidas.
-                            </ShowMore>
-                        )}
-                        {hasMore && (
-                            <ShowMore onClick={showMore} disabled={loading}>
-                                {loading ? 'Carregando...' : 'Ver mais'}
-                            </ShowMore>
-                        )}
-                    </ContentWrapper>
-                </JobContainer>
-            </Wrapper>
-        </Grid>
+                    <JobContainer>
+                        <ContentWrapper>
+                            <JobsWrapper>
+                                {filteredJobs.map((job: any) => (
+                                    <JobCardItem
+                                        key={job.id}
+                                        id={job.id}
+                                        title={job.title}
+                                        company={job.company}
+                                        headquarters={job.headquarters}
+                                        modality={job.modality}
+                                        jobType={job.type}
+                                        typeContract={job.typeContract}
+                                        publishedAt={job.createdAt}
+                                        active={selectedJob === job.id}
+                                        onClick={() => {
+                                            selecionaVaga(job.id);
+                                        }}
+                                    />
+                                ))}
+                            </JobsWrapper>
+                            {filteredJobs.length === 0 && (
+                                <NoResultsMessage>
+                                    Nenhuma vaga encontrada.
+                                </NoResultsMessage>
+                            )}
+                            {selectedJob && (
+                                <JobDetailsWrapper>
+                                    <JobDetails
+                                        id={selectedJob}
+                                        clickedJob={clickedJob}
+                                    />
+                                </JobDetailsWrapper>
+                            )}
+                            {filteredJobs.length > 0 && (
+                                <>
+                                    {!hasMore && (
+                                        <ShowMore
+                                            onClick={showMore}
+                                            disabled={loading}
+                                        >
+                                            Todas as vagas já foram exibidas.
+                                        </ShowMore>
+                                    )}
+                                    {hasMore && (
+                                        <ShowMore
+                                            onClick={showMore}
+                                            disabled={loading}
+                                        >
+                                            {loading
+                                                ? 'Carregando...'
+                                                : 'Ver mais'}
+                                        </ShowMore>
+                                    )}
+                                </>
+                            )}
+                        </ContentWrapper>
+                    </JobContainer>
+                </Wrapper>
+            </Grid>
+        </>
     );
 };
 

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    margin: 0 auto;
     width: 100%;
 
     @media (min-width: ${({ theme }) => theme.breakpoints.mobile.md}) {
@@ -17,3 +16,4 @@ export const Container = styled.div`
         max-width: ${({ theme }) => theme.breakpoints.laptop.lg};
     }
 `;
+
