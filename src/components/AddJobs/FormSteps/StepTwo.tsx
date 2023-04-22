@@ -103,7 +103,7 @@ const StepTwo = ({
                     </div>
                 </SalaryInputContainer>
             </SalarySection>
-            <Label htmlFor="type">Tipo:</Label>
+            <Label htmlFor="type">*Tipo:</Label>
             <SelectInput {...register('type')} id="type" defaultValue="">
                 <option value="" disabled hidden>
                     Selecione
@@ -116,7 +116,7 @@ const StepTwo = ({
             <ErrorMessage>
                 {errors.type && <>{errors.type.message}</>}
             </ErrorMessage>
-            <Label htmlFor="typeContract">Tipo de contrato:</Label>
+            <Label htmlFor="typeContract">*Tipo de contrato:</Label>
             <SelectInput
                 {...register('typeContract')}
                 id="typeContract"
@@ -163,11 +163,12 @@ const StepTwo = ({
                     Não
                 </label>
             </RadioInputContainer>
-            <Label>Tempo do contrato</Label>
+            <Label>Tempo do Contrato:</Label>
             <Input
                 {...register('contractType')}
                 type="text"
                 required
+                placeholder="Informe o tempo de contrato"
                 disabled={!showContractTimeInput}
                 value={contractTimeValue}
                 onChange={(e) => {

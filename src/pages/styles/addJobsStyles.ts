@@ -133,31 +133,3 @@ export const Message = styled.p`
   font-weight: normal;
   color: #1165BA;
 `;
-
-export const ListJobsContainer = styled.div`
-  display: flex;
-  max-width: 100vw;
-  min-width: 80vw;
-  gap: 20px;
-  white-space: nowrap;
-  overflow-x: scroll;
-  margin: 20px;
-  padding-left: 96px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding-left: 0;
-  }
-  & > * {
-   
-    width: 583px;
-    flex-shrink: 0;
-    height: 557px;
-  }
-`;
-
-export const ListJobTitle = styled(FormTitle)`
-  margin-top: 45px;
-  padding-left: 126px;
-
-`;

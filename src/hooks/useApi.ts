@@ -48,7 +48,11 @@ export const useApi = () => ({
     },
 
     createJob: async (title: string, description: string, prerequisites: string, benefits: string, type: string, typeContract: string, salaryMin: number, salaryMax: number, modality: string, federalUnit: string, city: string, indefinideContract: string | boolean, contractType: string | undefined, affirmative: string | boolean, affirmativeType: string | undefined, company_id: string | undefined) => {
-        const res: any = await api.post('/job', {
+      const token = localStorage.getItem('authToken');
+      const headers = {
+        Authorization: `Bearer ${token}`,
+    };  
+      const res: any = await api.post('/job', {
             title, 
             description, 
             prerequisites, 
@@ -65,7 +69,7 @@ export const useApi = () => ({
             affirmative, 
             affirmativeType,
             company_id
-        })
+        }, {headers})
         return res.data;
       },
 

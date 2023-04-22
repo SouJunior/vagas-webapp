@@ -25,14 +25,11 @@ import {
     Icon,
     Title,
     Message,
-    ListJobsContainer,
-    ListJobTitle,
 } from './styles/addJobsStyles';
 import JobPreview from '../components/JobCard/previewJobCard';
 import JobModal from '../components/AddJobs/JobModal';
 import CancelModal from '../components/CancelModal';
 import WaitModal from '../components/WaitModal';
-import JobCard from '../components/JobCard';
 import StepOne from '../components/AddJobs/FormSteps/StepOne';
 import StepTwo from '../components/AddJobs/FormSteps/StepTwo';
 import StepThree from '../components/AddJobs/FormSteps/StepThree';
@@ -78,25 +75,13 @@ const AddJobs = () => {
     const [companyId, setCompanyId] = useState<any>('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [step, setStep] = useState(1);
-    const [jobs, setJobs] = useState([]);
 
     const api = useApi();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         // To do, get company id from local storage or context and put it into the function
-    //         const data = await api.getJobsByCompany(
-    //             '4d2c7c8a-931b-4ef3-9e7a-560644f14deb',
-    //         );
-    //         setJobs(data);
-    //         setCompanyId(localStorage.getItem('authToken'));
-    //     };
-    //     fetchData();
-    // }, []);
-
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         data.affirmative = data.affirmative === 'true' ? true : false;
+
         const createJobCheck = watch([
             'title',
             'description',
@@ -273,6 +258,7 @@ const AddJobs = () => {
                                 setValue={setValue}
                                 PreviousStep={PreviousStep}
                                 onSubmit={onSubmit}
+                                setCompanyId={setCompanyId}
                             />
                         )}
                     </Form>
@@ -316,30 +302,6 @@ const AddJobs = () => {
                     <JobModal onClose={() => setIsModalOpen(false)} />
                 )}
             </div>
-            <ListJobTitle>Vagas Publicadas</ListJobTitle>
-            <ListJobsContainer>
-                {jobs.map((job: any) => (
-                    <JobCard
-                        key={job.id}
-                        id={job.id}
-                        title={job.title}
-                        description={job.description}
-                        jobType={job.jobType}
-                        createdAt={job.createdAt}
-                        type={job.type}
-                        salaryMin={job.salaryMin}
-                        salaryMax={job.salaryMax}
-                        prerequisites={job.prerequisites}
-                        contractType={job.contractType}
-                        benefits={job.benefits}
-                        affirmative={job.affirmative}
-                        affirmativeType={job.affirmativeType}
-                        modality={job.modality}
-                        city={job.city}
-                        uf={job.uf}
-                    />
-                ))}
-            </ListJobsContainer>
         </>
     );
 };

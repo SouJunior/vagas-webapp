@@ -34,7 +34,7 @@ export const createJobForm = yup.object().shape({
         .typeError('O valor máximo deve ser um número')
         .positive('O valor máximo deve ser positivo')
         .required('O valor máximo é obrigatório'),
-    type: yup.mixed().required('A opção é obrigatória'),
+    type: yup.string().required('A opção é obrigatória'),
     typeContract: yup
             .mixed()
             .oneOf(['CLT', 'PJ', 'Outro'], 'Selecione uma opção válida')

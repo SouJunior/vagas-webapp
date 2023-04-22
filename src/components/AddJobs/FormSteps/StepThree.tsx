@@ -35,6 +35,7 @@ const StepThree = ({
     setValue,
     PreviousStep,
     onSubmit,
+    setCompanyId,
 }: any) => {
     const [ufs, setUfs] = useState<IBGEUFResponse[]>([]);
     const [cities, setCities] = useState<IBGECITYResponse[]>([]);
@@ -47,6 +48,7 @@ const StepThree = ({
             .then((response) => {
                 setUfs(response.data);
             });
+        // setCompanyId(localStorage.getItem('authToken'));
     }, []);
 
     useEffect(() => {
