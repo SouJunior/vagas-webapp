@@ -1,17 +1,68 @@
-import React, { useState } from 'react';
-import { Container, Input, Button } from './styles';
+import React, { useEffect, useState } from 'react';
+import {
+    Container,
+    Input,
+    Button,
+    InputIcon,
+    InputContainer,
+    InputLabel,
+    InputIconBefore,
+} from './styles';
+import Fuse from 'fuse.js';
 
-interface Props {
-    onSubmit: (search: string, location?: string) => void;
-}
-
-const FeedSearch: React.FC<Props> = ({ onSubmit }) => {
+const FeedSearch: React.FC<any> = ({ onFilter, data, setFilteredJobs }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [location, setLocation] = useState('');
 
+    useEffect(() => {
+        handleSearch();
+    }, [data]);
+
+    const handleSearch = () => {
+        if (!searchTerm && !location) {
+            setFilteredJobs(data);
+            onFilter(data);
+            return;
+        }
+
+        const options = {
+            keys: [
+                'title',
+                'contractType',
+                'type',
+                'city',
+                'federalUnit',
+                'modality',
+                'prerequisites',
+                'typeContract',
+            ],
+            includeScore: true,
+            threshold: 0.4,
+            minMatchCharLength: 2,
+            matchAllTokens: true,
+            useExtendedSearch: true,
+        };
+
+        const fuse = new Fuse(data, options);
+        const filteredResults = fuse.search(`${searchTerm} ${location}`);
+
+        setFilteredJobs(
+            filteredResults.length > 0
+                ? filteredResults.map((result) => result.item)
+                : data,
+        );
+
+        onFilter(filteredResults.map((result: any) => result.item));
+    };
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        onSubmit(searchTerm, location);
+        if (searchTerm || location) {
+            handleSearch();
+        } else {
+            setFilteredJobs(data);
+            onFilter(data);
+        }
     };
 
     return (
@@ -24,13 +75,19 @@ const FeedSearch: React.FC<Props> = ({ onSubmit }) => {
                     value={searchTerm}
                     onChange={(event: any) => setSearchTerm(event.target.value)}
                 />
-                <Input
-                    type="text"
-                    placeholder="Local"
-                    value={location}
-                    onChange={(event: any) => setLocation(event.target.value)}
-                />
-                <Button type="submit">Buscar</Button>
+                <InputContainer>
+                    <InputLabel>Onde</InputLabel>
+                    <InputIcon
+                        type="text"
+                        placeholder="remoto, cidade, estado ou país"
+                        value={location}
+                        onChange={(event: any) =>
+                            setLocation(event.target.value)
+                        }
+                    />
+                    <InputIconBefore />
+                </InputContainer>
+                <Button type="submit">Buscar Vagas</Button>
             </form>
         </Container>
     );
