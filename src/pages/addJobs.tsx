@@ -19,13 +19,13 @@ import {
     HorizontalLine,
     LogoImage,
     MainGrid,
-    SeparatorLine,
     NoJobsContainer,
     InnerContainer,
     Icon,
     Title,
     Message,
-} from './styles/addJobsStyles';
+    Container,
+} from './styles/AddJobsStyles';
 import JobPreview from '../components/JobCard/previewJobCard';
 import JobModal from '../components/AddJobs/JobModal';
 import CancelModal from '../components/CancelModal';
@@ -72,55 +72,19 @@ const AddJobs = () => {
     const [cancelModal, setCancelModal] = useState(false);
     const [aguardar, setAguardar] = useState(false);
     const [showContractTimeInput, setShowContractTimeInput] = useState(false);
-    const [companyId, setCompanyId] = useState<any>('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [step, setStep] = useState(1);
 
     const api = useApi();
     const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<FormData> = async (data) => {
-        data.affirmative = data.affirmative === 'true' ? true : false;
-
-        const createJobCheck = watch([
-            'title',
-            'description',
-            'prerequisites',
-            'benefits',
-            'type',
-            'typeContract',
-            'salaryMin',
-            'salaryMax',
-            'modality',
-            'federalUnit',
-            'city',
-            'indefinideContract',
-            'contractType',
-            'affirmative',
-            'affirmativeType',
-            'company_id',
-        ]);
-
+    const onSubmit: SubmitHandler<FormData> = async (JobData) => {
+        JobData.affirmative = JobData.affirmative === 'true' ? true : false;
+        JobData.indefinideContract =
+            JobData.indefinideContract === 'true' ? true : false;
         try {
             await api
-                .createJob(
-                    createJobCheck[0],
-                    createJobCheck[1],
-                    createJobCheck[2],
-                    createJobCheck[3],
-                    createJobCheck[4],
-                    createJobCheck[5],
-                    createJobCheck[6],
-                    createJobCheck[7],
-                    createJobCheck[8],
-                    createJobCheck[9],
-                    createJobCheck[10],
-                    createJobCheck[11],
-                    createJobCheck[12],
-                    createJobCheck[13],
-                    createJobCheck[14],
-                    createJobCheck[15],
-                )
+                .createJob(JobData)
                 .then((resolve: any) => {
                     toast.success('Vaga criada com sucesso!', {
                         position: 'top-center',
@@ -198,7 +162,7 @@ const AddJobs = () => {
     }, [formValues]);
 
     return (
-        <>
+        <Container>
             <Header pageName="Criar vaga" backTo={'/'}></Header>
             <HeaderContainer>
                 <LogoImage
@@ -206,7 +170,6 @@ const AddJobs = () => {
                     alt="Logo SouJunior Empresa"
                     className="mx-auto my-4 w-[315px]"
                 />
-                <SeparatorLine />
             </HeaderContainer>
             <MainGrid>
                 <FormSection>
@@ -243,23 +206,17 @@ const AddJobs = () => {
                             />
                         )}
 
-                        <input
-                            type="hidden"
-                            value={companyId}
-                            {...register('company_id')}
-                        />
-
                         {step === 3 && (
-                            <StepThree
-                                register={register}
-                                errors={errors}
-                                trigger={trigger}
-                                watch={watch}
-                                setValue={setValue}
-                                PreviousStep={PreviousStep}
-                                onSubmit={onSubmit}
-                                setCompanyId={setCompanyId}
-                            />
+                            <>
+                                <StepThree
+                                    register={register}
+                                    errors={errors}
+                                    trigger={trigger}
+                                    watch={watch}
+                                    setValue={setValue}
+                                    PreviousStep={PreviousStep}
+                                />
+                            </>
                         )}
                     </Form>
                 </FormSection>
@@ -302,7 +259,7 @@ const AddJobs = () => {
                     <JobModal onClose={() => setIsModalOpen(false)} />
                 )}
             </div>
-        </>
+        </Container>
     );
 };
 

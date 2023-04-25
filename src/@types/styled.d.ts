@@ -29,6 +29,7 @@ declare module 'styled-components' {
             laptop: {
                 md: string;
                 lg?: string;
+                xl?: string;
             };
         };
     }

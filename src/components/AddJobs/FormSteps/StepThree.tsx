@@ -1,5 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 import {
     Label,
@@ -14,18 +13,7 @@ import {
     Button,
 } from './styles';
 import Select from 'react-select';
-
-type IBGEUFResponse = {
-    map(arg0: (uf: any) => JSX.Element): import('react').ReactNode;
-    sigla: string;
-    id: string;
-    nome: string;
-};
-
-type IBGECITYResponse = {
-    id: number;
-    nome: string;
-};
+import { useIBGELocations } from '../../../hooks/useIBGELocations';
 
 const StepThree = ({
     register,
@@ -34,32 +22,9 @@ const StepThree = ({
     watch,
     setValue,
     PreviousStep,
-    onSubmit,
-    setCompanyId,
 }: any) => {
-    const [ufs, setUfs] = useState<IBGEUFResponse[]>([]);
-    const [cities, setCities] = useState<IBGECITYResponse[]>([]);
-    const [selectedUf, setSelectedUf] = useState('0');
     const [selectedOptions, setSelectedOptions] = useState<any>([]);
-
-    useEffect(() => {
-        axios
-            .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
-            .then((response) => {
-                setUfs(response.data);
-            });
-        // setCompanyId(localStorage.getItem('authToken'));
-    }, []);
-
-    useEffect(() => {
-        axios
-            .get(
-                `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`,
-            )
-            .then((response) => {
-                setCities(response.data);
-            });
-    }, [selectedUf]);
+    const { ufs, cities, handleSelectUf } = useIBGELocations();
 
     useEffect(() => {
         if (watch('modality') === 'Remoto') {
@@ -67,11 +32,6 @@ const StepThree = ({
             setValue('federalUnit', '');
         }
     }, [watch('modality')]);
-
-    function handleSelectUf(event: ChangeEvent<HTMLSelectElement>) {
-        const uf = event.target.value;
-        setSelectedUf(uf);
-    }
 
     const affirmativeTypeOptions = [
         { value: 'Mulheres Cis ou Trans', label: 'Mulheres Cis ou Trans' },
@@ -149,7 +109,7 @@ const StepThree = ({
                         <option value="" disabled>
                             Selecione
                         </option>
-                        {cities.map((city) => (
+                        {cities.map((city: any) => (
                             <option key={city.id} value={city.nome}>
                                 {city.nome}
                             </option>
@@ -218,9 +178,7 @@ const StepThree = ({
             </ErrorMessage>
             <ButtonSection>
                 <CancelButton onClick={PreviousStep}>Voltar</CancelButton>
-                <Button type="submit" onClick={onSubmit}>
-                    Finalizar
-                </Button>
+                <Button type="submit">Finalizar</Button>
             </ButtonSection>
         </>
     );

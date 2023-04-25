@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { RiInformationLine } from 'react-icons/ri';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const  MainGrid = styled.main`
 display: grid;
@@ -13,14 +18,15 @@ grid-template-columns: 1fr;
 gap: 62px;
 margin-top: 6.1875rem;
 width: 100%;
-max-width: 74.5625rem;
-margin: 0 auto 0.5rem;
+max-width: 79rem;
+margin: 0.5rem;
 border-bottom: 1px solid #E8E8E8;
+border-top: 1px solid #E8E8E8;
 `;
 
 export const HeaderContainer = styled.div`
-  grid-column: 1 / -1;
-  margin-top: 120px;
+  margin-top: 106px;
+  width: 100%;
 `;
 
 export const LogoImage = styled.img`
@@ -28,12 +34,6 @@ export const LogoImage = styled.img`
   margin-top: 16px;
   margin-bottom: 16px;
   width: 315px;
-`;
-
-export const SeparatorLine = styled.span`
-  display: block;
-  width: 100%;
-  border-top: 1px solid #E8E8E8;
 `;
 
 export const FormSection = styled.section`
