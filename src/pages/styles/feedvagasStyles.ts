@@ -55,6 +55,7 @@ export const JobsWrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
+
   gap: 4px;
   max-height: 557px;
   width: 518px;

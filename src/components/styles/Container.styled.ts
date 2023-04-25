@@ -15,5 +15,8 @@ export const Container = styled.div`
     @media (min-width: ${({ theme }) => theme.breakpoints.laptop.lg}) {
         max-width: ${({ theme }) => theme.breakpoints.laptop.lg};
     }
+    @media (min-width: ${({ theme }) => theme.breakpoints.laptop.xl}) {
+        max-width: none;
+    }
 `;
 

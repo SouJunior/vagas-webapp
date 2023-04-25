@@ -28,6 +28,7 @@ export const mainTheme: DefaultTheme = {
         laptop: {
             md: '1024px',
             lg: '1440px',
+            xl: '2560px',
         },
     },
 };
