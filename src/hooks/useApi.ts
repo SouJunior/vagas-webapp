@@ -47,22 +47,12 @@ export const useApi = () => ({
         return res.data;
     },
 
-    createJob: async (title: string, description: string, prerequisites: string, benefits: string, type: string, type_contract: string, salary: number, modality: string, headquarters: string, contract_time: string | boolean, affirmative: string | boolean , affirmative_type: string | undefined, company_id: string | undefined) => {
-        const res: any = await api.post('/job', {
-            title, 
-            description, 
-            prerequisites, 
-            benefits, 
-            type, 
-            type_contract, 
-            salary, 
-            modality, 
-            headquarters, 
-            contract_time, 
-            affirmative, 
-            affirmative_type,
-            company_id
-        })
+    createJob: async (JobData: any) => {
+      const token = localStorage.getItem('authToken');
+      const headers = {
+        Authorization: `Bearer ${token}`,
+    };  
+      const res: any = await api.post('/job', {JobData}, {headers})
         return res.data;
       },
 
@@ -98,41 +88,6 @@ export const useApi = () => ({
       return res.data;
     },
 
-    toggleActiveProfile: async (user: any, newValue: boolean) => { 
-        try {
-            // Faz a requisição GET para verificar se o recurso já existe
-            const response = await api.get(`/user/${user.id}/active`);
-            const currentValue = response.data;
-            // Faz a requisição PUT para atualizar o valor do recurso
-            await api.put(`/user/${user.id}/active`, {
-              ...currentValue,
-              value: newValue,
-            });
-          } catch (error: any) {
-            // Se o recurso não existir, faz apenas a requisição PUT para criá-lo
-            if (error.response.status === 404) {
-              await api.put(`/user/${user.id}`, { value: newValue });
-            } else {
-              throw error;
-            }
-          }  
-    },
-    getProfileImage: async (user: any) => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await api.get(`/user/${user.id}/image`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-              responseType: 'arraybuffer',
-            });
-            const img = Buffer.from(response.data, 'binary').toString('base64');
-            return `data:image/png;base64,${img}`;
-          } catch (error) {
-            console.error(error);
-            return '';
-          }
-        },
       getJobs: async (page: number = 1) => {
         const url = `/job?order=ASC&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
@@ -143,5 +98,9 @@ export const useApi = () => ({
         const url = `/job/${id}`
         const res: any = await api.get(url);
           return res.data;
+      },
+      getJobsByCompany: async (id: string) => {
+        const res: any = await api.get(`/job/all/${id}`);
+        return res.data;
       }
 });
