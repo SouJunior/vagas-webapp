@@ -12,6 +12,7 @@ import AddJobs from '../pages/addJobs';
 import FeedVagas from '../pages/FeedVagas';
 import ConfirmEmail from '../pages/ConfirmEmail';
 import ResetPassword from '../pages/ResetPassword';
+import CompanyPortal from '../pages/CompanyPortal';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -19,7 +20,8 @@ export const NavRoutes: React.FC = () => {
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="confirm-email" element={<ConfirmEmail />}></Route>
-            <Route path="recovery-password" element={<ResetPassword/>}></Route>
+            <Route path="recovery-password" element={<ResetPassword />}></Route>
+            <Route path="company-portal" element={<CompanyPortal />}></Route>
             <Route
                 path="insertjob"
                 element={
