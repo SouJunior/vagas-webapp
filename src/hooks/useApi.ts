@@ -143,5 +143,12 @@ export const useApi = () => ({
         const url = `/job/${id}`
         const res: any = await api.get(url);
           return res.data;
-      }
+      },
+
+      getCompanyJobs: async (id: number) => {
+        const url = `/job/all/${id}`
+        const res: any = await api.get(url);
+        return res.data;
+      },
 });
+

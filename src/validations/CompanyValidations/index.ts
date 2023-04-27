@@ -11,8 +11,8 @@ export const schemaCompanyLoginForm = yup.object().shape({
     password: yup
         .string()
         .required('O campo Senha é obrigatório')
-        .min(6, 'A senha precisa ter no mínimo 6 caracteres')
-        .max(20, 'A senha precisa ter no máximo 20 caracteres')
+        .min(8, 'A senha precisa ter no mínimo 8 caracteres')
+        .max(20, 'A senha pode ter no máximo 20 caracteres')
         .matches(
             /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W+)(?=^.{6,20}$).*$/,
             'A senha deve conter 1 letra maiúscula, 1 minúscula, 1 número, 1 caracter especial !@#$% etc...',
@@ -32,8 +32,8 @@ export const schemaCompanyRegisterForm = yup.object().shape({
     registerPassword: yup
         .string()
         .required('O campo Senha é obrigatório')
-        .min(6, 'A senha precisa ter no mínimo 6 caracteres')
-        .max(20, 'A senha precisa ter no máximo 20 caracteres')
+        .min(8, 'A senha precisa ter no mínimo 8 caracteres')
+        .max(20, 'A senha pode ter no máximo 20 caracteres')
         .matches(
             /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W+)(?=^.{6,20}$).*$/,
             'A senha deve conter 1 letra maiúscula, 1 minúscula, 1 número, 1 caracter especial !@#$% etc...',

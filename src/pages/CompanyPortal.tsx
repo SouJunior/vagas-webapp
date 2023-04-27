@@ -29,13 +29,24 @@ import GooglePlayImage from "../assets/imgs/googlePlay.svg"
 import ArrowImage from "../assets/imgs/arrow.svg"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../contexts/Auth/AuthContext"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
+import { useApi } from "../hooks/useApi"
 
 const CompanyPortal = () => {
 
     const navigate = useNavigate();
     const auth: any = useContext(AuthContext);
+    const api = useApi();
+    const [jobs,setJobs] = useState<any[]>([])
 
+    useEffect(() => {
+        const loadCompanyJobs = async (id: number) => {
+            const getJobsData = await api.getCompanyJobs(id);
+            setJobs(getJobsData);
+        }
+        loadCompanyJobs(auth.user.id)
+    }, [])
+    
   return (
     <Container>
         <Header>
@@ -54,12 +65,25 @@ const CompanyPortal = () => {
                 <ArrowPicture src={ArrowImage} alt="flecha" />
             </UserButton>        
         </Header>
-        <Main>
+        {(jobs?.length !== 0) ? 
+        (<Main>
+            <h2>Vagas cadastradas:</h2>
+             {jobs.map ((job, index) =>
+             <ul key={index}>
+                <li>
+                    Título da vaga: {job.title}
+                </li>
+                <li>
+                    Pré-requisitos: {job.prerequisites}
+                </li>
+             </ul>)}
+        </Main>):
+        (<Main>
             <h1>{auth.user.companyName}, anuncie sua primeira vaga!</h1>
             <button onClick={() => navigate('/insertjob')}>
-                Cadastrar vagas
+                BOTÃO: CADASTRAR VAGAS
             </button>
-        </Main>
+        </Main>)}
         <Position>
         <Main>
             <Row/>
@@ -75,7 +99,7 @@ const CompanyPortal = () => {
                         <a href="https://www.soujunior.tech/">Site SouJunior</a>
                     </li>
                     <li>
-                        <a href="mentores.soujunior.tech">Portal de mentoria</a>
+                        <a href="https://mentores.soujunior.tech">Portal de mentoria</a>
                     </li>
                 </ul>
             </div>
@@ -91,7 +115,7 @@ const CompanyPortal = () => {
             <h3>Aplicativo</h3>
                 <ul>
                     <li>
-                        <a href="appmobile">
+                        <a href="/">
                             <img src={GooglePlayImage} alt="google play" />
                         </a>
                     </li>
