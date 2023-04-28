@@ -37,7 +37,7 @@ export const Main = styled.main`
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 40px;
+    padding-top: 60px;
     padding-bottom: 40px;
 
     h1 {
@@ -91,7 +91,6 @@ export const Footer = styled.footer`
             display: inline;
         }
     }
-
 
     h3 {
         font-size: 18px;
@@ -224,5 +223,21 @@ export const UserInfo = styled.div`
 
     @media (max-width: 540px) {
        margin: 0;
+    }
+`
+export const JobButton = styled.div`
+    background-color: #046AD0;
+    color: #FDFDFD;
+    width: 180px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+
+    div:first-child  {
+        margin-right: 8px;
     }
 `

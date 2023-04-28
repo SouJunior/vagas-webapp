@@ -21,12 +21,14 @@ import {
     LinkedInIcon,
     DiscordIcon,
     TelegramIcon,
-    UserInfo
+    UserInfo,
+    JobButton
 } from "./styles/CompanyPortalStyles"
 import LogoImage from "../assets/imgs/logotipo-icone-extendida.svg"
 import LogoImageBlue from "../assets/imgs/logo-icon-name-h.svg"
 import GooglePlayImage from "../assets/imgs/googlePlay.svg"
 import ArrowImage from "../assets/imgs/arrow.svg"
+import PlusSignImage from "../assets/imgs/plus-sign.png"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../contexts/Auth/AuthContext"
 import { useContext, useEffect, useState } from "react"
@@ -80,9 +82,14 @@ const CompanyPortal = () => {
         </Main>):
         (<Main>
             <h1>{auth.user.companyName}, anuncie sua primeira vaga!</h1>
-            <button onClick={() => navigate('/insertjob')}>
-                BOTÃO: CADASTRAR VAGAS
-            </button>
+            <JobButton onClick={() => navigate('/insertjob')}>
+                <div>
+                    <img src={PlusSignImage} alt="mais" />
+                </div>
+                <div>
+                    Anunciar vaga
+                </div>
+            </JobButton>
         </Main>)}
         <Position>
         <Main>
