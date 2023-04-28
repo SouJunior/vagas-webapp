@@ -42,8 +42,8 @@ const CompanyPortal = () => {
     const [jobs,setJobs] = useState<any[]>([])
 
     useEffect(() => {
-        const loadCompanyJobs = async (id: number) => {
-            const getJobsData = await api.getCompanyJobs(id);
+        const loadCompanyJobs = async (id: string)=> {
+            const getJobsData = await api.getJobsByCompany(id);
             setJobs(getJobsData);
         }
         loadCompanyJobs(auth.user.id)
