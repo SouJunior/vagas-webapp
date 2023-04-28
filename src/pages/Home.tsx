@@ -15,18 +15,21 @@ import {
 import LogoName from '../assets/imgs/logotipo-icone-extendida.svg';
 
 export const Home: React.FC = () => {
+    const [creators, setCreators] = useState<string[]>([
+        'Filipe Leoni',
+        'Igor Gonçalves',
+        'Isabela Hyeda',
+        'João Vitor Kremer',
+        'Thiago Sansi',
+    ]);
+    const [newCreator, setNewCreator] = useState('');
+    function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const newCreators: string[] = [...creators];
+        newCreators.push(newCreator);
+        setCreators(newCreators);
+    }
 
-  const [creators, setCreators] = useState<string[]>(["Filipe Leoni", "Igor Gonçalves", "Isabela Hyeda", "João Vitor Kremer", "Thiago Sansi"]);
-  const [newCreator, setNewCreator] = useState("");
-  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const newCreators: string[] = [...creators]
-    newCreators.push(newCreator)
-    setCreators(newCreators)
-    
-  }
-    
-    
     return (
         <Container>
             <NavBar>
@@ -39,8 +42,8 @@ export const Home: React.FC = () => {
                     />
                 </Title>
                 <Title>
-                <GreenButton>Faça parte - Cadastre-se</GreenButton>
-                <WhiteButton>Login</WhiteButton>
+                    <GreenButton>Faça parte - Cadastre-se</GreenButton>
+                    <WhiteButton>Login</WhiteButton>
                 </Title>
             </NavBar>
             <LinkContainer>
@@ -52,22 +55,27 @@ export const Home: React.FC = () => {
                 <LinkTag>
                     <Link to="FeedVagas">Feed de Vagas</Link>
                 </LinkTag>
+                <LinkTag>
+                    <Link to="addjobs">Criar vagas</Link>
+                </LinkTag>
             </LinkContainer>
-            <Bar>
-            </Bar>
+            <Bar></Bar>
             <InputWrapper>
-            <form onSubmit={handleFormSubmit}>
-                <input type="text" name="creators"  onChange={(e) => setNewCreator(e.target.value)}/>
-                <button type="submit">submit</button>
-            </form>
+                <form onSubmit={handleFormSubmit}>
+                    <input
+                        type="text"
+                        name="creators"
+                        onChange={(e) => setNewCreator(e.target.value)}
+                    />
+                    <button type="submit">submit</button>
+                </form>
             </InputWrapper>
             <List>
                 <h1>CRIADORES:</h1>
-            {creators.map((creators: string, index: number) => (
-                 <li key={index}>{creators}</li>
-            ))}
+                {creators.map((creators: string, index: number) => (
+                    <li key={index}>{creators}</li>
+                ))}
             </List>
         </Container>
-    
     );
 };
