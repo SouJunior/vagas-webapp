@@ -95,7 +95,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                 },
             );
             if (email && password && isLogged) {
-                navigate('/insertjob');
+                navigate('/company-portal');
             }
         } catch (err) {
             // TODO: Tratar os erros com as mensagens do backend
