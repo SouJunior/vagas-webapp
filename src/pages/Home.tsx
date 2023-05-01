@@ -1,33 +1,26 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
     Container,
     NavBar,
-    GreenButton,
-    WhiteButton,
+    LoginButton,
     Title,
     LinkContainer,
     LinkTag,
     Bar,
     List,
     InputWrapper,
+    RegisterButton,
 } from './styles/home.styles';
-import LogoName from '../assets/imgs/logotipo-icone-extendida.svg';
+import LogoName from '../assets/imgs/logo-icon-name-h.svg';
 
 export const Home: React.FC = () => {
-    const [creators, setCreators] = useState<string[]>([
-        'Filipe Leoni',
-        'Igor Gonçalves',
-        'Isabela Hyeda',
-        'João Vitor Kremer',
-        'Thiago Sansi',
-    ]);
-    const [newCreator, setNewCreator] = useState('');
-    function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        const newCreators: string[] = [...creators];
-        newCreators.push(newCreator);
-        setCreators(newCreators);
+    const navigate = useNavigate();
+
+    function handleLoginClick() {
+        navigate('/login');
     }
 
     return (
@@ -37,45 +30,18 @@ export const Home: React.FC = () => {
                     <img
                         src={LogoName}
                         alt="Logo SouJunior"
-                        width={272}
-                        height={272}
+                        width={200}
+                        height={200}
                     />
                 </Title>
                 <Title>
-                    <GreenButton>Faça parte - Cadastre-se</GreenButton>
-                    <WhiteButton>Login</WhiteButton>
+                    <RegisterButton onClick={handleLoginClick}>
+                        Cadastre-se
+                    </RegisterButton>
+                    <LoginButton onClick={handleLoginClick}>Login</LoginButton>
                 </Title>
             </NavBar>
-            <LinkContainer>
-                <h2>Pages</h2>
-                <LinkTag>
-                    <Link to="/login">Login</Link>
-                </LinkTag>
-
-                <LinkTag>
-                    <Link to="FeedVagas">Feed de Vagas</Link>
-                </LinkTag>
-                <LinkTag>
-                    <Link to="addjobs">Criar vagas</Link>
-                </LinkTag>
-            </LinkContainer>
             <Bar></Bar>
-            <InputWrapper>
-                <form onSubmit={handleFormSubmit}>
-                    <input
-                        type="text"
-                        name="creators"
-                        onChange={(e) => setNewCreator(e.target.value)}
-                    />
-                    <button type="submit">submit</button>
-                </form>
-            </InputWrapper>
-            <List>
-                <h1>CRIADORES:</h1>
-                {creators.map((creators: string, index: number) => (
-                    <li key={index}>{creators}</li>
-                ))}
-            </List>
         </Container>
     );
 };

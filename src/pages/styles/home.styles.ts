@@ -1,8 +1,7 @@
 import  styled  from 'styled-components'
 
 export const Container = styled.div`
-    background: linear-gradient(294.77deg, rgba(10, 103, 199, 1) 50.32%, rgba(0, 114, 231, 0.67) 100%);
-    background-position: right;
+    background-color: #fff
     height: 100%;
     margin: 0 auto;
     align-items: center;
@@ -15,24 +14,27 @@ export const Container = styled.div`
 
 export const NavBar = styled.nav`
     display: flex;
-    font-size: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
     gap: 12px;
-    background-color: #1165BA;
+    background-color: #fff;
     justify-content: space-between;
-    color: white;
-    backdrop-filter: blur(50px);
     width: 100vw;
     padding: 20px;   
+    height: 132px;
 `
 
 export const Title = styled.div`
     color: white;
     display: flex;
     font-size: 44px;
-    font-family: Radio Canada;
     gap: 20px;
     font-weight: bold;
     place-self: center;
+
+    img {
+        margin-left: 38px;
+    }
 `
 
 export const LinkTag = styled.div`
@@ -53,38 +55,35 @@ export const LinkContainer = styled.div`
     border-radius: 10px;
     font-size: 34px;
 
-    h2 {
-        font-size: 40px;
-        margin-bottom: 14px;
-        font-family: Radio Canada;
-    }
 `;
 
 export const Span = styled.span`
     color: white;
 `;
 
-export const GreenButton = styled.button`
-    background-color: green;
-    font-size: 0.5em; 
+export const RegisterButton = styled.button`
+    background-color: ${({ theme }) => theme.colors.primary};
+    font-size: 18px;
+    font-weight: 600;
+    width: 262px;
+    height: 52px;
     color: #fff;
-    padding: 16px;
-    border-radius: 8px;
-
+    border-radius: 4px;
     :hover {
-        opacity: 0.7;
+        opacity: 0.8;
     }
 `
 
-export const WhiteButton = styled.button`
-    background-color: White;
-    color: #1165BA;
-    font-size: 0.5em;
-    padding: 14px 40px;
-    border-radius: 6px;
+export const LoginButton = styled(RegisterButton)`
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 1px solid ${({ theme }) => theme.colors.primary};
 
     :hover {
-        opacity: 0.7;
+        opacity: 0.8;
 
     }
 `
