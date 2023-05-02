@@ -2,7 +2,10 @@ import api from '../services/api';
 
 export const useApi = () => ({
     validateToken: async (token: string) => {
-        const res: any = await api.post('/auth/login', { token });
+        const config = {
+            headers: { Authorization: `Bearer ${token}` },
+        };
+        const res: any = await api.get('/auth/user-logged', config);
         return res.data;
     },
 
@@ -20,7 +23,12 @@ export const useApi = () => ({
         return res.data;
     },
 
-    registerUser: async (name: string, email: string, password: string, confirmPassword: string) => {
+    registerUser: async (
+        name: string,
+        email: string,
+        password: string,
+        confirmPassword: string,
+    ) => {
         const res: any = await api.post('/user', {
             name,
             email,
@@ -48,59 +56,67 @@ export const useApi = () => ({
     },
 
     createJob: async (JobData: any) => {
-      const token = localStorage.getItem('authToken');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-    };  
-      const res: any = await api.post('/job', {JobData}, {headers})
+        const token = localStorage.getItem('authToken');
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        const res: any = await api.post('/job', { JobData }, { headers });
         return res.data;
-      },
+    },
 
     userRecoveryPassword: async (email: string) => {
-      const res: any = await api.patch('/user/recovery_password', {
-        email,
-      });
-      return res.data;
+        const res: any = await api.patch('/user/recovery_password', {
+            email,
+        });
+        return res.data;
     },
-  
+
     companyRecoveryPassword: async (email: string) => {
-      const res: any = await api.patch('/company/recovery-password', {
-        email,
-      });
-      return res.data;
-    },
-    
-    userUpdatePassword: async (password: string, confirmPassword: string, recoverPasswordToken: string) => {
-      const res: any = await api.patch('/user/update_password', {
-        password,
-        confirmPassword,
-        recoverPasswordToken,
-      });
-      return res.data;
+        const res: any = await api.patch('/company/recovery-password', {
+            email,
+        });
+        return res.data;
     },
 
-    companyUpdatePassword: async (password: string, confirmPassword: string, recoverPasswordToken: string) => {
-      const res: any = await api.patch('/company/update_password', {
-        password,
-        confirmPassword,
-        recoverPasswordToken,
-      });
-      return res.data;
+    userUpdatePassword: async (
+        password: string,
+        confirmPassword: string,
+        recoverPasswordToken: string,
+    ) => {
+        const res: any = await api.patch('/user/update_password', {
+            password,
+            confirmPassword,
+            recoverPasswordToken,
+        });
+        return res.data;
     },
 
-      getJobs: async (page: number = 1) => {
+    companyUpdatePassword: async (
+        password: string,
+        confirmPassword: string,
+        recoverPasswordToken: string,
+    ) => {
+        const res: any = await api.patch('/company/update_password', {
+            password,
+            confirmPassword,
+            recoverPasswordToken,
+        });
+        return res.data;
+    },
+
+    getJobs: async (page: number = 1) => {
         const url = `/job?order=ASC&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
-          return res.data;
-      },
+        return res.data;
+    },
 
-      getJob: async (id: number) => {
-        const url = `/job/${id}`
+    getJob: async (id: number) => {
+        const url = `/job/${id}`;
         const res: any = await api.get(url);
-          return res.data;
-      },
-      getJobsByCompany: async (id: string) => {
+        return res.data;
+    },
+    getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;
-      }
+    },
 });
