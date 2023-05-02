@@ -93,7 +93,7 @@ export const UserForms = (props: any): JSX.Element => {
             });
 
             if (email && password && isLogged && userType) {
-                navigate('/feedjobs');
+                navigate('/*');
             }
         } catch (err) {
             // TODO: Tratar os erros com as mensagens do backend e exibir em tela
