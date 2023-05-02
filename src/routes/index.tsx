@@ -20,14 +20,14 @@ export const NavRoutes: React.FC = () => {
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="confirm-email" element={<ConfirmEmail />}></Route>
-            <Route path="recovery-password" element={<ResetPassword  />}></Route>
-            <Route 
-            path="company-portal" 
-            element={
-                <RequireAuth>
-                    <CompanyPortal />
-                </RequireAuth>
-            }
+            <Route path="recovery-password" element={<ResetPassword />}></Route>
+            <Route
+                path="company-portal"
+                element={
+                    <RequireAuth>
+                        <CompanyPortal />
+                    </RequireAuth>
+                }
             />
             <Route
                 path="insertjob"
