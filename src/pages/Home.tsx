@@ -21,7 +21,7 @@ import {
     OurSitesSection,
     CardWrapper,
     FormWrapper,
-} from './styles/home.styles';
+} from './styles/Home.styles';
 
 import LogoName from '../assets/imgs/logo-icon-name-h.svg';
 import ImageHome from '../assets/imgs/home-image.svg';
