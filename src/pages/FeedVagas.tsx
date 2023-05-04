@@ -5,6 +5,7 @@ import JobCardItem from '../components/FeedVagas/JobCardItem';
 import { AuthProvider } from '../contexts/Auth/AuthProvider';
 import { useApi } from '../hooks/useApi';
 import JobDetails from '../components/FeedVagas/JobDetails';
+import { useLocation } from 'react-router-dom';
 
 import {
     ContentWrapper,
@@ -67,6 +68,7 @@ const FeedVagas = () => {
     const [jobIdFromUrl, setJobIdFromUrl] = useState<string | null>(null);
 
     const api = useApi();
+    const { search } = useLocation();
 
     useEffect(() => {
         async function getJobs() {
@@ -89,6 +91,30 @@ const FeedVagas = () => {
             }
         }
     }, [jobIdFromUrl, jobs]);
+
+    const params = new URLSearchParams(search);
+    const searchTerm: any = params.get('searchTerm') || '';
+    useEffect(() => {
+        const filteredResults = jobs.filter((job: any) =>
+            [
+                'title',
+                'contractType',
+                'type',
+                'city',
+                'federalUnit',
+                'modality',
+                'prerequisites',
+                'typeContract',
+            ].some((prop) => {
+                const value = job[prop];
+                return (
+                    value &&
+                    value.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }),
+        );
+        setFilteredJobs(filteredResults);
+    }, [search, jobs]);
 
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
@@ -116,6 +142,7 @@ const FeedVagas = () => {
         setSelectedJob(null);
         window.history.replaceState({}, '', '/feedVagas');
     };
+
     return (
         <>
             <Header pageName="Feed de Vagas" backTo={'/'}></Header>
@@ -178,6 +205,7 @@ const FeedVagas = () => {
 
                 <Wrapper>
                     <FeedSearch
+                        searchFromHome={searchTerm}
                         data={jobs}
                         onFilter={handleFilter}
                         setFilteredJobs={setFilteredJobs}
