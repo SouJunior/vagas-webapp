@@ -28,7 +28,7 @@ const LoginCard = () => {
     return (
         <Container>
             <Card>
-                <LoginTypeButton>
+                {/* <LoginTypeButton>
                     <button onClick={userHandler}>
                         <img src={CandidatoIcon} alt="Candidato" />
                         Candidato
@@ -37,7 +37,7 @@ const LoginCard = () => {
                         <img src={EmpresaIcon} alt="Empresa" />
                         Empresa
                     </button>
-                </LoginTypeButton>
+                </LoginTypeButton> */}
                 <DivLogo
                     style={{
                         marginBottom: true ? '42px' : '18px',
@@ -45,8 +45,9 @@ const LoginCard = () => {
                     }}
                 >
                     <LogoIcon />
-                </DivLogo>
+                   
 
+                </DivLogo>
                 {/* Envia tipo de usuário por parâmetro */}
 
                 {company && <CompanyForms type="COMPANY" />}

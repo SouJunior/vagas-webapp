@@ -150,11 +150,11 @@ export const UserForms = (props: any): JSX.Element => {
 
     return (
         <>
-            {isLogin ? (
+            {/* {isLogin ? (
                 <Title>Candidato</Title>
             ) : (
                 <Title>Cadastro de candidato</Title>
-            )}
+            )} */}
 
             <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
             {/* renderiza se existe(true) um formulário do tipo login */}

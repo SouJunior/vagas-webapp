@@ -149,11 +149,11 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     return (
         <>
-            {isLogin ? (
+            {/* {isLogin ? (
                 <Title>Empresa</Title>
             ) : (
                 <Title>Cadastro de empresa</Title>
-            )}
+            )} */}
 
             <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
             {/* renderiza se existe(true) um formulário do tipo login */}

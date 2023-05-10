@@ -1,18 +1,12 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import {
-    Container,
-    NavBar,
-    GreenButton,
-    WhiteButton,
-    Title,
-    LinkContainer,
-    LinkTag,
-    Bar,
-    List,
-    InputWrapper,
-} from './styles/home.styles';
-import LogoName from '../assets/imgs/logotipo-icone-extendida.svg';
+import { Link } from 'react-router-dom';
+
+import * as styles from './styles/home.styles';
+
+import HeaderComponents from '../components/HeaderComponents'
+import MainComponents from '../components/MainComponents'
+import { Footer } from '../components/Footer'
+// import LogoName from '../assets/imgs/logotipo-icone-extendida.svg';
 
 export const Home: React.FC = () => {
     const [creators, setCreators] = useState<string[]>([
@@ -31,36 +25,39 @@ export const Home: React.FC = () => {
     }
 
     return (
-        <Container>
-            <NavBar>
-                <Title>
+        <styles.Container>
+            {/* <styles.NavBar>
+                <styles.Title>
                     <img
                         src={LogoName}
                         alt="Logo SouJunior"
                         width={272}
                         height={272}
                     />
-                </Title>
-                <Title>
-                    <GreenButton>Faça parte - Cadastre-se</GreenButton>
-                    <WhiteButton>Login</WhiteButton>
-                </Title>
-            </NavBar>
-            <LinkContainer>
+                </styles.Title>
+                <styles.Title>
+                    <styles.GreenButton>Faça parte - Cadastre-se</styles.GreenButton>
+                    <styles.WhiteButton>Login</styles.WhiteButton>
+                </styles.Title>
+            </styles.NavBar> */}
+             <HeaderComponents />
+             <styles.mainHero>
+                <MainComponents />
+             </styles.mainHero>
+            {/*<styles.LinkContainer>
                 <h2>Pages</h2>
-                <LinkTag>
+                <styles.LinkTag>
                     <Link to="/login">Login</Link>
-                </LinkTag>
+                </styles.LinkTag>
 
-                <LinkTag>
+                <styles.LinkTag>
                     <Link to="FeedVagas">Feed de Vagas</Link>
-                </LinkTag>
-                <LinkTag>
+                </styles.LinkTag>
+                <styles.LinkTag>
                     <Link to="addjobs">Criar vagas</Link>
-                </LinkTag>
-            </LinkContainer>
-            <Bar></Bar>
-            <InputWrapper>
+                </styles.LinkTag>
+            </styles.LinkContainer> */}
+            {/* <styles.InputWrapper>
                 <form onSubmit={handleFormSubmit}>
                     <input
                         type="text"
@@ -69,13 +66,14 @@ export const Home: React.FC = () => {
                     />
                     <button type="submit">submit</button>
                 </form>
-            </InputWrapper>
-            <List>
+            </styles.InputWrapper> */}
+            {/* <styles.List>
                 <h1>CRIADORES:</h1>
                 {creators.map((creators: string, index: number) => (
                     <li key={index}>{creators}</li>
                 ))}
-            </List>
-        </Container>
+            </styles.List> */}
+            <Footer />
+        </styles.Container>
     );
 };

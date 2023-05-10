@@ -12,8 +12,8 @@ export function Footer() {
         <footer className="border-t border-gray-dark/30 bg-gray-light w-full h-72">
             <div className="flex md:flex-row flex-col my-14 ">
                 <div className="md:mr-12 flex flex-col text-center md:text-start items-center md:items-start md:ml-14">
-                    <img src={logoIcon} width="265px" alt="Logo SouJunior" />
-                    <h2 className="font-semibold text-gray-darker text-[25px] mt-1 ">
+                    <img src={logoIcon} width="250px" alt="Logo SouJunior" />
+                    <h2 className="font-semibold text-gray-darker text-[25px] mt-2 ">
                         #MovimentoSouJunior
                     </h2>
                     <p className="text-gray-darker text-sm leading-4 max-w-[355px]">
