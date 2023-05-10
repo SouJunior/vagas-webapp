@@ -16,14 +16,12 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 14px;
 `;
 
 export const Card = styled.div`
   width: 500px;
-  margin-bottom: 24px;
   overflow-y: auto;
-  padding: 20px;
+  padding: 10px;
   background-color: #fdfffc;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -77,7 +75,7 @@ export const Divider = styled.hr`
 `;
 
 export const SecondDivider = styled(Divider)`
-    margin-bottom: 48px;
+
     margin-top: 12px;
 `;
 
@@ -89,7 +87,7 @@ export const Form = styled.form`
 
 export const Input = styled.input`
     height: 48px;
-    width: 300px;
+    width: 350px;
     position: relative;
     padding-left: 16px;
     padding-right: 44px;
@@ -170,7 +168,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const LoginButton = styled.button`
-    width: 310px;
+    width: 350px;
     height: 56px;
     border-radius: 3px;
     margin-bottom: 20px;
@@ -191,8 +189,8 @@ export const RegisterButton = styled(LoginButton)`
 export const RegisterSubmitButton = styled(RegisterButton)`
     background-color: #1165ba;
     color: white;
-    margin-bottom: 8px;
-    width: 300px;
+    margin-bottom: 20px;
+    width: 350px;
     height: 52px;
 `;
 

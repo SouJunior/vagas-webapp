@@ -9,7 +9,7 @@ export default function index() {
             <button>Entre em contacto</button>
         </styles.leftContainer> 
         <styles.rightContainer>
-            <img src={ loginPeople } alt='Imagem hero'/>
+            <img src={ loginPeople } alt='Imagem hero' width={350} height={350}/>
         </styles.rightContainer>
     </styles.Container>
   )

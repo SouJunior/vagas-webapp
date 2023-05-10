@@ -5,6 +5,7 @@ import loginPeople from '../assets/imgs/login-people.svg';
 import verticalLine from '../assets/imgs/verticalLine.svg';
 import LoginCard from '../components/LoginCard';
 import { AchorLink } from './styles/Main.styled';
+import * as styles from './styles/LoginStyles'
 
 import '../App.css';
 
@@ -12,18 +13,23 @@ const Login = () => {
     const navigate = useNavigate();
 
     return (
-        <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto">
+        <styles.MainLogin>
+            <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto">
             <div className="container max-w-screen-xl m-auto h-screen">
-                <section className="flex flex-col items-center h-screen lg:flex-row lg:mb-20">
-                    <div className="titles max-h-[725px] flex flex-col flex-grow items-center lg:items-center h-5/6">
+                <styles.SectionCard>
+                    <div>
                         <img
-                            className="max-w-md flex-grow"
+                            className="max-w-md flex-grow mb-5"
                             src={extendedLogoImg}
                             alt="Logo-sou-junior-square"
+                            width={250}
+                            height={250}
                         />
-                        <div className="max-w-xl flex-grow text-center lg:text-center">
-                            <img src={loginPeople} alt="" />
-                        </div>
+                        <div className="max-w-xl flex-grow text-center lg:text-center mb-5">
+                            <img src={loginPeople} alt="" 
+                            width={400}
+                            height={400}/>
+                        </div>{/* 
                         <Button
                             background="outline"
                             border="white"
@@ -31,8 +37,9 @@ const Login = () => {
                             onClick={() => navigate('/')}
                         >
                             Acessar portal de vagas
-                        </Button>
-                        <AchorLink
+                        </Button> */}
+                        {/* <styles.SectionCard.ButtonPortalLogin>Acessar portal de vagas</styles.SectionCard.ButtonPortalLogin> */}
+                        {/* <AchorLink
                             onClick={() =>
                                 window.open(
                                     'https://www.soujunior.tech',
@@ -41,17 +48,18 @@ const Login = () => {
                             }
                         >
                             Conheça SouJunior Tech
-                        </AchorLink>
-                    </div>
+                        </AchorLink> */}
+                    </div>{/* 
                     <div className="flex-grow-[.5]">
                         <img src={verticalLine} alt="" />
-                    </div>
+                    </div> */}
                     <div className="login-card flex">
                         <LoginCard />
                     </div>
-                </section>
+                </styles.SectionCard>
             </div>
         </main>
+        </styles.MainLogin>
     );
 };
 

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
 import { CompanyForms } from './CompanyForms';
 import { UserForms } from './UserForms'
 import { LogoIcon } from '../LogoIcon';
@@ -40,11 +39,11 @@ const LoginCard = () => {
                 </LoginTypeButton> */}
                 <DivLogo
                     style={{
-                        marginBottom: true ? '42px' : '18px',
-                        marginTop: true ? '22px' : '8px',
+                        marginBottom: true ? '21px' : '9px',
+                        marginTop: true ? '11px' : '4px',
                     }}
                 >
-                    <LogoIcon />
+                    <LogoIcon  />
                    
 
                 </DivLogo>
@@ -54,7 +53,6 @@ const LoginCard = () => {
 
                 {user && <UserForms type="USER" />}
             </Card>
-            <ToastContainer />
         </Container>
     );
 };
