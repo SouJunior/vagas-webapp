@@ -8,12 +8,12 @@ import {
     GitHubIcon,
     LinkedInIcon,
     DiscordIcon,
-    TelegramIcon, 
-} from "./styles"
+    TelegramIcon 
+} from "./Styles"
 import LogoImageBlue from "../../../assets/imgs/logo-icon-name-h.svg"
 import GooglePlayImage from "../../../assets/imgs/googlePlay.svg"
 
-const index = () => {
+const Index = () => {
   return (
     <Footer>
             <div>
@@ -97,4 +97,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

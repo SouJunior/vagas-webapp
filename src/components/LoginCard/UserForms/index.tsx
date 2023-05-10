@@ -93,7 +93,7 @@ export const UserForms = (props: any): JSX.Element => {
             });
 
             if (email && password && isLogged && userType) {
-                navigate('/feedjobs');
+                navigate('/candidate-portal');
             }
         } catch (err) {
             // TODO: Tratar os erros com as mensagens do backend e exibir em tela
@@ -264,7 +264,7 @@ export const UserForms = (props: any): JSX.Element => {
                             <Input
                                 type="text"
                                 {...register('registerEmail')}
-                                placeholder="Digite sei email"
+                                placeholder="Digite seu email"
                                 aria-label="Email"
                             ></Input>
                             <IconWrapper>
