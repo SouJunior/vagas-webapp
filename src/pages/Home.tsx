@@ -1,6 +1,12 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { CaretLeft, CaretRight } from '@phosphor-icons/react';
+
 import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useApi } from '../hooks/useApi';
 
@@ -17,23 +23,49 @@ import {
     JobsInfo,
     MainSearchFilter,
     Image,
-    Divider,
     OurSitesSection,
     CardWrapper,
     FormWrapper,
+    JourneySection,
+    JourneyTitle,
+    JourneyImage,
+    JourneyCardWrapper,
+    AreasSection,
+    AreasCardWrapper,
+    CustomNextButton,
+    CustomPrevButton,
 } from './styles/Home.styles';
+
+import OurSitesCard from '../components/Home/OurSites';
+import JourneyCard from '../components/Home/JourneyCard';
 
 import LogoName from '../assets/imgs/logo-icon-name-h.svg';
 import ImageHome from '../assets/imgs/home-image.svg';
-import OurSitesCard from '../components/Home/OurSites';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
 import Site from '../assets/imgs/siteSouJunior-img.svg';
 import NosAcompanhe from '../assets/imgs/followUs-img.svg';
+import TimeColaborativo from '../assets/imgs/colaborativeTeam-img.svg';
+import Linkedin from '../assets/imgs/linkedin-rectangle.png';
+import Resume from '../assets/imgs/resume-rectangle.png';
+import Process from '../assets/imgs/process-rectangle.png';
+import KeyWords from '../assets/imgs/keyWords-rectangle.png';
+import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
+import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
+import { Areas } from '../Mocks/MockArea';
+import { ModalInfo } from '../Mocks/MockInfoModal';
+
+interface AreaProps {
+    id: string;
+    name: string;
+    icon: React.ReactNode;
+}
 
 export const Home: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [active, setActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
+    const [selectedArea, setSelectedArea] = useState<string | null>(null);
+
     const { setIsLogin } = useContext(AuthContext);
 
     const api = useApi();
@@ -75,6 +107,34 @@ export const Home: React.FC = () => {
         navigate(`/feedvagas?searchTerm=${searchTerm}`);
     };
 
+    const handleCardClick = (id: string) => {
+        setSelectedArea(id);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const handleCloseModal = () => {
+        setSelectedArea(null);
+        document.body.style.overflow = 'auto';
+    };
+
+    const breakpoints = {
+        320: {
+            slidesPerView: 3,
+        },
+        480: {
+            slidesPerView: 5,
+        },
+        768: {
+            slidesPerView: 7,
+        },
+        1024: {
+            slidesPerView: 7,
+        },
+        1440: {
+            slidesPerView: 9,
+        },
+    };
+
     return (
         <>
             <NavBar active={active}>
@@ -100,7 +160,7 @@ export const Home: React.FC = () => {
                     </LoginButton>
                 </NavTitle>
             </NavBar>
-            <Main>
+            <Main active={active}>
                 <MainSearchFilter>
                     <Title>
                         Um portal de vagas exclusivo para o profissional
@@ -137,7 +197,6 @@ export const Home: React.FC = () => {
                 </MainSearchFilter>
                 <Image src={ImageHome}></Image>
             </Main>
-            <Divider />
             <OurSitesSection>
                 <Title>Seja o Júnior que as empresas desejam:</Title>
                 <CardWrapper>
@@ -161,7 +220,77 @@ export const Home: React.FC = () => {
                     />
                 </CardWrapper>
             </OurSitesSection>
-            <Divider />
+            <JourneySection>
+                <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
+                <JourneyImage src={TimeColaborativo} />
+                <JourneyCardWrapper>
+                    <JourneyCard
+                        Img={Linkedin}
+                        Description={'Se destaque no Linkedin'}
+                    />
+                    <JourneyCard
+                        Img={Resume}
+                        Description={'Como construir um currículo Júnior'}
+                    />
+                    <JourneyCard
+                        Img={Process}
+                        Description={'Se prepare para o processo seletivo'}
+                    />
+                    <JourneyCard
+                        Img={KeyWords}
+                        Description={'Palavras Chave na área tech'}
+                    />
+                </JourneyCardWrapper>
+            </JourneySection>
+            <AreasSection>
+                <Title>Conheça um pouco mais das áreas de Tecnologia</Title>
+                <AreasCardWrapper>
+                    <Swiper
+                        modules={[Navigation]}
+                        breakpoints={breakpoints}
+                        navigation={{
+                            nextEl: '.swiper-next-button',
+                            prevEl: '.swiper-prev-button',
+                        }}
+                        className="mySwiper"
+                        style={{
+                            width: '100%',
+                            maxWidth: 'screen-width',
+                            paddingLeft: '74px',
+                            paddingRight: '40px',
+                        }}
+                    >
+                        <CustomPrevButton className="swiper-prev-button">
+                            <CaretLeft size={42} />
+                        </CustomPrevButton>
+                        {Areas.map((area: AreaProps) => (
+                            <SwiperSlide key={area.name}>
+                                <div>
+                                    <TechnologyAreaCard
+                                        onClick={() => {
+                                            handleCardClick(area.id);
+                                        }}
+                                        icon={area.icon}
+                                        area={area.name}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                        <CustomNextButton className="swiper-next-button">
+                            <CaretRight size={42} />
+                        </CustomNextButton>
+                    </Swiper>
+
+                    {selectedArea !== null && (
+                        <AreaModal
+                            title={ModalInfo[selectedArea].title}
+                            description={ModalInfo[selectedArea].description}
+                            source={ModalInfo[selectedArea].source}
+                            onClose={handleCloseModal}
+                        />
+                    )}
+                </AreasCardWrapper>
+            </AreasSection>
         </>
     );
 };
