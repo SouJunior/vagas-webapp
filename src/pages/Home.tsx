@@ -34,6 +34,10 @@ import {
     AreasCardWrapper,
     CustomNextButton,
     CustomPrevButton,
+    VocationalBannerArea,
+    VocationalBannerContainer,
+    VocationalImage,
+    VocationalTextContainer,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSites';
@@ -50,6 +54,9 @@ import Resume from '../assets/imgs/resume-rectangle.png';
 import Process from '../assets/imgs/process-rectangle.png';
 import KeyWords from '../assets/imgs/keyWords-rectangle.png';
 import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
+import VocationalTest from '../assets/imgs/vocational-teste.svg';
+import VocationalBanner from '../assets/imgs/vocational-banner.png'
+
 import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
 import { Areas } from '../Mocks/MockArea';
 import { ModalInfo } from '../Mocks/MockInfoModal';
@@ -291,6 +298,41 @@ export const Home: React.FC = () => {
                     )}
                 </AreasCardWrapper>
             </AreasSection>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <VocationalBannerArea>
+                <VocationalBannerContainer>
+                    <VocationalTextContainer>
+                        <h1>TESTE <br/><span>VOCACIONAL</span></h1>
+                        <p><a href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/">Clique Aqui</a> e faça o seu teste agora mesmo!</p>
+                        <p className='p2'>Seu teste será feito no g1.com</p>
+                    </VocationalTextContainer>
+                    <VocationalImage src={VocationalTest} alt=""/>
+                </VocationalBannerContainer>
+            </VocationalBannerArea>
         </>
     );
 };

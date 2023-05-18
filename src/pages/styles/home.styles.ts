@@ -1,4 +1,5 @@
 import  styled, { css }  from 'styled-components'
+import VocationalBanner from '../../assets/imgs/VocationalBanner.svg'
 
 interface Props {
     active: boolean;
@@ -17,7 +18,7 @@ export const NavBar = styled.nav<Props>`
     padding: 20px;   
     height: 132px;
     position: fixed;
-    transition: height 0.3s ease-in-out
+    transition: height 0.3s ease-in-out;
     z-index: 999;
 
     ${({ active }) => active && css`
@@ -277,3 +278,157 @@ export const CustomPrevButton = styled.div`
     cursor: pointer;
     z-index: 1001;
 `;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const VocationalBannerArea = styled.div`
+    max-width: 1200px;
+    height: 412px;
+    margin: 100px auto;
+    background-color: #1164B9;
+    background-image: url(${VocationalBanner});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+    position: relative;
+`
+
+export const VocationalBannerContainer = styled.div `
+    display: flex;
+    align-items: center;
+    margin-inline: 84px;
+    max-width: 100%;
+    gap: 100px;
+    height: 100%;
+`
+export const VocationalTextContainer = styled.div`
+     color: white;
+
+     h1 {
+        font-size: 90px;
+        font-weight: 400;
+        line-height: 90px;
+        text-transform: uppercase;
+     }
+
+     span {
+        font-size: 80px;
+        font-weight: 700;
+     }
+
+     p {
+        font-size: 20px;
+     }
+     
+     p.p2 {
+        font-weight: 100;
+        font-size: 13px;
+        line-height: 15.3px;
+        position: absolute;
+        bottom: 23px;
+     }
+
+     a {
+        text-decoration: underline;
+        font-weight: 500;
+     }
+    
+`
+
+
+export const VocationalImage = styled.img`
+     position: absolute;
+     right: 80px;
+     bottom: 0px;
+`
+
+
