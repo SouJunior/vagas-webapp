@@ -7,8 +7,8 @@ import {
     JobButton
 } from "./styles/CompanyPortalStyles"
 import PlusSignImage from "../assets/imgs/plus-sign.png"
-import Footer from '../components/Portal/Footer/Index';
-import Header from '../components/Portal/Header/Index';
+import Footer from '../components/Portal/Footer/index';
+import Header from '../components/Portal/Header';
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../contexts/Auth/AuthContext"
 import { useContext, useEffect, useState } from "react"

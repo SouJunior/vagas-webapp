@@ -9,7 +9,7 @@ import {
     LinkedInIcon,
     DiscordIcon,
     TelegramIcon 
-} from "./Styles"
+} from "./styles"
 import LogoImageBlue from "../../../assets/imgs/logo-icon-name-h.svg"
 import GooglePlayImage from "../../../assets/imgs/googlePlay.svg"
 
