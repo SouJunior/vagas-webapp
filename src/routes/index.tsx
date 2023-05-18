@@ -13,6 +13,7 @@ import FeedVagas from '../pages/FeedVagas';
 import ConfirmEmail from '../pages/ConfirmEmail';
 import ResetPassword from '../pages/ResetPassword';
 import CompanyPortal from '../pages/CompanyPortal';
+import CandidatePortal from '../pages/CandidatePortal';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -26,6 +27,14 @@ export const NavRoutes: React.FC = () => {
             element={
                 <RequireAuth>
                     <CompanyPortal />
+                </RequireAuth>
+            }
+            />
+            <Route 
+            path="candidate-portal" 
+            element={
+                <RequireAuth>
+                    <CandidatePortal />
                 </RequireAuth>
             }
             />

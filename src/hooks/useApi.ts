@@ -99,8 +99,17 @@ export const useApi = () => ({
         const res: any = await api.get(url);
           return res.data;
       },
+
       getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;
-      }
+      },
+
+      searchJobs: async (keyword: string) => {
+        const url = `/job/search/${keyword}`
+        console.log(url)
+        const res: any = await api.get(url);
+        console.log(res)
+          return res.data;
+      },
 });

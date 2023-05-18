@@ -5,7 +5,7 @@ import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [user, setUser] = useState<User | null>(null);
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState<'login' | 'register'>('login');
 
     const api = useApi();
 

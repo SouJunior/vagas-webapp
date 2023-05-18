@@ -1,6 +1,7 @@
 import  styled, { css }  from 'styled-components'
 import VocationalBanner from '../../assets/imgs/VocationalBanner.svg'
 
+
 interface Props {
     active: boolean;
   }
@@ -19,12 +20,13 @@ export const NavBar = styled.nav<Props>`
     height: 132px;
     position: fixed;
     transition: height 0.3s ease-in-out;
-    z-index: 999;
+    z-index: 2000;
 
     ${({ active }) => active && css`
     height: 38px;
     background-color: #fff;
     height: 100px;
+    z-index: 2000;
     padding: 20px;
     left: 50%;
     transform: translateX(-50%);
@@ -121,7 +123,7 @@ export const FormWrapper = styled.div<Props>`
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 900;
+    z-index: 998;
   
 
     ${({ active }) => active && css`
@@ -259,7 +261,7 @@ export const CustomNextButton = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 998;
 `;
 
 export const CustomPrevButton = styled.div`
@@ -279,101 +281,41 @@ export const CustomPrevButton = styled.div`
     z-index: 1001;
 `;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const TestimonialSection = styled.section`
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 196px;
+    z-index: 995;
+
+    .swiper-pagination-bullet {
+        width: 24px;
+        height: 24px;
+        background-color: #D9D9D9;
+        opacity: 0.8;
+        border-radius: 50%;
+      }
+    
+      .swiper-pagination-bullet-active {
+        background-color: ${({ theme }) => theme.colors.primary};
+        opacity: 1;
+      }
+`
+
+export const TestimonialWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 997;    
+`;
 
 export const VocationalBannerArea = styled.div`
     max-width: 1200px;
     height: 412px;
     margin: 100px auto;
-    background-color: #1164B9;
+    background-color: ${({ theme }) => theme.colors.primary};
     background-image: url(${VocationalBanner});
     background-repeat: no-repeat;
     background-size: cover;
@@ -431,4 +373,55 @@ export const VocationalImage = styled.img`
      bottom: 0px;
 `
 
+export const AppBannerContainer = styled.section`
+    max-width: 1640px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1600px 1fr;
+    height: 550px;
+    background-color: ${({ theme }) => theme.colors.primary};
+    position: relative; 
+`;
+
+export const CircleImage = styled.img`
+    position: absolute;
+    left: -170px;
+    bottom: -200px;
+    z-index: 700; 
+    width: 600px;
+`;
+
+export const AppBannerContainerInfo = styled.div`
+    color: white;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    z-index: 800;
+    
+    h1 {
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 60.51px;
+    }   
+
+    span {
+        font-weight: 600; 
+    }
+`;
+
+export const BannerMobileImage = styled.img`
+    position: absolute;
+    width: 400px;
+    right: 140px;
+    bottom: 0;
+`;
+
+export const GooglePlayButton = styled.img`
+    width: 300px;
+`;
 
