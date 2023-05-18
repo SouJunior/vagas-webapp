@@ -8,6 +8,7 @@ import {
     HeaderLogo,
     UserInfo
 } from "./styles"
+import Menu from "../Menu"
 import LogoImage from "../../../assets/imgs/logotipo-icone-extendida.svg"
 import MenuImage from "../../../assets/imgs/vertical-menu.svg"
 import ProfileImage from "../../../assets/imgs/profile-image.svg"
@@ -20,7 +21,8 @@ const Index = () => {
     const auth: any = useContext(AuthContext);
 
     return (
-        <Header>
+        <>
+         <Header>
             <div>
                 <HeaderLogo src={LogoImage} width="194px" height="29px" alt="logo" />
             </div>
@@ -37,6 +39,8 @@ const Index = () => {
                 <MenuPicture src={MenuImage} alt="menu" />
             </UserButton>
         </Header>
+        <Menu />
+        </>
     )
 }
 
