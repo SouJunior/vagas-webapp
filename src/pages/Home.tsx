@@ -1,10 +1,12 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
 import { AuthContext } from '../contexts/Auth/AuthContext';
@@ -34,6 +36,8 @@ import {
     AreasCardWrapper,
     CustomNextButton,
     CustomPrevButton,
+    TestimonialSection,
+    TestimonialWrapper,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSites';
@@ -53,6 +57,7 @@ import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyArea
 import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
 import { Areas } from '../Mocks/MockArea';
 import { ModalInfo } from '../Mocks/MockInfoModal';
+import Testimonials from '../components/Home/Testimonials';
 
 interface AreaProps {
     id: string;
@@ -256,7 +261,7 @@ export const Home: React.FC = () => {
                         style={{
                             width: '100%',
                             maxWidth: 'screen-width',
-                            paddingLeft: '74px',
+                            paddingLeft: '75px',
                             paddingRight: '40px',
                         }}
                     >
@@ -291,6 +296,38 @@ export const Home: React.FC = () => {
                     )}
                 </AreasCardWrapper>
             </AreasSection>
+            <TestimonialSection>
+                <Swiper
+                    modules={[Autoplay, Pagination]}
+                    loop
+                    centeredSlides={true}
+                    spaceBetween={100}
+                    autoplay={{
+                        delay: 4500,
+                        disableOnInteraction: false,
+                    }}
+                    pagination={{
+                        clickable: true,
+                        bulletClass: 'swiper-pagination-bullet',
+                    }}
+                    style={{
+                        width: '100%',
+                        maxWidth: '1080px',
+                        height: '360px',
+                    }}
+                    className="mySwiper"
+                >
+                    <TestimonialWrapper>
+                        {/* Darei uma map aqui quando tiver os depoimentos disponiveis, 
+                        deixei informações estáticas somente para demonstrações */}
+                        <SwiperSlide>
+                            <Testimonials />
+                        </SwiperSlide>
+                        <SwiperSlide>Slide 2</SwiperSlide>
+                        <SwiperSlide>Slide 3</SwiperSlide>
+                    </TestimonialWrapper>
+                </Swiper>
+            </TestimonialSection>
         </>
     );
 };

@@ -18,12 +18,13 @@ export const NavBar = styled.nav<Props>`
     height: 132px;
     position: fixed;
     transition: height 0.3s ease-in-out
-    z-index: 999;
+    z-index: 998;
 
     ${({ active }) => active && css`
     height: 38px;
     background-color: #fff;
     height: 100px;
+    z-index: 998;
     padding: 20px;
     left: 50%;
     transform: translateX(-50%);
@@ -120,7 +121,7 @@ export const FormWrapper = styled.div<Props>`
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 900;
+    z-index: 998;
   
 
     ${({ active }) => active && css`
@@ -258,7 +259,7 @@ export const CustomNextButton = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 998;
 `;
 
 export const CustomPrevButton = styled.div`
@@ -275,5 +276,34 @@ export const CustomPrevButton = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 998;
+`;
+
+export const TestimonialSection = styled.section`
+    display: flex;
+    position: relative
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 196px;
+    z-index: 999;
+
+    .swiper-pagination-bullet {
+        width: 24px;
+        height: 24px;
+        background-color: #D9D9D9;
+        opacity: 0.8;
+        border-radius: 50%;
+      }
+    
+      .swiper-pagination-bullet-active {
+        background-color: ${({ theme }) => theme.colors.primary}; !important
+        opacity: 1;
+      }
+`;
+
+export const TestimonialWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 `;
