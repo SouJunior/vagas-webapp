@@ -38,7 +38,7 @@ import {
     CustomPrevButton,
     TestimonialSection,
     TestimonialWrapper,
-} from './styles/Home.styles';
+} from './styles/home.styles';
 
 import OurSitesCard from '../components/Home/OurSites';
 import JourneyCard from '../components/Home/JourneyCard';
