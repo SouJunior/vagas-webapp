@@ -1,13 +1,20 @@
 import { Description, Img, Title, Container } from './styles';
 
-const OurSitesCard = (Props: any) => {
+interface OurSitesCardProps {
+    Link: string;
+    Title: string;
+    Img: string;
+    Description: string;
+}
+
+const OurSitesCard: React.FC<OurSitesCardProps> = (props) => {
     return (
         <Container>
-            <a href={Props.Link}>
-                <Title>{Props.Title}</Title>
+            <a href={props.Link}>
+                <Title>{props.Title}</Title>
             </a>
-            <Img src={Props.Img} />
-            <Description>{Props.Description}</Description>
+            <Img src={props.Img} />
+            <Description>{props.Description}</Description>
         </Container>
     );
 };
