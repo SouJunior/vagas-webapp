@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import googlePlayBadge from '../assets/imgs/googlePlayBadge.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
@@ -36,8 +37,17 @@ import {
     AreasCardWrapper,
     CustomNextButton,
     CustomPrevButton,
+    VocationalBannerArea,
+    VocationalBannerContainer,
+    VocationalImage,
+    VocationalTextContainer,
     TestimonialSection,
     TestimonialWrapper,
+    AppBannerContainer,
+    AppBannerContainerInfo,
+    BannerMobileImage,
+    GooglePlayButton,
+    CircleImage,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSites';
@@ -54,6 +64,12 @@ import Resume from '../assets/imgs/resume-rectangle.png';
 import Process from '../assets/imgs/process-rectangle.png';
 import KeyWords from '../assets/imgs/keyWords-rectangle.png';
 import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
+import VocationalTest from '../assets/imgs/vocational-teste.svg';
+import BannerMobile from '../assets/imgs/BannerMobile.svg'
+import doubleCircles from "../assets/imgs/DoubleCircle.svg"
+
+
+
 import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
 import ProfileTest from '../assets/imgs/profile-depoimento.png';
 import { Areas } from '../Mocks/MockArea';
@@ -297,6 +313,31 @@ export const Home: React.FC = () => {
                     )}
                 </AreasCardWrapper>
             </AreasSection>
+            
+            <VocationalBannerArea>
+                <VocationalBannerContainer>
+                    <VocationalTextContainer>
+                        <h1>TESTE <br/><span>VOCACIONAL</span></h1>
+                        <p><a href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/" target='_blank' rel="noreferrer">Clique Aqui</a> e faça o seu teste agora mesmo!</p>
+                        <p className='p2'>Seu teste será feito no g1.com</p>
+                    </VocationalTextContainer>
+                    <VocationalImage src={VocationalTest} alt=""/>
+                </VocationalBannerContainer>
+            </VocationalBannerArea>
+                
+            <AppBannerContainer>
+                <AppBannerContainerInfo>
+                <h1>Baixe nosso aplicativo<br/>
+                no seu dispositivo <span>Android</span><br/>
+                e fique por dentro das <br/>
+                novidades! 
+                </h1>
+                <a href="https://play.google.com/store/apps?hl=pt_BR&gl=US" target='_blank' rel="noreferrer"><GooglePlayButton src={googlePlayBadge} /></a>
+                </AppBannerContainerInfo>
+                <BannerMobileImage src={BannerMobile}/>
+                <CircleImage src={doubleCircles}/>
+            </AppBannerContainer>
+            
             <TestimonialSection>
                 <Swiper
                     modules={[Autoplay, Pagination]}
