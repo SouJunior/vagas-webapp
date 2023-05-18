@@ -55,6 +55,7 @@ import Process from '../assets/imgs/process-rectangle.png';
 import KeyWords from '../assets/imgs/keyWords-rectangle.png';
 import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
 import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
+import ProfileTest from '../assets/imgs/profile-depoimento.png';
 import { Areas } from '../Mocks/MockArea';
 import { ModalInfo } from '../Mocks/MockInfoModal';
 import Testimonials from '../components/Home/Testimonials';
@@ -321,7 +322,14 @@ export const Home: React.FC = () => {
                         {/* Darei uma map aqui quando tiver os depoimentos disponiveis, 
                         deixei informações estáticas somente para demonstrações */}
                         <SwiperSlide>
-                            <Testimonials />
+                            <Testimonials
+                                Text={
+                                    '“A SouJunior foi uma adição muito necessária na minha carreira profissional, eu ainda estava no começo da minha jornada como Designer e tive a oportunidade de integrar otime e me desenvolver muito, aprendi como funcionava arotina, os métodos, as aplicações, por isso sou muito grato e recomendo o projeto!”'
+                                }
+                                Author={'Lucas Sales'}
+                                Workplace={'UX Designer na Ilegra'}
+                                Profile={ProfileTest}
+                            />
                         </SwiperSlide>
                         <SwiperSlide>Slide 2</SwiperSlide>
                         <SwiperSlide>Slide 3</SwiperSlide>
