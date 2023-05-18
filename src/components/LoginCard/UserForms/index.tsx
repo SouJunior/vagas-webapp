@@ -56,7 +56,7 @@ export const UserForms = (props: any): JSX.Element => {
 
     // Define qual formulário deverá ser validado
     const getFormValidation =
-        isLogin === true ? schemaUserLoginForm : schemaUserRegisterForm;
+        isLogin === 'login' ? schemaUserLoginForm : schemaUserRegisterForm;
 
     const {
         register,
@@ -128,7 +128,7 @@ export const UserForms = (props: any): JSX.Element => {
             handlePopUp();
 
             if (registerData) {
-                setIsLogin(true);
+                setIsLogin('login');
             }
         } catch (error) {
             // TODO: Tratar os erros com as mensagens do backend e exibir em tela
@@ -148,15 +148,17 @@ export const UserForms = (props: any): JSX.Element => {
 
     return (
         <>
-            {isLogin ? (
+            {isLogin === 'login' ? (
                 <Title>Candidato</Title>
             ) : (
                 <Title>Cadastro de candidato</Title>
             )}
 
-            <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
+            <Divider
+                style={{ marginBottom: isLogin === 'login' ? '32px' : '20px' }}
+            />
             {/* renderiza se existe(true) um formulário do tipo login */}
-            {isLogin ? (
+            {isLogin === 'login' ? (
                 <Form
                     id="login-form"
                     onSubmit={handleSubmit(handleFormOnSubmit)}
@@ -235,7 +237,7 @@ export const UserForms = (props: any): JSX.Element => {
                         <RegisterButton
                             type="button"
                             onClick={() => {
-                                setIsLogin(false);
+                                setIsLogin('register');
                             }}
                         >
                             Criar conta
@@ -354,7 +356,7 @@ export const UserForms = (props: any): JSX.Element => {
                         Já tem conta? {/* redireciona se isLogin === true */}
                         <button
                             onClick={() => {
-                                return setIsLogin(true);
+                                return setIsLogin('login');
                             }}
                         >
                             Faça o Login

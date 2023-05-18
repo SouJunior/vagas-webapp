@@ -1,10 +1,12 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
 import { AuthContext } from '../contexts/Auth/AuthContext';
@@ -34,6 +36,8 @@ import {
     AreasCardWrapper,
     CustomNextButton,
     CustomPrevButton,
+    TestimonialSection,
+    TestimonialWrapper,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSites';
@@ -51,8 +55,10 @@ import Process from '../assets/imgs/process-rectangle.png';
 import KeyWords from '../assets/imgs/keyWords-rectangle.png';
 import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
 import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
+import ProfileTest from '../assets/imgs/profile-depoimento.png';
 import { Areas } from '../Mocks/MockArea';
 import { ModalInfo } from '../Mocks/MockInfoModal';
+import Testimonials from '../components/Home/Testimonials';
 
 interface AreaProps {
     id: string;
@@ -94,12 +100,12 @@ export const Home: React.FC = () => {
 
     function handleRegisterClick() {
         navigate('/login');
-        setIsLogin(false);
+        setIsLogin('register');
     }
 
     function handleLoginClick() {
         navigate('/login');
-        setIsLogin(true);
+        setIsLogin('login');
     }
 
     const handleSubmit = (event: any) => {
@@ -256,7 +262,7 @@ export const Home: React.FC = () => {
                         style={{
                             width: '100%',
                             maxWidth: 'screen-width',
-                            paddingLeft: '74px',
+                            paddingLeft: '75px',
                             paddingRight: '40px',
                         }}
                     >
@@ -291,6 +297,45 @@ export const Home: React.FC = () => {
                     )}
                 </AreasCardWrapper>
             </AreasSection>
+            <TestimonialSection>
+                <Swiper
+                    modules={[Autoplay, Pagination]}
+                    loop
+                    centeredSlides={true}
+                    spaceBetween={100}
+                    autoplay={{
+                        delay: 4500,
+                        disableOnInteraction: false,
+                    }}
+                    pagination={{
+                        clickable: true,
+                        bulletClass: 'swiper-pagination-bullet',
+                    }}
+                    style={{
+                        width: '100%',
+                        maxWidth: '1080px',
+                        height: '360px',
+                    }}
+                    className="mySwiper"
+                >
+                    <TestimonialWrapper>
+                        {/* Darei uma map aqui quando tiver os depoimentos disponiveis, 
+                        deixei informações estáticas somente para demonstrações */}
+                        <SwiperSlide>
+                            <Testimonials
+                                Text={
+                                    '“A SouJunior foi uma adição muito necessária na minha carreira profissional, eu ainda estava no começo da minha jornada como Designer e tive a oportunidade de integrar otime e me desenvolver muito, aprendi como funcionava arotina, os métodos, as aplicações, por isso sou muito grato e recomendo o projeto!”'
+                                }
+                                Author={'Lucas Sales'}
+                                Workplace={'UX Designer na Ilegra'}
+                                Profile={ProfileTest}
+                            />
+                        </SwiperSlide>
+                        <SwiperSlide>Slide 2</SwiperSlide>
+                        <SwiperSlide>Slide 3</SwiperSlide>
+                    </TestimonialWrapper>
+                </Swiper>
+            </TestimonialSection>
         </>
     );
 };

@@ -29,13 +29,13 @@ export type AuthContextType = {
 
     logout: () => void;
 
-    isLogin: boolean;
+    isLogin: 'login' | 'register';
     setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const AuthContext = createContext<any>({
     user: null,
-    isLogin: true,
+    isLogin: 'login',
     login: async () => false,
     register: async () => false,
     registerCompany: async () => false,
