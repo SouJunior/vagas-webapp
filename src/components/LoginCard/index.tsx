@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { CompanyForms } from './CompanyForms';
-import { UserForms } from './UserForms'
+import { UserForms } from './UserForms';
 import { LogoIcon } from '../LogoIcon';
 import CandidatoIcon from '../../assets/imgs/Candidato-icone.svg';
 import EmpresaIcon from '../../assets/imgs/Buildings-icone.svg';

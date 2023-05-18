@@ -12,7 +12,6 @@ import {
     schemaUserLoginForm,
     schemaUserRegisterForm,
 } from '../../../validations/UserValidations/index';
-
 import {
     MessageError,
     MessageError2,
@@ -41,7 +40,7 @@ export const UserForms = (props: any): JSX.Element => {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const [isLogin, setIsLogin] = useState(true);
+    const { isLogin, setIsLogin } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -75,7 +74,6 @@ export const UserForms = (props: any): JSX.Element => {
             setHasError(data.message);
         }
     };
-
     // Realiza o login e maniopula dados
     async function handleFormOnSubmit() {
         setIsFormSubmitted(true);
@@ -113,9 +111,9 @@ export const UserForms = (props: any): JSX.Element => {
     // Abre popup quando cadastro concluído com sucesso
     const handlePopUp = () => setPopup(!popup);
 
-    const closePopup = () => { 
-        setPopup(false)
-        navigate('/login')
+    const closePopup = () => {
+        setPopup(false);
+        navigate('/login');
     };
 
     async function handleRegisterSubmit() {
@@ -216,7 +214,9 @@ export const UserForms = (props: any): JSX.Element => {
                                 <CheckboxInput id="default-checkbox" value="" />
                                 Me mantenha conectado
                             </Label>
-                            <a href="confirm-email?type=user">Esqueci minha senha</a>
+                            <a href="confirm-email?type=user">
+                                Esqueci minha senha
+                            </a>
                         </CheckboxContainer>
                     </InputContainer>
 
@@ -234,7 +234,9 @@ export const UserForms = (props: any): JSX.Element => {
 
                         <RegisterButton
                             type="button"
-                            onClick={() => setIsLogin(false)}
+                            onClick={() => {
+                                setIsLogin(false);
+                            }}
                         >
                             Criar conta
                         </RegisterButton>

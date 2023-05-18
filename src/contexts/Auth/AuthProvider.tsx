@@ -5,6 +5,7 @@ import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [isLogin, setIsLogin] = useState(true);
 
     const api = useApi();
 
@@ -12,10 +13,10 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     // useEffect(() => {
 
     // }, [api]);
-    
+
     // const validateToken = async () => {
     //     const storagedData = localStorage.getItem('authToken');
-        
+
     //     if (storagedData) {
     //         const res = await api.validateToken(storagedData);
     //         if (res.info) {
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
     const login = async (email: string, password: string, type: string) => {
         const res = await api.login(email, password, type);
-        
+
         if (res.info && res.token) {
             setUser(res.info);
             setToken(res.token);
@@ -35,18 +36,23 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         }
         return false;
     };
-    
+
     const setToken = (token: string) => {
         localStorage.setItem('authToken', token);
     };
-    
+
     const register = async (
         name: string,
         email: string,
         password: string,
         confirmPassword: string,
     ) => {
-        const res: any = await api.registerUser(name, email, password, confirmPassword);
+        const res: any = await api.registerUser(
+            name,
+            email,
+            password,
+            confirmPassword,
+        );
 
         if (res.data) {
             setUser(res.data.info);
@@ -62,7 +68,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         password: string,
         passwordConfirmation: string,
     ) => {
-        const res: any = await api.registerCompany(companyName, email, cnpj, password, passwordConfirmation);
+        const res: any = await api.registerCompany(
+            companyName,
+            email,
+            cnpj,
+            password,
+            passwordConfirmation,
+        );
 
         if (res.data) {
             setUser(res.data.info);
@@ -74,7 +86,17 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const logout = async () => {};
 
     return (
-        <AuthContext.Provider value={{ user, login, register, registerCompany, logout }}>
+        <AuthContext.Provider
+            value={{
+                user,
+                login,
+                register,
+                registerCompany,
+                logout,
+                isLogin,
+                setIsLogin,
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );
