@@ -100,12 +100,12 @@ export const Home: React.FC = () => {
 
     function handleRegisterClick() {
         navigate('/login');
-        setIsLogin(false);
+        setIsLogin('register');
     }
 
     function handleLoginClick() {
         navigate('/login');
-        setIsLogin(true);
+        setIsLogin('login');
     }
 
     const handleSubmit = (event: any) => {
