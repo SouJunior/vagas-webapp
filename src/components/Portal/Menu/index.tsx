@@ -5,39 +5,67 @@ import ConfigIcon from "../../../assets/imgs/config.svg"
 import TermsIcon from "../../../assets/imgs/terms.svg"
 import ExitIcon from "../../../assets/imgs/exit.svg"
 import PasswordIcon from "../../../assets/imgs/password.svg"
+import UpArrowImage from "../../../assets/imgs/arrow-up.svg"
+import DownArrowImage from "../../../assets/imgs/arrow-down.svg"
+import { AuthContext } from "../../../contexts/Auth/AuthContext"
+import { useContext, useState } from "react"
 
-const index = () => {
+const Index = () => {
+
+    const auth: any = useContext(AuthContext);
+
+    const [visible, setVisible] = useState(false);
+
     return (
         <Container>
             <PopUp>
                 <MenuItems>
                     <Border />
                     <li>
-                        <img src={ProfileIcon} alt="perfil" />
-                        Meu perfil
+                        <a href="/">
+                            <img src={ProfileIcon} alt="perfil" />
+                            Meu perfil
+                        </a>
                     </li>
-                    <li>
-                        <img src={NewJobIcon} alt="vagas" />
-                        Anunciar vagas
-                    </li>
+                    {(auth.user.type !== "USER") &&
+                        <li>
+                            <a href="insertjobs">
+                                <img src={NewJobIcon} alt="vagas" />
+                                Anunciar vagas
+                            </a>
+                        </li>
+                    }
                     <Border />
-                    <li>
+                    <li onClick={() => { setVisible(!visible) }}>
                         <img src={ConfigIcon} alt="configurações" />
-                        Configurações
+                        <span>Configurações</span>
+                        {visible ? (<img src={UpArrowImage} alt="seta" />) :
+                            (<img src={DownArrowImage} alt="seta" />)
+                        }
                     </li>
+                    {visible &&
+                        <div>
+                            <li>
+                                <a href="/">
+                                    <img src={PasswordIcon} alt="alterar senha" />
+                                    Alterar senha
+                                </a>
+                            </li>
+                        </div>
+                    }
+                    <Border />
                     <li>
-                        <img src={PasswordIcon} alt="alterar senha" />
-                        Alterar senha
+                        <a href="/">
+                            <img src={TermsIcon} alt="termos" />
+                            Termo de uso e Privacidade
+                        </a>
                     </li>
                     <Border />
                     <li>
-                        <img src={TermsIcon} alt="termos" />
-                        Termo de uso e Privacidade
-                    </li>
-                    <Border />
-                    <li>
-                        <img src={ExitIcon} alt="sair" />
-                        Sair do Portal de Vagas
+                        <a href="login">
+                            <img src={ExitIcon} alt="sair" />
+                            Sair do Portal de Vagas
+                        </a>
                     </li>
                 </MenuItems>
             </PopUp>
@@ -45,4 +73,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index

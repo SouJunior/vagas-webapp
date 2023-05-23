@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     display:flex;
+   
 `
-
 export const Border = styled.span`
     border: 1px solid #C5C7C5;
     width: 90%;
@@ -17,6 +17,10 @@ export const PopUp = styled.div`
     position: absolute;
     z-index: 1;
     right: 5px;
+
+    @media (max-width: 480px) {
+        width: 100%;
+    }
 `
 
 export const MenuItems = styled.ul`
@@ -30,10 +34,18 @@ export const MenuItems = styled.ul`
     
 
     li {
-        list-style-type: none;
         margin-right: auto;
         display: flex;
         padding: 15px;
+        cursor: pointer;
+    }
+
+    a {
+        display: flex;
+    }
+
+    span {
+        margin-right: 10px;
     }
 
     img {

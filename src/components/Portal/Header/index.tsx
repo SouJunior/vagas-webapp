@@ -14,11 +14,13 @@ import MenuImage from "../../../assets/imgs/vertical-menu.svg"
 import ProfileImage from "../../../assets/imgs/profile-image.svg"
 
 import { AuthContext } from "../../../contexts/Auth/AuthContext"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
 const Index = () => {
 
     const auth: any = useContext(AuthContext);
+
+    const [visible, setVisible] = useState(false);
 
     return (
         <>
@@ -28,18 +30,17 @@ const Index = () => {
             </div>
             <UserButton>
                 <a href="/">
-                    <ProfilePicture src={ProfileImage}
-                        alt="foto de perfil" />
+                    <ProfilePicture src={ProfileImage} alt="foto de perfil"/>
                 </a>
-                <UserInfo>
+                <UserInfo onClick={() => setVisible(!visible)}>
                     {auth.user.type === "USER" ? (<Name>{auth.user.name}</Name>) : (
                         <Name>{auth.user.companyName}</Name>)}
                     <Email>{auth.user.email}</Email>
                 </UserInfo>
-                <MenuPicture src={MenuImage} alt="menu" />
+                <MenuPicture onClick={() => setVisible(!visible)} src={MenuImage} alt="menu" />
             </UserButton>
         </Header>
-        <Menu />
+        { visible && <Menu /> }
         </>
     )
 }
