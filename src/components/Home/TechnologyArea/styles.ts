@@ -36,7 +36,7 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9998;
 `;
 
 export const ModalTitle = styled.h1`
