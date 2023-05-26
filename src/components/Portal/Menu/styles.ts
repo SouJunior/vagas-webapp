@@ -10,7 +10,7 @@ export const Border = styled.span`
 `
 
 export const PopUp = styled.div`
-    background: #046AD0;;
+    background: #046AD0;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;

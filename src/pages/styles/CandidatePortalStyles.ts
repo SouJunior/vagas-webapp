@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import SearchImage from "../../assets/imgs/search.svg"
 
 export const Container = styled.div`
     font-family: Radio Canada;
@@ -55,34 +54,4 @@ export const ProfileButton = styled.button`
     div:first-child  {
         margin-right: 8px;
     }
-`
-export const SearchButton = styled.button`
-    background-color: #046AD0;
-    color: #FDFDFD;
-    width: 163px;
-    height: 48px;
-    border-radius: 8px;
-`
-export const Input = styled.input`
-    border: 1px solid #000000;
-    border-radius: 8px;
-    height: 52px;
-    width: 348px;
-    padding-left: 40px;
-    background-image: url(${SearchImage});
-    background-repeat: no-repeat;
-    background-position-x: 1rem;
-    background-position-y: center;
-    
-    @media (max-width: 280px) {
-        width: 270px;
-    }
-`
-export const Form = styled.form`
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding-bottom: 40px;
 `
