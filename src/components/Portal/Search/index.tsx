@@ -26,7 +26,7 @@ const Index = () => {
     const [suggestions, setSuggestions] = useState<Jobs[]>([]);
 
 
-    const handleSearchBox = async (e: any) => {
+    const handleSearchBox = (e: any) => {
         const search = e.target.value;
         setField(search);
         
