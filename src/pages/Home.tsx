@@ -10,7 +10,6 @@ import 'swiper/css/pagination';
 
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
-import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useApi } from '../hooks/useApi';
 
 import {
@@ -78,7 +77,6 @@ interface AreaProps {
 }
 
 export const Home: React.FC = () => {
-    const [searchTerm, setSearchTerm] = useState('');
     const [active, setActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
     const [selectedArea, setSelectedArea] = useState<string | null>(null);
@@ -87,7 +85,6 @@ export const Home: React.FC = () => {
     >(null);
 
     const api = useApi();
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function getJobs() {
@@ -100,7 +97,7 @@ export const Home: React.FC = () => {
 
         const handleScroll = () => {
             const scrollTop = window.pageYOffset;
-            scrollTop > 100 ? setActive(true) : setActive(false);
+            scrollTop > 300 ? setActive(true) : setActive(false);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -109,11 +106,6 @@ export const Home: React.FC = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        navigate(`/feedvagas?searchTerm=${searchTerm}`);
-    };
 
     const handleCardClick = (id: string) => {
         setSelectedArea(id);

@@ -6,7 +6,6 @@ interface Props {
 
 export const FormWrapper = styled.div<Props>`
     position: relative;
-    transition: all 0.5s ease-in-out;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -16,15 +15,12 @@ export const FormWrapper = styled.div<Props>`
     ${({ active }) => active && css`
     height: 40px;
     position: fixed;
-    background-color: #fff;
     height: 70px;
     padding: 12px;
-    top: 100px;
-    left: 0;
-    right: 0;
+    top: 17px;
+    left: 40%;
+    transform: translateX(-47%);
     margin: 0 auto;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
     visibility: visible;
     `}
 `;
@@ -42,7 +38,7 @@ export const Input = styled.input<Props>`
      border-radius: 52px;
      padding: 0 56px;
      color: #515151;
-     transition: all 0.5s ease-in-out;
+     transition: all 0.3s ease-in-out;
 
      
      :focus {
@@ -50,9 +46,13 @@ export const Input = styled.input<Props>`
      }
 
     ${({ active }) => active && css`
-        width: 520px;
+        width: 540px;
         height: 42px;
+        padding: 0 26px;
+        font-size: 14px;
+        border: 1.5px solid ${({ theme }) => theme.colors.primary};
     `}
+
 `
 
 export const SearchButton = styled.button<Props>`
@@ -68,4 +68,14 @@ export const SearchButton = styled.button<Props>`
     max-width: 207px;
     top: 50%;
     transform: translateY(-50%);
+
+    ${({ active }) => active && css`
+        max-height: 38px;
+        width: auto;
+        padding: 0px 14px;
+        font-size: 15px;
+        top: 2px;
+        transform: translateY(0%);
+
+    `}
 `;

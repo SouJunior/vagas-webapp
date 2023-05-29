@@ -4,11 +4,14 @@ import { useState } from 'react';
 
 const JobFilter: React.FC<any> = ({ active }) => {
     const [searchTerm, setSearchTerm] = useState('');
+
     const navigate = useNavigate();
+
     const handleSubmit = (event: any) => {
         event.preventDefault();
         navigate(`/feedvagas?searchTerm=${searchTerm}`);
     };
+
     return (
         <FormWrapper active={active}>
             <Form onSubmit={handleSubmit}>
