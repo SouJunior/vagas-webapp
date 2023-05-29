@@ -48,7 +48,7 @@ import {
     GooglePlayButton,
     CircleImage,
     JourneyContainer,
-} from './styles/Home.styles';
+} from './styles/home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
 import JourneyCard from '../components/Home/JourneySection/JourneyCard';
