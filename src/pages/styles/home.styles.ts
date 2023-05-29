@@ -1,13 +1,8 @@
-import  styled, { css }  from 'styled-components'
+import  styled  from 'styled-components'
 import VocationalBanner from '../../assets/imgs/VocationalBanner.svg'
 
 
-interface Props {
-    active: boolean;
-}
-
-
-export const Main = styled.main<Props>`
+export const Main = styled.main`
     color: #fff;
     display: flex;
     padding-top: 120px;
@@ -17,9 +12,6 @@ export const Main = styled.main<Props>`
     justify-content: center;
     background-color: ${({ theme }) => theme.colors.primary};
     text-align: center;
-
-    ${({ active }) => active && css`
-    `}
 `;
 
 export const MainContent = styled.div`
@@ -48,6 +40,18 @@ export const Title = styled.h2`
     span {
         font-weight: 700;
     }
+`;
+
+export const SecondaryTitle = styled.h3`
+    font-weight: 600;
+    font-size: 45px;
+    color: #515050;
+`;
+
+export const Subtitle = styled.p`
+    font-weight: 400;
+    font-size: 30px;
+    color: #515050;
 `;
 
 export const JobsInfo = styled.p`
@@ -106,13 +110,13 @@ export const JourneyContainer = styled.div`
     padding: 0 44px;
 `;
 
-export const JourneyTitle = styled(Title)`
+export const JourneyTitle = styled(SecondaryTitle)`
      font-size: 42px;
      text-align: center;
      background-color: #fff;
      padding: 0 24px;
      position: absolute;
-     top: -24px;
+     top: -40px;
      left: 50%;
      transform: translateX(-50%);
 `;
@@ -131,6 +135,7 @@ export const AreasSection = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 120px;
     margin-bottom: 196px;
     width: 100%;
 `;

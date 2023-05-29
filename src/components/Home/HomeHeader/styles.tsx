@@ -4,7 +4,7 @@ interface Props {
     active: boolean;
 }
 
-export const NavBar = styled.nav<Props>`
+export const Header = styled.header<Props>`
     display: flex;
     border: 1px solid rgba(0, 0, 0, 0.05);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
@@ -18,7 +18,7 @@ export const NavBar = styled.nav<Props>`
     height: 132px;
     position: fixed;
     transition: height 0.3s ease-in-out;
-    z-index: 2000;
+    z-index: 998;
 
     ${({ active }) =>
         active &&
@@ -26,7 +26,6 @@ export const NavBar = styled.nav<Props>`
             height: 38px;
             background-color: #fff;
             height: 100px;
-            z-index: 2000;
             padding: 20px;
             left: 50%;
             transform: translateX(-50%);
@@ -86,6 +85,7 @@ export const LoginButton = styled(RegisterButton)<Props>`
     border: 1px solid ${({ theme }) => theme.colors.primary};
 
     :hover {
-        opacity: 0.8;
+        background-color: ${({ theme }) => theme.colors.primary};
+        color: #fff;
     }
 `;

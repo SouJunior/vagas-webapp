@@ -1,5 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import googlePlayBadge from '../assets/imgs/googlePlayBadge.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -41,6 +40,8 @@ import {
     JourneyContainer,
     Circle,
     MainContent,
+    SecondaryTitle,
+    Subtitle,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
@@ -144,7 +145,7 @@ export const Home: React.FC = () => {
     return (
         <>
             <HomeHeader active={active} />
-            <Main active={active}>
+            <Main>
                 <MainContent>
                     <MainSearchFilter>
                         <Title>
@@ -162,8 +163,84 @@ export const Home: React.FC = () => {
                 <Circle src={circle} />
                 <CircleImage src={doubleCircles} />
             </Main>
+            <AreasSection>
+                <SecondaryTitle>Já sabe por onde começar? </SecondaryTitle>
+                <Subtitle>
+                    Conheça um pouco mais das áreas de Tecnologia
+                </Subtitle>
+                <AreasCardWrapper>
+                    <Swiper
+                        modules={[Navigation]}
+                        breakpoints={breakpoints}
+                        navigation={{
+                            nextEl: '.swiper-next-button',
+                            prevEl: '.swiper-prev-button',
+                        }}
+                        className="mySwiper"
+                        style={{
+                            width: '100%',
+                            maxWidth: 'screen-width',
+                            paddingLeft: '75px',
+                            paddingRight: '40px',
+                        }}
+                    >
+                        <CustomPrevButton className="swiper-prev-button">
+                            <CaretLeft size={42} />
+                        </CustomPrevButton>
+                        {Areas.map((area: AreaProps) => (
+                            <SwiperSlide key={area.name}>
+                                <div>
+                                    <TechnologyAreaCard
+                                        onClick={() => {
+                                            handleCardClick(area.id);
+                                        }}
+                                        icon={area.icon}
+                                        area={area.name}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                        <CustomNextButton className="swiper-next-button">
+                            <CaretRight size={42} />
+                        </CustomNextButton>
+                    </Swiper>
+
+                    {selectedArea !== null && (
+                        <AreaModal
+                            title={ModalInfo[selectedArea].title}
+                            description={ModalInfo[selectedArea].description}
+                            source={ModalInfo[selectedArea].source}
+                            onClose={handleCloseModal}
+                        />
+                    )}
+                </AreasCardWrapper>
+            </AreasSection>
+            <VocationalBannerArea>
+                <VocationalBannerContainer>
+                    <VocationalTextContainer>
+                        <h1>
+                            TESTE <br />
+                            <span>VOCACIONAL</span>
+                        </h1>
+                        <p>
+                            <a
+                                href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Clique Aqui
+                            </a>{' '}
+                            e faça o seu teste agora mesmo!
+                        </p>
+                        <p className="p2">Seu teste será feito no g1.com</p>
+                    </VocationalTextContainer>
+                    <VocationalImage src={VocationalTest} alt="" />
+                </VocationalBannerContainer>
+            </VocationalBannerArea>
             <OurSitesSection>
-                <p>Seja o Júnior que as empresas desejam:</p>
+                <SecondaryTitle>
+                    Seja o Júnior que as empresas desejam:
+                </SecondaryTitle>
                 <CardWrapper>
                     <OurSitesCard
                         Link="http://mentores.soujunior.tech/"
@@ -224,78 +301,6 @@ export const Home: React.FC = () => {
                     />
                 )}
             </JourneySection>
-            <AreasSection>
-                <Title>Conheça um pouco mais das áreas de Tecnologia</Title>
-                <AreasCardWrapper>
-                    <Swiper
-                        modules={[Navigation]}
-                        breakpoints={breakpoints}
-                        navigation={{
-                            nextEl: '.swiper-next-button',
-                            prevEl: '.swiper-prev-button',
-                        }}
-                        className="mySwiper"
-                        style={{
-                            width: '100%',
-                            maxWidth: 'screen-width',
-                            paddingLeft: '75px',
-                            paddingRight: '40px',
-                        }}
-                    >
-                        <CustomPrevButton className="swiper-prev-button">
-                            <CaretLeft size={42} />
-                        </CustomPrevButton>
-                        {Areas.map((area: AreaProps) => (
-                            <SwiperSlide key={area.name}>
-                                <div>
-                                    <TechnologyAreaCard
-                                        onClick={() => {
-                                            handleCardClick(area.id);
-                                        }}
-                                        icon={area.icon}
-                                        area={area.name}
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                        <CustomNextButton className="swiper-next-button">
-                            <CaretRight size={42} />
-                        </CustomNextButton>
-                    </Swiper>
-
-                    {selectedArea !== null && (
-                        <AreaModal
-                            title={ModalInfo[selectedArea].title}
-                            description={ModalInfo[selectedArea].description}
-                            source={ModalInfo[selectedArea].source}
-                            onClose={handleCloseModal}
-                        />
-                    )}
-                </AreasCardWrapper>
-            </AreasSection>
-
-            <VocationalBannerArea>
-                <VocationalBannerContainer>
-                    <VocationalTextContainer>
-                        <h1>
-                            TESTE <br />
-                            <span>VOCACIONAL</span>
-                        </h1>
-                        <p>
-                            <a
-                                href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Clique Aqui
-                            </a>{' '}
-                            e faça o seu teste agora mesmo!
-                        </p>
-                        <p className="p2">Seu teste será feito no g1.com</p>
-                    </VocationalTextContainer>
-                    <VocationalImage src={VocationalTest} alt="" />
-                </VocationalBannerContainer>
-            </VocationalBannerArea>
 
             <AppBannerContainer>
                 <AppBannerContainerInfo>

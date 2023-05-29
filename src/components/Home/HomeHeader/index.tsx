@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import LogoName from '../../../assets/imgs/logo-icon-name-h.svg';
-import { LoginButton, NavBar, NavTitle, RegisterButton } from './styles';
+import { LoginButton, NavTitle, RegisterButton, Header } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 
-const HomeHeader: React.FC<any> = ({ active }) => {
+interface HeaderProps {
+    active: boolean;
+}
+
+const HomeHeader: React.FC<HeaderProps> = ({ active }) => {
     const navigate = useNavigate();
     const { setIsLogin } = useContext(AuthContext);
 
@@ -18,7 +22,7 @@ const HomeHeader: React.FC<any> = ({ active }) => {
         setIsLogin('login');
     }
     return (
-        <NavBar active={active}>
+        <Header active={active}>
             <NavTitle>
                 <a href="https://www.soujunior.tech/">
                     <img
@@ -37,7 +41,7 @@ const HomeHeader: React.FC<any> = ({ active }) => {
                     Login
                 </LoginButton>
             </NavTitle>
-        </NavBar>
+        </Header>
     );
 };
 
