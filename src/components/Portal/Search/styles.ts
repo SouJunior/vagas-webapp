@@ -35,52 +35,48 @@ export const Form = styled.form`
 export const Container = styled.div`
     display:flex;
     flex-direction:column;
-   
+
+    input:focus {
+        outline: 1px solid #046AD0;
+        border: none;
+    }
 `
-export const Border = styled.li`
+export const Border = styled.div`
     border-top: 1px solid #C5C7C5;
     width: 90%;
+    align-self: center;
+    padding-top: 10px;
 `
 
 export const Box = styled.div`
     background: #FDFDFD;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border: 1px solid #046AD0;
+    border-radius: 5px;
     width: 348px;
-    padding-top: 15px;
-    padding-bottom: 5px;
+    padding-top: 25px;
+    padding-bottom: 15px;
     position: absolute;
     top: 202px;
     z-index: 1;
+    cursor: pointer;
 
     @media (max-width: 280px) {
         width: 270px;
     }
 `
 
-export const Options = styled.ul`
+export const Options = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
     text-align: left;
     color: #212121;
     font-size: 18px;
+    display: flex;
+    padding-bottom: 10px;
 
-    li::first-letter {
-        font-weight:bold;
+    div {
+        margin: 0;
+        padding-left: 20px;
     }
     
-
-    li {
-        margin-right: auto;
-        display: flex;
-        padding: 5px;
-        cursor: pointer;
-    }
-
-    a {
-        display: flex;
-    }
-
 `

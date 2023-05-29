@@ -7,7 +7,7 @@ import {
     Options,
     Border,
 } from "./styles"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useApi } from "../../../hooks/useApi"
 import { Timeout } from "react-number-format/types/types";
 import { useNavigate } from "react-router-dom"
@@ -21,45 +21,74 @@ const Index = () => {
         title: string;
     }
 
-    const [data, setData] = useState<Jobs[]>([]);
     const [timer, setTimer] = useState<Timeout>();
     const [field, setField] = useState<string>("");
+    const [suggestions, setSuggestions] = useState<Jobs[]>([]);
+
 
     const handleSearchBox = async (e: any) => {
-        setField(e.target.value);
-
-        if (!field || field.length < 2) {
-            console.log("não pesquisa")
-            setData([]);
-            clearTimeout(timer);
-            return;
-        }
-
+        const search = e.target.value;
+        setField(search);
+        
         if (timer) {
             clearTimeout(timer);
         }
 
-        setTimer(setTimeout(() => api.searchJobs(field)
-            .then((response) => setData(response.data))
-            .catch(() => setData([]))
-            , 500));
+        if (!search || search.length < 3) {
+            setSuggestions([]);
+            return;
+        }
+
+        setTimer(setTimeout(() => {
+            api.searchJobs(search)
+                .then((response) => {
+                    setSuggestions(response.data);
+                })
+                .catch(() => setSuggestions([]))
+        }, 500));
     }
+
+    useEffect(() => {
+        const handleOutsideClick = (e: any) => {
+            if (document && document.contains(e.target)) {
+                setSuggestions([]);
+            }
+        };
+
+        document.addEventListener("click", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("click", handleOutsideClick);
+        }
+    }, [])
+
 
     return (
         <>
             <Form>
                 <Container>
-                    <Input value={field} list="jobs" type="text" onChange={handleSearchBox} placeholder="Digite seu cargo" />
-                    { <Box>
-                        <Options>
-                            {data.map((item) => (
-                                <>
+                    <Input value={field} list="jobs" type="text"
+                        onChange={handleSearchBox} placeholder="Digite seu cargo" />
+                    {suggestions.length > 0 &&
+                        <>
+                            <Box>
+                                {suggestions && suggestions.map((suggestion) => (
+                                    <Options>
+                                        <Border />
+                                        <div 
+                                            onClick={() => { setField(suggestion.title); setSuggestions([]) }}
+                                            key={suggestion.id}
+                                        >
+                                            {suggestion.title}
+                                        </div>
+                                    </Options>
+                                ))}
+                                <Container>
                                     <Border />
-                                    <li onClick={() => setField(item.title)} key={item.id}>{item.title}</li>
-                                </>))}
-                            <Border />
-                        </Options>
-                    </Box>}
+                                </Container>
+                            </Box>
+                        </>
+                    }
                 </Container>
                 <SearchButton onClick={() => navigate('/feedvagas')}>
                     Buscar vagas
