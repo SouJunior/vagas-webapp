@@ -31,16 +31,3 @@ export const Description = styled.p`
     max-width: 268px;
     color: #515050;
 `;
-
-export const JourneyWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 32px;
-`;
-
-export const JourneyDescription = styled.div`
-    color: #515050;
-    max-width: 281px;
-    font-size: 30px;
-    font-weight: 600;
-`;

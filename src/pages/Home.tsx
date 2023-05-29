@@ -1,5 +1,6 @@
-import { useState, useContext, useEffect, useRef } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import googlePlayBadge from '../assets/imgs/googlePlayBadge.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
@@ -30,35 +31,49 @@ import {
     FormWrapper,
     JourneySection,
     JourneyTitle,
-    JourneyImage,
     JourneyCardWrapper,
     AreasSection,
     AreasCardWrapper,
     CustomNextButton,
     CustomPrevButton,
+    VocationalBannerArea,
+    VocationalBannerContainer,
+    VocationalImage,
+    VocationalTextContainer,
     TestimonialSection,
     TestimonialWrapper,
+    AppBannerContainer,
+    AppBannerContainerInfo,
+    BannerMobileImage,
+    GooglePlayButton,
+    CircleImage,
+    JourneyContainer,
 } from './styles/home.styles';
 
-import OurSitesCard from '../components/Home/OurSites';
-import JourneyCard from '../components/Home/JourneyCard';
+import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
+import JourneyCard from '../components/Home/JourneySection/JourneyCard';
 
 import LogoName from '../assets/imgs/logo-icon-name-h.svg';
 import ImageHome from '../assets/imgs/home-image.svg';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
 import Site from '../assets/imgs/siteSouJunior-img.svg';
 import NosAcompanhe from '../assets/imgs/followUs-img.svg';
-import TimeColaborativo from '../assets/imgs/colaborativeTeam-img.svg';
 import Linkedin from '../assets/imgs/linkedin-rectangle.png';
 import Resume from '../assets/imgs/resume-rectangle.png';
 import Process from '../assets/imgs/process-rectangle.png';
 import KeyWords from '../assets/imgs/keyWords-rectangle.png';
 import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
+import VocationalTest from '../assets/imgs/vocational-teste.svg';
+import BannerMobile from '../assets/imgs/BannerMobile.svg';
+import doubleCircles from '../assets/imgs/DoubleCircle.svg';
+
 import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
 import ProfileTest from '../assets/imgs/profile-depoimento.png';
 import { Areas } from '../Mocks/MockArea';
 import { ModalInfo } from '../Mocks/MockInfoModal';
+import { MockJourneyCard } from '../Mocks/MockJourneyCard';
 import Testimonials from '../components/Home/Testimonials';
+import JourneyModal from '../components/Home/JourneySection/JourneyModal';
 
 interface AreaProps {
     id: string;
@@ -71,6 +86,9 @@ export const Home: React.FC = () => {
     const [active, setActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
     const [selectedArea, setSelectedArea] = useState<string | null>(null);
+    const [selectedJourneyCard, setSelectedJourneyCard] = useState<
+        string | null
+    >(null);
 
     const { setIsLogin } = useContext(AuthContext);
 
@@ -120,7 +138,13 @@ export const Home: React.FC = () => {
 
     const handleCloseModal = () => {
         setSelectedArea(null);
+        setSelectedJourneyCard(null);
         document.body.style.overflow = 'auto';
+    };
+
+    const handleJourneyCardClick = (id: string) => {
+        setSelectedJourneyCard(id);
+        document.body.style.overflow = 'hidden';
     };
 
     const breakpoints = {
@@ -227,26 +251,43 @@ export const Home: React.FC = () => {
                 </CardWrapper>
             </OurSitesSection>
             <JourneySection>
-                <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
-                <JourneyImage src={TimeColaborativo} />
-                <JourneyCardWrapper>
-                    <JourneyCard
-                        Img={Linkedin}
-                        Description={'Se destaque no Linkedin'}
+                <JourneyContainer>
+                    <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
+                    <JourneyCardWrapper>
+                        <JourneyCard
+                            Img={Linkedin}
+                            Description={'Se destaque no Linkedin'}
+                            onClick={() => handleJourneyCardClick('linkedin')}
+                        />
+                        <JourneyCard
+                            Img={Resume}
+                            Description={'Como construir um currículo Júnior'}
+                            onClick={() => handleJourneyCardClick('curriculo')}
+                        />
+                        <JourneyCard
+                            Img={Process}
+                            Description={'Se prepare para o processo seletivo'}
+                            onClick={() =>
+                                handleJourneyCardClick('processoSeletivo')
+                            }
+                        />
+                        <JourneyCard
+                            Img={KeyWords}
+                            Description={'Palavras Chave na área tech'}
+                            onClick={() =>
+                                handleJourneyCardClick('palavrasChave')
+                            }
+                        />
+                    </JourneyCardWrapper>
+                </JourneyContainer>
+
+                {selectedJourneyCard !== null && (
+                    <JourneyModal
+                        Title={MockJourneyCard[selectedJourneyCard].Title}
+                        Content={MockJourneyCard[selectedJourneyCard].Content}
+                        onClose={handleCloseModal}
                     />
-                    <JourneyCard
-                        Img={Resume}
-                        Description={'Como construir um currículo Júnior'}
-                    />
-                    <JourneyCard
-                        Img={Process}
-                        Description={'Se prepare para o processo seletivo'}
-                    />
-                    <JourneyCard
-                        Img={KeyWords}
-                        Description={'Palavras Chave na área tech'}
-                    />
-                </JourneyCardWrapper>
+                )}
             </JourneySection>
             <AreasSection>
                 <Title>Conheça um pouco mais das áreas de Tecnologia</Title>
@@ -297,6 +338,52 @@ export const Home: React.FC = () => {
                     )}
                 </AreasCardWrapper>
             </AreasSection>
+
+            <VocationalBannerArea>
+                <VocationalBannerContainer>
+                    <VocationalTextContainer>
+                        <h1>
+                            TESTE <br />
+                            <span>VOCACIONAL</span>
+                        </h1>
+                        <p>
+                            <a
+                                href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Clique Aqui
+                            </a>{' '}
+                            e faça o seu teste agora mesmo!
+                        </p>
+                        <p className="p2">Seu teste será feito no g1.com</p>
+                    </VocationalTextContainer>
+                    <VocationalImage src={VocationalTest} alt="" />
+                </VocationalBannerContainer>
+            </VocationalBannerArea>
+
+            <AppBannerContainer>
+                <AppBannerContainerInfo>
+                    <h1>
+                        Baixe nosso aplicativo
+                        <br />
+                        no seu dispositivo <span>Android</span>
+                        <br />
+                        e fique por dentro das <br />
+                        novidades!
+                    </h1>
+                    <a
+                        href="https://play.google.com/store/apps?hl=pt_BR&gl=US"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <GooglePlayButton src={googlePlayBadge} />
+                    </a>
+                </AppBannerContainerInfo>
+                <BannerMobileImage src={BannerMobile} />
+                <CircleImage src={doubleCircles} />
+            </AppBannerContainer>
+
             <TestimonialSection>
                 <Swiper
                     modules={[Autoplay, Pagination]}
