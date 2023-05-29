@@ -123,7 +123,7 @@ export const FormWrapper = styled.div<Props>`
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 998;
+    z-index: 2001;
   
 
     ${({ active }) => active && css`
@@ -207,27 +207,38 @@ export const CardWrapper = styled.div`
 
 export const JourneySection = styled.section`
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     margin-bottom: 196px;
     `;
+    
+export const JourneyContainer = styled.div`
+    border: 9px solid ${({ theme }) => theme.colors.primary};
+    border-radius: 16px;
+    position: relative;
+    padding: 0 44px;
+`;
 
 export const JourneyTitle = styled(Title)`
      font-size: 42px;
      text-align: center;
-     margin-bottom: 72px;
+     background-color: #fff;
+     padding: 0 24px;
+     position: absolute;
+     top: -24px;
+     left: 50%;
+     transform: translateX(-50%);
 `;
 
-export const JourneyImage = styled.img`
-     width: 800px;
-`;
 
 export const JourneyCardWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 48px;
-    row-gap: 132px;
+    gap: 38px;
+    row-gap: 102px;
     margin-top: 112px;
+    margin-bottom: 100px;
 `;
 
 export const AreasSection = styled.section`
@@ -287,8 +298,9 @@ export const TestimonialSection = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 196px;
+    margin-bottom: 100px;
     z-index: 995;
+    margin-top: 180px;
 
     .swiper-pagination-bullet {
         width: 24px;
