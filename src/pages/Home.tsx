@@ -14,21 +14,13 @@ import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useApi } from '../hooks/useApi';
 
 import {
-    NavBar,
-    LoginButton,
     Title,
-    NavTitle,
-    RegisterButton,
     Main,
-    Input,
-    SearchButton,
-    Form,
     JobsInfo,
     MainSearchFilter,
     Image,
     OurSitesSection,
     CardWrapper,
-    FormWrapper,
     JourneySection,
     JourneyTitle,
     JourneyCardWrapper,
@@ -48,12 +40,13 @@ import {
     GooglePlayButton,
     CircleImage,
     JourneyContainer,
+    Circle,
+    MainContent,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
 import JourneyCard from '../components/Home/JourneySection/JourneyCard';
 
-import LogoName from '../assets/imgs/logo-icon-name-h.svg';
 import ImageHome from '../assets/imgs/home-image.svg';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
 import Site from '../assets/imgs/siteSouJunior-img.svg';
@@ -66,6 +59,7 @@ import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyArea
 import VocationalTest from '../assets/imgs/vocational-teste.svg';
 import BannerMobile from '../assets/imgs/BannerMobile.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
+import circle from '../assets/imgs/circle.svg';
 
 import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
 import ProfileTest from '../assets/imgs/profile-depoimento.png';
@@ -74,6 +68,8 @@ import { ModalInfo } from '../Mocks/MockInfoModal';
 import { MockJourneyCard } from '../Mocks/MockJourneyCard';
 import Testimonials from '../components/Home/Testimonials';
 import JourneyModal from '../components/Home/JourneySection/JourneyModal';
+import HomeHeader from '../components/Home/HomeHeader';
+import JobFilter from '../components/Home/HomeJobFilter/JobFilter';
 
 interface AreaProps {
     id: string;
@@ -89,8 +85,6 @@ export const Home: React.FC = () => {
     const [selectedJourneyCard, setSelectedJourneyCard] = useState<
         string | null
     >(null);
-
-    const { setIsLogin } = useContext(AuthContext);
 
     const api = useApi();
     const navigate = useNavigate();
@@ -115,16 +109,6 @@ export const Home: React.FC = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-    function handleRegisterClick() {
-        navigate('/login');
-        setIsLogin('register');
-    }
-
-    function handleLoginClick() {
-        navigate('/login');
-        setIsLogin('login');
-    }
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -167,68 +151,27 @@ export const Home: React.FC = () => {
 
     return (
         <>
-            <NavBar active={active}>
-                <NavTitle>
-                    <a href="https://www.soujunior.tech/">
-                        <img
-                            src={LogoName}
-                            alt="Logo SouJunior"
-                            width={200}
-                            height={200}
-                        />
-                    </a>
-                </NavTitle>
-                <NavTitle>
-                    <RegisterButton
-                        onClick={handleRegisterClick}
-                        active={active}
-                    >
-                        Cadastre-se
-                    </RegisterButton>
-                    <LoginButton onClick={handleLoginClick} active={active}>
-                        Login
-                    </LoginButton>
-                </NavTitle>
-            </NavBar>
+            <HomeHeader active={active} />
             <Main active={active}>
-                <MainSearchFilter>
-                    <Title>
-                        Um portal de vagas exclusivo para o profissional
-                        Júnior!!
-                    </Title>
-                    <FormWrapper active={active}>
-                        <Form onSubmit={handleSubmit}>
-                            <Input
-                                type="text"
-                                onChange={(event) =>
-                                    setSearchTerm(event.target.value)
-                                }
-                                active={active}
-                                placeholder="Digite o cargo, tipo de contrato ou localidade desejados"
-                            />
-                            <SearchButton
-                                type="submit"
-                                onClick={() =>
-                                    window.scrollTo({
-                                        top: 0,
-                                        left: 0,
-                                        behavior: 'smooth',
-                                    })
-                                }
-                                active={active}
-                            >
-                                Buscar Vaga
-                            </SearchButton>
-                        </Form>
-                    </FormWrapper>
-                    <JobsInfo>
-                        Mais de {jobsCount} vagas disponíveis para Juninhos{' '}
-                    </JobsInfo>
-                </MainSearchFilter>
-                <Image src={ImageHome}></Image>
+                <MainContent>
+                    <MainSearchFilter>
+                        <Title>
+                            Um portal de vagas <span>exclusivo</span> para o
+                            profissional <span>Júnior!</span>
+                        </Title>
+                        <JobFilter active={active} />
+
+                        <JobsInfo>
+                            Mais de {jobsCount} vagas disponíveis para Juninhos{' '}
+                        </JobsInfo>
+                    </MainSearchFilter>
+                    <Image src={ImageHome}></Image>
+                </MainContent>
+                <Circle src={circle} />
+                <CircleImage src={doubleCircles} />
             </Main>
             <OurSitesSection>
-                <Title>Seja o Júnior que as empresas desejam:</Title>
+                <p>Seja o Júnior que as empresas desejam:</p>
                 <CardWrapper>
                     <OurSitesCard
                         Link="http://mentores.soujunior.tech/"
