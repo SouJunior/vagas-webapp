@@ -1,188 +1,78 @@
-import  styled, { css }  from 'styled-components'
+import  styled  from 'styled-components'
 import VocationalBanner from '../../assets/imgs/VocationalBanner.svg'
 
 
-interface Props {
-    active: boolean;
-  }
-
-export const NavBar = styled.nav<Props>`
-    display: flex;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
-    gap: 12px;
-    align-items: center;
-    top: 0;
-    background-color: #fff;
-    justify-content: space-between;
-    width: 100vw;
-    padding: 20px;   
-    height: 132px;
-    position: fixed;
-    transition: height 0.3s ease-in-out;
-    z-index: 2000;
-
-    ${({ active }) => active && css`
-    height: 38px;
-    background-color: #fff;
-    height: 100px;
-    z-index: 2000;
-    padding: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: height 0.3s ease-in-out
-    `}
-`
-
-export const NavTitle = styled.div`
-    color: white;
-    display: flex;
-    font-size: 44px;
-    gap: 20px;
-    font-weight: bold;
-    place-self: center;
-    transition: all 200ms ease-out;
-    margin-right: 20px;
-    
-    img {
-        margin-left: 38px;
-    }
-`
-
-export const RegisterButton = styled.button<Props>`
-    background-color: ${({ theme }) => theme.colors.primary};
-    font-size: 18px;
-    font-weight: 600;
-    width: 262px;
-    height: 52px;
+export const Main = styled.main`
     color: #fff;
-    border-radius: 4px;
-
-    :hover {
-        opacity: 0.8;
-    }
-
-    ${({ active }) =>
-    active
-      ? css`
-          width: 220px;
-          height: 42px;
-          transition: all 300ms ease-in-out;
-          font-size: 16px;	
-        `
-      : css`
-          width: 262px;
-          height: 52px;
-          transition: all 300ms ease-in-out;
-        `}
-`
-
-export const LoginButton = styled(RegisterButton)<Props>`
-    background-color: transparent;
-    color: ${({ theme }) => theme.colors.primary};
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 4px;
-    border: 1px solid ${({ theme }) => theme.colors.primary};
-
-    :hover {
-        opacity: 0.8;
-    }
-`
-
-export const Main = styled.main<Props>`
     display: flex;
-    margin-top: 182px;
-    margin-bottom: 42px;
+    padding-top: 120px;
+    height: 678px;
     gap: 48px;
-    justify-content: center;
     align-items: center;
-    
-    ${({ active }) => active && css`
-        visibility: hidden;
-    `}
+    justify-content: center;
+    background-color: ${({ theme }) => theme.colors.primary};
+    text-align: center;
+`;
+
+export const MainContent = styled.div`
+    width: 100%;
+    max-width: 1400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
 `;
 
 export const MainSearchFilter = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-left: 60px;
 `;
 
 export const Title = styled.h2`
-    font-weight: 600;
-    font-size: 26px;
-    color: #515050;
-    line-height: 31px;
+    max-width: 920px;
+    font-weight: 300;
+    font-size: 55px;
+    line-height: 66px;
     margin-bottom: 16px;
+
+    span {
+        font-weight: 700;
+    }
 `;
 
-export const FormWrapper = styled.div<Props>`
-    position: relative;
-    transition: all 0.5s ease-in-out;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    z-index: 2001;
-  
-
-    ${({ active }) => active && css`
-    height: 40px;
-    position: fixed;
-    background-color: #fff;
-    height: 70px;
-    padding: 12px;
-    top: 100px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
-    visibility: visible;
-    `}
+export const SecondaryTitle = styled.h3`
+    font-weight: 600;
+    font-size: 45px;
+    color: #515050;
 `;
 
-export const Form = styled.form`
-    display: flex;
-    gap: 28px;
-`;
-
-export const Input = styled.input<Props>`
-     width: 720px;
-     height: 52px;
-     border: 1.5px solid #515151;
-     border-radius: 52px;
-     padding: 0 20px;
-     text-align: center;
-     color: #515151;
-     transition: all 0.5s ease-in-out;
-
-     :focus {
-        outline-color: ${({ theme }) => theme.colors.primary};
-     }
-
-    ${({ active }) => active && css`
-        width: 520px;
-        height: 42px;
-    `}
-`
-
-export const SearchButton = styled(RegisterButton)<Props>`
-    text-align: center;
+export const Subtitle = styled.p`
+    font-weight: 400;
+    font-size: 30px;
+    color: #515050;
 `;
 
 export const JobsInfo = styled.p`
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    color: #515050;
-    max-width: 720px;
-    text-align: center;
+    max-width: 796px;
 `;
 
 export const Image = styled.img`
-    width: 220px;
+    width: 403px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
 `;
+
+export const Circle = styled.img`
+    position: absolute;
+    top: 0px;
+    right: 0px;
+`
 
 export const Divider = styled.div`
     width: 100%;
@@ -220,13 +110,13 @@ export const JourneyContainer = styled.div`
     padding: 0 44px;
 `;
 
-export const JourneyTitle = styled(Title)`
+export const JourneyTitle = styled(SecondaryTitle)`
      font-size: 42px;
      text-align: center;
      background-color: #fff;
      padding: 0 24px;
      position: absolute;
-     top: -24px;
+     top: -40px;
      left: 50%;
      transform: translateX(-50%);
 `;
@@ -245,6 +135,7 @@ export const AreasSection = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 120px;
     margin-bottom: 196px;
     width: 100%;
 `;
