@@ -91,7 +91,9 @@ export const Home: React.FC = () => {
         async function getJobs() {
             const jobsData = await api.getJobs();
             if (jobsData.meta) {
-                setJobsCount(jobsData.meta.itemCount);
+                const jobsCount = jobsData.meta.itemCount;
+                const roundedCount = Math.floor(jobsCount / 10) * 10;
+                setJobsCount(roundedCount);
             }
         }
         getJobs();
