@@ -1,5 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import googlePlayBadge from '../assets/imgs/googlePlayBadge.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,25 +9,16 @@ import 'swiper/css/pagination';
 
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
-import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useApi } from '../hooks/useApi';
 
 import {
-    NavBar,
-    LoginButton,
     Title,
-    NavTitle,
-    RegisterButton,
     Main,
-    Input,
-    SearchButton,
-    Form,
     JobsInfo,
     MainSearchFilter,
     Image,
     OurSitesSection,
     CardWrapper,
-    FormWrapper,
     JourneySection,
     JourneyTitle,
     JourneyCardWrapper,
@@ -48,12 +38,15 @@ import {
     GooglePlayButton,
     CircleImage,
     JourneyContainer,
-} from './styles/home.styles';
+    Circle,
+    MainContent,
+    SecondaryTitle,
+    Subtitle,
+} from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
 import JourneyCard from '../components/Home/JourneySection/JourneyCard';
 
-import LogoName from '../assets/imgs/logo-icon-name-h.svg';
 import ImageHome from '../assets/imgs/home-image.svg';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
 import Site from '../assets/imgs/siteSouJunior-img.svg';
@@ -66,6 +59,7 @@ import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyArea
 import VocationalTest from '../assets/imgs/vocational-teste.svg';
 import BannerMobile from '../assets/imgs/BannerMobile.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
+import circle from '../assets/imgs/circle.svg';
 
 import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
 import ProfileTest from '../assets/imgs/profile-depoimento.png';
@@ -74,6 +68,8 @@ import { ModalInfo } from '../Mocks/MockInfoModal';
 import { MockJourneyCard } from '../Mocks/MockJourneyCard';
 import Testimonials from '../components/Home/Testimonials';
 import JourneyModal from '../components/Home/JourneySection/JourneyModal';
+import HomeHeader from '../components/Home/HomeHeader';
+import JobFilter from '../components/Home/HomeJobFilter/JobFilter';
 
 interface AreaProps {
     id: string;
@@ -82,31 +78,29 @@ interface AreaProps {
 }
 
 export const Home: React.FC = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [active, setActive] = useState(false);
+    const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
     const [selectedArea, setSelectedArea] = useState<string | null>(null);
     const [selectedJourneyCard, setSelectedJourneyCard] = useState<
         string | null
     >(null);
 
-    const { setIsLogin } = useContext(AuthContext);
-
     const api = useApi();
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function getJobs() {
             const jobsData = await api.getJobs();
             if (jobsData.meta) {
-                setJobsCount(jobsData.meta.itemCount);
+                const jobsCount = jobsData.meta.itemCount;
+                const roundedCount = Math.floor(jobsCount / 10) * 10;
+                setJobsCount(roundedCount);
             }
         }
         getJobs();
 
         const handleScroll = () => {
             const scrollTop = window.pageYOffset;
-            scrollTop > 100 ? setActive(true) : setActive(false);
+            scrollTop > 300 ? setIsActive(true) : setIsActive(false);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -115,21 +109,6 @@ export const Home: React.FC = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-    function handleRegisterClick() {
-        navigate('/login');
-        setIsLogin('register');
-    }
-
-    function handleLoginClick() {
-        navigate('/login');
-        setIsLogin('login');
-    }
-
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        navigate(`/feedvagas?searchTerm=${searchTerm}`);
-    };
 
     const handleCardClick = (id: string) => {
         setSelectedArea(id);
@@ -167,68 +146,103 @@ export const Home: React.FC = () => {
 
     return (
         <>
-            <NavBar active={active}>
-                <NavTitle>
-                    <a href="https://www.soujunior.tech/">
-                        <img
-                            src={LogoName}
-                            alt="Logo SouJunior"
-                            width={200}
-                            height={200}
-                        />
-                    </a>
-                </NavTitle>
-                <NavTitle>
-                    <RegisterButton
-                        onClick={handleRegisterClick}
-                        active={active}
-                    >
-                        Cadastre-se
-                    </RegisterButton>
-                    <LoginButton onClick={handleLoginClick} active={active}>
-                        Login
-                    </LoginButton>
-                </NavTitle>
-            </NavBar>
-            <Main active={active}>
-                <MainSearchFilter>
-                    <Title>
-                        Um portal de vagas exclusivo para o profissional
-                        Júnior!!
-                    </Title>
-                    <FormWrapper active={active}>
-                        <Form onSubmit={handleSubmit}>
-                            <Input
-                                type="text"
-                                onChange={(event) =>
-                                    setSearchTerm(event.target.value)
-                                }
-                                active={active}
-                                placeholder="Digite o cargo, tipo de contrato ou localidade desejados"
-                            />
-                            <SearchButton
-                                type="submit"
-                                onClick={() =>
-                                    window.scrollTo({
-                                        top: 0,
-                                        left: 0,
-                                        behavior: 'smooth',
-                                    })
-                                }
-                                active={active}
-                            >
-                                Buscar Vaga
-                            </SearchButton>
-                        </Form>
-                    </FormWrapper>
-                    <JobsInfo>
-                        Mais de {jobsCount} vagas disponíveis para Juninhos{' '}
-                    </JobsInfo>
-                </MainSearchFilter>
-                <Image src={ImageHome}></Image>
+            <HomeHeader isActive={isActive} />
+            <Main>
+                <MainContent>
+                    <MainSearchFilter>
+                        <Title>
+                            Um portal de vagas <span>exclusivo</span> para o
+                            profissional <span>Júnior!</span>
+                        </Title>
+                        <JobFilter isActive={isActive} />
+
+                        <JobsInfo>
+                            Mais de {jobsCount} vagas disponíveis para Juninhos{' '}
+                        </JobsInfo>
+                    </MainSearchFilter>
+                    <Image src={ImageHome}></Image>
+                </MainContent>
+                <Circle src={circle} />
+                <CircleImage src={doubleCircles} />
             </Main>
+            <AreasSection>
+                <SecondaryTitle>Já sabe por onde começar? </SecondaryTitle>
+                <Subtitle>
+                    Conheça um pouco mais das áreas de Tecnologia
+                </Subtitle>
+                <AreasCardWrapper>
+                    <Swiper
+                        modules={[Navigation]}
+                        breakpoints={breakpoints}
+                        navigation={{
+                            nextEl: '.swiper-next-button',
+                            prevEl: '.swiper-prev-button',
+                        }}
+                        className="mySwiper"
+                        style={{
+                            width: '100%',
+                            maxWidth: 'screen-width',
+                            paddingLeft: '75px',
+                            paddingRight: '40px',
+                        }}
+                    >
+                        <CustomPrevButton className="swiper-prev-button">
+                            <CaretLeft size={42} />
+                        </CustomPrevButton>
+                        {Areas.map((area: AreaProps) => (
+                            <SwiperSlide key={area.name}>
+                                <div>
+                                    <TechnologyAreaCard
+                                        onClick={() => {
+                                            handleCardClick(area.id);
+                                        }}
+                                        icon={area.icon}
+                                        area={area.name}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                        <CustomNextButton className="swiper-next-button">
+                            <CaretRight size={42} />
+                        </CustomNextButton>
+                    </Swiper>
+
+                    {selectedArea !== null && (
+                        <AreaModal
+                            title={ModalInfo[selectedArea].title}
+                            description={ModalInfo[selectedArea].description}
+                            source={ModalInfo[selectedArea].source}
+                            onClose={handleCloseModal}
+                        />
+                    )}
+                </AreasCardWrapper>
+            </AreasSection>
+            <VocationalBannerArea>
+                <VocationalBannerContainer>
+                    <VocationalTextContainer>
+                        <h1>
+                            TESTE <br />
+                            <span>VOCACIONAL</span>
+                        </h1>
+                        <p>
+                            <a
+                                href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Clique Aqui
+                            </a>{' '}
+                            e faça o seu teste agora mesmo!
+                        </p>
+                        <p className="p2">Seu teste será feito no g1.com</p>
+                    </VocationalTextContainer>
+                    <VocationalImage src={VocationalTest} alt="" />
+                </VocationalBannerContainer>
+            </VocationalBannerArea>
             <OurSitesSection>
-                <Title>Seja o Júnior que as empresas desejam:</Title>
+                <SecondaryTitle>
+                    Seja o Júnior que as empresas desejam:
+                </SecondaryTitle>
                 <CardWrapper>
                     <OurSitesCard
                         Link="http://mentores.soujunior.tech/"
@@ -289,78 +303,6 @@ export const Home: React.FC = () => {
                     />
                 )}
             </JourneySection>
-            <AreasSection>
-                <Title>Conheça um pouco mais das áreas de Tecnologia</Title>
-                <AreasCardWrapper>
-                    <Swiper
-                        modules={[Navigation]}
-                        breakpoints={breakpoints}
-                        navigation={{
-                            nextEl: '.swiper-next-button',
-                            prevEl: '.swiper-prev-button',
-                        }}
-                        className="mySwiper"
-                        style={{
-                            width: '100%',
-                            maxWidth: 'screen-width',
-                            paddingLeft: '75px',
-                            paddingRight: '40px',
-                        }}
-                    >
-                        <CustomPrevButton className="swiper-prev-button">
-                            <CaretLeft size={42} />
-                        </CustomPrevButton>
-                        {Areas.map((area: AreaProps) => (
-                            <SwiperSlide key={area.name}>
-                                <div>
-                                    <TechnologyAreaCard
-                                        onClick={() => {
-                                            handleCardClick(area.id);
-                                        }}
-                                        icon={area.icon}
-                                        area={area.name}
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                        <CustomNextButton className="swiper-next-button">
-                            <CaretRight size={42} />
-                        </CustomNextButton>
-                    </Swiper>
-
-                    {selectedArea !== null && (
-                        <AreaModal
-                            title={ModalInfo[selectedArea].title}
-                            description={ModalInfo[selectedArea].description}
-                            source={ModalInfo[selectedArea].source}
-                            onClose={handleCloseModal}
-                        />
-                    )}
-                </AreasCardWrapper>
-            </AreasSection>
-
-            <VocationalBannerArea>
-                <VocationalBannerContainer>
-                    <VocationalTextContainer>
-                        <h1>
-                            TESTE <br />
-                            <span>VOCACIONAL</span>
-                        </h1>
-                        <p>
-                            <a
-                                href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Clique Aqui
-                            </a>{' '}
-                            e faça o seu teste agora mesmo!
-                        </p>
-                        <p className="p2">Seu teste será feito no g1.com</p>
-                    </VocationalTextContainer>
-                    <VocationalImage src={VocationalTest} alt="" />
-                </VocationalBannerContainer>
-            </VocationalBannerArea>
 
             <AppBannerContainer>
                 <AppBannerContainerInfo>
