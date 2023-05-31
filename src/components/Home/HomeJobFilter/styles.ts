@@ -1,7 +1,7 @@
 import styled, {css} from "styled-components";
 
 interface Props {
-    active: boolean;
+    isActive: boolean;
 }
 
 export const FormWrapper = styled.div<Props>`
@@ -9,7 +9,7 @@ export const FormWrapper = styled.div<Props>`
     display: flex;
     justify-content: center;  
 
-    ${({ active }) => active && css`
+    ${({ isActive }) => isActive && css`
     height: 40px;
     position: fixed;
     height: 70px;
@@ -43,7 +43,7 @@ export const Input = styled.input<Props>`
         outline-color: ${({ theme }) => theme.colors.primary};
      }
 
-    ${({ active }) => active && css`
+    ${({ isActive }) => isActive && css`
         width: 576px;
         height: 42px;
         padding: 0 26px;
@@ -84,7 +84,7 @@ export const SearchButton = styled.button<Props>`
         opacity: 0.8;
      }
 
-    ${({ active }) => active && css`
+    ${({ isActive }) => isActive && css`
         max-height: 38px;
         width: auto;
         padding: 0px 28px;

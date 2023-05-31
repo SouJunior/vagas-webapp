@@ -78,7 +78,7 @@ interface AreaProps {
 }
 
 export const Home: React.FC = () => {
-    const [active, setActive] = useState(false);
+    const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
     const [selectedArea, setSelectedArea] = useState<string | null>(null);
     const [selectedJourneyCard, setSelectedJourneyCard] = useState<
@@ -100,7 +100,7 @@ export const Home: React.FC = () => {
 
         const handleScroll = () => {
             const scrollTop = window.pageYOffset;
-            scrollTop > 300 ? setActive(true) : setActive(false);
+            scrollTop > 300 ? setIsActive(true) : setIsActive(false);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -146,7 +146,7 @@ export const Home: React.FC = () => {
 
     return (
         <>
-            <HomeHeader active={active} />
+            <HomeHeader isActive={isActive} />
             <Main>
                 <MainContent>
                     <MainSearchFilter>
@@ -154,7 +154,7 @@ export const Home: React.FC = () => {
                             Um portal de vagas <span>exclusivo</span> para o
                             profissional <span>Júnior!</span>
                         </Title>
-                        <JobFilter active={active} />
+                        <JobFilter isActive={isActive} />
 
                         <JobsInfo>
                             Mais de {jobsCount} vagas disponíveis para Juninhos{' '}
