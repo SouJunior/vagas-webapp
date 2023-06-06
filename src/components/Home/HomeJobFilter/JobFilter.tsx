@@ -2,7 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { Form, FormWrapper, Input, SearchButton } from './styles';
 import { useState } from 'react';
 
-const JobFilter: React.FC<any> = ({ active }) => {
+interface JobFilterProps {
+    isActive: boolean;
+}
+
+const JobFilter: React.FC<JobFilterProps> = ({ isActive }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const navigate = useNavigate();
@@ -13,12 +17,12 @@ const JobFilter: React.FC<any> = ({ active }) => {
     };
 
     return (
-        <FormWrapper active={active}>
+        <FormWrapper isActive={isActive}>
             <Form onSubmit={handleSubmit}>
                 <Input
                     type="text"
                     onChange={(event) => setSearchTerm(event.target.value)}
-                    active={active}
+                    isActive={isActive}
                     placeholder="Digite o cargo, tipo de contrato ou localidade desejados"
                 />
                 <SearchButton
@@ -30,7 +34,7 @@ const JobFilter: React.FC<any> = ({ active }) => {
                             behavior: 'smooth',
                         })
                     }
-                    active={active}
+                    isActive={isActive}
                 >
                     Buscar Vaga
                 </SearchButton>

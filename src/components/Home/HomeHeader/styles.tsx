@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 interface Props {
-    active: boolean;
+    isActive: boolean;
 }
 
 export const Header = styled.header<Props>`
@@ -20,8 +20,8 @@ export const Header = styled.header<Props>`
     transition: height 0.3s ease-in-out;
     z-index: 998;
 
-    ${({ active }) =>
-        active &&
+    ${({ isActive }) =>
+        isActive &&
         css`
             height: 38px;
             background-color: #fff;
@@ -61,8 +61,8 @@ export const RegisterButton = styled.button<Props>`
         opacity: 0.8;
     }
 
-    ${({ active }) =>
-        active
+    ${({ isActive }) =>
+        isActive
             ? css`
                   width: 220px;
                   height: 42px;

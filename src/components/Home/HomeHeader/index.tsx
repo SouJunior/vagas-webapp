@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 
 interface HeaderProps {
-    active: boolean;
+    isActive: boolean;
 }
 
-const HomeHeader: React.FC<HeaderProps> = ({ active }) => {
+const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
     const navigate = useNavigate();
     const { setIsLogin } = useContext(AuthContext);
 
@@ -22,7 +22,7 @@ const HomeHeader: React.FC<HeaderProps> = ({ active }) => {
         setIsLogin('login');
     }
     return (
-        <Header active={active}>
+        <Header isActive={isActive}>
             <NavTitle>
                 <a href="https://www.soujunior.tech/">
                     <img
@@ -34,10 +34,13 @@ const HomeHeader: React.FC<HeaderProps> = ({ active }) => {
                 </a>
             </NavTitle>
             <NavTitle>
-                <RegisterButton onClick={handleRegisterClick} active={active}>
+                <RegisterButton
+                    onClick={handleRegisterClick}
+                    isActive={isActive}
+                >
                     Cadastre-se
                 </RegisterButton>
-                <LoginButton onClick={handleLoginClick} active={active}>
+                <LoginButton onClick={handleLoginClick} isActive={isActive}>
                     Login
                 </LoginButton>
             </NavTitle>

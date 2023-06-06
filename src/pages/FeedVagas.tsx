@@ -23,7 +23,7 @@ import {
     ShowMore,
     Title,
     Wrapper,
-} from './styles/feedvagasStyles';
+} from './styles/FeedVagasStyles';
 import {
     DivisionBar,
     ProfileJobsBoard,
