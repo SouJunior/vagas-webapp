@@ -119,9 +119,9 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     const handlePopUp = () => setPopup(!popup);
 
-    const closePopup = () => { 
-        setPopup(false) 
-        navigate('/login')
+    const closePopup = () => {
+        setPopup(false);
+        navigate('/login');
     };
 
     // Manipula os dados e envia a requisição
@@ -137,13 +137,12 @@ export const CompanyForms = (props: any): JSX.Element => {
         );
 
         try {
-            handlePopUp()
+            handlePopUp();
             if (registerData) {
                 setIsLogin(true);
             }
-
         } catch (error: any) {
-            setHasError(registerData.message)
+            setHasError(registerData.message);
         }
     }
 
@@ -210,7 +209,9 @@ export const CompanyForms = (props: any): JSX.Element => {
                                 <CheckboxInput id="default-checkbox" value="" />
                                 Me mantenha conectado
                             </Label>
-                            <a href="confirm-email?type=company">Esqueci minha senha</a>
+                            <a href="confirm-email?type=company">
+                                Esqueci minha senha
+                            </a>
                         </CheckboxContainer>
                     </InputContainer>
 
@@ -352,7 +353,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                     </LoginLink>
                 </Form>
             )}
-             {popup ? (
+            {popup ? (
                 <PopUpRegisterSucess
                     email={registerCheck[1]}
                     close={closePopup}

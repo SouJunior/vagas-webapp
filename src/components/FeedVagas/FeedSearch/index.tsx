@@ -10,12 +10,18 @@ import {
 } from './styles';
 import Fuse from 'fuse.js';
 
-const FeedSearch: React.FC<any> = ({ onFilter, data, setFilteredJobs }) => {
+const FeedSearch: React.FC<any> = ({
+    searchFromHome,
+    onFilter,
+    data,
+    setFilteredJobs,
+}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [location, setLocation] = useState('');
 
     useEffect(() => {
         handleSearch();
+        setSearchTerm(searchFromHome);
     }, [data]);
 
     const handleSearch = () => {

@@ -10,7 +10,7 @@ export type AuthContextType = {
         type: string | any,
     ) => Promise<boolean>;
 
-    registerUser: (
+    register: (
         name: string,
         email: string,
         password: string,
@@ -28,6 +28,18 @@ export type AuthContextType = {
     validateToken: (token: string) => Promise<any>;
 
     logout: () => void;
+
+    isLogin: 'login' | 'register';
+    setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const AuthContext: any = createContext(null);
+export const AuthContext = createContext<any>({
+    user: null,
+    isLogin: 'login',
+    login: async () => false,
+    register: async () => false,
+    registerCompany: async () => false,
+    validateToken: async () => null,
+    logout: () => {},
+    setIsLogin: () => {},
+});

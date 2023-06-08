@@ -12,7 +12,6 @@ import {
     schemaUserLoginForm,
     schemaUserRegisterForm,
 } from '../../../validations/UserValidations/index';
-
 import {
     MessageError,
     MessageError2,
@@ -41,7 +40,7 @@ export const UserForms = (props: any): JSX.Element => {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const [isLogin, setIsLogin] = useState(true);
+    const { isLogin, setIsLogin } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -57,7 +56,7 @@ export const UserForms = (props: any): JSX.Element => {
 
     // Define qual formulário deverá ser validado
     const getFormValidation =
-        isLogin === true ? schemaUserLoginForm : schemaUserRegisterForm;
+        isLogin === 'login' ? schemaUserLoginForm : schemaUserRegisterForm;
 
     const {
         register,
@@ -75,7 +74,6 @@ export const UserForms = (props: any): JSX.Element => {
             setHasError(data.message);
         }
     };
-
     // Realiza o login e maniopula dados
     async function handleFormOnSubmit() {
         setIsFormSubmitted(true);
@@ -93,7 +91,7 @@ export const UserForms = (props: any): JSX.Element => {
             });
 
             if (email && password && isLogged && userType) {
-                navigate('/*');
+                navigate('/candidate-portal');
             }
         } catch (err) {
             // TODO: Tratar os erros com as mensagens do backend e exibir em tela
@@ -113,9 +111,9 @@ export const UserForms = (props: any): JSX.Element => {
     // Abre popup quando cadastro concluído com sucesso
     const handlePopUp = () => setPopup(!popup);
 
-    const closePopup = () => { 
-        setPopup(false)
-        navigate('/login')
+    const closePopup = () => {
+        setPopup(false);
+        navigate('/login');
     };
 
     async function handleRegisterSubmit() {
@@ -130,7 +128,7 @@ export const UserForms = (props: any): JSX.Element => {
             handlePopUp();
 
             if (registerData) {
-                setIsLogin(true);
+                setIsLogin('login');
             }
         } catch (error) {
             // TODO: Tratar os erros com as mensagens do backend e exibir em tela
@@ -150,15 +148,17 @@ export const UserForms = (props: any): JSX.Element => {
 
     return (
         <>
-            {isLogin ? (
+            {isLogin === 'login' ? (
                 <Title>Candidato</Title>
             ) : (
                 <Title>Cadastro de candidato</Title>
             )}
 
-            <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
+            <Divider
+                style={{ marginBottom: isLogin === 'login' ? '32px' : '20px' }}
+            />
             {/* renderiza se existe(true) um formulário do tipo login */}
-            {isLogin ? (
+            {isLogin === 'login' ? (
                 <Form
                     id="login-form"
                     onSubmit={handleSubmit(handleFormOnSubmit)}
@@ -216,7 +216,9 @@ export const UserForms = (props: any): JSX.Element => {
                                 <CheckboxInput id="default-checkbox" value="" />
                                 Me mantenha conectado
                             </Label>
-                            <a href="confirm-email?type=user">Esqueci minha senha</a>
+                            <a href="confirm-email?type=user">
+                                Esqueci minha senha
+                            </a>
                         </CheckboxContainer>
                     </InputContainer>
 
@@ -234,7 +236,9 @@ export const UserForms = (props: any): JSX.Element => {
 
                         <RegisterButton
                             type="button"
-                            onClick={() => setIsLogin(false)}
+                            onClick={() => {
+                                setIsLogin('register');
+                            }}
                         >
                             Criar conta
                         </RegisterButton>
@@ -264,7 +268,7 @@ export const UserForms = (props: any): JSX.Element => {
                             <Input
                                 type="text"
                                 {...register('registerEmail')}
-                                placeholder="Digite sei email"
+                                placeholder="Digite seu email"
                                 aria-label="Email"
                             ></Input>
                             <IconWrapper>
@@ -352,7 +356,7 @@ export const UserForms = (props: any): JSX.Element => {
                         Já tem conta? {/* redireciona se isLogin === true */}
                         <button
                             onClick={() => {
-                                return setIsLogin(true);
+                                return setIsLogin('login');
                             }}
                         >
                             Faça o Login

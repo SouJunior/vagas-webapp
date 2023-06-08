@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
+    "@phosphor-icons/react": "^2.0.9",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.206",
     "@tiptap/extension-bullet-list": "^2.0.0-beta.209",
     "@tiptap/extension-hard-break": "^2.0.0-beta.209",
@@ -24,6 +25,7 @@
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
     "fuse.js": "^6.6.2",
+    "phosphor-react": "^1.4.1",
     "prosemirror-commands": "^1.5.0",
     "prosemirror-dropcursor": "^1.6.1",
     "prosemirror-gapcursor": "^1.3.1",
@@ -45,6 +47,7 @@
     "react-select": "^5.7.2",
     "react-toastify": "^9.1.1",
     "styled-components": "^5.3.5",
+    "swiper": "^9.3.2",
     "tiptap": "^1.32.2",
     "uuid": "^9.0.0",
     "yup": "^0.32.11"

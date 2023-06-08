@@ -1,23 +1,14 @@
 import { 
-    Header,
     Main, 
     Container, 
     Row,
     Copyright,
-    ProfilePicture,
-    UserButton,
-    Company,
-    Email,
-    ArrowPicture,
-    HeaderLogo,
     Position, 
-    UserInfo,
     JobButton
 } from "./styles/CompanyPortalStyles"
-import LogoImage from "../assets/imgs/logotipo-icone-extendida.svg"
-import ArrowImage from "../assets/imgs/arrow.svg"
 import PlusSignImage from "../assets/imgs/plus-sign.png"
-import Footer from '../components/CompanyPortal/Footer';
+import Footer from '../components/Portal/Footer/index';
+import Header from '../components/Portal/Header';
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../contexts/Auth/AuthContext"
 import { useContext, useEffect, useState } from "react"
@@ -40,22 +31,7 @@ const CompanyPortal = () => {
     
   return (
     <Container>
-        <Header>
-            <div>
-                <HeaderLogo src={LogoImage} width="194px" height="29px" alt="logo" />
-            </div>
-            <UserButton>
-                <a href="alterar-perfil">
-                    <ProfilePicture src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png" 
-                    alt="foto de perfil"/>
-                </a>
-                <UserInfo>
-                    <Company>{auth.user.companyName}</Company>    
-                    <Email>{auth.user.email}</Email> 
-                </UserInfo>
-                <ArrowPicture src={ArrowImage} alt="flecha" />
-            </UserButton>        
-        </Header>
+       <Header />
         {(jobs?.length !== 0) ? 
         (<Main>
             <h2>Vagas cadastradas:</h2>

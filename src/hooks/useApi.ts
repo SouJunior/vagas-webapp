@@ -113,10 +113,19 @@ export const useApi = () => ({
     getJob: async (id: number) => {
         const url = `/job/${id}`;
         const res: any = await api.get(url);
-        return res.data;
-    },
-    getJobsByCompany: async (id: string) => {
+          return res.data;
+      },
+
+      getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;
     },
+
+      searchJobs: async (keyword: string) => {
+        const url = `/job/search/${keyword}?order=ASC&page=1&take=10&orderByColumn=id`
+        console.log(url)
+        const res: any = await api.get(url);
+        console.log(res)
+          return res.data;
+      },
 });
