@@ -23,6 +23,9 @@ const Index = () => {
                     <Border />
                     <li>
                         <a href="/">
+                            {/* TODO: Vai redirecionar para a pagina de alteração
+                                do perfil de usuário tipo empresa/candidato
+                            */}
                             <img src={ProfileIcon} alt="perfil" />
                             Meu perfil
                         </a>

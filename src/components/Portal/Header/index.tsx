@@ -29,6 +29,9 @@ const Index = () => {
                 <HeaderLogo src={LogoImage} width="194px" height="29px" alt="logo" />
             </div>
             <UserButton>
+                {/* TODO: Vai redirecionar para a pagina de alteração
+                    do perfil de usuário tipo empresa/candidato
+                */}
                 <a href="/">
                     <ProfilePicture src={ProfileImage} alt="foto de perfil"/>
                 </a>
