@@ -62,6 +62,9 @@ const Index = () => {
                     </li>
                     <Border />
                     <li>
+                        {/* TODO: Excluir o token do localstorage ou cookie que armazena o token 
+                            isso utilizando a função de logout que já está pronta em useApi.
+                        */}
                         <a href="login">
                             <img src={ExitIcon} alt="sair" />
                             Sair do Portal de Vagas
