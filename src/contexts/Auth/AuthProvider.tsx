@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
             // 1 vez quando faz validação do token
             // Talvez por se tratar do valor user seja melhor o uso de useMemo()
             const res = await api.validateToken(storagedToken);
-            console.log(res)
             if (res) {
                 setUser(res);
             }
