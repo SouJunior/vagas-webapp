@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Container,
-    Input,
-    Button,
-    InputIcon,
-    InputContainer,
-    InputLabel,
-    InputIconBefore,
-} from './styles';
+import { Container, Button, PrimaryInput, LocationInput } from './styles';
 import Fuse from 'fuse.js';
 
 const FeedSearch: React.FC<any> = ({
-    searchFromHome,
+    FilterTerm,
     onFilter,
+    Location,
     data,
     setFilteredJobs,
 }) => {
@@ -21,7 +14,8 @@ const FeedSearch: React.FC<any> = ({
 
     useEffect(() => {
         handleSearch();
-        setSearchTerm(searchFromHome);
+        setSearchTerm(FilterTerm);
+        setLocation(Location);
     }, [data]);
 
     const handleSearch = () => {
@@ -74,25 +68,20 @@ const FeedSearch: React.FC<any> = ({
     return (
         <Container>
             <form onSubmit={handleSubmit}>
-                <Input
+                <PrimaryInput
                     type="text"
                     placeholder="Cargo, empresa, palavra-chave"
                     maxLength={30}
                     value={searchTerm}
                     onChange={(event: any) => setSearchTerm(event.target.value)}
                 />
-                <InputContainer>
-                    <InputLabel>Onde</InputLabel>
-                    <InputIcon
-                        type="text"
-                        placeholder="remoto, cidade, estado ou país"
-                        value={location}
-                        onChange={(event: any) =>
-                            setLocation(event.target.value)
-                        }
-                    />
-                    <InputIconBefore />
-                </InputContainer>
+                <LocationInput
+                    type="text"
+                    placeholder="Local"
+                    maxLength={30}
+                    value={location}
+                    onChange={(event: any) => setLocation(event.target.value)}
+                />
                 <Button type="submit">Buscar Vagas</Button>
             </form>
         </Container>

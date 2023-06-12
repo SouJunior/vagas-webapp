@@ -100,6 +100,11 @@ export const useApi = () => ({
           return res.data;
       },
 
+      getCompanyById: async (id: string | null) => {
+        const res: any = await api.get(`/company/${id}`);
+        return res.data;
+      },
+
       getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;

@@ -69,7 +69,7 @@ import { MockJourneyCard } from '../Mocks/MockJourneyCard';
 import Testimonials from '../components/Home/Testimonials';
 import JourneyModal from '../components/Home/JourneySection/JourneyModal';
 import HomeHeader from '../components/Home/HomeHeader';
-import JobFilter from '../components/Home/HomeJobFilter/JobFilter';
+import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
 
 interface AreaProps {
     id: string;

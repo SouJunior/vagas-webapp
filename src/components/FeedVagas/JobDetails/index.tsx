@@ -14,7 +14,15 @@ import {
 } from './styles';
 import { Link } from 'react-router-dom';
 
-function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
+function JobDetails({
+    id,
+    clickedJob,
+    companyData,
+}: {
+    id: any;
+    clickedJob: any;
+    companyData: any;
+}) {
     if (Array.isArray(clickedJob)) {
         clickedJob = Object.assign({}, ...clickedJob);
     }
@@ -43,6 +51,9 @@ function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
                 <ExtraInfoContainer>
                     <ExtraInfoItem colorActive={false}>
                         {clickedJob.contractType}
+                    </ExtraInfoItem>
+                    <ExtraInfoItem colorActive={false}>
+                        {companyData?.companyName}
                     </ExtraInfoItem>
                     <ExtraInfoItem colorActive={false}>
                         {'51-200 funcionários'}

@@ -9,11 +9,12 @@ import { Home } from '../pages/Home';
 import { InsertJobs } from '../pages/InsertJobs';
 import { RequireAuth } from '../contexts/Auth/RequireAuth';
 import AddJobs from '../pages/AddJobs';
-import FeedVagas from '../pages/FeedVagas';
+import FeedJobs from '../pages/FeedJobs';
 import ConfirmEmail from '../pages/ConfirmEmail';
 import ResetPassword from '../pages/ResetPassword';
 import CompanyPortal from '../pages/CompanyPortal';
 import CandidatePortal from '../pages/CandidatePortal';
+import JobApply from '../pages/JobApply';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -21,22 +22,22 @@ export const NavRoutes: React.FC = () => {
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="confirm-email" element={<ConfirmEmail />}></Route>
-            <Route path="recovery-password" element={<ResetPassword  />}></Route>
-            <Route 
-            path="company-portal" 
-            element={
-                <RequireAuth>
-                    <CompanyPortal />
-                </RequireAuth>
-            }
+            <Route path="recovery-password" element={<ResetPassword />}></Route>
+            <Route
+                path="company-portal"
+                element={
+                    <RequireAuth>
+                        <CompanyPortal />
+                    </RequireAuth>
+                }
             />
-            <Route 
-            path="candidate-portal" 
-            element={
-                <RequireAuth>
-                    <CandidatePortal />
-                </RequireAuth>
-            }
+            <Route
+                path="candidate-portal"
+                element={
+                    <RequireAuth>
+                        <CandidatePortal />
+                    </RequireAuth>
+                }
             />
             <Route
                 path="insertjob"
@@ -52,7 +53,8 @@ export const NavRoutes: React.FC = () => {
             <Route path="/" element={<Layout />}>
                 <Route path="insertjobs" element={<InsertJobs />} />
                 <Route path="addjobs" element={<AddJobs />} />
-                <Route path="feedvagas" element={<FeedVagas />} />
+                <Route path="jobs" element={<FeedJobs />} />
+                <Route path="apply" element={<JobApply />} />
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>

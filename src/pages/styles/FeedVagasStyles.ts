@@ -1,35 +1,29 @@
 import styled from "styled-components";
 import { RiInformationLine } from 'react-icons/ri';
+import FeedJobsBackground from "../../assets/imgs/feedjobs-bg.svg"
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   gap: 56px;
-  margin-top: 3rem;
-  
+  margin-top: 101px;
+  width: 100vw;
 `;
 
-export const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 270px 1fr;
-    margin-top: 6.1875rem;
-    gap: 16px;
-`;
-
-export const ProfileStatus = styled.div`
-  min-width: 270px;
-  padding: 40px 20px;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: #FCFCFC;
-`
-
-export const ProfileStatusContent = styled.div`
+export const FilterContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  width: 100vw;
   align-items: center;
-`
+  justify-content: center;
+  height: 200px;
+  background-color: ${({theme}) => theme.colors.primary}};
+  background-image: url(${FeedJobsBackground});
+
+  div {
+    width: 100%;
+  }
+`;
 
 export const Content = styled.div`
     display: flex;
@@ -39,16 +33,21 @@ export const Content = styled.div`
 
 export const JobContainer = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 56px;
 `
 
+export const PageTitle = styled.h1`
+    font-size: 36px;  
+    font-weight: 700;
+`;
+
 export const ContentWrapper = styled.div`
     display: grid;
     gap: 30px;
     grid-template-columns: 493px 583px;
-    
 `;
 
 export const JobsWrapper = styled.div`

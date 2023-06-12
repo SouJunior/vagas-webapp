@@ -6,14 +6,14 @@ interface JobFilterProps {
     isActive: boolean;
 }
 
-const JobFilter: React.FC<JobFilterProps> = ({ isActive }) => {
+const HomeJobFilter: React.FC<JobFilterProps> = ({ isActive }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const navigate = useNavigate();
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        navigate(`/feedvagas?searchTerm=${searchTerm}`);
+        navigate(`/jobs?searchTerm=${searchTerm}`);
     };
 
     return (
@@ -43,4 +43,4 @@ const JobFilter: React.FC<JobFilterProps> = ({ isActive }) => {
     );
 };
 
-export default JobFilter;
+export default HomeJobFilter;
