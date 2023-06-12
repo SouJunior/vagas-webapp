@@ -38,12 +38,19 @@ export const MenuItems = styled.ul`
         display: flex;
         padding: 15px;
         cursor: pointer;
+        &:hover {
+            background-color: #0009;
+        }
     }
 
     a {
         display: flex;
     }
 
+    .jobs {
+        width: 100%;
+    }
+    
     span {
         margin-right: 10px;
     }
