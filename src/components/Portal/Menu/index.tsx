@@ -26,18 +26,21 @@ const Index = () => {
         <Container>
             <PopUp>
                 <MenuItems>
-                    <Border />
-                    <li>
-                        <img onClick={handleNavigation} src={ProfileIcon} alt="perfil" />
+                    <li onClick={handleNavigation}>
+                        <img
+                            src={ProfileIcon}
+                            alt="perfil"
+                        />
                         Meu perfil
                     </li>
+                    <Border />
                     {auth.user.type !== 'USER' && (
-                        // TODO: Corrigir quebra de layout da palavra vagas no mozilla
-                        <li className="jobs">
-                            <a className="jobs" href="insertjobs">
-                                <img src={NewJobIcon} alt="vagas" />
-                                Anunciar vagas
-                            </a>
+                        <li
+                            onClick={() => navigate('/insertjobs')}
+                            className="jobs"
+                        >
+                            <img src={NewJobIcon} alt="vagas" />
+                            Anunciar vagas
                         </li>
                     )}
                     <Border />
@@ -55,12 +58,18 @@ const Index = () => {
                         )}
                     </li>
                     {visible && (
-                        <div>
-                            <li>
-                                <img src={PasswordIcon} alt="alterar senha" />
-                                Alterar senha
-                            </li>
-                        </div>
+                        <>
+                            <Border />
+                            <div>
+                                <li>
+                                    <img
+                                        src={PasswordIcon}
+                                        alt="alterar senha"
+                                    />
+                                    Alterar senha
+                                </li>
+                            </div>
+                        </>
                     )}
                     <Border />
                     <li>
@@ -68,14 +77,12 @@ const Index = () => {
                         Termo de uso e Privacidade
                     </li>
                     <Border />
-                    <li>
+                    <li onClick={() => navigate('/login')}>
                         {/* TODO: Excluir o token do localstorage ou cookie que armazena o token 
                             isso utilizando a função de logout que já está pronta em useApi.
                         */}
-                        <a href="login">
-                            <img src={ExitIcon} alt="sair" />
+                            <img  src={ExitIcon} alt="sair" />
                             Sair do Portal de Vagas
-                        </a>
                     </li>
                 </MenuItems>
             </PopUp>
