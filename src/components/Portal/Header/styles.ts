@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Header = styled.header`
     display: flex;
@@ -6,13 +6,18 @@ export const Header = styled.header`
     align-items: center;
     padding: 10px;
     gap: 20px;
-    background-color: #046AD0
-`
+    background: rgb(67, 122, 255);
+    background: linear-gradient(
+        60deg,
+        rgba(67, 122, 255, 1) 0%,
+        rgba(4, 106, 208, 1) 100%
+    );
+`;
 export const ProfilePicture = styled.img`
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background-color: #046AD0;
+    background: #046ad0;
     margin-right: 15px;
 
     @media (max-width: 540px) {
@@ -20,37 +25,37 @@ export const ProfilePicture = styled.img`
         height: 40px;
         margin-right: 8px;
     }
-`
+`;
 export const UserButton = styled.button`
     display: flex;
     align-items: center;
     padding-right: 20px;
-    
+
     div:first-child {
-       flex-direction: column;
-       margin-right: 15px;
+        flex-direction: column;
+        margin-right: 15px;
     }
-`
+`;
 export const Name = styled.div`
     font-size: 16px;
     font-weight: 700;
     line-height: 22px;
-    color: #FFFFFF;
+    color: #ffffff;
     margin-bottom: 5px;
 
     @media (max-width: 540px) {
-       display: none;
+        display: none;
     }
-`
+`;
 export const Email = styled.div`
     font-size: 14px;
     font-weight: 400;
-    color: #D7D9D7;
+    color: #d7d9d7;
 
     @media (max-width: 540px) {
-       display: none;
+        display: none;
     }
-`
+`;
 export const UserInfo = styled.div`
     display: flex;
     flex-direction: column;
@@ -58,15 +63,15 @@ export const UserInfo = styled.div`
     margin-right: 10px;
 
     @media (max-width: 540px) {
-       margin: 0;
+        margin: 0;
     }
-`
+`;
 export const MenuPicture = styled.img`
     @media (max-width: 540px) {
         width: 15px;
         height: 15px;
     }
-`
+`;
 export const HeaderLogo = styled.img`
     padding-left: 20px;
 
@@ -74,4 +79,4 @@ export const HeaderLogo = styled.img`
         width: 140px;
         height: 60px;
     }
-`
+`;
