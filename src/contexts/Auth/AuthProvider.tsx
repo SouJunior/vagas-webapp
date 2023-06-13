@@ -28,13 +28,11 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
     const login = async (email: string, password: string, type: string) => {
         const res = await api.login(email, password, type);
-
         if (res.info && res.token) {
             setUser(res.info);
             setToken(res.token);
-            return true;
         }
-        return false;
+        return res;        
     };
 
     const setToken = (token: string) => {
