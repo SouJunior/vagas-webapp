@@ -1,45 +1,46 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
-    display:flex;
-   
-`
+    display: flex;
+`;
 export const Border = styled.span`
-    border: 1px solid #C5C7C5;
-    width: 90%;
-`
+    border: 1px solid #c5c7c5;
+    width: 100%;
+`;
 
 export const PopUp = styled.div`
-    background: #046AD0;
+    background: #046ad0;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     position: absolute;
+    padding: 15px;
     z-index: 1;
-    right: 5px;
+    right: 10px;
+    border-top: 1px solid #e8e4d6;
 
     @media (max-width: 480px) {
         width: 100%;
+        right: 0;
     }
-`
+`;
 
 export const MenuItems = styled.ul`
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: left;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 18px;
-    padding-top: 10px;
-    
 
     li {
-        margin-right: auto;
         display: flex;
-        padding: 15px;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 18px 0;
         cursor: pointer;
         &:hover {
-            background-color: #0009;
+            color: #c6c6c6;
         }
     }
 
@@ -47,15 +48,13 @@ export const MenuItems = styled.ul`
         display: flex;
     }
 
-    .jobs {
-        width: 100%;
-    }
-    
-    span {
-        margin-right: 10px;
-    }
-
     img {
         margin-right: 10px;
+        max-width: 8%;
     }
-`
+
+    img[alt='seta'] {
+        max-width: 5%;
+        margin-left: 10px;
+    }
+`;
