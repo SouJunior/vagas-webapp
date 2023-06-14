@@ -14,11 +14,7 @@ export const Header = styled.header`
     );
 `;
 export const ProfilePicture = styled.img`
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #046ad0;
-    margin-right: 15px;
+    margin: 0 15px;
 
     @media (max-width: 540px) {
         width: 40px;
@@ -26,6 +22,7 @@ export const ProfilePicture = styled.img`
         margin-right: 8px;
     }
 `;
+
 export const UserButton = styled.button`
     display: flex;
     align-items: center;
