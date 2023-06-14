@@ -14,7 +14,7 @@ import ConfirmEmail from '../pages/ConfirmEmail';
 import ResetPassword from '../pages/ResetPassword';
 import CompanyPortal from '../pages/CompanyPortal';
 import CandidatePortal from '../pages/CandidatePortal';
-import { HandleProfile } from '../pages/HandleProfile';
+import { ProfileSettings } from '../pages/ProfileSettings';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -40,10 +40,10 @@ export const NavRoutes: React.FC = () => {
                 }
             />
             <Route 
-                path="handle-profile" 
+                path="profile-settings" 
                 element={
                     <RequireAuth>
-                        <HandleProfile />
+                        <ProfileSettings />
                     </RequireAuth>
                 }
             />
