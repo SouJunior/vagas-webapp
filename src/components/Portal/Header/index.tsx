@@ -21,6 +21,8 @@ const Index = () => {
     const auth: any = useContext(AuthContext);
     const navigate = useNavigate();
 
+    //TODO: Ao utilizar esse componente header, temos uma aninhamento de redirecionamento
+    // ao clicar no link que redireciona para a pagina atual, sobrepondo vários redirecionamentos
     const handleNavigation = () => {
         navigate('/handle-profile');
     };
