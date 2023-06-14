@@ -14,7 +14,7 @@ export const PopUp = styled.div`
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     position: absolute;
-    padding: 15px;
+    padding: 16px 24px;
     z-index: 1;
     right: 10px;
     border-top: 1px solid #e8e4d6;
@@ -56,5 +56,12 @@ export const MenuItems = styled.ul`
     img[alt='seta'] {
         max-width: 5%;
         margin-left: 10px;
+    }
+    img[alt='sair'] {
+        max-width: 6.6%;
+    }
+
+    img[alt='termos'] {
+        max-width: 6.6%;
     }
 `;
