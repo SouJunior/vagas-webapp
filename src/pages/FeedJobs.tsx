@@ -22,9 +22,13 @@ import {
     ShowMore,
     Title,
     Wrapper,
+    Content,
+    JobList,
+    QuickFilterContainer,
 } from './styles/FeedVagasStyles';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
 import Header from '../components/Header';
+import QuickFilter from '../components/FeedVagas/QuickFilter';
 
 interface Job {
     id: string;
@@ -56,9 +60,6 @@ const FeedJobs = () => {
     const [filteredJobs, setFilteredJobs] = useState<Job[]>(jobs);
     const [noJobSelected, setNoJobSelected] = useState(true);
     const [jobIdFromUrl, setJobIdFromUrl] = useState<string | null>(null);
-    const [company, setCompany] = useState();
-    const [selectedCompany, setSelectedCompany] = useState('');
-    const [companies, setCompanies] = useState<any>();
 
     const api = useApi();
     const { search } = useLocation();
@@ -67,17 +68,6 @@ const FeedJobs = () => {
         async function getJobs() {
             const jobsData = await api.getJobs();
             setJobs(jobsData.data);
-            const companyIds = Array.from(
-                new Set(jobsData.data.map((job: any) => job.company_id)),
-            );
-
-            const companiesData = await Promise.all(
-                companyIds.map(async (companyId: any) => {
-                    const companyData = await api.getCompanyById(companyId);
-                    return companyData;
-                }),
-            );
-            setCompanies(companiesData);
         }
         getJobs();
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -130,82 +120,97 @@ const FeedJobs = () => {
         <>
             <Header pageName="Feed de Vagas" backTo={'/'}></Header>
             <Wrapper>
-                <FilterContainer>
-                    <div>
-                        <FeedSearch
-                            FilterTerm={searchTerm}
-                            Location={location}
-                            data={jobs}
-                            onFilter={handleFilter}
-                            setFilteredJobs={setFilteredJobs}
-                        />
-                    </div>
-                </FilterContainer>
-                {filteredJobs.length === 0 && (
-                    <NoResultsMessage>
-                        Nenhuma vaga encontrada.
-                    </NoResultsMessage>
-                )}
+                <Content>
+                    <FilterContainer>
+                        <div>
+                            <FeedSearch
+                                FilterTerm={searchTerm}
+                                Location={location}
+                                data={jobs}
+                                onFilter={handleFilter}
+                                setFilteredJobs={setFilteredJobs}
+                            />
+                        </div>
+                    </FilterContainer>
+                    {filteredJobs.length === 0 && (
+                        <NoResultsMessage>
+                            Nenhuma vaga encontrada.
+                        </NoResultsMessage>
+                    )}
 
-                <JobContainer>
-                    <PageTitle>Feed de Vagas</PageTitle>
-                    <ContentWrapper>
-                        <JobsWrapper>
-                            {filteredJobs.map((job: Job) => (
-                                <JobCardItem
-                                    key={job.id}
-                                    id={job.id}
-                                    title={job.title}
-                                    company={job.company}
-                                    city={job.city}
-                                    federalUnit={job.federalUnit}
-                                    modality={job.modality}
-                                    jobType={job.type}
-                                    typeContract={job.typeContract}
-                                    publishedAt={job.createdAt}
-                                    active={selectedJob === job.id}
-                                    opacity={
-                                        noJobSelected || selectedJob === job.id
-                                            ? 1
-                                            : 0.6
-                                    }
-                                    onClick={() => {
-                                        if (selectedJob === job.id) {
-                                            setSelectedJob(null);
-                                            setNoJobSelected(true);
-                                        } else {
-                                            selecionaVaga(job.id);
-                                            setSelectedCompany(job.company_id);
-                                        }
-                                    }}
-                                />
-                            ))}
-                        </JobsWrapper>
-                        {filteredJobs.length > 0 && (
-                            <>
-                                {selectedJob ? (
-                                    <JobDetailsWrapper>
-                                        <JobDetails
-                                            id={selectedJob}
-                                            clickedJob={clickedJob}
-                                            companyData={company}
+                    <JobContainer>
+                        <PageTitle>Feed de Vagas</PageTitle>
+                        <ContentWrapper>
+                            <JobsWrapper>
+                                <QuickFilterContainer>
+                                    <QuickFilter
+                                        options={[
+                                            {
+                                                label: 'Tipo de vaga',
+                                                value: '',
+                                            },
+                                            {
+                                                label: 'Remoto',
+                                                value: 'remoto',
+                                            },
+                                            {
+                                                label: 'Híbrido',
+                                                value: 'hibrido',
+                                            },
+                                            {
+                                                label: 'Presencial',
+                                                value: 'presencial',
+                                            },
+                                        ]}
+                                    />
+                                    <QuickFilter
+                                        options={[
+                                            {
+                                                label: 'Quando postada',
+                                                value: '',
+                                            },
+                                            {
+                                                label: 'Mais Recente',
+                                                value: 'newest',
+                                            },
+                                            {
+                                                label: 'Mais Antigo',
+                                                value: 'oldest',
+                                            },
+                                        ]}
+                                    />
+                                </QuickFilterContainer>
+                                <JobList>
+                                    {filteredJobs.map((job: Job) => (
+                                        <JobCardItem
+                                            key={job.id}
+                                            id={job.id}
+                                            title={job.title}
+                                            city={job.city}
+                                            federalUnit={job.federalUnit}
+                                            modality={job.modality}
+                                            jobType={job.type}
+                                            typeContract={job.typeContract}
+                                            publishedAt={job.createdAt}
+                                            company={job.company}
+                                            active={selectedJob === job.id}
+                                            opacity={
+                                                noJobSelected ||
+                                                selectedJob === job.id
+                                                    ? 1
+                                                    : 0.6
+                                            }
+                                            onClick={() => {
+                                                if (selectedJob === job.id) {
+                                                    setSelectedJob(null);
+                                                    setNoJobSelected(true);
+                                                } else {
+                                                    selecionaVaga(job.id);
+                                                }
+                                            }}
                                         />
-                                    </JobDetailsWrapper>
-                                ) : (
-                                    <NoJobsContainer>
-                                        <InnerContainer>
-                                            <Icon />
-                                        </InnerContainer>
-                                        <Title>
-                                            Selecione uma vaga para ver os
-                                            detalhes.
-                                        </Title>
-                                        <Message>
-                                            (Todos os detalhes serão mostrados
-                                            bem aqui)
-                                        </Message>
-                                    </NoJobsContainer>
-                                )}
+                                    ))}
+                                </JobList>
                                 {!hasMore && (
                                     <ShowMore
                                         onClick={showMore}
@@ -224,10 +229,37 @@ const FeedJobs = () => {
                                             : 'Ver mais'}
                                     </ShowMore>
                                 )}
-                            </>
-                        )}
-                    </ContentWrapper>
-                </JobContainer>
+                            </JobsWrapper>
+
+                            {filteredJobs.length > 0 && (
+                                <>
+                                    {selectedJob ? (
+                                        <JobDetailsWrapper>
+                                            <JobDetails
+                                                id={selectedJob}
+                                                clickedJob={clickedJob}
+                                            />
+                                        </JobDetailsWrapper>
+                                    ) : (
+                                        <NoJobsContainer>
+                                            <InnerContainer>
+                                                <Icon />
+                                            </InnerContainer>
+                                            <Title>
+                                                Selecione uma vaga para ver os
+                                                detalhes.
+                                            </Title>
+                                            <Message>
+                                                (Todos os detalhes serão
+                                                mostrados bem aqui)
+                                            </Message>
+                                        </NoJobsContainer>
+                                    )}
+                                </>
+                            )}
+                        </ContentWrapper>
+                    </JobContainer>
+                </Content>
             </Wrapper>
         </>
     );

@@ -14,7 +14,7 @@ import ConfirmEmail from '../pages/ConfirmEmail';
 import ResetPassword from '../pages/ResetPassword';
 import CompanyPortal from '../pages/CompanyPortal';
 import CandidatePortal from '../pages/CandidatePortal';
-import JobApply from '../pages/JobApply';
+import JobApply from '../pages/ApplyJob';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -54,7 +54,7 @@ export const NavRoutes: React.FC = () => {
                 <Route path="insertjobs" element={<InsertJobs />} />
                 <Route path="addjobs" element={<AddJobs />} />
                 <Route path="jobs" element={<FeedJobs />} />
-                <Route path="apply" element={<JobApply />} />
+                <Route path="apply/:id" element={<JobApply />} />
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
