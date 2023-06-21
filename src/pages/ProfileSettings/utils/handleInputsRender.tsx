@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-export const handleSelectRender = (arr: any): [] => {
+export const handleInputsRender = (arr: any): [] => {
     return arr.map((element: any, index: any) => {
         return (
             <Fragment key={index}>

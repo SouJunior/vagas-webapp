@@ -17,7 +17,7 @@ import countryStates from './data/countryStates';
 import typeCompany from './data/typeCompany';
 import Header from '../../components/Portal/Header';
 import { ProfilePicture } from '../../components/Portal/Header/styles';
-import { handleSelectRender } from './utils/handleSelectRender';
+import { handleInputsRender } from './utils/handleInputsRender';
 import { handleOptionsRender } from './utils/handleOptionsRender';
 
 export const ProfileSettings: React.FC = () => {
@@ -43,7 +43,7 @@ export const ProfileSettings: React.FC = () => {
             <Form>
                 <div className="form__left">
                     <InputWrapper>
-                        {handleSelectRender(inputConfigs)}
+                        {handleInputsRender(inputConfigs)}
                     </InputWrapper>
                 </div>
                 <div className="form__right">
