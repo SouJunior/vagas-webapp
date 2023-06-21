@@ -15,10 +15,10 @@ export const Header = styled.header`
 `;
 export const ProfilePicture = styled.img`
     margin: 0 15px;
+    width: ${props => props.width};
 
     @media (max-width: 540px) {
-        width: 40px;
-        height: 40px;
+        width: ${props => props.width};
         margin-right: 8px;
     }
 `;
