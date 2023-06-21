@@ -1,25 +1,35 @@
 import profilePicture from '../../assets/imgs/profile-image.svg';
 import { Form, ProfilePicWrapper } from './style';
-import { Container, Copyright, Main, Position, Row } from '../styles/CompanyPortalStyles';
+import {
+    Container,
+    Copyright,
+    Main,
+    Position,
+    Row,
+} from '../styles/CompanyPortalStyles';
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
-import { Footer } from '../../components/Footer';
+// import { Footer } from '../../components/Footer';
+import Footer from '../../components/Portal/Footer';
 import inputConfigs from './data/inputSettings';
 import countryStates from './data/countryStates';
 import typeCompany from './data/typeCompany';
-import Header from '../../components/Portal/Header'
+import Header from '../../components/Portal/Header';
 import { ProfilePicture } from '../../components/Portal/Header/styles';
 import { handleSelectRender } from './utils/handleSelectRender';
 import { handleOptionsRender } from './utils/handleOptionsRender';
-
 
 export const ProfileSettings: React.FC = () => {
     return (
         <Container>
             <Header />
             <ProfilePicWrapper>
-                <ProfilePicture src={profilePicture} alt="Foto de perfil" />
+                <ProfilePicture
+                    src={profilePicture}
+                    alt="Foto de perfil"
+                    width={'10%'}
+                />
                 <div className="upload">
                     <label htmlFor="profiPic"></label>
                     <input type="file" accept=".jpg, .jpeg, .png" />
