@@ -6,12 +6,7 @@ export const Container = styled.div`
     flex-direction: column;
     min-height: 100vh;
     text-align: center;
-    background: rgb(250, 249, 246);
-    background: linear-gradient(
-        138deg,
-        rgba(250, 249, 246, 1) 0%,
-        rgba(232, 228, 214, 1) 100%
-    );
+    background: #FDFFFC;
 `;
 export const Main = styled.main`
     display: flex;
