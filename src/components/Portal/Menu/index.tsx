@@ -19,7 +19,7 @@ const Index = () => {
     const navigate = useNavigate();
 
     const handleNavigation = () => {
-        navigate('/handle-profile');
+        navigate('/profile-settings');
     };
 
     return (
