@@ -45,6 +45,7 @@ const Index = () => {
                         onClick={handleNavigation}
                         src={ProfileImage}
                         alt="foto de perfil"
+                        width={'20%'}
                     />
                     <UserInfo onClick={() => setVisible(!visible)}>
                         {auth.user.type === 'USER' ? (
