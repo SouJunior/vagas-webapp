@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
     font-family: Radio Canada;
@@ -6,7 +6,8 @@ export const Container = styled.div`
     flex-direction: column;
     min-height: 100vh;
     text-align: center;
-`
+    background: #FDFFFC;
+`;
 export const Main = styled.main`
     display: flex;
     flex-direction: column;
@@ -21,27 +22,27 @@ export const Main = styled.main`
     h1 {
         font-size: 35px;
         font-weight: 700;
-        color: #046AD0;
+        color: #046ad0;
         padding-bottom: 60px;
     }
-`
+`;
 export const Position = styled.div`
     margin-top: auto;
-`
-export const Row = styled.div`  
+`;
+export const Row = styled.div`
     width: 90%;
     border-top: 2px solid #979797;
     opacity: 0.2;
     margin-bottom: auto;
-`
+`;
 export const Copyright = styled.span`
     font-size: 14px;
     opacity: 0.65;
     padding-bottom: 20px;
-`
+`;
 export const JobButton = styled.button`
-    background-color: #046AD0;
-    color: #FDFDFD;
+    background-color: #046ad0;
+    color: #fdfdfd;
     width: 180px;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -51,7 +52,7 @@ export const JobButton = styled.button`
     margin-top: 60px;
     margin-bottom: 60px;
 
-    div:first-child  {
+    div:first-child {
         margin-right: 8px;
     }
-`
+`;
