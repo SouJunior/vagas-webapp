@@ -38,13 +38,11 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         // Dados que vem dos inputs da aplicação no momento em que o contexto instanciado
         // Dados serão passados no corpo da requisição utlizando o método que vem de useApi
         const res = await api.login(email, password, type);
-
         if (res.info && res.token) {
             setUser(res.info);
             setToken(res.token);
-            return true;
         }
-        return false;
+        return res;        
     };
 
     const setToken = (token: string) => {
