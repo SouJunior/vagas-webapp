@@ -77,3 +77,4 @@ export const HeaderLogo = styled.img`
         height: 60px;
     }
 `;
+;
