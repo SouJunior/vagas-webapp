@@ -13,7 +13,7 @@ export const SelectWrapper = styled.div`
     }
     select {
         border: 1px solid ${({ theme }) => theme.colors.mutedDark};
-
+        color: ${({ theme }) => theme.colors.primaryDark};
         height: 55px;
         width: 100%;
         border-radius: 6px;
