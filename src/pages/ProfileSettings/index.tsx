@@ -10,7 +10,6 @@ import {
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
-// import { Footer } from '../../components/Footer';
 import Footer from '../../components/Portal/Footer';
 import inputConfigs from './data/inputSettings';
 import countryStates from './data/countryStates';
@@ -19,8 +18,16 @@ import Header from '../../components/Portal/Header';
 import { ProfilePicture } from '../../components/Portal/Header/styles';
 import { handleInputsRender } from './utils/handleInputsRender';
 import { handleOptionsRender } from './utils/handleOptionsRender';
+import { useEffect, useState } from 'react';
 
 export const ProfileSettings: React.FC = () => {
+    const [charCount, setCharCount ] = useState(0)
+    const [currChar, setCurrChar] = useState(0)
+
+    useEffect(() => {
+        setCurrChar(2000 - charCount)
+    }, [charCount])
+
     return (
         <Container>
             <Header />
@@ -40,7 +47,7 @@ export const ProfileSettings: React.FC = () => {
             <Main>
                 <Row />
             </Main>
-            <Form>
+            <Form charQtde={currChar}>
                 <div className="form__left">
                     <InputWrapper>
                         {handleInputsRender(inputConfigs)}
@@ -76,7 +83,11 @@ export const ProfileSettings: React.FC = () => {
                     </Select>
                     <div className="form__textarea">
                         <label>Decrição da empresa</label>
-                        <textarea placeholder="Breve descrição da empresa" />
+                        <textarea
+                            placeholder="Breve descrição da empresa"
+                            onChange={(e) => setCharCount( e.target.value.length)}
+                        />
+                        <span>{currChar} caracteres</span>
                     </div>
                 </div>
 
