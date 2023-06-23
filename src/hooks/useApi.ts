@@ -121,11 +121,20 @@ export const useApi = () => ({
         return res.data;
     },
 
-      searchJobs: async (keyword: string) => {
+    searchJobs: async (keyword: string) => {
         const url = `/job/search/${keyword}?order=ASC&page=1&take=10&orderByColumn=id`
-        console.log(url)
         const res: any = await api.get(url);
-        console.log(res)
-          return res.data;
-      },
+        return res.data;
+    },
+
+    updateCompanyProfile: async (formData: any) => {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        };
+        const res: any = await api.put('/company/edit', formData, { headers });
+        return res.data;
+    }
+
 });
