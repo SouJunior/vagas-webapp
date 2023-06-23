@@ -24,7 +24,7 @@ const Index = () => {
     //TODO: Ao utilizar esse componente header, temos uma aninhamento de redirecionamento
     // ao clicar no link que redireciona para a pagina atual, sobrepondo vários redirecionamentos
     const handleNavigation = () => {
-        navigate('/handle-profile');
+        navigate('/profile-settings');
     };
 
     const [visible, setVisible] = useState(false);
