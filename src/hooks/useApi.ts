@@ -1,14 +1,6 @@
 import api from '../services/api';
 
 export const useApi = () => ({
-    validateToken: async (token: string) => {
-        const config = {
-            headers: { Authorization: `Bearer ${token}` },
-        };
-        const res: any = await api.get('/auth/user-logged', config);
-        return res.data;
-    },
-
     login: async (email: string, password: string, type: string | any) => {
         const res: any = await api.post('/auth/login', {
             email,
@@ -20,6 +12,14 @@ export const useApi = () => ({
 
     logout: async () => {
         const res = await api.post('/logout');
+        return res.data;
+    },
+
+    validateToken: async (token: string) => {
+        const config = {
+            headers: { Authorization: `Bearer ${token}` },
+        };
+        const res: any = await api.get('/auth/user-logged', config);
         return res.data;
     },
 
@@ -52,15 +52,6 @@ export const useApi = () => ({
             password,
             passwordConfirmation,
         });
-        return res.data;
-    },
-
-    createJob: async (JobData: any) => {
-        const token = localStorage.getItem('authToken');
-        const headers = {
-            Authorization: `Bearer ${token}`,
-        };
-        const res: any = await api.post('/job', { JobData }, { headers });
         return res.data;
     },
 
@@ -104,6 +95,25 @@ export const useApi = () => ({
         return res.data;
     },
 
+    updateCompanyProfile: async (formData: any) => {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        };
+        const res: any = await api.put('/company/edit', formData, { headers });
+        return res.data;
+    },
+
+    createJob: async (JobData: any) => {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        const res: any = await api.post('/job', { JobData }, { headers });
+        return res.data;
+    },
+
     getJobs: async (page: number = 1) => {
         const url = `/job?order=ASC&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
@@ -113,28 +123,17 @@ export const useApi = () => ({
     getJob: async (id: number) => {
         const url = `/job/${id}`;
         const res: any = await api.get(url);
-          return res.data;
-      },
+        return res.data;
+    },
 
-      getJobsByCompany: async (id: string) => {
+    getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;
     },
 
     searchJobs: async (keyword: string) => {
-        const url = `/job/search/${keyword}?order=ASC&page=1&take=10&orderByColumn=id`
+        const url = `/job/search/${keyword}?order=ASC&page=1&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
         return res.data;
     },
-
-    updateCompanyProfile: async (formData: any) => {
-        const token = localStorage.getItem('authToken');
-        const headers = {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-        };
-        const res: any = await api.put('/company/edit', formData, { headers });
-        return res.data;
-    }
-
 });
