@@ -6,6 +6,10 @@ export const ProfilePicWrapper = styled.div`
     align-items: center;
     margin: 50px 0 0 0;
 
+    img {
+        margin-bottom: 8px;
+    }
+
     input[type='file']::-webkit-file-upload-button {
         visibility: hidden;
     }
@@ -19,7 +23,7 @@ export const ProfilePicWrapper = styled.div`
         text-decoration: underline;
     }
 
-    input[type="file" i] {
+    input[type='file' i] {
         display: none;
     }
 
@@ -30,7 +34,8 @@ export const ProfilePicWrapper = styled.div`
     }
     & > p {
         color: #bababa;
-        font-size: 0.7em;
+        padding-bottom: 4px;
+        font-size: 0.8em;
     }
 `;
 
@@ -68,22 +73,33 @@ export const Form = styled.div<{ charQtde: number }>`
 
     .form__textarea {
         textarea {
-            border: 1px solid #e8e8e8;
+            border: 1px solid
+                ${(props) =>
+                    props.charQtde < 0
+                        ? ({ theme }) => theme.colors.danger
+                        : ({ theme }) => theme.colors.mutedDark};
+            color: ${({ theme }) => theme.colors.primaryDark};
             border-radius: 6px;
             padding: 0.7rem 0 0 1rem;
             width: 100%;
             height: 250px;
             resize: none;
             outline: none;
-            border: 2px solid
-                ${(props) =>
+
+            :hover {
+                border-color: ${({ theme }) => theme.colors.mutedDarker};
+            }
+
+            :focus {
+                border-color: ${(props) =>
                     props.charQtde < 0
                         ? ({ theme }) => theme.colors.danger
-                        : ({ theme }) => theme.colors.mutedDark};
+                        : ({ theme }) => theme.colors.primaryDark};
+            }
 
-        }
-        ::placeholder {
-            color: ${({ theme }) => theme.colors.mutedDarker};
+            ::placeholder {
+                color: ${({ theme }) => theme.colors.mutedDarker};
+            }
         }
     }
 
@@ -92,6 +108,6 @@ export const Form = styled.div<{ charQtde: number }>`
         color: ${(props) =>
             props.charQtde < 0
                 ? ({ theme }) => theme.colors.danger
-                : ({ theme }) => theme.colors.black};
+                : ({ theme }) => theme.colors.mutedDarker};
     }
 `;
