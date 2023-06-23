@@ -1,6 +1,5 @@
-import  styled  from 'styled-components'
-import VocationalBanner from '../../assets/imgs/VocationalBanner.svg'
-
+import styled from 'styled-components';
+import VocationalBanner from '../../assets/imgs/VocationalBanner.svg';
 
 export const Main = styled.main`
     color: #fff;
@@ -12,6 +11,11 @@ export const Main = styled.main`
     justify-content: center;
     background-color: ${({ theme }) => theme.colors.primary};
     text-align: center;
+
+    
+    @media (max-width: 1000px) {
+        height: auto;
+    }
 `;
 
 export const MainContent = styled.div`
@@ -21,6 +25,14 @@ export const MainContent = styled.div`
     display: flex;
     align-items: center;
     height: 100%;
+    
+    @media (max-width: 1000px) {
+        height: auto;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding-top: 90px;
+        justify-content: space-between;
+    }
 `;
 
 export const MainSearchFilter = styled.div`
@@ -28,17 +40,28 @@ export const MainSearchFilter = styled.div`
     flex-direction: column;
     gap: 16px;
     margin-left: 60px;
+    width: 60%;
+
+    @media (max-width: 1000px) {
+        margin-left: 0px;
+        align-items: center;
+        width: 100%;
+    }
 `;
 
 export const Title = styled.h2`
     max-width: 920px;
     font-weight: 300;
-    font-size: 55px;
+    font-size: 2.9rem;
     line-height: 66px;
     margin-bottom: 16px;
 
     span {
         font-weight: 700;
+    }
+
+    @media (max-width: 1000px) {
+        width: 95%;
     }
 `;
 
@@ -59,6 +82,10 @@ export const JobsInfo = styled.p`
     font-size: 16px;
     line-height: 19px;
     max-width: 796px;
+    
+    @media (max-width: 1000px) {
+        margin-bottom: 80px;
+    }
 `;
 
 export const Image = styled.img`
@@ -66,13 +93,22 @@ export const Image = styled.img`
     position: absolute;
     bottom: 0px;
     right: 0px;
+
+    @media (max-width: 1000px) {
+        position: relative;
+        width: 40%;
+    }
+
+    @media (max-width: 750px) {
+        width: 60%;
+    }
 `;
 
 export const Circle = styled.img`
     position: absolute;
     top: 0px;
     right: 0px;
-`
+`;
 
 export const Divider = styled.div`
     width: 100%;
@@ -81,7 +117,7 @@ export const Divider = styled.div`
     opacity: 0.6;
 `;
 
-export const OurSitesSection  = styled.section`
+export const OurSitesSection = styled.section`
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -101,8 +137,8 @@ export const JourneySection = styled.section`
     flex-direction: column;
     align-items: center;
     margin-bottom: 196px;
-    `;
-    
+`;
+
 export const JourneyContainer = styled.div`
     border: 9px solid ${({ theme }) => theme.colors.primary};
     border-radius: 16px;
@@ -111,16 +147,15 @@ export const JourneyContainer = styled.div`
 `;
 
 export const JourneyTitle = styled(SecondaryTitle)`
-     font-size: 42px;
-     text-align: center;
-     background-color: #fff;
-     padding: 0 24px;
-     position: absolute;
-     top: -40px;
-     left: 50%;
-     transform: translateX(-50%);
+    font-size: 42px;
+    text-align: center;
+    background-color: #fff;
+    padding: 0 24px;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
 `;
-
 
 export const JourneyCardWrapper = styled.div`
     display: grid;
@@ -196,22 +231,22 @@ export const TestimonialSection = styled.section`
     .swiper-pagination-bullet {
         width: 24px;
         height: 24px;
-        background-color: #D9D9D9;
+        background-color: #d9d9d9;
         opacity: 0.8;
         border-radius: 50%;
-      }
-    
-      .swiper-pagination-bullet-active {
+    }
+
+    .swiper-pagination-bullet-active {
         background-color: ${({ theme }) => theme.colors.primary};
         opacity: 1;
-      }
-`
+    }
+`;
 
 export const TestimonialWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 997;    
+    z-index: 997;
 `;
 
 export const VocationalBannerArea = styled.div`
@@ -225,56 +260,54 @@ export const VocationalBannerArea = styled.div`
     background-position: center;
     border-radius: 25px;
     position: relative;
-`
+`;
 
-export const VocationalBannerContainer = styled.div `
+export const VocationalBannerContainer = styled.div`
     display: flex;
     align-items: center;
     margin-inline: 84px;
     max-width: 100%;
     gap: 100px;
     height: 100%;
-`
+`;
 export const VocationalTextContainer = styled.div`
-     color: white;
+    color: white;
 
-     h1 {
+    h1 {
         font-size: 90px;
         font-weight: 400;
         line-height: 90px;
         text-transform: uppercase;
-     }
+    }
 
-     span {
+    span {
         font-size: 80px;
         font-weight: 700;
-     }
+    }
 
-     p {
+    p {
         font-size: 20px;
-     }
-     
-     p.p2 {
+    }
+
+    p.p2 {
         font-weight: 100;
         font-size: 13px;
         line-height: 15.3px;
         position: absolute;
         bottom: 23px;
-     }
+    }
 
-     a {
+    a {
         text-decoration: underline;
         font-weight: 500;
-     }
-    
-`
-
+    }
+`;
 
 export const VocationalImage = styled.img`
-     position: absolute;
-     right: 80px;
-     bottom: 0px;
-`
+    position: absolute;
+    right: 80px;
+    bottom: 0px;
+`;
 
 export const AppBannerContainer = styled.section`
     max-width: 1640px;
@@ -283,14 +316,14 @@ export const AppBannerContainer = styled.section`
     grid-template-columns: 1600px 1fr;
     height: 550px;
     background-color: ${({ theme }) => theme.colors.primary};
-    position: relative; 
+    position: relative;
 `;
 
 export const CircleImage = styled.img`
     position: absolute;
     left: -170px;
     bottom: -200px;
-    z-index: 700; 
+    z-index: 700;
     width: 600px;
 `;
 
@@ -305,15 +338,15 @@ export const AppBannerContainerInfo = styled.div`
     text-align: center;
     height: 100%;
     z-index: 800;
-    
+
     h1 {
         font-size: 42px;
         font-weight: 400;
         line-height: 60.51px;
-    }   
+    }
 
     span {
-        font-weight: 600; 
+        font-weight: 600;
     }
 `;
 
@@ -327,4 +360,3 @@ export const BannerMobileImage = styled.img`
 export const GooglePlayButton = styled.img`
     width: 300px;
 `;
-

@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from 'styled-components';
 
 interface Props {
     isActive: boolean;
@@ -7,51 +7,46 @@ interface Props {
 export const FormWrapper = styled.div<Props>`
     position: relative;
     display: flex;
-    justify-content: center;  
-
-    ${({ isActive }) => isActive && css`
-    height: 40px;
-    position: fixed;
-    height: 70px;
-    padding: 12px;
-    top: 17px;
-    left: 40%;
-    transform: translateX(-47%);
-    margin: 0 auto;
-    visibility: visible;
-    z-index: 999;
-    `}
+    justify-content: center;
+    width: 100%;
 `;
 
 export const Form = styled.form`
     display: flex;
     gap: 28px;
     position: relative;
-    z-index: 998;
-
+    z-index: 997;
+    width: 90%;
 `;
 
 export const Input = styled.input<Props>`
-     width: 796px;
-     height: 58px;
-     border: 1.5px solid #515151;
-     border-radius: 52px;
-     padding: 0 56px;
-     color: #515151;
+    width: 100%;
+    height: 58px;
+    border: 1.5px solid #515151;
+    border-radius: 52px;
+    padding: 0 56px;
+    color: #515151;
+    text-overflow: ellipsis;
 
-     :focus {
+    ::placeholder {
+        margin-right: 190px;
+    }
+
+    :focus {
         outline-color: ${({ theme }) => theme.colors.primary};
-     }
+    }
 
-    ${({ isActive }) => isActive && css`
-        width: 576px;
-        height: 42px;
-        padding: 0 26px;
-        font-size: 14px;
-        border: 1.5px solid ${({ theme }) => theme.colors.primary};
-        transition: width 0.3s ease-in-out;
-        animation: initialAnimation 0.3s ease-in-out forwards;
-` }
+    /* ${({ isActive }) =>
+        isActive &&
+        css`
+            width: 576px;
+            height: 42px;
+            padding: 0 26px;
+            font-size: 14px;
+            border: 1.5px solid ${({ theme }) => theme.colors.primary};
+            transition: width 0.3s ease-in-out;
+            animation: initialAnimation 0.3s ease-in-out forwards;
+        `} */
 
     @keyframes initialAnimation {
         from {
@@ -63,10 +58,20 @@ export const Input = styled.input<Props>`
             width: 576px;
             opacity: 1;
         }
-`
+    }
+
+    @media (max-width: 1000px) {
+        height: 42px;
+        padding: 0 20px;
+
+        ::placeholder {
+            margin-right: 150px;
+        }
+    }
+`;
 
 export const SearchButton = styled.button<Props>`
-    position: absolute; 
+    position: absolute;
     text-align: center;
     background-color: ${({ theme }) => theme.colors.primary};
     border-radius: 52px;
@@ -79,17 +84,25 @@ export const SearchButton = styled.button<Props>`
     top: 50%;
     transform: translateY(-50%);
     opacity: 1;
- 
+    transition: all 0.2s;
+
     :hover {
         opacity: 0.8;
-     }
+    }
 
-    ${({ isActive }) => isActive && css`
+    @media (max-width: 1000px) {
+        max-width: 150px;
         max-height: 38px;
-        width: auto;
-        padding: 0px 28px;
-        font-size: 14px;
-        top: 2px;
-        transform: translateY(0%);
-    `}
+    }
+    /* 
+    ${({ isActive }) =>
+        isActive &&
+        css`
+            max-height: 38px;
+            width: auto;
+            padding: 0px 28px;
+            font-size: 14px;
+            top: 2px;
+            transform: translateY(0%);
+        `} */
 `;
