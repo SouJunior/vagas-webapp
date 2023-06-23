@@ -73,7 +73,7 @@ export const ProfileSettings: React.FC = () => {
                             accept=".jpg, .jpeg, .png"
                         />
                     </div>
-                    <p>Somente formatos jpg, jpeg e png</p>
+                    <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
                     <span>Aqui tem um erro!</span>
                 </ProfilePicWrapper>
                 <Main>
@@ -90,23 +90,23 @@ export const ProfileSettings: React.FC = () => {
                             <label>
                                 UF<sup>*</sup>
                             </label>
-                            <select name="states">
-                                <option value="" disabled selected hidden>
-                                    Selecione um estado
+                            <select name="states" defaultValue={'DEFAULT'}>
+                                <option value='DEFAULT' disabled>
+                                    --
                                 </option>
                                 {handleOptionsRender(location)}
                             </select>
                             <label>Tipo de Empresa</label>
-                            <select name="type">
-                                <option value="" disabled selected hidden>
-                                    Selecione um tipo
+                            <select name="type" defaultValue={'DEFAULT'}>
+                                <option value="DEFAULT" disabled>
+                                    --
                                 </option>
                                 {handleOptionsRender(companyType)}
                             </select>
                             <label>Porte da Empresa</label>
-                            <select name="size">
-                                <option value="" disabled selected hidden>
-                                    Selecione um tamanho
+                            <select name="size" defaultValue={'DEFAULT'}>
+                                <option value="DEFAULT" disabled>
+                                    --
                                 </option>
                                 <option value="SMALL SIZE">
                                     Pequeno - até 49 funcionários
