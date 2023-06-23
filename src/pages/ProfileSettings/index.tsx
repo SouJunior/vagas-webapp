@@ -12,8 +12,8 @@ import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
 import Footer from '../../components/Portal/Footer';
 import inputConfigs from './data/inputSettings';
-import countryStates from './data/countryStates';
-import typeCompany from './data/typeCompany';
+import location from './data/location';
+import companyType from './data/companyType';
 import Header from '../../components/Portal/Header';
 import { ProfilePicture } from '../../components/Portal/Header/styles';
 import { HandleInputsRender } from './utils/handleInputsRender';
@@ -22,13 +22,12 @@ import { useEffect, useState } from 'react';
 import { useApi } from '../../hooks/useApi';
 
 export const ProfileSettings: React.FC = () => {
-    const [charCount, setCharCount ] = useState(0)
-    const [currChar, setCurrChar] = useState(0)
+    const [charCount, setCharCount] = useState(0);
+    const [currChar, setCurrChar] = useState(0);
 
     useEffect(() => {
-        setCurrChar(2000 - charCount)
-    }, [charCount])
-
+        setCurrChar(2000 - charCount);
+    }, [charCount]);
 
     const api = useApi();
 
@@ -36,15 +35,15 @@ export const ProfileSettings: React.FC = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("companyType", e.target.type.value);
-        formData.append("companySize", e.target.size.value);
-        formData.append("location", e.target.states.value);
-        formData.append("companySite", e.target.site.value);
-        formData.append("description", e.target.description.value);
-        formData.append("otherSite[instagram]", e.target.instagram.value);
-        formData.append("otherSite[linkedin]", e.target.linkedin.value);
-        formData.append("otherSite[twitter]", e.target.twitter.value);
-        formData.append("file", e.target.profiPic.value)
+        formData.append('companyType', e.target.type.value);
+        formData.append('companySize', e.target.size.value);
+        formData.append('location', e.target.states.value);
+        formData.append('companySite', e.target.site.value);
+        formData.append('description', e.target.description.value);
+        formData.append('otherSite[instagram]', e.target.instagram.value);
+        formData.append('otherSite[linkedin]', e.target.linkedin.value);
+        formData.append('otherSite[twitter]', e.target.twitter.value);
+        formData.append('file', e.target.profiPic.value);
 
         api.updateCompanyProfile(formData)
             .then((res) => {
@@ -53,7 +52,6 @@ export const ProfileSettings: React.FC = () => {
             .catch((err) => {
                 //TODO ver mensagem de erro para o usuário
             });
-
     };
 
     return (
@@ -68,7 +66,12 @@ export const ProfileSettings: React.FC = () => {
                     />
                     <div className="upload">
                         <label htmlFor="profiPic">Alterar foto</label>
-                        <input name="profPic" id="profiPic" type="file" accept=".jpg, .jpeg, .png" />
+                        <input
+                            name="profPic"
+                            id="profiPic"
+                            type="file"
+                            accept=".jpg, .jpeg, .png"
+                        />
                     </div>
                     <p>Somente formatos jpg, jpeg e png</p>
                     <span>Aqui tem um erro!</span>
@@ -88,17 +91,23 @@ export const ProfileSettings: React.FC = () => {
                                 UF<sup>*</sup>
                             </label>
                             <select name="states">
-                                <option value="">Selecione um estado</option>
-                                {handleOptionsRender(countryStates)}
+                                <option value="" disabled selected hidden>
+                                    Selecione um estado
+                                </option>
+                                {handleOptionsRender(location)}
                             </select>
                             <label>Tipo de Empresa</label>
                             <select name="type">
-                                <option value="">Selecione um tipo</option>
-                                {handleOptionsRender(typeCompany)}
+                                <option value="" disabled selected hidden>
+                                    Selecione um tipo
+                                </option>
+                                {handleOptionsRender(companyType)}
                             </select>
                             <label>Porte da Empresa</label>
                             <select name="size">
-                                <option value="">Selecione um tamanho</option>
+                                <option value="" disabled selected hidden>
+                                    Selecione um tamanho
+                                </option>
                                 <option value="SMALL SIZE">
                                     Pequeno - até 49 funcionários
                                 </option>
@@ -112,10 +121,13 @@ export const ProfileSettings: React.FC = () => {
                         </Select>
                         <div className="form__textarea">
                             <label>Decrição da empresa</label>
-                            <textarea name="description"
-                            placeholder="Breve descrição da empresa"
-                            onChange={(e) => setCharCount( e.target.value.length)}
-                        />
+                            <textarea
+                                name="description"
+                                placeholder="Breve descrição da empresa"
+                                onChange={(e) =>
+                                    setCharCount(e.target.value.length)
+                                }
+                            />
                         </div>
                         <span>{currChar} caracteres</span>
                     </div>
