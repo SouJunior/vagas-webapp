@@ -1,6 +1,6 @@
 const inputConfigs = [
     {
-        label: 'Email:',
+        label: 'E-mail:',
         type: 'email',
         name: 'email',
         placeholder: 'junior@soujunior.com',
@@ -26,19 +26,19 @@ const inputConfigs = [
     {
         label: 'Outros:',
         type: 'text',
-        name: 'redes',
+        name: 'instagram',
         placeholder: '@soujunior/instagram',
     },
     {
         label: '',
         type: 'text',
-        name: 'redes',
+        name: 'linkedin',
         placeholder: '@soujunior/linkedin',
     },
     {
         label: '',
         type: 'text',
-        name: 'redes',
+        name: 'twitter',
         placeholder: '@soujunior/twitter',
     },
 ];

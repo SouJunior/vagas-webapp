@@ -10,20 +10,17 @@ export const ProfilePicWrapper = styled.div`
         visibility: hidden;
     }
 
-    input[type='file']::before {
-        content: 'Alterar foto';
-        display: inline-block;
+    label {
         color: #1165ba;
-        padding: 6px 12px;
-        border: none;
-        border-radius: 4px;
-        text-decoration: underline;
-        width: 100%;
-        text-align: center;
-        margin-top: 8px;
-        font-size: 0.9em;
-        font-weight: 500;
         cursor: pointer;
+    }
+
+    label:hover {
+        text-decoration: underline;
+    }
+
+    input[type="file" i] {
+        display: none;
     }
 
     span {
@@ -37,7 +34,7 @@ export const ProfilePicWrapper = styled.div`
     }
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 80%;
