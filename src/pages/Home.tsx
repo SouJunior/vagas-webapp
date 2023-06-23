@@ -81,11 +81,26 @@ export const Home: React.FC = () => {
     const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
     const [selectedArea, setSelectedArea] = useState<string | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
     const [selectedJourneyCard, setSelectedJourneyCard] = useState<
         string | null
     >(null);
 
     const api = useApi();
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 780);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         async function getJobs() {
@@ -186,9 +201,12 @@ export const Home: React.FC = () => {
                             paddingRight: '40px',
                         }}
                     >
-                        <CustomPrevButton className="swiper-prev-button">
-                            <CaretLeft size={42} />
-                        </CustomPrevButton>
+                        {!isMobile && (
+                            <CustomPrevButton className="swiper-prev-button">
+                                <CaretLeft size={42} />
+                            </CustomPrevButton>
+                        )}
+
                         {Areas.map((area: AreaProps) => (
                             <SwiperSlide key={area.name}>
                                 <div>
@@ -202,9 +220,11 @@ export const Home: React.FC = () => {
                                 </div>
                             </SwiperSlide>
                         ))}
-                        <CustomNextButton className="swiper-next-button">
-                            <CaretRight size={42} />
-                        </CustomNextButton>
+                        {!isMobile && (
+                            <CustomNextButton className="swiper-next-button">
+                                <CaretRight size={42} />
+                            </CustomNextButton>
+                        )}
                     </Swiper>
 
                     {selectedArea !== null && (
@@ -341,9 +361,10 @@ export const Home: React.FC = () => {
                         bulletClass: 'swiper-pagination-bullet',
                     }}
                     style={{
-                        width: '100%',
+                        width: '95%',
                         maxWidth: '1080px',
-                        height: '360px',
+                        height: 'auto',
+                        margin: '0 auto',
                     }}
                     className="mySwiper"
                 >

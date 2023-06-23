@@ -12,7 +12,6 @@ export const Main = styled.main`
     background-color: ${({ theme }) => theme.colors.primary};
     text-align: center;
 
-    
     @media (max-width: 1000px) {
         height: auto;
     }
@@ -25,7 +24,7 @@ export const MainContent = styled.div`
     display: flex;
     align-items: center;
     height: 100%;
-    
+
     @media (max-width: 1000px) {
         height: auto;
         flex-wrap: wrap;
@@ -69,12 +68,21 @@ export const SecondaryTitle = styled.h3`
     font-weight: 600;
     font-size: 45px;
     color: #515050;
+    text-align: center;
+
+    @media (max-width: 780px) {
+        width: 90%;
+    }
 `;
 
 export const Subtitle = styled.p`
     font-weight: 400;
     font-size: 30px;
     color: #515050;
+
+    @media (max-width: 1000px) {
+        font-size: 25px;
+    }
 `;
 
 export const JobsInfo = styled.p`
@@ -82,7 +90,7 @@ export const JobsInfo = styled.p`
     font-size: 16px;
     line-height: 19px;
     max-width: 796px;
-    
+
     @media (max-width: 1000px) {
         margin-bottom: 80px;
     }
@@ -129,6 +137,12 @@ export const CardWrapper = styled.div`
     display: flex;
     margin-top: 52px;
     gap: 156px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: 1300px) {
+        gap: 90px;
+    }
 `;
 
 export const JourneySection = styled.section`
@@ -137,6 +151,8 @@ export const JourneySection = styled.section`
     flex-direction: column;
     align-items: center;
     margin-bottom: 196px;
+    width: 90%;
+    margin: 0 auto 196px auto;
 `;
 
 export const JourneyContainer = styled.div`
@@ -144,6 +160,11 @@ export const JourneyContainer = styled.div`
     border-radius: 16px;
     position: relative;
     padding: 0 44px;
+
+    @media (max-width: 1200px) {
+        width: 100%;
+    }
+   
 `;
 
 export const JourneyTitle = styled(SecondaryTitle)`
@@ -164,15 +185,26 @@ export const JourneyCardWrapper = styled.div`
     row-gap: 102px;
     margin-top: 112px;
     margin-bottom: 100px;
+
+    @media (max-width: 650px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        row-gap: 30px;
+        gap: 30px;
+    }
 `;
 
 export const AreasSection = styled.section`
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: center;
     margin-top: 120px;
     margin-bottom: 196px;
     width: 100%;
+
+    @media (max-width: 1000px) {
+        margin-top: 80px;
+    }
 `;
 
 export const AreasCardWrapper = styled.div`
@@ -260,6 +292,12 @@ export const VocationalBannerArea = styled.div`
     background-position: center;
     border-radius: 25px;
     position: relative;
+
+    @media (max-width: 1200px) {
+        width: 95%;
+        height: auto;
+        padding: 50px 0;
+    }
 `;
 
 export const VocationalBannerContainer = styled.div`
@@ -269,6 +307,18 @@ export const VocationalBannerContainer = styled.div`
     max-width: 100%;
     gap: 100px;
     height: 100%;
+
+    @media (max-width: 1200px) {
+        flex-direction: column;
+        width: 95%;
+        margin: 0;
+        padding-left: 50px;
+    }
+
+    @media (max-width: 780px) {
+        gap: 50px;
+        padding-left: 15px;
+    }
 `;
 export const VocationalTextContainer = styled.div`
     color: white;
@@ -301,22 +351,68 @@ export const VocationalTextContainer = styled.div`
         text-decoration: underline;
         font-weight: 500;
     }
+
+    @media (max-width: 1200px) {
+        align-self: flex-start;
+    }
+
+    @media (max-width: 780px) {
+        h1 {
+            font-size: 70px;
+            line-height: 70px;
+        }
+
+        span {
+            font-size: 60px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 50px;
+            line-height: 50px;
+        }
+
+        span {
+            font-size: 40px;
+        }
+
+        p {
+            font-size: 15px;
+        }
+    }
 `;
 
 export const VocationalImage = styled.img`
     position: absolute;
     right: 80px;
     bottom: 0px;
+
+    @media (max-width: 1200px) {
+        position: relative;
+        align-self: flex-end;
+    }
+
+    @media (max-width: 780px) {
+        width: 70%;
+        right: 0px;
+    }
 `;
 
 export const AppBannerContainer = styled.section`
-    max-width: 1640px;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1600px 1fr;
+    display: flex;
     height: 550px;
     background-color: ${({ theme }) => theme.colors.primary};
     position: relative;
+    margin: 0 auto;
+    justify-content: center;
+
+    @media (max-width: 1200px) {
+        height: auto;
+        flex-direction: column;
+        padding: 50px 0 0 0;
+    }
 `;
 
 export const CircleImage = styled.img`
@@ -348,15 +444,37 @@ export const AppBannerContainerInfo = styled.div`
     span {
         font-weight: 600;
     }
+
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 35px;
+            width: 90%;
+            line-height: 50px;
+        }
+    }
 `;
 
 export const BannerMobileImage = styled.img`
-    position: absolute;
+    position: relative;
     width: 400px;
     right: 140px;
     bottom: 0;
+
+    @media (max-width: 1200px) {
+        align-self: flex-end;
+        right: 0;
+    }
+
+    @media (max-width: 780px) {
+        width: 50%;
+        margin-top: 20px;
+    }
 `;
 
 export const GooglePlayButton = styled.img`
     width: 300px;
+
+    @media (max-width: 780px) {
+        width: 200px;
+    }
 `;

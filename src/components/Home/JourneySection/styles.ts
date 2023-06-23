@@ -6,12 +6,24 @@ export const Img = styled.img`
     padding: 6px;
     border-radius: 16px;
     cursor: pointer;
+
+    @media (max-width: 650px) {
+        width: 50%;
+    }
 `;
 
 export const JourneyWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 32px;
+
+    @media (max-width: 1200px) {
+        flex-direction: column;
+    }
+
+    @media (max-width: 650px) {
+        flex-direction: row;
+    }
 `;
 
 export const JourneyDescription = styled.div`
@@ -19,6 +31,11 @@ export const JourneyDescription = styled.div`
     max-width: 281px;
     font-size: 30px;
     font-weight: 600;
+
+    @media (max-width: 650px) {
+        font-size: 20px;
+        width: 50%;
+    }
 `;
 
 export const JourneyModalWrapper = styled.div`
