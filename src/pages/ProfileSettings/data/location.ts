@@ -1,4 +1,4 @@
-const countryStates = [
+const location = [
     {
         nome: 'Acre',
         sigla: 'AC',
@@ -109,4 +109,4 @@ const countryStates = [
     },
 ];
 
-export default countryStates;
+export default location;

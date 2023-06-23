@@ -1,4 +1,4 @@
-const typeCompany = [
+const companyType = [
     { nome: 'Comercial', sigla: 'comercial' },
     { nome: 'Comunicação', sigla: 'comunicao' },
     { nome: 'Indústria', sigla: 'industria' },
@@ -9,4 +9,4 @@ const typeCompany = [
     { nome: 'Outros', sigla: 'outros' },
 ];
 
-export default typeCompany;
+export default companyType;
