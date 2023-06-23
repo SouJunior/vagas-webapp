@@ -8,7 +8,7 @@ const types = [
     { nome: 'Telemarketing', sigla: 'telemarketing' },
     { nome: 'Outros', sigla: 'outros' },
 ];
-
+// TODO: Pode ser uma função porém é necessário atribuir os tipos certos
 const companyType = types.map((item, index) => ({
     ...item,
     id: index + 1,
