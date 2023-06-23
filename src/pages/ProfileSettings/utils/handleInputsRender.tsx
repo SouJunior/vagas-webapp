@@ -11,6 +11,7 @@ export const HandleInputsRender = (arr: any): [] => {
                 <input
                     type={element.type}
                     name={element.name}
+                    // TODO: Os valores retornados do banco não devem ser aplicados com placeholder
                     placeholder={(element.name === "email" && auth.user.email) || 
                     (element.name === "cnpj" && auth.user.cnpj) || 
                     (element.name === "nome" && auth.user.companyName) ||
