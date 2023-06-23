@@ -37,7 +37,7 @@ export const ProfilePicWrapper = styled.div`
     }
 `;
 
-export const Form = styled.form`
+export const Form = styled.form<{ charQtde: number }>`
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 80%;
@@ -77,11 +77,24 @@ export const Form = styled.form`
             width: 100%;
             height: 250px;
             resize: none;
-            border: 1px solid ${({ theme }) => theme.colors.mutedDark};
+            outline: none;
+            border: 2px solid
+                ${(props) =>
+                    props.charQtde < 0
+                        ? ({ theme }) => theme.colors.danger
+                        : ({ theme }) => theme.colors.mutedDark};
 
-            ::placeholder {
-                color: ${({ theme }) => theme.colors.mutedDarker};
-            }
         }
+        ::placeholder {
+            color: ${({ theme }) => theme.colors.mutedDarker};
+        }
+    }
+
+    span {
+        font-weight: 500;
+        color: ${(props) =>
+            props.charQtde < 0
+                ? ({ theme }) => theme.colors.danger
+                : ({ theme }) => theme.colors.black};
     }
 `;
