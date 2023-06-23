@@ -4,9 +4,9 @@ import { AuthContext } from "../../../contexts/Auth/AuthContext";
 export const HandleInputsRender = (arr: any): [] => {
     const auth = useContext(AuthContext);
 
-    return arr.map((element: any, index: any) => {
+    return arr.map((element: any) => {
         return (
-            <Fragment key={index}>
+            <Fragment key={element.id}>
                 <label>{element.label}</label>
                 <input
                     type={element.type}

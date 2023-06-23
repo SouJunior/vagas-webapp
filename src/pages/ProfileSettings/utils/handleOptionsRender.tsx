@@ -1,7 +1,10 @@
 export const handleOptionsRender = (arr: any): [] => {
-    return arr.map((element: any, index: any) => {
+    return arr.map((element: any) => {
+
+        const key = element.id
+
         return (
-            <option key={index} value={element.sigla}>
+            <option key={key} value={element.sigla}>
                 {element.nome}
             </option>
         );
