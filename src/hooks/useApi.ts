@@ -10,11 +10,6 @@ export const useApi = () => ({
         return res.data;
     },
 
-    logout: async () => {
-        const res = await api.post('/logout');
-        return res.data;
-    },
-
     validateToken: async (token: string) => {
         const config = {
             headers: { Authorization: `Bearer ${token}` },
