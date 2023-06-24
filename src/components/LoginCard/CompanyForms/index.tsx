@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import { useApi } from '../../../hooks/useApi';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
@@ -37,6 +36,8 @@ import {
 
 export const CompanyForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
+    const [error, setError] = useState(false);
+    const [otherErrors, setOtherErrors] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,7 +51,6 @@ export const CompanyForms = (props: any): JSX.Element => {
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
-    const api = useApi();
     const auth: any = useContext(AuthContext);
 
     // Recebe o tipo de usuário
@@ -66,26 +66,17 @@ export const CompanyForms = (props: any): JSX.Element => {
         watch,
         formState: { errors },
     } = useForm({
-        mode: 'onChange',
         resolver: yupResolver(getFormValidation),
     });
-
-    const compareEmailAndData = (data: any) => {
-        if (data !== email) {
-            setHasError(true);
-        }
-    };
 
     // Realiza loging e manipula os dados
     async function handleFormOnSubmit() {
         setIsFormSubmitted(true);
-        const data = await api.login(email, password, companyType);
-        // Vai receber os dados do contexto para verificação
-        const isLogged = await auth.login(email, password, companyType);
 
         // confere se existe usuário e se está logado
         try {
-            compareEmailAndData(data.info.email);
+            // Vai receber os dados do contexto para verificação
+            const data = await auth.login(email, password, companyType);
 
             toast.success(
                 `Login efetuado com sucesso ${data.info.companyName}!`,
@@ -94,14 +85,23 @@ export const CompanyForms = (props: any): JSX.Element => {
                     theme: 'colored',
                 },
             );
-            if (email && password && isLogged) {
-                navigate('/company-portal');
+
+            navigate('/company-portal');
+
+        } catch (err: any) {
+            if (err.response.status === 400) {
+                setError(true);
+            } else {
+                setOtherErrors(true);
             }
-        } catch (err) {
             // TODO: Tratar os erros com as mensagens do backend
-            setHasError(data.message);
+            //setHasError(data.message);
         }
-    }
+    };
+
+    const handleClearErrorMessage = () => {
+        setError(false);
+    };
 
     // =================================================
     // Validação e manipulação do formulário de cadastro
@@ -170,6 +170,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                                 })}
                                 placeholder="E-mail"
                                 aria-label="Email"
+                                onClick={handleClearErrorMessage}
                             />
                             <IconWrapper>
                                 <EmailIcon />
@@ -189,6 +190,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                                 })}
                                 placeholder="Senha"
                                 aria-label="Senha"
+                                onClick={handleClearErrorMessage}
                             />
                             <IconWrapper
                                 onClick={() => setShowPassword(!showPassword)}
@@ -197,9 +199,14 @@ export const CompanyForms = (props: any): JSX.Element => {
                                 <PasswordIcon />
                             </IconWrapper>
                         </div>
-
                         <MessageError>
                             {errors.password && <>{errors.password.message}</>}
+                        </MessageError>
+                        <MessageError>
+                            {error && <>e-mail ou senha não conferem</>}
+                        </MessageError>
+                        <MessageError>
+                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>

@@ -17,6 +17,7 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps | any>`
     border-radius: 4px;
     font-weight: bolder;
     font-size: 1.4em;
+    color: white;
 
     min-width: fit-content;
     height: ${(props) => props.height};
@@ -38,6 +39,7 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps | any>`
             background: ${({ theme }) => theme.colors.secondaryLight};
             border-color: ${({ theme }) => theme.colors.primary};
             color: ${({ theme }) => theme.colors.primaryDark};
+            /* @FilipeLeoni preciso saber onde estão definidos esses temas */
         `}
     ${({ border }) =>
         border === 'white' &&

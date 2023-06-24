@@ -62,12 +62,16 @@ export const Footer = styled.footer`
         line-height: 30px;
         margin: 0;
         color: #4D4D4D;
+        &:hover {
+            color: #046AD0;
+        }
     }
 `
 export const Grid = styled.ul`
     display: grid;
     grid-template-columns: auto auto auto auto;
     column-width: 10px;
+    gap: 10px;
 `
 export const FacebookIcon = styled(TiSocialFacebook)`
     width: 20px;
