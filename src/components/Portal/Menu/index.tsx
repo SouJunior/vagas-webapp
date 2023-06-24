@@ -11,7 +11,7 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Index = () => {
+const Menu = () => {
     const auth: any = useContext(AuthContext);
 
     const [visible, setVisible] = useState(false);
@@ -95,4 +95,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Menu;
