@@ -129,7 +129,7 @@ export const ProfileSettings: React.FC = () => {
                                 }
                             />
                         </div>
-                        <span>{currChar} caracteres</span>
+                        <span>{currChar} caracteres restantes</span>
                     </div>
 
                     <div className="form__change">
