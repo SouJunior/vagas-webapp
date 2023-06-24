@@ -15,7 +15,7 @@ import inputConfigs from './data/inputSettings';
 import location from './data/location';
 import companyType from './data/companyType';
 import Header from '../../components/Portal/Header';
-import { ProfilePicture } from '../../components/Portal/Header/styles';
+import { ProfileImg } from '../../components/Portal/Header/styles';
 import { HandleInputsRender } from './utils/handleInputsRender';
 import { handleOptionsRender } from './utils/handleOptionsRender';
 import { useEffect, useState } from 'react';
@@ -59,7 +59,7 @@ export const ProfileSettings: React.FC = () => {
             <Header />
             <form onSubmit={handleSubmit}>
                 <ProfilePicWrapper>
-                    <ProfilePicture
+                    <ProfileImg
                         src={profilePicture}
                         alt="Foto de perfil"
                         width={'10%'}
