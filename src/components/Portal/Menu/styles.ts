@@ -9,7 +9,7 @@ export const Border = styled.span`
 `;
 
 export const PopUp = styled.div`
-    background: #046ad0;
+    background: ${({ theme }) => theme.colors.primaryLight};
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -35,7 +35,6 @@ export const MenuItems = styled.ul`
     li {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
         width: 100%;
         padding: 18px 0;
         cursor: pointer;
@@ -44,13 +43,12 @@ export const MenuItems = styled.ul`
         }
     }
 
-    a {
-        display: flex;
-    }
-
     img {
         margin-right: 10px;
         max-width: 8%;
+    }
+    img[alt='alterar senha'] {
+        max-width: 10%;
     }
 
     img[alt='seta'] {
