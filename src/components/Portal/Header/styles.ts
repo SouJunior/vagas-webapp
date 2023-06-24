@@ -1,38 +1,50 @@
 import styled from 'styled-components';
 
-export const Header = styled.header`
+export const HeaderWrapper = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     gap: 20px;
-    background: rgb(67, 122, 255);
-    background: linear-gradient(
-        60deg,
-        rgba(67, 122, 255, 1) 0%,
-        rgba(4, 106, 208, 1) 100%
-    );
+    background: ${({ theme }) => theme.colors.primaryLight};
 `;
-export const ProfilePicture = styled.img`
+
+export const ProfileImg = styled.img`
+    cursor: pointer;
     margin: 0 15px;
-    width: ${props => props.width};
+    width: ${(props) => props.width};
 
     @media (max-width: 540px) {
-        width: ${props => props.width};
-        margin-right: 8px;
+        width: ${(props) => props.width};
     }
 `;
 
-export const UserButton = styled.button`
+export const UserArea = styled.div`
     display: flex;
     align-items: center;
-    padding-right: 20px;
+    cursor: default;
 
     div:first-child {
         flex-direction: column;
         margin-right: 15px;
     }
+
+    span {
+        display: flex;
+    }
 `;
+
+export const UserInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 10px;
+
+    @media (max-width: 540px) {
+        margin: 0;
+    }
+`;
+
 export const Name = styled.div`
     font-size: 16px;
     font-weight: 700;
@@ -53,22 +65,15 @@ export const Email = styled.div`
         display: none;
     }
 `;
-export const UserInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-right: 10px;
 
-    @media (max-width: 540px) {
-        margin: 0;
-    }
-`;
-export const MenuPicture = styled.img`
+export const OpenMenuBtn = styled.img`
+    cursor: pointer;
     @media (max-width: 540px) {
         width: 15px;
         height: 15px;
     }
 `;
+
 export const HeaderLogo = styled.img`
     padding-left: 20px;
 
