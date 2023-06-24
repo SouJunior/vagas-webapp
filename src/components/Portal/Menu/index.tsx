@@ -22,6 +22,11 @@ const Index = () => {
         navigate('/profile-settings');
     };
 
+    const logout = () => {
+        auth.logout()
+        navigate('/')
+    }
+
     return (
         <Container>
             <PopUp>
@@ -77,7 +82,7 @@ const Index = () => {
                         Termo de uso e Privacidade
                     </li>
                     <Border />
-                    <li onClick={() => navigate('/login')}>
+                    <li onClick={logout}>
                         {/* TODO: Excluir o token do localstorage ou cookie que armazena o token 
                             isso utilizando a função de logout que já está pronta em useApi.
                         */}
