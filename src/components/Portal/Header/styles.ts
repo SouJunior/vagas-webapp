@@ -10,7 +10,7 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const ProfileImg = styled.img`
-    cursor: pointer;
+    cursor: ${(props) => props.width === '10%' ? 'default' : 'pointer' };
     margin: 0 15px;
     width: ${(props) => props.width};
 
