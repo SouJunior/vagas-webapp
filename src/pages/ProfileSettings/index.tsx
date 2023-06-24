@@ -1,5 +1,5 @@
 import profilePicture from '../../assets/imgs/profile-image.svg';
-import { Form, ProfilePicWrapper } from './style';
+import { Form, ProfileImgWrapper } from './style';
 import {
     Container,
     Copyright,
@@ -58,7 +58,7 @@ export const ProfileSettings: React.FC = () => {
         <Container>
             <Header />
             <form onSubmit={handleSubmit}>
-                <ProfilePicWrapper>
+                <ProfileImgWrapper>
                     <ProfileImg
                         src={profilePicture}
                         alt="Foto de perfil"
@@ -75,7 +75,7 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                     <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
                     <span>Aqui tem um erro!</span>
-                </ProfilePicWrapper>
+                </ProfileImgWrapper>
                 <Main>
                     <Row />
                 </Main>
@@ -87,24 +87,24 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                     <div className="form__right">
                         <Select>
-                            <label>
+                            <label htmlFor='states'>
                                 UF<sup>*</sup>
                             </label>
-                            <select name="states" defaultValue={'DEFAULT'}>
+                            <select id='states' name="states" defaultValue={'DEFAULT'}>
                                 <option value='DEFAULT' disabled>
                                     --
                                 </option>
                                 {handleOptionsRender(location)}
                             </select>
-                            <label>Tipo de Empresa</label>
-                            <select name="type" defaultValue={'DEFAULT'}>
+                            <label htmlFor='companyType'>Tipo de Empresa</label>
+                            <select id='companyType' name="type" defaultValue={'DEFAULT'}>
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
                                 {handleOptionsRender(companyType)}
                             </select>
-                            <label>Porte da Empresa</label>
-                            <select name="size" defaultValue={'DEFAULT'}>
+                            <label htmlFor='companySize'>Porte da Empresa</label>
+                            <select id='companySize' name="size" defaultValue={'DEFAULT'}>
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
