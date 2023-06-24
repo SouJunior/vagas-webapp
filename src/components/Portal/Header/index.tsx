@@ -1,10 +1,10 @@
 import {
-    Header,
-    ProfilePicture,
-    UserButton,
+    HeaderWrapper,
+    ProfileImg,
+    UserArea,
     Name,
     Email,
-    MenuPicture,
+    OpenMenuBtn,
     HeaderLogo,
     UserInfo,
 } from './styles';
@@ -17,7 +17,7 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-const Index = () => {
+const Header = () => {
     const auth: any = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Index = () => {
 
     return (
         <>
-            <Header>
+            <HeaderWrapper>
                 <div>
                     <HeaderLogo
                         src={LogoImage}
@@ -40,31 +40,29 @@ const Index = () => {
                         alt="logo"
                     />
                 </div>
-                <UserButton>
-                    <ProfilePicture
+                <UserArea>
+                    <ProfileImg
                         onClick={handleNavigation}
                         src={ProfileImage}
                         alt="foto de perfil"
-                        width={'20%'}
+                        width={'15%'}
                     />
-                    <UserInfo onClick={() => setVisible(!visible)}>
-                        {auth.user.type === 'USER' ? (
-                            <Name>{auth.user.name}</Name>
-                        ) : (
-                            <Name>{auth.user.companyName}</Name>
-                        )}
-                        <Email>{auth.user.email}</Email>
-                    </UserInfo>
-                    <MenuPicture
-                        onClick={() => setVisible(!visible)}
-                        src={MenuImage}
-                        alt="menu"
-                    />
-                </UserButton>
-            </Header>
-            {visible && <Menu />}
+                    <span onClick={() => setVisible(!visible)}>
+                        <UserInfo>
+                            {auth.user.type === 'USER' ? (
+                                <Name>{auth.user.name}</Name>
+                            ) : (
+                                <Name>{auth.user.companyName}</Name>
+                            )}
+                            <Email>{auth.user.email}</Email>
+                        </UserInfo>
+                        <OpenMenuBtn src={MenuImage} alt="menu" />
+                    </span>
+                </UserArea>
+            </HeaderWrapper>
+            <span onMouseLeave={() => setVisible(!visible)}>{visible && <Menu />}</span>
         </>
     );
 };
 
-export default Index;
+export default Header;
