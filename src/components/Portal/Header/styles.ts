@@ -21,12 +21,12 @@ export const ProfileImg = styled.img`
 
 export const UserArea = styled.div`
     display: flex;
-    align-items: center;
+    align-items: self-end;
     cursor: default;
 
     div:first-child {
         flex-direction: column;
-        margin-right: 15px;
+        /* margin-right: 15px; */
     }
 
     span {
@@ -37,8 +37,8 @@ export const UserArea = styled.div`
 export const UserInfo = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin-right: 10px;
+    align-items: flex-end;
+    /* margin-right: 10px; */
 
     @media (max-width: 540px) {
         margin: 0;
@@ -50,7 +50,8 @@ export const Name = styled.div`
     font-weight: 700;
     line-height: 22px;
     color: #ffffff;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    /* margin-bottom: 5px; */
 
     @media (max-width: 540px) {
         display: none;

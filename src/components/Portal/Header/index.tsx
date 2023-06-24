@@ -23,9 +23,9 @@ const Header = () => {
 
     //TODO: Ao utilizar esse componente header, temos uma aninhamento de redirecionamento
     // ao clicar no link que redireciona para a pagina atual, sobrepondo vários redirecionamentos
-    const handleNavigation = () => {
-        navigate('/profile-settings');
-    };
+    // const handleNavigation = () => {
+    //     navigate('/profile-settings');
+    // };
 
     const [visible, setVisible] = useState(false);
 
@@ -41,13 +41,8 @@ const Header = () => {
                     />
                 </div>
                 <UserArea>
-                    <ProfileImg
-                        onClick={handleNavigation}
-                        src={ProfileImage}
-                        alt="foto de perfil"
-                        width={'15%'}
-                    />
-                    <span onClick={() => setVisible(!visible)}>
+                    {/* <span onClick={() => setVisible(!visible)}> */}
+                    <span>
                         <UserInfo>
                             {auth.user.type === 'USER' ? (
                                 <Name>{auth.user.name}</Name>
@@ -56,8 +51,17 @@ const Header = () => {
                             )}
                             <Email>{auth.user.email}</Email>
                         </UserInfo>
-                        <OpenMenuBtn src={MenuImage} alt="menu" />
+                        {/* <OpenMenuBtn src={MenuImage} alt="menu" /> */}
                     </span>
+                    <ProfileImg
+                        onClick={() => setVisible(!visible)}
+                        // onClick={handleNavigation}
+                        src={ProfileImage}
+                        alt="foto de perfil"
+                        width={'16%'}
+                    />
+                    {/* <span onClick={() => setVisible(!visible)}>
+                        <UserInfo> ... */}
                 </UserArea>
             </HeaderWrapper>
             <span onMouseLeave={() => setVisible(!visible)}>{visible && <Menu />}</span>
