@@ -9,24 +9,22 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
     const api = useApi();
 
-    // Vai executar uma vez sempre que o componente for renderizado
     useEffect(() => {
         validateToken();
     }, []);
 
     /**
-     * For this es-lint error; 
+     * @see
+     * Autoriza retorno dos dados do usuário recebendo token no header
+     * Após realizar login o estado de user é alterado 2 vezes
+     * 1 vez quando faz login 1 vez quando faz validação do token
+     * Talvez por se tratar do valor user seja melhor o uso de useMemo()
+     * For this es-lint error;
      * @see https://github.com/facebook/react/issues/14920
-     */
+     * */
     const validateToken = useCallback(async () => {
         const storagedToken = localStorage.getItem('authToken');
-
         if (storagedToken) {
-            // Autoriza retorno dos dados do usuário recebendo token no header
-            // Após realizar login o estado de user é alterado 2 vezes
-            // 1 vez quando faz login
-            // 1 vez quando faz validação do token
-            // Talvez por se tratar do valor user seja melhor o uso de useMemo()
             const res = await api.validateToken(storagedToken);
             if (res) {
                 setUser(res);
@@ -34,20 +32,30 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         }
     }, []);
 
+    /**
+     * @see
+     * Dados que vem dos inputs da aplicação no momento em que o contexto instanciado
+     * Dados serão passados no corpo da requisição utlizando o método que vem de useApi
+     */
     const login = async (email: string, password: string, type: string) => {
-        // Dados que vem dos inputs da aplicação no momento em que o contexto instanciado
-        // Dados serão passados no corpo da requisição utlizando o método que vem de useApi
         const res = await api.login(email, password, type);
         if (res.info && res.token) {
             setUser(res.info);
             setToken(res.token);
         }
-        return res;        
+        return res;
     };
 
+    /**
+     * @param authToken key
+     * @param token value
+     */
     const setToken = (token: string) => {
-        // Esse método espera 2 params: chave e valor
         localStorage.setItem('authToken', token);
+    };
+
+    const logout = async () => {
+        localStorage.removeItem('authToken')
     };
 
     const register = async (
@@ -91,8 +99,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         }
         return false;
     };
-
-    const logout = async () => {};
 
     return (
         <AuthContext.Provider
