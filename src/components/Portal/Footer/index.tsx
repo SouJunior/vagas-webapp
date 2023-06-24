@@ -8,16 +8,21 @@ import {
     GitHubIcon,
     LinkedInIcon,
     DiscordIcon,
-    TelegramIcon 
-} from "./styles"
-import LogoImageBlue from "../../../assets/imgs/logo-icon-name-h.svg"
-import GooglePlayImage from "../../../assets/imgs/googlePlay.svg"
+    TelegramIcon,
+} from './styles';
+import LogoImageBlue from '../../../assets/imgs/logo-icon-name-h.svg';
+import GooglePlayImage from '../../../assets/imgs/googlePlay.svg';
 
 const Index = () => {
-  return (
-    <Footer>
+    return (
+        <Footer>
             <div>
-                <img src={LogoImageBlue} width="194px" height="29px" alt="logo" />
+                <img
+                    src={LogoImageBlue}
+                    width="194px"
+                    height="29px"
+                    alt="logo"
+                />
             </div>
             <div>
                 <h3>Institucional</h3>
@@ -26,7 +31,9 @@ const Index = () => {
                         <a href="https://www.soujunior.tech/">Site SouJunior</a>
                     </li>
                     <li>
-                        <a href="https://mentores.soujunior.tech">Portal de mentoria</a>
+                        <a href="https://mentores.soujunior.tech">
+                            Portal de mentoria
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -39,7 +46,7 @@ const Index = () => {
                 </ul>
             </div>
             <div>
-            <h3>Aplicativo</h3>
+                <h3>Aplicativo</h3>
                 <ul>
                     <li>
                         <a href="/">
@@ -52,49 +59,49 @@ const Index = () => {
                 <h3>Redes sociais</h3>
                 <Grid>
                     <li>
-                        <a href="https://www.facebook.com/people/SouJunior/100086671131030/">
-                            <FacebookIcon/>
+                        <a href="https://www.instagram.com/soujunior.tech/">
+                            <InstagramIcon />
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/soujunior.tech/">
-                            <InstagramIcon/>
+                        <a href="https://www.facebook.com/people/SouJunior/100086671131030/">
+                            <FacebookIcon />
                         </a>
                     </li>
                     <li>
                         <a href="https://twitter.com/SouJunior_Tech">
-                            <TwitterIcon/>
+                            <TwitterIcon />
                         </a>
                     </li>
                     <li>
                         <a href="https://www.youtube.com/@soujuniortech">
-                            <YouTubeIcon/>
+                            <YouTubeIcon />
                         </a>
                     </li>
                     <li>
                         <a href="https://github.com/SouJunior">
-                            <GitHubIcon/>
+                            <GitHubIcon />
                         </a>
                     </li>
                     <li>
                         <a href="https://www.linkedin.com/company/soujunior/">
-                            <LinkedInIcon/>
+                            <LinkedInIcon />
                         </a>
                     </li>
                     <li>
                         <a href="https://discord.com/invite/soujunior-community-759176734460346423">
-                            <DiscordIcon/>
+                            <DiscordIcon />
                         </a>
                     </li>
                     <li>
                         <a href="https://t.me/soujuniortech">
-                            <TelegramIcon/>
+                            <TelegramIcon />
                         </a>
                     </li>
                 </Grid>
             </div>
         </Footer>
-  )
-}
+    );
+};
 
-export default Index
+export default Index;

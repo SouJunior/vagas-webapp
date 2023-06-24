@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import { useApi } from '../../../hooks/useApi';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
@@ -35,6 +34,8 @@ import {
 
 export const UserForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
+    const [error, setError] = useState(false);
+    const [otherErrors, setOtherErrors] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -48,7 +49,6 @@ export const UserForms = (props: any): JSX.Element => {
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
-    const api = useApi();
     const auth: any = useContext(AuthContext);
 
     // Recebe o tipo do usuário
@@ -64,45 +64,45 @@ export const UserForms = (props: any): JSX.Element => {
         watch,
         formState: { errors },
     } = useForm({
-        mode: 'onChange',
         resolver: yupResolver(getFormValidation),
     });
 
-    const compareEmailAndData = (data: any) => {
-        if (data !== email) {
-            // TODO: Tratar os erros com as  mensagens do backend
-            setHasError(data.message);
-        }
-    };
     // Realiza o login e maniopula dados
     async function handleFormOnSubmit() {
         setIsFormSubmitted(true);
-        const data = await api.login(email, password, userType);
-
-        // Recebe dados do contexto para verificação
-        const isLogged = await auth.login(email, password, userType);
 
         try {
-            compareEmailAndData(data.info.email);
+            // Recebe dados do contexto para verificação
+            const data = await auth.login(email, password, userType);
 
             toast.success(`Login efetuado com sucesso ${data.info.name}! `, {
                 position: 'top-right',
                 theme: 'colored',
             });
 
-            if (email && password && isLogged && userType) {
-                navigate('/candidate-portal');
+
+            navigate('/candidate-portal');
+        }
+        catch (err: any) {
+            if (err.response.status === 400) {
+                setError(true);
+            } else {
+                setOtherErrors(true);
             }
-        } catch (err) {
+
             // TODO: Tratar os erros com as mensagens do backend e exibir em tela
             // TODO: Fazer toastfy funcioinar
-            setHasError(data.message);
-            toast.error('Ops, algo não está certo!', {
-                position: 'top-right',
-                theme: 'colored',
-            });
+            // setHasError(data.message);
+            // toast.error('Ops, algo não está certo!', {
+            //     position: 'top-right',
+            //     theme: 'colored',
+            // });
         }
-    }
+    };
+
+    const handleClearErrorMessage = () => {
+        setError(false);
+    };
 
     // =================================================
     // Validação e manipulação do formulário de cadastro
@@ -172,6 +172,7 @@ export const UserForms = (props: any): JSX.Element => {
                                 })}
                                 placeholder="E-mail"
                                 aria-label="Email"
+                                onClick={handleClearErrorMessage}
                             />
                             <IconWrapper>
                                 <EmailIcon />
@@ -191,6 +192,7 @@ export const UserForms = (props: any): JSX.Element => {
                                 })}
                                 placeholder="Senha"
                                 aria-label="Senha"
+                                onClick={handleClearErrorMessage}
                             />
                             <IconWrapper
                                 onClick={() => setShowPassword(!showPassword)}
@@ -201,13 +203,15 @@ export const UserForms = (props: any): JSX.Element => {
                         </div>
 
                         {/* TODO: Mensagem do backend não é mais inserida */}
-                        {hasError && (
-                            <MessageError>
-                                {errors.password && (
-                                    <>{errors.password.message}</>
-                                )}
-                            </MessageError>
-                        )}
+                        <MessageError>
+                            {errors.password && <>{errors.password.message}</>}
+                        </MessageError>
+                        <MessageError>
+                            {error && <>e-mail ou senha não conferem</>}
+                        </MessageError>
+                        <MessageError>
+                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
+                        </MessageError>
                     </InputContainer>
                     <InputContainer>
                         <CheckboxContainer>
@@ -229,7 +233,7 @@ export const UserForms = (props: any): JSX.Element => {
                             type="submit"
                             id="submit-button"
                             disabled={false}
-                            // TODO: Verificar porque disable não funciona
+                        // TODO: Verificar porque disable não funciona
                         >
                             Entrar
                         </LoginButton>
