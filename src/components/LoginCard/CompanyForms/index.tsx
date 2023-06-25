@@ -37,6 +37,7 @@ import {
 export const CompanyForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
     const [error, setError] = useState(false);
+    const [otherErrors, setOtherErrors] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -90,7 +91,9 @@ export const CompanyForms = (props: any): JSX.Element => {
         } catch (err: any) {
             if (err.response.status === 400) {
                 setError(true);
-            } 
+            } else {
+                setOtherErrors(true);
+            }
             // TODO: Tratar os erros com as mensagens do backend
             //setHasError(data.message);
         }
@@ -201,6 +204,9 @@ export const CompanyForms = (props: any): JSX.Element => {
                         </MessageError>
                         <MessageError>
                             {error && <>e-mail ou senha não conferem</>}
+                        </MessageError>
+                        <MessageError>
+                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>

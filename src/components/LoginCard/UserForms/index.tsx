@@ -35,6 +35,7 @@ import {
 export const UserForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
     const [error, setError] = useState(false);
+    const [otherErrors, setOtherErrors] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -85,6 +86,8 @@ export const UserForms = (props: any): JSX.Element => {
         catch (err: any) {
             if (err.response.status === 400) {
                 setError(true);
+            } else {
+                setOtherErrors(true);
             }
 
             // TODO: Tratar os erros com as mensagens do backend e exibir em tela
@@ -204,7 +207,10 @@ export const UserForms = (props: any): JSX.Element => {
                             {errors.password && <>{errors.password.message}</>}
                         </MessageError>
                         <MessageError>
-                            {error && <div>e-mail ou senha não conferem</div>}
+                            {error && <>e-mail ou senha não conferem</>}
+                        </MessageError>
+                        <MessageError>
+                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>

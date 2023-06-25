@@ -7,7 +7,6 @@ interface InputWrapperProps {
 
 const Wrapper = styled.div`
     position: relative;
-
     label {
         color: ${({ theme }) => theme.colors.black};
         font-size: 90%;
@@ -22,13 +21,12 @@ const Wrapper = styled.div`
         outline: none;
 
         width: 100%;
-        height: 48px;
+        height: 55px;
         padding: 0.7rem 1rem;
-        padding-right: 5rem;
-        margin-top: 6px;
+        margin: 4px 0 12px 0;
 
         ::placeholder {
-            color: ${({ theme }) => theme.colors.mutedDark};
+            color: ${({ theme }) => theme.colors.mutedDarker};
         }
 
         :hover {
