@@ -54,6 +54,7 @@ export const NavRoutes: React.FC = () => {
                 <Route path="insertjobs" element={<InsertJobs />} />
                 <Route path="addjobs" element={<AddJobs />} />
                 <Route path="jobs" element={<FeedJobs />} />
+                <Route path="jobs/:searchTerm" element={<FeedJobs />} />
                 <Route path="apply/:id" element={<JobApply />} />
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />

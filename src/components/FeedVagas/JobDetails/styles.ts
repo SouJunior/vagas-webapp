@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -6,7 +7,8 @@ export const Container = styled.div`
   border-radius: 6px;
   box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.10);
   border: 1px solid #1165BA;
-  width: 546px;
+  width: 100%;
+  max-width: 546px;
   height: 569px;
   display: flex;
   flex-direction: column;
@@ -15,13 +17,24 @@ export const Container = styled.div`
   padding: 28px
 `;
 
-
 export const Title = styled.h2`
   font-size: 24px;
   font-weight: 700;
   color: #515050;
+  
+  width: 100%;
+`;
+
+export const JobHeadText = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const JobHead = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
   width: 100%;
 `;
 
@@ -108,6 +121,13 @@ export const TextContainer = styled.div`
   gap: 12px;
 `;
 
+export const ApplyButtonLink = styled(Link)`
+  
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
 export const ApplyButton = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 6px;
@@ -122,4 +142,9 @@ export const ApplyButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.colors.primaryDark};
   }
+
+  @media (max-width: 768px) {
+    max-width: 100%
+  }
+
 `;

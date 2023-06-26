@@ -65,7 +65,7 @@ const JobFilter = () => {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        navigate(`/jobs?searchTerm=${searchTerm}&location=${location}`);
+        navigate(`/jobs?search=${searchTerm}`);
     };
 
     return (

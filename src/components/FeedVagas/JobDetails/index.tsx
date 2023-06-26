@@ -1,23 +1,18 @@
 import { CompanyLogo } from './CompanyLogo';
 import {
     ApplyButton,
-    Benefits,
-    Company,
+    ApplyButtonLink,
     CompanyInfo,
     CompanyLogoImg,
     CompanyName,
     Container,
-    Description,
-    DescriptionInfo,
-    Location,
-    Prerequisites,
+    JobHead,
+    JobHeadText,
     Subtitle,
     Text,
     TextContainer,
     Title,
-    Type,
 } from './styles';
-import { Link } from 'react-router-dom';
 
 function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
     if (Array.isArray(clickedJob)) {
@@ -26,7 +21,20 @@ function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
 
     return (
         <Container>
-            <Title>
+            <JobHead>
+                <JobHeadText>
+                    <Title>{clickedJob?.title} </Title>
+                    <Subtitle>
+                        {clickedJob?.modality} - {clickedJob?.type} -{' '}
+                        {clickedJob?.typeContract}
+                    </Subtitle>
+                    <Text>{clickedJob.contractType}</Text>
+                </JobHeadText>
+                <ApplyButtonLink to={`/apply/${clickedJob.id}`}>
+                    <ApplyButton>Me candidatar</ApplyButton>
+                </ApplyButtonLink>
+            </JobHead>
+            {/* <Title>
                 {clickedJob?.title}{' '}
                 <Link to={`/apply/${clickedJob.id}`}>
                     <ApplyButton>Me candidatar</ApplyButton>
@@ -38,7 +46,7 @@ function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
                 {clickedJob?.typeContract}
             </Subtitle>
 
-            <Text>{clickedJob.contractType}</Text>
+            <Text>{clickedJob.contractType}</Text> */}
 
             <CompanyInfo>
                 <CompanyLogoImg>

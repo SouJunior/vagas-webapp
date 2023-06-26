@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
+import { useEffect, useState } from 'react';
 import {
     ApplyButton,
     ButtonContainer,
@@ -13,10 +12,12 @@ import {
     Wrapper,
 } from './styles/ApplyJobs.styles';
 import JobFilter from '../components/JobFilter';
+import Header from '../components/Header';
 import { useParams } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
 import JobApplyDetails from '../components/ApplyJob/JobApplyDetails';
 import ChooseResume from '../components/ApplyJob/ChooseResume';
+import { useQuery } from 'react-query';
 
 const JobApply = () => {
     const [job, setJob] = useState();
@@ -24,13 +25,18 @@ const JobApply = () => {
     const api = useApi();
     const { id }: any = useParams();
 
-    useEffect(() => {
-        async function getJobById() {
-            const jobData = await api.getJobById(id);
-            setJob(jobData);
-        }
-        getJobById();
-    }, []);
+    // useEffect(() => {
+    //     async function getJobById() {
+    //         const jobData = await api.getJobById(id);
+    //         setJob(jobData);
+    //     }
+    //     getJobById();
+    // }, []);
+
+    const { data, isLoading } = useQuery({
+        queryKey: ['job'],
+        queryFn: () => api.getJobById(id),
+    });
 
     return (
         <JobApplyContainer>
@@ -46,7 +52,7 @@ const JobApply = () => {
                     <UserArea>
                         <ChooseResume />
                         <JobDetailsWrapper>
-                            <JobApplyDetails Job={job} />
+                            <JobApplyDetails Job={data} isLoading={isLoading} />
                             <ButtonContainer>
                                 <CancelApplyButton>Cancelar</CancelApplyButton>
                                 <ApplyButton>Me Candidatar</ApplyButton>

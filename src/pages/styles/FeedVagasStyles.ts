@@ -36,6 +36,7 @@ export const JobContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 56px;
+    width: 100%;
 `
 
 export const PageTitle = styled.h1`
@@ -47,8 +48,13 @@ export const PageTitle = styled.h1`
 
 export const ContentWrapper = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
+    width: 100%;
+    
+    @media (max-width: 1200px) {
+      flex-wrap: wrap;
+    }
 `;
 
 export const JobsWrapper = styled.div`
@@ -64,6 +70,11 @@ export const QuickFilterContainer = styled.div`
   width: 100%;
   max-width: 493px;
   margin-bottom: 26px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
 `;
 
 export const JobList = styled.div`
@@ -72,30 +83,35 @@ export const JobList = styled.div`
   flex-direction: column;
   gap: 4px;
   max-height: 557px;
-  width: 518px;
+  max-width: 518px;
+  width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   
   ::-webkit-scrollbar {
   width: 15px;
 }
-
 `;
 
 export const JobDetailsWrapper = styled.div`
   width: 40%;
   margin-top: 52px;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 export const NoJobsContainer = styled.div`
-  width: 100%;
   height: 569px;
   max-width: 546px;
+  width: 100%;
   border: 2px dashed #1165BA;
   border-radius: 0.375rem;
   text-align: center;
   padding: 6rem;
-  margin-top: 52px;
 `;
 
 export const InnerContainer = styled.div`
@@ -143,4 +159,4 @@ export const NoResultsMessage = styled.div`
   color: #515050;
   text-align: center;
   width: 100%;
-`
+`;

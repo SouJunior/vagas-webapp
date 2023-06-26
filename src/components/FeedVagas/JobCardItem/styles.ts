@@ -11,7 +11,8 @@ export const Card = styled.div<CardProps>`
   display: flex;
   color: ${props => (props.active ? "#fff" : "#515050")};
   background-color: ${props => (props.active ? "#1165BA" : "#fff")};
-  width: 493px;
+  width: 100%;
+  max-width: 493px;
   padding: 16px;
   height: 131px;
   margin-bottom: 16px;

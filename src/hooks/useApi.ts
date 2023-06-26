@@ -110,11 +110,10 @@ export const useApi = () => ({
         return res.data;
       },
 
-      searchJobs: async (keyword: string) => {
-        const url = `/job/search/${keyword}?order=ASC&page=1&take=10&orderByColumn=id`
-        console.log(url)
+      searchJobs: async ( keyword: string, page: number = 1) => {
+        const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`
         const res: any = await api.get(url);
-        console.log(res)
+        console.log(res.data)
           return res.data;
       },
 });

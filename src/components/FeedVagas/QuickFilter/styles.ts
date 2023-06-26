@@ -24,6 +24,10 @@ export const Select = styled.select`
     &:hover {
         border-color: ${props => props.theme.colors.primary};
     }
+
+    @media (max-width: 768px) {
+        padding: 8px 20px;
+    }
 `;
 
 

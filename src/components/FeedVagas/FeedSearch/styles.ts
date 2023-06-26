@@ -12,10 +12,18 @@ export const Container = styled.div`
     justify-content: center;
     gap: 30px;
     height: 37px;
+
+    @media (max-width: 1200px) {
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      gap: 8px;
+    }
   }
+
 `;
 
-export const PrimaryInput = styled.input`
+export const Input = styled.input`
   padding: 10px;
   border-radius: 42px;
   width: 100%;
@@ -30,12 +38,8 @@ export const PrimaryInput = styled.input`
   }
 `;
 
-export const LocationInput = styled(PrimaryInput)`
-  max-width: 234px;
-`;
-
 export const Button = styled.button`
-  padding: 5px 20px;
+  padding: 12px 24px;
   background-color: #003986;
   color: #fff;
   width: 100%;
@@ -46,11 +50,14 @@ export const Button = styled.button`
   border-radius: 47px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: #fff;
     color: #003986;
     border: 1px solid #003986;
   }
+
 `;

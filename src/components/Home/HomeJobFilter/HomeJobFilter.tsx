@@ -13,7 +13,7 @@ const HomeJobFilter: React.FC<JobFilterProps> = ({ isActive }) => {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        navigate(`/jobs?searchTerm=${searchTerm}`);
+        navigate(`/jobs?search=${searchTerm}`);
     };
 
     return (
