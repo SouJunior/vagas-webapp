@@ -17,7 +17,7 @@ import companyType from './data/companyType';
 import Header from '../../components/Portal/Header';
 import { ProfileImg } from '../../components/Portal/Header/styles';
 import { HandleInputsRender } from './utils/handleInputsRender';
-import { handleOptionsRender } from './utils/handleOptionsRender';
+import { HandleOptionsRender } from './utils/handleOptionsRender';
 import { useEffect, useState } from 'react';
 import { useApi } from '../../hooks/useApi';
 
@@ -31,7 +31,9 @@ export const ProfileSettings: React.FC = () => {
 
     const api = useApi();
 
-    const handleSubmit = (e: any) => {
+
+
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
 
         const formData = new FormData();
@@ -45,13 +47,14 @@ export const ProfileSettings: React.FC = () => {
         formData.append('otherSite[twitter]', e.target.twitter.value);
         formData.append('file', e.target.profiPic.value);
 
-        api.updateCompanyProfile(formData)
-            .then((res) => {
-                //TODO mensagem de envio com sucesso / pop-up "atualizações salvas"
-            })
-            .catch((err) => {
-                //TODO ver mensagem de erro para o usuário
-            });
+        try {
+            const res = await api.updateCompanyProfile(formData)
+            return res
+            //TODO mensagem de envio com sucesso / pop-up "atualizações salvas"
+        } catch (error) {
+            //TODO ver mensagem de erro para o usuário
+            
+        }
     };
 
     return (
@@ -90,18 +93,18 @@ export const ProfileSettings: React.FC = () => {
                             <label htmlFor='states'>
                                 UF<sup>*</sup>
                             </label>
-                            <select id='states' name="states" defaultValue={'DEFAULT'}>
+                            <select id='states' defaultValue={'DEFAULT'}>
                                 <option value='DEFAULT' disabled>
                                     --
                                 </option>
-                                {handleOptionsRender(location)}
+                                {HandleOptionsRender(location)}
                             </select>
                             <label htmlFor='companyType'>Tipo de Empresa</label>
                             <select id='companyType' name="type" defaultValue={'DEFAULT'}>
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
-                                {handleOptionsRender(companyType)}
+                                {HandleOptionsRender(companyType)}
                             </select>
                             <label htmlFor='companySize'>Porte da Empresa</label>
                             <select id='companySize' name="size" defaultValue={'DEFAULT'}>
