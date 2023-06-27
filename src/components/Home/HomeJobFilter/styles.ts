@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components';
 
-interface Props {
-    isActive: boolean;
-}
-
-export const FormWrapper = styled.div<Props>`
+export const FormWrapper = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
@@ -19,7 +15,7 @@ export const Form = styled.form`
     width: 90%;
 `;
 
-export const Input = styled.input<Props>`
+export const Input = styled.input`
     width: 100%;
     height: 58px;
     border: 1.5px solid #515151;
@@ -35,18 +31,6 @@ export const Input = styled.input<Props>`
     :focus {
         outline-color: ${({ theme }) => theme.colors.primary};
     }
-
-    /* ${({ isActive }) =>
-        isActive &&
-        css`
-            width: 576px;
-            height: 42px;
-            padding: 0 26px;
-            font-size: 14px;
-            border: 1.5px solid ${({ theme }) => theme.colors.primary};
-            transition: width 0.3s ease-in-out;
-            animation: initialAnimation 0.3s ease-in-out forwards;
-        `} */
 
     @keyframes initialAnimation {
         from {
@@ -70,7 +54,7 @@ export const Input = styled.input<Props>`
     }
 `;
 
-export const SearchButton = styled.button<Props>`
+export const SearchButton = styled.button`
     position: absolute;
     text-align: center;
     background-color: ${({ theme }) => theme.colors.primary};
@@ -94,15 +78,4 @@ export const SearchButton = styled.button<Props>`
         max-width: 150px;
         max-height: 38px;
     }
-    /* 
-    ${({ isActive }) =>
-        isActive &&
-        css`
-            max-height: 38px;
-            width: auto;
-            padding: 0px 28px;
-            font-size: 14px;
-            top: 2px;
-            transform: translateY(0%);
-        `} */
 `;

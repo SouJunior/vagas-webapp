@@ -8,7 +8,7 @@ export const Img = styled.img`
     cursor: pointer;
 
     @media (max-width: 650px) {
-        width: 50%;
+        width: 80%;
     }
 `;
 
@@ -20,10 +20,6 @@ export const JourneyWrapper = styled.div`
     @media (max-width: 1200px) {
         flex-direction: column;
     }
-
-    @media (max-width: 650px) {
-        flex-direction: row;
-    }
 `;
 
 export const JourneyDescription = styled.div`
@@ -34,7 +30,8 @@ export const JourneyDescription = styled.div`
 
     @media (max-width: 650px) {
         font-size: 20px;
-        width: 50%;
+        width: 100%;
+        text-align: center;
     }
 `;
 

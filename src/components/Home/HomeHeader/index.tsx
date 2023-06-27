@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import LogoName from '../../../assets/imgs/logo-icon-name-h.svg';
 import {
     LoginButton,
@@ -22,6 +22,7 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
     const navigate = useNavigate();
     const { setIsLogin } = useContext(AuthContext);
     const [isMobileOpen, setMobileOpen] = useState(false);
+    const [isMobileSize, setIsMobileSize] = useState(false);
 
     function handleRegisterClick() {
         navigate('/login');
@@ -32,18 +33,44 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
         navigate('/login');
         setIsLogin('login');
     }
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobileSize(window.innerWidth < 1250);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
     return (
         <>
             {isMobileOpen && (
                 <MobileHeader>
                     <ul>
-                        <li onClick={() => (window.location.href = '/login')}>
-                            Login
-                        </li>
-                        <li onClick={() => (window.location.href = '/login')}>
+                        <li>SouJunior</li>
+                        <li>Suporte</li>
+                        <li>Time</li>
+                        <li>Apoio</li>
+                        <hr />
+                        <RegisterButton
+                            onClick={handleRegisterClick}
+                            isActive={isActive}
+                        >
                             Cadastre-se
-                        </li>
-                        <JobFilter isActive={isActive} />
+                        </RegisterButton>
+                        <LoginButton
+                            onClick={handleLoginClick}
+                            isActive={isActive}
+                        >
+                            Login
+                        </LoginButton>
                     </ul>
                 </MobileHeader>
             )}
@@ -61,6 +88,9 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                         />
                     </a>
                 </NavTitle>
+                {isActive && !isMobileSize && (
+                    <JobFilter />
+                )}
                 <HeaderBtns>
                     <RegisterButton
                         onClick={handleRegisterClick}

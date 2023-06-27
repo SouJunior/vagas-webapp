@@ -154,12 +154,12 @@ export const MobileHeader = styled.nav`
         width: 80%;
 
         li {
-            text-transform: uppercase;
-            font-size: 16pt;
+            text-transform: capitalize;
+            font-size: 22pt;
             font-weight: 600;
             cursor: pointer;
             padding: 5px 15px;
-            color: black;
+            color: ${({theme}) => theme.colors.primary};
             display: flex;
             align-items: center;
             gap: 8px;

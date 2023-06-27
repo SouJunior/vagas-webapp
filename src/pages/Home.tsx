@@ -90,7 +90,7 @@ export const Home: React.FC = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 780);
+            setIsMobile(window.innerWidth < 1250);
         };
 
         window.addEventListener('resize', handleResize);
@@ -142,17 +142,17 @@ export const Home: React.FC = () => {
     };
 
     const breakpoints = {
-        320: {
+        350: {
             slidesPerView: 3,
         },
-        480: {
-            slidesPerView: 5,
+        515: {
+            slidesPerView: 4,
         },
         768: {
-            slidesPerView: 7,
+            slidesPerView: 5,
         },
         1024: {
-            slidesPerView: 7,
+            slidesPerView: 6,
         },
         1440: {
             slidesPerView: 9,
@@ -169,7 +169,7 @@ export const Home: React.FC = () => {
                             Um portal de vagas <span>exclusivo</span> para o
                             profissional <span>Júnior!</span>
                         </Title>
-                        <JobFilter isActive={isActive} />
+                        <JobFilter />
 
                         <JobsInfo>
                             Mais de {jobsCount} vagas disponíveis para Juninhos{' '}
@@ -197,7 +197,7 @@ export const Home: React.FC = () => {
                         style={{
                             width: '100%',
                             maxWidth: 'screen-width',
-                            paddingLeft: '75px',
+                            paddingLeft: isMobile ? '0px' : '75px',
                             paddingRight: '40px',
                         }}
                     >
@@ -208,7 +208,10 @@ export const Home: React.FC = () => {
                         )}
 
                         {Areas.map((area: AreaProps) => (
-                            <SwiperSlide key={area.name}>
+                            <SwiperSlide
+                                key={area.name}
+                                className='swiper-slide-responsive'
+                            >
                                 <div>
                                     <TechnologyAreaCard
                                         onClick={() => {
@@ -220,6 +223,7 @@ export const Home: React.FC = () => {
                                 </div>
                             </SwiperSlide>
                         ))}
+
                         {!isMobile && (
                             <CustomNextButton className="swiper-next-button">
                                 <CaretRight size={42} />
@@ -365,6 +369,7 @@ export const Home: React.FC = () => {
                         maxWidth: '1080px',
                         height: 'auto',
                         margin: '0 auto',
+                        padding: "80px 0"
                     }}
                     className="mySwiper"
                 >
@@ -381,8 +386,26 @@ export const Home: React.FC = () => {
                                 Profile={ProfileTest}
                             />
                         </SwiperSlide>
-                        <SwiperSlide>Slide 2</SwiperSlide>
-                        <SwiperSlide>Slide 3</SwiperSlide>
+                        <SwiperSlide>
+                            <Testimonials
+                                Text={
+                                    '“A SouJunior foi uma adição muito necessária na minha carreira profissional, eu ainda estava no começo da minha jornada como Designer e tive a oportunidade de integrar otime e me desenvolver muito, aprendi como funcionava arotina, os métodos, as aplicações, por isso sou muito grato e recomendo o projeto!”'
+                                }
+                                Author={'Lucas Sales'}
+                                Workplace={'UX Designer na Ilegra'}
+                                Profile={ProfileTest}
+                            />
+                        </SwiperSlide>{' '}
+                        <SwiperSlide>
+                            <Testimonials
+                                Text={
+                                    '“A SouJunior foi uma adição muito necessária na minha carreira profissional, eu ainda estava no começo da minha jornada como Designer e tive a oportunidade de integrar otime e me desenvolver muito, aprendi como funcionava arotina, os métodos, as aplicações, por isso sou muito grato e recomendo o projeto!”'
+                                }
+                                Author={'Lucas Sales'}
+                                Workplace={'UX Designer na Ilegra'}
+                                Profile={ProfileTest}
+                            />
+                        </SwiperSlide>
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>

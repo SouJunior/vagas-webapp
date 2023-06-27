@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import VocationalBanner from '../../assets/imgs/VocationalBanner.svg';
 
 export const Main = styled.main`
@@ -164,7 +164,6 @@ export const JourneyContainer = styled.div`
     @media (max-width: 1200px) {
         width: 100%;
     }
-   
 `;
 
 export const JourneyTitle = styled(SecondaryTitle)`
@@ -176,6 +175,10 @@ export const JourneyTitle = styled(SecondaryTitle)`
     top: -40px;
     left: 50%;
     transform: translateX(-50%);
+
+    @media (max-width: 650px) {
+        font-size: 28px;
+    }
 `;
 
 export const JourneyCardWrapper = styled.div`
@@ -213,6 +216,11 @@ export const AreasCardWrapper = styled.div`
     width: 100%;
     position: relative;
     max-width: 1520px;
+
+    .swiper-slide {
+        margin-right: 15px;
+        flex-shrink: unset;
+    }
 `;
 
 export const CustomNextButton = styled.div`
@@ -418,9 +426,14 @@ export const AppBannerContainer = styled.section`
 export const CircleImage = styled.img`
     position: absolute;
     left: -170px;
-    bottom: -200px;
-    z-index: 700;
+    bottom: 40px;
+    z-index: 0;
     width: 600px;
+    overflow: hidden;
+
+    @media (max-width: 1280px) {
+        bottom: -200px;
+    }
 `;
 
 export const AppBannerContainerInfo = styled.div`
