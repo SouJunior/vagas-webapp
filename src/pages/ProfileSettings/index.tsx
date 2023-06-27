@@ -18,8 +18,9 @@ import Header from '../../components/Portal/Header';
 import { ProfileImg } from '../../components/Portal/Header/styles';
 import { HandleInputsRender } from './utils/handleInputsRender';
 import { HandleOptionsRender } from './utils/handleOptionsRender';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useApi } from '../../hooks/useApi';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
@@ -31,7 +32,7 @@ export const ProfileSettings: React.FC = () => {
 
     const api = useApi();
 
-
+    const auth = useContext(AuthContext);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -45,15 +46,18 @@ export const ProfileSettings: React.FC = () => {
         formData.append('otherSite[instagram]', e.target.instagram.value);
         formData.append('otherSite[linkedin]', e.target.linkedin.value);
         formData.append('otherSite[twitter]', e.target.twitter.value);
-        formData.append('file', e.target.profiPic.value);
+        formData.append('profile', e.target.profiPic.value);
+        formData.append(
+            'profileKey',
+            auth.user.profileKey ? auth.user.profileKey : 'lkjhgfdsa',
+        );
 
         try {
-            const res = await api.updateCompanyProfile(formData)
-            return res
+            const res = await api.updateCompanyProfile(formData);
+            return res;
             //TODO mensagem de envio com sucesso / pop-up "atualizações salvas"
         } catch (error) {
             //TODO ver mensagem de erro para o usuário
-            
         }
     };
 
@@ -63,7 +67,11 @@ export const ProfileSettings: React.FC = () => {
             <form onSubmit={handleSubmit}>
                 <ProfileImgWrapper>
                     <ProfileImg
-                        src={profilePicture}
+                        src={
+                            auth.user.profile
+                                ? auth.user.profile
+                                : profilePicture
+                        }
                         alt="Foto de perfil"
                         width={'10%'}
                     />
@@ -90,24 +98,34 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                     <div className="form__right">
                         <Select>
-                            <label htmlFor='states'>
+                            <label htmlFor="states">
                                 UF<sup>*</sup>
                             </label>
-                            <select id='states' defaultValue={'DEFAULT'}>
-                                <option value='DEFAULT' disabled>
+                            <select id="states" defaultValue={'DEFAULT'}>
+                                <option value="DEFAULT" disabled>
                                     --
                                 </option>
                                 {HandleOptionsRender(location)}
                             </select>
-                            <label htmlFor='companyType'>Tipo de Empresa</label>
-                            <select id='companyType' name="type" defaultValue={'DEFAULT'}>
+                            <label htmlFor="companyType">Tipo de Empresa</label>
+                            <select
+                                id="companyType"
+                                name="type"
+                                defaultValue={'DEFAULT'}
+                            >
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
                                 {HandleOptionsRender(companyType)}
                             </select>
-                            <label htmlFor='companySize'>Porte da Empresa</label>
-                            <select id='companySize' name="size" defaultValue={'DEFAULT'}>
+                            <label htmlFor="companySize">
+                                Porte da Empresa
+                            </label>
+                            <select
+                                id="companySize"
+                                name="size"
+                                defaultValue={'DEFAULT'}
+                            >
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
