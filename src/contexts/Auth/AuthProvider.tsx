@@ -1,42 +1,31 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useApi } from '../../hooks/useApi';
 import { User } from '../../@types/User';
 import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [isAuth, setIsAuth] = useState<boolean | any>(null);
     const [isLogin, setIsLogin] = useState<'login' | 'register'>('login');
 
     const api = useApi();
 
-    useEffect(() => {
-        validateToken();
-    }, []);
-
-    /**
-     * @see
-     * Autoriza retorno dos dados do usuário recebendo token no header
-     * Após realizar login o estado de user é alterado 2 vezes
-     * 1 vez quando faz login 1 vez quando faz validação do token
-     * Talvez por se tratar do valor user seja melhor o uso de useMemo()
-     * For this es-lint error;
-     * @see https://github.com/facebook/react/issues/14920
-     * */
-    const validateToken = useCallback(async () => {
+    const validateToken = async () => {
         const storagedToken = localStorage.getItem('authToken');
+
         if (storagedToken) {
             const res = await api.validateToken(storagedToken);
             if (res) {
                 setUser(res);
+                setIsAuth(true);
+            } else {
+                setIsAuth(false);
             }
+        } else {
+            setIsAuth(false);
         }
-    }, []);
+    };
 
-    /**
-     * @see
-     * Dados que vem dos inputs da aplicação no momento em que o contexto instanciado
-     * Dados serão passados no corpo da requisição utlizando o método que vem de useApi
-     */
     const login = async (email: string, password: string, type: string) => {
         const res = await api.login(email, password, type);
         if (res.info && res.token) {
@@ -110,6 +99,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
                 logout,
                 isLogin,
                 setIsLogin,
+                validateToken,
+                isAuth
             }}
         >
             {children}
