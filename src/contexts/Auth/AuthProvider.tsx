@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useApi } from '../../hooks/useApi';
 import { User } from '../../@types/User';
 import { AuthContext } from './AuthContext';
