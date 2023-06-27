@@ -8,6 +8,7 @@ export const RequireAuth = ({ children }: { children: JSX.Element }) => {
 
     useEffect(() => {
         auth.validateToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (auth.isAuth === null) {
