@@ -88,8 +88,8 @@ export const useApi = () => ({
       return res.data;
     },
 
-      getJobs: async (page: number = 1) => {
-        const url = `/job?order=ASC&page=${page}&take=10&orderByColumn=id`;
+      getJobs: async (page: number = 1, order: string = "ASC") => {
+        const url = `/job?order=${order}&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
           return res.data;
       },

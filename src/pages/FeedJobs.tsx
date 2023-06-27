@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 import JobCardItem from '../components/FeedVagas/JobCardItem';
 import { useApi } from '../hooks/useApi';
 import JobDetails from '../components/FeedVagas/JobDetails';
@@ -52,6 +52,7 @@ const FeedJobs = () => {
     const [selectedJob, setSelectedJob] = useState<string | null>('');
     const [clickedJob, setClickedJob] = useState<Job[] | Job>([]);
     const [noJobSelected, setNoJobSelected] = useState(true);
+    const [sortOrder, setSortOrder] = useState('');
 
     const api = useApi();
     const { search } = useLocation();
@@ -59,8 +60,9 @@ const FeedJobs = () => {
     const params = new URLSearchParams(search);
     const searchTerm: string = params.get('search') || '';
 
-    const fetchJobs = async (page: number) => {
-        const response = await api.getJobs(page);
+    const fetchJobs = async (page: number, sortOrder: string) => {
+        const order = sortOrder || 'ASC';
+        const response = await api.getJobs(page, order);
         return response.data;
     };
 
@@ -70,11 +72,11 @@ const FeedJobs = () => {
     };
 
     const { data, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
-        queryKey: ['jobs', searchTerm],
+        queryKey: ['jobs', searchTerm, sortOrder],
         queryFn: ({ pageParam = 1 }) =>
             searchTerm
                 ? fetchFilteredJobs(searchTerm, pageParam)
-                : fetchJobs(pageParam),
+                : fetchJobs(pageParam, sortOrder),
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.length ? allPages.length + 1 : undefined;
         },
@@ -112,10 +114,6 @@ const FeedJobs = () => {
                                     <QuickFilter
                                         options={[
                                             {
-                                                label: 'Tipo de vaga',
-                                                value: '',
-                                            },
-                                            {
                                                 label: 'Remoto',
                                                 value: 'remoto',
                                             },
@@ -128,22 +126,24 @@ const FeedJobs = () => {
                                                 value: 'presencial',
                                             },
                                         ]}
+                                        placeholder="Tipo de vaga"
                                     />
                                     <QuickFilter
                                         options={[
                                             {
-                                                label: 'Quando postada',
-                                                value: '',
-                                            },
-                                            {
                                                 label: 'Mais Recente',
-                                                value: 'newest',
+                                                value: 'DESC',
                                             },
                                             {
                                                 label: 'Mais Antigo',
-                                                value: 'oldest',
+                                                value: 'ASC',
                                             },
                                         ]}
+                                        placeholder="Quando postada"
+                                        selectedValue={sortOrder}
+                                        onChange={(event: any) =>
+                                            setSortOrder(event.target.value)
+                                        }
                                     />
                                 </QuickFilterContainer>
                                 {jobs && Object.keys(jobs).length === 0 && (
