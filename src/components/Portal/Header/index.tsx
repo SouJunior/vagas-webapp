@@ -34,7 +34,7 @@ const Header = () => {
             <HeaderWrapper>
                 <div>
                     <HeaderLogo
-                        src={LogoImage}
+                        src={ LogoImage}
                         width="194px"
                         height="29px"
                         alt="logo"
@@ -56,7 +56,7 @@ const Header = () => {
                     <ProfileImg
                         onClick={() => setVisible(!visible)}
                         // onClick={handleNavigation}
-                        src={ProfileImage}
+                        src={ auth.user.profile ? auth.user.profile : ProfileImage}
                         alt="foto de perfil"
                         width={'16%'}
                     />
