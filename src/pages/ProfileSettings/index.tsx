@@ -41,7 +41,9 @@ export const ProfileSettings: React.FC = () => {
         <Container>
             <Header />
             <form
-                onSubmit={(e: any) => handleSubmit(e, selectedImage, api, auth)}
+                onSubmit={(e: any) =>
+                    handleSubmit({ e, selectedImage, api, auth })
+                }
             >
                 <ProfileImgWrapper>
                     <ProfileImg
@@ -60,11 +62,11 @@ export const ProfileSettings: React.FC = () => {
                             type="file"
                             accept=".jpg, .jpeg, .png"
                             onChange={(e: any) =>
-                                handleImgFile(
+                                handleImgFile({
                                     e,
                                     setSelectedImage,
                                     setImagePreview,
-                                )
+                                })
                             }
                         />
                     </div>
