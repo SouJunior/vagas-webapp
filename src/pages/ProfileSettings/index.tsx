@@ -21,56 +21,33 @@ import { HandleOptionsRender } from './utils/handleOptionsRender';
 import { useContext, useEffect, useState } from 'react';
 import { useApi } from '../../hooks/useApi';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { handleSubmit } from './utils/handleSubimit';
+import { handleImgFile } from './utils/handleImgFile';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
     const [currChar, setCurrChar] = useState(0);
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [imagePreview, setImagePreview] = useState<Blob | null>(null);
+
+    const api = useApi();
+    const auth = useContext(AuthContext);
 
     useEffect(() => {
         setCurrChar(2000 - charCount);
     }, [charCount]);
 
-    const api = useApi();
-
-    const auth = useContext(AuthContext);
-
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-        formData.append('companyType', e.target.type.value);
-        formData.append('companySize', e.target.size.value);
-        formData.append('location', e.target.states.value);
-        formData.append('companySite', e.target.site.value);
-        formData.append('description', e.target.description.value);
-        formData.append('otherSite[instagram]', e.target.instagram.value);
-        formData.append('otherSite[linkedin]', e.target.linkedin.value);
-        formData.append('otherSite[twitter]', e.target.twitter.value);
-        formData.append('profile', e.target.profiPic.value);
-        formData.append(
-            'profileKey',
-            auth.user.profileKey ? auth.user.profileKey : 'lkjhgfdsa',
-        );
-
-        try {
-            const res = await api.updateCompanyProfile(formData);
-            return res;
-            //TODO mensagem de envio com sucesso / pop-up "atualizações salvas"
-        } catch (error) {
-            //TODO ver mensagem de erro para o usuário
-        }
-    };
-
     return (
         <Container>
             <Header />
-            <form onSubmit={handleSubmit}>
+            <form
+                onSubmit={(e: any) => handleSubmit(e, selectedImage, api, auth)}
+            >
                 <ProfileImgWrapper>
                     <ProfileImg
                         src={
-                            auth.user.profile
-                                ? auth.user.profile
-                                : profilePicture
+                            imagePreview ||
+                            (auth.user.profile ?? profilePicture)
                         }
                         alt="Foto de perfil"
                         width={'10%'}
@@ -82,6 +59,13 @@ export const ProfileSettings: React.FC = () => {
                             id="profiPic"
                             type="file"
                             accept=".jpg, .jpeg, .png"
+                            onChange={(e: any) =>
+                                handleImgFile(
+                                    e,
+                                    setSelectedImage,
+                                    setImagePreview,
+                                )
+                            }
                         />
                     </div>
                     <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
