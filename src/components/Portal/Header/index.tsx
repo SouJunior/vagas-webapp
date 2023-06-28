@@ -7,6 +7,7 @@ import {
     OpenMenuBtn,
     HeaderLogo,
     UserInfo,
+    ProfileImgWrapper,
 } from './styles';
 import Menu from '../Menu';
 import LogoImage from '../../../assets/imgs/logotipo-icone-extendida.svg';
@@ -34,7 +35,7 @@ const Header = () => {
             <HeaderWrapper>
                 <div>
                     <HeaderLogo
-                        src={ LogoImage}
+                        src={LogoImage}
                         width="194px"
                         height="29px"
                         alt="logo"
@@ -53,18 +54,21 @@ const Header = () => {
                         </UserInfo>
                         {/* <OpenMenuBtn src={MenuImage} alt="menu" /> */}
                     </span>
-                    <ProfileImg
-                        onClick={() => setVisible(!visible)}
-                        // onClick={handleNavigation}
-                        src={ auth.user.profile ? auth.user.profile : ProfileImage}
-                        alt="foto de perfil"
-                        width={'16%'}
-                    />
-                    {/* <span onClick={() => setVisible(!visible)}>
+                    <ProfileImgWrapper>
+                        <ProfileImg
+                            onClick={() => setVisible(!visible)}
+                            // onClick={handleNavigation}
+                            src={auth.user.profile ?? ProfileImage}
+                            alt="foto de perfil"
+                        />
+                        {/* <span onClick={() => setVisible(!visible)}>
                         <UserInfo> ... */}
+                    </ProfileImgWrapper>
                 </UserArea>
             </HeaderWrapper>
-            <span onMouseLeave={() => setVisible(!visible)}>{visible && <Menu />}</span>
+            <span onMouseLeave={() => setVisible(!visible)}>
+                {visible && <Menu />}
+            </span>
         </>
     );
 };
