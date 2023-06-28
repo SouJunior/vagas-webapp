@@ -1,9 +1,11 @@
-export const handleSubmit = async (
-    e: any,
-    profileImg: any,
-    api: any,
-    auth: any,
-) => {
+interface SubmitProps {
+    e: any;
+    selectedImage: any;
+    api: any;
+    auth: any;
+}
+
+export const handleSubmit = async ({ e, selectedImage, api, auth }: SubmitProps) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -16,13 +18,11 @@ export const handleSubmit = async (
     formData.append('otherSite[linkedin]', e.target.linkedin.value);
     formData.append('otherSite[twitter]', e.target.twitter.value);
 
-    if (profileImg) {
-        formData.append('file', profileImg);
+    if (selectedImage) {
+        formData.append('file', selectedImage);
     }
 
-    formData.append(
-        'profileKey', auth.user.profileKey ?? 'lkjhgfdsa',
-    );
+    formData.append('profileKey', auth.user.profileKey ?? 'lkjhgfdsa');
 
     try {
         const res = await api.updateCompanyProfile(formData);

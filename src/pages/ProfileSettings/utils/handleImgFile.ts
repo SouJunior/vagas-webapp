@@ -1,8 +1,10 @@
-export const handleImgFile = (
-    e: any,
-    setSelectedImage: any,
-    setImagePreview: any,
-) => {
+interface ImgFileProps {
+    e: any;
+    setSelectedImage: any;
+    setImagePreview: any;
+}
+
+export const handleImgFile = ({ e, setSelectedImage, setImagePreview }: ImgFileProps) => {
     if (e.target.files && e.target.files[0]) {
         const reader = new FileReader();
         reader.onload = (event: any) => {
