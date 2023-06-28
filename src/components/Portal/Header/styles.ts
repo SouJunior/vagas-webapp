@@ -9,26 +9,15 @@ export const HeaderWrapper = styled.header`
     background: ${({ theme }) => theme.colors.primaryLight};
 `;
 
-export const ProfileImgWrapper = styled.div`
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 15px;
-    background-color: #999;
-
-    @media (max-width: 540px) {
-        max-width: 75%;
-        max-height: 75%;
-    }
-`
-
 export const ProfileImg = styled.img`
     cursor: ${(props) => props.width === '10%' ? 'default' : 'pointer' };
-    width: 100%;
-    height: 100%;
-    max-width: ${(props) => props.width};  
-    object-fit: contain;
+    width: ${(props) => props.width};  
+    border-radius: 50%;
+    margin: 0 15px;
+    aspect-ratio: 4 / 4;
+    @media (max-width: 540px) {
+        max-width: 100%;
+    }
 `;
 
 export const UserArea = styled.div`
