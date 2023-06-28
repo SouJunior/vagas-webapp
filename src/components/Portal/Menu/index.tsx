@@ -83,9 +83,6 @@ const Menu = () => {
                     </li>
                     <Border />
                     <li onClick={logout}>
-                        {/* TODO: Excluir o token do localstorage ou cookie que armazena o token 
-                            isso utilizando a função de logout que já está pronta em useApi.
-                        */}
                             <img  src={ExitIcon} alt="sair" />
                             Sair do Portal de Vagas
                     </li>
