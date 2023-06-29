@@ -28,9 +28,8 @@ export const ProfileImgWrapper = styled.div`
     }
 
     span {
-        color: red;
-        font-size: 0.8em;
-        display: none;
+        color: ${({theme}) => theme.colors.danger};
+        display: ${(props: any) => (props.color > 5000000 ? 'block' : 'none')};
     }
     & > p {
         color: #bababa;
@@ -84,7 +83,7 @@ export const Form = styled.div<{ charQtde: number }>`
             width: 100%;
             height: 250px;
             resize: none;
-            outline: none;
+            outline: ${(props) => (props.charQtde < 0 ? 'none' : 'default')};
 
             :hover {
                 border-color: ${({ theme }) => theme.colors.mutedDarker};
