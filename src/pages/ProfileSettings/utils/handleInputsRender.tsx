@@ -1,18 +1,23 @@
 import { Fragment, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 
-import { useForm } from 'react-hook-form';
-
-export const HandleInputsRender = (arr: any): [] => {
-    const { register, setValue } = useForm();
-
+export const HandleInputsRender = (
+    arr: any,
+    register: any,
+    setValue: any,
+): [] => {
     const auth = useContext(AuthContext);
 
     useEffect(() => {
         setValue('email', auth.user.email);
         setValue('cnpj', auth.user.cnpj);
         setValue('nome', auth.user.companyName);
-    }, [auth.user.cnpj, auth.user.companyName, auth.user.email, setValue]);
+    }, [
+        auth.user.email,
+        auth.user.cnpj,
+        auth.user.companyName,
+        setValue,
+    ]);
 
     return arr.map((element: any) => {
         const isDisabled =
