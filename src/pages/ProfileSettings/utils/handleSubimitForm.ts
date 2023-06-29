@@ -1,22 +1,30 @@
 interface SubmitProps {
-    e: any;
+    data: {
+        location: any;
+        type: any;
+        size: any;
+        site: any;
+        description: any;
+        instagram: string;
+        linkedin: string;
+        twitter: string;
+    };
     selectedImage: any;
     api: any;
     auth: any;
 }
 
-export const handleSubmitForm = async ({ e, selectedImage, api, auth }: SubmitProps) => {
-    e.preventDefault();
-
+export const handleSubmitForm = async ({data, selectedImage, api, auth }: SubmitProps) => {
+    console.log(data)
     const formData = new FormData();
-    formData.append('companyType', e.target.type.value);
-    formData.append('companySize', e.target.size.value);
-    formData.append('location', e.target.states.value);
-    formData.append('companySite', e.target.site.value);
-    formData.append('description', e.target.description.value);
-    formData.append('otherSite[instagram]', e.target.instagram.value);
-    formData.append('otherSite[linkedin]', e.target.linkedin.value);
-    formData.append('otherSite[twitter]', e.target.twitter.value);
+    formData.append('companyType', data.type);
+    formData.append('companySize', data.size);
+    formData.append('location', data.location);
+    formData.append('companySite', data.site);
+    formData.append('description', data.description);
+    formData.append('otherSite[instagram]', data.instagram);
+    formData.append('otherSite[linkedin]', data.linkedin);
+    formData.append('otherSite[twitter]', data.twitter);
 
     if (selectedImage) {
         formData.append('file', selectedImage);
