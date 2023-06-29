@@ -3,7 +3,6 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 
 import { useForm } from 'react-hook-form';
 
-//TODO: Isso é um componente não uma função
 export const HandleInputsRender = (arr: any): [] => {
     const { register, setValue } = useForm();
 
