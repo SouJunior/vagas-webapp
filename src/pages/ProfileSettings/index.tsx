@@ -21,8 +21,10 @@ import { HandleOptionsRender } from './utils/handleOptionsRender';
 import { useContext, useEffect, useState } from 'react';
 import { useApi } from '../../hooks/useApi';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
-import { handleSubmit } from './utils/handleSubimit';
+import { handleSubmitForm } from './utils/handleSubimitForm';
 import { handleImgFile } from './utils/handleImgFile';
+
+import { useForm } from 'react-hook-form';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
@@ -30,8 +32,20 @@ export const ProfileSettings: React.FC = () => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<Blob | null>(null);
 
+    //TODO: Utilizar essa variável para o tamanho da foto e formato
+    console.log(selectedImage) 
+
     const api = useApi();
     const auth = useContext(AuthContext);
+
+    const { register, watch } = useForm();
+
+    function setError(error: string) {
+        if (watch('location') === 'DEFAULT' ?? undefined) {
+            return error;
+        }
+        return;
+    }
 
     useEffect(() => {
         setCurrChar(2000 - charCount);
@@ -41,8 +55,8 @@ export const ProfileSettings: React.FC = () => {
         <Container>
             <Header />
             <form
-                onSubmit={(e: any) =>
-                    handleSubmit({ e, selectedImage, api, auth })
+                onSubmit={(e) =>
+                    handleSubmitForm({ e, selectedImage, api, auth })
                 }
             >
                 <ProfileImgWrapper>
@@ -87,12 +101,21 @@ export const ProfileSettings: React.FC = () => {
                             <label htmlFor="states">
                                 UF<sup>*</sup>
                             </label>
-                            <select id="states" defaultValue={'DEFAULT'}>
+                            <select
+                                id="states"
+                                defaultValue={'DEFAULT'}
+                                {...register('location', {
+                                    required: 'O campo UF é obrigatório',
+                                })}
+                            >
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
                                 {HandleOptionsRender(location)}
                             </select>
+                            <p style={{ color: 'red' }}>
+                                {setError('O campo UF é obrigatório')}
+                            </p>
                             <label htmlFor="companyType">Tipo de Empresa</label>
                             <select
                                 id="companyType"
