@@ -28,6 +28,17 @@ export const SelectWrapper = styled.div`
         :focus {
             border-color: ${({ theme }) => theme.colors.primary};
         }
+
+    }
+
+    .error {
+        outline: none;
+        border-color: ${({ theme }) => theme.colors.danger};
+
+        :focus {
+            border-color: ${({ theme }) => theme.colors.danger};
+        }
+        
     }
 `;
 
