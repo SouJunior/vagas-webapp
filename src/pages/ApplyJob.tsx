@@ -13,30 +13,36 @@ import {
 } from './styles/ApplyJobs.styles';
 import JobFilter from '../components/JobFilter';
 import Header from '../components/Header';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
 import JobApplyDetails from '../components/ApplyJob/JobApplyDetails';
 import ChooseResume from '../components/ApplyJob/ChooseResume';
 import { useQuery } from 'react-query';
+import Modal from '../components/ApplyJob/Modal';
 
 const JobApply = () => {
-    const [job, setJob] = useState();
+    const [showDialog, setShowDialog] = useState(false);
 
     const api = useApi();
     const { id }: any = useParams();
-
-    // useEffect(() => {
-    //     async function getJobById() {
-    //         const jobData = await api.getJobById(id);
-    //         setJob(jobData);
-    //     }
-    //     getJobById();
-    // }, []);
+    const navigate = useNavigate();
 
     const { data, isLoading } = useQuery({
         queryKey: ['job'],
         queryFn: () => api.getJobById(id),
     });
+
+    function OpenCancelDialog() {
+        setShowDialog(true);
+    }
+
+    function HandleCancel() {
+        setShowDialog(false);
+    }
+
+    function HandleConfirm() {
+        navigate('/jobs');
+    }
 
     return (
         <JobApplyContainer>
@@ -54,13 +60,31 @@ const JobApply = () => {
                         <JobDetailsWrapper>
                             <JobApplyDetails Job={data} isLoading={isLoading} />
                             <ButtonContainer>
-                                <CancelApplyButton>Cancelar</CancelApplyButton>
+                                <CancelApplyButton onClick={OpenCancelDialog}>
+                                    Cancelar
+                                </CancelApplyButton>
                                 <ApplyButton>Me Candidatar</ApplyButton>
                             </ButtonContainer>
                         </JobDetailsWrapper>
                     </UserArea>
                 </Wrapper>
             </Content>
+
+            {showDialog && (
+                <Modal
+                    title="CANCELAR?"
+                    confirmText="Sim"
+                    cancelText="Não"
+                    handleCancel={HandleCancel}
+                    handleConfirm={HandleConfirm}
+                    buttonColors={{
+                        confirmButton: '#BD0000',
+                        cancelButton: '#149911',
+                    }}
+                >
+                    Você deseja cancelar a sua candidatura?
+                </Modal>
+            )}
         </JobApplyContainer>
     );
 };

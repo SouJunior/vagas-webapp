@@ -13,4 +13,25 @@ export const ChooseResumeContainer = styled.div`
     font-size: 16px;
     font-weight: 500;
     color: #515050;
+    gap: 10px;
+`;
+
+export const Attach = styled.button`
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    
+    :hover {
+        color: ${props => props.theme.colors.primaryDark};
+    }
+
+    p {
+        text-decoration: underline;
+        font-weight: 400;
+        color: ${props => props.theme.colors.primary};
+
+        :hover {
+            color: ${props => props.theme.colors.primaryDark};
+        }
+    }
 `;

@@ -40,6 +40,10 @@ export const UserArea = styled.div`
     width: 100%;
     margin: 0 auto;
     gap: 86px;
+
+    @media (max-width: 1200px) {
+        flex-wrap: wrap;
+      }
 `;
 
 export const Wrapper = styled.div`
@@ -94,3 +98,4 @@ export const JobDetailsWrapper = styled.div`
     width: 100%;
     max-width: 546px;
 `
+

@@ -1,9 +1,12 @@
-import { ChangeEvent, useMemo, useState } from 'react';
-import JobCardItem from '../components/FeedVagas/JobCardItem';
-import { useApi } from '../hooks/useApi';
-import JobDetails from '../components/FeedVagas/JobDetails';
+import { useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from 'react-query';
+import { useApi } from '../hooks/useApi';
+import JobCardItem from '../components/FeedVagas/JobCardItem';
+import JobDetails from '../components/FeedVagas/JobDetails';
+import FeedSearch from '../components/FeedVagas/FeedSearch';
+import Header from '../components/Header';
+import QuickFilter from '../components/FeedVagas/QuickFilter';
 
 import {
     ContentWrapper,
@@ -24,9 +27,6 @@ import {
     JobList,
     QuickFilterContainer,
 } from './styles/FeedVagasStyles';
-import FeedSearch from '../components/FeedVagas/FeedSearch';
-import Header from '../components/Header';
-import QuickFilter from '../components/FeedVagas/QuickFilter';
 
 interface Job {
     id: string;
