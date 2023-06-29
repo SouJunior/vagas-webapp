@@ -5,7 +5,7 @@ interface SubmitProps {
     auth: any;
 }
 
-export const handleSubmit = async ({ e, selectedImage, api, auth }: SubmitProps) => {
+export const handleSubmitForm = async ({ e, selectedImage, api, auth }: SubmitProps) => {
     e.preventDefault();
 
     const formData = new FormData();
