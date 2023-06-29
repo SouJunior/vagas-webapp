@@ -29,37 +29,38 @@ import { useForm } from 'react-hook-form';
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
     const [currChar, setCurrChar] = useState(0);
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [selectedImage, setSelectedImage] = useState<File | null | any>(null);
     const [imagePreview, setImagePreview] = useState<Blob | null>(null);
 
     //TODO: Utilizar essa variável para o tamanho da foto e formato
-    console.log(selectedImage) 
+    // const imgSize =
+    //     !selectedImage.size || selectedImage.size === null
+    //         ? ''
+    //         : selectedImage.size;
 
     const api = useApi();
     const auth = useContext(AuthContext);
 
-    const { register, watch } = useForm();
-
-    function setError(error: string) {
-        if (watch('location') === 'DEFAULT' ?? undefined) {
-            return error;
-        }
-        return;
-    }
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     useEffect(() => {
         setCurrChar(2000 - charCount);
     }, [charCount]);
 
+    const onSubmit = (data: any) => {
+        handleSubmitForm({ data, selectedImage, api, auth });
+    };
+
     return (
         <Container>
             <Header />
-            <form
-                onSubmit={(e) =>
-                    handleSubmitForm({ e, selectedImage, api, auth })
-                }
-            >
-                <ProfileImgWrapper>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <ProfileImgWrapper >
                     <ProfileImg
                         src={
                             imagePreview ||
@@ -85,7 +86,7 @@ export const ProfileSettings: React.FC = () => {
                         />
                     </div>
                     <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
-                    <span>Aqui tem um erro!</span>
+                    <span>Tamanho ou formato inválido.</span>
                 </ProfileImgWrapper>
                 <Main>
                     <Row />
@@ -93,10 +94,15 @@ export const ProfileSettings: React.FC = () => {
                 <Form charQtde={currChar}>
                     <div className="form__left">
                         <InputWrapper>
-                            {HandleInputsRender(inputConfigs)}
+                            {HandleInputsRender(
+                                inputConfigs,
+                                register,
+                                setValue,
+                            )}
                         </InputWrapper>
                     </div>
                     <div className="form__right">
+                        {/*TODO: Isso é um wrapper deveria chamar SelectWrapper */}
                         <Select>
                             <label htmlFor="states">
                                 UF<sup>*</sup>
@@ -105,22 +111,33 @@ export const ProfileSettings: React.FC = () => {
                                 id="states"
                                 defaultValue={'DEFAULT'}
                                 {...register('location', {
-                                    required: 'O campo UF é obrigatório',
+                                    validate: (value) =>
+                                        value !== 'DEFAULT' ||
+                                        'O campo UF é obrigatório',
                                 })}
+                                className={errors.location ? 'error' : ''}
                             >
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
                                 {HandleOptionsRender(location)}
                             </select>
-                            <p style={{ color: 'red' }}>
-                                {setError('O campo UF é obrigatório')}
-                            </p>
+                            {errors.location && (
+                                <p
+                                    style={{
+                                        color: 'red',
+                                        paddingBottom: '8px',
+                                    }}
+                                >
+                                    {errors.location.message?.toString()}
+                                </p>
+                            )}
+
                             <label htmlFor="companyType">Tipo de Empresa</label>
                             <select
                                 id="companyType"
-                                name="type"
                                 defaultValue={'DEFAULT'}
+                                {...register('type')}
                             >
                                 <option value="DEFAULT" disabled>
                                     --
@@ -132,8 +149,8 @@ export const ProfileSettings: React.FC = () => {
                             </label>
                             <select
                                 id="companySize"
-                                name="size"
                                 defaultValue={'DEFAULT'}
+                                {...register('size')}
                             >
                                 <option value="DEFAULT" disabled>
                                     --
@@ -152,8 +169,8 @@ export const ProfileSettings: React.FC = () => {
                         <div className="form__textarea">
                             <label>Decrição da empresa</label>
                             <textarea
-                                name="description"
                                 placeholder="Breve descrição da empresa"
+                                {...register('description')}
                                 onChange={(e) =>
                                     setCharCount(e.target.value.length)
                                 }
