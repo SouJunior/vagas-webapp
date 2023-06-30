@@ -1,20 +1,46 @@
 import React from 'react';
-import { ModalContainer, ModalContent, ModalTitle, ModalText } from './styles';
+import {
+    ModalContent,
+    ModalTitle,
+    ModalText,
+    CloseModal,
+    ModalCloseButton,
+} from './styles';
 
 import ModalIcon from '../../../../assets/imgs/mask-group.svg';
+import { useNavigate } from 'react-router';
+import { MaskBackground } from '../../../LoginCard/PopUpRegisterSuccess/styles';
 
-const JobModal: React.FC = () => {
+interface ConfirmModalProps {
+    setConfirmModal: (value: boolean) => void;
+}
+
+const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
+    const navigate = useNavigate();
     return (
-        <ModalContainer>
+        <MaskBackground>
             <ModalContent>
-                <ModalTitle>Atualizações salvas</ModalTitle>
-                <ModalText>
-                    Suas atualizações foram alteradas com sucesso
-                </ModalText>
-                <img src={ModalIcon} alt="Sucesso" />
+                <CloseModal>
+                    <ModalCloseButton
+                        onClick={() => {
+                            setConfirmModal(false);
+                            navigate('/company-portal');
+                            document.body.style.overflow = 'auto';
+                        }}
+                    >
+                        X
+                    </ModalCloseButton>
+                </CloseModal>
+                <div className="modal--texts">
+                    <ModalTitle>Atualizações salvas</ModalTitle>
+                    <ModalText>
+                        Suas atualizações foram alteradas com sucesso
+                    </ModalText>
+                    <img src={ModalIcon} alt="Sucesso" />
+                </div>
             </ModalContent>
-        </ModalContainer>
+        </MaskBackground>
     );
 };
 
-export default JobModal;
+export default ConfirmModal;
