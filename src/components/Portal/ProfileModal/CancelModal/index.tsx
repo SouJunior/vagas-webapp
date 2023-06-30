@@ -1,40 +1,44 @@
-import React from 'react';
+import { useNavigate } from 'react-router';
 import {
-    ModalContainer,
     ModalContent,
     ModalTitle,
     ModalText,
     ButtonContent,
-    CancelButton,
-    ConfirmButton,
 } from './styles';
+import { Button } from '../../../Button';
+import { MaskBackground } from '../../../LoginCard/PopUpRegisterSuccess/styles';
 
 interface CancelModalProps {
-    handleConfirmCancel: () => void;
     setCancelModal: (value: boolean) => void;
 }
 
 function CancelModal({
-    handleConfirmCancel,
-    setCancelModal,
+    setCancelModal
 }: CancelModalProps) {
+
+    const navigate = useNavigate()
     return (
-        <ModalContainer>
+        <MaskBackground>
             <ModalContent>
                 <ModalTitle>Deseja Cancelar ?</ModalTitle>
                 <ModalText>
                     Tem certeza que deseja cancelar a operação ?
                 </ModalText>
                 <ButtonContent>
-                    <ConfirmButton onClick={() => handleConfirmCancel}>
+                    <Button onClick={() => {
+                        document.body.style.overflow = 'auto';
+                        navigate('/company-portal')}}>
                         Sim
-                    </ConfirmButton>
-                    <CancelButton onClick={() => setCancelModal(false)}>
+                    </Button>
+                    <Button background='outline' onClick={() => {
+                        document.body.style.overflow = 'auto';
+                        setCancelModal(false)
+                    }}>
                         Não
-                    </CancelButton>
+                    </Button>
                 </ButtonContent>
             </ModalContent>
-        </ModalContainer>
+        </MaskBackground>
     );
 }
 
