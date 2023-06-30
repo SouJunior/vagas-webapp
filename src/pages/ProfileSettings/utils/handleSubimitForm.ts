@@ -12,9 +12,10 @@ interface SubmitProps {
     selectedImage: any;
     api: any;
     auth: any;
+    setConfirmModal: any;
 }
 
-export const handleSubmitForm = async ({data, selectedImage, api, auth }: SubmitProps) => {
+export const handleSubmitForm = async ({data, selectedImage, api, auth, setConfirmModal }: SubmitProps) => {
     console.log(data)
     const formData = new FormData();
     formData.append('companyType', data.type);
@@ -34,8 +35,12 @@ export const handleSubmitForm = async ({data, selectedImage, api, auth }: Submit
 
     try {
         const res = await api.updateCompanyProfile(formData);
+        if(res) {
+            setConfirmModal(true)
+            window.scrollTo(0, 0);
+            document.body.style.overflow = 'hidden';
+        }
         return res;
-        //TODO mensagem de envio com sucesso / pop-up "atualizações salvas"
     } catch (error) {
         //TODO ver mensagem de erro para o usuário
     }
