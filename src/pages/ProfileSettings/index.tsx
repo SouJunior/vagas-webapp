@@ -25,12 +25,23 @@ import { handleSubmitForm } from './utils/handleSubimitForm';
 import { handleImgFile } from './utils/handleImgFile';
 
 import { useForm } from 'react-hook-form';
+import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
+import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
     const [currChar, setCurrChar] = useState(0);
     const [selectedImage, setSelectedImage] = useState<File | null | any>(null);
     const [imagePreview, setImagePreview] = useState<Blob | null>(null);
+    const [cancelModal, setCancelModal] = useState(false);
+    const [confirmModal, setConfirmModal] = useState(false);
+
+    const handleCancelModal = (e: any) => {
+        e.preventDefault();
+        document.body.style.overflow = 'hidden';
+        setCancelModal(true);
+        window.scrollTo(0, 0);
+    };
 
     //TODO: Utilizar essa variável para o tamanho da foto e formato
     // const imgSize =
@@ -53,14 +64,14 @@ export const ProfileSettings: React.FC = () => {
     }, [charCount]);
 
     const onSubmit = (data: any) => {
-        handleSubmitForm({ data, selectedImage, api, auth });
+        handleSubmitForm({ data, selectedImage, api, auth, setConfirmModal });
     };
 
     return (
         <Container>
             <Header />
             <form onSubmit={handleSubmit(onSubmit)}>
-                <ProfileImgWrapper >
+                <ProfileImgWrapper>
                     <ProfileImg
                         src={
                             imagePreview ||
@@ -180,13 +191,26 @@ export const ProfileSettings: React.FC = () => {
                     </div>
 
                     <div className="form__change">
-                        <Button type="submit">Alterar</Button>
+                        <Button
+                            type="submit"
+                        >
+                            Alterar
+                        </Button>
                     </div>
                     <div className="form__cancel">
-                        <Button background="outline">Cancelar</Button>
+                        <Button
+                            background="outline"
+                            onClick={handleCancelModal}
+                        >
+                            Cancelar
+                        </Button>
                     </div>
                 </Form>
             </form>
+
+            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal}/>}
+
+            {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
                 <Main>
                     <Row />
