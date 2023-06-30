@@ -16,7 +16,6 @@ interface SubmitProps {
 }
 
 export const handleSubmitForm = async ({data, selectedImage, api, auth, setConfirmModal }: SubmitProps) => {
-    console.log(data)
     const formData = new FormData();
     formData.append('companyType', data.type);
     formData.append('companySize', data.size);
