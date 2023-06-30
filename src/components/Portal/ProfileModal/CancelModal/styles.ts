@@ -1,26 +1,17 @@
 import styled from 'styled-components';
 
-export const ModalContainer = styled.div`
-    position: fixed;
-    width: 1366px;
-    height: 1402px;
-    background-color: rgba(0, 0, 0, 0.7);
-    mix-blend-mode: normal;
-    z-index: 1000;
-`;
-
 export const ModalContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 54px 152px;
+    padding: 60px 30px;
     gap: 20px;
-    position: absolute;
-    width: 809px;
-    height: 405.78px;
-    left: calc(50% - 809px / 2 + 0.5px);
-    top: 364px;
-    background: #ffffff;
+    position: fixed;
+
+    background: #FDFFFC;
+
+    border: 2px solid ${({theme}) => theme.colors.primaryDark};
+    border-radius: 10px;
 `;
 
 export const ModalText = styled.p`
@@ -30,7 +21,7 @@ export const ModalText = styled.p`
     font-size: 22px;
     line-height: 26px;
 
-    color: #777777;
+    color: ${({theme}) => theme.colors.mutedDarker};
 `;
 
 export const ModalTitle = styled.h1`
@@ -41,32 +32,13 @@ export const ModalTitle = styled.h1`
     font-weight: 700;
     font-size: 40px;
     line-height: 48px;
-    color: #1165ba;
+    color: ${({theme}) => theme.colors.primaryDark};
 `;
 
 export const ButtonContent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     margin-top: 30px;
-`;
-
-export const ConfirmButton = styled.button`
-    width: 252px;
-    height: 58px;
-    border-radius: 4px;
-    background-color: rgba(17, 101, 186, 1);
-    color: #fff;
-    line-height: 55px;
-    margin: 15px;
-`;
-export const CancelButton = styled.button`
-    width: 252px;
-    height: 58px;
-    border-radius: 4px;
-    border: 1px solid;
-    line-height: 55px;
-    color: rgba(17, 101, 186, 1);
-    margin: 15px;
+    gap: 15px;
 `;
