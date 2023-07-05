@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Teste from "../../../assets/imgs/arrowDown.svg";
+import ArrowDown from "../../../assets/imgs/arrowDown.svg";
 
 export const Select = styled.select`
     width: 100%;
@@ -9,7 +9,7 @@ export const Select = styled.select`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url(${Teste}); 
+    background-image: url(${ArrowDown}); 
     background-position: calc(100% - 16px) center; 
     background-repeat: no-repeat; 
     background-size: 8px; 
