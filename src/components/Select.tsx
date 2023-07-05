@@ -13,7 +13,7 @@ export const SelectWrapper = styled.div`
     }
     select {
         border: 1px solid ${({ theme }) => theme.colors.mutedDark};
-
+        color: ${({ theme }) => theme.colors.primaryDark};
         height: 55px;
         width: 100%;
         border-radius: 6px;
@@ -28,6 +28,17 @@ export const SelectWrapper = styled.div`
         :focus {
             border-color: ${({ theme }) => theme.colors.primary};
         }
+
+    }
+
+    .error {
+        outline: none;
+        border-color: ${({ theme }) => theme.colors.danger};
+
+        :focus {
+            border-color: ${({ theme }) => theme.colors.danger};
+        }
+        
     }
 `;
 

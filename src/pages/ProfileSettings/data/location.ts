@@ -1,4 +1,4 @@
-const countryStates = [
+const states = [
     {
         nome: 'Acre',
         sigla: 'AC',
@@ -109,4 +109,9 @@ const countryStates = [
     },
 ];
 
-export default countryStates;
+const location = states.map((item, index) => ({
+  ...item,
+  id: index + 1
+}));
+
+export default location;
