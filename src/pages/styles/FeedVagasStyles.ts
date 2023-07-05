@@ -22,7 +22,7 @@ export const FilterContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 200px;
-  background-color: ${({theme}) => theme.colors.primary}};
+  background-color: ${({theme}) => theme.colors.primary};
   background-image: url(${FeedJobsBackground});
 
   div {
@@ -94,14 +94,10 @@ export const JobList = styled.div`
 `;
 
 export const JobDetailsWrapper = styled.div`
-  width: 40%;
   margin-top: 52px;
   display: flex;
   justify-content: center;
 
-  @media (max-width: 1200px) {
-    width: 100%;
-  }
 `;
 
 export const NoJobsContainer = styled.div`

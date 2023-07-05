@@ -23,7 +23,6 @@ export const FilterContainer = styled.div`
 
   div {
     width: 100%;
-    overflow: hidden;
   }
 `;
 
@@ -56,6 +55,7 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
     grid-column: 1 / -1;
+    margin-bottom: 72px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -98,4 +98,21 @@ export const JobDetailsWrapper = styled.div`
     width: 100%;
     max-width: 546px;
 `
+
+export const ResumeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`;
+
+export const ResumePreview = styled.div`
+    display: flex;
+    width: 100%;
+    height: 700px;
+    border-radius: 6px;
+
+    iframe {
+        border-radius: 6px;
+    }
+`;
 

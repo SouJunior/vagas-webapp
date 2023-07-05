@@ -113,7 +113,15 @@ export const useApi = () => ({
       searchJobs: async ( keyword: string, page: number = 1) => {
         const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`
         const res: any = await api.get(url);
-        console.log(res.data)
           return res.data;
       },
+
+      getUserCurriculum: async (token: string | null) => {
+        const res: any = await api.get(`/curriculum`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        });
+        return res.data;
+      }
 });

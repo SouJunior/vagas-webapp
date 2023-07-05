@@ -14,7 +14,11 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 16px;
   overflow-y: scroll;
-  padding: 28px
+  padding: 28px;
+
+  @media (min-width: 1440px) {
+    width: 546px
+  }
 `;
 
 export const Title = styled.h2`
