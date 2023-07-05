@@ -6,6 +6,10 @@ export const MaskBackground = styled.div`
 
     position: absolute;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background: rgba(93, 95, 93, 0.3);
     backdrop-filter: blur(7px);
 
@@ -23,9 +27,6 @@ export const Popup = styled.div`
     max-width: 620px;
 
     position: absolute;
-
-    top: 25%;
-    left: 25%;
 
     border: 2px solid #1165ba;
     border-radius: 10px;

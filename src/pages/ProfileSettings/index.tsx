@@ -1,5 +1,5 @@
 import profilePicture from '../../assets/imgs/profile-image.svg';
-import { Form, ProfilePicWrapper } from './style';
+import { Form, ProfileImgWrapper } from './style';
 import {
     Container,
     Copyright,
@@ -10,88 +10,162 @@ import {
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
-// import { Footer } from '../../components/Footer';
 import Footer from '../../components/Portal/Footer';
 import inputConfigs from './data/inputSettings';
-import countryStates from './data/countryStates';
-import typeCompany from './data/typeCompany';
+import location from './data/location';
+import companyType from './data/companyType';
 import Header from '../../components/Portal/Header';
-import { ProfilePicture } from '../../components/Portal/Header/styles';
+import { ProfileImg } from '../../components/Portal/Header/styles';
 import { HandleInputsRender } from './utils/handleInputsRender';
-import { handleOptionsRender } from './utils/handleOptionsRender';
+import { HandleOptionsRender } from './utils/handleOptionsRender';
+import { useContext, useEffect, useState } from 'react';
 import { useApi } from '../../hooks/useApi';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { handleSubmitForm } from './utils/handleSubimitForm';
+import { handleImgFile } from './utils/handleImgFile';
+
+import { useForm } from 'react-hook-form';
+import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
+import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
 
 export const ProfileSettings: React.FC = () => {
+    const [charCount, setCharCount] = useState(0);
+    const [currChar, setCurrChar] = useState(0);
+    const [selectedImage, setSelectedImage] = useState<File | null | any>(null);
+    const [imagePreview, setImagePreview] = useState<Blob | null>(null);
+    const [cancelModal, setCancelModal] = useState(false);
+    const [confirmModal, setConfirmModal] = useState(false);
+
+    const handleCancelModal = (e: any) => {
+        e.preventDefault();
+        document.body.style.overflow = 'hidden';
+        setCancelModal(true);
+        window.scrollTo(0, 0);
+    };
+
+    //TODO: Utilizar essa variável para o tamanho da foto e formato
+    // const imgSize =
+    //     !selectedImage.size || selectedImage.size === null
+    //         ? ''
+    //         : selectedImage.size;
 
     const api = useApi();
+    const auth = useContext(AuthContext);
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
-        const formData = new FormData();
-        formData.append("companyType", e.target.type.value);
-        formData.append("companySize", e.target.size.value);
-        formData.append("location", e.target.states.value);
-        formData.append("companySite", e.target.site.value);
-        formData.append("description", e.target.description.value);
-        formData.append("otherSite[instagram]", e.target.instagram.value);
-        formData.append("otherSite[linkedin]", e.target.linkedin.value);
-        formData.append("otherSite[twitter]", e.target.twitter.value);
-        formData.append("file", e.target.profiPic.value)
+    useEffect(() => {
+        setCurrChar(2000 - charCount);
+    }, [charCount]);
 
-        api.updateCompanyProfile(formData)
-            .then((res) => {
-                //TODO mensagem de envio com sucesso / pop-up "atualizações salvas"
-            })
-            .catch((err) => {
-                //TODO ver mensagem de erro para o usuário
-            });
-
+    const onSubmit = (data: any) => {
+        handleSubmitForm({ data, selectedImage, api, auth, setConfirmModal });
     };
 
     return (
         <Container>
             <Header />
-            <form onSubmit={handleSubmit}>
-                <ProfilePicWrapper>
-                    <ProfilePicture
-                        src={profilePicture}
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <ProfileImgWrapper>
+                    <ProfileImg
+                        src={
+                            imagePreview ||
+                            (auth.user.profile ?? profilePicture)
+                        }
                         alt="Foto de perfil"
                         width={'10%'}
                     />
                     <div className="upload">
                         <label htmlFor="profiPic">Alterar foto</label>
-                        <input name="profPic" id="profiPic" type="file" accept=".jpg, .jpeg, .png" />
+                        <input
+                            name="profPic"
+                            id="profiPic"
+                            type="file"
+                            accept=".jpg, .jpeg, .png"
+                            onChange={(e: any) =>
+                                handleImgFile({
+                                    e,
+                                    setSelectedImage,
+                                    setImagePreview,
+                                })
+                            }
+                        />
                     </div>
-                    <p>Somente formatos jpg, jpeg e png</p>
-                    <span>Aqui tem um erro!</span>
-                </ProfilePicWrapper>
+                    <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
+                    <span>Tamanho ou formato inválido.</span>
+                </ProfileImgWrapper>
                 <Main>
                     <Row />
                 </Main>
-                <Form>
+                <Form charQtde={currChar}>
                     <div className="form__left">
                         <InputWrapper>
-                            {HandleInputsRender(inputConfigs)}
+                            {HandleInputsRender(
+                                inputConfigs,
+                                register,
+                                setValue,
+                            )}
                         </InputWrapper>
                     </div>
                     <div className="form__right">
+                        {/*TODO: Isso é um wrapper deveria chamar SelectWrapper */}
                         <Select>
-                            <label>
+                            <label htmlFor="states">
                                 UF<sup>*</sup>
                             </label>
-                            <select name="states">
-                                <option value="">Selecione um estado</option>
-                                {handleOptionsRender(countryStates)}
+                            <select
+                                id="states"
+                                defaultValue={'DEFAULT'}
+                                {...register('location', {
+                                    validate: (value) =>
+                                        value !== 'DEFAULT' ||
+                                        'O campo UF é obrigatório',
+                                })}
+                                className={errors.location ? 'error' : ''}
+                            >
+                                <option value="DEFAULT" disabled>
+                                    --
+                                </option>
+                                {HandleOptionsRender(location)}
                             </select>
-                            <label>Tipo de Empresa</label>
-                            <select name="type">
-                                <option value="">Selecione um tipo</option>
-                                {handleOptionsRender(typeCompany)}
+                            {errors.location && (
+                                <p
+                                    style={{
+                                        color: 'red',
+                                        paddingBottom: '8px',
+                                    }}
+                                >
+                                    {errors.location.message?.toString()}
+                                </p>
+                            )}
+
+                            <label htmlFor="companyType">Tipo de Empresa</label>
+                            <select
+                                id="companyType"
+                                defaultValue={'DEFAULT'}
+                                {...register('type')}
+                            >
+                                <option value="DEFAULT" disabled>
+                                    --
+                                </option>
+                                {HandleOptionsRender(companyType)}
                             </select>
-                            <label>Porte da Empresa</label>
-                            <select name="size">
-                                <option value="">Selecione um tamanho</option>
+                            <label htmlFor="companySize">
+                                Porte da Empresa
+                            </label>
+                            <select
+                                id="companySize"
+                                defaultValue={'DEFAULT'}
+                                {...register('size')}
+                            >
+                                <option value="DEFAULT" disabled>
+                                    --
+                                </option>
                                 <option value="SMALL SIZE">
                                     Pequeno - até 49 funcionários
                                 </option>
@@ -105,18 +179,38 @@ export const ProfileSettings: React.FC = () => {
                         </Select>
                         <div className="form__textarea">
                             <label>Decrição da empresa</label>
-                            <textarea name="description" placeholder="Breve descrição da empresa" />
+                            <textarea
+                                placeholder="Breve descrição da empresa"
+                                {...register('description')}
+                                onChange={(e) =>
+                                    setCharCount(e.target.value.length)
+                                }
+                            />
                         </div>
+                        <span>{currChar} caracteres restantes</span>
                     </div>
 
                     <div className="form__change">
-                        <Button type="submit">Alterar</Button>
+                        <Button
+                            type="submit"
+                        >
+                            Alterar
+                        </Button>
                     </div>
                     <div className="form__cancel">
-                        <Button background="outline">Cancelar</Button>
+                        <Button
+                            background="outline"
+                            onClick={handleCancelModal}
+                        >
+                            Cancelar
+                        </Button>
                     </div>
                 </Form>
             </form>
+
+            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal}/>}
+
+            {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
                 <Main>
                     <Row />

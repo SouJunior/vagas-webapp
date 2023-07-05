@@ -11,7 +11,7 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Index = () => {
+const Menu = () => {
     const auth: any = useContext(AuthContext);
 
     const [visible, setVisible] = useState(false);
@@ -21,6 +21,11 @@ const Index = () => {
     const handleNavigation = () => {
         navigate('/profile-settings');
     };
+
+    const logout = () => {
+        auth.logout()
+        navigate('/')
+    }
 
     return (
         <Container>
@@ -77,10 +82,7 @@ const Index = () => {
                         Termo de uso e Privacidade
                     </li>
                     <Border />
-                    <li onClick={() => navigate('/login')}>
-                        {/* TODO: Excluir o token do localstorage ou cookie que armazena o token 
-                            isso utilizando a função de logout que já está pronta em useApi.
-                        */}
+                    <li onClick={logout}>
                             <img  src={ExitIcon} alt="sair" />
                             Sair do Portal de Vagas
                     </li>
@@ -90,4 +92,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Menu;

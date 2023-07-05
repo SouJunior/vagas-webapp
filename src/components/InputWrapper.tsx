@@ -8,13 +8,14 @@ interface InputWrapperProps {
 const Wrapper = styled.div`
     position: relative;
     label {
-        color: ${({ theme }) => theme.colors.black};
+        color: ${({ theme }) => theme.colors.mutedDarker};
         font-size: 90%;
         font-weight: 500;
     }
 
     input {
         border: 1px solid ${({ theme }) => theme.colors.mutedDark};
+        color: ${({ theme }) => theme.colors.primaryDark};
         border-radius: 5px;
 
         box-sizing: border-box;
@@ -26,6 +27,7 @@ const Wrapper = styled.div`
         margin: 4px 0 12px 0;
 
         ::placeholder {
+            font-weight: 500;
             color: ${({ theme }) => theme.colors.mutedDarker};
         }
 
@@ -34,7 +36,7 @@ const Wrapper = styled.div`
         }
 
         :focus {
-            border-color: ${({ theme }) => theme.colors.primary};
+            border-color: ${({ theme }) => theme.colors.primaryDark};
         }
     }
 
