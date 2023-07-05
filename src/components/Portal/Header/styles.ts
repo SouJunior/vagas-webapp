@@ -1,72 +1,81 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
-export const Header = styled.header`
+export const HeaderWrapper = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     gap: 20px;
-    background-color: #046AD0
-`
-export const ProfilePicture = styled.img`
-    width: 70px;
-    height: 70px;
+    background: ${({ theme }) => theme.colors.primaryLight};
+`;
+
+export const ProfileImg = styled.img`
+    cursor: ${(props) => props.width === '10%' ? 'default' : 'pointer' };
+    width: ${(props) => props.width};  
     border-radius: 50%;
-    background-color: #046AD0;
-    margin-right: 15px;
+    margin: 0 15px;
+    aspect-ratio: 4 / 4;
+    @media (max-width: 540px) {
+        max-width: 100%;
+    }
+`;
+
+export const UserArea = styled.div`
+    display: flex;
+    align-items: self-end;
+    cursor: default;
+
+    div:first-child {
+        flex-direction: column;
+        /* margin-right: 15px; */
+    }
+
+    span {
+        display: flex;
+    }
+`;
+
+export const UserInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* margin-right: 10px; */
 
     @media (max-width: 540px) {
-        width: 40px;
-        height: 40px;
-        margin-right: 8px;
+        margin: 0;
     }
-`
-export const UserButton = styled.button`
-    display: flex;
-    align-items: center;
-    padding-right: 20px;
-    
-    div:first-child {
-       flex-direction: column;
-       margin-right: 15px;
-    }
-`
+`;
+
 export const Name = styled.div`
     font-size: 16px;
     font-weight: 700;
     line-height: 22px;
-    color: #FFFFFF;
-    margin-bottom: 5px;
+    color: #ffffff;
+    margin-bottom: 2px;
+    /* margin-bottom: 5px; */
 
     @media (max-width: 540px) {
-       display: none;
+        display: none;
     }
-`
+`;
 export const Email = styled.div`
     font-size: 14px;
     font-weight: 400;
-    color: #D7D9D7;
+    color: #d7d9d7;
 
     @media (max-width: 540px) {
-       display: none;
+        display: none;
     }
-`
-export const UserInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-right: 10px;
+`;
 
-    @media (max-width: 540px) {
-       margin: 0;
-    }
-`
-export const MenuPicture = styled.img`
+export const OpenMenuBtn = styled.img`
+    cursor: pointer;
     @media (max-width: 540px) {
         width: 15px;
         height: 15px;
     }
-`
+`;
+
 export const HeaderLogo = styled.img`
     padding-left: 20px;
 
@@ -74,4 +83,4 @@ export const HeaderLogo = styled.img`
         width: 140px;
         height: 60px;
     }
-`
+`;

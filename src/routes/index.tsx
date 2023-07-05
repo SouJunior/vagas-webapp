@@ -15,14 +15,15 @@ import ResetPassword from '../pages/ResetPassword';
 import CompanyPortal from '../pages/CompanyPortal';
 import CandidatePortal from '../pages/CandidatePortal';
 import JobApply from '../pages/ApplyJob';
+import { ProfileSettings } from '../pages/ProfileSettings';
 
 export const NavRoutes: React.FC = () => {
     return (
         <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="confirm-email" element={<ConfirmEmail />}></Route>
-            <Route path="recovery-password" element={<ResetPassword />}></Route>
+            <Route path="confirm-email" element={<ConfirmEmail />} />
+            <Route path="recovery-password" element={<ResetPassword />} />
             <Route
                 path="company-portal"
                 element={
@@ -36,6 +37,14 @@ export const NavRoutes: React.FC = () => {
                 element={
                     <RequireAuth>
                         <CandidatePortal />
+                    </RequireAuth>
+                }
+            />
+            <Route
+                path="profile-settings"
+                element={
+                    <RequireAuth>
+                        <ProfileSettings />
                     </RequireAuth>
                 }
             />

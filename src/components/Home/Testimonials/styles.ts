@@ -4,6 +4,10 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 40px;
+
+    @media (max-width: 1200px) {
+        flex-direction: column;
+    }
 `;
 
 export const TestimonialsContainer = styled.div`

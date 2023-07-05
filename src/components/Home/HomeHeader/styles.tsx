@@ -1,13 +1,19 @@
 import styled, { css } from 'styled-components';
 
-interface Props {
+interface HeaderProps {
+    isActive: boolean;
+    isMobileOpen: boolean;
+}
+
+interface ButtonsProps {
     isActive: boolean;
 }
 
-export const Header = styled.header<Props>`
+export const Header = styled.header<HeaderProps>`
     display: flex;
     border: 1px solid rgba(0, 0, 0, 0.05);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+    filter: ${({ isMobileOpen }) =>
+        isMobileOpen ? 'none' : 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))'};
     gap: 12px;
     align-items: center;
     top: 0;
@@ -20,15 +26,22 @@ export const Header = styled.header<Props>`
     transition: height 0.3s ease-in-out;
     z-index: 998;
 
+    @media (max-width: 1023px) {
+        justify-content: flex-start;
+    }
+
+    ${({ isMobileOpen }) =>
+        isMobileOpen &&
+        css`
+            height: 80px;
+        `}
+
     ${({ isActive }) =>
         isActive &&
         css`
-            height: 38px;
             background-color: #fff;
-            height: 100px;
+            height: 80px;
             padding: 20px;
-            left: 50%;
-            transform: translateX(-50%);
             transition: height 0.3s ease-in-out;
         `}
 `;
@@ -48,7 +61,16 @@ export const NavTitle = styled.div`
     }
 `;
 
-export const RegisterButton = styled.button<Props>`
+export const HeaderBtns = styled.div`
+    display: flex;
+    gap: 10px;
+
+    @media (max-width: 835px) {
+        display: none;
+    }
+`;
+
+export const RegisterButton = styled.button<ButtonsProps>`
     background-color: ${({ theme }) => theme.colors.primary};
     font-size: 18px;
     font-weight: 600;
@@ -76,7 +98,7 @@ export const RegisterButton = styled.button<Props>`
               `}
 `;
 
-export const LoginButton = styled(RegisterButton)<Props>`
+export const LoginButton = styled(RegisterButton)<ButtonsProps>`
     background-color: transparent;
     color: ${({ theme }) => theme.colors.primary};
     font-size: 18px;
@@ -87,5 +109,135 @@ export const LoginButton = styled(RegisterButton)<Props>`
     :hover {
         background-color: ${({ theme }) => theme.colors.primary};
         color: #fff;
+    }
+`;
+
+export const MobileHeader = styled.nav`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255);
+    position: fixed;
+    z-index: 998;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    animation: fadeIn 0.5s;
+    animation-play-state: running;
+    animation-fill-mode: both;
+    transition: all 0.2s;
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            height: 0px;
+            transform: translateY(
+                -100%
+            ); /* Adicione esta linha para animar o translateY */
+        }
+        to {
+            opacity: 1;
+            height: 100vh;
+            transform: translateY(
+                0%
+            ); /* Adicione esta linha para animar o translateY */
+        }
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 80%;
+
+        li {
+            text-transform: capitalize;
+            font-size: 22pt;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px 15px;
+            color: ${({theme}) => theme.colors.primary};
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-image: linear-gradient(
+                ${({ theme }) => theme.colors.primary},
+                ${({ theme }) => theme.colors.primary}
+            );
+            background-size: 0% 3px;
+            background-repeat: no-repeat;
+            transition: background-size 0.3s;
+            margin: 5px 0;
+            background-position: 50% calc(100% - 0px);
+            :hover {
+                background-size: 100% 3px;
+            }
+        }
+    }
+
+    @media (min-width: 835px) {
+        display: none;
+    }
+
+    @media only screen and (min-width: 769px) and (max-width: 1023px) {
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+
+            li {
+                text-transform: uppercase;
+                font-size: 35pt;
+                font-weight: 600;
+                cursor: pointer;
+                padding: 5px 15px;
+                color: black;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                background-image: linear-gradient(
+                    ${({ theme }) => theme.colors.primary},
+                    ${({ theme }) => theme.colors.primary}
+                );
+                background-size: 0% 3px;
+                background-repeat: no-repeat;
+                transition: background-size 0.3s;
+                margin: 5px 0;
+                background-position: 50% calc(100% - 0px);
+                :hover {
+                    background-size: 100% 3px;
+                }
+            }
+
+            .contact {
+                background-color: ${({ theme }) => theme.colors.primary};
+                border-radius: 12px;
+                transition: 0.2s;
+                background-image: none;
+                display: flex;
+                align-items: center;
+                text-transform: uppercase;
+                text-decoration: none;
+                color: white;
+                font-size: 28pt;
+                font-weight: 600;
+                margin-top: 3rem;
+                padding: 1rem;
+            }
+        }
+    }
+`;
+
+export const Menu = styled.div`
+    display: none;
+    color: ${({ theme }) => theme.colors.primary};
+
+    @media (max-width: 835px) {
+        display: flex;
+        /* margin-left: 2rem; */
     }
 `;

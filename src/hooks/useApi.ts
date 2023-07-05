@@ -1,11 +1,6 @@
 import api from '../services/api';
 
 export const useApi = () => ({
-    validateToken: async (token: string) => {
-        const res: any = await api.post('/auth/login', { token });
-        return res.data;
-    },
-
     login: async (email: string, password: string, type: string | any) => {
         const res: any = await api.post('/auth/login', {
             email,
@@ -15,12 +10,20 @@ export const useApi = () => ({
         return res.data;
     },
 
-    logout: async () => {
-        const res = await api.post('/logout');
+    validateToken: async (token: string) => {
+        const config = {
+            headers: { Authorization: `Bearer ${token}` },
+        };
+        const res: any = await api.get('/auth/user-logged', config);
         return res.data;
     },
 
-    registerUser: async (name: string, email: string, password: string, confirmPassword: string) => {
+    registerUser: async (
+        name: string,
+        email: string,
+        password: string,
+        confirmPassword: string,
+    ) => {
         const res: any = await api.post('/user', {
             name,
             email,
@@ -47,58 +50,76 @@ export const useApi = () => ({
         return res.data;
     },
 
-    createJob: async (JobData: any) => {
-      const token = localStorage.getItem('authToken');
-      const headers = {
-        Authorization: `Bearer ${token}`,
-    };  
-      const res: any = await api.post('/job', {JobData}, {headers})
-        return res.data;
-      },
-
     userRecoveryPassword: async (email: string) => {
-      const res: any = await api.patch('/user/recovery_password', {
-        email,
-      });
-      return res.data;
+        const res: any = await api.patch('/user/recovery_password', {
+            email,
+        });
+        return res.data;
     },
-  
+
     companyRecoveryPassword: async (email: string) => {
-      const res: any = await api.patch('/company/recovery-password', {
-        email,
-      });
-      return res.data;
+        const res: any = await api.patch('/company/recovery-password', {
+            email,
+        });
+        return res.data;
+    },
+
+    userUpdatePassword: async (
+        password: string,
+        confirmPassword: string,
+        recoverPasswordToken: string,
+    ) => {
+        const res: any = await api.patch('/user/update_password', {
+            password,
+            confirmPassword,
+            recoverPasswordToken,
+        });
+        return res.data;
+    },
+
+    companyUpdatePassword: async (
+        password: string,
+        confirmPassword: string,
+        recoverPasswordToken: string,
+    ) => {
+        const res: any = await api.patch('/company/update_password', {
+            password,
+            confirmPassword,
+            recoverPasswordToken,
+        });
+        return res.data;
+    },
+
+    updateCompanyProfile: async (formData: any) => {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        };
+        const res: any = await api.put('/company/edit', formData, { headers });
+        return res.data;
+    },
+
+    createJob: async (JobData: any) => {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        const res: any = await api.post('/job', { JobData }, { headers });
+        return res.data;
     },
     
-    userUpdatePassword: async (password: string, confirmPassword: string, recoverPasswordToken: string) => {
-      const res: any = await api.patch('/user/update_password', {
-        password,
-        confirmPassword,
-        recoverPasswordToken,
-      });
-      return res.data;
-    },
-
-    companyUpdatePassword: async (password: string, confirmPassword: string, recoverPasswordToken: string) => {
-      const res: any = await api.patch('/company/update_password', {
-        password,
-        confirmPassword,
-        recoverPasswordToken,
-      });
-      return res.data;
-    },
-
-      getJobs: async (page: number = 1, order: string = "ASC") => {
+    getJobs: async (page: number = 1, order: string = 'ASC') => {
         const url = `/job?order=${order}&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
-          return res.data;
-      },
+        return res.data;
+    },
 
       getJobById: async (id: number) => {
         const url = `/job/${id}`
         const res: any = await api.get(url);
-          return res.data;
-      },
+        return res.data;
+    },
 
       getCompanyById: async (id: string | null) => {
         const res: any = await api.get(`/company/${id}`);
@@ -108,7 +129,7 @@ export const useApi = () => ({
       getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;
-      },
+    },
 
       searchJobs: async ( keyword: string, page: number = 1) => {
         const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`

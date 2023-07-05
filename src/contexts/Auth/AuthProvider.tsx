@@ -5,40 +5,46 @@ import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [isAuth, setIsAuth] = useState<boolean | any>(null);
     const [isLogin, setIsLogin] = useState<'login' | 'register'>('login');
 
     const api = useApi();
 
-    // Vai executar uma vez sempre que o componente for renderizado
-    // useEffect(() => {
+    const validateToken = async () => {
+        const storagedToken = localStorage.getItem('authToken');
 
-    // }, [api]);
-
-    // const validateToken = async () => {
-    //     const storagedData = localStorage.getItem('authToken');
-
-    //     if (storagedData) {
-    //         const res = await api.validateToken(storagedData);
-    //         if (res.info) {
-    //             setUser(res.info);
-    //         }
-    //     }
-    // };
-    // validateToken();
+        if (storagedToken) {
+            const res = await api.validateToken(storagedToken);
+            if (res) {
+                setUser(res);
+                setIsAuth(true);
+            } else {
+                setIsAuth(false);
+            }
+        } else {
+            setIsAuth(false);
+        }
+    };
 
     const login = async (email: string, password: string, type: string) => {
         const res = await api.login(email, password, type);
-
         if (res.info && res.token) {
             setUser(res.info);
             setToken(res.token);
-            return true;
         }
-        return false;
+        return res;
     };
 
+    /**
+     * @param authToken key
+     * @param token value
+     */
     const setToken = (token: string) => {
         localStorage.setItem('authToken', token);
+    };
+
+    const logout = async () => {
+        localStorage.removeItem('authToken')
     };
 
     const register = async (
@@ -83,8 +89,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         return false;
     };
 
-    const logout = async () => {};
-
     return (
         <AuthContext.Provider
             value={{
@@ -95,6 +99,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
                 logout,
                 isLogin,
                 setIsLogin,
+                validateToken,
+                isAuth
             }}
         >
             {children}

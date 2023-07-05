@@ -7,28 +7,28 @@ interface InputWrapperProps {
 
 const Wrapper = styled.div`
     position: relative;
-
     label {
-        color: ${({ theme }) => theme.colors.black};
+        color: ${({ theme }) => theme.colors.mutedDarker};
         font-size: 90%;
         font-weight: 500;
     }
 
     input {
         border: 1px solid ${({ theme }) => theme.colors.mutedDark};
+        color: ${({ theme }) => theme.colors.primaryDark};
         border-radius: 5px;
 
         box-sizing: border-box;
         outline: none;
 
         width: 100%;
-        height: 48px;
+        height: 55px;
         padding: 0.7rem 1rem;
-        padding-right: 5rem;
-        margin-top: 6px;
+        margin: 4px 0 12px 0;
 
         ::placeholder {
-            color: ${({ theme }) => theme.colors.mutedDark};
+            font-weight: 500;
+            color: ${({ theme }) => theme.colors.mutedDarker};
         }
 
         :hover {
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
         }
 
         :focus {
-            border-color: ${({ theme }) => theme.colors.primary};
+            border-color: ${({ theme }) => theme.colors.primaryDark};
         }
     }
 
