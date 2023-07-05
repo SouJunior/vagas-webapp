@@ -1,10 +1,10 @@
 import {
-    Header,
-    ProfilePicture,
-    UserButton,
+    HeaderWrapper,
+    ProfileImg,
+    UserArea,
     Name,
     Email,
-    MenuPicture,
+    OpenMenuBtn,
     HeaderLogo,
     UserInfo,
 } from './styles';
@@ -17,21 +17,21 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-const Index = () => {
+const Header = () => {
     const auth: any = useContext(AuthContext);
     const navigate = useNavigate();
 
     //TODO: Ao utilizar esse componente header, temos uma aninhamento de redirecionamento
     // ao clicar no link que redireciona para a pagina atual, sobrepondo vários redirecionamentos
-    const handleNavigation = () => {
-        navigate('/handle-profile');
-    };
+    // const handleNavigation = () => {
+    //     navigate('/profile-settings');
+    // };
 
     const [visible, setVisible] = useState(false);
 
     return (
         <>
-            <Header>
+            <HeaderWrapper>
                 <div>
                     <HeaderLogo
                         src={LogoImage}
@@ -40,31 +40,35 @@ const Index = () => {
                         alt="logo"
                     />
                 </div>
-                <UserButton>
-                    <ProfilePicture
-                        onClick={handleNavigation}
-                        src={ProfileImage}
-                        alt="foto de perfil"
-                        width={'20%'}
-                    />
-                    <UserInfo onClick={() => setVisible(!visible)}>
-                        {auth.user.type === 'USER' ? (
-                            <Name>{auth.user.name}</Name>
-                        ) : (
-                            <Name>{auth.user.companyName}</Name>
-                        )}
-                        <Email>{auth.user.email}</Email>
-                    </UserInfo>
-                    <MenuPicture
-                        onClick={() => setVisible(!visible)}
-                        src={MenuImage}
-                        alt="menu"
-                    />
-                </UserButton>
-            </Header>
-            {visible && <Menu />}
+                <UserArea>
+                    {/* <span onClick={() => setVisible(!visible)}> */}
+                    <span>
+                        <UserInfo>
+                            {auth.user.type === 'USER' ? (
+                                <Name>{auth.user.name}</Name>
+                            ) : (
+                                <Name>{auth.user.companyName}</Name>
+                            )}
+                            <Email>{auth.user.email}</Email>
+                        </UserInfo>
+                        {/* <OpenMenuBtn src={MenuImage} alt="menu" /> */}
+                    </span>
+                        <ProfileImg
+                            onClick={() => setVisible(!visible)}
+                            // onClick={handleNavigation}
+                            src={auth.user.profile ?? ProfileImage}
+                            alt="foto de perfil"
+                            width={'50px'}
+                        />
+                        {/* <span onClick={() => setVisible(!visible)}>
+                        <UserInfo> ... */}
+                </UserArea>
+            </HeaderWrapper>
+            <span onMouseLeave={() => setVisible(!visible)}>
+                {visible && <Menu />}
+            </span>
         </>
     );
 };
 
-export default Index;
+export default Header;

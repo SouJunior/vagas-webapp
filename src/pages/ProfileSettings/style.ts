@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
-export const ProfilePicWrapper = styled.div`
+export const ProfileImgWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 50px 0 0 0;
 
-    input[type='file']::-webkit-file-upload-button {
-        visibility: hidden;
+    img {
+        margin-bottom: 8px;
     }
+
+    /* input[type='file']::-webkit-file-upload-button {
+        visibility: hidden;
+    } */
 
     label {
         color: #1165ba;
@@ -19,22 +23,22 @@ export const ProfilePicWrapper = styled.div`
         text-decoration: underline;
     }
 
-    input[type="file" i] {
+    input[type='file' i] {
         display: none;
     }
 
     span {
-        color: red;
-        font-size: 0.8em;
-        display: none;
+        color: ${({theme}) => theme.colors.danger};
+        display: ${(props: any) => (props.color > 5000000 ? 'block' : 'none')};
     }
     & > p {
         color: #bababa;
-        font-size: 0.7em;
+        padding-bottom: 4px;
+        font-size: 0.8em;
     }
 `;
 
-export const Form = styled.div`
+export const Form = styled.div<{ charQtde: number }>`
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 80%;
@@ -68,17 +72,41 @@ export const Form = styled.div`
 
     .form__textarea {
         textarea {
-            border: 1px solid #e8e8e8;
+            border: 1px solid
+                ${(props) =>
+                    props.charQtde < 0
+                        ? ({ theme }) => theme.colors.danger
+                        : ({ theme }) => theme.colors.mutedDark};
+            color: ${({ theme }) => theme.colors.primaryDark};
             border-radius: 6px;
             padding: 0.7rem 0 0 1rem;
             width: 100%;
             height: 250px;
             resize: none;
-            border: 1px solid ${({ theme }) => theme.colors.mutedDark};
+            outline: ${(props) => (props.charQtde < 0 ? 'none' : 'default')};
+
+            :hover {
+                border-color: ${({ theme }) => theme.colors.mutedDarker};
+            }
+
+            :focus {
+                border-color: ${(props) =>
+                    props.charQtde < 0
+                        ? ({ theme }) => theme.colors.danger
+                        : ({ theme }) => theme.colors.primaryDark};
+            }
 
             ::placeholder {
                 color: ${({ theme }) => theme.colors.mutedDarker};
             }
         }
+    }
+
+    span {
+        font-weight: 500;
+        color: ${(props) =>
+            props.charQtde < 0
+                ? ({ theme }) => theme.colors.danger
+                : ({ theme }) => theme.colors.mutedDarker};
     }
 `;

@@ -1,4 +1,4 @@
-const inputConfigs = [
+const configs = [
     {
         label: 'E-mail:',
         type: 'email',
@@ -42,5 +42,10 @@ const inputConfigs = [
         placeholder: '@soujunior/twitter',
     },
 ];
+
+const inputConfigs = configs.map((item, index) => ({
+    ...item,
+    id: index + 1
+  }));
 
 export default inputConfigs;
