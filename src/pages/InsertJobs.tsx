@@ -5,7 +5,7 @@ import {
     useRef,
     useState,
 } from 'react';
-import JobCard from '../components/JobCard';
+// import JobCard from '../components/JobCard';
 import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
@@ -241,15 +241,16 @@ export const InsertJobs: FunctionComponent<any> = () => {
                 <section className="w-full max-h-[46.125rem] overflow-scroll">
                     {jobsList.length > 0 ? (
                         jobsList.map((job) => (
-                            <JobCard
-                                key={job.id}
-                                id={job.id}
-                                title={job.title}
-                                description={job.description}
-                                jobType={job.jobType}
-                                createdAt={job.createdAt}
-                                onDeleteJobCard={handleDeleteJobCard}
-                            />
+                            <div key={job.id}>{job.title}</div>
+                            // <JobCard
+                            //     key={job.id}
+                            //     id={job.id}
+                            //     title={job.title}
+                            //     description={job.description}
+                            //     jobType={job.jobType}
+                            //     createdAt={job.createdAt}
+                            //     onDeleteJobCard={handleDeleteJobCard}
+                            // />
                         ))
                     ) : (
                         <div className="border border-dashed border-blue rounded-md text-center font-canada p-24">

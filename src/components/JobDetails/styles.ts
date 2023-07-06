@@ -17,7 +17,7 @@ export const Container = styled.div`
   padding: 28px;
 
   @media (min-width: 1440px) {
-    width: 546px
+    width: 546px;
   }
 `;
 

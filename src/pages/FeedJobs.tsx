@@ -2,30 +2,26 @@ import { useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from 'react-query';
 import { useApi } from '../hooks/useApi';
-import JobCardItem from '../components/FeedVagas/JobCardItem';
-import JobDetails from '../components/FeedVagas/JobDetails';
+import JobCard from '../components/JobCard';
+import JobDetails from '../components/JobDetails';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
 import Header from '../components/Header';
 import QuickFilter from '../components/FeedVagas/QuickFilter';
+import NoJobsSelectedCard from '../components/NoJobSelectedCard';
 
 import {
     ContentWrapper,
     FilterContainer,
-    Icon,
-    InnerContainer,
     JobContainer,
-    JobDetailsWrapper,
     JobsWrapper,
-    Message,
-    NoJobsContainer,
     NoResultsMessage,
     PageTitle,
     ShowMore,
-    Title,
     Wrapper,
     Content,
     JobList,
     QuickFilterContainer,
+    JobDetailsWrapper,
 } from './styles/FeedVagasStyles';
 
 interface Job {
@@ -159,7 +155,7 @@ const FeedJobs = () => {
                                 ) : (
                                     <JobList>
                                         {jobs?.map((job: Job) => (
-                                            <JobCardItem
+                                            <JobCard
                                                 key={job.id}
                                                 id={job.id}
                                                 title={job.title}
@@ -225,21 +221,7 @@ const FeedJobs = () => {
                                             />
                                         </JobDetailsWrapper>
                                     ) : (
-                                        <JobDetailsWrapper>
-                                            <NoJobsContainer>
-                                                <InnerContainer>
-                                                    <Icon />
-                                                </InnerContainer>
-                                                <Title>
-                                                    Selecione uma vaga para ver
-                                                    os detalhes.
-                                                </Title>
-                                                <Message>
-                                                    (Todos os detalhes serão
-                                                    mostrados bem aqui)
-                                                </Message>
-                                            </NoJobsContainer>
-                                        </JobDetailsWrapper>
+                                        <NoJobsSelectedCard />
                                     )}
                                 </>
                             )}
