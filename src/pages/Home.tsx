@@ -69,7 +69,7 @@ import { MockJourneyCard } from '../Mocks/MockJourneyCard';
 import Testimonials from '../components/Home/Testimonials';
 import JourneyModal from '../components/Home/JourneySection/JourneyModal';
 import HomeHeader from '../components/Home/HomeHeader';
-import JobFilter from '../components/Home/HomeJobFilter/JobFilter';
+import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
 
 interface AreaProps {
     id: string;
@@ -210,7 +210,7 @@ export const Home: React.FC = () => {
                         {Areas.map((area: AreaProps) => (
                             <SwiperSlide
                                 key={area.name}
-                                className='swiper-slide-responsive'
+                                className="swiper-slide-responsive"
                             >
                                 <div>
                                     <TechnologyAreaCard
@@ -369,7 +369,7 @@ export const Home: React.FC = () => {
                         maxWidth: '1080px',
                         height: 'auto',
                         margin: '0 auto',
-                        padding: "80px 0"
+                        padding: '80px 0',
                     }}
                     className="mySwiper"
                 >

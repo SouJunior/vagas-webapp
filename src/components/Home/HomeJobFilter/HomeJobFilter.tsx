@@ -2,14 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { Form, FormWrapper, Input, SearchButton } from './styles';
 import { useState } from 'react';
 
-const JobFilter: React.FC = () => {
+const HomeJobFilter: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const navigate = useNavigate();
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        navigate(`/feedvagas?searchTerm=${searchTerm}`);
+        navigate(`/jobs?search=${searchTerm}`);
     };
 
     return (
@@ -37,4 +37,4 @@ const JobFilter: React.FC = () => {
     );
 };
 
-export default JobFilter;
+export default HomeJobFilter;

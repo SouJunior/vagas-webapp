@@ -51,7 +51,7 @@ const JobCardItem: React.FC<Props> = ({
             <Logo src="{companyLogoUrl}" alt={company} />
             <Content>
                 <Title>{title}</Title>
-                <Company>Autofalante Mkt</Company>
+                <Company>{company}</Company>
                 <Location>
                     {city}/{federalUnit}
                 </Location>
