@@ -6,7 +6,7 @@ import JobCard from '../components/JobCard';
 import JobDetails from '../components/JobDetails';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
 import Header from '../components/Header';
-import QuickFilter from '../components/FeedVagas/QuickFilter';
+import QuickFilter from '../components/QuickFilter';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
 
 import {
