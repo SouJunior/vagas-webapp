@@ -13,8 +13,7 @@ export const HandleInputsRenderCandidate = (arr: any): [] => {
                     name={element.name}
                     placeholder={
                         (element.name === 'email' && auth.user.email) ||
-                        (element.name === 'nome' && auth.user.name) ||
-                        element.name.number1 === 'telefone1'
+                        (element.name === 'nome' && auth.user.name)
                     }
                     disabled={element.name === 'email'}
                 />

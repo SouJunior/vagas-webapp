@@ -133,10 +133,9 @@ export const CurriculoWrapper = styled.div`
     }
 `;
 
-export const DeleteButton = styled.button`
-    background: red;
-    height: 55px;
-    width: 10%;
-    padding: 0.7rem 1rem;
-    border-radius: 5px;
+export const LoadCurriculum = styled.div`
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-top: 30px;
 `;

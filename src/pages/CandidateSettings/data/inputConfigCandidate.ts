@@ -9,13 +9,6 @@ const inputConfigs = [
         type: 'email',
         name: 'email',
     },
-    {
-        label: 'Telefone 1:',
-        type: 'number',
-        name: 'numero1',
-        placeholder: '(00) 00000 - 0000',
-    },
-
     ,
 ];
 
