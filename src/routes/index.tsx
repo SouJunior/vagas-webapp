@@ -15,6 +15,7 @@ import ResetPassword from '../pages/ResetPassword';
 import CompanyPortal from '../pages/CompanyPortal';
 import CandidatePortal from '../pages/CandidatePortal';
 import { ProfileSettings } from '../pages/ProfileSettings';
+import { CandidateSettings } from '../pages/CandidateSettings';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -31,16 +32,24 @@ export const NavRoutes: React.FC = () => {
                     </RequireAuth>
                 }
             />
-            <Route 
-                path="candidate-portal" 
+            <Route
+                path="candidate-portal"
                 element={
                     <RequireAuth>
                         <CandidatePortal />
                     </RequireAuth>
                 }
             />
-            <Route 
-                path="profile-settings" 
+            <Route
+                path="candidate-settings"
+                element={
+                    <RequireAuth>
+                        <CandidateSettings />
+                    </RequireAuth>
+                }
+            />
+            <Route
+                path="profile-settings"
                 element={
                     <RequireAuth>
                         <ProfileSettings />
