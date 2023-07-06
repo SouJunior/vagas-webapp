@@ -42,6 +42,10 @@ import {
     MainContent,
     SecondaryTitle,
     Subtitle,
+    Position,
+    Row,
+    Copyright,
+    MainFooter,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
@@ -358,7 +362,16 @@ export const Home: React.FC = () => {
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>
-            <Footer />
+            <Position>
+                <MainFooter>
+                    <Row />
+                </MainFooter>
+                <Footer />
+                <MainFooter>
+                    <Row />
+                </MainFooter>
+            </Position>
+            <Copyright>&copy; 2023 SouJunior</Copyright>
         </>
     );
 };
