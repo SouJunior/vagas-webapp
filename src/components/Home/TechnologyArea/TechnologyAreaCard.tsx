@@ -3,12 +3,11 @@ import { AreaName, Container, IconImage } from './styles';
 interface Props {
     icon: React.ReactNode;
     area: string;
-    onClick: () => void;
 }
 
-const TechnologyAreaCard: React.FC<Props> = ({ icon, area, onClick }) => {
+const TechnologyAreaCard: React.FC<Props> = ({ icon, area }) => {
     return (
-        <Container onClick={onClick}>
+        <Container>
             <IconImage>{icon}</IconImage>
             <AreaName>{area}</AreaName>
         </Container>

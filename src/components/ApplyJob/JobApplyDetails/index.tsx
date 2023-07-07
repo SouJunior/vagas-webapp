@@ -8,8 +8,8 @@ import {
     Text,
     TextContainer,
     Title,
-} from '../../FeedVagas/JobDetails/styles';
-import { CompanyLogo } from '../../FeedVagas/JobDetails/CompanyLogo';
+} from '../../JobDetails/styles';
+import { CompanyLogo } from '../../JobDetails/CompanyLogo';
 
 const JobApplyDetails = ({ Job, isLoading }: any) => {
     return (

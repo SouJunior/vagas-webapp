@@ -34,20 +34,6 @@ function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
                     <ApplyButton>Me candidatar</ApplyButton>
                 </ApplyButtonLink>
             </JobHead>
-            {/* <Title>
-                {clickedJob?.title}{' '}
-                <Link to={`/apply/${clickedJob.id}`}>
-                    <ApplyButton>Me candidatar</ApplyButton>
-                </Link>
-            </Title>
-
-            <Subtitle>
-                {clickedJob?.modality} - {clickedJob?.type} -{' '}
-                {clickedJob?.typeContract}
-            </Subtitle>
-
-            <Text>{clickedJob.contractType}</Text> */}
-
             <CompanyInfo>
                 <CompanyLogoImg>
                     <CompanyLogo />

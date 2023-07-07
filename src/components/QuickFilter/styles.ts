@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ArrowDown from "../../../assets/imgs/arrowDown.svg";
+import ArrowDown from "../../assets/imgs/arrowDown.svg";
 
 export const Select = styled.select`
     width: 100%;

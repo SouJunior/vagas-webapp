@@ -35,12 +35,3 @@ export type Job = {
     updated_at: string;
   };
   
-  // types/api.ts
-  
-//   import { Job, Company } from './types';
-  
-//   export interface Api {
-//     getJobs: (id?: string) => Promise<Job[]>;
-//     getCompanies: (id?: string) => Promise<Company[]>;
-//   }
-  
