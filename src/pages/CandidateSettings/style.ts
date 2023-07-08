@@ -4,7 +4,7 @@ export const ProfilePicWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0px 0 0 0;
+    margin: 50px 0 0 0;
 
     input[type='file']::-webkit-file-upload-button {
         visibility: hidden;
@@ -84,18 +84,6 @@ export const Title = styled.h1`
     padding-bottom: 20px;
 `;
 
-export const MainLine = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-`;
-
 export const CurriculoWrapper = styled.div`
     position: relative;
 
@@ -135,9 +123,8 @@ export const CurriculoWrapper = styled.div`
 
 export const LoadCurriculum = styled.div`
     display: flex;
-    text-align: center;
     justify-content: center;
-    padding-top: 30px;
+    padding-top: 50px;
 `;
 
 export const Trash = styled.div`
@@ -153,4 +140,16 @@ export const Trash = styled.div`
         width: 100%;
         height: 100%;
     }
+`;
+
+export const ExtraLine = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 60px;
+    padding-bottom: 50px;
 `;

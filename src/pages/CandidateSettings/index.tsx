@@ -4,10 +4,10 @@ import {
     Form,
     ProfilePicWrapper,
     Title,
-    MainLine,
     CurriculoWrapper,
     LoadCurriculum,
     Trash,
+    ExtraLine,
 } from './style';
 import {
     Container,
@@ -25,9 +25,10 @@ import Header from '../../components/Portal/Header';
 import { ProfileImg } from '../../components/Portal/Header/styles';
 import { HandleInputsRenderCandidate } from './utils/handleInputsRenderCandidate';
 import inputConfigCandidate from './data/inputConfigCandidate';
-import { ChangeEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
+import { ButtonSection } from '../../components/AddJobs/FormSteps/styles';
 
 export const CandidateSettings: React.FC = () => {
     const HandleOptionsRender = (arr: any): [] => {
@@ -41,11 +42,10 @@ export const CandidateSettings: React.FC = () => {
             );
         });
     };
-    const [deleteButton, setDeleteButton] = useState(false);
+    const [deleteButton1, setDeleteButton1] = useState(false);
+    const [deleteButton2, setDeleteButton2] = useState(false);
     const [cancelModal, setCancelModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
-    const [phoneNumber, setPhoneNumber] = useState<string>('');
-    const [isValid, setIsValid] = useState<boolean>(false);
 
     // Funções do delete button
 
@@ -58,7 +58,7 @@ export const CandidateSettings: React.FC = () => {
         if (!fileObj1) {
             return;
         }
-        setDeleteButton(true);
+        setDeleteButton1(true);
     };
     const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj2 = e.target.files && e.target.files[0];
@@ -66,23 +66,23 @@ export const CandidateSettings: React.FC = () => {
         if (!fileObj2) {
             return;
         }
-        setDeleteButton(true);
+        setDeleteButton2(true);
     };
 
     const resetFileInput1 = () => {
         if (inputRef1.current) {
             inputRef1.current.value = '';
         }
-        setDeleteButton(false);
+        setDeleteButton1(false);
     };
     const resetFileInput2 = () => {
         if (inputRef2.current) {
             inputRef2.current.value = '';
         }
-        setDeleteButton(false);
+        setDeleteButton2(false);
     };
 
-    // Validação do modal de cancelamento
+    // Função do modal de cancelamento
 
     const handleCancelModal = (e: any) => {
         e.preventDefault();
@@ -93,10 +93,6 @@ export const CandidateSettings: React.FC = () => {
     return (
         <Container>
             <Header />
-            <Title>Atualizar Perfil</Title>
-            <MainLine>
-                <Row />
-            </MainLine>
             <form>
                 <ProfilePicWrapper>
                     <ProfileImg
@@ -116,26 +112,29 @@ export const CandidateSettings: React.FC = () => {
                     <p>Somente formatos jpg, jpeg e png</p>
                     <span>Tamanho ou formato inválido</span>
                 </ProfilePicWrapper>
-                <MainLine>
+                <Main>
                     <Row />
-                </MainLine>
+                </Main>
                 <Title>Dados Pessoais</Title>
                 <Form>
                     <div className="form__left">
                         <InputWrapper>
                             {HandleInputsRenderCandidate(inputConfigCandidate)}
-                            <label>Telefone 1:</label>
-                            <input type="text" placeholder="(00) 00000 0000" />
-                            {isValid ? (
-                                <p>Número de telefone válido</p>
-                            ) : (
-                                <p>Número de telefone inválido</p>
-                            )}
+                            <label>
+                                Telefone 1:<sup>*</sup>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="(00) 00000 0000"
+                                maxLength={11}
+                            />
                         </InputWrapper>
                     </div>
                     <div className="form__right">
                         <InputWrapper>
-                            <label>Cidade:</label>
+                            <label>
+                                Cidade:<sup>*</sup>
+                            </label>
                             <input
                                 type="text"
                                 placeholder="Insira sua cidade"
@@ -153,11 +152,12 @@ export const CandidateSettings: React.FC = () => {
 
                         <InputWrapper>
                             <label>
-                                Telefone 2 <br />
+                                Telefone 2: <br />
                             </label>
 
                             <input
-                                type="number"
+                                maxLength={11}
+                                type="text"
                                 name="numero2"
                                 placeholder="(00) 00000 - 0000"
                             />
@@ -165,15 +165,17 @@ export const CandidateSettings: React.FC = () => {
                     </div>
                 </Form>
             </form>
-            <MainLine>
+            <Main>
                 <Row />
-            </MainLine>
+            </Main>
             <Title>Dados Profissionais</Title>
 
             <Form>
                 <div className="form__left">
                     <CurriculoWrapper>
-                        <label htmlFor="fileInput1">Curriculo1</label>
+                        <label htmlFor="fileInput1">
+                            Curriculo 1<sup>*</sup>
+                        </label>
                         <br />
                         <input
                             ref={inputRef1}
@@ -183,7 +185,7 @@ export const CandidateSettings: React.FC = () => {
                             placeholder="Insira seu curriculo em PDF"
                             accept=".pdf"
                         />
-                        {deleteButton && (
+                        {deleteButton1 && (
                             <Trash onClick={resetFileInput1}>
                                 <img src={trashPicture} alt="Deletar arquivo" />
                             </Trash>
@@ -192,7 +194,7 @@ export const CandidateSettings: React.FC = () => {
                 </div>
                 <div className="form__right">
                     <CurriculoWrapper>
-                        <label htmlFor="fileInput2">Curriculo2</label>
+                        <label htmlFor="fileInput2">Curriculo 2</label>
                         <br />
                         <input
                             ref={inputRef2}
@@ -203,7 +205,7 @@ export const CandidateSettings: React.FC = () => {
                             placeholder="Insira seu curriculo em PDF"
                             accept=".pdf"
                         />
-                        {deleteButton && (
+                        {deleteButton2 && (
                             <Trash onClick={resetFileInput2}>
                                 <img src={trashPicture} alt="Deletar arquivo" />
                             </Trash>
@@ -214,15 +216,15 @@ export const CandidateSettings: React.FC = () => {
             <LoadCurriculum>
                 <Button>Carregar Curriculo</Button>
             </LoadCurriculum>
-            <Main>
+            <ExtraLine>
                 <Row />
-            </Main>
+            </ExtraLine>
 
             <Form>
-                <div className="form__left">
+                <div className="form__change">
                     <Button>Atualizar</Button>
                 </div>
-                <div className="form__right">
+                <div className="form__cancel">
                     <Button background="outline" onClick={handleCancelModal}>
                         Cancelar
                     </Button>
