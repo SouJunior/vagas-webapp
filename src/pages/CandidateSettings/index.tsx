@@ -28,7 +28,6 @@ import inputConfigCandidate from './data/inputConfigCandidate';
 import { useRef, useState } from 'react';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
-import { ButtonSection } from '../../components/AddJobs/FormSteps/styles';
 
 export const CandidateSettings: React.FC = () => {
     const HandleOptionsRender = (arr: any): [] => {
