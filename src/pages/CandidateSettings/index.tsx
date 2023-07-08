@@ -1,4 +1,5 @@
 import profilePicture from '../../assets/imgs/profile-image.svg';
+import trashPicture from '../../assets/imgs/trash.svg';
 import {
     Form,
     ProfilePicWrapper,
@@ -6,6 +7,7 @@ import {
     MainLine,
     CurriculoWrapper,
     LoadCurriculum,
+    Trash,
 } from './style';
 import {
     Container,
@@ -18,12 +20,12 @@ import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
 import Footer from '../../components/Portal/Footer';
-import countryStates from './data/countryStates';
+import location from '../ProfileSettings/data/location';
 import Header from '../../components/Portal/Header';
 import { ProfileImg } from '../../components/Portal/Header/styles';
 import { HandleInputsRenderCandidate } from './utils/handleInputsRenderCandidate';
 import inputConfigCandidate from './data/inputConfigCandidate';
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
 
@@ -39,8 +41,48 @@ export const CandidateSettings: React.FC = () => {
             );
         });
     };
+    const [deleteButton, setDeleteButton] = useState(false);
     const [cancelModal, setCancelModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState<string>('');
+    const [isValid, setIsValid] = useState<boolean>(false);
+
+    // Funções do delete button
+
+    const inputRef1 = useRef<HTMLInputElement | null>(null);
+    const inputRef2 = useRef<HTMLInputElement | null>(null);
+
+    const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const fileObj1 = e.target.files && e.target.files[0];
+
+        if (!fileObj1) {
+            return;
+        }
+        setDeleteButton(true);
+    };
+    const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const fileObj2 = e.target.files && e.target.files[0];
+
+        if (!fileObj2) {
+            return;
+        }
+        setDeleteButton(true);
+    };
+
+    const resetFileInput1 = () => {
+        if (inputRef1.current) {
+            inputRef1.current.value = '';
+        }
+        setDeleteButton(false);
+    };
+    const resetFileInput2 = () => {
+        if (inputRef2.current) {
+            inputRef2.current.value = '';
+        }
+        setDeleteButton(false);
+    };
+
+    // Validação do modal de cancelamento
 
     const handleCancelModal = (e: any) => {
         e.preventDefault();
@@ -83,10 +125,12 @@ export const CandidateSettings: React.FC = () => {
                         <InputWrapper>
                             {HandleInputsRenderCandidate(inputConfigCandidate)}
                             <label>Telefone 1:</label>
-                            <input
-                                type="number"
-                                placeholder="(00) 00000 - 0000"
-                            />
+                            <input type="text" placeholder="(00) 00000 0000" />
+                            {isValid ? (
+                                <p>Número de telefone válido</p>
+                            ) : (
+                                <p>Número de telefone inválido</p>
+                            )}
                         </InputWrapper>
                     </div>
                     <div className="form__right">
@@ -103,7 +147,7 @@ export const CandidateSettings: React.FC = () => {
                             </label>
                             <select>
                                 <option value="DEFAULT">--</option>
-                                {HandleOptionsRender(countryStates)}
+                                {HandleOptionsRender(location)}
                             </select>
                         </Select>
 
@@ -129,29 +173,41 @@ export const CandidateSettings: React.FC = () => {
             <Form>
                 <div className="form__left">
                     <CurriculoWrapper>
-                        <label htmlFor="curriculo1">Curriculo1</label>
+                        <label htmlFor="fileInput1">Curriculo1</label>
                         <br />
                         <input
+                            ref={inputRef1}
+                            onChange={handleFileChange1}
                             type="file"
-                            name="curriculo1"
-                            id="documentoInput"
+                            id="fileInput1"
                             placeholder="Insira seu curriculo em PDF"
                             accept=".pdf"
                         />
+                        {deleteButton && (
+                            <Trash onClick={resetFileInput1}>
+                                <img src={trashPicture} alt="Deletar arquivo" />
+                            </Trash>
+                        )}
                     </CurriculoWrapper>
                 </div>
-
                 <div className="form__right">
                     <CurriculoWrapper>
-                        <label htmlFor="curriculo2">Curriculo2</label>
+                        <label htmlFor="fileInput2">Curriculo2</label>
                         <br />
                         <input
+                            ref={inputRef2}
+                            onChange={handleFileChange2}
                             type="file"
-                            id="curriculo2"
+                            id="fileInput2"
                             name="curriculo2"
                             placeholder="Insira seu curriculo em PDF"
                             accept=".pdf"
                         />
+                        {deleteButton && (
+                            <Trash onClick={resetFileInput2}>
+                                <img src={trashPicture} alt="Deletar arquivo" />
+                            </Trash>
+                        )}
                     </CurriculoWrapper>
                 </div>
             </Form>

@@ -115,7 +115,7 @@ export const CurriculoWrapper = styled.div`
         box-sizing: border-box;
         outline: none;
 
-        width: 100%;
+        width: 85%;
         height: 55px;
         padding: 0.7rem 1rem;
 
@@ -138,4 +138,19 @@ export const LoadCurriculum = styled.div`
     text-align: center;
     justify-content: center;
     padding-top: 30px;
+`;
+
+export const Trash = styled.div`
+    width: 55px;
+    height: 55px;
+    border: 1px solid #c1292e;
+    border-radius: 4px;
+    float: right;
+    cursor: pointer;
+    text-align: center;
+    background-size: cover;
+    img {
+        width: 100%;
+        height: 100%;
+    }
 `;
