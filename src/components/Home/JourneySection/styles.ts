@@ -5,7 +5,6 @@ export const Img = styled.img`
     background: rgba(217, 217, 217, 0.2);
     padding: 6px;
     border-radius: 16px;
-    cursor: pointer;
 
     @media (max-width: 650px) {
         width: 80%;

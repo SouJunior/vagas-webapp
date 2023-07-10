@@ -26,7 +26,7 @@ import {
     Message,
     Container,
 } from './styles/AddJobsStyles';
-import JobPreview from '../components/JobCard/previewJobCard';
+import JobPreview from '../components/PreviewAddJobs';
 import JobModal from '../components/AddJobs/JobModal';
 import CancelModal from '../components/CancelModal';
 import WaitModal from '../components/WaitModal';

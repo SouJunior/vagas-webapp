@@ -6,11 +6,11 @@ import {
     Box,
     Options,
     Border,
-} from "./styles"
-import { useEffect, useState } from "react"
-import { useApi } from "../../../hooks/useApi"
-import { Timeout } from "react-number-format/types/types";
-import { useNavigate } from "react-router-dom"
+} from './styles';
+import { useEffect, useState } from 'react';
+import { useApi } from '../../../hooks/useApi';
+import { Timeout } from 'react-number-format/types/types';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
     const navigate = useNavigate();
@@ -22,14 +22,13 @@ const Index = () => {
     }
 
     const [timer, setTimer] = useState<Timeout>();
-    const [field, setField] = useState<string>("");
+    const [field, setField] = useState<string>('');
     const [suggestions, setSuggestions] = useState<Jobs[]>([]);
-
 
     const handleSearchBox = (e: any) => {
         const search = e.target.value;
         setField(search);
-        
+
         if (timer) {
             clearTimeout(timer);
         }
@@ -39,14 +38,16 @@ const Index = () => {
             return;
         }
 
-        setTimer(setTimeout(() => {
-            api.searchJobs(search)
-                .then((response) => {
-                    setSuggestions(response.data);
-                })
-                .catch(() => setSuggestions([]))
-        }, 500));
-    }
+        setTimer(
+            setTimeout(() => {
+                api.searchJobs(search)
+                    .then((response) => {
+                        setSuggestions(response.data);
+                    })
+                    .catch(() => setSuggestions([]));
+            }, 500),
+        );
+    };
 
     useEffect(() => {
         const handleOutsideClick = (e: any) => {
@@ -55,47 +56,55 @@ const Index = () => {
             }
         };
 
-        document.addEventListener("click", handleOutsideClick);
+        document.addEventListener('click', handleOutsideClick);
 
         return () => {
-            document.removeEventListener("click", handleOutsideClick);
-        }
-    }, [])
-
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, []);
 
     return (
         <>
             <Form>
                 <Container>
-                    <Input value={field} list="jobs" type="text"
-                        onChange={handleSearchBox} placeholder="Digite seu cargo" />
-                    {suggestions.length > 0 &&
+                    <Input
+                        value={field}
+                        list="jobs"
+                        type="text"
+                        onChange={handleSearchBox}
+                        placeholder="Digite seu cargo"
+                    />
+                    {suggestions.length > 0 && (
                         <>
                             <Box>
-                                {suggestions && suggestions.map((suggestion) => (
-                                    <Options>
-                                        <Border />
-                                        <div 
-                                            onClick={() => { setField(suggestion.title); setSuggestions([]) }}
-                                            key={suggestion.id}
-                                        >
-                                            {suggestion.title}
-                                        </div>
-                                    </Options>
-                                ))}
+                                {suggestions &&
+                                    suggestions.map((suggestion) => (
+                                        <Options>
+                                            <Border />
+                                            <div
+                                                onClick={() => {
+                                                    setField(suggestion.title);
+                                                    setSuggestions([]);
+                                                }}
+                                                key={suggestion.id}
+                                            >
+                                                {suggestion.title}
+                                            </div>
+                                        </Options>
+                                    ))}
                                 <Container>
                                     <Border />
                                 </Container>
                             </Box>
                         </>
-                    }
+                    )}
                 </Container>
-                <SearchButton onClick={() => navigate('/feedvagas')}>
+                <SearchButton onClick={() => navigate('/jobs')}>
                     Buscar vagas
                 </SearchButton>
             </Form>
         </>
-    )
-}
+    );
+};
 
-export default Index
+export default Index;
