@@ -52,6 +52,7 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
         <>
             {isMobileOpen && (
                 <MobileHeader>
+                    <div className='wrapper'>
                     <ul>
                         <li>SouJunior</li>
                         <li>Suporte</li>
@@ -71,6 +72,10 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                             Login
                         </LoginButton>
                     </ul>
+                    </div>
+                    <div className='background'>
+
+</div>
                 </MobileHeader>
             )}
             <Header isActive={isActive} isMobileOpen={isMobileOpen}>
