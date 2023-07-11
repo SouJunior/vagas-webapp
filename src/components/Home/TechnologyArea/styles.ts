@@ -6,7 +6,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: end;
     gap: 6px;
-    cursor: pointer;
     width: 120px;
     height: 100px;
     border-radius: 8px;

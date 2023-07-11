@@ -9,11 +9,12 @@ import { Home } from '../pages/Home';
 import { InsertJobs } from '../pages/InsertJobs';
 import { RequireAuth } from '../contexts/Auth/RequireAuth';
 import AddJobs from '../pages/AddJobs';
-import FeedVagas from '../pages/FeedVagas';
+import FeedJobs from '../pages/FeedJobs';
 import ConfirmEmail from '../pages/ConfirmEmail';
 import ResetPassword from '../pages/ResetPassword';
 import CompanyPortal from '../pages/CompanyPortal';
 import CandidatePortal from '../pages/CandidatePortal';
+import JobApply from '../pages/ApplyJob';
 import { ProfileSettings } from '../pages/ProfileSettings';
 import { CandidateSettings } from '../pages/CandidateSettings';
 
@@ -70,7 +71,9 @@ export const NavRoutes: React.FC = () => {
             <Route path="/" element={<Layout />}>
                 <Route path="insertjobs" element={<InsertJobs />} />
                 <Route path="addjobs" element={<AddJobs />} />
-                <Route path="feedvagas" element={<FeedVagas />} />
+                <Route path="jobs" element={<FeedJobs />} />
+                <Route path="jobs/:searchTerm" element={<FeedJobs />} />
+                <Route path="apply/:id" element={<JobApply />} />
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>

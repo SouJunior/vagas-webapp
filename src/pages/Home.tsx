@@ -42,6 +42,10 @@ import {
     MainContent,
     SecondaryTitle,
     Subtitle,
+    Position,
+    Row,
+    Copyright,
+    MainFooter,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
@@ -61,15 +65,12 @@ import BannerMobile from '../assets/imgs/BannerMobile.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
 import circle from '../assets/imgs/circle.svg';
 
-import AreaModal from '../components/Home/TechnologyArea/ModalAreas';
 import ProfileTest from '../assets/imgs/profile-depoimento.png';
 import { Areas } from '../Mocks/MockArea';
-import { ModalInfo } from '../Mocks/MockInfoModal';
-import { MockJourneyCard } from '../Mocks/MockJourneyCard';
 import Testimonials from '../components/Home/Testimonials';
-import JourneyModal from '../components/Home/JourneySection/JourneyModal';
 import HomeHeader from '../components/Home/HomeHeader';
-import JobFilter from '../components/Home/HomeJobFilter/JobFilter';
+import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
+import Footer from '../components/Portal/Footer/index';
 
 interface AreaProps {
     id: string;
@@ -80,11 +81,7 @@ interface AreaProps {
 export const Home: React.FC = () => {
     const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
-    const [selectedArea, setSelectedArea] = useState<string | null>(null);
     const [isMobile, setIsMobile] = useState(false);
-    const [selectedJourneyCard, setSelectedJourneyCard] = useState<
-        string | null
-    >(null);
 
     const api = useApi();
 
@@ -124,22 +121,6 @@ export const Home: React.FC = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-    const handleCardClick = (id: string) => {
-        setSelectedArea(id);
-        document.body.style.overflow = 'hidden';
-    };
-
-    const handleCloseModal = () => {
-        setSelectedArea(null);
-        setSelectedJourneyCard(null);
-        document.body.style.overflow = 'auto';
-    };
-
-    const handleJourneyCardClick = (id: string) => {
-        setSelectedJourneyCard(id);
-        document.body.style.overflow = 'hidden';
-    };
 
     const breakpoints = {
         350: {
@@ -210,13 +191,10 @@ export const Home: React.FC = () => {
                         {Areas.map((area: AreaProps) => (
                             <SwiperSlide
                                 key={area.name}
-                                className='swiper-slide-responsive'
+                                className="swiper-slide-responsive"
                             >
                                 <div>
                                     <TechnologyAreaCard
-                                        onClick={() => {
-                                            handleCardClick(area.id);
-                                        }}
                                         icon={area.icon}
                                         area={area.name}
                                     />
@@ -230,15 +208,6 @@ export const Home: React.FC = () => {
                             </CustomNextButton>
                         )}
                     </Swiper>
-
-                    {selectedArea !== null && (
-                        <AreaModal
-                            title={ModalInfo[selectedArea].title}
-                            description={ModalInfo[selectedArea].description}
-                            source={ModalInfo[selectedArea].source}
-                            onClose={handleCloseModal}
-                        />
-                    )}
                 </AreasCardWrapper>
             </AreasSection>
             <VocationalBannerArea>
@@ -295,37 +264,21 @@ export const Home: React.FC = () => {
                         <JourneyCard
                             Img={Linkedin}
                             Description={'Se destaque no Linkedin'}
-                            onClick={() => handleJourneyCardClick('linkedin')}
                         />
                         <JourneyCard
                             Img={Resume}
                             Description={'Como construir um currículo Júnior'}
-                            onClick={() => handleJourneyCardClick('curriculo')}
                         />
                         <JourneyCard
                             Img={Process}
                             Description={'Se prepare para o processo seletivo'}
-                            onClick={() =>
-                                handleJourneyCardClick('processoSeletivo')
-                            }
                         />
                         <JourneyCard
                             Img={KeyWords}
                             Description={'Palavras Chave na área tech'}
-                            onClick={() =>
-                                handleJourneyCardClick('palavrasChave')
-                            }
                         />
                     </JourneyCardWrapper>
                 </JourneyContainer>
-
-                {selectedJourneyCard !== null && (
-                    <JourneyModal
-                        Title={MockJourneyCard[selectedJourneyCard].Title}
-                        Content={MockJourneyCard[selectedJourneyCard].Content}
-                        onClose={handleCloseModal}
-                    />
-                )}
             </JourneySection>
 
             <AppBannerContainer>
@@ -369,7 +322,7 @@ export const Home: React.FC = () => {
                         maxWidth: '1080px',
                         height: 'auto',
                         margin: '0 auto',
-                        padding: "80px 0"
+                        padding: '80px 0',
                     }}
                     className="mySwiper"
                 >
@@ -409,6 +362,16 @@ export const Home: React.FC = () => {
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>
+            <Position>
+                <MainFooter>
+                    <Row />
+                </MainFooter>
+                <Footer />
+                <MainFooter>
+                    <Row />
+                </MainFooter>
+            </Position>
+            <Copyright>&copy; 2023 SouJunior</Copyright>
         </>
     );
 };
