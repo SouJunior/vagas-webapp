@@ -19,7 +19,7 @@ const Menu = () => {
     const navigate = useNavigate();
     // TODO: Naveção aninhada
     //Aguardando retorno do Backend o type do usuário da rota used-looged
-
+    //rota atualizada
     const handleNavigation = () => {
         if (auth.user.companyName) {
             navigate('/profile-settings');
