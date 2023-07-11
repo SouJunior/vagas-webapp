@@ -11,7 +11,7 @@ export const HandleInputsRenderCandidate = (arr: any): [] => {
                 <input
                     type={element.type}
                     name={element.name}
-                    placeholder={
+                    value={
                         (element.name === 'email' && auth.user.email) ||
                         (element.name === 'nome' && auth.user.name)
                     }

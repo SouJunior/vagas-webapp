@@ -19,8 +19,9 @@ const Menu = () => {
     const navigate = useNavigate();
     // TODO: Naveção aninhada
     //Aguardando retorno do Backend o type do usuário da rota used-looged
+
     const handleNavigation = () => {
-        if (auth.user.type === 'COMPANY') {
+        if (auth.user.companyName) {
             navigate('/profile-settings');
         } else {
             navigate('/candidate-settings');
