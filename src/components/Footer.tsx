@@ -47,7 +47,7 @@ export function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className="md:border-l border-gray-dark/50 grid grid-cols-2 md:grid-cols-4">
+                <div className="md:border-l border-gray-dark/50 gap-20 grid grid-cols-2 md:grid-cols-4">
                     <div className="flex flex-col items-center md:items-start md:pl-[66px] mt-1 font-canada">
                         <h3 className="text-blue text-xl font-semibold">
                             SouJunior

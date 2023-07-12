@@ -7,8 +7,8 @@ const QuickFilter = ({
     placeholder,
 }: any) => {
     return (
-        <Select value={selectedValue} onChange={onChange}>
-            <option disabled selected value="">
+        <Select defaultValue={'DEFAULT'} onChange={onChange}>
+            <option disabled value="DEFAULT">
                 {placeholder}
             </option>
             {options.map((option: any) => (
