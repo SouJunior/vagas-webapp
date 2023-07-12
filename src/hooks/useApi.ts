@@ -108,41 +108,41 @@ export const useApi = () => ({
         const res: any = await api.post('/job', { JobData }, { headers });
         return res.data;
     },
-    
+
     getJobs: async (page: number = 1, order: string = 'ASC') => {
         const url = `/job?order=${order}&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
         return res.data;
     },
 
-      getJobById: async (id: number) => {
-        const url = `/job/${id}`
+    getJobById: async (id: number) => {
+        const url = `/job/${id}`;
         const res: any = await api.get(url);
         return res.data;
     },
 
-      getCompanyById: async (id: string | null) => {
+    getCompanyById: async (id: string | null) => {
         const res: any = await api.get(`/company/${id}`);
         return res.data;
-      },
+    },
 
-      getJobsByCompany: async (id: string) => {
+    getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;
     },
 
-      searchJobs: async ( keyword: string, page: number = 1) => {
-        const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`
+    searchJobs: async (keyword: string, page: number = 1) => {
+        const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.get(url);
-          return res.data;
-      },
+        return res.data;
+    },
 
-      getUserCurriculum: async (token: string | null) => {
+    getUserCurriculum: async (token: string | null) => {
         const res: any = await api.get(`/curriculum`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         });
         return res.data;
-      }
+    },
 });
