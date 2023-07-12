@@ -1,5 +1,6 @@
 import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
+import ProfileDefault from '../../assets/imgs/profile-image.svg';
 import {
     Card,
     Company,
@@ -15,7 +16,7 @@ import { ptBR } from 'date-fns/locale';
 export interface Props {
     id: string;
     title: string;
-    company: string;
+    company: any;
     city: string;
     federalUnit: string;
     jobType: string;
@@ -48,10 +49,14 @@ const JobCard: React.FC<Props> = ({
 
     return (
         <Card tabIndex={0} onClick={onClick} active={active} opacity={opacity}>
-            <Logo src="{companyLogoUrl}" alt={company} />
+            {company.profile === null ? (
+                <Logo src={ProfileDefault} alt="default Image" />
+            ) : (
+                <Logo src={company.profile} alt={company.companyName} />
+            )}
             <Content>
                 <Title>{title}</Title>
-                <Company>{company}</Company>
+                <Company>{company.companyName}</Company>
                 <Location>
                     {city}/{federalUnit}
                 </Location>
