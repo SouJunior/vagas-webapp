@@ -16,6 +16,7 @@ import CompanyPortal from '../pages/CompanyPortal';
 import CandidatePortal from '../pages/CandidatePortal';
 import JobApply from '../pages/ApplyJob';
 import { ProfileSettings } from '../pages/ProfileSettings';
+import CompanyApplications from '../pages/CompanyApplications';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -65,6 +66,7 @@ export const NavRoutes: React.FC = () => {
                 <Route path="jobs" element={<FeedJobs />} />
                 <Route path="jobs/:searchTerm" element={<FeedJobs />} />
                 <Route path="apply/:id" element={<JobApply />} />
+                <Route path="applications" element={<CompanyApplications />} />
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
