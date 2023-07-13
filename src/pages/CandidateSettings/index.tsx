@@ -6,7 +6,6 @@ import {
     ProfilePicWrapper,
     Title,
     CurriculoWrapper,
-    LoadCurriculum,
     Trash,
     ExtraLine,
     Required,
@@ -235,9 +234,6 @@ export const CandidateSettings: React.FC = () => {
                         </CurriculoWrapper>
                     </div>
                 </Form>
-                <LoadCurriculum>
-                    <Button> Carregar Currículo</Button>
-                </LoadCurriculum>
                 <ExtraLine>
                     <Row />
                 </ExtraLine>

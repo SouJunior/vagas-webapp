@@ -57,17 +57,16 @@ export const Form = styled.div`
     gap: 16px;
 
     @media (min-width: 768px) {
-        grid-template-columns: 1fr 1fr; /* Duas colunas */
+        grid-template-columns: 1fr 1fr;
     }
 
     @media (max-width: 767px) {
-       grid-template-columns: 1fr; /* Apenas uma coluna */
+       grid-template-columns: 1fr;
     }
 
     input[type='file']::-webkit-file-upload-button {
         visibility: hidden;
     }
-
 
     p {
         color: #bababa;
@@ -101,6 +100,11 @@ export const CurriculoWrapper = styled.div`
     font-size: 90%;
     font-weight: 500;
 
+    @media (max-width: 280px) {
+        width: 230px;
+        height: 100%;
+    }
+
     div {
         display: flex;
         gap: 5px;
@@ -113,13 +117,15 @@ export const CurriculoWrapper = styled.div`
     label {
         border: 1px solid ${({ theme }) => theme.colors.mutedDark};
         border-radius: 5px;
-
         box-sizing: border-box;
-        outline: none;
-
         width: 85%;
         height: 55px;
         padding: 0.7rem 1rem;
+
+        @media (max-width: 280px) {
+            width: 270px;
+            height: 100%;
+        }
 
         :hover {
             border-color: ${({ theme }) => theme.colors.mutedDarker};
@@ -129,13 +135,6 @@ export const CurriculoWrapper = styled.div`
             border-color: ${({ theme }) => theme.colors.primary};
         }
     }
-`;
-
-export const LoadCurriculum = styled.div`
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    padding-top: 50px;
 `;
 
 export const Trash = styled.div`

@@ -16,7 +16,7 @@ export const ProfileImg = styled.img`
     margin: 0 15px;
     aspect-ratio: 4 / 4;
     @media (max-width: 540px) {
-        max-width: 100%;
+        width: 30%;
     }
 `;
 
