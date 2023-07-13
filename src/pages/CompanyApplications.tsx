@@ -51,8 +51,6 @@ const CompanyApplications = () => {
 
     const [JobClicked] = clickedJob;
 
-    console.log('clickedJob', clickedJob);
-
     return (
         <>
             <Header />
@@ -116,7 +114,7 @@ const CompanyApplications = () => {
                             <JobHeadText>
                                 <DetailsJobTitle>
                                     {JobClicked?.title}
-                                </DetailsJobTitle>{' '}
+                                </DetailsJobTitle>
                                 <Subtitle>
                                     {JobClicked?.modality} - {JobClicked?.type}{' '}
                                     -{JobClicked?.typeContract}
@@ -143,16 +141,6 @@ const CompanyApplications = () => {
                     ) : (
                         <NoJobsSelectedCard />
                     )}
-                    {/* <ApplicantsContainer>
-                    <ApplicantsList>
-                        <Applicant>José da Silva</Applicant>
-                        <Applicant>José da Silva</Applicant>
-                        <Applicant>José da Silva</Applicant>
-                        <Applicant>José da Silva</Applicant>
-                        <Applicant>José da Silva</Applicant>
-                        <Applicant>José da Silva</Applicant>
-                    </ApplicantsList>
-                </ApplicantsContainer> */}
                 </ContentWrapper>
             </Container>
         </>
