@@ -14,6 +14,7 @@ export const ApplicantsContainer = styled.div`
     display: flex;
     width: 545px;
     flex-direction: column;
+    align-items: center;
     border: 1px solid ${props => props.theme.colors.primary};
     padding: 24px 16px;
     border-radius: 6px;

@@ -18,6 +18,7 @@ import JobApply from '../pages/ApplyJob';
 import { ProfileSettings } from '../pages/ProfileSettings';
 import { CandidateSettings } from '../pages/CandidateSettings';
 import CompanyApplications from '../pages/CompanyApplications';
+import JobsPanel from '../pages/JobsPanel';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -72,6 +73,15 @@ export const NavRoutes: React.FC = () => {
                 element={
                     <RequireAuth>
                         <CompanyApplications />
+                    </RequireAuth>
+                }
+            />
+
+            <Route
+                path="jobs-panel"
+                element={
+                    <RequireAuth>
+                        <JobsPanel />
                     </RequireAuth>
                 }
             />
