@@ -1,4 +1,3 @@
-import { CompanyLogo } from './CompanyLogo';
 import {
     ApplyButton,
     ApplyButtonLink,
@@ -13,6 +12,7 @@ import {
     TextContainer,
     Title,
 } from './styles';
+import ProfileDefault from '../../assets/imgs/profile-image.svg';
 
 function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
     if (Array.isArray(clickedJob)) {
@@ -36,9 +36,16 @@ function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
             </JobHead>
             <CompanyInfo>
                 <CompanyLogoImg>
-                    <CompanyLogo />
+                    {clickedJob.company.profile === null ? (
+                        <img src={ProfileDefault} alt="Default" />
+                    ) : (
+                        <img
+                            src={clickedJob.company.profile}
+                            alt={clickedJob.company.companyName}
+                        />
+                    )}
                 </CompanyLogoImg>
-                <CompanyName>Autofalante Mkt</CompanyName>
+                <CompanyName>{clickedJob.company.companyName}</CompanyName>
             </CompanyInfo>
 
             <TextContainer>

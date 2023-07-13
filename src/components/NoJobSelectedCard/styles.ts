@@ -3,7 +3,6 @@ import { RiInformationLine } from 'react-icons/ri';
 
 
 export const JobDetailsWrapper = styled.div`
-    margin-top: 52px;
     display: flex;
     justify-content: center;
     width: 100%;

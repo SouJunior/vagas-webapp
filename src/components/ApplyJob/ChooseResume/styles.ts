@@ -7,13 +7,16 @@ export const ChooseResumeContainer = styled.div`
     border-radius: 6px;
     width: 484px;
     max-width: 484px;
-    height: 110px;
-    max-height: 110px;
+    height: auto;
     padding: 18px 40px;
     font-size: 16px;
     font-weight: 500;
     color: #515050;
     gap: 10px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 export const Attach = styled.button`
@@ -51,5 +54,10 @@ export const ResumesContainer = styled.div`
                 text-decoration: underline;
             }
         }
+    }
+
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+
     }
 `;
