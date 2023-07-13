@@ -208,7 +208,7 @@ export const ProfileSettings: React.FC = () => {
                 </Form>
             </form>
 
-            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal}/>}
+            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
 
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>

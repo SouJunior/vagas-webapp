@@ -1,6 +1,7 @@
 import profilePicture from '../../assets/imgs/profile-image.svg';
 import trashPicture from '../../assets/imgs/trash.svg';
 import {
+    Container,
     Form,
     ProfilePicWrapper,
     Title,
@@ -8,10 +9,10 @@ import {
     LoadCurriculum,
     Trash,
     ExtraLine,
+    Required,
+    Buttons,
 } from './style';
 import {
-    Container,
-    Copyright,
     Position,
     Main,
     Row,
@@ -45,6 +46,8 @@ export const CandidateSettings: React.FC = () => {
     const [deleteButton2, setDeleteButton2] = useState(false);
     const [cancelModal, setCancelModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
+    const [fileName1, setFileName1] = useState<boolean | any>();
+    const [fileName2, setFileName2] = useState<boolean | any>();
 
     // Funções do delete button
 
@@ -53,14 +56,17 @@ export const CandidateSettings: React.FC = () => {
 
     const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj1 = e.target.files && e.target.files[0];
+        setFileName1(fileObj1);
 
         if (!fileObj1) {
             return;
         }
         setDeleteButton1(true);
     };
+
     const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj2 = e.target.files && e.target.files[0];
+        setFileName2(fileObj2);
 
         if (!fileObj2) {
             return;
@@ -73,12 +79,14 @@ export const CandidateSettings: React.FC = () => {
             inputRef1.current.value = '';
         }
         setDeleteButton1(false);
+        setFileName1(false)
     };
     const resetFileInput2 = () => {
         if (inputRef2.current) {
             inputRef2.current.value = '';
         }
         setDeleteButton2(false);
+        setFileName2(false)
     };
 
     // Função do modal de cancelamento
@@ -120,120 +128,135 @@ export const CandidateSettings: React.FC = () => {
                         <InputWrapper>
                             {HandleInputsRenderCandidate(inputConfigCandidate)}
                             <label>
-                                Telefone 1:<sup>*</sup>
+                                Telefone 1<Required>*</Required>
+                                <input
+                                    type="tel"
+                                    name="phoneNumber1"
+                                    placeholder="(00) 00000-0000"
+                                    maxLength={11}
+                                    required
+                                />
                             </label>
-                            <input
-                                type="text"
-                                placeholder="(00) 00000 0000"
-                                maxLength={11}
-                            />
                         </InputWrapper>
                     </div>
                     <div className="form__right">
                         <InputWrapper>
                             <label>
-                                Cidade:<sup>*</sup>
+                                Cidade<Required>*</Required>
+                                <input
+                                    type="text"
+                                    placeholder="Insira sua cidade"
+                                    required
+                                />
                             </label>
-                            <input
-                                type="text"
-                                placeholder="Insira sua cidade"
-                            />
                         </InputWrapper>
                         <Select>
                             <label htmlFor="states">
-                                UF<sup>*</sup>
+                                UF<Required>*</Required>
                             </label>
-                            <select>
+                            <select id="states" required>
                                 <option value="DEFAULT">--</option>
                                 {HandleOptionsRender(location)}
                             </select>
                         </Select>
-
                         <InputWrapper>
                             <label>
-                                Telefone 2: <br />
+                                Telefone 2
+                                <input
+                                    maxLength={11}
+                                    type="tel"
+                                    name="phoneNumber2"
+                                    placeholder="(00) 00000-0000"
+                                />
                             </label>
-
-                            <input
-                                maxLength={11}
-                                type="text"
-                                name="numero2"
-                                placeholder="(00) 00000 - 0000"
-                            />
                         </InputWrapper>
                     </div>
                 </Form>
+                <Main>
+                    <Row />
+                </Main>
+                <Title>Dados Profissionais</Title>
+                <Form>
+                    <div className="form__left">
+                        <CurriculoWrapper>
+                            <span>Currículo 1 <Required>*</Required></span>
+                            <div>
+                                {fileName1 ? (
+                                    <label htmlFor="fileInput1">
+                                        {fileName1.name}
+                                    </label>) :
+                                    (<label htmlFor="fileInput1">
+                                        Insira seu currículo em PDF
+                                    </label>)
+                                }
+                                {deleteButton1 && (
+                                    <Trash onClick={resetFileInput1}>
+                                        <img src={trashPicture} alt="Deletar arquivo" />
+                                    </Trash>
+                                )}
+                            </div>
+                            <input
+                                ref={inputRef1}
+                                onChange={handleFileChange1}
+                                type="file"
+                                id="fileInput1"
+                                accept=".pdf"
+                                required
+                            />
+                        </CurriculoWrapper>
+                    </div>
+                    <div className="form__right">
+                        <CurriculoWrapper>
+                            <span>Currículo 2</span>
+                            <div>
+                                {
+                                    fileName2 ? (
+                                        <label htmlFor="fileInput2">
+                                            {fileName2.name}
+                                        </label>) :
+                                        (<label htmlFor="fileInput2">
+                                            Insira seu currículo em PDF
+                                        </label>)
+                                }
+                                {deleteButton2 && (
+                                    <Trash onClick={resetFileInput2}>
+                                        <img src={trashPicture} alt="Deletar arquivo" />
+                                    </Trash>
+                                )}
+                            </div>
+                            <input
+                                ref={inputRef2}
+                                onChange={handleFileChange2}
+                                type="file"
+                                id="fileInput2"
+                                name="curriculo2"
+                                accept=".pdf"
+                            />
+                        </CurriculoWrapper>
+                    </div>
+                </Form>
+                <LoadCurriculum>
+                    <Button> Carregar Currículo</Button>
+                </LoadCurriculum>
+                <ExtraLine>
+                    <Row />
+                </ExtraLine>
+                <Buttons>
+                    <div>
+                        <Button type="submit">
+                            Atualizar
+                        </Button>
+                    </div>
+                    <div>
+                        <Button background="outline" onClick={handleCancelModal}>
+                            Cancelar
+                        </Button>
+                    </div>
+                </Buttons>
             </form>
-            <Main>
-                <Row />
-            </Main>
-            <Title>Dados Profissionais</Title>
-
-            <Form>
-                <div className="form__left">
-                    <CurriculoWrapper>
-                        <label htmlFor="fileInput1">
-                            Curriculo 1<sup>*</sup>
-                        </label>
-                        <br />
-                        <input
-                            ref={inputRef1}
-                            onChange={handleFileChange1}
-                            type="file"
-                            id="fileInput1"
-                            placeholder="Insira seu curriculo em PDF"
-                            accept=".pdf"
-                        />
-                        {deleteButton1 && (
-                            <Trash onClick={resetFileInput1}>
-                                <img src={trashPicture} alt="Deletar arquivo" />
-                            </Trash>
-                        )}
-                    </CurriculoWrapper>
-                </div>
-                <div className="form__right">
-                    <CurriculoWrapper>
-                        <label htmlFor="fileInput2">Curriculo 2</label>
-                        <br />
-                        <input
-                            ref={inputRef2}
-                            onChange={handleFileChange2}
-                            type="file"
-                            id="fileInput2"
-                            name="curriculo2"
-                            placeholder="Insira seu curriculo em PDF"
-                            accept=".pdf"
-                        />
-                        {deleteButton2 && (
-                            <Trash onClick={resetFileInput2}>
-                                <img src={trashPicture} alt="Deletar arquivo" />
-                            </Trash>
-                        )}
-                    </CurriculoWrapper>
-                </div>
-            </Form>
-            <LoadCurriculum>
-                <Button>Carregar Curriculo</Button>
-            </LoadCurriculum>
-            <ExtraLine>
-                <Row />
-            </ExtraLine>
-
-            <Form>
-                <div className="form__change">
-                    <Button>Atualizar</Button>
-                </div>
-                <div className="form__cancel">
-                    <Button background="outline" onClick={handleCancelModal}>
-                        Cancelar
-                    </Button>
-                </div>
-            </Form>
-
             {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
 
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
-
             <Position>
                 <Main>
                     <Row />
@@ -243,7 +266,6 @@ export const CandidateSettings: React.FC = () => {
                     <Row />
                 </Main>
             </Position>
-            <Copyright>&copy; 2023 SouJunior</Copyright>
         </Container>
     );
 };
