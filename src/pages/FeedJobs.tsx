@@ -91,6 +91,7 @@ const FeedJobs = () => {
         setNoJobSelected(false);
     }
 
+    console.log(jobs);
     return (
         <>
             <Header pageName="Feed de Vagas" backTo={'/'}></Header>
@@ -107,7 +108,7 @@ const FeedJobs = () => {
                         <ContentWrapper>
                             <JobsWrapper>
                                 <QuickFilterContainer>
-                                    <QuickFilter
+                                    {/* <QuickFilter
                                         options={[
                                             {
                                                 label: 'Remoto',
@@ -122,8 +123,9 @@ const FeedJobs = () => {
                                                 value: 'presencial',
                                             },
                                         ]}
+                                        
                                         placeholder="Tipo de vaga"
-                                    />
+                                    /> */}
                                     <QuickFilter
                                         options={[
                                             {

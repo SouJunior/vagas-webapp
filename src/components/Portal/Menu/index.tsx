@@ -17,27 +17,31 @@ const Menu = () => {
     const [visible, setVisible] = useState(false);
 
     const navigate = useNavigate();
-
+    // TODO: Naveção aninhada
+    //Aguardando retorno do Backend o type do usuário da rota used-looged
+    //rota atualizada
     const handleNavigation = () => {
-        navigate('/profile-settings');
+        if (auth.user.companyName) {
+            navigate('/profile-settings');
+        } else {
+            navigate('/candidate-settings');
+        }
     };
 
     const logout = () => {
-        auth.logout()
-        navigate('/')
-    }
+        auth.logout();
+        navigate('/');
+    };
 
     return (
         <Container>
             <PopUp>
                 <MenuItems>
                     <li onClick={handleNavigation}>
-                        <img
-                            src={ProfileIcon}
-                            alt="perfil"
-                        />
+                        <img src={ProfileIcon} alt="perfil" />
                         Meu perfil
                     </li>
+
                     <Border />
                     {auth.user.type !== 'USER' && (
                         <li
@@ -83,8 +87,8 @@ const Menu = () => {
                     </li>
                     <Border />
                     <li onClick={logout}>
-                            <img  src={ExitIcon} alt="sair" />
-                            Sair do Portal de Vagas
+                        <img src={ExitIcon} alt="sair" />
+                        Sair do Portal de Vagas
                     </li>
                 </MenuItems>
             </PopUp>
