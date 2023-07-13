@@ -109,8 +109,8 @@ export const useApi = () => ({
         return res.data;
     },
 
-    getJobs: async (page: number = 1, order: string = 'ASC') => {
-        const url = `/job?order=${order}&page=${page}&take=10&orderByColumn=id`;
+    getJobs: async (page: number = 1, order: string = 'ASC', modality: string | null = null) => {
+        const url = `/job?order=${order}&page=${page}&take=10&orderByColumn=id&modality=${modality}&federalUnit`;
         const res: any = await api.get(url);
         return res.data;
     },

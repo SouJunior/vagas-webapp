@@ -49,6 +49,7 @@ const FeedJobs = () => {
     const [clickedJob, setClickedJob] = useState<Job[] | Job>([]);
     const [noJobSelected, setNoJobSelected] = useState(true);
     const [sortOrder, setSortOrder] = useState('');
+    const [modalityFilter, setModalityFilter] = useState('');
 
     const api = useApi();
     const { search } = useLocation();
@@ -56,9 +57,13 @@ const FeedJobs = () => {
     const params = new URLSearchParams(search);
     const searchTerm: string = params.get('search') || '';
 
-    const fetchJobs = async (page: number, sortOrder: string) => {
+    const fetchJobs = async (
+        page: number,
+        sortOrder: string,
+        modalityFilter: string,
+    ) => {
         const order = sortOrder || 'ASC';
-        const response = await api.getJobs(page, order);
+        const response = await api.getJobs(page, order, modalityFilter);
         return response.data;
     };
 
@@ -68,11 +73,11 @@ const FeedJobs = () => {
     };
 
     const { data, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
-        queryKey: ['jobs', searchTerm, sortOrder],
+        queryKey: ['jobs', searchTerm, sortOrder, modalityFilter],
         queryFn: ({ pageParam = 1 }) =>
             searchTerm
                 ? fetchFilteredJobs(searchTerm, pageParam)
-                : fetchJobs(pageParam, sortOrder),
+                : fetchJobs(pageParam, sortOrder, modalityFilter),
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.length ? allPages.length + 1 : undefined;
         },
@@ -108,24 +113,29 @@ const FeedJobs = () => {
                         <ContentWrapper>
                             <JobsWrapper>
                                 <QuickFilterContainer>
-                                    {/* <QuickFilter
+                                    <QuickFilter
                                         options={[
                                             {
                                                 label: 'Remoto',
-                                                value: 'remoto',
+                                                value: 'REMOTE',
                                             },
                                             {
                                                 label: 'Híbrido',
-                                                value: 'hibrido',
+                                                value: 'HYBRID',
                                             },
                                             {
                                                 label: 'Presencial',
-                                                value: 'presencial',
+                                                value: 'IN_PERSON',
                                             },
                                         ]}
-                                        
+                                        selectedValue={modalityFilter}
+                                        onChange={(event: any) =>
+                                            setModalityFilter(
+                                                event.target.value,
+                                            )
+                                        }
                                         placeholder="Tipo de vaga"
-                                    /> */}
+                                    />
                                     <QuickFilter
                                         options={[
                                             {
