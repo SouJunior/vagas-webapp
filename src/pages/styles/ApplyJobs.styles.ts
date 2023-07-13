@@ -103,6 +103,7 @@ export const ResumeContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+   
 `;
 
 export const ResumePreview = styled.div`

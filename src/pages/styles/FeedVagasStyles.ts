@@ -117,3 +117,7 @@ export const NoResultsMessage = styled.div`
   text-align: center;
   width: 100%;
 `;
+
+export const NoJobsMargin = styled.div`
+  margin-top: 52px;
+`;

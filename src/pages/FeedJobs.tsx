@@ -22,6 +22,7 @@ import {
     JobList,
     QuickFilterContainer,
     JobDetailsWrapper,
+    NoJobsMargin,
 } from './styles/FeedVagasStyles';
 
 interface Job {
@@ -96,7 +97,6 @@ const FeedJobs = () => {
         setNoJobSelected(false);
     }
 
-    console.log(jobs);
     return (
         <>
             <Header pageName="Feed de Vagas" backTo={'/'}></Header>
@@ -233,7 +233,9 @@ const FeedJobs = () => {
                                             />
                                         </JobDetailsWrapper>
                                     ) : (
-                                        <NoJobsSelectedCard />
+                                        <NoJobsMargin>
+                                            <NoJobsSelectedCard />
+                                        </NoJobsMargin>
                                     )}
                                 </>
                             )}
