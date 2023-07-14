@@ -79,11 +79,13 @@ export const ApplyButton = styled.button`
 
     &:hover {
         background-color: ${(props) => props.theme.colors.primaryDark};
-        cursor: not-allowed;
     }
 
     &:disabled {
         background-color: ${(props) => props.theme.colors.secondaryDark};
+        &:hover {
+            cursor: not-allowed;
+        }
     }
 `;
 
