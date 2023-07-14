@@ -111,7 +111,10 @@ const JobApply = () => {
                                 <CancelApplyButton onClick={OpenCancelDialog}>
                                     Cancelar
                                 </CancelApplyButton>
-                                <ApplyButton onClick={handleApplyJob}>
+                                <ApplyButton
+                                    onClick={handleApplyJob}
+                                    disabled={selectedResume === ''}
+                                >
                                     Me Candidatar
                                 </ApplyButton>
                             </ButtonContainer>
