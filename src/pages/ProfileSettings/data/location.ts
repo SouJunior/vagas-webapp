@@ -114,4 +114,6 @@ const location = states.map((item, index) => ({
   id: index + 1
 }));
 
+export const state = states.map((state) => state.sigla);
+
 export default location;

@@ -121,7 +121,7 @@ export const ProfileSettings: React.FC = () => {
                             <select
                                 id="states"
                                 defaultValue={'DEFAULT'}
-                                {...register('location', {
+                                {...register('uf', {
                                     validate: (value) =>
                                         value !== 'DEFAULT' ||
                                         'O campo UF é obrigatório',

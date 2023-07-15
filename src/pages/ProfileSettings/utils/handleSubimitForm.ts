@@ -1,6 +1,6 @@
 interface SubmitProps {
     data: {
-        location: any;
+        uf: any;
         type: any;
         size: any;
         site: any;
@@ -19,7 +19,7 @@ export const handleSubmitForm = async ({data, selectedImage, api, auth, setConfi
     const formData = new FormData();
     formData.append('companyType', data.type);
     formData.append('companySize', data.size);
-    formData.append('location', data.location);
+    formData.append('uf', data.uf);
     formData.append('companySite', data.site);
     formData.append('description', data.description);
     formData.append('otherSite[instagram]', data.instagram);

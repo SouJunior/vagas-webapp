@@ -6,6 +6,10 @@ export const Container = styled.div`
     width: 100%;
 `
 
+export const Spacing = styled.p`
+    margin-bottom: 20px;
+`
+
 export const Buttons = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -13,6 +17,12 @@ export const Buttons = styled.div`
     justify-content: center;
     gap: 25px;
 
+`
+export const ErrorMessages = styled.p`
+    color: ${({ theme }) => theme.colors.danger};
+    font-size: 0.7rem;
+    line-height: 0;
+    margin-bottom: 16px;
 `
 
 export const ProfilePicWrapper = styled.div`
@@ -54,8 +64,8 @@ export const Form = styled.div`
     justify-items: center;
     width: 80%;
     margin: 0 auto;
-    gap: 16px;
-
+    gap: 15px;
+    
     @media (min-width: 768px) {
         grid-template-columns: 1fr 1fr;
     }
@@ -69,7 +79,6 @@ export const Form = styled.div`
     }
 
     p {
-        color: #bababa;
         font-size: 0.7em;
     }
 
@@ -92,7 +101,6 @@ export const Title = styled.h1`
     text-align: center;
 `;
 
-
 export const CurriculoWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -103,6 +111,10 @@ export const CurriculoWrapper = styled.div`
     @media (max-width: 280px) {
         width: 230px;
         height: 100%;
+    }
+
+    p {
+        margin-top: 12px;
     }
 
     div {

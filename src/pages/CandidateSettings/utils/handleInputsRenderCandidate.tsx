@@ -1,8 +1,9 @@
 import { Fragment, useContext } from 'react';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
-import { Required } from '../style';
+import { ErrorMessages, Required, Spacing } from '../style';
 
-export const HandleInputsRenderCandidate = (arr: any): [] => {
+export const HandleInputsRenderCandidate = (arr: any, register: any, errors: any): [] => {
+
     const auth = useContext(AuthContext);
 
     return arr.map((element: any) => {
@@ -11,13 +12,20 @@ export const HandleInputsRenderCandidate = (arr: any): [] => {
                 <label>{element.label}<Required>*</Required></label>
                 <input
                     type={element.type}
-                    name={element.name}
+                    {...register(element.name)}
                     defaultValue={
-                        (element.name === 'email' && auth.user.email) ||
-                        (element.name === 'name' && auth.user.name)
+                        (element.name === "email" && auth.user.email) ||
+                        (element.name === "name" && auth.user.name)
                     }
                     disabled={element.name === "email"}
                 />
+                {
+                    element.name === "name" &&
+                    <ErrorMessages>
+                        {errors.name && <>{errors.name.message}</>}
+                    </ErrorMessages>
+                }
+                <Spacing />
             </Fragment>
         );
     });

@@ -10,6 +10,8 @@ import {
     ExtraLine,
     Required,
     Buttons,
+    ErrorMessages,
+    Spacing,
 } from './style';
 import {
     Position,
@@ -25,15 +27,22 @@ import Header from '../../components/Portal/Header';
 import { ProfileImg } from '../../components/Portal/Header/styles';
 import { HandleInputsRenderCandidate } from './utils/handleInputsRenderCandidate';
 import inputConfigCandidate from './data/inputConfigCandidate';
-import { useRef, useState } from 'react';
+import { useState, useContext } from 'react';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
+import { handleImgFile } from '../ProfileSettings/utils/handleImgFile';
+//import { useApi } from '../../hooks/useApi';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
+
 
 export const CandidateSettings: React.FC = () => {
+
     const HandleOptionsRender = (arr: any): [] => {
         return arr.map((element: any) => {
             const key = element.id;
-
             return (
                 <option key={key} value={element.sigla}>
                     {element.nome}
@@ -45,27 +54,44 @@ export const CandidateSettings: React.FC = () => {
     const [deleteButton2, setDeleteButton2] = useState(false);
     const [cancelModal, setCancelModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
-    const [fileName1, setFileName1] = useState<boolean | any>();
-    const [fileName2, setFileName2] = useState<boolean | any>();
+    const [selectedImage, setSelectedImage] = useState<File | null | any>(null);
+    const [imagePreview, setImagePreview] = useState<Blob | null>(null);
+    const [file1, setFile1] = useState<File | any>();
+    const [file2, setFile2] = useState<File | any>();
+
+    const {
+        register,
+        handleSubmit,
+        resetField,
+        clearErrors,
+        formState: { errors },
+        setValue,
+    } = useForm({
+        resolver: yupResolver(CandidateUpdateFormSchema)
+    });
+
+    //const api = useApi();
+    const auth = useContext(AuthContext);
 
     // Funções do delete button
 
-    const inputRef1 = useRef<HTMLInputElement | null>(null);
-    const inputRef2 = useRef<HTMLInputElement | null>(null);
-
     const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj1 = e.target.files && e.target.files[0];
-        setFileName1(fileObj1);
+        console.log(fileObj1)
+        setFile1(fileObj1);
 
         if (!fileObj1) {
+            setValue("inputFile1", false)
             return;
         }
         setDeleteButton1(true);
+        setValue("inputFile1", true);
+        clearErrors("fileInput1");
     };
 
     const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj2 = e.target.files && e.target.files[0];
-        setFileName2(fileObj2);
+        setFile2(fileObj2);
 
         if (!fileObj2) {
             return;
@@ -74,18 +100,18 @@ export const CandidateSettings: React.FC = () => {
     };
 
     const resetFileInput1 = () => {
-        if (inputRef1.current) {
-            inputRef1.current.value = '';
+        if (file1) {
+            resetField("fileInput1")
         }
         setDeleteButton1(false);
-        setFileName1(false)
+        setFile1(false)
     };
     const resetFileInput2 = () => {
-        if (inputRef2.current) {
-            inputRef2.current.value = '';
+        if (file2) {
+            resetField("fileInput2")
         }
         setDeleteButton2(false);
-        setFileName2(false)
+        setFile2(false)
     };
 
     // Função do modal de cancelamento
@@ -96,13 +122,21 @@ export const CandidateSettings: React.FC = () => {
         setCancelModal(true);
         window.scrollTo(0, 0);
     };
+
+    const onSubmit = (e: any) => {
+        console.log(e)
+    };
+
     return (
         <Container>
             <Header />
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <ProfilePicWrapper>
                     <ProfileImg
-                        src={profilePicture}
+                        src={
+                            imagePreview ||
+                            (auth.user.profile ?? profilePicture)
+                        }
                         alt="Foto de perfil"
                         width={'10%'}
                     />
@@ -113,6 +147,13 @@ export const CandidateSettings: React.FC = () => {
                             id="profiPic"
                             type="file"
                             accept=".jpg, .jpeg, .png"
+                            onChange={(e: any) =>
+                                handleImgFile({
+                                    e,
+                                    setSelectedImage,
+                                    setImagePreview,
+                                })
+                            }
                         />
                     </div>
                     <p>Somente formatos jpg, jpeg e png</p>
@@ -125,17 +166,19 @@ export const CandidateSettings: React.FC = () => {
                 <Form>
                     <div className="form__left">
                         <InputWrapper>
-                            {HandleInputsRenderCandidate(inputConfigCandidate)}
+                            {HandleInputsRenderCandidate(inputConfigCandidate, register, errors)}
                             <label>
                                 Telefone 1<Required>*</Required>
                                 <input
                                     type="tel"
-                                    name="phoneNumber1"
                                     placeholder="(00) 00000-0000"
                                     maxLength={11}
-                                    required
+                                    {...register("phoneNumber1")}
                                 />
                             </label>
+                            <ErrorMessages>
+                                {errors.phoneNumber1 && <>{errors.phoneNumber1.message}</>}
+                            </ErrorMessages>
                         </InputWrapper>
                     </div>
                     <div className="form__right">
@@ -143,21 +186,29 @@ export const CandidateSettings: React.FC = () => {
                             <label>
                                 Cidade<Required>*</Required>
                                 <input
+                                    {...register("city")}
                                     type="text"
                                     placeholder="Insira sua cidade"
-                                    required
                                 />
                             </label>
+                            <ErrorMessages>
+                                {errors.city && <>{errors.city.message}</>}
+                            </ErrorMessages>
+                            <Spacing />
                         </InputWrapper>
                         <Select>
                             <label htmlFor="states">
                                 UF<Required>*</Required>
                             </label>
-                            <select id="states" required>
+                            <select id="states"  {...register("uf")}>
                                 <option value="DEFAULT">--</option>
                                 {HandleOptionsRender(location)}
                             </select>
                         </Select>
+                        <ErrorMessages>
+                            {errors.uf && <>{errors.uf.message}</>}
+                        </ErrorMessages>
+                        <Spacing />
                         <InputWrapper>
                             <label>
                                 Telefone 2
@@ -180,9 +231,9 @@ export const CandidateSettings: React.FC = () => {
                         <CurriculoWrapper>
                             <span>Currículo 1 <Required>*</Required></span>
                             <div>
-                                {fileName1 ? (
+                                {file1 ? (
                                     <label htmlFor="fileInput1">
-                                        {fileName1.name}
+                                        {file1.name}
                                     </label>) :
                                     (<label htmlFor="fileInput1">
                                         Insira seu currículo em PDF
@@ -194,13 +245,23 @@ export const CandidateSettings: React.FC = () => {
                                     </Trash>
                                 )}
                             </div>
+                            {
+                                <ErrorMessages>
+                                    {errors.fileInput1 && <>{errors.fileInput1.message}</>}
+                                </ErrorMessages>
+                            }
                             <input
-                                ref={inputRef1}
-                                onChange={handleFileChange1}
+                                //name="fileInput1
                                 type="file"
                                 id="fileInput1"
                                 accept=".pdf"
-                                required
+                                //{...register("fileInput1")}
+                                {...register("fileInput1", { required: "Currículo obrigatório" })}
+                                onChange={(e) => {
+                                    const { onChange } = register("fileInput1");
+                                    onChange(e);
+                                    handleFileChange1(e);
+                                }}
                             />
                         </CurriculoWrapper>
                     </div>
@@ -209,9 +270,9 @@ export const CandidateSettings: React.FC = () => {
                             <span>Currículo 2</span>
                             <div>
                                 {
-                                    fileName2 ? (
+                                    file2 ? (
                                         <label htmlFor="fileInput2">
-                                            {fileName2.name}
+                                            {file2.name}
                                         </label>) :
                                         (<label htmlFor="fileInput2">
                                             Insira seu currículo em PDF
@@ -224,11 +285,10 @@ export const CandidateSettings: React.FC = () => {
                                 )}
                             </div>
                             <input
-                                ref={inputRef2}
+                                {...register("fileInput2")}
                                 onChange={handleFileChange2}
                                 type="file"
                                 id="fileInput2"
-                                name="curriculo2"
                                 accept=".pdf"
                             />
                         </CurriculoWrapper>
@@ -239,7 +299,9 @@ export const CandidateSettings: React.FC = () => {
                 </ExtraLine>
                 <Buttons>
                     <div>
-                        <Button type="submit">
+                        <Button
+                            type="submit"
+                        >
                             Atualizar
                         </Button>
                     </div>
@@ -265,3 +327,4 @@ export const CandidateSettings: React.FC = () => {
         </Container>
     );
 };
+
