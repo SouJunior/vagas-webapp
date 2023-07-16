@@ -100,6 +100,16 @@ export const useApi = () => ({
         return res.data;
     },
 
+    updateCandidateProfile: async (formData: any) => {
+        const token = localStorage.getItem('authToken');
+        const headers = {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        };
+        const res: any = await api.put('/user', formData, { headers });
+        return res.data;
+    },
+
     createJob: async (JobData: any) => {
         const token = localStorage.getItem('authToken');
         const headers = {

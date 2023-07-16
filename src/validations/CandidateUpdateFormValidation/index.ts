@@ -13,11 +13,9 @@ export const CandidateUpdateFormSchema = yup.object().shape({
         .required('O campo "Cidade" é obrigatório'),
     fileInput1:yup
         .mixed()
-        .required('O campo "Currículo 1" é obrigatório'),
-        /*.test('O campo "Currículo 1" é obrigatório', (file) => {
-            if ()) return true 
-            return false;
-        }),*/
+        .test("required", 'O campo "Currículo 1" é obrigatório', (files)  => 
+            files.length > 0
+        ),
     uf: yup
         .string()
         .oneOf(state, 'O campo "UF" é obrigatório'),

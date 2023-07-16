@@ -7,6 +7,8 @@ import {
 } from './styles';
 import { Button } from '../../../Button';
 import { MaskBackground } from '../../../LoginCard/PopUpRegisterSuccess/styles';
+import { AuthContext } from '../../../../contexts/Auth/AuthContext';
+import { useContext } from 'react';
 
 interface CancelModalProps {
     setCancelModal: (value: boolean) => void;
@@ -17,17 +19,25 @@ function CancelModal({
 }: CancelModalProps) {
 
     const navigate = useNavigate()
+    const auth = useContext(AuthContext);
+
     return (
         <MaskBackground>
             <ModalContent>
-                <ModalTitle>Deseja Cancelar ?</ModalTitle>
+                <ModalTitle>Deseja cancelar?</ModalTitle>
                 <ModalText>
-                    Tem certeza que deseja cancelar a operação ?
+                    Tem certeza que deseja cancelar a operação?
                 </ModalText>
                 <ButtonContent>
-                    <Button onClick={() => {
-                        document.body.style.overflow = 'auto';
-                        navigate('/company-portal')}}>
+                    <Button
+                        onClick={() => {
+                            auth.user.type === 'USER' ?
+                                (navigate('/candidate-portal'))
+                                :
+                                (navigate('/company-portal'))
+                            document.body.style.overflow = 'auto';
+                        }}
+                    >
                         Sim
                     </Button>
                     <Button background='outline' onClick={() => {
@@ -38,7 +48,7 @@ function CancelModal({
                     </Button>
                 </ButtonContent>
             </ModalContent>
-        </MaskBackground>
+        </MaskBackground >
     );
 }
 

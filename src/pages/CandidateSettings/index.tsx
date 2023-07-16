@@ -31,7 +31,7 @@ import { useState, useContext } from 'react';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
 import { handleImgFile } from '../ProfileSettings/utils/handleImgFile';
-//import { useApi } from '../../hooks/useApi';
+import { useApi } from '../../hooks/useApi';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -62,30 +62,27 @@ export const CandidateSettings: React.FC = () => {
     const {
         register,
         handleSubmit,
-        resetField,
         clearErrors,
-        formState: { errors },
         setValue,
+        formState: { errors },
     } = useForm({
         resolver: yupResolver(CandidateUpdateFormSchema)
     });
 
-    //const api = useApi();
+    const api = useApi();
     const auth = useContext(AuthContext);
 
     // Funções do delete button
 
     const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj1 = e.target.files && e.target.files[0];
-        console.log(fileObj1)
+        console.log(fileObj1);
         setFile1(fileObj1);
 
         if (!fileObj1) {
-            setValue("inputFile1", false)
             return;
         }
         setDeleteButton1(true);
-        setValue("inputFile1", true);
         clearErrors("fileInput1");
     };
 
@@ -101,14 +98,15 @@ export const CandidateSettings: React.FC = () => {
 
     const resetFileInput1 = () => {
         if (file1) {
-            resetField("fileInput1")
+            setValue("fileInput1", "");
         }
         setDeleteButton1(false);
         setFile1(false)
     };
+
     const resetFileInput2 = () => {
         if (file2) {
-            resetField("fileInput2")
+            setValue("fileInput2", "");
         }
         setDeleteButton2(false);
         setFile2(false)
@@ -123,8 +121,41 @@ export const CandidateSettings: React.FC = () => {
         window.scrollTo(0, 0);
     };
 
-    const onSubmit = (e: any) => {
-        console.log(e)
+    const onSubmit = async (data: any, e: any) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+
+        formData.append("name", data.name);
+        //formData.append("", data.phoneNumber1);
+        //formData.append("", data.phoneNumber1);
+        //formData.append("", data.city);
+        formData.append("uf", data.uf);
+        //formData.append("", data.fileInput1);
+        //formData.append("", data.fileInput2);
+
+
+        if (selectedImage) {
+            formData.append('profile', selectedImage);
+        }
+    
+        formData.append('profileKey', auth.user.profileKey ?? 'lkjhgfdsa');
+
+        console.log(data);
+
+       try {
+            const res = await api.updateCandidateProfile(formData);
+            console.log(data);
+            if(res) {
+                setConfirmModal(true)
+                window.scrollTo(0, 0);
+                document.body.style.overflow = 'hidden';
+            }
+            return res;
+        } catch (error) {
+            //TODO ver mensagem de erro para o usuário
+        }
+
     };
 
     return (
@@ -200,7 +231,9 @@ export const CandidateSettings: React.FC = () => {
                             <label htmlFor="states">
                                 UF<Required>*</Required>
                             </label>
-                            <select id="states"  {...register("uf")}>
+                            <select id="states"  
+                            {...register("uf")}
+                            >
                                 <option value="DEFAULT">--</option>
                                 {HandleOptionsRender(location)}
                             </select>
@@ -245,23 +278,17 @@ export const CandidateSettings: React.FC = () => {
                                     </Trash>
                                 )}
                             </div>
-                            {
+                            { 
                                 <ErrorMessages>
                                     {errors.fileInput1 && <>{errors.fileInput1.message}</>}
                                 </ErrorMessages>
                             }
                             <input
-                                //name="fileInput1
                                 type="file"
                                 id="fileInput1"
                                 accept=".pdf"
-                                //{...register("fileInput1")}
-                                {...register("fileInput1", { required: "Currículo obrigatório" })}
-                                onChange={(e) => {
-                                    const { onChange } = register("fileInput1");
-                                    onChange(e);
-                                    handleFileChange1(e);
-                                }}
+                                {...register("fileInput1", { onChange: handleFileChange1 })}
+                              
                             />
                         </CurriculoWrapper>
                     </div>
@@ -285,8 +312,7 @@ export const CandidateSettings: React.FC = () => {
                                 )}
                             </div>
                             <input
-                                {...register("fileInput2")}
-                                onChange={handleFileChange2}
+                                {...register("fileInput2", {onChange: handleFileChange2})}
                                 type="file"
                                 id="fileInput2"
                                 accept=".pdf"
