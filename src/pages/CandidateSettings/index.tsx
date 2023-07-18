@@ -54,7 +54,7 @@ export const CandidateSettings: React.FC = () => {
     const [deleteButton2, setDeleteButton2] = useState(false);
     const [cancelModal, setCancelModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
-    const [selectedImage, setSelectedImage] = useState<File | null | any>(null);
+    const [selectedImage, setSelectedImage] = useState<File | any>(null);
     const [imagePreview, setImagePreview] = useState<Blob | null>(null);
     const [file1, setFile1] = useState<File | any>();
     const [file2, setFile2] = useState<File | any>();
@@ -76,7 +76,6 @@ export const CandidateSettings: React.FC = () => {
 
     const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj1 = e.target.files && e.target.files[0];
-        console.log(fileObj1);
         setFile1(fileObj1);
 
         if (!fileObj1) {
@@ -124,38 +123,45 @@ export const CandidateSettings: React.FC = () => {
     const onSubmit = async (data: any, e: any) => {
         e.preventDefault();
 
-        const formData = new FormData();
-
-        formData.append("name", data.name);
-        //formData.append("", data.phoneNumber1);
-        //formData.append("", data.phoneNumber1);
-        //formData.append("", data.city);
-        formData.append("uf", data.uf);
-        //formData.append("", data.fileInput1);
-        //formData.append("", data.fileInput2);
-
+        const userData = {
+            name: data.name,
+            mainPhone: data.phoneNumber1,
+            phone: data.phoneNumber2,
+            city: data.city,
+            state: data.uf,
+            //profile: data.profPic,
+            //profileKey: auth.user.profileKey ?? 'lkjhgfdsa',
+        };
 
         if (selectedImage) {
-            formData.append('profile', selectedImage);
-        }
-    
-        formData.append('profileKey', auth.user.profileKey ?? 'lkjhgfdsa');
+            //userData.profile = selectedImage
+        };
 
-        console.log(data);
+        const formData = new FormData();
+
+        formData.append("file", data.fileInput1[0]);
+        formData.append("file", data.fileInput2[0]);
+
+        formData.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
+        
+        console.log(data.fileInput1[0])
+        console.log(data.fileInput2[0])
 
        try {
-            const res = await api.updateCandidateProfile(formData);
-            console.log(data);
-            if(res) {
+            const res = await api.updateCandidateProfile(userData);
+            const res2 = await api.updateUserCurriculum(formData);
+            console.log(res);
+            console.log(res2)
+
+            if(res && res2) {
                 setConfirmModal(true)
                 window.scrollTo(0, 0);
                 document.body.style.overflow = 'hidden';
             }
-            return res;
+
         } catch (error) {
             //TODO ver mensagem de erro para o usuário
         }
-
     };
 
     return (
@@ -174,17 +180,15 @@ export const CandidateSettings: React.FC = () => {
                     <div className="upload">
                         <label htmlFor="profiPic">Alterar foto</label>
                         <input
-                            name="profPic"
-                            id="profiPic"
-                            type="file"
-                            accept=".jpg, .jpeg, .png"
-                            onChange={(e: any) =>
+                            {...register("profPic",{ onChange: (e: any) =>
                                 handleImgFile({
                                     e,
                                     setSelectedImage,
                                     setImagePreview,
-                                })
-                            }
+                                })} )}
+                            id="profiPic"
+                            type="file"
+                            accept=".jpg, .jpeg, .png"
                         />
                     </div>
                     <p>Somente formatos jpg, jpeg e png</p>
@@ -248,7 +252,7 @@ export const CandidateSettings: React.FC = () => {
                                 <input
                                     maxLength={11}
                                     type="tel"
-                                    name="phoneNumber2"
+                                    {...register("phoneNumber2")}
                                     placeholder="(00) 00000-0000"
                                 />
                             </label>
@@ -288,7 +292,6 @@ export const CandidateSettings: React.FC = () => {
                                 id="fileInput1"
                                 accept=".pdf"
                                 {...register("fileInput1", { onChange: handleFileChange1 })}
-                              
                             />
                         </CurriculoWrapper>
                     </div>

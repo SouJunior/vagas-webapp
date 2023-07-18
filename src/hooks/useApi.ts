@@ -100,13 +100,13 @@ export const useApi = () => ({
         return res.data;
     },
 
-    updateCandidateProfile: async (formData: any) => {
+    updateCandidateProfile: async (data: any) => {
         const token = localStorage.getItem('authToken');
         const headers = {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/JSON',
             Authorization: `Bearer ${token}`,
         };
-        const res: any = await api.put('/user', formData, { headers });
+        const res: any = await api.put('/user', JSON.stringify(data), { headers });
         return res.data;
     },
 
@@ -150,6 +150,17 @@ export const useApi = () => ({
     getUserCurriculum: async (token: string | null) => {
         const res: any = await api.get(`/curriculum`, {
             headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res.data;
+    },
+
+    updateUserCurriculum: async (formData: any) => {
+        const token = localStorage.getItem('authToken');
+        const res: any = await api.post(`/curriculum/upload`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${token}`,
             },
         });

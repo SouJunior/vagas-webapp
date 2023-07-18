@@ -17,6 +17,11 @@ export const Buttons = styled.div`
     justify-content: center;
     gap: 25px;
 
+    @media (max-width: 540px) {
+        flex-direction: column;
+        align-items: center;
+    }
+
 `
 export const ErrorMessages = styled.p`
     color: ${({ theme }) => theme.colors.danger};
