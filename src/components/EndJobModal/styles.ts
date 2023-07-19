@@ -78,7 +78,36 @@ export const Option = styled.div`
     gap: 10px;
     align-items: center;
     margin-top: 10px;
+    width: 100%;
+    cursor: pointer !important;
 `;
+
+export const LoadingBar = styled.div`
+    width: 100%;
+    height: 6px;
+    background-color: #ccc;
+    border-radius: 0.4rem;
+`;
+
+export const ProgressBar = styled.div`
+    height: 100%;
+    background-color: ${props => props.theme.colors.primary};
+    animation: progress 3s linear;
+    animation-fill-mode: forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+    width: 100%;
+    border-radius: 0.4rem;
+    @keyframes progress {
+        0% {
+            transform: scaleX(1);
+        }
+        100% {
+            transform: scaleX(0);
+        }
+    }
+`;
+
 
 export const Success = styled.div`
     font-size: 1.4rem;

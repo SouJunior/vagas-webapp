@@ -126,6 +126,11 @@ export const useApi = () => ({
         return res.data;
     },
 
+    deleteJob: async (id: string) => {
+        const res: any = await api.patch(`/job/${id}`)
+        return res.data;
+    },
+
     getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;

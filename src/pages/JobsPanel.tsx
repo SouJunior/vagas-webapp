@@ -30,6 +30,7 @@ import {
     OptionsBtn,
 } from './styles/JobsPanel';
 import EndJobModal from '../components/EndJobModal';
+import { Footer } from '../components/Footer';
 
 const JobsPanel = () => {
     const [selectedJob, setSelectedJob] = useState<string | null>('');
@@ -37,6 +38,7 @@ const JobsPanel = () => {
     const [noJobSelected, setNoJobSelected] = useState(true);
     const [clickedJob, setClickedJob] = useState<any>([]);
     const [jobStatus, setJobStatus] = useState('');
+    const [sortOrder, setSortOrder] = useState('desc');
 
     const auth = useContext(AuthContext);
     const companyId = auth.user?.id;
@@ -44,11 +46,10 @@ const JobsPanel = () => {
 
     const fetchCompanyJobsById = async (id: string) => {
         const response = await api.getCompanyById(id);
-        console.log(response);
         return response;
     };
 
-    const { data } = useQuery({
+    const { data, refetch } = useQuery({
         queryKey: ['companyJobs'],
         queryFn: () => fetchCompanyJobsById(companyId),
     });
@@ -60,13 +61,29 @@ const JobsPanel = () => {
         setNoJobSelected(false);
     }
 
+    const filteredJobs = (data?.jobs || []).filter(
+        (job: any) => job.status === jobStatus,
+    );
+
+    const sortedJobs = (
+        (filteredJobs.length > 0 ? filteredJobs : data?.jobs) || []
+    ).sort((a: any, b: any) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        if (sortOrder === 'desc') {
+            return dateB.getTime() - dateA.getTime(); // Ordena do mais recente para o mais antigo
+        } else {
+            return dateA.getTime() - dateB.getTime(); // Ordena do mais antigo para o mais recente
+        }
+    });
+
     const [JobClicked] = clickedJob;
 
     return (
         <>
             <Header />
             <Container>
-                <PageTitle>Candidaturas</PageTitle>
+                <PageTitle>Painel de Vagas</PageTitle>
                 <ContentWrapper>
                     <JobList>
                         <QuickFilterContainer>
@@ -78,11 +95,11 @@ const JobsPanel = () => {
                                     },
                                     {
                                         label: 'Vagas Ativas',
-                                        value: 'REMOTE',
+                                        value: 'ACTIVE',
                                     },
                                     {
                                         label: 'Vagas encerradas',
-                                        value: 'HYBRID',
+                                        value: 'ARCHIVED',
                                     },
                                 ]}
                                 selectedValue={jobStatus}
@@ -95,21 +112,21 @@ const JobsPanel = () => {
                                 options={[
                                     {
                                         label: 'Recentes',
-                                        value: 'ALL',
+                                        value: 'desc',
                                     },
                                     {
                                         label: 'Antigas',
-                                        value: 'REMOTE',
+                                        value: 'usp',
                                     },
                                 ]}
                                 selectedValue={jobStatus}
                                 onChange={(event: any) =>
-                                    setJobStatus(event.target.value)
+                                    setSortOrder(event.target.value)
                                 }
                                 placeholder="Quando postada"
                             />
                         </QuickFilterContainer>
-                        {data?.jobs.map((job: any) => (
+                        {(sortedJobs || []).map((job: any) => (
                             <JobCard
                                 key={job.id}
                                 id={job.id}
@@ -141,13 +158,24 @@ const JobsPanel = () => {
                             />
                         ))}
                     </JobList>
-                    {isModalOpen && <EndJobModal title={JobClicked?.title} onClose={() => setIsModalOpen(!isModalOpen)} />}
+                    {isModalOpen && (
+                        <EndJobModal
+                            id={JobClicked?.id}
+                            title={JobClicked?.title}
+                            onClose={() => {setIsModalOpen(!isModalOpen);refetch()}}
+                        />
+                    )}
                     {selectedJob ? (
                         <JobInfoContainer>
-                            <HeadRow>
+                            <HeadRow status={JobClicked?.status}>
                                 <HeadColumn>
                                     <h2>
-                                        {JobClicked?.title} <span>Ativa</span>
+                                        {JobClicked?.title}{' '}
+                                        <span>
+                                            {JobClicked?.status == 'ACTIVE'
+                                                ? 'Ativa'
+                                                : 'Encerrada'}
+                                        </span>
                                     </h2>
                                     <h3>{data?.companyName}</h3>
                                     <h4>
@@ -156,17 +184,32 @@ const JobsPanel = () => {
                                             : 'São Paulo - SP'}
                                     </h4>
                                     <h3 className="jobModel">
-                                        {JobClicked?.modality} -{' '}
-                                        {JobClicked?.type} -{' '}
-                                        {JobClicked?.typeContract}
+                                        <h3 className="jobModel">
+                                            {JobClicked?.modality ===
+                                                'REMOTE' && 'REMOTO'}
+                                            {JobClicked?.modality ===
+                                                'HYBRID' && 'HÍBRIDO'}
+                                            {JobClicked?.modality ===
+                                                'PRESENCIAL' &&
+                                                'PRESENCIAL'}{' '}
+                                            - {JobClicked?.type} -{' '}
+                                            {JobClicked?.typeContract == "OTHER" ? "OUTRO" : JobClicked?.typeContract}
+                                        </h3>
                                     </h3>
                                 </HeadColumn>
-                                <HeadColumn>
-                                    <OptionsBtn type="edit">Editar</OptionsBtn>
-                                    <OptionsBtn type="end" onClick={() => setIsModalOpen(true)}>
-                                        Encerrar Vaga
-                                    </OptionsBtn>
-                                </HeadColumn>
+                                {JobClicked.status !== 'ARCHIVED' && (
+                                    <HeadColumn>
+                                        <OptionsBtn type="edit">
+                                            Editar
+                                        </OptionsBtn>
+                                        <OptionsBtn
+                                            type="end"
+                                            onClick={() => setIsModalOpen(true)}
+                                        >
+                                            Encerrar Vaga
+                                        </OptionsBtn>
+                                    </HeadColumn>
+                                )}
                             </HeadRow>
                             <AboutColumn>
                                 <p>Tempo Integral</p>
@@ -181,6 +224,7 @@ const JobsPanel = () => {
                         <NoJobsSelectedCard />
                     )}
                 </ContentWrapper>
+                <Footer />
             </Container>
         </>
     );

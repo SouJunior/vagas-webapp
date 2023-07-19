@@ -4,7 +4,11 @@ interface Props {
     type: string;
 }
 
-export const HeadRow = styled.div`
+interface HeadRowProps {
+    status: string,
+}
+
+export const HeadRow = styled.div<HeadRowProps>`
     display: flex;
     flex-direction: row;
     width: 95%;
@@ -19,7 +23,7 @@ export const HeadRow = styled.div`
 
         span {
             font-size: 0.8rem;
-            background-color: rgb(76, 175, 80);
+            background-color: ${props => props.status == "ACTIVE" ? "rgb(76, 175, 80)" : "#BD0000"};
             color: #fff;
             padding: 5px;
             width: 80px;
