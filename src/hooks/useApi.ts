@@ -166,4 +166,26 @@ export const useApi = () => ({
         });
         return res.data;
     },
+
+    deleteUserCurriculum: async (key: string) => {
+        const token = localStorage.getItem('authToken');
+        const res: any = await api.delete(`/curriculum/${key}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res.data;
+    },
+
+    uploadFile: async (formData: any) => {
+        const token = localStorage.getItem('authToken');
+        const res: any = await api.post(`/upload`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res.data;
+    },
+
 });
