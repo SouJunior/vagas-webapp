@@ -57,6 +57,8 @@ export const CandidateSettings: React.FC = () => {
     const [imagePreview, setImagePreview] = useState<Blob | null>(null);
     const [file1, setFile1] = useState<File | any>();
     const [file2, setFile2] = useState<File | any>();
+    const [fileKey1, setFileKey1] = useState<string>();
+    const [fileKey2, setFileKey2] = useState<string>();
 
     const {
         register,
@@ -86,7 +88,9 @@ export const CandidateSettings: React.FC = () => {
         formData.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
 
         try {
-            await api.updateUserCurriculum(formData);
+            const response = await api.updateUserCurriculum(formData);
+            setFileKey1(response.fileKey)
+            console.log(response.fileKey);
 
         } catch (error) {
             //TODO ver mensagem de erro para o usuário
@@ -109,7 +113,9 @@ export const CandidateSettings: React.FC = () => {
         formData.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
 
         try {
-            await api.updateUserCurriculum(formData);
+            const response = await api.updateUserCurriculum(formData);
+            setFileKey2(response.fileKey)
+            console.log(response.fileKey)
 
         } catch (error) {
             //TODO ver mensagem de erro para o usuário
@@ -119,9 +125,8 @@ export const CandidateSettings: React.FC = () => {
     };
 
     const resetFileInput1 = async () => {
-        const fileKey1 = auth.user.fileKey;
 
-        if (file1) {
+        if (fileKey1) {
             try {
                 await api.deleteUserCurriculum(fileKey1);
 
@@ -137,9 +142,8 @@ export const CandidateSettings: React.FC = () => {
     };
 
     const resetFileInput2 = async () => {
-        const fileKey2 = auth.user.fileKey;
 
-        if (file2) {
+        if (fileKey2) {
             try {
                 await api.deleteUserCurriculum(fileKey2);
 
@@ -380,7 +384,7 @@ export const CandidateSettings: React.FC = () => {
             </form>
             {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
 
-            {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
+            {cancelModal && <CancelModal setCancelModal={setCancelModal} fileKey1={fileKey1} fileKey2={fileKey2}/>}
             <Position>
                 <Main>
                     <Row />

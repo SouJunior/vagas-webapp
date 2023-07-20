@@ -9,17 +9,45 @@ import { Button } from '../../../Button';
 import { MaskBackground } from '../../../LoginCard/PopUpRegisterSuccess/styles';
 import { AuthContext } from '../../../../contexts/Auth/AuthContext';
 import { useContext } from 'react';
+import { useApi } from '../../../../hooks/useApi';
 
 interface CancelModalProps {
     setCancelModal: (value: boolean) => void;
+    fileKey1?: string;
+    fileKey2?: string;
 }
 
 function CancelModal({
-    setCancelModal
+    setCancelModal,
+    fileKey1,
+    fileKey2,
 }: CancelModalProps) {
 
     const navigate = useNavigate()
     const auth = useContext(AuthContext);
+    const api = useApi();
+
+    const handleConfirmButton = async () => {
+        console.log(fileKey1)
+        try {
+            if (fileKey1) {
+                await api.deleteUserCurriculum(fileKey1);   
+            }
+
+            if (fileKey2) {
+                await api.deleteUserCurriculum(fileKey2);  
+            }
+
+            auth.user.type === 'USER' ?
+            (navigate('/candidate-portal'))
+            :
+            (navigate('/company-portal'))
+        document.body.style.overflow = 'auto';
+
+        } catch (error) {
+            //TODO ver mensagem de erro para o usuário
+        };
+    }
 
     return (
         <MaskBackground>
@@ -30,13 +58,7 @@ function CancelModal({
                 </ModalText>
                 <ButtonContent>
                     <Button
-                        onClick={() => {
-                            auth.user.type === 'USER' ?
-                                (navigate('/candidate-portal'))
-                                :
-                                (navigate('/company-portal'))
-                            document.body.style.overflow = 'auto';
-                        }}
+                        onClick={handleConfirmButton}
                     >
                         Sim
                     </Button>
