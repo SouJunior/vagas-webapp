@@ -42,10 +42,6 @@ import {
     MainContent,
     SecondaryTitle,
     Subtitle,
-    Position,
-    Row,
-    Copyright,
-    MainFooter,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
@@ -70,7 +66,7 @@ import { Areas } from '../Mocks/MockArea';
 import Testimonials from '../components/Home/Testimonials';
 import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
-import Footer from '../components/Portal/Footer/index';
+import { Footer } from '../components/Footer';
 
 interface AreaProps {
     id: string;
@@ -362,16 +358,7 @@ export const Home: React.FC = () => {
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>
-            <Position>
-                <MainFooter>
-                    <Row />
-                </MainFooter>
-                <Footer />
-                <MainFooter>
-                    <Row />
-                </MainFooter>
-            </Position>
-            <Copyright>&copy; 2023 SouJunior</Copyright>
+            <Footer />
         </>
     );
 };

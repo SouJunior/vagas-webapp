@@ -21,9 +21,7 @@ const Modal = ({
         <DialogContainer>
             <DialogOverlay onClick={handleCancel} />
             <DialogBox>
-                <DialogHeader>
-                    <div>{title}</div>
-                </DialogHeader>
+                <DialogHeader>{title}</DialogHeader>
                 <p>{children}</p>
                 <ButtonContainer>
                     <Button
