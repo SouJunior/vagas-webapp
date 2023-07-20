@@ -78,7 +78,7 @@ const FeedJobs = () => {
         queryFn: ({ pageParam = 1 }) =>
             searchTerm
                 ? fetchFilteredJobs(searchTerm, pageParam)
-                : fetchJobs(pageParam, sortOrder, modalityFilter),
+                : fetchJobs(pageParam, 'ASC', modalityFilter),
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.length ? allPages.length + 1 : undefined;
         },
@@ -89,6 +89,35 @@ const FeedJobs = () => {
             return [...acc, ...page];
         }, []);
     }, [data]);
+
+    const filteredJobs = useMemo(() => {
+        if (!modalityFilter && !sortOrder) {
+            // Se não houver filtro de modalidade nem de ordenação, retornar todos os trabalhos
+            return jobs || [];
+        }
+
+        let filtered = jobs || [];
+
+        if (modalityFilter) {
+            filtered = filtered.filter(
+                (job: any) => job.modality === modalityFilter,
+            );
+        }
+
+        if (sortOrder) {
+            filtered.sort((a: any, b: any) => {
+                const dateA = new Date(a.createdAt);
+                const dateB = new Date(b.createdAt);
+                if (sortOrder === 'desc') {
+                    return dateB.getTime() - dateA.getTime(); // Ordena do mais recente para o mais antigo
+                } else {
+                    return dateA.getTime() - dateB.getTime(); // Ordena do mais antigo para o mais recente
+                }
+            });
+        }
+
+        return filtered;
+    }, [jobs, modalityFilter, sortOrder]);
 
     async function selecionaVaga(id: string | null) {
         setSelectedJob(id);
@@ -140,11 +169,11 @@ const FeedJobs = () => {
                                         options={[
                                             {
                                                 label: 'Mais Recente',
-                                                value: 'DESC',
+                                                value: 'desc',
                                             },
                                             {
                                                 label: 'Mais Antigo',
-                                                value: 'ASC',
+                                                value: 'asc',
                                             },
                                         ]}
                                         placeholder="Quando postada"
@@ -154,7 +183,7 @@ const FeedJobs = () => {
                                         }
                                     />
                                 </QuickFilterContainer>
-                                {jobs && Object.keys(jobs).length === 0 && (
+                                {filteredJobs.length === 0 && (
                                     <NoResultsMessage>
                                         Nenhuma vaga encontrada.
                                     </NoResultsMessage>
@@ -166,7 +195,7 @@ const FeedJobs = () => {
                                     </NoResultsMessage>
                                 ) : (
                                     <JobList>
-                                        {jobs?.map((job: Job) => (
+                                        {filteredJobs?.map((job: Job) => (
                                             <JobCard
                                                 key={job.id}
                                                 id={job.id}

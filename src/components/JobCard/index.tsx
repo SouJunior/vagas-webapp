@@ -63,7 +63,7 @@ const JobCard: React.FC<Props> = ({
                 <Type>
                     {modality === 'REMOTE' && 'REMOTO'}
                     {modality === 'HYBRID' && 'HÍBRIDO'}
-                    {modality === 'PRESENCIAL' && 'PRESENCIAL'} - {jobType} -{' '}
+                    {modality === 'IN_PERSON' && 'PRESENCIAL'} - {jobType} -{' '}
                     {typeContract == "OTHER" ? "OUTRO" : typeContract}
                 </Type>
             </Content>

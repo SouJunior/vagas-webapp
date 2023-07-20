@@ -138,7 +138,7 @@ export const useApi = () => ({
 
     searchJobs: async (keyword: string, page: number = 1) => {
         const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`;
-        const res: any = await api.get(url);
+        const res: any = await api.post(url);
         return res.data;
     },
 
