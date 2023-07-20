@@ -28,7 +28,6 @@ function CancelModal({
     const api = useApi();
 
     const handleConfirmButton = async () => {
-        console.log(fileKey1)
         try {
             if (fileKey1) {
                 await api.deleteUserCurriculum(fileKey1);   

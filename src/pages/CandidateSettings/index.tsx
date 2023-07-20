@@ -90,7 +90,6 @@ export const CandidateSettings: React.FC = () => {
         try {
             const response = await api.updateUserCurriculum(formData);
             setFileKey1(response.fileKey)
-            console.log(response.fileKey);
 
         } catch (error) {
             //TODO ver mensagem de erro para o usuário
@@ -115,7 +114,6 @@ export const CandidateSettings: React.FC = () => {
         try {
             const response = await api.updateUserCurriculum(formData);
             setFileKey2(response.fileKey)
-            console.log(response.fileKey)
 
         } catch (error) {
             //TODO ver mensagem de erro para o usuário
