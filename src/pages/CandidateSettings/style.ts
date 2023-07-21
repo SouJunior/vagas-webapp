@@ -16,6 +16,7 @@ export const Buttons = styled.div`
     align-self: center;
     justify-content: center;
     gap: 25px;
+    margin-top: 50px;
 
     @media (max-width: 540px) {
         flex-direction: column;
@@ -71,12 +72,21 @@ export const Form = styled.div`
     margin: 0 auto;
     gap: 15px;
     
-    @media (min-width: 768px) {
+    @media (min-width: 941px) {
+        display: flex;
+        justify-content: center;
         grid-template-columns: 1fr 1fr;
+        gap: 150px;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 940px) {
        grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 540px) {
+        input {
+            width: 387px;
+        }
     }
 
     input[type='file']::-webkit-file-upload-button {

@@ -73,28 +73,13 @@ export const CandidateSettings: React.FC = () => {
     const api = useApi();
     const auth = useContext(AuthContext);
 
-    // Funções do delete button
-
     const handleFileChange1 = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj1 = e.target.files && e.target.files[0];
         setFile1(fileObj1);
 
         if (!fileObj1) {
             return;
-        };
-
-        const formData = new FormData();
-        formData.append("file", fileObj1);
-        formData.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
-
-        try {
-            const response = await api.updateUserCurriculum(formData);
-            setFileKey1(response.fileKey)
-
-        } catch (error) {
-            //TODO ver mensagem de erro para o usuário
-        };
-
+        }
         setDeleteButton1(true);
         clearErrors("fileInput1");
     };
@@ -105,53 +90,39 @@ export const CandidateSettings: React.FC = () => {
 
         if (!fileObj2) {
             return;
-        };
-
-        const formData = new FormData();
-        formData.append("file", fileObj2);
-        formData.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
-
-        try {
-            const response = await api.updateUserCurriculum(formData);
-            setFileKey2(response.fileKey)
-
-        } catch (error) {
-            //TODO ver mensagem de erro para o usuário
-        };
-
+        }
         setDeleteButton2(true);
     };
 
     const resetFileInput1 = async () => {
 
         if (fileKey1) {
-            try {
+           /* try {
                 await api.deleteUserCurriculum(fileKey1);
 
             } catch (error) {
                 //TODO ver mensagem de erro para o usuário
-            };
-
-            setValue("fileInput1", "");
+            }
+            setValue("fileInput1", "");*/
         };
 
         setDeleteButton1(false);
-        setFile1(false)
+        setFile1(false);
     };
 
     const resetFileInput2 = async () => {
 
         if (fileKey2) {
-            try {
+            /*try {
                 await api.deleteUserCurriculum(fileKey2);
 
             } catch (error) {
                 //TODO ver mensagem de erro para o usuário
-            };
-            setValue("fileInput2", "");
+            }
+            setValue("fileInput2", "");*/
         }
         setDeleteButton2(false);
-        setFile2(false)
+        setFile2(false);
     };
 
     // Função do modal de cancelamento
@@ -181,20 +152,38 @@ export const CandidateSettings: React.FC = () => {
             formData.append("file", selectedImage);
         }
 
-        try {
-            const res = await api.updateCandidateProfile(userData);
-            let success =  res ? true : false;
+        const formDataCurriculum1 = new FormData();
+        formDataCurriculum1.append("file", file1);
+        formDataCurriculum1.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
 
-            if (formData && success) {
-                const res2 = await api.uploadFile(formData);
-                success =  res2 ? true : false;   
+        let formDataCurriculum2;
+
+        if (file2) {
+            formDataCurriculum2 = new FormData();
+            formDataCurriculum2.append("file", file2);
+            formDataCurriculum2.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
+        }
+
+        try {
+
+            await api.updateCandidateProfile(userData);
+
+            const resCurriculum1 = await api.updateUserCurriculum(formDataCurriculum1);
+            setFileKey1(resCurriculum1.fileKey);
+
+            if (formData) {
+                await api.uploadFile(formData);
             }
-           
-            if (success) {
-                setConfirmModal(true)
-                window.scrollTo(0, 0);
-                document.body.style.overflow = 'hidden';
+
+            if (formDataCurriculum2) {
+                const resCurriculum2 = await api.updateUserCurriculum(formDataCurriculum2);
+                setFileKey2(resCurriculum2.fileKey);
             }
+
+            setConfirmModal(true)
+            window.scrollTo(0, 0);
+            document.body.style.overflow = 'hidden';
+
 
         } catch (error) {
             //TODO ver mensagem de erro para o usuário
@@ -321,11 +310,9 @@ export const CandidateSettings: React.FC = () => {
                                     </Trash>
                                 )}
                             </div>
-                            {
-                                <ErrorMessages>
-                                    {errors.fileInput1 && <>{errors.fileInput1.message}</>}
-                                </ErrorMessages>
-                            }
+                            <ErrorMessages>
+                                {errors.fileInput1 && <>{errors.fileInput1.message}</>}
+                            </ErrorMessages>
                             <input
                                 type="file"
                                 id="fileInput1"
@@ -362,9 +349,9 @@ export const CandidateSettings: React.FC = () => {
                         </CurriculoWrapper>
                     </div>
                 </Form>
-                <ExtraLine>
+                <Main>
                     <Row />
-                </ExtraLine>
+                </Main>
                 <Buttons>
                     <div>
                         <Button
@@ -379,10 +366,12 @@ export const CandidateSettings: React.FC = () => {
                         </Button>
                     </div>
                 </Buttons>
+                <ExtraLine>
+                    <Row />
+                </ExtraLine>
             </form>
             {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
-
-            {cancelModal && <CancelModal setCancelModal={setCancelModal} fileKey1={fileKey1} fileKey2={fileKey2}/>}
+            {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
                 <Main>
                     <Row />
