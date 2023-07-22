@@ -93,7 +93,22 @@ export const NavRoutes: React.FC = () => {
                 <Route path="addjobs" element={<AddJobs />} />
                 <Route path="jobs" element={<FeedJobs />} />
                 <Route path="jobs/:searchTerm" element={<FeedJobs />} />
-                <Route path="apply/:id" element={<JobApply />} />
+                <Route
+                    path="apply/:id"
+                    element={
+                        <RequireAuth>
+                            <JobApply />
+                        </RequireAuth>
+                    }
+                />
+                <Route
+                    path="applications"
+                    element={
+                        <RequireAuth>
+                            <CompanyApplications />
+                        </RequireAuth>
+                    }
+                />
 
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />

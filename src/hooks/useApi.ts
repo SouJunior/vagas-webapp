@@ -109,7 +109,11 @@ export const useApi = () => ({
         return res.data;
     },
 
-    getJobs: async (page: number = 1, order: string = 'ASC', modality: string =  '') => {
+    getJobs: async (
+        page: number = 1,
+        order: string = 'ASC',
+        modality: string = '',
+    ) => {
         const url = `/job?order=${order}&page=${page}&take=10&orderByColumn=id&modality=${modality}`;
         const res: any = await api.get(url);
         return res.data;
@@ -149,5 +153,16 @@ export const useApi = () => ({
             },
         });
         return res.data;
+    },
+
+    ApplyJob: async (jobId: string, curriculumId: string) => {
+        const url = `/applications?job_id=${jobId}&curriculum_id=${curriculumId}`;
+        const token = localStorage.getItem('authToken');
+        const res: any = await api.get(url, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res;
     },
 });
