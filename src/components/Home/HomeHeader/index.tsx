@@ -73,7 +73,7 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                         </LoginButton>
                     </ul>
                     </div>
-                    <div className='background'>
+                    <div className='background' onClick={() => setMobileOpen(false)}>
 
 </div>
                 </MobileHeader>
