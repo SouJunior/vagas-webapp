@@ -27,7 +27,6 @@ import { useForm } from 'react-hook-form';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
 import { Footer } from '../../components/Footer';
-import { Description } from '../../components/Home/OurSitesSection/styles';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
@@ -36,7 +35,6 @@ export const ProfileSettings: React.FC = () => {
     const [imagePreview, setImagePreview] = useState<Blob | null>(null);
     const [cancelModal, setCancelModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
-    const [defaultValue, setDefaultValue] = useState('')
 
     const handleCancelModal = (e: any) => {
         e.preventDefault();
@@ -53,7 +51,7 @@ export const ProfileSettings: React.FC = () => {
 
     const api = useApi();
     const auth = useContext(AuthContext)
-    
+
     const {
         register,
         setValue,
@@ -123,26 +121,26 @@ export const ProfileSettings: React.FC = () => {
                             <select
                                 id="states"
                                 defaultValue={auth.user.uf ?? 'DEFAULT'}
-                                {...register('location', {
+                                {...register('uf', {
                                     validate: (value) =>
                                         value !== 'DEFAULT' ||
                                         'O campo UF é obrigatório',
                                 })}
-                                className={errors.location ? 'error' : ''}
+                                className={errors.uf ? 'error' : ''}
                             >
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
                                 {HandleOptionsRender(location)}
                             </select>
-                            {errors.location && (
+                            {errors.uf && (
                                 <p
                                     style={{
                                         color: 'red',
                                         paddingBottom: '8px',
                                     }}
                                 >
-                                    {errors.location.message?.toString()}
+                                    {errors.uf.message?.toString()}
                                 </p>
                             )}
 
@@ -183,7 +181,7 @@ export const ProfileSettings: React.FC = () => {
                             <label>Decrição da empresa</label>
                             <textarea
                                 placeholder="Breve descrição da empresa"
-                                {...register('descripiton')}
+                                {...register('description')}
                                 defaultValue={auth.user.description}
                                 onChange={(e) =>
                                     setCharCount(e.target.value.length)
