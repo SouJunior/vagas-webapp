@@ -2,7 +2,6 @@ import {
     Main,
     Container,
     Row,
-    Copyright,
     Position,
     ProfileButton,
 } from './styles/CandidatePortalStyles';

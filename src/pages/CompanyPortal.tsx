@@ -1,8 +1,6 @@
 import { 
     Main, 
     Container, 
-    Row,
-    Copyright,
     Position, 
     JobButton
 } from "./styles/CompanyPortalStyles"
@@ -60,7 +58,6 @@ const CompanyPortal = () => {
         <Position>
         <Footer />
         </Position>
-        <Copyright>&copy; 2023 SouJunior</Copyright>
     </Container>
   )
 }

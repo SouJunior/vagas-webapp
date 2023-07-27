@@ -2,7 +2,6 @@ import profilePicture from '../../assets/imgs/profile-image.svg';
 import { Form, ProfileImgWrapper } from './style';
 import {
     Container,
-    Copyright,
     Main,
     Position,
     Row,

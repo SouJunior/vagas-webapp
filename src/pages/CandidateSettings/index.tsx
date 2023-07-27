@@ -11,7 +11,6 @@ import {
 } from './style';
 import {
     Container,
-    Copyright,
     Position,
     Main,
     Row,
