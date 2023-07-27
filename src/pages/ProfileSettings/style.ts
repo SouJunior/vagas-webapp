@@ -28,7 +28,7 @@ export const ProfileImgWrapper = styled.div`
     }
 
     .img__error {
-        color: ${({theme}) => theme.colors.danger};
+        color: ${({ theme }) => theme.colors.danger};
         font-size: 0.9em;
     }
     & > p {
