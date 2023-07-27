@@ -27,6 +27,7 @@ import { useForm } from 'react-hook-form';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
 import { Footer } from '../../components/Footer';
+import { Description } from '../../components/Home/OurSitesSection/styles';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
@@ -35,6 +36,7 @@ export const ProfileSettings: React.FC = () => {
     const [imagePreview, setImagePreview] = useState<Blob | null>(null);
     const [cancelModal, setCancelModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
+    const [defaultValue, setDefaultValue] = useState('')
 
     const handleCancelModal = (e: any) => {
         e.preventDefault();
@@ -50,8 +52,8 @@ export const ProfileSettings: React.FC = () => {
     //         : selectedImage.size;
 
     const api = useApi();
-    const auth = useContext(AuthContext);
-
+    const auth = useContext(AuthContext)
+    
     const {
         register,
         setValue,
@@ -120,7 +122,7 @@ export const ProfileSettings: React.FC = () => {
                             </label>
                             <select
                                 id="states"
-                                defaultValue={'DEFAULT'}
+                                defaultValue={auth.user.uf ?? 'DEFAULT'}
                                 {...register('location', {
                                     validate: (value) =>
                                         value !== 'DEFAULT' ||
@@ -147,7 +149,7 @@ export const ProfileSettings: React.FC = () => {
                             <label htmlFor="companyType">Tipo de Empresa</label>
                             <select
                                 id="companyType"
-                                defaultValue={'DEFAULT'}
+                                defaultValue={auth.user.companyType ?? 'DEFAULT'}
                                 {...register('type')}
                             >
                                 <option value="DEFAULT" disabled>
@@ -160,7 +162,7 @@ export const ProfileSettings: React.FC = () => {
                             </label>
                             <select
                                 id="companySize"
-                                defaultValue={'DEFAULT'}
+                                defaultValue={auth.user.companySize ?? 'DEFAULT'}
                                 {...register('size')}
                             >
                                 <option value="DEFAULT" disabled>
@@ -181,10 +183,11 @@ export const ProfileSettings: React.FC = () => {
                             <label>Decrição da empresa</label>
                             <textarea
                                 placeholder="Breve descrição da empresa"
-                                {...register('description')}
+                                {...register('descripiton')}
+                                defaultValue={auth.user.description}
                                 onChange={(e) =>
                                     setCharCount(e.target.value.length)
-                                }
+                            }
                             />
                         </div>
                         <span>{currChar} caracteres restantes</span>
