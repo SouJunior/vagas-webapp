@@ -1,11 +1,6 @@
 import profilePicture from '../../assets/imgs/profile-image.svg';
 import { Form, ProfileImgWrapper } from './style';
-import {
-    Container,
-    Main,
-    Position,
-    Row,
-} from '../styles/CompanyPortalStyles';
+import { Container, Main, Position, Row } from '../styles/CompanyPortalStyles';
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
@@ -22,6 +17,7 @@ import { useApi } from '../../hooks/useApi';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { handleSubmitForm } from './utils/handleSubimitForm';
 import { handleImgFile } from './utils/handleImgFile';
+import { checkImgZise } from './utils/checkImgSize';
 
 import { useForm } from 'react-hook-form';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
@@ -43,14 +39,8 @@ export const ProfileSettings: React.FC = () => {
         window.scrollTo(0, 0);
     };
 
-    //TODO: Utilizar essa variável para o tamanho da foto e formato
-    // const imgSize =
-    //     !selectedImage.size || selectedImage.size === null
-    //         ? ''
-    //         : selectedImage.size;
-
     const api = useApi();
-    const auth = useContext(AuthContext)
+    const auth = useContext(AuthContext);
 
     const {
         register,
@@ -82,6 +72,9 @@ export const ProfileSettings: React.FC = () => {
                     />
                     <div className="upload">
                         <label htmlFor="profiPic">Alterar foto</label>
+                        {/**
+                         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
+                         */}
                         <input
                             name="profPic"
                             id="profiPic"
@@ -97,7 +90,9 @@ export const ProfileSettings: React.FC = () => {
                         />
                     </div>
                     <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
-                    <span>Tamanho ou formato inválido.</span>
+                    <span className="img__error">
+                        {checkImgZise(selectedImage)}
+                    </span>
                 </ProfileImgWrapper>
                 <Main>
                     <Row />
@@ -147,7 +142,9 @@ export const ProfileSettings: React.FC = () => {
                             <label htmlFor="companyType">Tipo de Empresa</label>
                             <select
                                 id="companyType"
-                                defaultValue={auth.user.companyType ?? 'DEFAULT'}
+                                defaultValue={
+                                    auth.user.companyType ?? 'DEFAULT'
+                                }
                                 {...register('type')}
                             >
                                 <option value="DEFAULT" disabled>
@@ -160,7 +157,9 @@ export const ProfileSettings: React.FC = () => {
                             </label>
                             <select
                                 id="companySize"
-                                defaultValue={auth.user.companySize ?? 'DEFAULT'}
+                                defaultValue={
+                                    auth.user.companySize ?? 'DEFAULT'
+                                }
                                 {...register('size')}
                             >
                                 <option value="DEFAULT" disabled>
@@ -185,18 +184,14 @@ export const ProfileSettings: React.FC = () => {
                                 defaultValue={auth.user.description}
                                 onChange={(e) =>
                                     setCharCount(e.target.value.length)
-                            }
+                                }
                             />
                         </div>
                         <span>{currChar} caracteres restantes</span>
                     </div>
 
                     <div className="form__change">
-                        <Button
-                            type="submit"
-                        >
-                            Alterar
-                        </Button>
+                        <Button type="submit">Alterar</Button>
                     </div>
                     <div className="form__cancel">
                         <Button
@@ -209,7 +204,7 @@ export const ProfileSettings: React.FC = () => {
                 </Form>
             </form>
 
-            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal}/>}
+            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
 
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
