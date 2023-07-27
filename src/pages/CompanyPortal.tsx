@@ -7,8 +7,9 @@ import {
     JobButton
 } from "./styles/CompanyPortalStyles"
 import PlusSignImage from "../assets/imgs/plus-sign.png"
-import Footer from '../components/Portal/Footer/index';
+
 import Header from '../components/Portal/Header';
+import { Footer } from "../components/Footer";
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../contexts/Auth/AuthContext"
 import { useContext, useEffect, useState } from "react"
@@ -57,13 +58,7 @@ const CompanyPortal = () => {
             </JobButton>
         </Main>)}
         <Position>
-        <Main>
-            <Row/>
-        </Main>
         <Footer />
-        <Main>
-            <Row/>
-        </Main>
         </Position>
         <Copyright>&copy; 2023 SouJunior</Copyright>
     </Container>

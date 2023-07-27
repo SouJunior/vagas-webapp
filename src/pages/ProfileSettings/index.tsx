@@ -10,7 +10,7 @@ import {
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
-import Footer from '../../components/Portal/Footer';
+
 import inputConfigs from './data/inputSettings';
 import location from './data/location';
 import companyType from './data/companyType';
@@ -27,6 +27,7 @@ import { handleImgFile } from './utils/handleImgFile';
 import { useForm } from 'react-hook-form';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
+import { Footer } from '../../components/Footer';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
@@ -212,15 +213,9 @@ export const ProfileSettings: React.FC = () => {
 
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
-                <Main>
-                    <Row />
-                </Main>
+                <Main />
                 <Footer />
-                <Main>
-                    <Row />
-                </Main>
             </Position>
-            <Copyright>&copy; 2023 SouJunior</Copyright>
         </Container>
     );
 };

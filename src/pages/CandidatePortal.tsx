@@ -6,13 +6,14 @@ import {
     Position,
     ProfileButton,
 } from './styles/CandidatePortalStyles';
-import Footer from '../components/Portal/Footer/index';
+
 import Header from '../components/Portal/Header';
 import Search from '../components/Portal/Search';
 import CurriculumImage from '../assets/imgs/cv.svg';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useContext } from 'react';
+import { Footer } from '../components/Footer';
 
 const CandidatePortal = () => {
     const navigate = useNavigate();
@@ -33,15 +34,8 @@ const CandidatePortal = () => {
                 </ProfileButton>
             </Main>
             <Position>
-                <Main>
-                    <Row />
-                </Main>
                 <Footer />
-                <Main>
-                    <Row />
-                </Main>
             </Position>
-            <Copyright>&copy; 2023 SouJunior</Copyright>
         </Container>
     );
 };

@@ -19,7 +19,6 @@ import {
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
-import Footer from '../../components/Portal/Footer';
 import location from '../ProfileSettings/data/location';
 import Header from '../../components/Portal/Header';
 import { ProfileImg } from '../../components/Portal/Header/styles';
@@ -28,6 +27,7 @@ import inputConfigCandidate from './data/inputConfigCandidate';
 import { useRef, useState } from 'react';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
+import { Footer } from '../../components/Footer';
 
 export const CandidateSettings: React.FC = () => {
     const HandleOptionsRender = (arr: any): [] => {
@@ -235,15 +235,9 @@ export const CandidateSettings: React.FC = () => {
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
 
             <Position>
-                <Main>
-                    <Row />
-                </Main>
+                <Main />
                 <Footer />
-                <Main>
-                    <Row />
-                </Main>
             </Position>
-            <Copyright>&copy; 2023 SouJunior</Copyright>
         </Container>
     );
 };
