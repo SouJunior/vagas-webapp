@@ -27,14 +27,14 @@ export const ProfileImgWrapper = styled.div`
         display: none;
     }
 
-    span {
+    .img__error {
         color: ${({theme}) => theme.colors.danger};
-        display: ${(props: any) => (props.color > 5000000 ? 'block' : 'none')};
+        font-size: 0.9em;
     }
     & > p {
         color: #bababa;
         padding-bottom: 4px;
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
 `;
 
