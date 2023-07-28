@@ -1,16 +1,10 @@
 import profilePicture from '../../assets/imgs/profile-image.svg';
 import { Form, ProfileImgWrapper } from './style';
-import {
-    Container,
-    Copyright,
-    Main,
-    Position,
-    Row,
-} from '../styles/CompanyPortalStyles';
+import { Container, Main, Position, Row } from '../styles/CompanyPortalStyles';
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
-import Footer from '../../components/Portal/Footer';
+
 import inputConfigs from './data/inputSettings';
 import location from './data/location';
 import companyType from './data/companyType';
@@ -23,10 +17,12 @@ import { useApi } from '../../hooks/useApi';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { handleSubmitForm } from './utils/handleSubimitForm';
 import { handleImgFile } from './utils/handleImgFile';
+import { checkImgZise } from './utils/checkImgSize';
 
 import { useForm } from 'react-hook-form';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
+import { Footer } from '../../components/Footer';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
@@ -42,12 +38,6 @@ export const ProfileSettings: React.FC = () => {
         setCancelModal(true);
         window.scrollTo(0, 0);
     };
-
-    //TODO: Utilizar essa variável para o tamanho da foto e formato
-    // const imgSize =
-    //     !selectedImage.size || selectedImage.size === null
-    //         ? ''
-    //         : selectedImage.size;
 
     const api = useApi();
     const auth = useContext(AuthContext);
@@ -82,6 +72,9 @@ export const ProfileSettings: React.FC = () => {
                     />
                     <div className="upload">
                         <label htmlFor="profiPic">Alterar foto</label>
+                        {/**
+                         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
+                         */}
                         <input
                             name="profPic"
                             id="profiPic"
@@ -97,7 +90,9 @@ export const ProfileSettings: React.FC = () => {
                         />
                     </div>
                     <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
-                    <span>Tamanho ou formato inválido.</span>
+                    <span className="img__error">
+                        {checkImgZise(selectedImage)}
+                    </span>
                 </ProfileImgWrapper>
                 <Main>
                     <Row />
@@ -120,34 +115,36 @@ export const ProfileSettings: React.FC = () => {
                             </label>
                             <select
                                 id="states"
-                                defaultValue={'DEFAULT'}
-                                {...register('location', {
+                                defaultValue={auth.user.uf ?? 'DEFAULT'}
+                                {...register('uf', {
                                     validate: (value) =>
                                         value !== 'DEFAULT' ||
                                         'O campo UF é obrigatório',
                                 })}
-                                className={errors.location ? 'error' : ''}
+                                className={errors.uf ? 'error' : ''}
                             >
                                 <option value="DEFAULT" disabled>
                                     --
                                 </option>
                                 {HandleOptionsRender(location)}
                             </select>
-                            {errors.location && (
+                            {errors.uf && (
                                 <p
                                     style={{
                                         color: 'red',
                                         paddingBottom: '8px',
                                     }}
                                 >
-                                    {errors.location.message?.toString()}
+                                    {errors.uf.message?.toString()}
                                 </p>
                             )}
 
                             <label htmlFor="companyType">Tipo de Empresa</label>
                             <select
                                 id="companyType"
-                                defaultValue={'DEFAULT'}
+                                defaultValue={
+                                    auth.user.companyType ?? 'DEFAULT'
+                                }
                                 {...register('type')}
                             >
                                 <option value="DEFAULT" disabled>
@@ -160,7 +157,9 @@ export const ProfileSettings: React.FC = () => {
                             </label>
                             <select
                                 id="companySize"
-                                defaultValue={'DEFAULT'}
+                                defaultValue={
+                                    auth.user.companySize ?? 'DEFAULT'
+                                }
                                 {...register('size')}
                             >
                                 <option value="DEFAULT" disabled>
@@ -182,6 +181,7 @@ export const ProfileSettings: React.FC = () => {
                             <textarea
                                 placeholder="Breve descrição da empresa"
                                 {...register('description')}
+                                defaultValue={auth.user.description}
                                 onChange={(e) =>
                                     setCharCount(e.target.value.length)
                                 }
@@ -191,11 +191,7 @@ export const ProfileSettings: React.FC = () => {
                     </div>
 
                     <div className="form__change">
-                        <Button
-                            type="submit"
-                        >
-                            Alterar
-                        </Button>
+                        <Button type="submit">Alterar</Button>
                     </div>
                     <div className="form__cancel">
                         <Button
@@ -208,19 +204,13 @@ export const ProfileSettings: React.FC = () => {
                 </Form>
             </form>
 
-            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal}/>}
+            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
 
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
-                <Main>
-                    <Row />
-                </Main>
+                <Main />
                 <Footer />
-                <Main>
-                    <Row />
-                </Main>
             </Position>
-            <Copyright>&copy; 2023 SouJunior</Copyright>
         </Container>
     );
 };
