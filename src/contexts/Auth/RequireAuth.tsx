@@ -1,4 +1,4 @@
-import { useContext, useEffect} from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
 
 import Login from '../../pages/Login';
@@ -8,7 +8,7 @@ export const RequireAuth = ({ children }: { children: JSX.Element }) => {
 
     useEffect(() => {
         auth.validateToken();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (auth.isAuth === null) {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import googlePlayBadge from '../assets/imgs/googlePlayBadge.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -67,6 +67,8 @@ import Testimonials from '../components/Home/Testimonials';
 import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
 import { Footer } from '../components/Footer';
+import Header from '../components/Portal/Header';
+import { AuthContext } from '../contexts/Auth/AuthContext';
 
 interface AreaProps {
     id: string;
@@ -80,6 +82,7 @@ export const Home: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     const api = useApi();
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const handleResize = () => {
@@ -138,7 +141,13 @@ export const Home: React.FC = () => {
 
     return (
         <>
-            <HomeHeader isActive={isActive} />
+            {user ? (
+                <div className="z-[2000] fixed w-full">
+                    <Header />
+                </div>
+            ) : (
+                <HomeHeader isActive={isActive} />
+            )}
             <Main>
                 <MainContent>
                     <MainSearchFilter>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useApi } from '../../hooks/useApi';
 import { User } from '../../@types/User';
 import { AuthContext } from './AuthContext';
@@ -9,6 +9,10 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [isLogin, setIsLogin] = useState<'login' | 'register'>('login');
 
     const api = useApi();
+
+    useEffect(() => {
+        validateToken();
+    }, []);
 
     const validateToken = async () => {
         const storagedToken = localStorage.getItem('authToken');
@@ -30,6 +34,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         const res = await api.login(email, password, type);
         if (res.info && res.token) {
             setUser(res.info);
+            setIsAuth(true);
             setToken(res.token);
         }
         return res;
@@ -44,7 +49,9 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     const logout = async () => {
-        localStorage.removeItem('authToken')
+        localStorage.removeItem('authToken');
+        setUser(null);
+        setIsAuth(false);
     };
 
     const register = async (
@@ -100,7 +107,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
                 isLogin,
                 setIsLogin,
                 validateToken,
-                isAuth
+                isAuth,
             }}
         >
             {children}

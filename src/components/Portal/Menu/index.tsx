@@ -43,6 +43,7 @@ const Menu = () => {
                     </li>
 
                     <Border />
+
                     {auth.user.type !== 'USER' && (
                         <li
                             onClick={() => navigate('/insertjobs')}

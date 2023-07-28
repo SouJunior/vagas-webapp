@@ -10,8 +10,8 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const ProfileImg = styled.img`
-    cursor: ${(props) => props.width === '10%' ? 'default' : 'pointer' };
-    width: ${(props) => props.width};  
+    cursor: ${(props) => (props.width === '10%' ? 'default' : 'pointer')};
+    width: ${(props) => props.width};
     border-radius: 50%;
     margin: 0 15px;
     aspect-ratio: 4 / 4;
@@ -83,4 +83,13 @@ export const HeaderLogo = styled.img`
         width: 140px;
         height: 60px;
     }
+`;
+
+export const LoginBtn = styled.button`
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 12px;
 `;
