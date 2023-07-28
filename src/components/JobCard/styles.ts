@@ -15,6 +15,11 @@ export const Card = styled.div<CardProps>`
   max-width: 493px;
   padding: 16px;
   height: 100%;
+  max-height: 130px;
+
+  @media (max-width: 950px) {
+    max-height: none;
+  }
   
   margin-bottom: 16px;
   box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
