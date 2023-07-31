@@ -89,6 +89,13 @@ export const CandidateSettings: React.FC = () => {
         setCancelModal(true);
         window.scrollTo(0, 0);
     };
+
+    const handleConfirmModal = (e: any) => {
+        e.preventDefault();
+        setConfirmModal(true);
+        window.scrollTo(0, 0);
+        document.body.style.overflow = 'hidden';
+    };
     return (
         <Container>
             <Header />
@@ -194,6 +201,7 @@ export const CandidateSettings: React.FC = () => {
                 <div className="form__right">
                     <CurriculoWrapper>
                         <label htmlFor="fileInput2">Curriculo 2</label>
+
                         <br />
                         <input
                             ref={inputRef2}
@@ -212,16 +220,14 @@ export const CandidateSettings: React.FC = () => {
                     </CurriculoWrapper>
                 </div>
             </Form>
-            <LoadCurriculum>
-                <Button>Carregar Curriculo</Button>
-            </LoadCurriculum>
+
             <ExtraLine>
                 <Row />
             </ExtraLine>
 
             <Form>
                 <div className="form__change">
-                    <Button>Atualizar</Button>
+                    <Button onClick={handleConfirmModal}>Atualizar</Button>
                 </div>
                 <div className="form__cancel">
                     <Button background="outline" onClick={handleCancelModal}>

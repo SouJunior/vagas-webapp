@@ -42,6 +42,12 @@ export const ProfileSettings: React.FC = () => {
         setCancelModal(true);
         window.scrollTo(0, 0);
     };
+    const handleConfirmModal = (e: any) => {
+        e.preventDefault();
+        setConfirmModal(true);
+        window.scrollTo(0, 0);
+        document.body.style.overflow = 'hidden';
+    };
 
     //TODO: Utilizar essa variável para o tamanho da foto e formato
     // const imgSize =
@@ -191,9 +197,7 @@ export const ProfileSettings: React.FC = () => {
                     </div>
 
                     <div className="form__change">
-                        <Button
-                            type="submit"
-                        >
+                        <Button type="submit" onClick={handleConfirmModal}>
                             Alterar
                         </Button>
                     </div>
@@ -208,7 +212,7 @@ export const ProfileSettings: React.FC = () => {
                 </Form>
             </form>
 
-            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal}/>}
+            {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
 
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>

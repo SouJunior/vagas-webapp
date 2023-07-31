@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
     ModalContent,
     ModalTitle,
@@ -17,6 +17,41 @@ interface ConfirmModalProps {
 
 const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
     const navigate = useNavigate();
+
+    const handleKeyDown = useCallback(
+        (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setConfirmModal(false);
+                navigate('/company-portal');
+                document.body.style.overflow = 'auto';
+            }
+        },
+        [setConfirmModal],
+    );
+
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (!target.closest('.modal-content')) {
+                setConfirmModal(false);
+                navigate('/company-portal');
+                document.body.style.overflow = 'auto';
+            }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [setConfirmModal]);
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
+
     return (
         <MaskBackground>
             <ModalContent>
