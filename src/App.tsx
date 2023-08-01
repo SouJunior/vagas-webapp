@@ -7,10 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     return (
-        <Router>
-            <NavRoutes />
+        <>
+            <Router>
+                <NavRoutes />
+            </Router>
             <ToastContainer />
-        </Router>
+        </>
     );
 }
 

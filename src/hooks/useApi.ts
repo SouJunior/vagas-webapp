@@ -119,8 +119,12 @@ export const useApi = () => ({
         return res.data;
     },
 
-    getJobs: async (page: number = 1, order: string = 'ASC') => {
-        const url = `/job?order=${order}&page=${page}&take=10&orderByColumn=id`;
+    getJobs: async (
+        page: number = 1,
+        order: string = 'ASC',
+        modality: string = '',
+    ) => {
+        const url = `/job?order=${order}&page=${page}&take=10&orderByColumn=id&modality=${modality}`;
         const res: any = await api.get(url);
         return res.data;
     },
@@ -136,14 +140,19 @@ export const useApi = () => ({
         return res.data;
     },
 
+    deleteJob: async (id: string) => {
+        const res: any = await api.patch(`/job/${id}`)
+        return res.data;
+    },
+
     getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;
     },
 
-    searchJobs: async (keyword: string, page: number = 1) => {
+    searchJobs: async (keyword: string, page: number = 1, filters: any = {}) => {
         const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`;
-        const res: any = await api.get(url);
+        const res: any = await api.post(url, filters);
         return res.data;
     },
 
@@ -186,6 +195,17 @@ export const useApi = () => ({
             },
         });
         return res.data;
+    },
+
+    ApplyJob: async (jobId: string, curriculumId: string) => {
+        const url = `/applications?job_id=${jobId}&curriculum_id=${curriculumId}`;
+        const token = localStorage.getItem('authToken');
+        const res: any = await api.get(url, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res;
     },
 
 });

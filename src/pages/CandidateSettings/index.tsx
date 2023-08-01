@@ -22,7 +22,6 @@ import {
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
-import Footer from '../../components/Portal/Footer';
 import location from '../ProfileSettings/data/location';
 import Header from '../../components/Portal/Header';
 import { ProfileImg } from '../../components/Portal/Header/styles';
@@ -37,6 +36,7 @@ import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
+import { Footer } from '../../components/Footer';
 
 export const CandidateSettings: React.FC = () => {
 
@@ -416,13 +416,8 @@ export const CandidateSettings: React.FC = () => {
             {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
-                <Main>
-                    <Row />
-                </Main>
+                <Main />
                 <Footer />
-                <Main>
-                    <Row />
-                </Main>
             </Position>
         </Container>
     );

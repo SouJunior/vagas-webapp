@@ -13,6 +13,7 @@ export const ProfileImg = styled.img`
     cursor: ${(props) => props.width === '10%' ? 'default' : 'pointer' };
     width: ${(props) => props.width};  
     border-radius: 50%;
+    object-fit: cover;
     margin: 0 15px;
     aspect-ratio: 4 / 4;
 `;

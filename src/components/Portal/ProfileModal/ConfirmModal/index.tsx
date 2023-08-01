@@ -24,12 +24,16 @@ const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
             <ModalContent>
                 <CloseModal>
                     <ModalCloseButton
+                        /**
+                         * @see https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
+                        */
                         onClick={() => {
                             setConfirmModal(false);
                             auth.user.type === 'USER' ?
                                 (navigate('/candidate-portal'))
                                 :
                                 (navigate('/company-portal'))
+                            setTimeout(() => window.location.reload(), 0)
                             document.body.style.overflow = 'auto';
                         }}
                     >

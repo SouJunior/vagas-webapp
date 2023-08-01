@@ -1,5 +1,5 @@
-import React from 'react';
 import { JobApplyDetailsContainer } from './styles';
+import ProfileDefault from '../../../assets/imgs/profile-image.svg';
 import {
     CompanyInfo,
     CompanyLogoImg,
@@ -9,7 +9,6 @@ import {
     TextContainer,
     Title,
 } from '../../JobDetails/styles';
-import { CompanyLogo } from '../../JobDetails/CompanyLogo';
 
 const JobApplyDetails = ({ Job, isLoading }: any) => {
     return (
@@ -18,32 +17,39 @@ const JobApplyDetails = ({ Job, isLoading }: any) => {
                 <Title>Carregando...</Title>
             ) : (
                 <>
-                    <Title>{Job?.title} </Title>
+                    <Title>{Job.title} </Title>
 
                     <Subtitle>
-                        {Job?.modality} - {Job?.type} - {Job?.typeContract}
+                        {Job.modality} - {Job.type} - {Job.typeContract}
                     </Subtitle>
 
                     <Text>{Job?.contractType}</Text>
 
                     <CompanyInfo>
                         <CompanyLogoImg>
-                            <CompanyLogo />
+                            {ProfileDefault === null ? (
+                                <img src={ProfileDefault} alt="Default" />
+                            ) : (
+                                <img
+                                    src={Job.company.profile}
+                                    alt={Job.company.companyName}
+                                />
+                            )}
                         </CompanyLogoImg>
-                        <CompanyName>Autofalante Mkt</CompanyName>
+                        <CompanyName>{Job.company.companyName}</CompanyName>
                     </CompanyInfo>
 
                     <TextContainer>
-                        <Text>{Job?.description}</Text>
-                        <Text>{Job?.prerequisites}</Text>
+                        <Text>{Job.description}</Text>
+                        <Text>{Job.prerequisites}</Text>
                         <Text>
-                            R${Job?.salaryMin} - R$
-                            {Job?.salaryMax}
+                            R${Job.salaryMin} - R$
+                            {Job.salaryMax}
                         </Text>
                         <Text>
-                            {Job?.city}/{Job?.federalUnit}
+                            {Job.city}/{Job.federalUnit}
                         </Text>
-                        <Text>{Job?.affirmativeType}</Text>
+                        <Text>{Job.affirmativeType}</Text>
                     </TextContainer>
                 </>
             )}

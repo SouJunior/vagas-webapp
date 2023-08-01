@@ -18,13 +18,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
 import JobApplyDetails from '../components/ApplyJob/JobApplyDetails';
 import ChooseResume from '../components/ApplyJob/ChooseResume';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import Modal from '../components/ApplyJob/Modal';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
-
+import SouJuniorLogo from '../assets/imgs/logo-name-h.svg';
 const JobApply = () => {
     const [showDialog, setShowDialog] = useState(false);
     const [selectedResume, setSelectedResume] = useState<any>('');
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const api = useApi();
     const { id }: any = useParams();
@@ -39,6 +40,20 @@ const JobApply = () => {
         queryKey: ['resumes'],
         queryFn: () => api.getUserCurriculum(localStorage.getItem('authToken')),
     });
+
+    const applyJobMutation = useMutation(
+        (data: { jobId: string; curriculumId: string }) =>
+            api.ApplyJob(data.jobId, data.curriculumId),
+        {
+            onSuccess: () => {
+                setShowSuccessModal(true);
+            },
+        },
+    );
+
+    const handleApplyJob = () => {
+        applyJobMutation.mutate({ jobId: id, curriculumId: selectedResume.id });
+    };
 
     const handleResumeClick = (resume: any) => {
         setSelectedResume(resume);
@@ -96,7 +111,12 @@ const JobApply = () => {
                                 <CancelApplyButton onClick={OpenCancelDialog}>
                                     Cancelar
                                 </CancelApplyButton>
-                                <ApplyButton>Me Candidatar</ApplyButton>
+                                <ApplyButton
+                                    onClick={handleApplyJob}
+                                    disabled={selectedResume === ''}
+                                >
+                                    Me Candidatar
+                                </ApplyButton>
                             </ButtonContainer>
                         </JobDetailsWrapper>
                     </UserArea>
@@ -116,6 +136,23 @@ const JobApply = () => {
                     }}
                 >
                     Você deseja cancelar a sua candidatura?
+                </Modal>
+            )}
+
+            {showSuccessModal && (
+                <Modal
+                    title={
+                        <>
+                            <img src={SouJuniorLogo} alt="Logo" width={200} />
+                        </>
+                    }
+                    cancelText="Ok"
+                    handleCancel={HandleConfirm}
+                    buttonColors={{
+                        cancelButton: '#1165BA',
+                    }}
+                >
+                    Candidatura realizada com sucesso!
                 </Modal>
             )}
         </JobApplyContainer>
