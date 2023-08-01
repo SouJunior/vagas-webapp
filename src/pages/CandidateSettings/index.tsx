@@ -177,7 +177,6 @@ export const CandidateSettings: React.FC = () => {
         if (selectedImage) {
             formData.append("file", selectedImage);
             formData.append("profileKey", auth.user.profileKey ?? 'lkjhgfdsa');
-            console.log(selectedImage)
         }
 
         let formDataCurriculum1;
@@ -200,7 +199,6 @@ export const CandidateSettings: React.FC = () => {
 
             if (formData) {
                 await api.updateCandidateProfile(formData);
-                console.log(formData)
             }
 
             if (formDataCurriculum1) {
