@@ -164,6 +164,14 @@ export const CurriculoWrapper = styled.div`
     }
 `;
 
+export const CurriculumLink = styled.a`
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.primary};
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 10px;
+`;
+
 export const Trash = styled.div`
     width: 55px;
     height: 55px;
