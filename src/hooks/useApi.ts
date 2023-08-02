@@ -119,7 +119,7 @@ export const useApi = () => ({
         return res.data;
     },
 
-    getJobById: async (id: number) => {
+    getJobById: async (id: any) => {
         const url = `/job/${id}`;
         const res: any = await api.get(url);
         return res.data;
