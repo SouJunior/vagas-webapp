@@ -4,11 +4,12 @@ import { Paperclip, User } from 'phosphor-react';
 
 interface ApplicantProps {
     children: ReactNode;
+    onClick: any;
 }
 
-const Applicant = ({ children }: ApplicantProps) => {
+const Applicant = ({ children, onClick }: ApplicantProps) => {
     return (
-        <Container>
+        <Container onClick={() => onClick()}>
             <div>
                 <User size={22} weight="regular" />
                 <ApplicantName>{children}</ApplicantName>
