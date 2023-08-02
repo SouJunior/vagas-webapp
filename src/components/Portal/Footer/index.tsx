@@ -36,7 +36,7 @@ const Index = () => {
                 </div>
                 <div>
                     <small>
-                        @ 2022 SouJunior Todos os direitos reservados.
+                        @ 2023 SouJunior Todos os direitos reservados.
                     </small>
                 </div>
                     <ul className='contacts'>

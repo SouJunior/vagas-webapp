@@ -16,9 +16,6 @@ export const ProfileImg = styled.img`
     object-fit: cover;
     margin: 0 15px;
     aspect-ratio: 4 / 4;
-    @media (max-width: 540px) {
-        max-width: 100%;
-    }
 `;
 
 export const UserArea = styled.div`

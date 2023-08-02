@@ -10,9 +10,9 @@ export const ProfileImgWrapper = styled.div`
         margin-bottom: 8px;
     }
 
-    /* input[type='file']::-webkit-file-upload-button {
+    input[type='file']::-webkit-file-upload-button {
         visibility: hidden;
-    } */
+    } 
 
     label {
         color: #1165ba;
