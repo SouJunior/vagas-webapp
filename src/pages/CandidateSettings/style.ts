@@ -62,6 +62,7 @@ export const ProfilePicWrapper = styled.div`
     & > p {
         color: #bababa;
         font-size: 0.7em;
+        margin-bottom: 5px;
     }
 `;
 

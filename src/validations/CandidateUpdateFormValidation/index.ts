@@ -2,6 +2,11 @@ import * as yup from 'yup';
 import { state } from '../../pages/ProfileSettings/data/location';
 
 export const CandidateUpdateFormSchema = yup.object().shape({
+    profPic:yup
+        .mixed()
+        .test("fileSize", 'A imagem deve ser menor que 8MB.', (value)  => 
+           {return value && value[0].size < 8000000}
+        ),
     name: yup
         .string()
         .required('O campo "Nome completo" é obrigatório'),

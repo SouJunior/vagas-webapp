@@ -246,6 +246,11 @@ export const CandidateSettings: React.FC = () => {
                     </div>
                     <p>Somente formatos jpg, jpeg e png</p>
                     <span>Tamanho ou formato inválido</span>
+                    <div>
+                        <ErrorMessages>
+                            {errors.profPic && <>{errors.profPic.message}</>}
+                        </ErrorMessages>
+                    </div>
                 </ProfilePicWrapper>
                 <Main>
                     <Row />
