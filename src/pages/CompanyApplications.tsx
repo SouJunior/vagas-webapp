@@ -21,6 +21,7 @@ import { Job } from '../@types/jobs';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
 import QuickFilter from '../components/QuickFilter';
 import Header from '../components/Portal/Header';
+import { Footer } from '../components/Footer';
 
 const CompanyApplications = () => {
     const [selectedJob, setSelectedJob] = useState<string | null>('');
@@ -49,6 +50,10 @@ const CompanyApplications = () => {
         setNoJobSelected(false);
     }
 
+    const filteredJobs = (data?.jobs || []).filter(
+        (job: any) => job.status === jobStatus,
+    );
+
     const [JobClicked] = clickedJob;
 
     return (
@@ -62,12 +67,16 @@ const CompanyApplications = () => {
                             <QuickFilter
                                 options={[
                                     {
+                                        label: 'Todas',
+                                        value: 'ALL',
+                                    },
+                                    {
                                         label: 'Vagas Ativas',
-                                        value: 'REMOTE',
+                                        value: 'ACTIVE',
                                     },
                                     {
                                         label: 'Vagas encerradas',
-                                        value: 'HYBRID',
+                                        value: 'ARCHIVED',
                                     },
                                 ]}
                                 selectedValue={jobStatus}
@@ -77,7 +86,7 @@ const CompanyApplications = () => {
                                 placeholder="Status da vaga"
                             />
                         </QuickFilterContainer>
-                        {data?.jobs.map((job: any) => (
+                        {((filteredJobs.length > 0 ? filteredJobs : data?.jobs) || []).map((job: any) => (
                             <JobCard
                                 key={job.id}
                                 id={job.id}
@@ -142,6 +151,7 @@ const CompanyApplications = () => {
                         <NoJobsSelectedCard />
                     )}
                 </ContentWrapper>
+                <Footer />
             </Container>
         </>
     );

@@ -58,6 +58,7 @@ const FeedJobs = () => {
 
     const params = new URLSearchParams(search);
     const searchTerm: string = params.get('search') || '';
+    const location: string = params.get('location') || '';
 
     const fetchJobs = async (
         page: number,
@@ -70,20 +71,26 @@ const FeedJobs = () => {
     };
 
     const fetchFilteredJobs = async (searchTerm: string, page: number) => {
-        const response = await api.searchJobs(searchTerm, page);
+        const response = await api.searchJobs(searchTerm, page, {
+            modality: modalityFilter,
+            federalUnit: '',
+            city: location,
+        });
+        refetch();
         return response.data;
     };
 
-    const { data, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
-        queryKey: ['jobs', searchTerm, sortOrder, modalityFilter],
-        queryFn: ({ pageParam = 1 }) =>
-            searchTerm
-                ? fetchFilteredJobs(searchTerm, pageParam)
-                : fetchJobs(pageParam, sortOrder, modalityFilter),
-        getNextPageParam: (lastPage, allPages) => {
-            return lastPage.length ? allPages.length + 1 : undefined;
-        },
-    });
+    const { data, refetch, fetchNextPage, hasNextPage, isLoading } =
+        useInfiniteQuery({
+            queryKey: ['jobs', searchTerm, sortOrder, modalityFilter],
+            queryFn: ({ pageParam = 1 }) =>
+                searchTerm || location
+                    ? fetchFilteredJobs(searchTerm, pageParam)
+                    : fetchJobs(pageParam, sortOrder, modalityFilter),
+            getNextPageParam: (lastPage, allPages) => {
+                return lastPage.length ? allPages.length + 1 : undefined;
+            },
+        });
 
     const jobs = useMemo(() => {
         return data?.pages.reduce((acc, page) => {
@@ -167,7 +174,7 @@ const FeedJobs = () => {
                                     </NoResultsMessage>
                                 ) : (
                                     <JobList>
-                                        {jobs?.map((job: Job) => (
+                                        {(jobs || []).map((job: Job) => (
                                             <JobCard
                                                 key={job.id}
                                                 id={job.id}

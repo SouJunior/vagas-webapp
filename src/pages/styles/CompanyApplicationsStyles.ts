@@ -8,12 +8,14 @@ export const Container = styled.div`
     width: 100%;
     padding-right: 20px;
     padding-left: 20px;
+    gap: 50px;
 `;
 
 export const ApplicantsContainer = styled.div`
     display: flex;
     width: 545px;
     flex-direction: column;
+    align-items: center;
     border: 1px solid ${props => props.theme.colors.primary};
     padding: 24px 16px;
     border-radius: 6px;

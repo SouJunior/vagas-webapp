@@ -130,14 +130,19 @@ export const useApi = () => ({
         return res.data;
     },
 
+    deleteJob: async (id: string) => {
+        const res: any = await api.patch(`/job/${id}`)
+        return res.data;
+    },
+
     getJobsByCompany: async (id: string) => {
         const res: any = await api.get(`/job/all/${id}`);
         return res.data;
     },
 
-    searchJobs: async (keyword: string, page: number = 1) => {
+    searchJobs: async (keyword: string, page: number = 1, filters: any = {}) => {
         const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`;
-        const res: any = await api.get(url);
+        const res: any = await api.post(url, filters);
         return res.data;
     },
 

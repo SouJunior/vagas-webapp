@@ -12,7 +12,9 @@ const FeedSearch = ({ onSearch }: any) => {
     useEffect(() => {
         const searchParams = new URLSearchParams(search);
         const searchTermFromUrl = searchParams.get('search');
+        const locationFromUrl = searchParams.get("location");
         setSearchTerm(searchTermFromUrl || '');
+        setLocation(locationFromUrl || '');
     }, [search]);
 
     const handleSubmit = (event: SyntheticEvent) => {
@@ -20,7 +22,7 @@ const FeedSearch = ({ onSearch }: any) => {
         if (searchTerm.trim() !== '') {
             onSearch(searchTerm);
         }
-        navigate(`/jobs?search=${searchTerm}`);
+        navigate(`/jobs?search=${searchTerm}&location=${location}`);
     };
 
     return (
