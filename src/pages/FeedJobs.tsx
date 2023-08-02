@@ -5,9 +5,10 @@ import { useApi } from '../hooks/useApi';
 import JobCard from '../components/JobCard';
 import JobDetails from '../components/JobDetails';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import QuickFilter from '../components/QuickFilter';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
+import Header from '../components/Portal/Header';
 
 import {
     ContentWrapper,
@@ -106,7 +107,7 @@ const FeedJobs = () => {
 
     return (
         <>
-            <Header pageName="Feed de Vagas" backTo={'/'}></Header>
+            <Header />
             <Wrapper>
                 <Content>
                     <FilterContainer>

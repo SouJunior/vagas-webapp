@@ -7,6 +7,7 @@ import {
     OpenMenuBtn,
     HeaderLogo,
     UserInfo,
+    LoginBtn,
 } from './styles';
 import Menu from '../Menu';
 import LogoImage from '../../../assets/imgs/logotipo-icone-extendida.svg';
@@ -27,6 +28,14 @@ const Header = () => {
     //     navigate('/profile-settings');
     // };
 
+    const handleClick = () => {
+        if (auth.user) {
+            setVisible(!visible);
+        } else {
+            navigate('/login');
+        }
+    };
+
     const [visible, setVisible] = useState(false);
 
     return (
@@ -43,24 +52,35 @@ const Header = () => {
                 <UserArea>
                     {/* <span onClick={() => setVisible(!visible)}> */}
                     <span>
-                        <UserInfo>
-                            {auth.user.type === 'USER' ? (
-                                <Name>{auth.user.name}</Name>
-                            ) : (
-                                <Name>{auth.user.companyName}</Name>
-                            )}
-                            <Email>{auth.user.email}</Email>
-                        </UserInfo>
+                        {auth.user ? (
+                            <UserInfo>
+                                {auth.user.type === 'USER' ? (
+                                    <Name>{auth.user.name}</Name>
+                                ) : (
+                                    <Name>{auth.user.companyName}</Name>
+                                )}
+                                <Email>{auth.user.email}</Email>
+                            </UserInfo>
+                        ) : (
+                            <LoginBtn onClick={handleClick}>
+                                Fazer Login
+                            </LoginBtn>
+                        )}
                         {/* <OpenMenuBtn src={MenuImage} alt="menu" /> */}
                     </span>
-                        <ProfileImg
-                            onClick={() => setVisible(!visible)}
-                            // onClick={handleNavigation}
-                            src={auth.user.profile ?? ProfileImage}
-                            alt="foto de perfil"
-                            width={'50px'}
-                        />
-                        {/* <span onClick={() => setVisible(!visible)}>
+
+                    <ProfileImg
+                        onClick={handleClick}
+                        // onClick={handleNavigation}
+                        src={
+                            auth.user
+                                ? auth.user.profile ?? ProfileImage
+                                : ProfileImage
+                        }
+                        alt="foto de perfil"
+                        width={'50px'}
+                    />
+                    {/* <span onClick={() => setVisible(!visible)}>
                         <UserInfo> ... */}
                 </UserArea>
             </HeaderWrapper>
