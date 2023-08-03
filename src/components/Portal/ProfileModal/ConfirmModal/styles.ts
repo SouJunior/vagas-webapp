@@ -37,10 +37,6 @@ export const ModalText = styled.p`
 
     color: ${({theme}) => theme.colors.mutedDarker};
 
-    @media (max-width: 280px) {
-        width: 80%;
-    }
-
     @media (max-width: 480px) {
         width: 80%;
     }
