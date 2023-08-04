@@ -12,7 +12,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { Turn as Hamburger } from 'hamburger-react';
-import JobFilter from '../HomeJobFilter/JobFilter';
+import HomeJobFilter from '../HomeJobFilter/HomeJobFilter';
 
 interface HeaderProps {
     isActive: boolean;
@@ -48,11 +48,11 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
         };
     }, []);
 
-
     return (
         <>
             {isMobileOpen && (
                 <MobileHeader>
+                    <div className='wrapper'>
                     <ul>
                         <li>SouJunior</li>
                         <li>Suporte</li>
@@ -72,6 +72,10 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                             Login
                         </LoginButton>
                     </ul>
+                    </div>
+                    <div className='background' onClick={() => setMobileOpen(false)}>
+
+</div>
                 </MobileHeader>
             )}
             <Header isActive={isActive} isMobileOpen={isMobileOpen}>
@@ -88,9 +92,7 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                         />
                     </a>
                 </NavTitle>
-                {isActive && !isMobileSize && (
-                    <JobFilter />
-                )}
+                {isActive && !isMobileSize && <HomeJobFilter />}
                 <HeaderBtns>
                     <RegisterButton
                         onClick={handleRegisterClick}

@@ -7,7 +7,7 @@ interface SelectProps {
 
 export const SelectWrapper = styled.div`
     label {
-        color: ${({ theme }) => theme.colors.black};
+        color: ${({ theme }) => theme.colors.mutedDarker};
         font-size: 90%;
         font-weight: 500;
     }

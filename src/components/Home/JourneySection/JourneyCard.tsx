@@ -3,13 +3,12 @@ import { Img, JourneyDescription, JourneyWrapper } from './styles';
 interface JourneyCardProps {
     Img: string;
     Description: string;
-    onClick: () => void;
 }
 
 const JourneyCard = (props: JourneyCardProps) => {
     return (
         <JourneyWrapper>
-            <Img src={props.Img} onClick={props.onClick} />
+            <Img src={props.Img} />
             <JourneyDescription>{props.Description}</JourneyDescription>
         </JourneyWrapper>
     );

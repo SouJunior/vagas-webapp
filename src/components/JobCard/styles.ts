@@ -1,133 +1,84 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-    position: relative;
-    cursor: pointer;
-    margin-bottom: 16px;
-    padding: 24px;
-    border-width: 1px;
-    border-radius: 6px;
-    overflow-x: auto;
+interface CardProps {
+  active: boolean;
+  opacity: number;
+}
+
+export const Card = styled.div<CardProps>`
+  border: 1px solid #A3CCFA;
+  border-radius: 6px;
+  display: flex;
+  color: ${props => (props.active ? "#fff" : "#515050")};
+  background-color: ${props => (props.active ? "#1165BA" : "#fff")};
+  width: 493px;
+  max-width: 493px;
+  padding: 16px;
+  height: 100%;
+  max-height: 130px;
+
+  @media (max-width: 950px) {
+    max-height: none;
+  }
+  
+  margin-bottom: 16px;
+  box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
+  border: 1px solid #E8E8E8;
+  opacity: ${props => (props.active || props.opacity === 1 ? "1" : "0.7")};
+  border-radius: 6px;
+  cursor: pointer;
+
+  :focus {
+    outline: none;
+  }
+
+  :hover {
+    border: 1px solid #1165BA;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 `;
 
-export const WrapperPreview = styled(Wrapper)`
-    display: flex;
-    min-height: 330px;
-    flex-direction: column;
-    cursor: default;
-    border: 1px solid #E8E8E8;
-    width: 599px;
-    height: 655px;
-    margin-top: 32px;
-    box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
-    word-break: break-all;
-    overflow-wrap: break-word;
-`
-
-export const Divider = styled.hr`
-    margin-top: auto;
-    margin-bottom: 30px;
-    background-color: #e8e8e8;
+export const Logo = styled.img`
+  width: 56px;
+  height: 56px;
+  margin-right: 12px;
 `;
 
-export const Header = styled.header`
-    padding: 1.1rem;
-    border-width: 1px;
-    border-radius: 6px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
+export const Content = styled.div`
+  flex-grow: 1;
 `;
 
-export const HeaderPreview = styled(Header)`
-    display: flex;
-    height: auto;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    span {
-        gap: 26px;
-        display: flex;
-        flex-direction: row;
-    }
-`;
-
-export const Title = styled.h1`
-    font-size: 26px;
-    max-width: 300px;
+export const Title = styled.h2`
     font-weight: 600;
-    color: #515050;
-`;
-
-export const JobType = styled.p`
-    font-weight: 500;
     font-size: 16px;
     line-height: 19px;
-    color: #515050;
+    margin-bottom: 8px;
 `;
 
-export const DateText = styled.p`
-    color: #aaaaaa;
-    font-weight: 400;
+export const Company = styled.p`
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 8px;
+  font-weight: 500 !important;
+`;
+
+export const Location = styled.p`
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 8px;
+`;
+
+export const Type = styled.p`
     font-size: 14px;
     line-height: 17px;
 `;
 
-export const Description = styled.div`
-    padding-left: 24px;
-    padding-right: 24px;
-    margin-top: 17px;
-    padding-bottom: 28px;
-    border-bottom-width: 1px;
+export const PublishedAt = styled.p`
     font-size: 14px;
     line-height: 17px;
-    color: #515050;
-    height: 330px;
-`;
-
-export const DescriptionPreview = styled(Description)`
-    height: auto;
-    border: none;
-    padding-bottom: 0;
-    white-space: pre-wrap;
-    word-break: break-word;
-    overflow-wrap: break-word; 
-`;
-
-export const PreviewField = styled(DescriptionPreview)`
-    margin-top: 16px;
-    white-space: pre-wrap;
-    word-break: break-word;
-    overflow-wrap: break-word;  
-`;
-export const Footer = styled.div`
-    padding-top: 5px;
-    margin-top: auto;
-`;
-
-export const Text = styled.p`
-    word-wrap: break-word;
-    text-align: justify;
-`;
-
-export const Button = styled.button`
-    display: flex;
-    font-weight: 600;
-    color: white;
-    font-size: 15px;
-    line-height: 18px;
-    padding-top: 13px;
-    padding-bottom: 13px;
-    gap: 6.5px;
-    border-width: 1px;
-    padding-left: 64px;
-    padding-right: 64px;
-    border-radius: 4px;
-    border-color: #930000;
-    background-color: #bd0000;
-    margin: 4px;
-
-    &:hover {
-        background-color: #930000;
-    }
+    font-weight: 500;
+    align-self: flex-end;
 `;

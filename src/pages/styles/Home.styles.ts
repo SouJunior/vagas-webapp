@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import VocationalBanner from '../../assets/imgs/VocationalBanner.svg';
 
 export const Main = styled.main`

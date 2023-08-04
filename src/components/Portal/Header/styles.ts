@@ -10,14 +10,12 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const ProfileImg = styled.img`
-    cursor: ${(props) => props.width === '10%' ? 'default' : 'pointer' };
-    width: ${(props) => props.width};  
+    cursor: ${(props) => (props.width === '10%' ? 'default' : 'pointer')};
+    width: ${(props) => props.width};
     border-radius: 50%;
+    object-fit: cover;
     margin: 0 15px;
     aspect-ratio: 4 / 4;
-    @media (max-width: 540px) {
-        max-width: 100%;
-    }
 `;
 
 export const UserArea = styled.div`
@@ -83,4 +81,13 @@ export const HeaderLogo = styled.img`
         width: 140px;
         height: 60px;
     }
+`;
+
+export const LoginBtn = styled.button`
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 12px;
 `;

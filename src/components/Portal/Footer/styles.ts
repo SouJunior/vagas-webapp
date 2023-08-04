@@ -5,15 +5,26 @@ import {BsYoutube, BsDiscord, BsTelegram, BsGithub} from "react-icons/bs"
 import {AiOutlineTwitter, AiFillLinkedin} from "react-icons/ai"
 
 export const Footer = styled.footer`
-    width: 90%;
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-self: center;
-    align-items: flex-start;
-    gap: 50px;
-    padding: 20px 15px 30px 15px;
-    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
+
+    .mobile-wrapper {
+        display: none;
+    }
+
+    .desktop-wrapper {
+        display: inline-flex;
+        width: 90%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-self: center;
+        align-items: flex-start;
+        gap: 50px; 
+    }
+
     div:first-child {
         align-self: center
     }
@@ -24,14 +35,57 @@ export const Footer = styled.footer`
         align-items: center;
     }
 
+    @media (max-width: 700px) {
+        .mobile-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 80% !important;
+
+            h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+
+            small {
+                color: ${props => props.theme.colors.primary};
+                font-weight: 700;
+            }
+
+            .contacts {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+
+                svg {
+                    color: #046AD0;
+                }
+            }
+        }
+
+        .desktop-wrapper {
+            display: none;
+        }
+
+        .about {
+            display: block;
+        }
+
+        .hashtag {
+            display: block;
+
+            h2 {
+                font-size: 1.8rem !important;
+                font-weight:700;
+            }
+        }
+    }
+
     @media (min-width: 281px) and (max-width: 639px) {
         div:first-child  {
             width: 100%;
             text-align: center;
-        }
-
-        div {
-            width: 40%;
         }
 
         img {

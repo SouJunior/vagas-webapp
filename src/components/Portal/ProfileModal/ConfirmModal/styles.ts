@@ -21,6 +21,10 @@ export const ModalContent = styled.div`
         align-items: center;
         padding: 0 24px 24px 24px;
     }
+
+    @media (max-width: 540px) {
+        width: 80%;
+    }
 `;
 
 export const ModalText = styled.p`
@@ -32,6 +36,10 @@ export const ModalText = styled.p`
     padding: 0 0 16px 0;
 
     color: ${({theme}) => theme.colors.mutedDarker};
+
+    @media (max-width: 480px) {
+        width: 80%;
+    }
 `;
 
 export const ModalTitle = styled.h2`
@@ -42,6 +50,18 @@ export const ModalTitle = styled.h2`
     line-height: 48px;
     padding: 0 0 16px 0;
     color: ${({theme}) => theme.colors.primaryDark};
+
+    @media (max-width: 280px) {
+        width: 80%;
+        font-size: 28px;
+        margin-right: 20px;
+    }
+
+    @media (max-width: 480px) {
+        width: 80%;
+        display: flex;
+        margin-right: 20px;
+    }
 `;
 
 export const CloseModal = styled.div`
@@ -49,6 +69,15 @@ export const CloseModal = styled.div`
     justify-content: flex-end;
     align-self: flex-end;
     padding-left: 150px;
+
+    @media (max-width: 280px) {
+        margin-right: 10px;
+    }
+
+    @media (max-width: 480px) {
+        width: 80%;
+        margin-top: 10px;
+    }
 `;
 
 export const ModalCloseButton = styled.button`
@@ -62,5 +91,5 @@ export const ModalCloseButton = styled.button`
         background-color: red;
         border: 1px solid;
         color: #fff;
-    }`
-;
+    }
+    `;

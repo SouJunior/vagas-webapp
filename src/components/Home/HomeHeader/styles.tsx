@@ -113,34 +113,66 @@ export const LoginButton = styled(RegisterButton)<ButtonsProps>`
 `;
 
 export const MobileHeader = styled.nav`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255);
     position: fixed;
     z-index: 998;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    animation: fadeIn 0.5s;
-    animation-play-state: running;
-    animation-fill-mode: both;
-    transition: all 0.2s;
 
-    @keyframes fadeIn {
+    .background {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        backdrop-filter: blur(8px);
+        z-index: -1;
+    }
+
+    @media (min-width: 835px) {
+        .background {
+            display: none;
+        }
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: flex-start;
+        text-align: left;
+        align-items: center;
+        width: 350px;
+        height: 100vh;
+        background-color: rgba(255, 255, 255);
+        position: fixed;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        animation: fadeIn 0.5s;
+        animation-play-state: running;
+        animation-fill-mode: both;
+        transition: all 0.2s;
+
+        @media (max-width: 700px) {
+            width: 80vw;
+        }
+
+        @media (max-width: 500px) {
+            width: 90vw !important;
+        }
+
+        @media (max-width: 330px) {
+            width: 100vw !important;
+        }
+
+        @keyframes fadeIn {
         from {
             opacity: 0;
             height: 0px;
-            transform: translateY(
+            transform: translateX(
                 -100%
             ); /* Adicione esta linha para animar o translateY */
         }
         to {
             opacity: 1;
             height: 100vh;
-            transform: translateY(
+            transform: translateX(
                 0%
             ); /* Adicione esta linha para animar o translateY */
         }
@@ -149,7 +181,8 @@ export const MobileHeader = styled.nav`
     ul {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        padding-left: 30px;
         gap: 20px;
         width: 80%;
 
@@ -159,7 +192,7 @@ export const MobileHeader = styled.nav`
             font-weight: 600;
             cursor: pointer;
             padding: 5px 15px;
-            color: ${({theme}) => theme.colors.primary};
+            color: ${({ theme }) => theme.colors.primary};
             display: flex;
             align-items: center;
             gap: 8px;
@@ -181,55 +214,9 @@ export const MobileHeader = styled.nav`
     @media (min-width: 835px) {
         display: none;
     }
-
-    @media only screen and (min-width: 769px) and (max-width: 1023px) {
-        ul {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-
-            li {
-                text-transform: uppercase;
-                font-size: 35pt;
-                font-weight: 600;
-                cursor: pointer;
-                padding: 5px 15px;
-                color: black;
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                background-image: linear-gradient(
-                    ${({ theme }) => theme.colors.primary},
-                    ${({ theme }) => theme.colors.primary}
-                );
-                background-size: 0% 3px;
-                background-repeat: no-repeat;
-                transition: background-size 0.3s;
-                margin: 5px 0;
-                background-position: 50% calc(100% - 0px);
-                :hover {
-                    background-size: 100% 3px;
-                }
-            }
-
-            .contact {
-                background-color: ${({ theme }) => theme.colors.primary};
-                border-radius: 12px;
-                transition: 0.2s;
-                background-image: none;
-                display: flex;
-                align-items: center;
-                text-transform: uppercase;
-                text-decoration: none;
-                color: white;
-                font-size: 28pt;
-                font-weight: 600;
-                margin-top: 3rem;
-                padding: 1rem;
-            }
-        }
     }
+
+  
 `;
 
 export const Menu = styled.div`

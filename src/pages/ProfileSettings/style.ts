@@ -10,9 +10,9 @@ export const ProfileImgWrapper = styled.div`
         margin-bottom: 8px;
     }
 
-    /* input[type='file']::-webkit-file-upload-button {
+    input[type='file']::-webkit-file-upload-button {
         visibility: hidden;
-    } */
+    } 
 
     label {
         color: #1165ba;
@@ -27,14 +27,14 @@ export const ProfileImgWrapper = styled.div`
         display: none;
     }
 
-    span {
-        color: ${({theme}) => theme.colors.danger};
-        display: ${(props: any) => (props.color > 5000000 ? 'block' : 'none')};
+    .img__error {
+        color: ${({ theme }) => theme.colors.danger};
+        font-size: 0.9em;
     }
     & > p {
         color: #bababa;
         padding-bottom: 4px;
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
 `;
 
