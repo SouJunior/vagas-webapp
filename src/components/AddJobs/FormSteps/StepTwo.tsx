@@ -44,7 +44,7 @@ const StepTwo = ({
     return (
         <>
             <SalarySection>
-                <Label>*Faixa Salarial: </Label>
+                <Label>Faixa Salarial: </Label>
                 <SalaryInputContainer>
                     <div>
                         <Controller
