@@ -137,7 +137,6 @@ const StepThree = ({
                         {...register('affirmative')}
                         type="radio"
                         value="true"
-                        defaultChecked
                         name="affirmative"
                     />
                     Sim
@@ -147,6 +146,7 @@ const StepThree = ({
                         {...register('affirmative')}
                         type="radio"
                         value="false"
+                        defaultChecked
                         name="affirmative"
                     />
                     Não
