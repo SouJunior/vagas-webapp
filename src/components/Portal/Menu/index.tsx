@@ -46,7 +46,7 @@ const Menu = () => {
 
                     {auth.user.type !== 'USER' && (
                         <li
-                            onClick={() => navigate('/insertjobs')}
+                            onClick={() => navigate('/addjobs')}
                             className="jobs"
                         >
                             <img src={NewJobIcon} alt="vagas" />
