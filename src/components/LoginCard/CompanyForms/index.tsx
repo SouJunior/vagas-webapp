@@ -87,7 +87,6 @@ export const CompanyForms = (props: any): JSX.Element => {
             );
 
             navigate('/company-portal');
-
         } catch (err: any) {
             if (err.response.status === 400) {
                 setError(true);
@@ -97,7 +96,7 @@ export const CompanyForms = (props: any): JSX.Element => {
             // TODO: Tratar os erros com as mensagens do backend
             //setHasError(data.message);
         }
-    };
+    }
 
     const handleClearErrorMessage = () => {
         setError(false);
@@ -206,7 +205,9 @@ export const CompanyForms = (props: any): JSX.Element => {
                             {error && <>e-mail ou senha não conferem</>}
                         </MessageError>
                         <MessageError>
-                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
+                            {otherErrors && (
+                                <>desculpe, algo inesperado aconteceu</>
+                            )}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
@@ -324,8 +325,8 @@ export const CompanyForms = (props: any): JSX.Element => {
                             </IconWrapper>
                         </div>
                         <MessageError>
-                            {errors.confirmPassword && (
-                                <>{errors.confirmPassword.message}</>
+                            {errors.passwordConfirm && (
+                                <>{errors.passwordConfirm.message}</>
                             )}
                         </MessageError>
                     </InputContainer>
