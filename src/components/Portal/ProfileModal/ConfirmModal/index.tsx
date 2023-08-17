@@ -25,8 +25,10 @@ const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
         (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
                 setConfirmModal(false);
-                navigate('/company-portal');
                 document.body.style.overflow = 'auto';
+                auth.user.type === 'USER'
+                    ? navigate('/candidate-portal')
+                    : navigate('/company-portal');
             }
         },
         [setConfirmModal],
@@ -37,8 +39,10 @@ const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
             const target = event.target as HTMLElement;
             if (!target.closest('.modal-content')) {
                 setConfirmModal(false);
-                navigate('/company-portal');
                 document.body.style.overflow = 'auto';
+                auth.user.type === 'USER'
+                    ? navigate('/candidate-portal')
+                    : navigate('/company-portal');
             }
         };
         document.addEventListener('mousedown', handleOutsideClick);
