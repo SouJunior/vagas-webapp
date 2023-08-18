@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import { AiFillEye } from 'react-icons/ai';
+import { RiEyeCloseLine } from 'react-icons/ri';
+import tickImage from '../../assets/imgs/tick.svg';
+import disabledImage from '../../assets/imgs/disabled.svg';
 
 export const MessageError = styled.p`
     color: red;
@@ -20,17 +24,17 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-  width: 500px;
-  margin-bottom: 24px;
-  overflow-y: auto;
-  padding: 20px;
-  background-color: #fdfffc;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  max-height: 900px;
-  @media (min-width: 1024px) {
-    max-width: 1024px;
-  }
+    width: 500px;
+    margin-bottom: 24px;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #fdfffc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    max-height: 900px;
+    @media (min-width: 1024px) {
+        max-width: 1024px;
+    }
 `;
 
 export const LoginTypeButton = styled.div`
@@ -218,5 +222,55 @@ export const LoginLink = styled.p`
         &:hover {
             color: darkblue;
         }
+    }
+`;
+
+export const Checklist = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #fdfffc;
+    padding: 1rem;
+    border-radius: 8px;
+
+    h2 {
+        font-weight: 600;
+        margin-bottom: 5px;
+        align-self: center;
+        color: #1165ba;
+    }
+`;
+
+interface ListProps {
+    valid: boolean;
+}
+export const List = styled.li<ListProps>`
+    display: flex;
+    flex-direction: space-between;
+    list-style: none;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-image: ${(props) =>
+        props.valid ? `url(${tickImage})` : `url(${disabledImage})`};
+    color: ${(props) => (props.valid ? '#149911' : '#C1292E')};
+`;
+export const MessageChecklist = styled.div`
+    padding-left: 32px;
+`;
+
+export const MaskaredInput = styled.input`
+    height: 48px;
+    width: 300px;
+    position: relative;
+    padding-left: 16px;
+    padding-right: 44px;
+    color: blue;
+    border: 1px solid #cdcdcd;
+    border-radius: 6px;
+    outline: none;
+
+    &:focus {
+        border: 1px solid #60a5fa;
+        box-shadow: 0 0 0 3px rgba(128, 0, 128, 0.1);
     }
 `;

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
-
+import MaskedInput from '../MaskedInput/MaskedInput';
 import {
     schemaCompanyLoginForm,
     schemaCompanyRegisterForm,
@@ -29,9 +29,12 @@ import {
     LoginButton,
     RegisterButton,
     RegisterSubmitButton,
-    Form,
     Title,
     Divider,
+    Form,
+    Checklist,
+    List,
+    MessageChecklist,
 } from '../styles';
 
 export const CompanyForms = (props: any): JSX.Element => {
@@ -42,7 +45,6 @@ export const CompanyForms = (props: any): JSX.Element => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-
     const [isLogin, setIsLogin] = useState(true);
 
     const [email, setEmail] = useState('');
@@ -68,6 +70,22 @@ export const CompanyForms = (props: any): JSX.Element => {
     } = useForm({
         resolver: yupResolver(getFormValidation),
     });
+
+    const characters = /(?=^.{8,20}$).*$/;
+    const letters = /(?=.*[a-z])(?=.*[A-Z])\w+/;
+    const number = /(?=.*[0-9])\w+/;
+    const specialCharacters = /(?=.*\W+).*$/;
+
+    const initialValue = {
+        cnpj: '',
+    };
+    const [values, setValues] = useState(initialValue);
+    function handleChange(event: any) {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value,
+        });
+    }
 
     // Realiza loging e manipula os dados
     async function handleFormOnSubmit() {
@@ -108,7 +126,7 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     // Monitora os input enquanto preechidos
 
-    const registerCheck: string[] = watch([
+    const registerCheck: any = watch([
         'registerName',
         'registerEmail',
         'registerCnpj',
@@ -329,8 +347,39 @@ export const CompanyForms = (props: any): JSX.Element => {
                                 <>{errors.passwordConfirm.message}</>
                             )}
                         </MessageError>
-                    </InputContainer>
-                    <InputContainer>
+
+                        <Checklist>
+                            <h2>Sua senha deve conter:</h2>
+                            <ul>
+                                <List
+                                    valid={registerCheck[3]?.match(characters)}
+                                >
+                                    <MessageChecklist>
+                                        No mínimo 8 caracteres
+                                    </MessageChecklist>
+                                </List>
+                                <List valid={registerCheck[3]?.match(letters)}>
+                                    <MessageChecklist>
+                                        Letras maiúsculas e minúsculas
+                                    </MessageChecklist>
+                                </List>
+                                <List valid={registerCheck[3]?.match(number)}>
+                                    <MessageChecklist>
+                                        No mínimo 1 número
+                                    </MessageChecklist>
+                                </List>
+                                <List
+                                    valid={registerCheck[3]?.match(
+                                        specialCharacters,
+                                    )}
+                                >
+                                    <MessageChecklist>
+                                        No mínimo um caracter especial (!@?{}
+                                        ...)
+                                    </MessageChecklist>
+                                </List>
+                            </ul>
+                        </Checklist>
                         <Label>
                             <CheckboxInput {...register('privacyTerms')} />
                             <TermsLink>
