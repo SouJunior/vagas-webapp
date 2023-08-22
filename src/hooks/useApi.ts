@@ -115,7 +115,7 @@ export const useApi = () => ({
         const headers = {
             Authorization: `Bearer ${token}`,
         };
-        const res: any = await api.post('/job', { JobData }, { headers });
+        const res: any = await api.post('/job',  JobData , { headers });
         return res.data;
     },
 
