@@ -1,37 +1,11 @@
-import React, { ChangeEvent } from 'react';
-import InputMask from 'react-input-mask';
+export const normalizeCnpjNumber = (value: String | undefined) => {
+    if (!value) return '';
 
-interface MaskedInputProps {
-    value: string;
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    name: string;
-    mask: string;
-}
-
-const MaskedInput: React.FC<MaskedInputProps> = ({
-    value,
-    onChange,
-    name,
-    mask,
-}) => {
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        onChange({
-            ...event,
-            target: {
-                ...event.target,
-                name,
-            },
-        });
-    };
-
-    return (
-        <InputMask
-            name={name}
-            mask={mask}
-            value={value}
-            onChange={handleChange}
-        />
-    );
+    return value
+        .replace(/[\D]/g, '')
+        .replace(/(\d{2})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1/$2')
+        .replace(/(\d{4})(\d)/, '$1-$2')
+        .replace(/(-\d{2})\d+?$/, '$1');
 };
-
-export default MaskedInput;

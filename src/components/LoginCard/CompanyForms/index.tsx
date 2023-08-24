@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
-import MaskedInput from '../MaskedInput/MaskedInput';
+import { normalizeCnpjNumber } from '../MaskedInput/MaskedInput';
 import {
     schemaCompanyLoginForm,
     schemaCompanyRegisterForm,
@@ -67,6 +67,7 @@ export const CompanyForms = (props: any): JSX.Element => {
         handleSubmit,
         watch,
         formState: { errors },
+        setValue,
     } = useForm({
         resolver: yupResolver(getFormValidation),
     });
@@ -75,17 +76,6 @@ export const CompanyForms = (props: any): JSX.Element => {
     const letters = /(?=.*[a-z])(?=.*[A-Z])\w+/;
     const number = /(?=.*[0-9])\w+/;
     const specialCharacters = /(?=.*\W+).*$/;
-
-    const initialValue = {
-        cnpj: '',
-    };
-    const [values, setValues] = useState(initialValue);
-    function handleChange(event: any) {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        });
-    }
 
     // Realiza loging e manipula os dados
     async function handleFormOnSubmit() {
@@ -140,6 +130,10 @@ export const CompanyForms = (props: any): JSX.Element => {
         setPopup(false);
         navigate('/login');
     };
+    // Mascaramento de cnpj
+    useEffect(() => {
+        setValue('registerCnpj', normalizeCnpjNumber(registerCheck[2]));
+    }, [registerCheck[2]]);
 
     // Manipula os dados e envia a requisição
     async function handleRegisterSubmit() {
@@ -170,7 +164,6 @@ export const CompanyForms = (props: any): JSX.Element => {
             ) : (
                 <Title>Cadastro de empresa</Title>
             )}
-
             <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
             {/* renderiza se existe(true) um formulário do tipo login */}
             {isLogin ? (
@@ -294,7 +287,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                     <InputContainer>
                         <Input
                             type="text"
-                            {...register('registerCnpj')}
+                            {...register('registerCnpj', { required: true })}
                             placeholder="CNPJ da empresa"
                             aria-label="CNPJ da empresa"
                         ></Input>
@@ -349,7 +342,6 @@ export const CompanyForms = (props: any): JSX.Element => {
                         </MessageError>
 
                         <Checklist>
-                            <h2>Sua senha deve conter:</h2>
                             <ul>
                                 <List
                                     valid={registerCheck[3]?.match(characters)}
@@ -394,7 +386,6 @@ export const CompanyForms = (props: any): JSX.Element => {
                             )}
                         </MessageError2>
                     </InputContainer>
-
                     <RegisterSubmitButton
                         type="submit"
                         id="register-submit-button"
@@ -402,6 +393,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                     >
                         Criar conta
                     </RegisterSubmitButton>
+
                     <LoginLink>
                         Já tem conta? {/* redireciona se isLogin === true */}
                         <button onClick={() => setIsLogin(true)}>
@@ -410,6 +402,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                     </LoginLink>
                 </Form>
             )}
+
             {popup ? (
                 <PopUpRegisterSucess
                     email={registerCheck[1]}
