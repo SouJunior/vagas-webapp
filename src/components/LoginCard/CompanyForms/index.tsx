@@ -46,7 +46,6 @@ export const CompanyForms = (props: any): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -128,7 +127,7 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     const closePopup = () => {
         setPopup(false);
-        navigate('/login');
+        navigate('/');
     };
     // Mascaramento de cnpj
     useEffect(() => {
