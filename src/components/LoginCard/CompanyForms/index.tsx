@@ -258,6 +258,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                             {...register('registerName')}
                             placeholder="Nome da empresa"
                             aria-label="Nome da empresa"
+                            maxLength={30}
                         ></Input>
                         <MessageError>
                             {errors.registerName && (

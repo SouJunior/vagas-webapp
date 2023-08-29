@@ -30,6 +30,9 @@ import {
     LoginLink,
     RegisterSubmitButton,
     TermsLink,
+    Checklist,
+    List,
+    MessageChecklist,
 } from '../styles';
 
 export const UserForms = (props: any): JSX.Element => {
@@ -41,6 +44,11 @@ export const UserForms = (props: any): JSX.Element => {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+    const characters = /(?=^.{8,20}$).*$/;
+    const letters = /(?=.*[a-z])(?=.*[A-Z])\w+/;
+    const number = /(?=.*[0-9])\w+/;
+    const specialCharacters = /(?=.*\W+).*$/;
+
     const { isLogin, setIsLogin } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
@@ -49,6 +57,7 @@ export const UserForms = (props: any): JSX.Element => {
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
+
     const auth: any = useContext(AuthContext);
 
     // Recebe o tipo do usuário
@@ -80,10 +89,8 @@ export const UserForms = (props: any): JSX.Element => {
                 theme: 'colored',
             });
 
-
             navigate('/candidate-portal');
-        }
-        catch (err: any) {
+        } catch (err: any) {
             if (err.response.status === 400) {
                 setError(true);
             } else {
@@ -98,7 +105,7 @@ export const UserForms = (props: any): JSX.Element => {
             //     theme: 'colored',
             // });
         }
-    };
+    }
 
     const handleClearErrorMessage = () => {
         setError(false);
@@ -113,7 +120,7 @@ export const UserForms = (props: any): JSX.Element => {
 
     const closePopup = () => {
         setPopup(false);
-        navigate('/login');
+        navigate('/');
     };
 
     async function handleRegisterSubmit() {
@@ -126,15 +133,13 @@ export const UserForms = (props: any): JSX.Element => {
 
         try {
             handlePopUp();
-
             if (registerData) {
                 setIsLogin('login');
             }
-        } catch (error) {
+        } catch (error: any) {
             // TODO: Tratar os erros com as mensagens do backend e exibir em tela
             // TODO: fazer toastfy funcionar
-            setHasError(registerData.message);
-            console.log('Passei aqui ...');
+            setHasError(error.message);
         }
     }
 
@@ -210,7 +215,9 @@ export const UserForms = (props: any): JSX.Element => {
                             {error && <>e-mail ou senha não conferem</>}
                         </MessageError>
                         <MessageError>
-                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
+                            {otherErrors && (
+                                <>desculpe, algo inesperado aconteceu</>
+                            )}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
@@ -233,7 +240,7 @@ export const UserForms = (props: any): JSX.Element => {
                             type="submit"
                             id="submit-button"
                             disabled={false}
-                        // TODO: Verificar porque disable não funciona
+                            // TODO: Verificar porque disable não funciona
                         >
                             Entrar
                         </LoginButton>
@@ -260,6 +267,7 @@ export const UserForms = (props: any): JSX.Element => {
                             {...register('registerName')}
                             placeholder="Digite seu nome completo"
                             aria-label="Nome do candidato"
+                            maxLength={50}
                         ></Input>
                         <MessageError>
                             {errors.registerName && (
@@ -300,13 +308,11 @@ export const UserForms = (props: any): JSX.Element => {
                                 <PasswordIcon />
                             </IconWrapper>
                         </div>
-                        {hasError && (
-                            <MessageError>
-                                {errors.registerPassword && (
-                                    <>{errors.registerPassword.message}</>
-                                )}
-                            </MessageError>
-                        )}
+                        <MessageError>
+                            {errors.registerPassword && (
+                                <>{errors.registerPassword.message}</>
+                            )}
+                        </MessageError>
                     </InputContainer>
                     <InputContainer>
                         <div>
@@ -331,6 +337,35 @@ export const UserForms = (props: any): JSX.Element => {
                             )}
                         </MessageError>
                     </InputContainer>
+                    <Checklist>
+                        <ul>
+                            <List valid={registerCheck[2]?.match(characters)}>
+                                <MessageChecklist>
+                                    No mínimo 8 caracteres
+                                </MessageChecklist>
+                            </List>
+                            <List valid={registerCheck[2]?.match(letters)}>
+                                <MessageChecklist>
+                                    Letras maiúsculas e minúsculas
+                                </MessageChecklist>
+                            </List>
+                            <List valid={registerCheck[2]?.match(number)}>
+                                <MessageChecklist>
+                                    No mínimo 1 número
+                                </MessageChecklist>
+                            </List>
+                            <List
+                                valid={registerCheck[2]?.match(
+                                    specialCharacters,
+                                )}
+                            >
+                                <MessageChecklist>
+                                    No mínimo um caracter especial (!@?{}
+                                    ...)
+                                </MessageChecklist>
+                            </List>
+                        </ul>
+                    </Checklist>
                     <InputContainer>
                         <Label>
                             <CheckboxInput {...register('privacyTerms')} />
@@ -340,15 +375,13 @@ export const UserForms = (props: any): JSX.Element => {
                                 <a href="/">Política de Privacidade</a>
                             </TermsLink>
                         </Label>
-                        {hasError && (
-                            <MessageError2>
-                                {errors.privacyTerms && (
-                                    <>{errors.privacyTerms.message}</>
-                                )}
-                            </MessageError2>
-                        )}
-                    </InputContainer>
 
+                        <MessageError2>
+                            {errors.privacyTerms && (
+                                <>{errors.privacyTerms.message}</>
+                            )}
+                        </MessageError2>
+                    </InputContainer>
                     <RegisterSubmitButton
                         type="submit"
                         id="register-submit-button"
