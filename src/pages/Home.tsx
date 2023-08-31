@@ -140,13 +140,14 @@ export const Home: React.FC = () => {
     };
 
     return (
-        <>
+        <>            
             {user ? (
                 <div className="z-[2000] fixed w-full">
                     <Header />
                 </div>
             ) : (
                 <HomeHeader isActive={isActive} />
+                
             )}
             <Main>
                 <MainContent>
