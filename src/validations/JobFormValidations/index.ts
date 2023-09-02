@@ -51,19 +51,19 @@ export const createJobForm = yup.object().shape({
     modality: yup
         .mixed()
         .oneOf(
-            ['Remoto', 'Híbrido', 'Presencial'],
+            [ 'HYBRID', 'IN_PERSON', 'REMOTE' ],
             'Selecione uma opção válida',
         )
         .required('A opção é obrigatória'),
 
     federalUnit: yup.string().when('modality', {
-        is: (modality: string) => modality !== 'Remoto',
+        is: (modality: string) => modality !== 'REMOTE',
         then: yup
             .string()
             .required('O preenchimento do campo UF é obrigatório.'),
     }),
     city: yup.string().when('modality', {
-        is: (modality: string) => modality !== 'Remoto',
+        is: (modality: string) => modality !== 'REMOTE',
         then: yup
             .string()
             .required('O preenchimento do campo Cidade é obrigatório.'),

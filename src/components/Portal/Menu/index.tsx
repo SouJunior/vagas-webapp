@@ -44,9 +44,9 @@ const Menu = () => {
 
                     <Border />
 
-                    {auth.user.type !== 'USER' && (
+                    {auth.user.type === 'USER' && (
                         <li
-                            onClick={() => navigate('/insertjobs')}
+                            onClick={() => navigate('/addjobs')}
                             className="jobs"
                         >
                             <img src={NewJobIcon} alt="vagas" />

@@ -99,7 +99,6 @@ export const NavRoutes: React.FC = () => {
             e um rodapé, modificar isso, ou incluir os elementos acima
             sem esse estilo pré definido*/}
             <Route path="/" element={<Layout />}>
-                <Route path="insertjobs" element={<InsertJobs />} />
                 <Route path="addjobs" element={<AddJobs />} />
                 <Route path="jobs" element={<FeedJobs />} />
                 <Route path="jobs/:searchTerm" element={<FeedJobs />} />
