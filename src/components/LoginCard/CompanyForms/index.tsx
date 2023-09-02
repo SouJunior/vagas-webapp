@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -36,6 +36,7 @@ import {
     List,
     MessageChecklist,
 } from '../styles';
+import { Popup } from '../PopUpRegisterSuccess/styles';
 
 export const CompanyForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
@@ -70,6 +71,35 @@ export const CompanyForms = (props: any): JSX.Element => {
     } = useForm({
         resolver: yupResolver(getFormValidation),
     });
+
+    const handleKeyDown = useCallback(
+        (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setPopup(false);
+            }
+        },
+        [setPopup],
+    );
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (!target.closest(Popup)) {
+                setPopup(false);
+            }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [setPopup]);
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
 
     const characters = /(?=^.{8,20}$).*$/;
     const letters = /(?=.*[a-z])(?=.*[A-Z])\w+/;

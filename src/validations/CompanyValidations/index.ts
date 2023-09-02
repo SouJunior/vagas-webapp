@@ -42,9 +42,10 @@ export const schemaCompanyRegisterForm = yup.object().shape({
     registerCnpj: yup
         .string()
         .required('CNPJ é obrigatório')
-        .matches(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/, 'CNPJ inválido'),
-    //.test('test-cnpj', 'CNPJ inválido' (cnpj) => validarCNPJ(cnpj ?? '')),
-
+        .matches(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/, 'CNPJ inválido')
+        .test('test-cnpj', 'CNPJ inválido', (cnpj: any) =>
+            validarCNPJ(cnpj ?? ''),
+        ),
     privacyTerms: yup
         .bool()
         .required('Você deve aceitar os termos de privacidade para continuar')

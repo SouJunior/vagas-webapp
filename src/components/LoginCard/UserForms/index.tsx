@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +34,7 @@ import {
     List,
     MessageChecklist,
 } from '../styles';
+import { MaskBackground, Popup } from '../PopUpRegisterSuccess/styles';
 
 export const UserForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
@@ -43,12 +44,13 @@ export const UserForms = (props: any): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+    const { isRegistered, setIsRegistered } = useContext(AuthContext);
     const characters = /(?=^.{8,20}$).*$/;
     const letters = /(?=.*[a-z])(?=.*[A-Z])\w+/;
     const number = /(?=.*[0-9])\w+/;
     const specialCharacters = /(?=.*\W+).*$/;
 
+    const { errorEmail, setErrorEmail } = useContext(AuthContext);
     const { isLogin, setIsLogin } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
@@ -57,7 +59,6 @@ export const UserForms = (props: any): JSX.Element => {
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
-
     const auth: any = useContext(AuthContext);
 
     // Recebe o tipo do usuário
@@ -91,7 +92,7 @@ export const UserForms = (props: any): JSX.Element => {
 
             navigate('/candidate-portal');
         } catch (err: any) {
-            if (err.response.status === 400) {
+            if (err.response.status > 400) {
                 setError(true);
             } else {
                 setOtherErrors(true);
@@ -116,7 +117,35 @@ export const UserForms = (props: any): JSX.Element => {
     // =================================================
 
     // Abre popup quando cadastro concluído com sucesso
-    const handlePopUp = () => setPopup(!popup);
+
+    const handleKeyDown = useCallback(
+        (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setPopup(false);
+            }
+        },
+        [setPopup],
+    );
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (!target.closest(Popup)) {
+                setPopup(false);
+            }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [setPopup]);
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
 
     const closePopup = () => {
         setPopup(false);
@@ -124,23 +153,20 @@ export const UserForms = (props: any): JSX.Element => {
     };
 
     async function handleRegisterSubmit() {
-        const registerData = await auth.register(
+        await auth.register(
             registerCheck[0],
             registerCheck[1],
             registerCheck[2],
             registerCheck[3],
         );
-
         try {
-            handlePopUp();
-            if (registerData) {
+            if (isRegistered.status > 400) {
+                errorEmail();
+            } else {
                 setIsLogin('login');
+                setPopup(true);
             }
-        } catch (error: any) {
-            // TODO: Tratar os erros com as mensagens do backend e exibir em tela
-            // TODO: fazer toastfy funcionar
-            setHasError(error.message);
-        }
+        } catch (error) {}
     }
 
     // Monitora os input enquanto preechidos
@@ -150,6 +176,27 @@ export const UserForms = (props: any): JSX.Element => {
         'registerPassword',
         'confirmPassword',
     ]);
+    const [formValues, setFormValues] = useState({
+        email: '',
+        password: '',
+        registerName: '',
+        registerEmail: '',
+        registerPassword: '',
+        confirmPassword: '',
+        privacyTerms: false,
+    });
+
+    const resetForm = () => {
+        setFormValues({
+            email: '',
+            password: '',
+            registerName: '',
+            registerEmail: '',
+            registerPassword: '',
+            confirmPassword: '',
+            privacyTerms: false,
+        });
+    };
 
     return (
         <>
@@ -375,17 +422,23 @@ export const UserForms = (props: any): JSX.Element => {
                                 <a href="/">Política de Privacidade</a>
                             </TermsLink>
                         </Label>
-
-                        <MessageError2>
-                            {errors.privacyTerms && (
-                                <>{errors.privacyTerms.message}</>
-                            )}
-                        </MessageError2>
+                        {hasError && (
+                            <MessageError2>
+                                {errors.privacyTerms && (
+                                    <>{errors.privacyTerms.message}</>
+                                )}
+                            </MessageError2>
+                        )}
                     </InputContainer>
+                    <MessageError2>
+                        {errorEmail && <>{errorEmail} </>}
+                    </MessageError2>
+                    <br />
                     <RegisterSubmitButton
                         type="submit"
                         id="register-submit-button"
                         disabled={false}
+                        onClick={resetForm}
                     >
                         Criar conta
                     </RegisterSubmitButton>
