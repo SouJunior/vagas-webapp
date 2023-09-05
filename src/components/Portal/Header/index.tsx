@@ -11,9 +11,7 @@ import {
 } from './styles';
 import Menu from '../Menu';
 import LogoImage from '../../../assets/imgs/logotipo-icone-extendida.svg';
-import MenuImage from '../../../assets/imgs/vertical-menu.svg';
 import ProfileImage from '../../../assets/imgs/profile-image.svg';
-import { BiMenu } from "react-icons/bi";
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -41,13 +39,6 @@ const Header = () => {
     return (
         <>
             <HeaderWrapper>
-                    
-                {/* Menu adicionado pelo icon */}
-                <BiMenu
-                onClick={handleClick}
-                className='text-5xl cursor-pointer text-white'
-                />
-
                 <div>
                     <HeaderLogo
                         src={LogoImage}
@@ -77,6 +68,7 @@ const Header = () => {
                     </span>
 
                     <ProfileImg
+                        onClick={handleClick}
                         src={
                             auth.user
                                 ? auth.user.profile ?? ProfileImage

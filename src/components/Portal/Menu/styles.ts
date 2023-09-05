@@ -16,6 +16,7 @@ export const PopUp = styled.div`
     position: absolute;
     padding: 16px 24px;
     z-index: 1;
+    right: 10px;
     border-top: 1px solid #e8e4d6;
 
     @media (max-width: 480px) {
