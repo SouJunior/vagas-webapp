@@ -50,6 +50,8 @@ export const CompanyForms = (props: any): JSX.Element => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const { isRegistered, setIseRegisteres } = useContext(AuthContext);
+    const { errorEmail, setErrorEmail } = useContext(AuthContext);
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
@@ -168,7 +170,7 @@ export const CompanyForms = (props: any): JSX.Element => {
     async function handleRegisterSubmit() {
         const cnpj: string = registerCheck[2].replace(/[^\d]+/g, '');
 
-        const registerData = await auth.registerCompany(
+        await auth.registerCompany(
             registerCheck[0],
             registerCheck[1],
             cnpj,
@@ -176,13 +178,12 @@ export const CompanyForms = (props: any): JSX.Element => {
             registerCheck[4],
         );
 
-        try {
+        if (isRegistered.status > 400) {
+            errorEmail();
+            window.location.reload();
+        } else {
+            setIsLogin(true);
             handlePopUp();
-            if (registerData) {
-                setIsLogin(true);
-            }
-        } catch (error: any) {
-            setHasError(registerData.message);
         }
     }
 
@@ -416,6 +417,11 @@ export const CompanyForms = (props: any): JSX.Element => {
                             )}
                         </MessageError2>
                     </InputContainer>
+                    <MessageError2>
+                        {errorEmail && <>{errorEmail} </>}
+                    </MessageError2>
+                    <br />
+
                     <RegisterSubmitButton
                         type="submit"
                         id="register-submit-button"

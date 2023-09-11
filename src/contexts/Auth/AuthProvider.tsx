@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
             setIsAuth(true);
             setToken(res.token);
         }
-        console.log(res);
         return res;
     };
 
@@ -89,18 +88,25 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         password: string,
         passwordConfirmation: string,
     ) => {
-        const res: any = await api.registerCompany(
-            companyName,
-            email,
-            cnpj,
-            password,
-            passwordConfirmation,
-        );
-
-        if (res.data) {
-            setUser(res.data.info);
-            return true;
+        try {
+            const res: any = await api.registerCompany(
+                companyName,
+                email,
+                cnpj,
+                password,
+                passwordConfirmation,
+            );
+            if (res) {
+                console.log(res);
+                setIsRegistered(res);
+            }
+        } catch (err: any) {
+            if (err.response.status > 400) {
+                console.log(err.response.data);
+                setErrorEmail('Email já cadastrado');
+            }
         }
+
         return false;
     };
 
