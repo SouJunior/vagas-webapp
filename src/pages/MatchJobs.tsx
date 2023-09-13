@@ -14,60 +14,16 @@ import {
 } from './styles/MatchJobs';
 import MatchCard from '../components/MatchCard';
 import { FiDownloadCloud } from 'react-icons/fi';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
 
 function MatchJobs() {
     const api = useApi();
     const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
+    const navigate = useNavigate();
 
-    const jobId = queryParams.get('jobId');
-    const curriculumId = queryParams.get('curriculumId');
-
-    const [currentJob, setCurrentJob] = useState<any | null>(null);
-    const [currentCurriculum, setCurrentCurriculum] = useState<any | null>(
-        null,
-    );
-
-    const getCurrentJob = async () => {
-        try {
-            const response = await api.getJobById(jobId);
-            return response;
-        } catch (error) {
-            console.error('Erro ao obter os detalhes do trabalho:', error);
-            return null;
-        }
-    };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await getCurrentJob();
-
-            // esse sistema foi feito temporariamente até ser desenvolvida uma rota para puxar o curriculo do usuário por uma rota do back através do seu ID
-            data?.applications.map((candidate: any) => {
-                if (candidate?.curriculum?.id == curriculumId) {
-                    setCurrentCurriculum(candidate?.curriculum?.file);
-                }
-            });
-
-            if (data) {
-                setCurrentJob(data);
-            }
-        };
-
-        fetchData();
-    }, [jobId]);
-
-    const handleDownload = () => {
-        const link = document.createElement('a');
-        link.download = 'curriculum.pdf'; 
-        link.href = currentCurriculum;
-        link.target = '_blank'; 
-
-        document.body.appendChild(link);
-        link.click();
-    };
+    const currentJob = location?.state?.jobData;
+    const curriculumData = location?.state?.curriculumData;
 
     return (
         <>
@@ -77,17 +33,21 @@ function MatchJobs() {
                 <Wrapper>
                     <LeftContainer>
                         <ResumePreview>
-                                <iframe
-                                    src={`https://docs.google.com/viewer?url=${encodeURIComponent(
-                                        currentCurriculum,
-                                    )}&embedded=true`}
-                                    width="100%"
-                                    height="100%"
-                                    title="curriculum"
-                                    allowFullScreen
-                                ></iframe>
+                            <iframe
+                                src={`https://docs.google.com/viewer?url=${encodeURIComponent(
+                                    curriculumData?.file,
+                                )}&embedded=true`}
+                                width="100%"
+                                height="100%"
+                                title="curriculum"
+                                allowFullScreen
+                            ></iframe>
                         </ResumePreview>
-                        <DownloadBtn onClick={() => handleDownload()}>
+                        <DownloadBtn
+                            onClick={() =>
+                                window.open(curriculumData?.file, '_blank')
+                            }
+                        >
                             <FiDownloadCloud size={20} />
                             <p>Fazer Download</p>
                         </DownloadBtn>
