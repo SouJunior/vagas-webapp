@@ -72,6 +72,7 @@ export const SecondaryTitle = styled.h3`
 
     @media (max-width: 780px) {
         width: 90%;
+        
     }
 `;
 
@@ -82,6 +83,7 @@ export const Subtitle = styled.p`
 
     @media (max-width: 1000px) {
         font-size: 25px;
+        padding: 0 1rem;
     }
 `;
 
@@ -131,6 +133,10 @@ export const OurSitesSection = styled.section`
     flex-direction: column;
     margin-top: 180px;
     margin-bottom: 196px;
+
+    @media (max-width: 1000px) {
+        margin: 80px 0 4.5rem;
+    }
 `;
 
 export const CardWrapper = styled.div`
@@ -150,7 +156,6 @@ export const JourneySection = styled.section`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 196px;
     width: 90%;
     margin: 0 auto 196px auto;
 `;
@@ -159,7 +164,7 @@ export const JourneyContainer = styled.div`
     border: 9px solid ${({ theme }) => theme.colors.primary};
     border-radius: 16px;
     position: relative;
-    padding: 0 44px;
+    padding: 0 .5rem;
 
     @media (max-width: 1200px) {
         width: 100%;
@@ -177,7 +182,8 @@ export const JourneyTitle = styled(SecondaryTitle)`
     transform: translateX(-50%);
 
     @media (max-width: 650px) {
-        font-size: 28px;
+        top: -50px;
+        font-size: 38px;
     }
 `;
 
@@ -187,7 +193,7 @@ export const JourneyCardWrapper = styled.div`
     gap: 38px;
     row-gap: 102px;
     margin-top: 112px;
-    margin-bottom: 100px;
+    margin-bottom: 2rem;
 
     @media (max-width: 650px) {
         grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -206,7 +212,8 @@ export const AreasSection = styled.section`
     width: 100%;
 
     @media (max-width: 1000px) {
-        margin-top: 80px;
+        margin: 80px 0 4.5rem;
+
     }
 `;
 
@@ -292,7 +299,7 @@ export const TestimonialWrapper = styled.div`
 export const VocationalBannerArea = styled.div`
     max-width: 1200px;
     height: 412px;
-    margin: 100px auto;
+    margin: auto;
     background-color: ${({ theme }) => theme.colors.primary};
     background-image: url(${VocationalBanner});
     background-repeat: no-repeat;
@@ -304,7 +311,7 @@ export const VocationalBannerArea = styled.div`
     @media (max-width: 1200px) {
         width: 95%;
         height: auto;
-        padding: 50px 0;
+        padding: 1.1rem 0;
     }
 `;
 
@@ -386,25 +393,27 @@ export const VocationalTextContainer = styled.div`
         }
 
         p {
-            font-size: 15px;
+            font-size: 1.5rem;
         }
     }
 `;
 
 export const VocationalImage = styled.img`
     position: absolute;
-    right: 80px;
+    right: 70px;
     bottom: 0px;
 
     @media (max-width: 1200px) {
-        position: relative;
+        /* position: relative; */
         align-self: flex-end;
     }
 
     @media (max-width: 780px) {
-        width: 70%;
-        right: 0px;
+        width: 45%;
+        right: 10px;
     }
+
+    
 `;
 
 export const AppBannerContainer = styled.section`

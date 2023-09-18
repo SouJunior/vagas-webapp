@@ -223,7 +223,7 @@ export const Home: React.FC = () => {
                             TESTE <br />
                             <span>VOCACIONAL</span>
                         </h1>
-                        <p>
+                        <p className='mb-24'>
                             <a
                                 href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
                                 target="_blank"
@@ -240,7 +240,7 @@ export const Home: React.FC = () => {
             </VocationalBannerArea>
             <OurSitesSection>
                 <SecondaryTitle>
-                    Seja o Júnior que as empresas desejam:
+                    Seja o Júnior que as empresas desejam
                 </SecondaryTitle>
                 <CardWrapper>
                     <OurSitesCard
