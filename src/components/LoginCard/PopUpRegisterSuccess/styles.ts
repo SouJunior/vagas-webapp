@@ -22,9 +22,10 @@ export const Popup = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 
-    width: 100%;
-    max-width: 620px;
+    width: 90%;
+    max-width: 520px;
 
     position: absolute;
 
@@ -32,29 +33,55 @@ export const Popup = styled.div`
     border-radius: 10px;
     background: #fdfffc;
 
+    @media (max-height: 500px) {
+        max-height: 360px;
+    }
+
     .email {
         width: 22%;
         margin: 13px;
+
+        @media (max-height: 500px) {
+            width: 10%;
+        }
     }
 
     button {
         margin: 16px 24px 0 auto;
         cursor: default;
         z-index: 999;
+
+        @media (max-height: 500px) {
+            width: 5%;
+        }
     }
 
     h2 {
+        text-align: center;
         color: #1165ba;
         font-size: 1.9em;
         font-weight: 600;
         margin: 45px 0 16px 0;
+
+        @media (max-height: 500px) {
+            font-size: 20px;
+        }
     }
 
     p {
-        text-align: center;
         color: #5d5f5d;
         font-size: inherit;
         font-weight: bold;
-        margin: 0 90px 70px 90px;
+        padding: 40px;
+
+        @media (max-width: 280px) {
+            padding-bottom: 20px;
+            padding-left: 6px;
+            padding-right: 6px;  
+        }
+
+        @media (max-height: 500px) {
+            font-size: 12px;
+        }
     }
 `;
