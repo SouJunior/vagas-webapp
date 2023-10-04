@@ -5,7 +5,7 @@ export const CandidateUpdateFormSchema = yup.object().shape({
     profPic:yup
         .mixed()
         .test("fileSize", 'A imagem deve ser menor que 8MB.', (value)  => {
-            if (value && value[0] && value[0].size) {
+            if (value[0]?.size) {
                 return value[0].size < 8000000;
             }
             return true; 
