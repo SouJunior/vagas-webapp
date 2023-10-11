@@ -208,4 +208,14 @@ export const useApi = () => ({
         return res;
     },
 
+    confirmRegisterCandidate: async (id: string) => {
+        const res = await api.put(`/user/activate/${id}`);
+        return res.data;
+    },
+
+    confirmRegisterCompany: async (id: string) => {
+        const res = await api.patch(`/company/${id}`);
+        return res.data;
+    },
+
 });
