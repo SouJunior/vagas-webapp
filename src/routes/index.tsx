@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Login from '../pages/Login';
 import Layout from '../components/Layout';
@@ -27,10 +27,9 @@ export const NavRoutes: React.FC = () => {
         <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="confirm-email" element={<ConfirmEmail />} />
-            <Route path="confirm-register" element={<ConfirmRegister />} />            
-            <Route path="userconfirmation" element={ <Navigate to="/confirm-register" /> } />
-            <Route path="companyconfirmation" element={ <Navigate to="/confirm-register" /> } />            
+            <Route path="confirm-email" element={<ConfirmEmail />} />          
+            <Route path="userconfirmation" element={<ConfirmRegister />} />
+            <Route path="companyconfirmation" element={<ConfirmRegister /> } />            
             <Route path="recovery-password" element={<ResetPassword />} />
             <Route
                 path="company-portal"
