@@ -103,10 +103,10 @@ export const CompanyForms = (props: any): JSX.Element => {
         };
     }, [handleKeyDown]);
 
-    const characters = /(?=^.{8,20}$).*$/;
-    const letters = /(?=.*[a-z])(?=.*[A-Z])\w+/;
-    const number = /(?=.*[0-9])\w+/;
-    const specialCharacters = /(?=.*\W+).*$/;
+    const characters = /^(?=.{8,20}$).*$/;
+    const letters = /^(?=.*[a-z])(?=.*[A-Z])\w+$/;
+    const number = /^(?=.*\d).*$/;
+    const specialCharacters = /^(?=.*\W).*$/;
 
     // Realiza loging e manipula os dados
     async function handleFormOnSubmit() {

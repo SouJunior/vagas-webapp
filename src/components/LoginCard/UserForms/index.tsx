@@ -45,10 +45,11 @@ export const UserForms = (props: any): JSX.Element => {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { isRegistered, setIsRegistered } = useContext(AuthContext);
-    const characters = /(?=^.{8,20}$).*$/;
-    const letters = /(?=.*[a-z])(?=.*[A-Z])\w+/;
-    const number = /(?=.*[0-9])\w+/;
-    const specialCharacters = /(?=.*\W+).*$/;
+
+    const characters = /^(?=.{8,20}$).*$/;
+    const letters = /^(?=.*[a-z])(?=.*[A-Z])\w+$/;
+    const number = /^(?=.*\d).*$/;
+    const specialCharacters = /^(?=.*\W).*$/;
 
     const { errorEmail, setErrorEmail } = useContext(AuthContext);
     const { isLogin, setIsLogin } = useContext(AuthContext);
