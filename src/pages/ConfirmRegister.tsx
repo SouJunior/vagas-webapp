@@ -28,12 +28,12 @@ const ConfirmRegister = () => {
 
     useEffect(() => {
         async function handleConfirmRegister() {
-            if (id !== null) {
-                if (type === "USER") {
-                  await api.confirmRegisterCandidate(id)
-                } else if (type === "COMPANY") {
-                  await api.confirmRegisterCompany(id)
-                }
+            const registerFunction  = {
+                USER: (id:string) => api.confirmRegisterCandidate(id),
+                COMPANY: (id:string) => api.confirmRegisterCompany(id),
+            }
+            if (id !== null && type != null) {
+                await registerFunction[type as keyof typeof registerFunction](id);
             }
         }  
         handleConfirmRegister();
