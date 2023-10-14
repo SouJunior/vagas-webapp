@@ -4,8 +4,12 @@ import { state } from '../../pages/ProfileSettings/data/location';
 export const CandidateUpdateFormSchema = yup.object().shape({
     profPic:yup
         .mixed()
-        .test("fileSize", 'A imagem deve ser menor que 8MB.', (value)  => 
-           {return value && value[0].size < 8000000}
+        .test("fileSize", 'A imagem deve ser menor que 8MB.', (value)  => {
+            if (value[0]?.size) {
+                return value[0].size < 8000000;
+            }
+            return true; 
+        }
         ),
     name: yup
         .string()

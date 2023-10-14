@@ -7,18 +7,19 @@ export const Img = styled.img`
     border-radius: 16px;
 
     @media (max-width: 650px) {
-        width: 80%;
+        width: 55%;
     }
 `;
 
 export const JourneyWrapper = styled.div`
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 1rem;
 
-    @media (max-width: 1200px) {
+    // Foi retirado devido a fidelidade do prototipo
+    /* @media (max-width: 1200px) {
         flex-direction: column;
-    }
+    } */
 `;
 
 export const JourneyDescription = styled.div`
@@ -30,7 +31,7 @@ export const JourneyDescription = styled.div`
     @media (max-width: 650px) {
         font-size: 20px;
         width: 100%;
-        text-align: center;
+        /* text-align: le; */
     }
 `;
 

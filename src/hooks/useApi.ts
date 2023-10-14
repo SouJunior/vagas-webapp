@@ -70,7 +70,7 @@ export const useApi = () => ({
         confirmPassword: string,
         recoverPasswordToken: string,
     ) => {
-        const res: any = await api.patch('/user/update_password', {
+        const res: any = await api.patch('/user/update_password_email', {
             password,
             confirmPassword,
             recoverPasswordToken,
@@ -83,7 +83,7 @@ export const useApi = () => ({
         confirmPassword: string,
         recoverPasswordToken: string,
     ) => {
-        const res: any = await api.patch('/company/update_password', {
+        const res: any = await api.patch('/company/update_password_email', {
             password,
             confirmPassword,
             recoverPasswordToken,
@@ -116,7 +116,7 @@ export const useApi = () => ({
         const headers = {
             Authorization: `Bearer ${token}`,
         };
-        const res: any = await api.post('/job', { JobData }, { headers });
+        const res: any = await api.post('/job',  JobData , { headers });
         return res.data;
     },
 

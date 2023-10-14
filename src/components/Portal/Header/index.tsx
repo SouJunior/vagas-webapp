@@ -11,9 +11,7 @@ import {
 } from './styles';
 import Menu from '../Menu';
 import LogoImage from '../../../assets/imgs/logotipo-icone-extendida.svg';
-import MenuImage from '../../../assets/imgs/vertical-menu.svg';
 import ProfileImage from '../../../assets/imgs/profile-image.svg';
-
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -49,8 +47,9 @@ const Header = () => {
                         alt="logo"
                     />
                 </div>
+                    
                 <UserArea>
-                    {/* <span onClick={() => setVisible(!visible)}> */}
+
                     <span>
                         {auth.user ? (
                             <UserInfo>
@@ -66,12 +65,10 @@ const Header = () => {
                                 Fazer Login
                             </LoginBtn>
                         )}
-                        {/* <OpenMenuBtn src={MenuImage} alt="menu" /> */}
                     </span>
 
                     <ProfileImg
                         onClick={handleClick}
-                        // onClick={handleNavigation}
                         src={
                             auth.user
                                 ? auth.user.profile ?? ProfileImage
@@ -80,8 +77,6 @@ const Header = () => {
                         alt="foto de perfil"
                         width={'50px'}
                     />
-                    {/* <span onClick={() => setVisible(!visible)}>
-                        <UserInfo> ... */}
                 </UserArea>
             </HeaderWrapper>
             <span onMouseLeave={() => setVisible(!visible)}>

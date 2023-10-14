@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Portal/Header';
 import { Footer } from '../components/Footer';
 import {
@@ -10,23 +10,32 @@ import {
     Cards,
     PaymentInfo,
     PageTitle,
-    DownloadBtn
+    DownloadBtn,
 } from './styles/MatchJobs';
 import MatchCard from '../components/MatchCard';
-import {FiDownloadCloud} from "react-icons/fi"
+import { FiDownloadCloud } from 'react-icons/fi';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useApi } from '../hooks/useApi';
 
 function MatchJobs() {
+    const api = useApi();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const currentJob = location?.state?.jobData;
+    const curriculumData = location?.state?.curriculumData;
+
     return (
         <>
             <Header />
             <Container>
-            <PageTitle>Match de Vagas</PageTitle>
+                <PageTitle>Match de Vagas</PageTitle>
                 <Wrapper>
                     <LeftContainer>
                         <ResumePreview>
                             <iframe
                                 src={`https://docs.google.com/viewer?url=${encodeURIComponent(
-                                    'https://mooncoded.vercel.app/static/files/curriculum_vitae.pdf',
+                                    curriculumData?.file,
                                 )}&embedded=true`}
                                 width="100%"
                                 height="100%"
@@ -34,7 +43,11 @@ function MatchJobs() {
                                 allowFullScreen
                             ></iframe>
                         </ResumePreview>
-                        <DownloadBtn>
+                        <DownloadBtn
+                            onClick={() =>
+                                window.open(curriculumData?.file, '_blank')
+                            }
+                        >
                             <FiDownloadCloud size={20} />
                             <p>Fazer Download</p>
                         </DownloadBtn>
@@ -43,7 +56,7 @@ function MatchJobs() {
                         <Cards>
                             <MatchCard
                                 title="Descrição da Vaga"
-                                description="Lorem ipsum dolor sit amet. Ut sunt rerum a totam alias et aspernatur delectus. Aut incidunt inventore nam voluptas doloremque 33 unde dolor qui cupiditate dolore et enim totam sit fugit nesciunt. Eos dolores dolorum et maxime aperiam a atque optio ut sequi nostrum qui quasi laborum est quia quos."
+                                description={currentJob?.description}
                             />
                             <MatchCard
                                 title="Responsabilidades"
@@ -55,19 +68,26 @@ function MatchJobs() {
                             />
                             <MatchCard
                                 title="Benefícios"
-                                description="Lorem ipsum dolor sit amet. Ut sunt rerum a totam alias et aspernatur delectus. Aut incidunt inventore nam voluptas doloremque 33 unde dolor qui cupiditate dolore et enim totam sit fugit nesciunt. Eos dolores dolorum et maxime aperiam a atque optio ut sequi nostrum qui quasi laborum est quia quos."
+                                description={currentJob?.benefits}
                             />
                             <MatchCard
                                 title="Informações Adicionais"
                                 description="Lorem ipsum dolor sit amet. Ut sunt rerum a totam alias et aspernatur delectus. Aut incidunt inventore nam voluptas doloremque 33 unde dolor qui cupiditate dolore et enim totam sit fugit nesciunt. Eos dolores dolorum et maxime aperiam a atque optio ut sequi nostrum qui quasi laborum est quia quos."
                             />
-                              <MatchCard
-                                title="Informações Adicionais"
-                                description="Lorem ipsum dolor sit amet. Ut sunt rerum a totam alias et aspernatur delectus. Aut incidunt inventore nam voluptas doloremque 33 unde dolor qui cupiditate dolore et enim totam sit fugit nesciunt. Eos dolores dolorum et maxime aperiam a atque optio ut sequi nostrum qui quasi laborum est quia quos."
-                            />
                         </Cards>
                         <PaymentInfo>
-                            <h1>Faixa Salarial: R$ 5.000,00 - R$ 7.000,00</h1>
+                            <h1>
+                                Faixa Salarial:{' '}
+                                {currentJob?.salaryMin?.toLocaleString(
+                                    'pt-BR',
+                                    { style: 'currency', currency: 'BRL' },
+                                )}{' '}
+                                -{' '}
+                                {currentJob?.salaryMax?.toLocaleString(
+                                    'pt-BR',
+                                    { style: 'currency', currency: 'BRL' },
+                                )}
+                            </h1>
                         </PaymentInfo>
                     </RightContainer>
                 </Wrapper>
