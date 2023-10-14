@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
+import PopupHandler from '../PopUpRegisterSuccess/CloseModalEsc';
 import {
     schemaUserLoginForm,
     schemaUserRegisterForm,
@@ -47,7 +48,7 @@ export const UserForms = (props: any): JSX.Element => {
     const { isRegistered, setIsRegistered } = useContext(AuthContext);
 
     const characters = /^(?=.{8,20}$).*$/;
-    const letters = /^(?=.*[a-z])(?=.*[A-Z])\w+$/;
+    const letters = /^(?=.*[a-zA-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
 
@@ -119,35 +120,6 @@ export const UserForms = (props: any): JSX.Element => {
 
     // Abre popup quando cadastro concluído com sucesso
 
-    const handleKeyDown = useCallback(
-        (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
-                setPopup(false);
-            }
-        },
-        [setPopup],
-    );
-    useEffect(() => {
-        const handleOutsideClick = (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
-            if (!target.closest(Popup)) {
-                setPopup(false);
-            }
-        };
-        document.addEventListener('mousedown', handleOutsideClick);
-
-        return () => {
-            document.removeEventListener('mousedown', handleOutsideClick);
-        };
-    }, [setPopup]);
-
-    useEffect(() => {
-        document.addEventListener('keydown', handleKeyDown);
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [handleKeyDown]);
-
     const closePopup = () => {
         setPopup(false);
         navigate('/');
@@ -177,27 +149,6 @@ export const UserForms = (props: any): JSX.Element => {
         'registerPassword',
         'confirmPassword',
     ]);
-    const [formValues, setFormValues] = useState({
-        email: '',
-        password: '',
-        registerName: '',
-        registerEmail: '',
-        registerPassword: '',
-        confirmPassword: '',
-        privacyTerms: false,
-    });
-
-    const resetForm = () => {
-        setFormValues({
-            email: '',
-            password: '',
-            registerName: '',
-            registerEmail: '',
-            registerPassword: '',
-            confirmPassword: '',
-            privacyTerms: false,
-        });
-    };
 
     return (
         <>
@@ -439,7 +390,6 @@ export const UserForms = (props: any): JSX.Element => {
                         type="submit"
                         id="register-submit-button"
                         disabled={false}
-                        onClick={resetForm}
                     >
                         Criar conta
                     </RegisterSubmitButton>
@@ -461,6 +411,7 @@ export const UserForms = (props: any): JSX.Element => {
                     close={closePopup}
                 />
             ) : null}
+            <PopupHandler setPopup={setPopup} Popup={Popup} />
         </>
     );
 };
