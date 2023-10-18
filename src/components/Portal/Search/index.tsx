@@ -50,8 +50,8 @@ const Index = () => {
     };
 
     useEffect(() => {
-        const handleOutsideClick = (e: any) => {
-            if (document && document.contains(e.target)) {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (document && document.contains(e.target as Node)) {
                 setSuggestions([]);
             }
         };

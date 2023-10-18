@@ -4,7 +4,6 @@ import {
     UserArea,
     Name,
     Email,
-    OpenMenuBtn,
     HeaderLogo,
     UserInfo,
     LoginBtn,

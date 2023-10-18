@@ -9,7 +9,7 @@ import ModalIcon from '../../../../assets/imgs/mask-group.svg';
 import { useNavigate } from 'react-router';
 import { MaskBackground } from '../../../LoginCard/PopUpRegisterSuccess/styles';
 import { AuthContext } from '../../../../contexts/Auth/AuthContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 interface ConfirmModalProps {
     setConfirmModal: (value: boolean) => void;
@@ -18,24 +18,42 @@ interface ConfirmModalProps {
 const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
     const navigate = useNavigate();
     const auth = useContext(AuthContext);
+    const modalRef = useRef<HTMLDivElement | null>(null);
+
+    const handleClick = () => {
+        setConfirmModal(false);
+        auth.user.type === 'USER' ?
+            (navigate('/candidate-portal'))
+            :
+            (navigate('/company-portal'))
+        setTimeout(() => window.location.reload(), 0)
+        document.body.style.overflow = 'auto';
+    }
+
+    useEffect(() => {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (modalRef.current && e.target instanceof Node && !modalRef.current.contains(e.target)) {
+                setConfirmModal(false);
+                handleClick();
+            }
+        };
+
+        document.addEventListener('click', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, []);
 
     return (
         <MaskBackground>
-            <ModalContent>
+            <ModalContent ref={modalRef}>
                 <CloseModal>
                     <ModalCloseButton
                         /**
                          * @see https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
                         */
-                        onClick={() => {
-                            setConfirmModal(false);
-                            auth.user.type === 'USER' ?
-                                (navigate('/candidate-portal'))
-                                :
-                                (navigate('/company-portal'))
-                            setTimeout(() => window.location.reload(), 0)
-                            document.body.style.overflow = 'auto';
-                        }}
+                        onClick={handleClick}
                     >
                         X
                     </ModalCloseButton>
