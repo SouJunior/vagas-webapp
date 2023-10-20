@@ -63,15 +63,12 @@ export const CandidateSettings: React.FC = () => {
     const [fileKey2, setFileKey2] = useState<string>();
     const [fileUrl1, setFileUrl1] = useState<string>();
     const [fileUrl2, setFileUrl2] = useState<string>();
-    const [mask1, setMask1] = useState("")
-    const [mask2, setMask2] = useState("")
 
     const {
         register,
         handleSubmit,
         clearErrors,
         setValue,
-        getValues,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(CandidateUpdateFormSchema)
@@ -107,17 +104,23 @@ export const CandidateSettings: React.FC = () => {
         userCurriculum();
     }, []);
 
+    const formatPhoneNumberForForm = (phoneNumber: string, formatted: boolean) => {
+        const length = formatted ? 15 : 11;
+        return phoneNumber.length < length ? "(99) 9999-99999" : "(99) 99999-9999";
+    };
+    
+    const [mask1, setMask1] = useState(formatPhoneNumberForForm(auth.user.mainPhone, false));
+    const [mask2, setMask2] = useState(formatPhoneNumberForForm(auth.user.phone, false));
+
     const handlePhoneNumberChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = getValues("phoneNumber1");
-        const newMask = value.length < 15 ? "(99) 9999-99999" : "(99) 99999-9999";
-        setMask1(newMask);
-    }
+        const value = e.target.value;
+        setMask1(formatPhoneNumberForForm(value, true));
+    };
 
     const handlePhoneNumberChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = getValues("phoneNumber2");
-        const newMask = value.length < 15 ? "(99) 9999-99999" : "(99) 99999-9999";
-        setMask2(newMask);
-    }
+        const value = e.target.value;
+        setMask2(formatPhoneNumberForForm(value, true));
+    };
 
     const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj1 = e.target.files && e.target.files[0];
@@ -183,15 +186,15 @@ export const CandidateSettings: React.FC = () => {
     const onSubmit = async (data: any, e: any) => {
         e.preventDefault();
 
+        const regExPhoneNumber1 = data.phoneNumber1.replace(/\D/g, '');
+        const regExPhoneNumber2 = data.phoneNumber2.replace(/\D/g, '');
+
         const formData = new FormData();
         formData.append("name", data.name);
-        formData.append("mainPhone", data.phoneNumber1);
-        formData.append("phone", data.phoneNumber2);
+        formData.append("mainPhone", regExPhoneNumber1);
+        formData.append("phone", regExPhoneNumber2);
         formData.append("city", data.city);
         formData.append("state", data.uf);
-
-        //console.log(data.phoneNumber1);
-        //console.log(data.phoneNumber2);
 
         if (selectedImage) {
             formData.append("file", selectedImage);
@@ -236,6 +239,10 @@ export const CandidateSettings: React.FC = () => {
             //TODO ver mensagem de erro para o usuário
         }
     };
+
+    useEffect(() => {
+    
+    }, []);
 
     return (
         <Container>
