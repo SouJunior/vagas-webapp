@@ -12,6 +12,7 @@ import AddJobs from '../pages/AddJobs';
 import FeedJobs from '../pages/FeedJobs';
 import ConfirmEmail from '../pages/ConfirmEmail';
 import ResetPassword from '../pages/ResetPassword';
+import ConfirmRegister from '../pages/ConfirmRegister';
 import CompanyPortal from '../pages/CompanyPortal';
 import CandidatePortal from '../pages/CandidatePortal';
 import JobApply from '../pages/ApplyJob';
@@ -27,7 +28,9 @@ export const NavRoutes: React.FC = () => {
         <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="confirm-email" element={<ConfirmEmail />} />
+            <Route path="confirm-email" element={<ConfirmEmail />} />          
+            <Route path="userconfirmation" element={<ConfirmRegister />} />
+            <Route path="companyconfirmation" element={<ConfirmRegister /> } />            
             <Route path="recovery-password" element={<ResetPassword />} />
             <Route path="userconfirmation" element={<VerifyEmail />} />
             <Route

@@ -89,7 +89,7 @@ export const useApi = () => ({
         confirmPassword: string,
         recoverPasswordToken: string,
     ) => {
-        const res: any = await api.patch('/user/update_password', {
+        const res: any = await api.patch('/user/update_password_email', {
             password,
             confirmPassword,
             recoverPasswordToken,
@@ -102,7 +102,7 @@ export const useApi = () => ({
         confirmPassword: string,
         recoverPasswordToken: string,
     ) => {
-        const res: any = await api.patch('/company/update_password', {
+        const res: any = await api.patch('/company/update_password_email', {
             password,
             confirmPassword,
             recoverPasswordToken,
@@ -232,4 +232,18 @@ export const useApi = () => ({
         });
         return res;
     },
+<<<<<<< HEAD
+=======
+
+    confirmRegisterCandidate: async (id: string) => {
+        const res = await api.put(`/user/activate/${id}`);
+        return res.data;
+    },
+
+    confirmRegisterCompany: async (id: string) => {
+        const res = await api.patch(`/company/${id}`);
+        return res.data;
+    },
+
+>>>>>>> 86c211e9daa44bb41ffc5317d3ed2f242650b9c2
 });
