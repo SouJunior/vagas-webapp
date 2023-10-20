@@ -294,8 +294,7 @@ export const CandidateSettings: React.FC = () => {
                                     defaultValue={auth.user.mainPhone}
                                     type="tel"
                                     placeholder="(00) 00000-0000"
-                                    {...register("phoneNumber1")}
-                                    onChange={handlePhoneNumberChange1}
+                                    {...register("phoneNumber1", {onChange:handlePhoneNumberChange1})}   
                                 />
                             </label>
                             <ErrorMessages>
@@ -344,9 +343,8 @@ export const CandidateSettings: React.FC = () => {
                                     maskChar=""
                                     type="tel"
                                     defaultValue={auth.user.phone}
-                                    {...register("phoneNumber2")}
+                                    {...register("phoneNumber2", {onChange: handlePhoneNumberChange2})}
                                     placeholder="(00) 00000-0000"
-                                    onChange={handlePhoneNumberChange2}
                                 />
                             </label>
                         </InputWrapper>
