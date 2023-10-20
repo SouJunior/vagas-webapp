@@ -37,6 +37,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
 import { Footer } from '../../components/Footer';
+import InputMask from 'react-input-mask'
 
 export const CandidateSettings: React.FC = () => {
 
@@ -62,12 +63,15 @@ export const CandidateSettings: React.FC = () => {
     const [fileKey2, setFileKey2] = useState<string>();
     const [fileUrl1, setFileUrl1] = useState<string>();
     const [fileUrl2, setFileUrl2] = useState<string>();
+    const [mask1, setMask1] = useState("")
+    const [mask2, setMask2] = useState("")
 
     const {
         register,
         handleSubmit,
         clearErrors,
         setValue,
+        getValues,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(CandidateUpdateFormSchema)
@@ -102,6 +106,18 @@ export const CandidateSettings: React.FC = () => {
         }
         userCurriculum();
     }, []);
+
+    const handlePhoneNumberChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = getValues("phoneNumber1");
+        const newMask = value.length < 15 ? "(99) 9999-99999" : "(99) 99999-9999";
+        setMask1(newMask);
+    }
+
+    const handlePhoneNumberChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = getValues("phoneNumber2");
+        const newMask = value.length < 15 ? "(99) 9999-99999" : "(99) 99999-9999";
+        setMask2(newMask);
+    }
 
     const handleFileChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileObj1 = e.target.files && e.target.files[0];
@@ -173,6 +189,9 @@ export const CandidateSettings: React.FC = () => {
         formData.append("phone", data.phoneNumber2);
         formData.append("city", data.city);
         formData.append("state", data.uf);
+
+        //console.log(data.phoneNumber1);
+        //console.log(data.phoneNumber2);
 
         if (selectedImage) {
             formData.append("file", selectedImage);
@@ -262,12 +281,14 @@ export const CandidateSettings: React.FC = () => {
                             {HandleInputsRenderCandidate(inputConfigCandidate, register, errors)}
                             <label>
                                 Telefone 1<Required>*</Required>
-                                <input
+                                <InputMask
+                                    mask={mask1}
+                                    maskChar=""
                                     defaultValue={auth.user.mainPhone}
                                     type="tel"
                                     placeholder="(00) 00000-0000"
-                                    maxLength={11}
                                     {...register("phoneNumber1")}
+                                    onChange={handlePhoneNumberChange1}
                                 />
                             </label>
                             <ErrorMessages>
@@ -311,12 +332,14 @@ export const CandidateSettings: React.FC = () => {
                         <InputWrapper>
                             <label>
                                 Telefone 2
-                                <input
-                                    maxLength={11}
+                                <InputMask
+                                    mask={mask2}
+                                    maskChar=""
                                     type="tel"
                                     defaultValue={auth.user.phone}
                                     {...register("phoneNumber2")}
                                     placeholder="(00) 00000-0000"
+                                    onChange={handlePhoneNumberChange2}
                                 />
                             </label>
                         </InputWrapper>
