@@ -232,8 +232,6 @@ export const useApi = () => ({
         });
         return res;
     },
-<<<<<<< HEAD
-=======
 
     confirmRegisterCandidate: async (id: string) => {
         const res = await api.put(`/user/activate/${id}`);
@@ -244,6 +242,4 @@ export const useApi = () => ({
         const res = await api.patch(`/company/${id}`);
         return res.data;
     },
-
->>>>>>> 86c211e9daa44bb41ffc5317d3ed2f242650b9c2
 });
