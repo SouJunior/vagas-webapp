@@ -82,6 +82,7 @@ const AddJobs = () => {
         JobData.affirmative = JobData.affirmative === 'true' ? true : false;
         JobData.indefinideContract =
             JobData.indefinideContract === 'true' ? true : false;
+        // JobData.company_id = '00fae0bd-4f1c-4eb5-bf9f-281e667abb99';
         try {
             await api
                 .createJob(JobData)
@@ -102,6 +103,45 @@ const AddJobs = () => {
                 theme: 'colored',
             });
         }
+
+        console.log(JobData);
+        console.log(
+            'affirmative: ' +
+                typeof JobData.affirmative +
+                '\n' +
+                'affirmativeType: ' +
+                typeof JobData.affirmativeType +
+                '\n' +
+                'benefits: ' +
+                typeof JobData.benefits +
+                '\n' +
+                'city: ' +
+                typeof JobData.city +
+                '\n' +
+                'company_id: ' +
+                typeof JobData.company_id +
+                '\n' +
+                'contractType: ' +
+                typeof JobData.contractType +
+                '\n' +
+                'description: ' +
+                typeof JobData.description +
+                '\n' +
+                'federalUnit: ' +
+                typeof JobData.federalUnit +
+                '\n' +
+                'indefiniteContract: ' +
+                typeof JobData.indefiniteContract +
+                '\n' +
+                'modality: ' +
+                typeof JobData.modality +
+                '\n' +
+                'prerequisites: ' +
+                typeof JobData.prerequisites +
+                '\n' +
+                'title: ' +
+                typeof JobData.title,
+        );
     };
 
     const handleClick = async () => {

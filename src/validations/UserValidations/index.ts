@@ -2,13 +2,9 @@ import * as yup from 'yup';
 
 export const schemaUserLoginForm = yup.object().shape({
     // valida email
-    email: yup
-        .string()
-        .required('O campo e-mail é obrigatório'),
+    email: yup.string().required('O campo e-mail é obrigatório'),
     // Valida password
-    password: yup
-        .string()
-        .required('O campo senha é obrigatório'),
+    password: yup.string().required('O campo senha é obrigatório'),
 });
 
 export const schemaUserRegisterForm = yup.object().shape({
@@ -35,10 +31,7 @@ export const schemaUserRegisterForm = yup.object().shape({
     confirmPassword: yup
         .string()
         .required('Confirme sua senha')
-        .oneOf(
-            [yup.ref('registerPassword'), null],
-            'As senhas precisam ser iguais',
-        ),
+        .oneOf([yup.ref('registerPassword')], 'As senhas precisam ser iguais'),
 
     // Valida o input type checkbox
     privacyTerms: yup

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import TextMask from 'react-text-mask';
 
 export const MessageError = styled.p`
     color: red;
@@ -20,17 +21,17 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-  width: 500px;
-  margin-bottom: 24px;
-  overflow-y: auto;
-  padding: 20px;
-  background-color: #fdfffc;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  max-height: 900px;
-  @media (min-width: 1024px) {
-    max-width: 1024px;
-  }
+    width: 500px;
+    margin-bottom: 24px;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #fdfffc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    max-height: 900px;
+    @media (min-width: 1024px) {
+        max-width: 1024px;
+    }
 `;
 
 export const LoginTypeButton = styled.div`

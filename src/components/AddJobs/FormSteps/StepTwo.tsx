@@ -35,6 +35,11 @@ export enum JobsTypeEnum {
     INTERNSHIP = 'INTERNSHIP',
 }
 
+export enum TypeContract {
+    CLT = 'CLT',
+    PJ = 'PJ',
+    OTHER = 'OTHER'
+}
 
 const StepTwo = ({
     register,
@@ -133,9 +138,9 @@ const StepTwo = ({
                 <option value="" disabled hidden>
                     Selecione
                 </option>
-                <option value="CLT">CLT</option>
-                <option value="PJ">PJ</option>
-                <option value="Outro">Outro</option>
+                <option value={TypeContract.CLT}>CLT</option>
+                <option value={TypeContract.PJ}>PJ</option>
+                <option value={TypeContract.OTHER}>Outro</option>
             </SelectInput>
 
             <ErrorMessage>

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
+import { normalizeCnpjNumber } from '../../../Maks/mask';
 
 import {
     schemaCompanyLoginForm,
@@ -64,10 +65,22 @@ export const CompanyForms = (props: any): JSX.Element => {
         register,
         handleSubmit,
         watch,
+        setValue,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(getFormValidation),
     });
+
+    //Controla a mensagem de erro ao digitar o nome da empresa
+    const [nameValue, setNameValue] = useState('');
+    const [nameError, setNameError] = useState('');
+
+    //Aplica a máscara para o CPNJ
+    const cnpjValue = watch('registerCnpj');
+
+    useEffect(() => {
+        setValue('registerCnpj', normalizeCnpjNumber(cnpjValue));
+    }, [cnpjValue]);
 
     // Realiza loging e manipula os dados
     async function handleFormOnSubmit() {
@@ -87,7 +100,6 @@ export const CompanyForms = (props: any): JSX.Element => {
             );
 
             navigate('/company-portal');
-
         } catch (err: any) {
             if (err.response.status === 400) {
                 setError(true);
@@ -97,7 +109,7 @@ export const CompanyForms = (props: any): JSX.Element => {
             // TODO: Tratar os erros com as mensagens do backend
             //setHasError(data.message);
         }
-    };
+    }
 
     const handleClearErrorMessage = () => {
         setError(false);
@@ -206,7 +218,9 @@ export const CompanyForms = (props: any): JSX.Element => {
                             {error && <>e-mail ou senha não conferem</>}
                         </MessageError>
                         <MessageError>
-                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
+                            {otherErrors && (
+                                <>desculpe, algo inesperado aconteceu</>
+                            )}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
@@ -247,11 +261,36 @@ export const CompanyForms = (props: any): JSX.Element => {
                             {...register('registerName')}
                             placeholder="Nome da empresa"
                             aria-label="Nome da empresa"
+                            onChange={(e) => {
+                                const { value } = e.target;
+                                setNameValue(value);
+
+                                schemaCompanyRegisterForm
+                                    .validateAt('registerName', {
+                                        registerName: value,
+                                    })
+                                    .then(() => {
+                                        setNameError('');
+                                    })
+                                    .catch((err) => {
+                                        setNameError(err.message);
+                                        console.log(nameError);
+                                    });
+                            }}
                         ></Input>
                         <MessageError>
-                            {errors.registerName && (
+                            <MessageError>
+                                {errors.registerName ? (
+                                    <>{errors.registerName.message}</>
+                                ) : (
+                                    <>{nameError}</>
+                                )}
+                            </MessageError>
+
+                            {/* {errors.registerName && (
                                 <>{errors.registerName.message}</>
                             )}
+                            {nameError && <>{nameError}</>} */}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>

@@ -3,18 +3,17 @@ import { validarCNPJ } from './utils';
 
 export const schemaCompanyLoginForm = yup.object().shape({
     // valida email
-    email: yup
-        .string()
-        .required('O campo e-mail é obrigatório'),
+    email: yup.string().required('O campo e-mail é obrigatório'),
     // Valida password
-    password: yup
-        .string()
-        .required('O campo senha é obrigatório'),
+    password: yup.string().required('O campo senha é obrigatório'),
 });
 
 export const schemaCompanyRegisterForm = yup.object().shape({
     // Valida nome
-    registerName: yup.string().required('O campo de nome é obrigatório'),
+    registerName: yup
+        .string()
+        .max(30, 'O nome da empresa deve ter no máximo 30 caracteres')
+        .required('O campo de nome é obrigatório'),
 
     registerEmail: yup
         .string()
@@ -36,13 +35,9 @@ export const schemaCompanyRegisterForm = yup.object().shape({
     passwordConfirm: yup
         .string()
         .required('Confirme sua senha')
-        .oneOf(
-            [yup.ref('registerPassword'), null],
-            'As senhas precisam ser iguais',
-        ),
+        .oneOf([yup.ref('registerPassword')], 'As senhas precisam ser iguais'),
 
     // Valida CNPJ
-    
     registerCnpj: yup
         .string()
         .required('CNPJ é obrigatório')

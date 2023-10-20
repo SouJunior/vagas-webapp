@@ -20,6 +20,7 @@ import { CandidateSettings } from '../pages/CandidateSettings';
 import CompanyApplications from '../pages/CompanyApplications';
 import JobsPanel from '../pages/JobsPanel';
 import MatchJobs from '../pages/MatchJobs';
+import VerifyEmail from '../pages/VerifyEmail';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -28,6 +29,7 @@ export const NavRoutes: React.FC = () => {
             <Route path="/login" element={<Login />} />
             <Route path="confirm-email" element={<ConfirmEmail />} />
             <Route path="recovery-password" element={<ResetPassword />} />
+            <Route path="userconfirmation" element={<VerifyEmail />} />
             <Route
                 path="company-portal"
                 element={

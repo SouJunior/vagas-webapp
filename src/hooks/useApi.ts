@@ -10,6 +10,26 @@ export const useApi = () => ({
         return res.data;
     },
 
+    activateEmailUser: async (id: string) => {
+        const headers = {
+            'Content-Type': 'multipart/form-data',
+        };
+        const res: any = await api.put(`/user/activate/${id}`, id, { headers });
+        console.log(res.data);
+        return res.data;
+    },
+
+    activateEmailCompany: async (id: string) => {
+        const headers = {
+            'Content-Type': 'multipart/form-data',
+        };
+        const res: any = await api.patch(`/company/${id}`, id, {
+            headers,
+        });
+        console.log(res.data);
+        return res.data;
+    },
+
     validateToken: async (token: string) => {
         const config = {
             headers: { Authorization: `Bearer ${token}` },
@@ -112,10 +132,11 @@ export const useApi = () => ({
 
     createJob: async (JobData: any) => {
         const token = localStorage.getItem('authToken');
+        console.log(`token de autorização: ${token}`);
         const headers = {
             Authorization: `Bearer ${token}`,
         };
-        const res: any = await api.post('/job',  JobData , { headers });
+        const res: any = await api.post('/job', JobData, { headers });
         return res.data;
     },
 
@@ -141,7 +162,7 @@ export const useApi = () => ({
     },
 
     deleteJob: async (id: string) => {
-        const res: any = await api.patch(`/job/${id}`)
+        const res: any = await api.patch(`/job/${id}`);
         return res.data;
     },
 
@@ -150,7 +171,11 @@ export const useApi = () => ({
         return res.data;
     },
 
-    searchJobs: async (keyword: string, page: number = 1, filters: any = {}) => {
+    searchJobs: async (
+        keyword: string,
+        page: number = 1,
+        filters: any = {},
+    ) => {
         const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.post(url, filters);
         return res.data;
@@ -207,5 +232,4 @@ export const useApi = () => ({
         });
         return res;
     },
-
 });

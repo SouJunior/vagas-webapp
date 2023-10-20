@@ -32,8 +32,6 @@ const StepThree = ({
     const [selectedOptions, setSelectedOptions] = useState<any>([]);
     const { ufs, cities, handleSelectUf } = useIBGELocations();
 
-    
-
     useEffect(() => {
         if (watch('modality') === JobsModalityEnum.REMOTE) {
             setValue('city', '');
@@ -48,8 +46,6 @@ const StepThree = ({
         { value: '60+', label: '60+' },
         { value: 'LGBTQIA+', label: 'LGBTQIA+' },
     ];
-
-    
 
     return (
         <>
@@ -66,7 +62,9 @@ const StepThree = ({
                         </option>
                         <option value={JobsModalityEnum.REMOTE}>Remoto</option>
                         <option value={JobsModalityEnum.HYBRID}>Híbrido</option>
-                        <option value={JobsModalityEnum.IN_PERSON}>Presencial</option>
+                        <option value={JobsModalityEnum.IN_PERSON}>
+                            Presencial
+                        </option>
                     </SelectInput>
                     <ErrorMessage>
                         {errors.modality && <>{errors.modality.message}</>}
