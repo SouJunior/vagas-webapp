@@ -28,6 +28,14 @@ interface StepTwoProps {
     setValue: any;
 }
 
+export enum JobsTypeEnum {
+    TRAINEE = 'TRAINEE',
+    JUNIOR = 'JUNIOR',
+    ANALYST = 'ANALYST',
+    INTERNSHIP = 'INTERNSHIP',
+}
+
+
 const StepTwo = ({
     register,
     control,
@@ -44,7 +52,7 @@ const StepTwo = ({
     return (
         <>
             <SalarySection>
-                <Label>*Faixa Salarial: </Label>
+                <Label>Faixa Salarial: </Label>
                 <SalaryInputContainer>
                     <div>
                         <Controller
@@ -108,10 +116,10 @@ const StepTwo = ({
                 <option value="" disabled hidden>
                     Selecione
                 </option>
-                <option value="Estágio">Estágio</option>
-                <option value="Trainee">Trainee</option>
-                <option value="Júnior">Júnior</option>
-                <option value="Analista">Analista</option>
+                <option value={JobsTypeEnum.INTERNSHIP}>Estágio</option>
+                <option value={JobsTypeEnum.TRAINEE}>Trainee</option>
+                <option value={JobsTypeEnum.JUNIOR}>Júnior</option>
+                <option value={JobsTypeEnum.ANALYST}>Analista</option>
             </SelectInput>
             <ErrorMessage>
                 {errors.type && <>{errors.type.message}</>}

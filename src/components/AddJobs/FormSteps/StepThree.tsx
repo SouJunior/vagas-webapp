@@ -15,6 +15,12 @@ import {
 import Select from 'react-select';
 import { useIBGELocations } from '../../../hooks/useIBGELocations';
 
+export enum JobsModalityEnum {
+    REMOTE = 'REMOTE',
+    HYBRID = 'HYBRID',
+    IN_PERSON = 'IN_PERSON',
+}
+
 const StepThree = ({
     register,
     errors,
@@ -26,8 +32,10 @@ const StepThree = ({
     const [selectedOptions, setSelectedOptions] = useState<any>([]);
     const { ufs, cities, handleSelectUf } = useIBGELocations();
 
+    
+
     useEffect(() => {
-        if (watch('modality') === 'Remoto') {
+        if (watch('modality') === JobsModalityEnum.REMOTE) {
             setValue('city', '');
             setValue('federalUnit', '');
         }
@@ -40,6 +48,8 @@ const StepThree = ({
         { value: '60+', label: '60+' },
         { value: 'LGBTQIA+', label: 'LGBTQIA+' },
     ];
+
+    
 
     return (
         <>
@@ -54,9 +64,9 @@ const StepThree = ({
                         <option value="" disabled hidden>
                             Selecione
                         </option>
-                        <option value="Remoto">Remoto</option>
-                        <option value="Híbrido">Híbrido</option>
-                        <option value="Presencial">Presencial</option>
+                        <option value={JobsModalityEnum.REMOTE}>Remoto</option>
+                        <option value={JobsModalityEnum.HYBRID}>Híbrido</option>
+                        <option value={JobsModalityEnum.IN_PERSON}>Presencial</option>
                     </SelectInput>
                     <ErrorMessage>
                         {errors.modality && <>{errors.modality.message}</>}
@@ -75,7 +85,7 @@ const StepThree = ({
                         }}
                         defaultValue=""
                         width={126}
-                        disabled={watch('modality') === 'Remoto'}
+                        disabled={watch('modality') === JobsModalityEnum.REMOTE}
                     >
                         <option value="" disabled>
                             Selecione
@@ -104,7 +114,7 @@ const StepThree = ({
                         }}
                         defaultValue=""
                         width={205}
-                        disabled={watch('modality') === 'Remoto'}
+                        disabled={watch('modality') === JobsModalityEnum.REMOTE}
                     >
                         <option value="" disabled>
                             Selecione
@@ -137,7 +147,6 @@ const StepThree = ({
                         {...register('affirmative')}
                         type="radio"
                         value="true"
-                        defaultChecked
                         name="affirmative"
                     />
                     Sim
@@ -147,6 +156,7 @@ const StepThree = ({
                         {...register('affirmative')}
                         type="radio"
                         value="false"
+                        defaultChecked
                         name="affirmative"
                     />
                     Não

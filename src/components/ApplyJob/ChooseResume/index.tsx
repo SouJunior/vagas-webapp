@@ -17,7 +17,7 @@ const ChooseResume = ({ data, setSelectedResume }: any) => {
                     <ResumesContainer>
                         {/* NOTE: Slice should be removed when backend limit 2 resumes per user*/}
 
-                        {data.slice(0, 2).map((resume: any, index: any) => (
+                        {data.map((resume: any, index: any) => (
                             <div
                                 key={index}
                                 onClick={() => setSelectedResume(resume)}

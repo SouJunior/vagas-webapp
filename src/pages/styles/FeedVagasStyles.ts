@@ -5,9 +5,8 @@ export const Wrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     justify-content: center;
-    margin-top: 101px;
     height: 100%;
-    width: 100%;
+    width: 100%; 
     min-height: 100vh;
 `;
 

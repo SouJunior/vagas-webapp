@@ -143,7 +143,7 @@ const CompanyApplications = () => {
                             <ApplicantsList>
                                 {applications.length > 0 ? (
                                     applications.map((candidate: any) => (
-                                        <Applicant onClick={() => navigate("/match-jobs")} key={candidate.id}>
+                                        <Applicant onClick={() => navigate(`/match-jobs`, {state: {curriculumData:candidate?.curriculum, jobData: JobClicked}})} key={candidate.id}>
                                             {candidate?.user?.name}
                                         </Applicant>
                                     ))

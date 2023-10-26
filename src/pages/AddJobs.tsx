@@ -39,11 +39,11 @@ interface FormData extends FieldValues {
     description: string;
     prerequisites: string;
     benefits: string;
-    type: 'Estágio' | 'Trainee' | 'Júnior' | 'Analista';
+    type: 'INTERNSHIP' | 'TRAINEE' | 'JUNIOR' | 'ANALYST';
     type_contract: string;
     other_type_contract?: string;
     salary: number;
-    modality: 'Presencial' | 'Remoto' | 'Híbrido';
+    modality: 'IN_PERSON' | 'REMOTE' | 'HYBRID';
     headquarters: string;
     contractType: string | undefined;
     affirmative: string | boolean;
