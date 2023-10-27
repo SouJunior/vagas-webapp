@@ -9,13 +9,10 @@ import logoIcon from '../assets/imgs/logo-icon-name-h.svg';
 
 export function Footer() {
     return (
-<<<<<<< HEAD
+
         <footer className="border-t border-gray-dark/30 bg-gray-light w-full h-72">
             <div className="flex md:flex-row flex-col my-14 justify-center ">
-=======
-        <footer className="border-t border-gray-dark/30 bg-gray-light w-full h-72 ">
-            <div className="flex md:flex-row flex-col my-14 ">
->>>>>>> 593c132e7f34cdd9b08efa37caa67627d36b004d
+
                 <div className="md:mr-12 flex flex-col text-center md:text-start items-center md:items-start md:ml-14">
                     <img src={logoIcon} width="265px" alt="Logo SouJunior" />
                     <h2 className="font-semibold text-gray-darker text-[25px] mt-1 ">
