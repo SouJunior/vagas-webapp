@@ -73,13 +73,7 @@ export const UserForms = (props: any): JSX.Element => {
 
         try {
             // Recebe dados do contexto para verificação
-            const data = await auth.login(email, password, userType);
-
-            toast.success(`Login efetuado com sucesso ${data.info.name}! `, {
-                position: 'top-right',
-                theme: 'colored',
-            });
-
+            await auth.login(email, password, userType);
 
             navigate('/candidate-portal');
         }

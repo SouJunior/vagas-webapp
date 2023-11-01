@@ -76,15 +76,7 @@ export const CompanyForms = (props: any): JSX.Element => {
         // confere se existe usuário e se está logado
         try {
             // Vai receber os dados do contexto para verificação
-            const data = await auth.login(email, password, companyType);
-
-            toast.success(
-                `Login efetuado com sucesso ${data.info.companyName}!`,
-                {
-                    position: 'top-right',
-                    theme: 'colored',
-                },
-            );
+            await auth.login(email, password, companyType);
 
             navigate('/company-portal');
 
