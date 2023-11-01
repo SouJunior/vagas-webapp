@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
-import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
