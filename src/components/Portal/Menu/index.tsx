@@ -33,11 +33,22 @@ const Menu = () => {
         navigate('/');
     };
 
+    
+    const handleKeyDown = (ev: React.KeyboardEvent<HTMLElement>) => {
+
+        if (ev.key === "enter") {
+            ev.currentTarget.focus()
+        }
+    };
+
     return (
         <Container>
             <PopUp>
                 <MenuItems>
-                    <li onClick={handleNavigation}>
+                    <li onClick={handleNavigation}
+                        onKeyDown={handleKeyDown}
+                    >
+
                         <img src={ProfileIcon} alt="perfil" />
                         Meu perfil
                     </li>
@@ -47,6 +58,7 @@ const Menu = () => {
                     {auth.user.type !== 'USER' && (
                         <li
                             onClick={() => navigate('/addjobs')}
+                            onKeyDown={handleKeyDown}
                             className="jobs"
                         >
                             <img src={NewJobIcon} alt="vagas" />
@@ -58,6 +70,7 @@ const Menu = () => {
                         onClick={() => {
                             setVisible(!visible);
                         }}
+                        onKeyDown={handleKeyDown}
                     >
                         <img src={ConfigIcon} alt="configurações" />
                         <span>Configurações</span>
@@ -87,7 +100,9 @@ const Menu = () => {
                         Termo de uso e Privacidade
                     </li>
                     <Border />
-                    <li onClick={logout}>
+                    <li onClick={logout}
+                     onKeyDown={handleKeyDown}
+                    >
                         <img src={ExitIcon} alt="sair" />
                         Sair do Portal de Vagas
                     </li>
