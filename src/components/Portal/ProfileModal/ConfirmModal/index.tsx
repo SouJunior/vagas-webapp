@@ -1,3 +1,5 @@
+import React, { useCallback, useEffect } from 'react';
+
 import {
     ModalContent,
     ModalTitle,
@@ -17,7 +19,45 @@ interface ConfirmModalProps {
 
 const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
     const navigate = useNavigate();
+
     const auth = useContext(AuthContext);
+    const handleKeyDown = useCallback(
+        (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setConfirmModal(false);
+                document.body.style.overflow = 'auto';
+                auth.user.type === 'USER'
+                    ? navigate('/candidate-portal')
+                    : navigate('/company-portal');
+            }
+        },
+        [setConfirmModal],
+    );
+
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (!target.closest('.modal-content')) {
+                setConfirmModal(false);
+                document.body.style.overflow = 'auto';
+                auth.user.type === 'USER'
+                    ? navigate('/candidate-portal')
+                    : navigate('/company-portal');
+            }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [setConfirmModal]);
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
 
     return (
         <MaskBackground>
@@ -26,14 +66,13 @@ const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
                     <ModalCloseButton
                         /**
                          * @see https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
-                        */
+                         */
                         onClick={() => {
                             setConfirmModal(false);
-                            auth.user.type === 'USER' ?
-                                (navigate('/candidate-portal'))
-                                :
-                                (navigate('/company-portal'))
-                            setTimeout(() => window.location.reload(), 0)
+                            auth.user.type === 'USER'
+                                ? navigate('/candidate-portal')
+                                : navigate('/company-portal');
+                            setTimeout(() => window.location.reload(), 0);
                             document.body.style.overflow = 'auto';
                         }}
                     >

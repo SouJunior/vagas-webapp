@@ -3,13 +3,9 @@ import { validarCNPJ } from './utils';
 
 export const schemaCompanyLoginForm = yup.object().shape({
     // valida email
-    email: yup
-        .string()
-        .required('O campo e-mail é obrigatório'),
+    email: yup.string().required('O campo e-mail é obrigatório'),
     // Valida password
-    password: yup
-        .string()
-        .required('O campo senha é obrigatório'),
+    password: yup.string().required('O campo senha é obrigatório'),
 });
 
 export const schemaCompanyRegisterForm = yup.object().shape({
@@ -42,12 +38,14 @@ export const schemaCompanyRegisterForm = yup.object().shape({
         ),
 
     // Valida CNPJ
-    
+
     registerCnpj: yup
         .string()
         .required('CNPJ é obrigatório')
         .matches(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/, 'CNPJ inválido')
-        .test('test-cnpj', 'CNPJ inválido', (cnpj) => validarCNPJ(cnpj ?? '')),
+        .test('test-cnpj', 'CNPJ inválido', (cnpj: any) =>
+            validarCNPJ(cnpj ?? ''),
+        ),
     privacyTerms: yup
         .bool()
         .required('Você deve aceitar os termos de privacidade para continuar')
