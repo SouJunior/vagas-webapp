@@ -30,7 +30,8 @@ export const useApi = () => ({
             password,
             confirmPassword,
         });
-        return res.data;
+
+        return res;
     },
 
     registerCompany: async (
@@ -141,7 +142,7 @@ export const useApi = () => ({
     },
 
     deleteJob: async (id: string) => {
-        const res: any = await api.patch(`/job/${id}`)
+        const res: any = await api.patch(`/job/${id}`);
         return res.data;
     },
 
@@ -150,7 +151,11 @@ export const useApi = () => ({
         return res.data;
     },
 
-    searchJobs: async (keyword: string, page: number = 1, filters: any = {}) => {
+    searchJobs: async (
+        keyword: string,
+        page: number = 1,
+        filters: any = {},
+    ) => {
         const url = `/job/search/${keyword}?order=ASC&page=${page}&take=10&orderByColumn=id`;
         const res: any = await api.post(url, filters);
         return res.data;
@@ -217,5 +222,4 @@ export const useApi = () => ({
         const res = await api.patch(`/company/${id}`);
         return res.data;
     },
-
 });

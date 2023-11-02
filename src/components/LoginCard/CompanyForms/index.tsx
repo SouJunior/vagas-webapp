@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +6,8 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
-
+import { normalizeCnpjNumber } from '../MaskedInput/MaskedInput';
+import PopupHandler from '../PopUpRegisterSuccess/CloseModalEsc';
 import {
     schemaCompanyLoginForm,
     schemaCompanyRegisterForm,
@@ -28,10 +29,14 @@ import {
     LoginButton,
     RegisterButton,
     RegisterSubmitButton,
-    Form,
     Title,
     Divider,
+    Form,
+    Checklist,
+    List,
+    MessageChecklist,
 } from '../styles';
+import { Popup } from '../PopUpRegisterSuccess/styles';
 
 export const CompanyForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
@@ -41,12 +46,12 @@ export const CompanyForms = (props: any): JSX.Element => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-
     const [isLogin, setIsLogin] = useState(true);
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const { isRegistered, setIseRegisteres } = useContext(AuthContext);
+    const { errorEmail, setErrorEmail } = useContext(AuthContext);
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
@@ -64,9 +69,15 @@ export const CompanyForms = (props: any): JSX.Element => {
         handleSubmit,
         watch,
         formState: { errors },
+        setValue,
     } = useForm({
         resolver: yupResolver(getFormValidation),
     });
+
+    const characters = /^(?=.{8,20}$).*$/;
+    const letters = /^(?=.*[a-zA-Z]).*$/;
+    const number = /^(?=.*\d).*$/;
+    const specialCharacters = /^(?=.*\W).*$/;
 
     // Realiza loging e manipula os dados
     async function handleFormOnSubmit() {
@@ -78,7 +89,6 @@ export const CompanyForms = (props: any): JSX.Element => {
             await auth.login(email, password, companyType);
 
             navigate('/company-portal');
-
         } catch (err: any) {
             if (err.response.status === 400) {
                 setError(true);
@@ -88,7 +98,7 @@ export const CompanyForms = (props: any): JSX.Element => {
             // TODO: Tratar os erros com as mensagens do backend
             //setHasError(data.message);
         }
-    };
+    }
 
     const handleClearErrorMessage = () => {
         setError(false);
@@ -100,7 +110,7 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     // Monitora os input enquanto preechidos
 
-    const registerCheck: string[] = watch([
+    const registerCheck: any = watch([
         'registerName',
         'registerEmail',
         'registerCnpj',
@@ -112,14 +122,18 @@ export const CompanyForms = (props: any): JSX.Element => {
 
     const closePopup = () => {
         setPopup(false);
-        navigate('/login');
+        navigate('/');
     };
+    // Mascaramento de cnpj
+    useEffect(() => {
+        setValue('registerCnpj', normalizeCnpjNumber(registerCheck[2]));
+    }, [registerCheck[2]]);
 
     // Manipula os dados e envia a requisição
     async function handleRegisterSubmit() {
         const cnpj: string = registerCheck[2].replace(/[^\d]+/g, '');
 
-        const registerData = await auth.registerCompany(
+        await auth.registerCompany(
             registerCheck[0],
             registerCheck[1],
             cnpj,
@@ -127,13 +141,12 @@ export const CompanyForms = (props: any): JSX.Element => {
             registerCheck[4],
         );
 
-        try {
+        if (isRegistered.status > 400) {
+            errorEmail();
+            window.location.reload();
+        } else {
+            setIsLogin(true);
             handlePopUp();
-            if (registerData) {
-                setIsLogin(true);
-            }
-        } catch (error: any) {
-            setHasError(registerData.message);
         }
     }
 
@@ -144,7 +157,6 @@ export const CompanyForms = (props: any): JSX.Element => {
             ) : (
                 <Title>Cadastro de empresa</Title>
             )}
-
             <Divider style={{ marginBottom: isLogin ? '32px' : '20px' }} />
             {/* renderiza se existe(true) um formulário do tipo login */}
             {isLogin ? (
@@ -197,7 +209,9 @@ export const CompanyForms = (props: any): JSX.Element => {
                             {error && <>e-mail ou senha não conferem</>}
                         </MessageError>
                         <MessageError>
-                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
+                            {otherErrors && (
+                                <>desculpe, algo inesperado aconteceu</>
+                            )}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
@@ -238,6 +252,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                             {...register('registerName')}
                             placeholder="Nome da empresa"
                             aria-label="Nome da empresa"
+                            maxLength={30}
                         ></Input>
                         <MessageError>
                             {errors.registerName && (
@@ -266,7 +281,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                     <InputContainer>
                         <Input
                             type="text"
-                            {...register('registerCnpj')}
+                            {...register('registerCnpj', { required: true })}
                             placeholder="CNPJ da empresa"
                             aria-label="CNPJ da empresa"
                         ></Input>
@@ -315,12 +330,42 @@ export const CompanyForms = (props: any): JSX.Element => {
                             </IconWrapper>
                         </div>
                         <MessageError>
-                            {errors.confirmPassword && (
-                                <>{errors.confirmPassword.message}</>
+                            {errors.passwordConfirm && (
+                                <>{errors.passwordConfirm.message}</>
                             )}
                         </MessageError>
-                    </InputContainer>
-                    <InputContainer>
+
+                        <Checklist>
+                            <ul>
+                                <List
+                                    valid={registerCheck[3]?.match(characters)}
+                                >
+                                    <MessageChecklist>
+                                        No mínimo 8 caracteres
+                                    </MessageChecklist>
+                                </List>
+                                <List valid={registerCheck[3]?.match(letters)}>
+                                    <MessageChecklist>
+                                        Letras maiúsculas e minúsculas
+                                    </MessageChecklist>
+                                </List>
+                                <List valid={registerCheck[3]?.match(number)}>
+                                    <MessageChecklist>
+                                        No mínimo 1 número
+                                    </MessageChecklist>
+                                </List>
+                                <List
+                                    valid={registerCheck[3]?.match(
+                                        specialCharacters,
+                                    )}
+                                >
+                                    <MessageChecklist>
+                                        No mínimo um caracter especial (!@?{}
+                                        ...)
+                                    </MessageChecklist>
+                                </List>
+                            </ul>
+                        </Checklist>
                         <Label>
                             <CheckboxInput {...register('privacyTerms')} />
                             <TermsLink>
@@ -335,6 +380,10 @@ export const CompanyForms = (props: any): JSX.Element => {
                             )}
                         </MessageError2>
                     </InputContainer>
+                    <MessageError2>
+                        {errorEmail && <>{errorEmail} </>}
+                    </MessageError2>
+                    <br />
 
                     <RegisterSubmitButton
                         type="submit"
@@ -343,6 +392,7 @@ export const CompanyForms = (props: any): JSX.Element => {
                     >
                         Criar conta
                     </RegisterSubmitButton>
+
                     <LoginLink>
                         Já tem conta? {/* redireciona se isLogin === true */}
                         <button onClick={() => setIsLogin(true)}>
@@ -351,12 +401,14 @@ export const CompanyForms = (props: any): JSX.Element => {
                     </LoginLink>
                 </Form>
             )}
+
             {popup ? (
                 <PopUpRegisterSucess
                     email={registerCheck[1]}
                     close={closePopup}
                 />
             ) : null}
+            <PopupHandler setPopup={setPopup} Popup={Popup} />
         </>
     );
 };

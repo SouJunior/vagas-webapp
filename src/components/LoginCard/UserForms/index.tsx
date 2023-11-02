@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
+import PopupHandler from '../PopUpRegisterSuccess/CloseModalEsc';
 import {
     schemaUserLoginForm,
     schemaUserRegisterForm,
@@ -29,7 +30,11 @@ import {
     LoginLink,
     RegisterSubmitButton,
     TermsLink,
+    Checklist,
+    List,
+    MessageChecklist,
 } from '../styles';
+import { MaskBackground, Popup } from '../PopUpRegisterSuccess/styles';
 
 export const UserForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
@@ -39,7 +44,14 @@ export const UserForms = (props: any): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const { isRegistered, setIsRegistered } = useContext(AuthContext);
 
+    const characters = /^(?=.{8,20}$).*$/;
+    const letters = /^(?=.*[a-zA-Z]).*$/;
+    const number = /^(?=.*\d).*$/;
+    const specialCharacters = /^(?=.*\W).*$/;
+
+    const { errorEmail, setErrorEmail } = useContext(AuthContext);
     const { isLogin, setIsLogin } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
@@ -72,12 +84,14 @@ export const UserForms = (props: any): JSX.Element => {
 
         try {
             // Recebe dados do contexto para verificação
+
             await auth.login(email, password, userType);
 
+
+
             navigate('/candidate-portal');
-        }
-        catch (err: any) {
-            if (err.response.status === 400) {
+        } catch (err: any) {
+            if (err.response.status > 400) {
                 setError(true);
             } else {
                 setOtherErrors(true);
@@ -91,7 +105,7 @@ export const UserForms = (props: any): JSX.Element => {
             //     theme: 'colored',
             // });
         }
-    };
+    }
 
     const handleClearErrorMessage = () => {
         setError(false);
@@ -102,33 +116,27 @@ export const UserForms = (props: any): JSX.Element => {
     // =================================================
 
     // Abre popup quando cadastro concluído com sucesso
-    const handlePopUp = () => setPopup(!popup);
 
     const closePopup = () => {
         setPopup(false);
-        navigate('/login');
+        navigate('/');
     };
 
     async function handleRegisterSubmit() {
-        const registerData = await auth.register(
+        await auth.register(
             registerCheck[0],
             registerCheck[1],
             registerCheck[2],
             registerCheck[3],
         );
-
         try {
-            handlePopUp();
-
-            if (registerData) {
+            if (isRegistered.status > 400) {
+                errorEmail();
+            } else {
                 setIsLogin('login');
+                setPopup(true);
             }
-        } catch (error) {
-            // TODO: Tratar os erros com as mensagens do backend e exibir em tela
-            // TODO: fazer toastfy funcionar
-            setHasError(registerData.message);
-            console.log('Passei aqui ...');
-        }
+        } catch (error) {}
     }
 
     // Monitora os input enquanto preechidos
@@ -203,7 +211,9 @@ export const UserForms = (props: any): JSX.Element => {
                             {error && <>e-mail ou senha não conferem</>}
                         </MessageError>
                         <MessageError>
-                            {otherErrors && <>desculpe, algo inesperado aconteceu</>}
+                            {otherErrors && (
+                                <>desculpe, algo inesperado aconteceu</>
+                            )}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
@@ -226,7 +236,7 @@ export const UserForms = (props: any): JSX.Element => {
                             type="submit"
                             id="submit-button"
                             disabled={false}
-                        // TODO: Verificar porque disable não funciona
+                            // TODO: Verificar porque disable não funciona
                         >
                             Entrar
                         </LoginButton>
@@ -253,6 +263,7 @@ export const UserForms = (props: any): JSX.Element => {
                             {...register('registerName')}
                             placeholder="Digite seu nome completo"
                             aria-label="Nome do candidato"
+                            maxLength={50}
                         ></Input>
                         <MessageError>
                             {errors.registerName && (
@@ -293,13 +304,11 @@ export const UserForms = (props: any): JSX.Element => {
                                 <PasswordIcon />
                             </IconWrapper>
                         </div>
-                        {hasError && (
-                            <MessageError>
-                                {errors.registerPassword && (
-                                    <>{errors.registerPassword.message}</>
-                                )}
-                            </MessageError>
-                        )}
+                        <MessageError>
+                            {errors.registerPassword && (
+                                <>{errors.registerPassword.message}</>
+                            )}
+                        </MessageError>
                     </InputContainer>
                     <InputContainer>
                         <div>
@@ -324,6 +333,35 @@ export const UserForms = (props: any): JSX.Element => {
                             )}
                         </MessageError>
                     </InputContainer>
+                    <Checklist>
+                        <ul>
+                            <List valid={registerCheck[2]?.match(characters)}>
+                                <MessageChecklist>
+                                    No mínimo 8 caracteres
+                                </MessageChecklist>
+                            </List>
+                            <List valid={registerCheck[2]?.match(letters)}>
+                                <MessageChecklist>
+                                    Letras maiúsculas e minúsculas
+                                </MessageChecklist>
+                            </List>
+                            <List valid={registerCheck[2]?.match(number)}>
+                                <MessageChecklist>
+                                    No mínimo 1 número
+                                </MessageChecklist>
+                            </List>
+                            <List
+                                valid={registerCheck[2]?.match(
+                                    specialCharacters,
+                                )}
+                            >
+                                <MessageChecklist>
+                                    No mínimo um caracter especial (!@?{}
+                                    ...)
+                                </MessageChecklist>
+                            </List>
+                        </ul>
+                    </Checklist>
                     <InputContainer>
                         <Label>
                             <CheckboxInput {...register('privacyTerms')} />
@@ -341,7 +379,10 @@ export const UserForms = (props: any): JSX.Element => {
                             </MessageError2>
                         )}
                     </InputContainer>
-
+                    <MessageError2>
+                        {errorEmail && <>{errorEmail} </>}
+                    </MessageError2>
+                    <br />
                     <RegisterSubmitButton
                         type="submit"
                         id="register-submit-button"
@@ -367,6 +408,7 @@ export const UserForms = (props: any): JSX.Element => {
                     close={closePopup}
                 />
             ) : null}
+            <PopupHandler setPopup={setPopup} Popup={Popup} />
         </>
     );
 };

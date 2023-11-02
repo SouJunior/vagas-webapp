@@ -12,7 +12,7 @@ export const ProfileImgWrapper = styled.div`
 
     input[type='file']::-webkit-file-upload-button {
         visibility: hidden;
-    } 
+    }
 
     label {
         color: #1165ba;
@@ -33,8 +33,15 @@ export const ProfileImgWrapper = styled.div`
     }
     & > p {
         color: #bababa;
-        padding-bottom: 4px;
         font-size: 0.9em;
+    }
+    @media (max-width: 720px) {
+        img {
+            transform: scale(2);
+        }
+        .upload {
+            padding-top: 20px;
+        }
     }
 `;
 
@@ -108,5 +115,32 @@ export const Form = styled.div<{ charQtde: number }>`
             props.charQtde < 0
                 ? ({ theme }) => theme.colors.danger
                 : ({ theme }) => theme.colors.mutedDarker};
+    }
+    @media (max-width: 720px) {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        padding: 0;
+        .form__left {
+            justify-self: center;
+            margin: 0;
+            align-items: center;
+        }
+        .form__right {
+            margin: 0;
+        }
+        .form__change {
+            justify-self: center;
+            justify-content: center;
+            max-width: 100%;
+        }
+        .form__cancel {
+            align-self: center;
+            justify-content: center;
+            align-items: center;
+        }
     }
 `;
