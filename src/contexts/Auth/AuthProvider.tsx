@@ -5,9 +5,10 @@ import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [isRegistered, setIsRegistered] = useState();
     const [isAuth, setIsAuth] = useState<boolean | any>(null);
     const [isLogin, setIsLogin] = useState<'login' | 'register'>('login');
-
+    const [errorEmail, setErrorEmail] = useState<string | null>(null);
     const api = useApi();
 
     useEffect(() => {
@@ -60,18 +61,24 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         password: string,
         confirmPassword: string,
     ) => {
-        const res: any = await api.registerUser(
-            name,
-            email,
-            password,
-            confirmPassword,
-        );
+        try {
+            const res: any = await api.registerUser(
+                name,
+                email,
+                password,
+                confirmPassword,
+            );
 
-        if (res.data) {
-            setUser(res.data.info);
-            return true;
+            if (res) {
+                setIsRegistered(res);
+            }
+        } catch (err: any) {
+            if (err.response.status > 400) {
+                setErrorEmail('Email já cadastrado');
+            } else {
+                setErrorEmail('');
+            }
         }
-        return false;
     };
 
     const registerCompany = async (
@@ -81,18 +88,25 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         password: string,
         passwordConfirmation: string,
     ) => {
-        const res: any = await api.registerCompany(
-            companyName,
-            email,
-            cnpj,
-            password,
-            passwordConfirmation,
-        );
-
-        if (res.data) {
-            setUser(res.data.info);
-            return true;
+        try {
+            const res: any = await api.registerCompany(
+                companyName,
+                email,
+                cnpj,
+                password,
+                passwordConfirmation,
+            );
+            if (res) {
+                console.log(res);
+                setIsRegistered(res);
+            }
+        } catch (err: any) {
+            if (err.response.status > 400) {
+                console.log(err.response.data);
+                setErrorEmail('Email já cadastrado');
+            }
         }
+
         return false;
     };
 
@@ -108,6 +122,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
                 setIsLogin,
                 validateToken,
                 isAuth,
+                errorEmail,
+                isRegistered,
             }}
         >
             {children}

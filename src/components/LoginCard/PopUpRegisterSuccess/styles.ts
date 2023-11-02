@@ -15,7 +15,7 @@ export const MaskBackground = styled.div`
 
     top: 0;
     left: 0;
-`
+`;
 
 export const Popup = styled.div`
     display: flex;
@@ -82,6 +82,113 @@ export const Popup = styled.div`
 
         @media (max-height: 500px) {
             font-size: 12px;
+        }
+    }
+
+    @media (min-width: 280px) {
+        display: flex;
+        max-width: 95%;
+        height: 60%;
+        align-items: center;
+        justify-content: center;
+        h2 {
+            text-align: center;
+            font-size: 1.3em;
+            margin: 5px;
+        }
+        button {
+            margin: 8px 12px 0 auto;
+        }
+        .email {
+            width: 14%;
+        }
+        p {
+            margin: 5px;
+            font-size: 1em;
+        }
+        @media (min-width: 600px) {
+            display: flex;
+            max-width: 70%;
+            height: 65%;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            h2 {
+                text-align: center;
+                font-size: 1.3em;
+                margin: 5px;
+            }
+
+            .email {
+                width: 12%;
+            }
+            p {
+                margin: 5px;
+                font-size: 0.8em;
+            }
+            button {
+                margin: 4px 8px 0 auto;
+            }
+        }
+        @media (min-width: 900px) {
+            display: flex;
+            max-width: 60%;
+            height: 60%;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            h2 {
+                text-align: center;
+                font-size: 1.4em;
+                margin: 5px;
+            }
+
+            .email {
+                width: 12%;
+            }
+            p {
+                margin: 5px;
+                font-size: 1em;
+            }
+            button {
+                margin: 8px 12px 0 auto;
+            }
+        }
+        @media (min-width: 1200px) {
+            display: flex;
+            max-width: 50%;
+            height: 50%;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            h2 {
+                text-align: center;
+                font-size: 1.4em;
+                margin: 5px;
+            }
+
+            .email {
+                width: 12%;
+            }
+            p {
+                margin: 5px;
+                font-size: 1em;
+            }
+            button {
+                margin: 8px 12px 0 auto;
+            }
+        }
+        @media (min-height: 640px) {
+            display: flex;
+            height: 45%;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            h2 {
+                text-align: center;
+                font-size: 1.4em;
+                margin: 5px;
+            }
         }
     }
 `;

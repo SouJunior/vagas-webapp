@@ -38,6 +38,12 @@ export const ProfileSettings: React.FC = () => {
         setCancelModal(true);
         window.scrollTo(0, 0);
     };
+    const handleConfirmModal = (e: any) => {
+        e.preventDefault();
+        setConfirmModal(true);
+        window.scrollTo(0, 0);
+        document.body.style.overflow = 'hidden';
+    };
 
     const api = useApi();
     const auth = useContext(AuthContext);

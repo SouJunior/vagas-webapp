@@ -1,10 +1,5 @@
 import { useNavigate } from 'react-router';
-import {
-    ModalContent,
-    ModalTitle,
-    ModalText,
-    ButtonContent,
-} from './styles';
+import { ModalContent, ModalTitle, ModalText, ButtonContent } from './styles';
 import { Button } from '../../../Button';
 import { MaskBackground } from '../../../LoginCard/PopUpRegisterSuccess/styles';
 import { AuthContext } from '../../../../contexts/Auth/AuthContext';
@@ -14,20 +9,16 @@ interface CancelModalProps {
     setCancelModal: (value: boolean) => void;
 }
 
-function CancelModal({
-    setCancelModal,
-}: CancelModalProps) {
-
-    const navigate = useNavigate()
+function CancelModal({ setCancelModal }: CancelModalProps) {
+    const navigate = useNavigate();
     const auth = useContext(AuthContext);
 
     const handleConfirmButton = async () => {
-        auth.user.type === 'USER' ?
-            (navigate('/candidate-portal'))
-            :
-            (navigate('/company-portal'))
+        auth.user.type === 'USER'
+            ? navigate('/candidate-portal')
+            : navigate('/company-portal');
         document.body.style.overflow = 'auto';
-    }
+    };
 
     return (
         <MaskBackground>
@@ -37,20 +28,19 @@ function CancelModal({
                     Tem certeza que deseja cancelar a operação?
                 </ModalText>
                 <ButtonContent>
+                    <Button onClick={handleConfirmButton}>Sim</Button>
                     <Button
-                        onClick={handleConfirmButton}
+                        background="outline"
+                        onClick={() => {
+                            document.body.style.overflow = 'auto';
+                            setCancelModal(false);
+                        }}
                     >
-                        Sim
-                    </Button>
-                    <Button background='outline' onClick={() => {
-                        document.body.style.overflow = 'auto';
-                        setCancelModal(false)
-                    }}>
                         Não
                     </Button>
                 </ButtonContent>
             </ModalContent>
-        </MaskBackground >
+        </MaskBackground>
     );
 }
 
