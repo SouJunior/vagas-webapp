@@ -33,6 +33,12 @@ const Header = () => {
         }
     };
 
+    const handleKeyDown = (ev: React.KeyboardEvent<HTMLElement>) => {
+        if (ev.key === "Enter") {
+            handleClick();
+        }
+    };
+
     const [visible, setVisible] = useState(false);
 
     return (
@@ -46,7 +52,7 @@ const Header = () => {
                         alt="logo"
                     />
                 </div>
-                    
+
                 <UserArea>
 
                     <span>
@@ -68,12 +74,14 @@ const Header = () => {
 
                     <ProfileImg
                         onClick={handleClick}
+                        onKeyDown={handleKeyDown}
                         src={
                             auth.user
                                 ? auth.user.profile ?? ProfileImage
                                 : ProfileImage
                         }
                         alt="foto de perfil"
+                        tabIndex={0}
                         width={'50px'}
                     />
                 </UserArea>
