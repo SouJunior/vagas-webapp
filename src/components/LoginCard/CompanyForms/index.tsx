@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
-import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
@@ -87,15 +86,7 @@ export const CompanyForms = (props: any): JSX.Element => {
         // confere se existe usuário e se está logado
         try {
             // Vai receber os dados do contexto para verificação
-            const data = await auth.login(email, password, companyType);
-
-            toast.success(
-                `Login efetuado com sucesso ${data.info.companyName}!`,
-                {
-                    position: 'top-right',
-                    theme: 'colored',
-                },
-            );
+            await auth.login(email, password, companyType);
 
             navigate('/company-portal');
         } catch (err: any) {

@@ -26,6 +26,7 @@ const Index = () => {
     const [suggestions, setSuggestions] = useState<Jobs[]>([]);
 
     const handleSearchBox = (e: any) => {
+
         const search = e.target.value;
         setField(search);
 
@@ -50,8 +51,8 @@ const Index = () => {
     };
 
     useEffect(() => {
-        const handleOutsideClick = (e: any) => {
-            if (document && document.contains(e.target)) {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (document?.contains(e.target as Node)) {
                 setSuggestions([]);
             }
         };

@@ -1,5 +1,3 @@
-import React, { useCallback, useEffect } from 'react';
-
 import {
     ModalContent,
     ModalTitle,
@@ -11,7 +9,7 @@ import ModalIcon from '../../../../assets/imgs/mask-group.svg';
 import { useNavigate } from 'react-router';
 import { MaskBackground } from '../../../LoginCard/PopUpRegisterSuccess/styles';
 import { AuthContext } from '../../../../contexts/Auth/AuthContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 interface ConfirmModalProps {
     setConfirmModal: (value: boolean) => void;
@@ -19,62 +17,43 @@ interface ConfirmModalProps {
 
 const ConfirmModal = ({ setConfirmModal }: ConfirmModalProps) => {
     const navigate = useNavigate();
-
     const auth = useContext(AuthContext);
-    const handleKeyDown = useCallback(
-        (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
-                setConfirmModal(false);
-                document.body.style.overflow = 'auto';
-                auth.user.type === 'USER'
-                    ? navigate('/candidate-portal')
-                    : navigate('/company-portal');
-            }
-        },
-        [setConfirmModal],
-    );
+    const modalRef = useRef<HTMLDivElement | null>(null);
+
+    const handleClick = () => {
+        setConfirmModal(false);
+        auth.user.type === 'USER' ?
+            (navigate('/candidate-portal'))
+            :
+            (navigate('/company-portal'))
+        setTimeout(() => window.location.reload(), 0)
+        document.body.style.overflow = 'auto';
+    }
 
     useEffect(() => {
-        const handleOutsideClick = (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
-            if (!target.closest('.modal-content')) {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (modalRef.current && e.target instanceof Node && !modalRef.current.contains(e.target)) {
                 setConfirmModal(false);
-                document.body.style.overflow = 'auto';
-                auth.user.type === 'USER'
-                    ? navigate('/candidate-portal')
-                    : navigate('/company-portal');
+                handleClick();
             }
         };
-        document.addEventListener('mousedown', handleOutsideClick);
+
+        document.addEventListener('click', handleOutsideClick);
 
         return () => {
-            document.removeEventListener('mousedown', handleOutsideClick);
+            document.removeEventListener('click', handleOutsideClick);
         };
-    }, [setConfirmModal]);
-
-    useEffect(() => {
-        document.addEventListener('keydown', handleKeyDown);
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [handleKeyDown]);
+    }, []);
 
     return (
         <MaskBackground>
-            <ModalContent>
+            <ModalContent ref={modalRef}>
                 <CloseModal>
                     <ModalCloseButton
                         /**
                          * @see https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
-                         */
-                        onClick={() => {
-                            setConfirmModal(false);
-                            auth.user.type === 'USER'
-                                ? navigate('/candidate-portal')
-                                : navigate('/company-portal');
-                            setTimeout(() => window.location.reload(), 0);
-                            document.body.style.overflow = 'auto';
-                        }}
+                        */
+                        onClick={handleClick}
                     >
                         X
                     </ModalCloseButton>

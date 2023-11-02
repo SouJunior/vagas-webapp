@@ -33,20 +33,33 @@ const Menu = () => {
         navigate('/');
     };
 
+    const handleKeyDown = (ev: React.KeyboardEvent<HTMLElement>) => {
+
+        if (ev.key === "Enter") {
+            ev.currentTarget.click()
+        }
+    };
+
     return (
         <Container>
             <PopUp>
                 <MenuItems>
-                    <li onClick={handleNavigation}>
+                    <li onClick={handleNavigation}
+                        onKeyDown={handleKeyDown}
+                        tabIndex={0}
+                    >
+
                         <img src={ProfileIcon} alt="perfil" />
                         Meu perfil
                     </li>
 
                     <Border />
 
-                    {auth.user.type === 'USER' && (
+                    {auth.user.type !== 'USER' && (
                         <li
                             onClick={() => navigate('/addjobs')}
+                            onKeyDown={handleKeyDown}
+                            tabIndex={0}
                             className="jobs"
                         >
                             <img src={NewJobIcon} alt="vagas" />
@@ -58,6 +71,8 @@ const Menu = () => {
                         onClick={() => {
                             setVisible(!visible);
                         }}
+                        onKeyDown={handleKeyDown}
+                        tabIndex={0}
                     >
                         <img src={ConfigIcon} alt="configurações" />
                         <span>Configurações</span>
@@ -71,7 +86,10 @@ const Menu = () => {
                         <>
                             <Border />
                             <div>
-                                <li>
+                                <li
+                                    tabIndex={0}
+                                    onKeyDown={handleKeyDown}
+                                >
                                     <img
                                         src={PasswordIcon}
                                         alt="alterar senha"
@@ -82,12 +100,18 @@ const Menu = () => {
                         </>
                     )}
                     <Border />
-                    <li>
+                    <li
+                        tabIndex={0}
+                        onKeyDown={handleKeyDown}
+                    >
                         <img src={TermsIcon} alt="termos" />
                         Termo de uso e Privacidade
                     </li>
                     <Border />
-                    <li onClick={logout}>
+                    <li onClick={logout}
+                        onKeyDown={handleKeyDown}
+                        tabIndex={0}
+                    >
                         <img src={ExitIcon} alt="sair" />
                         Sair do Portal de Vagas
                     </li>

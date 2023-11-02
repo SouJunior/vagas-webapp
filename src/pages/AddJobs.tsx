@@ -163,7 +163,7 @@ const AddJobs = () => {
 
     return (
         <Container>
-            <Header pageName="Criar vaga" backTo={'/'}></Header>
+            <Header pageName="Criar vaga" backTo={'/company-portal'}></Header>
             <HeaderContainer>
                 <LogoImage
                     src={logoNameEmpresa}

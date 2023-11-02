@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
-import { toast } from 'react-toastify';
 import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
@@ -85,12 +84,10 @@ export const UserForms = (props: any): JSX.Element => {
 
         try {
             // Recebe dados do contexto para verificação
-            const data = await auth.login(email, password, userType);
 
-            toast.success(`Login efetuado com sucesso ${data.info.name}! `, {
-                position: 'top-right',
-                theme: 'colored',
-            });
+            await auth.login(email, password, userType);
+
+
 
             navigate('/candidate-portal');
         } catch (err: any) {

@@ -32,7 +32,7 @@ const ConfirmRegister = () => {
                 USER: (id:string) => api.confirmRegisterCandidate(id),
                 COMPANY: (id:string) => api.confirmRegisterCompany(id),
             }
-            if (id !== null && type != null) {
+            if (id !== null && type !== null) {
                 await registerFunction[type as keyof typeof registerFunction](id);
             }
         }  
