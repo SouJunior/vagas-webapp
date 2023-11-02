@@ -25,13 +25,6 @@ const Index = () => {
     const [field, setField] = useState<string>('');
     const [suggestions, setSuggestions] = useState<Jobs[]>([]);
 
-    const handleKeyDown = (ev: React.KeyboardEvent<HTMLDivElement>) => {
-
-        if (ev.key === "enter") {
-            ev.currentTarget.focus()
-        }
-    };
-
     const handleSearchBox = (e: any) => {
 
         const search = e.target.value;
@@ -94,9 +87,7 @@ const Index = () => {
                                                     setField(suggestion.title);
                                                     setSuggestions([]);
                                                 }}
-                                                onKeyDown={handleKeyDown}
                                                 key={suggestion.id}
-
                                             >
                                                 {suggestion.title}
                                             </div>
