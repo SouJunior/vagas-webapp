@@ -9,21 +9,22 @@ export const HandleInputsRender = (
     const auth = useContext(AuthContext);
 
     useEffect(() => {
-        setValue('email', auth.user.email);
-        setValue('cnpj', auth.user.cnpj);
-        setValue('nome', auth.user.companyName);
-        setValue('site', auth.user.companySite);
-        setValue('instagram', auth.user.otherSite.instagram);
-        setValue('linkedin', auth.user.otherSite.linkedin);
-        setValue('twitter', auth.user.otherSite.twitter);
+
+        if (auth.user) {
+            setValue('email', auth.user.email);
+            setValue('cnpj', auth.user.cnpj);
+            setValue('nome', auth.user.companyName);
+            setValue('site', auth.user.companySite);   
+        };
+
+        if (auth.user.otherSite) {
+            setValue('instagram', auth.user.otherSite.instagram);
+            setValue('linkedin', auth.user.otherSite.linkedin);
+            setValue('twitter', auth.user.otherSite.twitter);
+        };
+
     }, [
-        auth.user.email,
-        auth.user.cnpj,
-        auth.user.companyName,
-        auth.user.companySite,
-        auth.user.otherSite.instagram,
-        auth.user.otherSite.linkedin,
-        auth.user.otherSite.twitter,
+        auth.user,
         setValue,
     ]);
 
