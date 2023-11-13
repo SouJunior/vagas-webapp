@@ -77,6 +77,7 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 ## Autor(es) 🙎🏻‍♂️
 
+-   Max Faria | [GitHub](https://github.com/max-faria) - [Linkedin](https://www.linkedin.com/in/maxfariaa/)
 -   Isabela S. Hyeda Buitoni | [GitHub](https://github.com/isabelahyeda) - [Linkedin](https://www.linkedin.com/in/isabelahyeda/)
 -   Leonardo Dias Monteiro | [GitHub](https://github.com/Leodias2204) - [Linkedin](https://www.linkedin.com/in/leonardo-dias-monteiro-54642264/)
 
