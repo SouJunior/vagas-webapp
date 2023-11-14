@@ -106,9 +106,9 @@ export const CandidateSettings: React.FC = () => {
 
     const formatPhoneNumberForForm = (phoneNumber: string, formatted: boolean) => {
         const length = formatted ? 15 : 11;
-        return phoneNumber.length < length ? "(99) 9999-99999" : "(99) 99999-9999";
+        return (phoneNumber || "").length < length ? "(99) 9999-99999" : "(99) 99999-9999";
     };
-    
+
     const [mask1, setMask1] = useState(formatPhoneNumberForForm(auth.user.mainPhone, false));
     const [mask2, setMask2] = useState(formatPhoneNumberForForm(auth.user.phone, false));
 
@@ -240,10 +240,6 @@ export const CandidateSettings: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-    
-    }, []);
-
     return (
         <Container>
             <Header />
@@ -294,7 +290,7 @@ export const CandidateSettings: React.FC = () => {
                                     defaultValue={auth.user.mainPhone}
                                     type="tel"
                                     placeholder="(00) 00000-0000"
-                                    {...register("phoneNumber1", {onChange:handlePhoneNumberChange1})}   
+                                    {...register("phoneNumber1", { onChange: handlePhoneNumberChange1 })}
                                 />
                             </label>
                             <ErrorMessages>
@@ -343,7 +339,7 @@ export const CandidateSettings: React.FC = () => {
                                     maskChar=""
                                     type="tel"
                                     defaultValue={auth.user.phone}
-                                    {...register("phoneNumber2", {onChange: handlePhoneNumberChange2})}
+                                    {...register("phoneNumber2", { onChange: handlePhoneNumberChange2 })}
                                     placeholder="(00) 00000-0000"
                                 />
                             </label>
