@@ -23,10 +23,7 @@ export const HandleInputsRender = (
             setValue('twitter', auth.user.otherSite.twitter);
         };
 
-    }, [
-        auth.user,
-        setValue,
-    ]);
+    }, [auth.user]);
 
     return arr.map((element: any) => {
         const isDisabled =
