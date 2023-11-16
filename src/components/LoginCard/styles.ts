@@ -151,7 +151,7 @@ export const Input = styled.input`
         box-shadow: 0 0 0 3px rgba(128, 0, 128, 0.1);
     }
     @media (max-width: 550px) {
-        width: 97%;
+        width: 290px;
     }
 `;
 
