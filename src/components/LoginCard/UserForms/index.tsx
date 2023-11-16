@@ -87,8 +87,6 @@ export const UserForms = (props: any): JSX.Element => {
 
             await auth.login(email, password, userType);
 
-
-
             navigate('/candidate-portal');
         } catch (err: any) {
             if (err.response.status > 400) {
@@ -208,12 +206,10 @@ export const UserForms = (props: any): JSX.Element => {
                             {errors.password && <>{errors.password.message}</>}
                         </MessageError>
                         <MessageError>
-                            {error && <>e-mail ou senha não conferem</>}
+                            {error && <>desculpe, algo inesperado aconteceu</>}
                         </MessageError>
                         <MessageError>
-                            {otherErrors && (
-                                <>desculpe, algo inesperado aconteceu</>
-                            )}
+                            {otherErrors && <>e-mail ou senha não conferem</>}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
