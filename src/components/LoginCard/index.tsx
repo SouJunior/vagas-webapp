@@ -33,6 +33,7 @@ const LoginCard = () => {
                         <img src={CandidatoIcon} alt="Candidato" />
                         Candidato
                     </button>
+                    <span></span>
                     <button onClick={companyHandler}>
                         <img src={EmpresaIcon} alt="Empresa" />
                         Empresa

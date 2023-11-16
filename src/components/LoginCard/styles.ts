@@ -21,6 +21,12 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 14px;
+
+    img {
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 export const Card = styled.div`
@@ -32,8 +38,18 @@ export const Card = styled.div`
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     max-height: 900px;
+    @media (max-height: 500px) {
+        margin-bottom: 0px;
+        padding: 5px;
+    }
     @media (min-width: 1024px) {
         max-width: 1024px;
+    }
+    @media (max-width: 550px) {
+        width: 98%;
+    }
+    @media (max-width: 400px) {
+        width: 350px;
     }
 `;
 
@@ -43,6 +59,12 @@ export const LoginTypeButton = styled.div`
     color: #1165ba;
     margin: 8px 10px 0 10px;
     padding: 12px;
+
+    @media (max-height: 500px) {
+        padding: 10px 0;
+        margin: 0px;
+        justify-content: center;
+    }
     button {
         width: 145px;
         height: 35px;
@@ -54,14 +76,27 @@ export const LoginTypeButton = styled.div`
         border-radius: 5px;
         font-size: 17px;
     }
+    @media (max-height: 500px) {
+        padding: 10px 0;
+    }
+    @media (max-width: 550px) {
+        width: 90%;
+    }
     button:hover {
         background-color: #00000022;
+    }
+
+    span {
+        padding: 0 10px;
     }
 `;
 
 export const DivLogo = styled.div`
     display: flex;
     justify-content: center;
+    @media (max-height: 450px) {
+        display: none;
+    }
 `;
 
 export const Title = styled.h1`
@@ -70,6 +105,9 @@ export const Title = styled.h1`
     text-align: center;
     color: #1165ba;
     margin-bottom: 8px;
+    @media (max-height: 450px) {
+        display: none;
+    }
 `;
 
 export const Divider = styled.hr`
@@ -78,6 +116,9 @@ export const Divider = styled.hr`
     width: 310px;
     margin: 0 auto;
     margin-bottom: 32px;
+    @media (max-height: 450px) {
+        display: none;
+    }
 `;
 
 export const SecondDivider = styled(Divider)`
@@ -101,10 +142,16 @@ export const Input = styled.input`
     border: 1px solid #cdcdcd;
     border-radius: 6px;
     outline: none;
+    @media (max-height: 500px) {
+        height: 33px;
+    }
 
     &:focus {
         border: 1px solid #60a5fa;
         box-shadow: 0 0 0 3px rgba(128, 0, 128, 0.1);
+    }
+    @media (max-width: 550px) {
+        width: 97%;
     }
 `;
 
@@ -165,6 +212,9 @@ export const InputContainer = styled.div`
     div {
         position: relative;
     }
+    @media (max-height: 500px) {
+        margin-bottom: 5px;
+    }
 `;
 
 export const ButtonContainer = styled.div`
@@ -181,6 +231,7 @@ export const LoginButton = styled.button`
     color: white;
     background-color: #1165ba;
     cursor: pointer;
+
     &:disabled {
         background-color: #90cdf4;
         cursor: not-allowed;
@@ -198,6 +249,9 @@ export const RegisterSubmitButton = styled(RegisterButton)`
     margin-bottom: 8px;
     width: 300px;
     height: 52px;
+    @media (max-height: 500px) {
+        height: 40px;
+    }
 `;
 
 export const TermsLink = styled.p`
@@ -237,6 +291,9 @@ export const Checklist = styled.div`
         margin-bottom: 5px;
         align-self: center;
         color: #1165ba;
+    }
+    @media (max-height: 500px) {
+        display: none;
     }
 `;
 

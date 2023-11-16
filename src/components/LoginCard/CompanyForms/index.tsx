@@ -50,7 +50,7 @@ export const CompanyForms = (props: any): JSX.Element => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { isRegistered, setIseRegisteres } = useContext(AuthContext);
+    const { isRegistered, setIsRegistered } = useContext(AuthContext);
     const { errorEmail, setErrorEmail } = useContext(AuthContext);
     const [popup, setPopup] = useState(false);
 
@@ -147,6 +147,7 @@ export const CompanyForms = (props: any): JSX.Element => {
         } else {
             setIsLogin(true);
             handlePopUp();
+            errorEmail(false);
         }
     }
 
