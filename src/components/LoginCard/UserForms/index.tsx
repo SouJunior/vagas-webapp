@@ -47,7 +47,7 @@ export const UserForms = (props: any): JSX.Element => {
     const { isRegistered, setIsRegistered } = useContext(AuthContext);
 
     const characters = /^(?=.{8,20}$).*$/;
-    const letters = /^(?=.*[a-zA-Z]).*$/;
+    const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
 

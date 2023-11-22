@@ -75,7 +75,7 @@ export const CompanyForms = (props: any): JSX.Element => {
     });
 
     const characters = /^(?=.{8,20}$).*$/;
-    const letters = /^(?=.*[a-zA-Z]).*$/;
+    const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
 
