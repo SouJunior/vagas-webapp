@@ -7,23 +7,32 @@ import {
     Options,
     Border,
 } from './styles';
-import { useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useApi } from '../../../hooks/useApi';
 import { Timeout } from 'react-number-format/types/types';
 import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
     const navigate = useNavigate();
+
     const api = useApi();
 
     interface Jobs {
         id: string;
         title: string;
-    }
+    };
 
     const [timer, setTimer] = useState<Timeout>();
     const [field, setField] = useState<string>('');
     const [suggestions, setSuggestions] = useState<Jobs[]>([]);
+
+    const handleSubmit = async (e: SyntheticEvent) => {
+        e.preventDefault();
+
+        await api.searchJobs(field);
+
+        navigate(`/jobs?search=${field}`);
+    };
 
     const handleSearchBox = (e: any) => {
 
@@ -66,7 +75,7 @@ const Index = () => {
 
     return (
         <>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Container>
                     <Input
                         value={field}
@@ -100,7 +109,7 @@ const Index = () => {
                         </>
                     )}
                 </Container>
-                <SearchButton onClick={() => navigate('/jobs')}>
+                <SearchButton type="submit">
                     Buscar vagas
                 </SearchButton>
             </Form>
