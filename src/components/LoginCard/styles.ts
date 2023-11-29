@@ -21,6 +21,9 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 14px;
+    @media (max-width: 280px) {
+        width: 240px;
+    }
 
     img {
         display: none;
@@ -51,6 +54,12 @@ export const Card = styled.div`
     @media (max-width: 400px) {
         width: 350px;
     }
+    @media (max-width: 280px) {
+        width: 260px;
+        padding: 0;
+        overflow-x: hidden;
+        margin-bottom: 0px;
+    }
 `;
 
 export const LoginTypeButton = styled.div`
@@ -79,9 +88,6 @@ export const LoginTypeButton = styled.div`
     @media (max-height: 500px) {
         padding: 10px 0;
     }
-    @media (max-width: 550px) {
-        width: 90%;
-    }
     button:hover {
         background-color: #00000022;
     }
@@ -94,8 +100,22 @@ export const LoginTypeButton = styled.div`
 export const DivLogo = styled.div`
     display: flex;
     justify-content: center;
+    margin-bottom: 42px;
+    margin-top: 22px;
     @media (max-height: 450px) {
         display: none;
+    }
+    @media (max-width: 550px) {
+        margin-bottom: 22px;
+        margin-top: 11px;
+    }
+    @media (max-width: 400px) {
+        margin-bottom: 15px;
+        margin-top: 7px;
+    }
+    @media (max-width: 375px) {
+        margin-bottom: 5px;
+        margin-top: 5px;
     }
 `;
 
@@ -118,6 +138,9 @@ export const Divider = styled.hr`
     margin-bottom: 32px;
     @media (max-height: 450px) {
         display: none;
+    }
+    @media (max-width: 375px) {
+        margin-bottom: 0px;
     }
 `;
 
@@ -145,13 +168,12 @@ export const Input = styled.input`
     @media (max-height: 500px) {
         height: 33px;
     }
-
+    @media (max-width: 375px) {
+        width: 240px;
+    }
     &:focus {
         border: 1px solid #60a5fa;
         box-shadow: 0 0 0 3px rgba(128, 0, 128, 0.1);
-    }
-    @media (max-width: 550px) {
-        width: 290px;
     }
 `;
 
@@ -192,6 +214,12 @@ export const CheckboxContainer = styled.div`
     display: flex;
     justify-content: space-between;
     width: 310px;
+    @media (max-width: 280px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     a {
         color: #1165ba;
         float: right;
@@ -231,6 +259,10 @@ export const LoginButton = styled.button`
     color: white;
     background-color: #1165ba;
     cursor: pointer;
+    @media (max-width: 375px) {
+        width: 240px;
+        height: 36px;
+    }
 
     &:disabled {
         background-color: #90cdf4;
@@ -241,6 +273,10 @@ export const RegisterButton = styled(LoginButton)`
     background-color: transparent;
     border: 1px solid #1165ba;
     color: #1165ba;
+    @media (max-width: 280px) {
+        width: 240px;
+        height: 36px;
+    }
 `;
 
 export const RegisterSubmitButton = styled(RegisterButton)`
@@ -251,6 +287,10 @@ export const RegisterSubmitButton = styled(RegisterButton)`
     height: 52px;
     @media (max-height: 500px) {
         height: 40px;
+    }
+    @media (max-width: 375px) {
+        width: 240px;
+        height: 36px;
     }
 `;
 
@@ -293,6 +333,9 @@ export const Checklist = styled.div`
         color: #1165ba;
     }
     @media (max-height: 500px) {
+        display: none;
+    }
+    @media (max-width: 375px) {
         display: none;
     }
 `;

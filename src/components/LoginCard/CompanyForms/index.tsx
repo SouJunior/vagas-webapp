@@ -371,8 +371,11 @@ export const CompanyForms = (props: any): JSX.Element => {
                             <CheckboxInput {...register('privacyTerms')} />
                             <TermsLink>
                                 {/* TODO: Direcionar para as páginas correspondentes após criadas */}
-                                Li e aceito os <a href="/">Termos de Uso</a> e{' '}
-                                <a href="/">Política de Privacidade</a>
+                                Li e aceito os{' '}
+                                <a href="/">
+                                    Termos de Uso <br />
+                                </a>{' '}
+                                e <a href="/">Política de Privacidade</a>
                             </TermsLink>
                         </Label>
                         <MessageError2>
