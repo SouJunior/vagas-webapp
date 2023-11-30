@@ -12,10 +12,10 @@ const Login = () => {
     const navigate = useNavigate();
 
     return (
-        <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto">
-            <div className="container max-w-screen-xl m-auto h-screen">
+        <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto ">
+            <div className="container max-w-screen-xl m-auto h-screen lg:flex lg:justify-center lg:items-center">
                 <section className="flex flex-col items-center h-screen lg:flex-row lg:mb-20">
-                    <div className="titles max-h-[725px] flex flex-col flex-grow items-center lg:items-center h-5/6 max-[1024px]:hidden">
+                    <div className="titles max-h-[725px] flex flex-col flex-grow items-center lg:items-center justify-center h-5/6 max-[1024px]:hidden">
                         <img
                             className="max-w-md flex-grow "
                             src={extendedLogoImg}

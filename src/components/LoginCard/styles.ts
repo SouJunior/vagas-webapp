@@ -105,6 +105,10 @@ export const DivLogo = styled.div`
     @media (max-height: 450px) {
         display: none;
     }
+    @media (max-height: 600px) {
+        margin-bottom: 15px;
+        margin-top: 7px;
+    }
     @media (max-width: 550px) {
         margin-bottom: 22px;
         margin-top: 11px;
@@ -165,7 +169,7 @@ export const Input = styled.input`
     border: 1px solid #cdcdcd;
     border-radius: 6px;
     outline: none;
-    @media (max-height: 500px) {
+    @media (max-height: 600px) {
         height: 33px;
     }
     @media (max-width: 375px) {
@@ -240,7 +244,7 @@ export const InputContainer = styled.div`
     div {
         position: relative;
     }
-    @media (max-height: 500px) {
+    @media (max-height: 620px) {
         margin-bottom: 5px;
     }
 `;
@@ -263,6 +267,9 @@ export const LoginButton = styled.button`
         width: 240px;
         height: 36px;
     }
+    @media (max-height: 620px) {
+        height: 36px;
+    }
 
     &:disabled {
         background-color: #90cdf4;
@@ -277,6 +284,9 @@ export const RegisterButton = styled(LoginButton)`
         width: 240px;
         height: 36px;
     }
+    @media (max-height: 620px) {
+        height: 36px;
+    }
 `;
 
 export const RegisterSubmitButton = styled(RegisterButton)`
@@ -285,8 +295,8 @@ export const RegisterSubmitButton = styled(RegisterButton)`
     margin-bottom: 8px;
     width: 300px;
     height: 52px;
-    @media (max-height: 500px) {
-        height: 40px;
+    @media (max-height: 620px) {
+        height: 36px;
     }
     @media (max-width: 375px) {
         width: 240px;
@@ -332,8 +342,9 @@ export const Checklist = styled.div`
         align-self: center;
         color: #1165ba;
     }
-    @media (max-height: 500px) {
+    @media (max-height: 720px) {
         display: none;
+        padding: 0;
     }
     @media (max-width: 375px) {
         display: none;
