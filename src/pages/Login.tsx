@@ -12,12 +12,12 @@ const Login = () => {
     const navigate = useNavigate();
 
     return (
-        <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto ">
-            <div className="container max-w-screen-xl m-auto h-screen lg:flex lg:justify-center lg:items-center">
+        <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto">
+            <div className="container max-w-screen-xl m-auto h-screen">
                 <section className="flex flex-col items-center h-screen lg:flex-row lg:mb-20">
-                    <div className="titles max-h-[725px] flex flex-col flex-grow items-center lg:items-center justify-center h-5/6 max-[1024px]:hidden">
+                    <div className="titles max-h-[725px] flex flex-col flex-grow items-center lg:items-center h-5/6">
                         <img
-                            className="max-w-md flex-grow "
+                            className="max-w-md flex-grow"
                             src={extendedLogoImg}
                             alt="Logo-sou-junior-square"
                         />
@@ -43,10 +43,10 @@ const Login = () => {
                             Conheça SouJunior Tech
                         </AchorLink>
                     </div>
-                    <div className="flex-grow-[.5] max-[1024px]:hidden ">
+                    <div className="flex-grow-[.5]">
                         <img src={verticalLine} alt="" />
                     </div>
-                    <div className="login-card flex h-screen max-[1024px]:items-center max-[1024px]:justify-content">
+                    <div className="login-card flex h-screen max-[1024px]">
                         <LoginCard />
                     </div>
                 </section>
