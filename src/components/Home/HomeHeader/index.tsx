@@ -83,7 +83,7 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                     <Hamburger toggled={isMobileOpen} toggle={setMobileOpen} />
                 </Menu>
                 <NavTitle>
-                    <a href="https://www.soujunior.tech/">
+                    <a onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
                         <img
                             src={LogoName}
                             alt="Logo SouJunior"

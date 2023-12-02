@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import {
     ModalTitle,
     CloseButton,
@@ -10,7 +11,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 interface ModalAreasProps {
     title: string;
-    description: string;
+    description: ReactElement;
     source: string;
     onClose: () => void;
 }
