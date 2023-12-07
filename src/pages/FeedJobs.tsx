@@ -189,7 +189,7 @@ const FeedJobs = () => {
                                                 active={selectedJob === job.id}
                                                 opacity={
                                                     noJobSelected ||
-                                                    selectedJob === job.id
+                                                        selectedJob === job.id
                                                         ? 1
                                                         : 0.6
                                                 }
@@ -219,13 +219,12 @@ const FeedJobs = () => {
                                     </ShowMore>
                                 ) : (
                                     <>
-                                        {jobs &&
-                                        Object.keys(jobs).length ===
-                                            0 ? null : (
-                                            <ShowMore disabled={true}>
-                                                Todas as vagas já foram
-                                                exibidas.
-                                            </ShowMore>
+                                        {isLoading ? undefined : (
+                                            jobs && Object.keys(jobs).length === 0 ? null : (
+                                                <ShowMore disabled={true}>
+                                                    Todas as vagas já foram exibidas.
+                                                </ShowMore>
+                                            )
                                         )}
                                     </>
                                 )}
