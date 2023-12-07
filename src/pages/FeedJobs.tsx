@@ -103,7 +103,25 @@ const FeedJobs = () => {
         const item: Job = jobs.filter((item: Job) => item.id === id);
         setClickedJob(item);
         setNoJobSelected(false);
-    }
+    };
+
+    function jobContent() {
+        if (isLoading) {
+            return undefined;
+        }
+    
+        if (jobs && Object.keys(jobs).length === 0) {
+            return null;
+        }
+    
+        return (
+            <ShowMore disabled={true}>
+                Todas as vagas já foram exibidas.
+            </ShowMore>
+        );
+    };
+
+    const searchContent = jobContent();
 
     return (
         <>
@@ -219,13 +237,7 @@ const FeedJobs = () => {
                                     </ShowMore>
                                 ) : (
                                     <>
-                                        {isLoading ? undefined : (
-                                            jobs && Object.keys(jobs).length === 0 ? null : (
-                                                <ShowMore disabled={true}>
-                                                    Todas as vagas já foram exibidas.
-                                                </ShowMore>
-                                            )
-                                        )}
+                                        {searchContent}
                                     </>
                                 )}
                             </JobsWrapper>
