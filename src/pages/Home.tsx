@@ -140,14 +140,13 @@ export const Home: React.FC = () => {
     };
 
     return (
-        <>            
+        <>
             {user ? (
                 <div className="z-[2000] fixed w-full">
                     <Header />
                 </div>
             ) : (
                 <HomeHeader isActive={isActive} />
-                
             )}
             <Main>
                 <MainContent>
@@ -223,7 +222,7 @@ export const Home: React.FC = () => {
                             TESTE <br />
                             <span>VOCACIONAL</span>
                         </h1>
-                        <p className='mb-24'>
+                        <p className="mb-24">
                             <a
                                 href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
                                 target="_blank"
@@ -243,12 +242,13 @@ export const Home: React.FC = () => {
                     Seja o Júnior que as empresas desejam
                 </SecondaryTitle>
                 <CardWrapper>
-                    <OurSitesCard
+                    {/*Código ocultado solicitado na Task Ocultar Itens 393
+                    {/*<OurSitesCard
                         Link="http://mentores.soujunior.tech/"
                         Title="Portal de Mentoria"
                         Img={PortalMentoria}
                         Description="Seja mentorado por um profissional experiente."
-                    />
+                        /> */}
                     <OurSitesCard
                         Link="https://www.soujunior.tech/"
                         Title="Site SouJunior"
@@ -269,20 +269,20 @@ export const Home: React.FC = () => {
                     <JourneyCardWrapper>
                         <JourneyCard
                             Img={Linkedin}
-                            Description={'Se destaque no Linkedin'}
+                            Description={'Destaque-se no Linkedin'}
                         />
                         <JourneyCard
                             Img={Resume}
-                            Description={'Como construir um currículo Júnior'}
+                            Description={'Construa um currículo Júnior'}
                         />
-                        <JourneyCard
+                        {/* <JourneyCard
                             Img={Process}
                             Description={'Se prepare para o processo seletivo'}
-                        />
+                    /> 
                         <JourneyCard
                             Img={KeyWords}
                             Description={'Palavras Chave na área tech'}
-                        />
+                    /> */}
                     </JourneyCardWrapper>
                 </JourneyContainer>
             </JourneySection>
