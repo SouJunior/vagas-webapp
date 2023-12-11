@@ -33,8 +33,10 @@ const Index = () => {
         e.preventDefault();
 
         try {
-            await api.searchJobs(field);
-            navigate(`/jobs?search=${field}`);
+            if (field) {
+                await api.searchJobs(field);
+                navigate(`/jobs?search=${field}`);   
+            }
         } catch (error: unknown) {
             if (error instanceof AxiosError && error.response?.status === 404) {
                 setError(true);
