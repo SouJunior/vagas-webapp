@@ -71,6 +71,7 @@ import JourneyModal from '../components/Home/JourneySection/JourneyModal';
 import ReactMarkdown from 'react-markdown'
 import { Journey } from '../Mocks/MockJourney';
 import rehypeRaw from "rehype-raw"
+import Index from '../components/Portal/Footer';
 
 interface AreaProps {
     id: string;
@@ -403,7 +404,7 @@ export const Home: React.FC = () => {
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>
-            <Footer />
+            <Index/>
         </>
     );
 };

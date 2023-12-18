@@ -76,6 +76,7 @@ export const OpenMenuBtn = styled.img`
 
 export const HeaderLogo = styled.img`
     padding-left: 20px;
+    cursor: pointer;
 
     @media (max-width: 540px) {
         width: 140px;

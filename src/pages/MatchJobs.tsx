@@ -16,6 +16,7 @@ import MatchCard from '../components/MatchCard';
 import { FiDownloadCloud } from 'react-icons/fi';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
+import Index from '../components/Portal/Footer';
 
 function MatchJobs() {
     const api = useApi();
@@ -92,7 +93,7 @@ function MatchJobs() {
                     </RightContainer>
                 </Wrapper>
 
-                <Footer />
+                <Index />
             </Container>
         </>
     );

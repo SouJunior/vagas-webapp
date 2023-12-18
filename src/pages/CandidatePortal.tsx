@@ -12,7 +12,7 @@ import CurriculumImage from '../assets/imgs/cv.svg';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useContext } from 'react';
-import { Footer } from '../components/Footer';
+import Index from '../components/Portal/Footer';
 
 const CandidatePortal = () => {
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ const CandidatePortal = () => {
                 </ProfileButton>
             </Main>
             <Position>
-                <Footer />
+                <Index/>
             </Position>
         </Container>
     );

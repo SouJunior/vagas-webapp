@@ -41,6 +41,13 @@ const Header = () => {
 
     const [visible, setVisible] = useState(false);
 
+    const navigateHeader = useNavigate()
+
+    const backToHome = () => {
+        navigateHeader('/')
+        window.scrollTo({top:0, behavior:'smooth'})
+    }
+
     return (
         <>
             <HeaderWrapper>
@@ -50,6 +57,7 @@ const Header = () => {
                         width="194px"
                         height="29px"
                         alt="logo"
+                        onClick={backToHome}
                     />
                 </div>
 

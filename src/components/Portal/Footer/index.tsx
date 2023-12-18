@@ -11,9 +11,16 @@ import {
     TelegramIcon,
 } from './styles';
 import LogoImageBlue from '../../../assets/imgs/logo-icon-name-h.svg';
-import GooglePlayImage from '../../../assets/imgs/googlePlay.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
+
+    const navigate = useNavigate()
+
+    const backToHome = () => {
+        navigate('/')
+        window.scrollTo({top:0, behavior:'smooth'})
+    }
     return (
         <Footer>
             <div className="mobile-wrapper">
@@ -23,6 +30,7 @@ const Index = () => {
                         width="194px"
                         height="29px"
                         alt="logo"
+                        onClick={backToHome}
                     />
                 </div>
                 <div>
@@ -69,12 +77,13 @@ const Index = () => {
             </div>
 
             <div className="desktop-wrapper">
-                <div>
+                <div style={{cursor: 'pointer'}}>
                     <img
                         src={LogoImageBlue}
                         width="194px"
                         height="29px"
                         alt="logo"
+                        onClick={backToHome}
                     />
                 </div>
                 <div>
@@ -82,14 +91,14 @@ const Index = () => {
                     <ul>
                         <li>
                             <a href="https://www.soujunior.tech/">
-                                Site SouJunior
+                                SouJunior Tech
                             </a>
                         </li>
-                        <li>
+                        {/* <li>
                             <a href="https://mentores.soujunior.tech">
                                 Portal de mentoria
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                 <div>
@@ -104,9 +113,7 @@ const Index = () => {
                     <h3>Aplicativo</h3>
                     <ul>
                         <li>
-                            <a href="/">
-                                <img src={GooglePlayImage} alt="google play" />
-                            </a>
+                            <p>Logo mais, acesse também por qualquer dispositivo e fique por dentro das novidades</p>
                         </li>
                     </ul>
                 </div>
