@@ -43,7 +43,6 @@ const Index = () => {
                             width="194px"
                             height="29px"
                             alt="logo"
-                            onClick={backToHome}
                         />
                     </button>
                 </div>
@@ -98,7 +97,6 @@ const Index = () => {
                             width="194px"
                             height="29px"
                             alt="logo"
-                            onClick={backToHome}
                         />
                     </button>
                 </div>
