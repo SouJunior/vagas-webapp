@@ -21,10 +21,23 @@ const Index = () => {
         navigate('/')
         window.scrollTo({top:0, behavior:'smooth'})
     }
+
+    const handleScrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleKeyPress = (event: React.KeyboardEvent) => {
+        // Check if the key pressed is 'Enter' or 'Space'
+        if (event.key === 'Enter' || event.key === ' ') {
+            handleScrollToTop();
+        }
+    };
+
     return (
         <Footer>
             <div className="mobile-wrapper">
                 <div>
+                    <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0}>
                     <img
                         src={LogoImageBlue}
                         width="194px"
@@ -32,6 +45,7 @@ const Index = () => {
                         alt="logo"
                         onClick={backToHome}
                     />
+                    </button>
                 </div>
                 <div>
                     <h2>#MovimentoSouJunior</h2>
@@ -78,6 +92,7 @@ const Index = () => {
 
             <div className="desktop-wrapper">
                 <div style={{cursor: 'pointer'}}>
+                    <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0}>
                     <img
                         src={LogoImageBlue}
                         width="194px"
@@ -85,6 +100,7 @@ const Index = () => {
                         alt="logo"
                         onClick={backToHome}
                     />
+                    </button>
                 </div>
                 <div>
                     <h3>Institucional</h3>

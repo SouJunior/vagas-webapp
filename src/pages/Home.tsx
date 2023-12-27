@@ -62,7 +62,6 @@ import { Areas } from '../Mocks/MockArea';
 import Testimonials from '../components/Home/Testimonials';
 import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
-import { Footer } from '../components/Footer';
 import Header from '../components/Portal/Header';
 import { AuthContext } from '../contexts/Auth/AuthContext';
 import ModalAreas from '../components/Home/TechnologyArea/ModalAreas';
@@ -305,7 +304,14 @@ export const Home: React.FC = () => {
                     <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
                     <JourneyCardWrapper>
                         {Journey.map((journey) => (
-                            <div key={journey.Id} onClick={() => openJourneyOnClick(journey.Id)}>
+                            <div key={journey.Id} onClick={() => openJourneyOnClick(journey.Id)}
+                            onKeyDown={(event: React.KeyboardEvent) => {
+                                if (event.key === "Enter" || event.key === ''){
+                                    openJourneyOnClick(journey.Id)
+                                }
+                            }}
+                            tabIndex={0}
+                            role='button'>
                                 <JourneyCard
                                 Img={journey.Img}
                                 Description={journey.Description}

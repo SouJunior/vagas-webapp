@@ -48,6 +48,18 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
         };
     }, []);
 
+    const handleScrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleKeyPress = (event: React.KeyboardEvent) => {
+        // Check if the key pressed is 'Enter' or 'Space'
+        if (event.key === 'Enter' || event.key === ' ') {
+            handleScrollToTop();
+        }
+        };
+
+
     return (
         <>
             {isMobileOpen && (
@@ -83,14 +95,14 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                     <Hamburger toggled={isMobileOpen} toggle={setMobileOpen} />
                 </Menu>
                 <NavTitle>
-                    <a onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+                    <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0} >
                         <img
                             src={LogoName}
                             alt="Logo SouJunior"
                             width={200}
                             height={200}
                         />
-                    </a>
+                    </button>
                 </NavTitle>
                 {isActive && !isMobileSize && <HomeJobFilter />}
                 <HeaderBtns>
