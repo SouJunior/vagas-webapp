@@ -38,13 +38,13 @@ const Index = () => {
             <div className="mobile-wrapper">
                 <div>
                     <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0}>
-                    <img
-                        src={LogoImageBlue}
-                        width="194px"
-                        height="29px"
-                        alt="logo"
-                        onClick={backToHome}
-                    />
+                        <img
+                            src={LogoImageBlue}
+                            width="194px"
+                            height="29px"
+                            alt="logo"
+                            onClick={backToHome}
+                        />
                     </button>
                 </div>
                 <div>
@@ -93,13 +93,13 @@ const Index = () => {
             <div className="desktop-wrapper">
                 <div style={{cursor: 'pointer'}}>
                     <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0}>
-                    <img
-                        src={LogoImageBlue}
-                        width="194px"
-                        height="29px"
-                        alt="logo"
-                        onClick={backToHome}
-                    />
+                        <img
+                            src={LogoImageBlue}
+                            width="194px"
+                            height="29px"
+                            alt="logo"
+                            onClick={backToHome}
+                        />
                     </button>
                 </div>
                 <div>
