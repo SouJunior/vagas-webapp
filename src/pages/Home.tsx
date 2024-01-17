@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import googlePlayBadge from '../assets/imgs/googlePlayBadge.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Pagination } from 'swiper';
+import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -51,10 +51,6 @@ import ImageHome from '../assets/imgs/home-image.svg';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
 import Site from '../assets/imgs/siteSouJunior-img.svg';
 import NosAcompanhe from '../assets/imgs/followUs-img.svg';
-import Linkedin from '../assets/imgs/linkedin-rectangle.png';
-import Resume from '../assets/imgs/resume-rectangle.png';
-import Process from '../assets/imgs/process-rectangle.png';
-import KeyWords from '../assets/imgs/keyWords-rectangle.png';
 import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
 import VocationalTest from '../assets/imgs/vocational-teste.svg';
 import BannerMobile from '../assets/imgs/BannerMobile.svg';
@@ -66,9 +62,15 @@ import { Areas } from '../Mocks/MockArea';
 import Testimonials from '../components/Home/Testimonials';
 import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
-import { Footer } from '../components/Footer';
 import Header from '../components/Portal/Header';
 import { AuthContext } from '../contexts/Auth/AuthContext';
+import ModalAreas from '../components/Home/TechnologyArea/ModalAreas';
+import { AreasModal } from '../Mocks/MockModalArea';
+import JourneyModal from '../components/Home/JourneySection/JourneyModal';
+import ReactMarkdown from 'react-markdown'
+import { Journey } from '../Mocks/MockJourney';
+import rehypeRaw from "rehype-raw"
+import Index from '../components/Portal/Footer';
 
 interface AreaProps {
     id: string;
@@ -76,15 +78,34 @@ interface AreaProps {
     icon: React.ReactNode;
 }
 
+SwiperCore.use([Navigation, Autoplay]);
+
+
 export const Home: React.FC = () => {
     const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
     const [isMobile, setIsMobile] = useState(false);
 
+    const [openModal, setOpenModal] = useState(false)
+    const [modalId, setModalId] = useState('')
+
+    const [openJourney, setopenJourney] = useState(false)
+    const [journeyId, setJourneyId] = useState('')
+
+    const openOnClick = (id: string) => {
+        setModalId(id)
+        setOpenModal(true)
+    }
+
+    const openJourneyOnClick = (id: string) => {
+        setJourneyId(id)
+        setopenJourney(true)
+    }
+
     const api = useApi();
     const { user } = useContext(AuthContext);
-
-    useEffect(() => {
+    
+        useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 1250);
         };
@@ -132,7 +153,7 @@ export const Home: React.FC = () => {
             slidesPerView: 5,
         },
         1024: {
-            slidesPerView: 6,
+            slidesPerView: 8,
         },
         1440: {
             slidesPerView: 9,
@@ -175,6 +196,7 @@ export const Home: React.FC = () => {
                 <AreasCardWrapper>
                     <Swiper
                         modules={[Navigation]}
+                        autoplay={{delay: 2500, disableOnInteraction: false}}
                         breakpoints={breakpoints}
                         navigation={{
                             nextEl: '.swiper-next-button',
@@ -198,8 +220,9 @@ export const Home: React.FC = () => {
                             <SwiperSlide
                                 key={area.name}
                                 className="swiper-slide-responsive"
+                                onClick={() => openOnClick(area.id)}
                             >
-                                <div>
+                                <div >
                                     <TechnologyAreaCard
                                         icon={area.icon}
                                         area={area.name}
@@ -207,6 +230,19 @@ export const Home: React.FC = () => {
                                 </div>
                             </SwiperSlide>
                         ))}
+
+                        {openModal ? AreasModal.filter(
+                            (area) => area.id === modalId
+                        ).map((area) => 
+                            <div key={area.id}>
+                                <ModalAreas
+                                    title={area.title}
+                                    description={<ReactMarkdown children={area.description} rehypePlugins={[rehypeRaw]}/>}
+                                    source={area.source}
+                                    onClose={() => setOpenModal(false)}
+                                />
+                            </div>
+                        ): null}
 
                         {!isMobile && (
                             <CustomNextButton className="swiper-next-button">
@@ -267,25 +303,31 @@ export const Home: React.FC = () => {
                 <JourneyContainer>
                     <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
                     <JourneyCardWrapper>
-                        <JourneyCard
-                            Img={Linkedin}
-                            Description={'Se destaque no Linkedin'}
-                        />
-                        <JourneyCard
-                            Img={Resume}
-                            Description={'Como construir um currículo Júnior'}
-                        />
-                        <JourneyCard
-                            Img={Process}
-                            Description={'Se prepare para o processo seletivo'}
-                        />
-                        <JourneyCard
-                            Img={KeyWords}
-                            Description={'Palavras Chave na área tech'}
-                        />
+                        {Journey.map((journey) => (
+                            <div key={journey.Id} onClick={() => openJourneyOnClick(journey.Id)}
+                            onKeyDown={(event: React.KeyboardEvent) => {
+                                if (event.key === "Enter" || event.key === ''){
+                                    openJourneyOnClick(journey.Id)
+                                }
+                            }}
+                            tabIndex={0}
+                            role='button'>
+                                <JourneyCard
+                                Img={journey.Img}
+                                Description={journey.Description}
+                                />
+
+                            </div>
+                        ))}
                     </JourneyCardWrapper>
                 </JourneyContainer>
             </JourneySection>
+
+            {openJourney ? 
+                Journey.filter((journey) => journey.Id === journeyId).map((journey) => 
+                <JourneyModal Title={journey.Description} Content={<ReactMarkdown children={journey.Content} rehypePlugins={[rehypeRaw]}/>} onClose={() => setopenJourney(false)}/>
+                )
+            : null}
 
             <AppBannerContainer>
                 <AppBannerContainerInfo>
@@ -368,7 +410,7 @@ export const Home: React.FC = () => {
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>
-            <Footer />
+            <Index/>
         </>
     );
 };

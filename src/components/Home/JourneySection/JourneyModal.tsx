@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import {
     CloseButton,
     JourneyModalContent,
@@ -10,7 +11,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 interface JourneyModalProps {
     onClose: () => void;
     Title: string;
-    Content: string;
+    Content: ReactElement;
 }
 
 const JourneyModal: React.FC<JourneyModalProps> = (props) => {

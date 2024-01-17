@@ -22,7 +22,7 @@ import { checkImgZise } from './utils/checkImgSize';
 import { useForm } from 'react-hook-form';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
-import { Footer } from '../../components/Footer';
+import Index from '../../components/Portal/Footer';
 
 export const ProfileSettings: React.FC = () => {
     const [charCount, setCharCount] = useState(0);
@@ -209,7 +209,7 @@ export const ProfileSettings: React.FC = () => {
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
                 <Main />
-                <Footer />
+                <Index />
             </Position>
         </Container>
     );

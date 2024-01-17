@@ -173,7 +173,7 @@ const FeedJobs = () => {
                                                 value: 'ASC',
                                             },
                                         ]}
-                                        placeholder="Quando postada"
+                                        placeholder="Data do Anúncio"
                                         selectedValue={sortOrder}
                                         onChange={(event: any) =>
                                             setSortOrder(event.target.value)

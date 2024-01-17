@@ -21,8 +21,8 @@ import { Job } from '../@types/jobs';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
 import QuickFilter from '../components/QuickFilter';
 import Header from '../components/Portal/Header';
-import { Footer } from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
+import Index from '../components/Portal/Footer';
 
 const CompanyApplications = () => {
     const [selectedJob, setSelectedJob] = useState<string | null>('');
@@ -156,7 +156,7 @@ const CompanyApplications = () => {
                         <NoJobsSelectedCard />
                     )}
                 </ContentWrapper>
-                <Footer />
+                <Index />
             </Container>
         </>
     );
