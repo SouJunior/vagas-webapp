@@ -66,7 +66,7 @@ export const LoginTypeButton = styled.div`
     display: flex;
     justify-content: space-between;
     color: #1165ba;
-    margin: 8px 10px 0 10px;
+    margin-top: 8px;
     padding: 12px;
 
     @media (max-height: 500px) {
@@ -75,11 +75,12 @@ export const LoginTypeButton = styled.div`
         justify-content: center;
     }
     button {
+        display: inline;
+        margin-right: 10px;
+        margin-left: 10px;
         width: 145px;
         height: 35px;
         border: 1px solid #1165ba;
-        justify-content: center;
-        display: flex;
         gap: 10px;
         align-items: center;
         border-radius: 5px;
@@ -342,7 +343,7 @@ export const Checklist = styled.div`
         align-self: center;
         color: #1165ba;
     }
-    @media (max-height: 720px) {
+    @media (max-height: 1024px) {
         display: none;
         padding: 0;
     }
