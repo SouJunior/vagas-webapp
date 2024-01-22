@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import useJobList from '../hooks/useJobList';
+import { Job } from '../hooks/useJobList';
+import JobCard from '../components/JobCard';
 import {
     ApplyButton,
     ButtonContainer,
@@ -12,6 +15,8 @@ import {
     ResumePreview,
     UserArea,
     Wrapper,
+    SimilarJobs,
+    Title,
 } from './styles/ApplyJobs.styles';
 import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,19 +27,45 @@ import { useMutation, useQuery } from 'react-query';
 import Modal from '../components/ApplyJob/Modal';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
 import SouJuniorLogo from '../assets/imgs/logo-name-h.svg';
+
 const JobApply = () => {
+    const {
+        selectedJob,
+        noJobSelected,
+        setNoJobSelected,
+        setSelectedJob,
+        jobs,
+        selecionaVaga,
+    } = useJobList();
+
     const [showDialog, setShowDialog] = useState(false);
     const [selectedResume, setSelectedResume] = useState<any>('');
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [cardData, setCardData] = useState<Job>();
 
     const api = useApi();
     const { id }: any = useParams();
     const navigate = useNavigate();
 
-    const { data: jobData, isLoading: isLoadingJob } = useQuery({
-        queryKey: ['job'],
+    const { data: jobData, isLoading: isLoadingJob} = useQuery({
+        queryKey: ['job', id],
         queryFn: () => api.getJobById(id),
     });
+
+    const handleJobCardClick = async (job: Job) => {
+        try {
+            if (selectedJob === job.id) {
+                setSelectedJob(null);
+                setNoJobSelected(true);
+            } else {
+                const response = await api.getJobById(job.id);
+                setCardData(response);
+                selecionaVaga(job.id);
+            }
+        } catch (error) {
+            console.error("Erro ao obter dados da vaga:", error);
+        }
+    };
 
     const { data: resumeData, isLoading: isLoadingCurriculos } = useQuery({
         queryKey: ['resumes'],
@@ -104,7 +135,7 @@ const JobApply = () => {
                         </ResumeContainer>
                         <JobDetailsWrapper>
                             <JobApplyDetails
-                                Job={jobData}
+                                Job={cardData ?? jobData}
                                 isLoading={isLoadingJob}
                             />
                             <ButtonContainer>
@@ -121,8 +152,32 @@ const JobApply = () => {
                         </JobDetailsWrapper>
                     </UserArea>
                 </Wrapper>
+                <Title>Vagas similares a sua pesquisa:</Title>
+                <SimilarJobs>
+                    {((jobs || []).slice(0, 3)).map((job: Job) => (
+                        <JobCard
+                            key={job.id}
+                            id={job.id}
+                            title={job.title}
+                            city={job.city}
+                            federalUnit={job.federalUnit}
+                            modality={job.modality}
+                            jobType={job.type}
+                            typeContract={job.typeContract}
+                            publishedAt={job.createdAt}
+                            company={job.company}
+                            active={selectedJob === job.id}
+                            opacity={
+                                noJobSelected ||
+                                    selectedJob === job.id
+                                    ? 1
+                                    : 0.6
+                            }
+                            onClick={() => handleJobCardClick(job)}
+                        />
+                    ))}
+                </SimilarJobs>
             </Content>
-
             {showDialog && (
                 <Modal
                     title="CANCELAR?"
@@ -160,3 +215,4 @@ const JobApply = () => {
 };
 
 export default JobApply;
+
