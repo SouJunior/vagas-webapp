@@ -6,24 +6,43 @@ import {
     Box,
     Options,
     Border,
+    ErrorMessage,
 } from './styles';
-import { useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useApi } from '../../../hooks/useApi';
 import { Timeout } from 'react-number-format/types/types';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 const Index = () => {
     const navigate = useNavigate();
+
     const api = useApi();
 
     interface Jobs {
         id: string;
         title: string;
-    }
+    };
 
     const [timer, setTimer] = useState<Timeout>();
     const [field, setField] = useState<string>('');
     const [suggestions, setSuggestions] = useState<Jobs[]>([]);
+    const [error, setError] = useState(false);
+
+    const handleSubmit = async (e: SyntheticEvent) => {
+        e.preventDefault();
+
+        try {
+            if (field) {
+                await api.searchJobs(field);
+                navigate(`/jobs?search=${field}`);   
+            }
+        } catch (error: unknown) {
+            if (error instanceof AxiosError && error.response?.status === 404) {
+                setError(true);
+            }
+        }
+    };
 
     const handleSearchBox = (e: any) => {
 
@@ -66,7 +85,7 @@ const Index = () => {
 
     return (
         <>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Container>
                     <Input
                         value={field}
@@ -100,10 +119,11 @@ const Index = () => {
                         </>
                     )}
                 </Container>
-                <SearchButton onClick={() => navigate('/jobs')}>
+                <SearchButton type="submit">
                     Buscar vagas
                 </SearchButton>
             </Form>
+            {error && <ErrorMessage>Erro durante a busca de vagas, por favor, tente novamente.</ErrorMessage>}
         </>
     );
 };

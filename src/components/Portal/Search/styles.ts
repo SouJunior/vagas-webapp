@@ -78,5 +78,11 @@ export const Options = styled.div`
         margin: 0;
         padding-left: 20px;
     }
-    
+`
+
+export const ErrorMessage = styled.div`
+    color: ${({ theme }) => theme.colors.danger};
+    padding-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
 `

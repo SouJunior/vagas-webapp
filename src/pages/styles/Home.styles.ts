@@ -223,6 +223,7 @@ export const AreasCardWrapper = styled.div`
     width: 100%;
     position: relative;
     max-width: 1520px;
+    cursor: pointer;
 
     .swiper-slide {
         margin-right: 15px;

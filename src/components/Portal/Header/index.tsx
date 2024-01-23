@@ -41,6 +41,13 @@ const Header = () => {
 
     const [visible, setVisible] = useState(false);
 
+    const navigateHeader = useNavigate()
+
+    const backToHome = () => {
+        navigateHeader('/')
+        window.scrollTo({top:0, behavior:'smooth'})
+    }
+
     return (
         <>
             <HeaderWrapper>

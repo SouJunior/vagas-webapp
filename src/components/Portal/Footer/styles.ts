@@ -90,6 +90,7 @@ export const Footer = styled.footer`
 
         img {
             display: inline;
+            cursor: pointer
         }
     }
 
@@ -100,6 +101,7 @@ export const Footer = styled.footer`
         }
         img {
             display: inline;
+            cursor: pointer;
         }
     }
 
@@ -119,6 +121,7 @@ export const Footer = styled.footer`
         &:hover {
             color: #046AD0;
         }
+        max-width: 300px;
     }
 `
 export const Grid = styled.ul`
