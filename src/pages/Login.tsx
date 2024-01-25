@@ -6,6 +6,7 @@ import verticalLine from '../assets/imgs/verticalLine.svg';
 import LoginCard from '../components/LoginCard';
 import { AchorLink } from './styles/Main.styled';
 
+
 import '../App.css';
 
 const Login = () => {
@@ -20,9 +21,11 @@ const Login = () => {
                             className="max-w-md flex-grow"
                             src={extendedLogoImg}
                             alt="Logo-sou-junior-square"
+                            onClick={() => navigate('/')}
+                            style={{ cursor: 'pointer' }}
                         />
                         <div className="max-w-xl flex-grow text-center lg:text-center">
-                            <img src={loginPeople} alt="" />
+                            <img src={loginPeople} alt="logo-sou-junior" />
                         </div>
                         <Button
                             background="outline"
