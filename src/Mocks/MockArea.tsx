@@ -20,11 +20,6 @@ const styles = {
 
 export const Areas = [
     {
-        id: 'Bussiness',
-        name: 'Business',
-        icon: <Suitcase style={styles} />,
-    },
-    {
         id: 'TechRecruiter',
         name: 'Tech Recruiter',
         icon: <HandHeart style={styles} />,
@@ -38,11 +33,6 @@ export const Areas = [
         id: 'Agile',
         name: 'Ágil',
         icon: <CalendarCheck style={styles} />,
-    },
-    {
-        id: 'SocialMedia',
-        name: 'Social Media',
-        icon: <ThumbsUp style={styles} />,
     },
     {
         id: 'UXUIDesign',
@@ -63,11 +53,6 @@ export const Areas = [
         id: 'Data',
         name: 'Data',
         icon: <ChartBar style={styles} />,
-    },
-    {
-        id: 'Mobile',
-        name: 'Mobile',
-        icon: <DeviceMobile style={styles} />,
     },
     {
         id: 'Qa',

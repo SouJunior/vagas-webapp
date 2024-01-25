@@ -102,7 +102,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
             }
         } catch (err: any) {
             if (err.response.status > 400) {
-                console.log(err.response.data);
                 setErrorEmail('Email já cadastrado');
             }
         }
