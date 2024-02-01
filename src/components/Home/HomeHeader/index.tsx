@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { Turn as Hamburger } from 'hamburger-react';
 import HomeJobFilter from '../HomeJobFilter/HomeJobFilter';
+import loginIcon from '../../../assets/imgs/Candidato-icone.svg'
 
 interface HeaderProps {
     isActive: boolean;
@@ -106,15 +107,16 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                 </NavTitle>
                 {isActive && !isMobileSize && <HomeJobFilter />}
                 <HeaderBtns>
+                    <LoginButton onClick={handleLoginClick} isActive={isActive}>
+                        <img src={loginIcon} alt="Icone de login" />
+                        Login
+                    </LoginButton>
                     <RegisterButton
                         onClick={handleRegisterClick}
                         isActive={isActive}
                     >
                         Cadastre-se
                     </RegisterButton>
-                    <LoginButton onClick={handleLoginClick} isActive={isActive}>
-                        Login
-                    </LoginButton>
                 </HeaderBtns>
             </Header>
         </>
