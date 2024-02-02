@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import googlePlayBadge from '../assets/imgs/googlePlayBadge.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
@@ -32,10 +31,6 @@ import {
     VocationalTextContainer,
     TestimonialSection,
     TestimonialWrapper,
-    AppBannerContainer,
-    AppBannerContainerInfo,
-    BannerMobileImage,
-    GooglePlayButton,
     CircleImage,
     JourneyContainer,
     Circle,
@@ -53,7 +48,6 @@ import Site from '../assets/imgs/siteSouJunior-img.svg';
 import NosAcompanhe from '../assets/imgs/followUs-img.svg';
 import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
 import VocationalTest from '../assets/imgs/vocational-teste.svg';
-import BannerMobile from '../assets/imgs/BannerMobile.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
 import circle from '../assets/imgs/circle.svg';
 
@@ -280,7 +274,7 @@ export const Home: React.FC = () => {
                 </SecondaryTitle>
                 <CardWrapper>
                     <OurSitesCard
-                        Link="http://mentores.soujunior.tech/"
+                        Link="https://mentores.soujunior.tech/"
                         Title="Portal de Mentoria"
                         Img={PortalMentoria}
                         Description="Seja mentorado por um profissional experiente."
