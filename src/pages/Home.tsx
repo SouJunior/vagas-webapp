@@ -175,12 +175,12 @@ export const Home: React.FC = () => {
                     <MainSearchFilter>
                         <Title>
                             Um portal de vagas <span>exclusivo</span> para o
-                            profissional <span>Júnior!</span>
+                            profissionais <span>em início de carreira!</span>
                         </Title>
                         <JobFilter />
 
                         <JobsInfo>
-                            Mais de {jobsCount} vagas disponíveis para Juninhos{' '}
+                            Mais de {jobsCount} vagas disponíveis para você!{' '}
                         </JobsInfo>
                     </MainSearchFilter>
                     <Image src={ImageHome}></Image>
@@ -189,9 +189,9 @@ export const Home: React.FC = () => {
                 <CircleImage src={doubleCircles} />
             </Main>
             <AreasSection>
-                <SecondaryTitle>Já sabe por onde começar? </SecondaryTitle>
+                <SecondaryTitle>Não sabe por onde começar? </SecondaryTitle>
                 <Subtitle>
-                    Conheça um pouco mais das áreas de Tecnologia
+                    Então conheça um pouco mais sobre as áreas que estão em constante crescimento no mercado
                 </Subtitle>
                 <AreasCardWrapper>
                     <Swiper
@@ -267,9 +267,9 @@ export const Home: React.FC = () => {
                             >
                                 Clique Aqui
                             </a>{' '}
-                            e faça o seu teste agora mesmo!
+                            e faça o seu teste* agora mesmo!
                         </p>
-                        <p className="p2">Seu teste será feito no g1.com</p>
+                        <p className="p2">*Seu teste será feito no g1.com</p>
                     </VocationalTextContainer>
                     <VocationalImage src={VocationalTest} alt="" />
                 </VocationalBannerContainer>
@@ -287,15 +287,15 @@ export const Home: React.FC = () => {
                     />
                     <OurSitesCard
                         Link="https://www.soujunior.tech/"
-                        Title="Site SouJunior"
+                        Title="SouJunior Talk"
                         Img={Site}
-                        Description="Conheça todas as iniciativas da SouJunior"
+                        Description="Aprenda idiomas e aperfeiçoe-se!"
                     />
                     <OurSitesCard
                         Link="https://www.youtube.com/@soujuniortech"
-                        Title="Nos Acompanhe"
+                        Title="SouJunior Labs"
                         Img={NosAcompanhe}
-                        Description="Conheça todas as nossas redes e portais de comunicação"
+                        Description="Aqui você conseguirá por em prática seus conhecimentos, participando de projetos."
                     />
                 </CardWrapper>
             </OurSitesSection>
@@ -329,7 +329,7 @@ export const Home: React.FC = () => {
                 )
             : null}
 
-            <AppBannerContainer>
+            {/* <AppBannerContainer>
                 <AppBannerContainerInfo>
                     <h1>
                         Baixe nosso aplicativo
@@ -349,7 +349,7 @@ export const Home: React.FC = () => {
                 </AppBannerContainerInfo>
                 <BannerMobileImage src={BannerMobile} />
                 <CircleImage src={doubleCircles} />
-            </AppBannerContainer>
+            </AppBannerContainer> */}
 
             <TestimonialSection>
                 <Swiper
