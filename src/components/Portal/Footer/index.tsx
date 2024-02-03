@@ -55,20 +55,12 @@ const Index = () => {
                 </div>
                 <ul className="contacts">
                     <li>
-                        <a
-                            href="https://www.facebook.com/people/SouJunior/100086671131030/"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
+                        <a href="https://www.facebook.com/people/SouJunior/100086671131030/">
                             <FacebookIcon />
                         </a>
                     </li>
                     <li>
-                        <a
-                            href="https://www.instagram.com/soujunior.tech/"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
+                        <a href="https://www.instagram.com/soujunior.tech/">
                             <InstagramIcon />
                         </a>
                     </li>
@@ -82,20 +74,12 @@ const Index = () => {
                         </a>
                     </li>
                     <li>
-                        <a
-                            href="https://www.linkedin.com/company/soujunior/"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
+                        <a href="https://www.linkedin.com/company/soujunior/">
                             <LinkedInIcon />
                         </a>
                     </li>
                     <li>
-                        <a
-                            href="https://github.com/SouJunior"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
+                        <a href="https://github.com/SouJunior">
                             <GitHubIcon />
                         </a>
                     </li>
