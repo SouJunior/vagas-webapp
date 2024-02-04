@@ -42,12 +42,15 @@ const JobApply = () => {
     const [selectedResume, setSelectedResume] = useState<any>('');
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [cardData, setCardData] = useState<Job>();
+    const [error, setError] = useState(false);
 
     const api = useApi();
     const { id }: any = useParams();
     const navigate = useNavigate();
 
-    const { data: jobData, isLoading: isLoadingJob} = useQuery({
+    const similarJobs = jobs?.filter((job: { id: string }) => job.id !== id);
+
+    const { data: jobData, isLoading: isLoadingJob } = useQuery({
         queryKey: ['job', id],
         queryFn: () => api.getJobById(id),
     });
@@ -62,12 +65,12 @@ const JobApply = () => {
                 setCardData(response);
                 selecionaVaga(job.id);
             }
-        } catch (error) {
-            console.error("Erro ao obter dados da vaga:", error);
+        } catch (error: unknown) {
+            setError(true);
         }
     };
 
-    const { data: resumeData, isLoading: isLoadingCurriculos } = useQuery({
+    const { data: resumeData } = useQuery({
         queryKey: ['resumes'],
         queryFn: () => api.getUserCurriculum(localStorage.getItem('authToken')),
     });
@@ -154,7 +157,7 @@ const JobApply = () => {
                 </Wrapper>
                 <Title>Vagas similares a sua pesquisa:</Title>
                 <SimilarJobs>
-                    {((jobs || []).slice(0, 3)).map((job: Job) => (
+                    {similarJobs?.length > 0 ? (((similarJobs || []).slice(0, 3)).map((job: Job) => (
                         <JobCard
                             key={job.id}
                             id={job.id}
@@ -175,8 +178,11 @@ const JobApply = () => {
                             }
                             onClick={() => handleJobCardClick(job)}
                         />
-                    ))}
+                    ))) : (
+                        <div>Nenhuma vaga similar encontrada.</div>
+                    )}
                 </SimilarJobs>
+                {error && <div>Desculpe, algo inesperado aconteceu.</div>}
             </Content>
             {showDialog && (
                 <Modal
