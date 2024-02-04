@@ -34,8 +34,8 @@ export const useJobList = () => {
     const { search } = useLocation();
 
     const params = new URLSearchParams(search);
-    const searchTerm: string = params.get('search') || '';
-    const location: string = params.get('location') || '';
+    const searchTerm: string = params.get('search') ?? '';
+    const location: string = params.get('location') ?? '';
 
     const fetchJobs = async (
         page: number,
