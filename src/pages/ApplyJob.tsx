@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import useJobList from '../hooks/useJobList';
-import { Job } from '../hooks/useJobList';
+import { Job, useJobList } from '../hooks/useJobList';
 import JobCard from '../components/JobCard';
 import {
     ApplyButton,

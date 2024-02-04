@@ -1,5 +1,4 @@
-import useJobList from '../hooks/useJobList';
-import { Job } from '../hooks/useJobList';
+import { Job, useJobList } from '../hooks/useJobList';
 import JobCard from '../components/JobCard';
 import JobDetails from '../components/JobDetails';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
