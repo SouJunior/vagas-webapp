@@ -105,6 +105,34 @@ const JobApply = () => {
         navigate('/jobs');
     };
 
+    function renderSimilarJobs() {
+        if (similarJobs && similarJobs.length > 0) {
+            return (
+                ((similarJobs || []).slice(0, 3)).map((job: Job) => (
+                    <JobCard
+                        key={job.id}
+                        id={job.id}
+                        title={job.title}
+                        city={job.city}
+                        federalUnit={job.federalUnit}
+                        modality={job.modality}
+                        jobType={job.type}
+                        typeContract={job.typeContract}
+                        publishedAt={job.createdAt}
+                        company={job.company}
+                        active={selectedJob === job.id}
+                        opacity={
+                            noJobSelected || selectedJob === job.id ? 1 : 0.6
+                        }
+                        onClick={() => handleJobCardClick(job)}
+                    />
+                ))
+            )
+        } else {
+            return <div>Nenhuma vaga similar encontrada.</div>;
+        }
+    };
+
     function jobContent() {
         if (isLoading) {
             return undefined;
@@ -169,33 +197,7 @@ const JobApply = () => {
                 </Wrapper>
                 <Title>Vagas similares a sua pesquisa:</Title>
                 <SimilarJobs>
-                    {isLoading ? (
-                        <div>Carregando...</div>
-                    ) :
-                        similarJobs?.length > 0 ? (((similarJobs || []).slice(0, 3)).map((job: Job) => (
-                            <JobCard
-                                key={job.id}
-                                id={job.id}
-                                title={job.title}
-                                city={job.city}
-                                federalUnit={job.federalUnit}
-                                modality={job.modality}
-                                jobType={job.type}
-                                typeContract={job.typeContract}
-                                publishedAt={job.createdAt}
-                                company={job.company}
-                                active={selectedJob === job.id}
-                                opacity={
-                                    noJobSelected ||
-                                        selectedJob === job.id
-                                        ? 1
-                                        : 0.6
-                                }
-                                onClick={() => handleJobCardClick(job)}
-                            />
-                        ))) : (
-                            <div>Nenhuma vaga similar encontrada.</div>
-                        )}
+                    {isLoading ? (<div>Carregando...</div>) : (renderSimilarJobs())}
                 </SimilarJobs>
                 {error && <div>Desculpe, algo inesperado aconteceu.</div>}
             </Content>
