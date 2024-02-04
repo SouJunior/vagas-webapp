@@ -50,7 +50,7 @@ export const CompanyForms = (props: any): JSX.Element => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { isRegistered, setIseRegisteres } = useContext(AuthContext);
+    const { isRegistered, setIsRegistered } = useContext(AuthContext);
     const { errorEmail, setErrorEmail } = useContext(AuthContext);
     const [popup, setPopup] = useState(false);
 
@@ -75,7 +75,7 @@ export const CompanyForms = (props: any): JSX.Element => {
     });
 
     const characters = /^(?=.{8,20}$).*$/;
-    const letters = /^(?=.*[a-zA-Z]).*$/;
+    const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
 
@@ -147,6 +147,7 @@ export const CompanyForms = (props: any): JSX.Element => {
         } else {
             setIsLogin(true);
             handlePopUp();
+            errorEmail(false);
         }
     }
 
@@ -370,8 +371,11 @@ export const CompanyForms = (props: any): JSX.Element => {
                             <CheckboxInput {...register('privacyTerms')} />
                             <TermsLink>
                                 {/* TODO: Direcionar para as páginas correspondentes após criadas */}
-                                Li e aceito os <a href="/">Termos de Uso</a> e{' '}
-                                <a href="/">Política de Privacidade</a>
+                                Li e aceito os{' '}
+                                <a href="/">
+                                    Termos de Uso <br />
+                                </a>{' '}
+                                e <a href="/">Política de Privacidade</a>
                             </TermsLink>
                         </Label>
                         <MessageError2>
