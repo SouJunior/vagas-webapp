@@ -21,6 +21,8 @@ import { CandidateSettings } from '../pages/CandidateSettings';
 import CompanyApplications from '../pages/CompanyApplications';
 import JobsPanel from '../pages/JobsPanel';
 import MatchJobs from '../pages/MatchJobs';
+import Product from '../pages/CarouselAreas/Product';
+import CarouselLayout from '../pages/CarouselAreas/CarouselLayout';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -98,6 +100,10 @@ export const NavRoutes: React.FC = () => {
                     </RequireAuth>
                 }
             />
+             <Route path='areas' element={<CarouselLayout/>}>
+                <Route path='product' element={<Product/>}/>
+            </Route>
+
             {/*TODO: A pagina Layout já está com container definido
             e um rodapé, modificar isso, ou incluir os elementos acima
             sem esse estilo pré definido*/}

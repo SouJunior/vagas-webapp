@@ -66,7 +66,7 @@ import { Journey } from '../Mocks/MockJourney';
 import rehypeRaw from "rehype-raw"
 import Index from '../components/Portal/Footer';
 
-interface AreaProps {
+export interface AreaProps {
     id: string;
     name: string;
     icon: React.ReactNode;
