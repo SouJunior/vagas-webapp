@@ -343,10 +343,6 @@ export const Checklist = styled.div`
         align-self: center;
         color: #1165ba;
     }
-    @media (max-height: 1024px) {
-        display: none;
-        padding: 0;
-    }
     @media (max-width: 375px) {
         display: none;
     }
