@@ -100,7 +100,7 @@ export const NavRoutes: React.FC = () => {
                     </RequireAuth>
                 }
             />
-             <Route path='areas' element={<CarouselLayout/>}>
+            <Route path='areas' element={<CarouselLayout/>}>
                 <Route path='product' element={<Product/>}/>
             </Route>
 

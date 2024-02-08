@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom"
-import { Footer } from "../../components/Portal/Footer/styles"
 import Header from "../../components/Portal/Header"
 import HomeHeader from "../../components/Home/HomeHeader";
 import { useContext, useState } from "react";
@@ -12,6 +11,7 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { Areas } from "../../Mocks/MockArea";
 import { AreaProps } from "../Home";
 import TechnologyAreaCard from "../../components/Home/TechnologyArea/TechnologyAreaCard";
+import Index from "../../components/Portal/Footer";
 
 SwiperCore.use([Navigation, Autoplay]);
 
@@ -96,9 +96,8 @@ const CarouselLayout = () =>{
                     </Swiper>
                 </AreasCardWrapper>
             </AreasSection>
-            
             <Outlet/>
-            <Footer/>
+            <Index/>
         </>
     )
 }
