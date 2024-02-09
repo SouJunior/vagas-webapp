@@ -108,7 +108,7 @@ const JobApply = () => {
     function renderSimilarJobs() {
         if (similarJobs && similarJobs.length > 0) {
             return (
-                ((similarJobs || []).slice(0, 3)).map((job: Job) => (
+                (similarJobs.slice(0, 3)).map((job: Job) => (
                     <JobCard
                         key={job.id}
                         id={job.id}

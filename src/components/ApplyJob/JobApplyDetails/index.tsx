@@ -18,7 +18,7 @@ const JobApplyDetails = ({ Job, isLoading }: any) => {
                 <Title>Carregando...</Title>
             ) : (
                 <>
-                    <Title>{Job?.title} </Title>
+                    <Title>{Job.title} </Title>
 
                     <Subtitle>
                         {Job?.modality} - {Job?.type} - {Job?.typeContract}
