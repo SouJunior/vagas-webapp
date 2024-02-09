@@ -30,6 +30,7 @@ export const PageTitle = styled.h1`
     font-weight: 700;
     margin-top: 40px;
     margin-bottom: 26px;
+    text-align: center;
 `;
 
 export const UserArea = styled.div`
@@ -54,6 +55,8 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
     grid-column: 1 / -1;
     margin-bottom: 72px;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const ButtonContainer = styled.div`
@@ -120,3 +123,19 @@ export const ResumePreview = styled.div`
         border-radius: 6px;
     }
 `;
+
+export const Title = styled.h1`
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    font-weight: bold;
+    font-size: 1.5em;
+`
+
+export const SimilarJobs = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+
+`
