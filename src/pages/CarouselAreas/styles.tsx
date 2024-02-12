@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: -150px;
-    gap: 48px;
+    gap: 24px;
 `
 
 export const MainSection =  styled.section`
@@ -111,7 +111,8 @@ export const ListItem =  styled.li`
     margin-bottom: 24px;
 
     ::marker {
-        color: #1165BA;
+        color: #FFF;
+        font-size: 36px;
     }
 
 

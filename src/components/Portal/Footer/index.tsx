@@ -11,16 +11,8 @@ import {
     TelegramIcon,
 } from './styles';
 import LogoImageBlue from '../../../assets/imgs/logo-icon-name-h.svg';
-import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
-
-    const navigate = useNavigate()
-
-    const backToHome = () => {
-        navigate('/')
-        window.scrollTo({top:0, behavior:'smooth'})
-    }
 
     const handleScrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });

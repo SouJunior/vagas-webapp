@@ -13,70 +13,65 @@ import {
     FloppyDisk,
 } from '@phosphor-icons/react';
 
-const styles = {
-    color: '#fff',
-    fontSize: '36px',
-};
-
 export const Areas = [
     {
-        id: 'Bussiness',
+        id: 'bussiness',
         name: 'Business',
-        icon: <Suitcase style={styles} />,
+        icon: <Suitcase />,
     },
     {
-        id: 'TechRecruiter',
+        id: 'techrecruiter',
         name: 'Tech Recruiter',
-        icon: <HandHeart style={styles} />,
+        icon: <HandHeart />,
     },
     {
-        id: 'Products',
+        id: 'product',
         name: 'Produtos',
-        icon: <Package style={styles} />,
+        icon: <Package />,
     },
     {
-        id: 'Agile',
+        id: 'agile',
         name: 'Ágil',
-        icon: <CalendarCheck style={styles} />,
+        icon: <CalendarCheck />,
     },
     {
-        id: 'SocialMedia',
+        id: 'socialmedia',
         name: 'Social Media',
-        icon: <ThumbsUp style={styles} />,
+        icon: <ThumbsUp />,
     },
     {
-        id: 'UXUIDesign',
+        id: 'uxuidesign',
         name: 'UX/UI Design',
-        icon: <Layout style={styles} />,
+        icon: <Layout />,
     },
     {
-        id: 'FrontEnd',
+        id: 'frontend',
         name: 'Front End',
-        icon: <FileCss style={styles} />,
+        icon: <FileCss />,
     },
     {
-        id: 'BackEnd',
+        id: 'backend',
         name: 'Back End',
-        icon: <Code style={styles} />,
+        icon: <Code />,
     },
     {
-        id: 'Data',
+        id: 'data',
         name: 'Data',
-        icon: <ChartBar style={styles} />,
+        icon: <ChartBar />,
     },
     {
-        id: 'Mobile',
+        id: 'mobile',
         name: 'Mobile',
-        icon: <DeviceMobile style={styles} />,
+        icon: <DeviceMobile />,
     },
     {
-        id: 'Qa',
+        id: 'qa',
         name: 'QA',
-        icon: <FolderOpen style={styles} />,
+        icon: <FolderOpen />,
     },
     {
-        id: 'DevOps',
+        id: 'devops',
         name: 'DevOps',
-        icon: <FloppyDisk style={styles} />,
+        icon: <FloppyDisk />,
     },
 ];

@@ -58,13 +58,12 @@ import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
 import Header from '../components/Portal/Header';
 import { AuthContext } from '../contexts/Auth/AuthContext';
-import ModalAreas from '../components/Home/TechnologyArea/ModalAreas';
-import { AreasModal } from '../Mocks/MockModalArea';
 import JourneyModal from '../components/Home/JourneySection/JourneyModal';
 import ReactMarkdown from 'react-markdown'
 import { Journey } from '../Mocks/MockJourney';
 import rehypeRaw from "rehype-raw"
 import Index from '../components/Portal/Footer';
+import { useNavigate } from 'react-router-dom';
 
 export interface AreaProps {
     id: string;
@@ -80,16 +79,10 @@ export const Home: React.FC = () => {
     const [jobsCount, setJobsCount] = useState<number>();
     const [isMobile, setIsMobile] = useState(false);
 
-    const [openModal, setOpenModal] = useState(false)
-    const [modalId, setModalId] = useState('')
-
     const [openJourney, setopenJourney] = useState(false)
     const [journeyId, setJourneyId] = useState('')
 
-    const openOnClick = (id: string) => {
-        setModalId(id)
-        setOpenModal(true)
-    }
+    const navigate = useNavigate()
 
     const openJourneyOnClick = (id: string) => {
         setJourneyId(id)
@@ -214,29 +207,18 @@ export const Home: React.FC = () => {
                             <SwiperSlide
                                 key={area.name}
                                 className="swiper-slide-responsive"
-                                onClick={() => openOnClick(area.id)}
+                                onClick={() => navigate(`areas/${area.id}`)}
                             >
                                 <div >
                                     <TechnologyAreaCard
                                         icon={area.icon}
                                         area={area.name}
+                                        areaId={area.id}
+                                        areaIdFromUseParams={undefined}
                                     />
                                 </div>
                             </SwiperSlide>
                         ))}
-
-                        {openModal ? AreasModal.filter(
-                            (area) => area.id === modalId
-                        ).map((area) => 
-                            <div key={area.id}>
-                                <ModalAreas
-                                    title={area.title}
-                                    description={<ReactMarkdown children={area.description} rehypePlugins={[rehypeRaw]}/>}
-                                    source={area.source}
-                                    onClose={() => setOpenModal(false)}
-                                />
-                            </div>
-                        ): null}
 
                         {!isMobile && (
                             <CustomNextButton className="swiper-next-button">

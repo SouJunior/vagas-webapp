@@ -21,8 +21,8 @@ import { CandidateSettings } from '../pages/CandidateSettings';
 import CompanyApplications from '../pages/CompanyApplications';
 import JobsPanel from '../pages/JobsPanel';
 import MatchJobs from '../pages/MatchJobs';
-import Product from '../pages/CarouselAreas/Product';
 import CarouselLayout from '../pages/CarouselAreas/CarouselLayout';
+import RenderArea from '../pages/CarouselAreas/RenderArea';
 
 export const NavRoutes: React.FC = () => {
     return (
@@ -101,7 +101,7 @@ export const NavRoutes: React.FC = () => {
                 }
             />
             <Route path='areas' element={<CarouselLayout/>}>
-                <Route path='product' element={<Product/>}/>
+                <Route path=':areaId' element={<RenderArea/>}/>
             </Route>
 
             {/*TODO: A pagina Layout já está com container definido
