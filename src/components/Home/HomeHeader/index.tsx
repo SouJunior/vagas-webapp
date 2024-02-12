@@ -111,7 +111,7 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                 {isActive && !isMobileSize && <HomeJobFilter />}
                 <HeaderBtns>
                     <LoginButton onClick={handleLoginClick} isActive={isActive}>
-                    <img src={loginIcon} alt="Icone de login" />
+                        <img src={loginIcon} alt="Icone de login" />
                         Login
                     </LoginButton>
                     <RegisterButton

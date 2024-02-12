@@ -3,7 +3,6 @@ import ProductFigure from '../../assets/imgs/product_figure.svg'
 
 const Product: React.FC = () => {
     return (
-    <>
         <MainContainer>
             <MainSection>
                 <BoxTitle>
@@ -53,7 +52,6 @@ const Product: React.FC = () => {
                 </LargeBox>
             </Subsection>
         </MainContainer>
-    </>
     )
 }; 
 

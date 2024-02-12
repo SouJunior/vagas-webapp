@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"
 import Product from "./Product";
+import Agile from "./Agile";
 
 const RenderArea: React.FC = () => {
 
@@ -9,6 +10,8 @@ const RenderArea: React.FC = () => {
         switch (areaId) {
             case 'product':
                 return <Product/>
+            case 'agile':
+                return <Agile/>
             default:
                 return <div>Seção não encontrada</div>
         }

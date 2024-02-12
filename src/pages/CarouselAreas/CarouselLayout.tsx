@@ -1,7 +1,7 @@
 import { Outlet, useNavigate, useParams } from "react-router-dom"
 import Header from "../../components/Portal/Header"
 import HomeHeader from "../../components/Home/HomeHeader";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { AreasCardWrapper, AreasSection, CustomNextButton, CustomPrevButton } from "../styles/Home.styles";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -27,6 +27,20 @@ const CarouselLayout = () =>{
         navigate(`/areas/${itemId}`)
     }
 
+    
+        useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 1250);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const breakpoints = {
         350: {

@@ -5,7 +5,6 @@ import { useApi } from '../hooks/useApi';
 import JobCard from '../components/JobCard';
 import JobDetails from '../components/JobDetails';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
-// import Header from '../components/Header';
 import QuickFilter from '../components/QuickFilter';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
 import Header from '../components/Portal/Header';
@@ -57,8 +56,8 @@ const FeedJobs = () => {
     const { search } = useLocation();
 
     const params = new URLSearchParams(search);
-    const searchTerm: string = params.get('search') || '';
-    const location: string = params.get('location') || '';
+    const searchTerm: string = params.get('search') ?? '';
+    const location: string = params.get('location') ?? '';
 
     const fetchJobs = async (
         page: number,
