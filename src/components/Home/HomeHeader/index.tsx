@@ -53,7 +53,6 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
     const handleScrollToTop = () => {
         location.pathname === '/' ? window.scrollTo({ top: 0, behavior: 'smooth' }): navigate('/')
         console.log(location)
-        // window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleKeyPress = (event: React.KeyboardEvent) => {
@@ -110,10 +109,7 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                 </NavTitle>
                 {isActive && !isMobileSize && <HomeJobFilter />}
                 <HeaderBtns>
-                    <LoginButton onClick={handleLoginClick} isActive={isActive}>
-                        <img src={loginIcon} alt="Icone de login" />
-                        Login
-                    </LoginButton>
+                    <LoginButton onClick={handleLoginClick} isActive={isActive}><img src={loginIcon} alt="Icone de login" />Login</LoginButton>
                     <RegisterButton
                         onClick={handleRegisterClick}
                         isActive={isActive}
