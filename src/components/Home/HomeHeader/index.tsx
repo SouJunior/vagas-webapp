@@ -9,7 +9,7 @@ import {
     MobileHeader,
     HeaderBtns,
 } from './styles';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { Turn as Hamburger } from 'hamburger-react';
 import HomeJobFilter from '../HomeJobFilter/HomeJobFilter';
@@ -21,6 +21,7 @@ interface HeaderProps {
 
 const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
     const navigate = useNavigate();
+    const location = useLocation()
     const { setIsLogin } = useContext(AuthContext);
     const [isMobileOpen, setMobileOpen] = useState(false);
     const [isMobileSize, setIsMobileSize] = useState(false);
@@ -50,7 +51,9 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
     }, []);
 
     const handleScrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        location.pathname === '/' ? window.scrollTo({ top: 0, behavior: 'smooth' }): navigate('/')
+        console.log(location)
+        // window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleKeyPress = (event: React.KeyboardEvent) => {
