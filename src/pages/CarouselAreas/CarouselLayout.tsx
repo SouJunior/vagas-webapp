@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import Header from "../../components/Portal/Header"
 import HomeHeader from "../../components/Home/HomeHeader";
 import { useContext } from "react";
