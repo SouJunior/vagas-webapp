@@ -6,8 +6,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
-
 import { useApi } from '../hooks/useApi';
 
 import {
@@ -22,9 +20,6 @@ import {
     JourneyTitle,
     JourneyCardWrapper,
     AreasSection,
-    AreasCardWrapper,
-    CustomNextButton,
-    CustomPrevButton,
     VocationalBannerArea,
     VocationalBannerContainer,
     VocationalImage,
@@ -46,13 +41,11 @@ import ImageHome from '../assets/imgs/home-image.svg';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
 import Site from '../assets/imgs/siteSouJunior-img.svg';
 import NosAcompanhe from '../assets/imgs/followUs-img.svg';
-import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
 import VocationalTest from '../assets/imgs/vocational-teste.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
 import circle from '../assets/imgs/circle.svg';
 
 import ProfileTest from '../assets/imgs/profile-depoimento.png';
-import { Areas } from '../Mocks/MockArea';
 import Testimonials from '../components/Home/Testimonials';
 import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
@@ -63,7 +56,7 @@ import ReactMarkdown from 'react-markdown'
 import { Journey } from '../Mocks/MockJourney';
 import rehypeRaw from "rehype-raw"
 import Index from '../components/Portal/Footer';
-import { useNavigate } from 'react-router-dom';
+import CarouselAreas from '../components/CarouselAreas';
 
 export interface AreaProps {
     id: string;
@@ -77,12 +70,10 @@ SwiperCore.use([Navigation, Autoplay]);
 export const Home: React.FC = () => {
     const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
-    const [isMobile, setIsMobile] = useState(false);
 
     const [openJourney, setopenJourney] = useState(false)
     const [journeyId, setJourneyId] = useState('')
 
-    const navigate = useNavigate()
 
     const openJourneyOnClick = (id: string) => {
         setJourneyId(id)
@@ -92,20 +83,6 @@ export const Home: React.FC = () => {
     const api = useApi();
     const { user } = useContext(AuthContext);
     
-        useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 1250);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
     useEffect(() => {
         async function getJobs() {
             const jobsData = await api.getJobs();
@@ -129,24 +106,7 @@ export const Home: React.FC = () => {
         };
     }, []);
 
-    const breakpoints = {
-        350: {
-            slidesPerView: 3,
-        },
-        515: {
-            slidesPerView: 4,
-        },
-        768: {
-            slidesPerView: 5,
-        },
-        1024: {
-            slidesPerView: 8,
-        },
-        1440: {
-            slidesPerView: 9,
-        },
-    };
-
+    
     return (
         <>            
             {user ? (
@@ -180,53 +140,7 @@ export const Home: React.FC = () => {
                 <Subtitle>
                     Então conheça um pouco mais sobre as áreas que estão em constante crescimento no mercado
                 </Subtitle>
-                <AreasCardWrapper>
-                    <Swiper
-                        modules={[Navigation]}
-                        autoplay={{delay: 2500, disableOnInteraction: false}}
-                        breakpoints={breakpoints}
-                        navigation={{
-                            nextEl: '.swiper-next-button',
-                            prevEl: '.swiper-prev-button',
-                        }}
-                        className="mySwiper"
-                        style={{
-                            width: '100%',
-                            maxWidth: 'screen-width',
-                            paddingLeft: isMobile ? '0px' : '75px',
-                            paddingRight: '40px',
-                        }}
-                    >
-                        {!isMobile && (
-                            <CustomPrevButton className="swiper-prev-button">
-                                <CaretLeft size={42} />
-                            </CustomPrevButton>
-                        )}
-
-                        {Areas.map((area: AreaProps) => (
-                            <SwiperSlide
-                                key={area.name}
-                                className="swiper-slide-responsive"
-                                onClick={() => navigate(`areas/${area.id}`)}
-                            >
-                                <div >
-                                    <TechnologyAreaCard
-                                        icon={area.icon}
-                                        area={area.name}
-                                        areaId={area.id}
-                                        areaIdFromUseParams={undefined}
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        ))}
-
-                        {!isMobile && (
-                            <CustomNextButton className="swiper-next-button">
-                                <CaretRight size={42} />
-                            </CustomNextButton>
-                        )}
-                    </Swiper>
-                </AreasCardWrapper>
+                <CarouselAreas/>
             </AreasSection>
             <VocationalBannerArea>
                 <VocationalBannerContainer>
