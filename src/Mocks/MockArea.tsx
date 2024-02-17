@@ -21,6 +21,8 @@ export const Areas = [
     },
     {
         id: 'techrecruiter',
+
+
         name: 'Tech Recruiter',
         icon: <HandHeart />,
     },

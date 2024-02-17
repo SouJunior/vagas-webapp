@@ -47,7 +47,7 @@ export const UserForms = (props: any): JSX.Element => {
     const { isRegistered, setIsRegistered } = useContext(AuthContext);
 
     const characters = /^(?=.{8,20}$).*$/;
-    const letters = /^(?=.*[a-zA-Z]).*$/;
+    const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
 
@@ -86,8 +86,6 @@ export const UserForms = (props: any): JSX.Element => {
             // Recebe dados do contexto para verificação
 
             await auth.login(email, password, userType);
-
-
 
             navigate('/candidate-portal');
         } catch (err: any) {
@@ -208,12 +206,10 @@ export const UserForms = (props: any): JSX.Element => {
                             {errors.password && <>{errors.password.message}</>}
                         </MessageError>
                         <MessageError>
-                            {error && <>e-mail ou senha não conferem</>}
+                            {error && <>desculpe, algo inesperado aconteceu</>}
                         </MessageError>
                         <MessageError>
-                            {otherErrors && (
-                                <>desculpe, algo inesperado aconteceu</>
-                            )}
+                            {otherErrors && <>e-mail ou senha não conferem</>}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
@@ -368,7 +364,7 @@ export const UserForms = (props: any): JSX.Element => {
                             <TermsLink>
                                 {/* TODO: Direcionar para as páginas correspondentes após criadas */}
                                 Li e aceito os <a href="/">Termos de Uso</a> e{' '}
-                                <a href="/">Política de Privacidade</a>
+                                <br /> <a href="/">Política de Privacidade</a>
                             </TermsLink>
                         </Label>
                         {hasError && (
