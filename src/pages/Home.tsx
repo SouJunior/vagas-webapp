@@ -108,14 +108,13 @@ export const Home: React.FC = () => {
 
     
     return (
-        <>            
+        <>
             {user ? (
                 <div className="z-[2000] fixed w-full">
                     <Header />
                 </div>
             ) : (
                 <HomeHeader isActive={isActive} />
-                
             )}
             <Main>
                 <MainContent>
@@ -149,7 +148,7 @@ export const Home: React.FC = () => {
                             TESTE <br />
                             <span>VOCACIONAL</span>
                         </h1>
-                        <p className='mb-24'>
+                        <p className="mb-24">
                             <a
                                 href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
                                 target="_blank"
