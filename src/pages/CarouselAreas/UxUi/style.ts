@@ -162,6 +162,26 @@ export const LayoutsBox = styled.div`
     grid-column: span 2;
 `;
 
+export const TextLightWithMargin = styled.p`
+    margin-left: 16px;
+    font-family: 'Radio Canada';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 160%;
+    color: #fff;
+    opacity: 0.8;
+`;
+
+export const TextDarkWithMargin = styled.p`
+    margin-left: 16px;
+    font-family: 'Radio Canada';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 160%;
+    color: #323232;
+    opacity: 0.8;
+`;
+
 export const BoxBlueLightImage = styled.figure`
     width: 100%;
     height: 182px;

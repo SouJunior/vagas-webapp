@@ -127,29 +127,29 @@ const UxUi = () => {
                         Escolha de Elementos Visuais
                     </S.SubtitleLight>
 
-                    <S.TextLight>
+                    <S.TextLightWithMargin>
                         Selecionar cores, tipografia, ícones e outros elementos
                         visuais para criar uma identidade visual coesa.
-                    </S.TextLight>
+                    </S.TextLightWithMargin>
                 </S.VisualElementsBox>
 
                 <S.GraphicElementsBox>
                     <S.SubtitleLight>Elementos Gráficos</S.SubtitleLight>
 
-                    <S.TextLight>
+                    <S.TextLightWithMargin>
                         Capacidade de se adaptar a mudanças nos requisitos do
                         cliente ou no ambiente de negócios durante o processo de
                         desenvolvimento.
-                    </S.TextLight>
+                    </S.TextLightWithMargin>
                 </S.GraphicElementsBox>
 
                 <S.LayoutsBox>
                     <S.SubtitleDark>Design de Layouts e Grids</S.SubtitleDark>
 
-                    <S.TextDark>
+                    <S.TextDarkWithMargin>
                         Criar layouts e grids para organizar visualmente os
                         elementos na interface.
-                    </S.TextDark>
+                    </S.TextDarkWithMargin>
                 </S.LayoutsBox>
 
                 <S.BoxDark>
