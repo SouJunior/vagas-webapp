@@ -20,6 +20,7 @@ export const SectionContainerItens = styled.section`
     }
 
     @media (max-width: 1024px) {
-        max-width: 900px;
+        width: 100%;
+        padding: 0 5vw;
     }
 `;

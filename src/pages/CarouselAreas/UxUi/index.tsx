@@ -6,6 +6,9 @@ import { Layout } from 'phosphor-react';
 
 import * as S from './style';
 import Title from '../components/Title';
+import ProfessionsSubtitle from '../components/ProfessionsSubtitle';
+import ProfessionsParagraph from '../components/ProfessionsParagraph';
+import ProfessionsCard from '../components/ProfessionsCard';
 
 const UxUi = () => {
     return (
@@ -14,7 +17,7 @@ const UxUi = () => {
                 <Title>UX/UI Design</Title>
 
                 <div>
-                    <S.TextDark>
+                    <ProfessionsParagraph dark>
                         O UX Design, ou Design de Experiência do Usuário, é uma
                         disciplina que se concentra em melhorar a satisfação e a
                         usabilidade de um produto, tornando a interação do
@@ -22,90 +25,96 @@ const UxUi = () => {
                         profissionais de UX Design se dedicam a entender as
                         necessidades e expectativas dos usuários para criar
                         designs que atendam a esses requisitos.
-                    </S.TextDark>
-                    <S.TextDark>Principais atividades do UX Design:</S.TextDark>
+                    </ProfessionsParagraph>
+                    <ProfessionsParagraph dark>
+                        Principais atividades do UX Design:
+                    </ProfessionsParagraph>
                 </div>
             </S.TitleContainer>
 
-            <S.IconContainer>
-                <Layout />
-            </S.IconContainer>
+            <ProfessionsCard color="#046AD0" icon>
+                <Layout size={200} color="#fff" />
+            </ProfessionsCard>
 
-            <S.BoxDark>
-                <S.SubtitleLight>Criação de Personas</S.SubtitleLight>
-                <S.TextLight>
+            <ProfessionsCard color="#323232">
+                <ProfessionsSubtitle>Criação de Personas</ProfessionsSubtitle>
+                <ProfessionsParagraph>
                     Desenvolver representações fictícias de diferentes tipos de
                     usuários para orientar o design com base em diferentes
                     perfis.
-                </S.TextLight>
-            </S.BoxDark>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
-            <S.BoxBlue>
-                <S.SubtitleLight>Pesquisa de Usuários</S.SubtitleLight>
-                <S.TextLight>
+            <ProfessionsCard color="#046ad0">
+                <ProfessionsSubtitle>Pesquisa de Usuários</ProfessionsSubtitle>
+                <ProfessionsParagraph>
                     Realizar pesquisas para compreender as necessidades,
                     expectativas e comportamentos dos usuários.
-                </S.TextLight>
-            </S.BoxBlue>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
-            <S.BoxBlueLight>
-                <S.SubtitleDark>Jornadas</S.SubtitleDark>
-                <S.TextDark>
+            <ProfessionsCard color="#d6e7ff">
+                <ProfessionsSubtitle dark>Jornadas</ProfessionsSubtitle>
+                <ProfessionsParagraph dark>
                     Mapear o caminho que um usuário percorre ao interagir com um
                     produto, identificando pontos de dor e oportunidades de
                     melhoria.
-                </S.TextDark>
-            </S.BoxBlueLight>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
-            <S.BoxDark>
-                <S.SubtitleLight>Testes de Usabilidade</S.SubtitleLight>
-                <S.TextLight>
+            <ProfessionsCard color="#323232">
+                <ProfessionsSubtitle>Testes de Usabilidade</ProfessionsSubtitle>
+                <ProfessionsParagraph>
                     Conduzir testes com usuários para avaliar a eficácia do
                     design e identificar áreas de melhoria.
-                </S.TextLight>
-            </S.BoxDark>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
-            <S.BoxBlue>
-                <S.SubtitleLight>Wireframes e Protótipos</S.SubtitleLight>
-                <S.TextLight>
+            <ProfessionsCard color="#046ad0">
+                <ProfessionsSubtitle>
+                    Wireframes e Protótipos
+                </ProfessionsSubtitle>
+                <ProfessionsParagraph>
                     Criar esboços de baixa fidelidade (wireframes) e protótipos
                     interativos para visualizar a estrutura e fluxo do produto.
-                </S.TextLight>
-            </S.BoxBlue>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
-            <S.BoxBlueLight>
-                <S.SubtitleDark>Iteração e Melhoria Contínua</S.SubtitleDark>
-                <S.TextDark>
+            <ProfessionsCard color="#d6e7ff">
+                <ProfessionsSubtitle dark>
+                    Iteração e Melhoria Contínua
+                </ProfessionsSubtitle>
+                <ProfessionsParagraph dark>
                     Com base nos feedbacks dos usuários, ajustar e aprimorar
                     constantemente o design para otimizar a experiência.
-                </S.TextDark>
-            </S.BoxBlueLight>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
             <S.ExplanationBox>
-                <S.SubtitleLight>
+                <ProfessionsSubtitle>
                     UI Design (Design de Interface do Usuário)
-                </S.SubtitleLight>
+                </ProfessionsSubtitle>
 
                 <div>
-                    <S.TextLight>
+                    <ProfessionsParagraph>
                         O UI Design, ou Design de Interface do Usuário, está
                         mais centrado na estética visual e na aparência do
                         produto. 
-                    </S.TextLight>
-                    <S.TextLight>
+                    </ProfessionsParagraph>
+                    <ProfessionsParagraph>
                         Os profissionais de UI Design se concentram em criar
                         interfaces visualmente atraentes e consistentes,
                         considerando elementos como cores, tipografia, ícones e
                         layouts. 
-                    </S.TextLight>
-                    <S.TextLight>
+                    </ProfessionsParagraph>
+                    <ProfessionsParagraph>
                         Eles trabalham em colaboração com os profissionais de UX
                         Design para garantir que a interface seja não apenas
                         funcional, mas também esteticamente agradável.
-                    </S.TextLight>
-                    <S.TextLight>
+                    </ProfessionsParagraph>
+                    <ProfessionsParagraph>
                         Principais atividades do UI Design:
-                    </S.TextLight>
+                    </ProfessionsParagraph>
                 </div>
 
                 <S.FigureUiRepresentation>
@@ -114,7 +123,9 @@ const UxUi = () => {
             </S.ExplanationBox>
 
             <S.VisualElementsBox>
-                <S.SubtitleLight>Escolha de Elementos Visuais</S.SubtitleLight>
+                <ProfessionsSubtitle>
+                    Escolha de Elementos Visuais
+                </ProfessionsSubtitle>
 
                 <S.TextLightWithMargin>
                     Selecionar cores, tipografia, ícones e outros elementos
@@ -123,7 +134,7 @@ const UxUi = () => {
             </S.VisualElementsBox>
 
             <S.GraphicElementsBox>
-                <S.SubtitleLight>Elementos Gráficos</S.SubtitleLight>
+                <ProfessionsSubtitle>Elementos Gráficos</ProfessionsSubtitle>
 
                 <S.TextLightWithMargin>
                     Capacidade de se adaptar a mudanças nos requisitos do
@@ -133,7 +144,9 @@ const UxUi = () => {
             </S.GraphicElementsBox>
 
             <S.LayoutsBox>
-                <S.SubtitleDark>Design de Layouts e Grids</S.SubtitleDark>
+                <ProfessionsSubtitle dark>
+                    Design de Layouts e Grids
+                </ProfessionsSubtitle>
 
                 <S.TextDarkWithMargin>
                     Criar layouts e grids para organizar visualmente os
@@ -141,41 +154,41 @@ const UxUi = () => {
                 </S.TextDarkWithMargin>
             </S.LayoutsBox>
 
-            <S.BoxDark>
-                <S.SubtitleLight>
+            <ProfessionsCard color="#323232">
+                <ProfessionsSubtitle>
                     Colaboração com Desenvolvedores
-                </S.SubtitleLight>
-                <S.TextLight>
+                </ProfessionsSubtitle>
+                <ProfessionsParagraph>
                     Trabalhar em estreita colaboração com desenvolvedores para
                     garantir a implementação correta do design.
-                </S.TextLight>
-            </S.BoxDark>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
-            <S.BoxBlue>
-                <S.SubtitleLight>Consistência Visual</S.SubtitleLight>
-                <S.TextLight>
+            <ProfessionsCard color="#046ad0">
+                <ProfessionsSubtitle>Consistência Visual</ProfessionsSubtitle>
+                <ProfessionsParagraph>
                     Manter a consistência visual em todo o produto para uma
                     experiência coesa.
-                </S.TextLight>
-            </S.BoxBlue>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
-            <S.BoxBlueLight>
-                <S.SubtitleDark>Responsividade</S.SubtitleDark>
-                <S.TextDark>
+            <ProfessionsCard color="#d6e7ff">
+                <ProfessionsSubtitle dark>Responsividade</ProfessionsSubtitle>
+                <ProfessionsParagraph dark>
                     Garantir que o design seja responsivo, adaptando-se a
                     diferentes tamanhos de tela e dispositivos.
-                </S.TextDark>
-            </S.BoxBlueLight>
+                </ProfessionsParagraph>
+            </ProfessionsCard>
 
             <S.VisualElementsBox>
-                <S.TextLight>
+                <ProfessionsParagraph>
                     Ambos os profissionais desempenham papéis complementares
                     para criar produtos digitais bem-sucedidos, onde o UX Design
                     se concentra na experiência global do usuário e o UI Design
                     trata da estética visual da interface. A colaboração entre
                     essas disciplinas é fundamental para oferecer uma
                     experiência completa e eficaz aos usuários.
-                </S.TextLight>
+                </ProfessionsParagraph>
             </S.VisualElementsBox>
 
             <S.BoxBlueLightImage>
