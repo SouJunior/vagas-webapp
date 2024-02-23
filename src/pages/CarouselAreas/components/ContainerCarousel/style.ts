@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const SectionCarousel = styled.section`
     margin-top: 100px;
-    max-width: 1440px;
+    max-width: 1520px;
 
-    @media (max-width: 1520px) {
-        max-width: 1280px;
+    @media (max-width: 1560px) {
+        max-width: 1320px;
     }
 
     @media (max-width: 1366px) {
