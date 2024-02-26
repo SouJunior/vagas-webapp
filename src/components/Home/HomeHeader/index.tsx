@@ -10,11 +10,9 @@ import {
     HeaderBtns,
 } from './styles';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { Turn as Hamburger } from 'hamburger-react';
 import HomeJobFilter from '../HomeJobFilter/HomeJobFilter';
-import loginIcon from '../../../assets/imgs/Candidato-icone.svg'
 import loginIcon from '../../../assets/imgs/Candidato-icone.svg'
 
 interface HeaderProps {
@@ -23,7 +21,6 @@ interface HeaderProps {
 
 const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
     const navigate = useNavigate();
-    const location = useLocation()
     const location = useLocation()
     const { setIsLogin } = useContext(AuthContext);
     const [isMobileOpen, setMobileOpen] = useState(false);
