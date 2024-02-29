@@ -51,10 +51,7 @@ import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
 import Header from '../components/Portal/Header';
 import { AuthContext } from '../contexts/Auth/AuthContext';
-import JourneyModal from '../components/Home/JourneySection/JourneyModal';
-import ReactMarkdown from 'react-markdown'
 import { Journey } from '../Mocks/MockJourney';
-import rehypeRaw from "rehype-raw"
 import Index from '../components/Portal/Footer';
 import CarouselAreas from '../components/CarouselAreas';
 
@@ -66,23 +63,13 @@ export interface AreaProps {
 
 SwiperCore.use([Navigation, Autoplay]);
 
-
 export const Home: React.FC = () => {
     const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
 
-    const [openJourney, setopenJourney] = useState(false)
-    const [journeyId, setJourneyId] = useState('')
-
-
-    const openJourneyOnClick = (id: string) => {
-        setJourneyId(id)
-        setopenJourney(true)
-    }
-
     const api = useApi();
     const { user } = useContext(AuthContext);
-    
+
     useEffect(() => {
         async function getJobs() {
             const jobsData = await api.getJobs();
@@ -106,7 +93,6 @@ export const Home: React.FC = () => {
         };
     }, []);
 
-    
     return (
         <>
             {user ? (
@@ -137,9 +123,10 @@ export const Home: React.FC = () => {
             <AreasSection>
                 <SecondaryTitle>Não sabe por onde começar? </SecondaryTitle>
                 <Subtitle>
-                    Então conheça um pouco mais sobre as áreas que estão em constante crescimento no mercado
+                    Então conheça um pouco mais sobre as áreas que estão em
+                    constante crescimento no mercado
                 </Subtitle>
-                <CarouselAreas/>
+                <CarouselAreas />
             </AreasSection>
             <VocationalBannerArea>
                 <VocationalBannerContainer>
@@ -193,30 +180,16 @@ export const Home: React.FC = () => {
                     <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
                     <JourneyCardWrapper>
                         {Journey.map((journey) => (
-                            <div key={journey.Id} onClick={() => openJourneyOnClick(journey.Id)}
-                            onKeyDown={(event: React.KeyboardEvent) => {
-                                if (event.key === "Enter" || event.key === ''){
-                                    openJourneyOnClick(journey.Id)
-                                }
-                            }}
-                            tabIndex={0}
-                            role='button'>
+                            <div key={journey.Id} tabIndex={0} role="button">
                                 <JourneyCard
-                                Img={journey.Img}
-                                Description={journey.Description}
+                                    Img={journey.Img}
+                                    Description={journey.Description}
                                 />
-
                             </div>
                         ))}
                     </JourneyCardWrapper>
                 </JourneyContainer>
             </JourneySection>
-
-            {openJourney ? 
-                Journey.filter((journey) => journey.Id === journeyId).map((journey) => 
-                <JourneyModal Title={journey.Description} Content={<ReactMarkdown children={journey.Content} rehypePlugins={[rehypeRaw]}/>} onClose={() => setopenJourney(false)}/>
-                )
-            : null}
 
             {/* <AppBannerContainer>
                 <AppBannerContainerInfo>
@@ -299,7 +272,7 @@ export const Home: React.FC = () => {
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>
-            <Index/>
+            <Index />
         </>
     );
 };

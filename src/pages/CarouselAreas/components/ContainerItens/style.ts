@@ -4,11 +4,11 @@ export const SectionContainerItens = styled.section`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 1440px;
+    max-width: 1520px;
     margin: 74px 0;
 
-    @media (max-width: 1520px) {
-        max-width: 1280px;
+    @media (max-width: 1560px) {
+        max-width: 1320px;
     }
 
     @media (max-width: 1366px) {
@@ -20,6 +20,7 @@ export const SectionContainerItens = styled.section`
     }
 
     @media (max-width: 1024px) {
-        max-width: 900px;
+        width: 100%;
+        padding: 0 5vw;
     }
 `;
