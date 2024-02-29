@@ -1,13 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import googlePlayBadge from '../assets/imgs/googlePlayBadge.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
 import { useApi } from '../hooks/useApi';
 
@@ -23,19 +20,12 @@ import {
     JourneyTitle,
     JourneyCardWrapper,
     AreasSection,
-    AreasCardWrapper,
-    CustomNextButton,
-    CustomPrevButton,
     VocationalBannerArea,
     VocationalBannerContainer,
     VocationalImage,
     VocationalTextContainer,
     TestimonialSection,
     TestimonialWrapper,
-    AppBannerContainer,
-    AppBannerContainerInfo,
-    BannerMobileImage,
-    GooglePlayButton,
     CircleImage,
     JourneyContainer,
     Circle,
@@ -51,28 +41,21 @@ import ImageHome from '../assets/imgs/home-image.svg';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
 import Site from '../assets/imgs/siteSouJunior-img.svg';
 import NosAcompanhe from '../assets/imgs/followUs-img.svg';
-import TechnologyAreaCard from '../components/Home/TechnologyArea/TechnologyAreaCard';
 import VocationalTest from '../assets/imgs/vocational-teste.svg';
-import BannerMobile from '../assets/imgs/BannerMobile.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
 import circle from '../assets/imgs/circle.svg';
 
 import ProfileTest from '../assets/imgs/profile-depoimento.png';
-import { Areas } from '../Mocks/MockArea';
 import Testimonials from '../components/Home/Testimonials';
 import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
 import Header from '../components/Portal/Header';
 import { AuthContext } from '../contexts/Auth/AuthContext';
-import ModalAreas from '../components/Home/TechnologyArea/ModalAreas';
-import { AreasModal } from '../Mocks/MockModalArea';
-import JourneyModal from '../components/Home/JourneySection/JourneyModal';
-import ReactMarkdown from 'react-markdown'
 import { Journey } from '../Mocks/MockJourney';
-import rehypeRaw from "rehype-raw"
 import Index from '../components/Portal/Footer';
+import CarouselAreas from '../components/CarouselAreas';
 
-interface AreaProps {
+export interface AreaProps {
     id: string;
     name: string;
     icon: React.ReactNode;
@@ -80,44 +63,12 @@ interface AreaProps {
 
 SwiperCore.use([Navigation, Autoplay]);
 
-
 export const Home: React.FC = () => {
     const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
-    const [isMobile, setIsMobile] = useState(false);
-
-    const [openModal, setOpenModal] = useState(false)
-    const [modalId, setModalId] = useState('')
-
-    const [openJourney, setopenJourney] = useState(false)
-    const [journeyId, setJourneyId] = useState('')
-
-    const openOnClick = (id: string) => {
-        setModalId(id)
-        setOpenModal(true)
-    }
-
-    const openJourneyOnClick = (id: string) => {
-        setJourneyId(id)
-        setopenJourney(true)
-    }
 
     const api = useApi();
     const { user } = useContext(AuthContext);
-    
-        useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 1250);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     useEffect(() => {
         async function getJobs() {
@@ -142,24 +93,6 @@ export const Home: React.FC = () => {
         };
     }, []);
 
-    const breakpoints = {
-        350: {
-            slidesPerView: 3,
-        },
-        515: {
-            slidesPerView: 4,
-        },
-        768: {
-            slidesPerView: 5,
-        },
-        1024: {
-            slidesPerView: 8,
-        },
-        1440: {
-            slidesPerView: 9,
-        },
-    };
-
     return (
         <>
             {user ? (
@@ -174,12 +107,12 @@ export const Home: React.FC = () => {
                     <MainSearchFilter>
                         <Title>
                             Um portal de vagas <span>exclusivo</span> para o
-                            profissional <span>Júnior!</span>
+                            profissionais <span>em início de carreira!</span>
                         </Title>
                         <JobFilter />
 
                         <JobsInfo>
-                            Mais de {jobsCount} vagas disponíveis para Juninhos{' '}
+                            Mais de {jobsCount} vagas disponíveis para você!{' '}
                         </JobsInfo>
                     </MainSearchFilter>
                     <Image src={ImageHome}></Image>
@@ -188,68 +121,12 @@ export const Home: React.FC = () => {
                 <CircleImage src={doubleCircles} />
             </Main>
             <AreasSection>
-                <SecondaryTitle>Já sabe por onde começar? </SecondaryTitle>
+                <SecondaryTitle>Não sabe por onde começar? </SecondaryTitle>
                 <Subtitle>
-                    Conheça um pouco mais das áreas de Tecnologia
+                    Então conheça um pouco mais sobre as áreas que estão em
+                    constante crescimento no mercado
                 </Subtitle>
-                <AreasCardWrapper>
-                    <Swiper
-                        modules={[Navigation]}
-                        autoplay={{delay: 2500, disableOnInteraction: false}}
-                        breakpoints={breakpoints}
-                        navigation={{
-                            nextEl: '.swiper-next-button',
-                            prevEl: '.swiper-prev-button',
-                        }}
-                        className="mySwiper"
-                        style={{
-                            width: '100%',
-                            maxWidth: 'screen-width',
-                            paddingLeft: isMobile ? '0px' : '75px',
-                            paddingRight: '40px',
-                        }}
-                    >
-                        {!isMobile && (
-                            <CustomPrevButton className="swiper-prev-button">
-                                <CaretLeft size={42} />
-                            </CustomPrevButton>
-                        )}
-
-                        {Areas.map((area: AreaProps) => (
-                            <SwiperSlide
-                                key={area.name}
-                                className="swiper-slide-responsive"
-                                onClick={() => openOnClick(area.id)}
-                            >
-                                <div >
-                                    <TechnologyAreaCard
-                                        icon={area.icon}
-                                        area={area.name}
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        ))}
-
-                        {openModal ? AreasModal.filter(
-                            (area) => area.id === modalId
-                        ).map((area) => 
-                            <div key={area.id}>
-                                <ModalAreas
-                                    title={area.title}
-                                    description={<ReactMarkdown children={area.description} rehypePlugins={[rehypeRaw]}/>}
-                                    source={area.source}
-                                    onClose={() => setOpenModal(false)}
-                                />
-                            </div>
-                        ): null}
-
-                        {!isMobile && (
-                            <CustomNextButton className="swiper-next-button">
-                                <CaretRight size={42} />
-                            </CustomNextButton>
-                        )}
-                    </Swiper>
-                </AreasCardWrapper>
+                <CarouselAreas />
             </AreasSection>
             <VocationalBannerArea>
                 <VocationalBannerContainer>
@@ -266,9 +143,9 @@ export const Home: React.FC = () => {
                             >
                                 Clique Aqui
                             </a>{' '}
-                            e faça o seu teste agora mesmo!
+                            e faça o seu teste* agora mesmo!
                         </p>
-                        <p className="p2">Seu teste será feito no g1.com</p>
+                        <p className="p2">*Seu teste será feito no g1.com</p>
                     </VocationalTextContainer>
                     <VocationalImage src={VocationalTest} alt="" />
                 </VocationalBannerContainer>
@@ -279,16 +156,22 @@ export const Home: React.FC = () => {
                 </SecondaryTitle>
                 <CardWrapper>
                     <OurSitesCard
+                        Link="https://mentores.soujunior.tech/"
+                        Title="Portal de Mentoria"
+                        Img={PortalMentoria}
+                        Description="Seja mentorado por um profissional experiente."
+                    />
+                    <OurSitesCard
                         Link="https://www.soujunior.tech/"
-                        Title="Site SouJunior"
+                        Title="SouJunior Talk"
                         Img={Site}
-                        Description="Conheça todas as iniciativas da SouJunior"
+                        Description="Aprenda idiomas e aperfeiçoe-se!"
                     />
                     <OurSitesCard
                         Link="https://www.youtube.com/@soujuniortech"
-                        Title="Nos Acompanhe"
+                        Title="SouJunior Labs"
                         Img={NosAcompanhe}
-                        Description="Conheça todas as nossas redes e portais de comunicação"
+                        Description="Aqui você conseguirá por em prática seus conhecimentos, participando de projetos."
                     />
                 </CardWrapper>
             </OurSitesSection>
@@ -297,32 +180,18 @@ export const Home: React.FC = () => {
                     <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
                     <JourneyCardWrapper>
                         {Journey.map((journey) => (
-                            <div key={journey.Id} onClick={() => openJourneyOnClick(journey.Id)}
-                            onKeyDown={(event: React.KeyboardEvent) => {
-                                if (event.key === "Enter" || event.key === ''){
-                                    openJourneyOnClick(journey.Id)
-                                }
-                            }}
-                            tabIndex={0}
-                            role='button'>
+                            <div key={journey.Id} tabIndex={0} role="button">
                                 <JourneyCard
-                                Img={journey.Img}
-                                Description={journey.Description}
+                                    Img={journey.Img}
+                                    Description={journey.Description}
                                 />
-
                             </div>
                         ))}
                     </JourneyCardWrapper>
                 </JourneyContainer>
             </JourneySection>
 
-            {openJourney ? 
-                Journey.filter((journey) => journey.Id === journeyId).map((journey) => 
-                <JourneyModal Title={journey.Description} Content={<ReactMarkdown children={journey.Content} rehypePlugins={[rehypeRaw]}/>} onClose={() => setopenJourney(false)}/>
-                )
-            : null}
-
-            <AppBannerContainer>
+            {/* <AppBannerContainer>
                 <AppBannerContainerInfo>
                     <h1>
                         Baixe nosso aplicativo
@@ -342,7 +211,7 @@ export const Home: React.FC = () => {
                 </AppBannerContainerInfo>
                 <BannerMobileImage src={BannerMobile} />
                 <CircleImage src={doubleCircles} />
-            </AppBannerContainer>
+            </AppBannerContainer> */}
 
             <TestimonialSection>
                 <Swiper
@@ -403,7 +272,7 @@ export const Home: React.FC = () => {
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>
-            <Index/>
+            <Index />
         </>
     );
 };

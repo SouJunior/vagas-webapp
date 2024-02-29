@@ -11,6 +11,7 @@ import {
 } from '../../JobDetails/styles';
 
 const JobApplyDetails = ({ Job, isLoading }: any) => {
+
     return (
         <JobApplyDetailsContainer>
             {isLoading ? (
@@ -20,7 +21,7 @@ const JobApplyDetails = ({ Job, isLoading }: any) => {
                     <Title>{Job.title} </Title>
 
                     <Subtitle>
-                        {Job.modality} - {Job.type} - {Job.typeContract}
+                        {Job?.modality} - {Job?.type} - {Job?.typeContract}
                     </Subtitle>
 
                     <Text>{Job?.contractType}</Text>
@@ -31,25 +32,25 @@ const JobApplyDetails = ({ Job, isLoading }: any) => {
                                 <img src={ProfileDefault} alt="Default" />
                             ) : (
                                 <img
-                                    src={Job.company.profile}
-                                    alt={Job.company.companyName}
+                                    src={Job?.company?.profile}
+                                    alt={Job?.company?.companyName}
                                 />
                             )}
                         </CompanyLogoImg>
-                        <CompanyName>{Job.company.companyName}</CompanyName>
+                        <CompanyName>{Job?.company?.companyName}</CompanyName>
                     </CompanyInfo>
 
                     <TextContainer>
-                        <Text>{Job.description}</Text>
-                        <Text>{Job.prerequisites}</Text>
+                        <Text>{Job?.description}</Text>
+                        <Text>{Job?.prerequisites}</Text>
                         <Text>
-                            R${Job.salaryMin} - R$
-                            {Job.salaryMax}
+                            R${Job?.salaryMin} - R$
+                            {Job?.salaryMax}
                         </Text>
                         <Text>
-                            {Job.city}/{Job.federalUnit}
+                            {Job?.city}/{Job?.federalUnit}
                         </Text>
-                        <Text>{Job.affirmativeType}</Text>
+                        <Text>{Job?.affirmativeType}</Text>
                     </TextContainer>
                 </>
             )}

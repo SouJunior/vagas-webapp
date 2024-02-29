@@ -1,7 +1,5 @@
 import Linkedin from '../assets/imgs/linkedin-rectangle.png';
 import Resume from '../assets/imgs/resume-rectangle.png';
-import Process from '../assets/imgs/process-rectangle.png';
-import KeyWords from '../assets/imgs/keyWords-rectangle.png';
 
 export const Journey = [{
     Id:'1',
@@ -69,16 +67,6 @@ Interaja em comentários e postagens de forma estratégica. Faça comentários p
     Img: Resume,
     Description: 'Como construir um currículo Júnior',
     Content:'Resume Content',
-}, {
-    Id:'3',
-    Img: Process,
-    Description: 'Se prepare para o processo seletivo',
-    Content:'Process Content',
-}, {
-    Id:'4',
-    Img: KeyWords,
-    Description: 'Palavras Chave na área tech',
-    Content:'Keywords Content',
-}]
+},]
 
 export {}

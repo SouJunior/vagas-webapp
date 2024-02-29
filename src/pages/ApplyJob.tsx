@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Job, useJobList } from '../hooks/useJobList';
+import JobCard from '../components/JobCard';
 import {
     ApplyButton,
     ButtonContainer,
@@ -12,6 +14,8 @@ import {
     ResumePreview,
     UserArea,
     Wrapper,
+    SimilarJobs,
+    Title,
 } from './styles/ApplyJobs.styles';
 import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,21 +26,51 @@ import { useMutation, useQuery } from 'react-query';
 import Modal from '../components/ApplyJob/Modal';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
 import SouJuniorLogo from '../assets/imgs/logo-name-h.svg';
+
 const JobApply = () => {
+    const {
+        selectedJob,
+        noJobSelected,
+        setNoJobSelected,
+        setSelectedJob,
+        jobs,
+        selecionaVaga,
+        isLoading,
+    } = useJobList();
+
     const [showDialog, setShowDialog] = useState(false);
     const [selectedResume, setSelectedResume] = useState<any>('');
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [cardData, setCardData] = useState<Job>();
+    const [error, setError] = useState(false);
 
     const api = useApi();
     const { id }: any = useParams();
     const navigate = useNavigate();
 
+    const similarJobs = jobs?.filter((job: { id: string }) => job.id !== id);
+
     const { data: jobData, isLoading: isLoadingJob } = useQuery({
-        queryKey: ['job'],
+        queryKey: ['job', id],
         queryFn: () => api.getJobById(id),
     });
 
-    const { data: resumeData, isLoading: isLoadingCurriculos } = useQuery({
+    const handleJobCardClick = async (job: Job) => {
+        try {
+            if (selectedJob === job.id) {
+                setSelectedJob(null);
+                setNoJobSelected(true);
+            } else {
+                const response = await api.getJobById(job.id);
+                setCardData(response);
+                selecionaVaga(job.id);
+            }
+        } catch (error: unknown) {
+            setError(true);
+        }
+    };
+
+    const { data: resumeData } = useQuery({
         queryKey: ['resumes'],
         queryFn: () => api.getUserCurriculum(localStorage.getItem('authToken')),
     });
@@ -61,15 +95,55 @@ const JobApply = () => {
 
     function OpenCancelDialog() {
         setShowDialog(true);
-    }
+    };
 
     function HandleCancel() {
         setShowDialog(false);
-    }
+    };
 
     function HandleConfirm() {
         navigate('/jobs');
-    }
+    };
+
+    function renderSimilarJobs() {
+        if (similarJobs && similarJobs.length > 0) {
+            return (
+                (similarJobs.slice(0, 3)).map((job: Job) => (
+                    <JobCard
+                        key={job.id}
+                        id={job.id}
+                        title={job.title}
+                        city={job.city}
+                        federalUnit={job.federalUnit}
+                        modality={job.modality}
+                        jobType={job.type}
+                        typeContract={job.typeContract}
+                        publishedAt={job.createdAt}
+                        company={job.company}
+                        active={selectedJob === job.id}
+                        opacity={
+                            noJobSelected || selectedJob === job.id ? 1 : 0.6
+                        }
+                        onClick={() => handleJobCardClick(job)}
+                    />
+                ))
+            )
+        } else {
+            return <div>Nenhuma vaga similar encontrada.</div>;
+        }
+    };
+
+    function jobContent() {
+        if (isLoading) {
+            return undefined;
+        }
+    
+        if (jobs && Object.keys(jobs).length === 0) {
+            return null;
+        }
+    };
+
+    jobContent();
 
     return (
         <JobApplyContainer>
@@ -104,7 +178,7 @@ const JobApply = () => {
                         </ResumeContainer>
                         <JobDetailsWrapper>
                             <JobApplyDetails
-                                Job={jobData}
+                                Job={cardData ?? jobData}
                                 isLoading={isLoadingJob}
                             />
                             <ButtonContainer>
@@ -121,8 +195,12 @@ const JobApply = () => {
                         </JobDetailsWrapper>
                     </UserArea>
                 </Wrapper>
+                <Title>Vagas similares a sua pesquisa:</Title>
+                <SimilarJobs>
+                    {isLoading ? (<div>Carregando...</div>) : (renderSimilarJobs())}
+                </SimilarJobs>
+                {error && <div>Desculpe, algo inesperado aconteceu.</div>}
             </Content>
-
             {showDialog && (
                 <Modal
                     title="CANCELAR?"
@@ -160,3 +238,4 @@ const JobApply = () => {
 };
 
 export default JobApply;
+

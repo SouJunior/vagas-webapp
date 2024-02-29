@@ -63,7 +63,7 @@ export const NavTitle = styled.div`
 
 export const HeaderBtns = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 16 px;
 
     @media (max-width: 835px) {
         display: none;
@@ -71,44 +71,59 @@ export const HeaderBtns = styled.div`
 `;
 
 export const RegisterButton = styled.button<ButtonsProps>`
-    background-color: ${({ theme }) => theme.colors.primary};
-    font-size: 18px;
-    font-weight: 600;
+    // background-color: ${({ theme }) => theme.colors.primary};
+    font-size: 16px;
+    font-weight: 500;
     width: 262px;
     height: 52px;
-    color: #fff;
-    border-radius: 4px;
+    // color: #fff;
+    // border-radius: 4px;
+    color: ${({ theme }) => theme.colors.primary};;
+    padding: 8px, 16px;
 
     :hover {
-        opacity: 0.8;
+        // opacity: 0.8;
+        border: 1px solid #046AD0;
+        border-radius: 4px;
     }
 
     ${({ isActive }) =>
         isActive
             ? css`
-                  width: 220px;
+                  width: 110px;
                   height: 42px;
                   transition: all 300ms ease-in-out;
                   font-size: 16px;
               `
             : css`
-                  width: 262px;
-                  height: 52px;
+                  width: 122px;
+                  height: 35px;
                   transition: all 300ms ease-in-out;
               `}
 `;
 
 export const LoginButton = styled(RegisterButton)<ButtonsProps>`
-    background-color: transparent;
-    color: ${({ theme }) => theme.colors.primary};
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 4px;
-    border: 1px solid ${({ theme }) => theme.colors.primary};
+    // background-color: transparent;
+    // color: ${({ theme }) => theme.colors.primary};
+    // font-size: 18px;
+    // font-weight: 600;
+    // border-radius: 4px;
+    // border: 1px solid ${({ theme }) => theme.colors.primary};
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 
     :hover {
-        background-color: ${({ theme }) => theme.colors.primary};
-        color: #fff;
+        // background-color: ${({ theme }) => theme.colors.primary};
+        // color: #fff;
+        border-radius: 4px;
+        border: 1px solid ${({ theme }) => theme.colors.primary};
+        display: flex;
+    }
+
+    img {
+        width: 16px;
+        margin-right:10px;
     }
 `;
 
