@@ -6,9 +6,9 @@ export const ModalContent = styled.div`
     align-items: center;
     gap: 20px;
     position: fixed;
-    background: #FDFFFC;
+    background: #fdfffc;
 
-    border: 2px solid ${({theme}) => theme.colors.primaryDark};
+    border: 2px solid ${({ theme }) => theme.colors.primaryDark};
     border-radius: 10px;
 
     img {
@@ -23,22 +23,26 @@ export const ModalContent = styled.div`
     }
 
     @media (max-width: 540px) {
-        width: 80%;
+        width: 95%;
     }
 `;
 
-export const ModalText = styled.p`
+export const ModalText = styled.textarea`
     font-family: 'Radio Canada';
     font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 26px;
-    padding: 0 0 16px 0;
-
-    color: ${({theme}) => theme.colors.mutedDarker};
-
+    font-weight: 200;
+    font-size: 18px;
+    width: 670px;
+    height: 550px;
+    padding: 20px;
+    overflow-y: scroll;
+    color: ${({ theme }) => theme.colors.mutedDarker};
+    resize: none;
+    border: none;
+    outline: none;
     @media (max-width: 480px) {
-        width: 80%;
+        width: 95%;
+        font-size: 15px;
     }
 `;
 
@@ -46,10 +50,10 @@ export const ModalTitle = styled.h2`
     font-family: 'Radio Canada';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 48px;
     padding: 0 0 16px 0;
-    color: ${({theme}) => theme.colors.primaryDark};
+    color: ${({ theme }) => theme.colors.primaryDark};
 
     @media (max-width: 280px) {
         width: 80%;
@@ -84,7 +88,7 @@ export const ModalCloseButton = styled.button`
     width: 45px;
     height: 45px;
     background-color: #fff;
-    color: ${({theme}) => theme.colors.primaryDark};
+    color: ${({ theme }) => theme.colors.primaryDark};
     font-weight: bold;
     border-radius: 8px;
     &:hover {
@@ -92,4 +96,4 @@ export const ModalCloseButton = styled.button`
         border: 1px solid;
         color: #fff;
     }
-    `;
+`;

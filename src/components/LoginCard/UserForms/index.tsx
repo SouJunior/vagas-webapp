@@ -7,6 +7,7 @@ import { EmailIcon } from '../../EmailIcon';
 import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
 import PopupHandler from '../PopUpRegisterSuccess/CloseModalEsc';
+import TermsOfUse from '../TermsOfUse';
 import {
     schemaUserLoginForm,
     schemaUserRegisterForm,
@@ -37,6 +38,7 @@ import {
 import { MaskBackground, Popup } from '../PopUpRegisterSuccess/styles';
 
 export const UserForms = (props: any): JSX.Element => {
+    const [tersmOfUse, setTermsOfUse] = useState(false);
     const [hasError, setHasError] = useState(false);
     const [error, setError] = useState(false);
     const [otherErrors, setOtherErrors] = useState(false);
@@ -68,6 +70,12 @@ export const UserForms = (props: any): JSX.Element => {
     // Define qual formulário deverá ser validado
     const getFormValidation =
         isLogin === 'login' ? schemaUserLoginForm : schemaUserRegisterForm;
+    const openTermsOfUse = () => {
+        setTermsOfUse(true);
+    };
+    const closeTermsOfUse = () => {
+        setTermsOfUse(false);
+    };
 
     const {
         register,
@@ -362,9 +370,11 @@ export const UserForms = (props: any): JSX.Element => {
                         <Label>
                             <CheckboxInput {...register('privacyTerms')} />
                             <TermsLink>
-                                {/* TODO: Direcionar para as páginas correspondentes após criadas */}
-                                Li e aceito os <a href="/">Termos de Uso</a> e{' '}
-                                <br /> <a href="/">Política de Privacidade</a>
+                                Li e aceito os{' '}
+                                <a href="#" onClick={openTermsOfUse}>
+                                    Termos de Uso
+                                </a>{' '}
+                                e <br /> <a href="/">Política de Privacidade</a>
                             </TermsLink>
                         </Label>
                         {hasError && (
@@ -405,6 +415,7 @@ export const UserForms = (props: any): JSX.Element => {
                 />
             ) : null}
             <PopupHandler setPopup={setPopup} Popup={Popup} />
+            <TermsOfUse isOpen={tersmOfUse} onCLose={closeTermsOfUse} />
         </>
     );
 };
