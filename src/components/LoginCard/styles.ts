@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { AiFillEye } from 'react-icons/ai';
-import { RiEyeCloseLine } from 'react-icons/ri';
 import tickImage from '../../assets/imgs/tick.svg';
 import disabledImage from '../../assets/imgs/disabled.svg';
 
