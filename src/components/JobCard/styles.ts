@@ -12,10 +12,9 @@ export const Card = styled.div<CardProps>`
   color: ${props => (props.active ? "#fff" : "#515050")};
   background-color: ${props => (props.active ? "#1165BA" : "#fff")};
   width: 493px;
-  max-width: 493px;
+  max-width: 473px;
   padding: 16px;
-  height: 100%;
-  max-height: 130px;
+  max-height: 140px;
 
   @media (max-width: 950px) {
     max-height: none;
