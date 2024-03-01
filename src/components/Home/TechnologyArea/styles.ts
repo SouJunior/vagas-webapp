@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface AreaNameProps{
+  active: boolean,  
+}
+
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -10,21 +14,31 @@ export const Container = styled.div`
     height: 100px;
     border-radius: 8px;
     margin-right: 8px;
-    background-color: ${({ theme }) => theme.colors.primary};
+    // background-color: ${({ theme }) => theme.colors.primary};
+
+    &.open{
+      background-color: #D6E7FF;
+    }
+
+    &.closed{
+      background-color: #1165BA;
+    }
 
     @media (max-width: 420px) {
       margin-right: 15px !important;
     }
 `;
 
-export const IconImage = styled.div`
+export const IconImage = styled.div<AreaNameProps>`
     width: 32px;
     place-items: center;
+    color: ${props => props.active? '#046AD0' : '#FFF'};
+    font-size: 36px;
 `;
 
-export const AreaName = styled.p`
+export const AreaName = styled.p<AreaNameProps>`
     font-size: 14px;
-    color: #fff;
+    color: ${props => props.active ? '#046AD0' : 'white'};
     font-weight: 600;
     margin-bottom: 8px;
     margin-top: 6px;
