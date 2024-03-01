@@ -3,17 +3,14 @@ import {
     Grid,
     FacebookIcon,
     InstagramIcon,
-    TwitterIcon,
     YouTubeIcon,
     GitHubIcon,
     LinkedInIcon,
-    DiscordIcon,
     TelegramIcon,
 } from './styles';
 import LogoImageBlue from '../../../assets/imgs/logo-icon-name-h.svg';
 
 const Index = () => {
-
     const handleScrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -29,7 +26,11 @@ const Index = () => {
         <Footer>
             <div className="mobile-wrapper">
                 <div>
-                    <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0}>
+                    <button
+                        onClick={handleScrollToTop}
+                        onKeyDown={handleKeyPress}
+                        tabIndex={0}
+                    >
                         <img
                             src={LogoImageBlue}
                             width="194px"
@@ -52,38 +53,55 @@ const Index = () => {
                         @ 2023 SouJunior Todos os direitos reservados.
                     </small>
                 </div>
-                    <ul className='contacts'>
-                        <li>
-                            <a href="https://www.instagram.com/soujunior.tech/">
-                                <InstagramIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/people/SouJunior/100086671131030/">
-                                <FacebookIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/SouJunior">
-                                <GitHubIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/company/soujunior/">
-                                <LinkedInIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://discord.com/invite/soujunior-community-759176734460346423">
-                                <DiscordIcon />
-                            </a>
-                        </li>
-                    </ul>
+                <ul className="contacts">
+                    <li>
+                        <a href="https://www.facebook.com/people/SouJunior/100086671131030/">
+                            <FacebookIcon />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/soujunior.tech/">
+                            <InstagramIcon />
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.youtube.com/@soujuniortech"
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <YouTubeIcon />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/soujunior/">
+                            <LinkedInIcon />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/SouJunior">
+                            <GitHubIcon />
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://t.me/soujuniortech"
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <TelegramIcon />
+                        </a>
+                    </li>
+                </ul>
             </div>
 
             <div className="desktop-wrapper">
-                <div style={{cursor: 'pointer'}}>
-                    <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0}>
+                <div style={{ cursor: 'pointer' }}>
+                    <button
+                        onClick={handleScrollToTop}
+                        onKeyDown={handleKeyPress}
+                        tabIndex={0}
+                    >
                         <img
                             src={LogoImageBlue}
                             width="194px"
@@ -96,30 +114,45 @@ const Index = () => {
                     <h3>Institucional</h3>
                     <ul>
                         <li>
-                            <a href="https://www.soujunior.tech/">
-                                SouJunior Tech
+                            <a
+                                href="https://www.soujunior.tech/"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
+                                Site Sou Junior
                             </a>
+                            <li>
+                                <a
+                                    href="https://mentoria-online.vercel.app/"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
+                                    Portal de mentoria
+                                </a>
+                            </li>
                         </li>
-                        {/* <li>
-                            <a href="https://mentores.soujunior.tech">
-                                Portal de mentoria
-                            </a>
-                        </li> */}
                     </ul>
                 </div>
                 <div>
-                    <h3>Empresa</h3>
+                    <h3>Canais SouJunior</h3>
                     <ul>
                         <li>
-                            <a href="/">Home</a>
+                            <a
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
+                                SouJunior Labs
+                            </a>
                         </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Aplicativo</h3>
-                    <ul>
                         <li>
-                            <p>Logo mais, acesse também por qualquer dispositivo e fique por dentro das novidades</p>
+                            <a
+                                href="https://discord.com/invite/564CDre9F3"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
+                                SouJunior Talk
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -127,42 +160,57 @@ const Index = () => {
                     <h3>Redes sociais</h3>
                     <Grid>
                         <li>
-                            <a href="https://www.instagram.com/soujunior.tech/">
-                                <InstagramIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/people/SouJunior/100086671131030/">
+                            <a
+                                href="https://www.facebook.com/people/SouJunior/100086671131030/"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
                                 <FacebookIcon />
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/SouJunior_Tech">
-                                <TwitterIcon />
+                            <a
+                                href="https://www.instagram.com/soujunior.tech/"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
+                                <InstagramIcon />
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/@soujuniortech">
+                            <a
+                                href="https://www.youtube.com/@soujuniortech"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
                                 <YouTubeIcon />
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/SouJunior">
-                                <GitHubIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/company/soujunior/">
+                            <a
+                                href="https://www.linkedin.com/company/soujunior/"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
                                 <LinkedInIcon />
                             </a>
                         </li>
                         <li>
-                            <a href="https://discord.com/invite/soujunior-community-759176734460346423">
-                                <DiscordIcon />
+                            <a
+                                href="https://github.com/SouJunior"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
+                                <GitHubIcon />
                             </a>
                         </li>
+
                         <li>
-                            <a href="https://t.me/soujuniortech">
+                            <a
+                                href="https://t.me/soujuniortech"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
                                 <TelegramIcon />
                             </a>
                         </li>

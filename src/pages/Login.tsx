@@ -10,6 +10,12 @@ import '../App.css';
 
 const Login = () => {
     const navigate = useNavigate();
+    const handleKeyPress = (event: React.KeyboardEvent) => {
+        // Check if the key pressed is 'Enter' or 'Space'
+        if (event.key === 'Enter' || event.key === ' ') {
+            navigate('/');
+        }
+    };
 
     return (
         <main className="bg-hero-pattern bg-cover bg-no-repeat w-full h-screen md:w-full overflow-y-auto">
@@ -20,9 +26,12 @@ const Login = () => {
                             className="max-w-md flex-grow"
                             src={extendedLogoImg}
                             alt="Logo-sou-junior-square"
+                            onClick={() => navigate('/')}
+                            onKeyDown={() => handleKeyPress}
+                            style={{ cursor: 'pointer' }}
                         />
                         <div className="max-w-xl flex-grow text-center lg:text-center">
-                            <img src={loginPeople} alt="" />
+                            <img src={loginPeople} alt="logo-sou-junior" />
                         </div>
                         <Button
                             background="outline"
