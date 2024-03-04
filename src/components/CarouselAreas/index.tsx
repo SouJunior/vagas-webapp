@@ -17,6 +17,7 @@ const CarouselAreas = () => {
 
     const handleClick = (itemId: string) => {
         navigate(`/areas/${itemId}`)
+        window.scrollTo(0,0)
     }
 
     
