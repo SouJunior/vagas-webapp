@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import Product from './Product';
 import Agile from './Agile';
 import UxUi from './UxUi';
+import DevOps from './DevOps';
 
 const RenderArea: React.FC = () => {
     let { areaId = 'default' } = useParams<{ areaId: string }>();
@@ -14,6 +15,8 @@ const RenderArea: React.FC = () => {
                 return <Agile />;
             case 'uxuidesign':
                 return <UxUi />;
+            case 'devops':
+                return <DevOps />;
             default:
                 return <div>Seção não encontrada</div>;
         }
