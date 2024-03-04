@@ -8,6 +8,7 @@ import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
 import PopupHandler from '../PopUpRegisterSuccess/CloseModalEsc';
 import TermsOfUse from '../TermsOfUse';
+import PrivacyPolicy from '../PrivacyPolicy';
 import {
     schemaUserLoginForm,
     schemaUserRegisterForm,
@@ -36,9 +37,11 @@ import {
     MessageChecklist,
 } from '../styles';
 import { MaskBackground, Popup } from '../PopUpRegisterSuccess/styles';
+import { setPriority } from 'os';
 
 export const UserForms = (props: any): JSX.Element => {
-    const [tersmOfUse, setTermsOfUse] = useState(false);
+    const [termsOfUse, setTermsOfUse] = useState(false);
+    const [privacyPolicy, setPrivacyPolicy] = useState(false);
     const [hasError, setHasError] = useState(false);
     const [error, setError] = useState(false);
     const [otherErrors, setOtherErrors] = useState(false);
@@ -75,6 +78,13 @@ export const UserForms = (props: any): JSX.Element => {
     };
     const closeTermsOfUse = () => {
         setTermsOfUse(false);
+    };
+
+    const openPrivacyPolicy = () => {
+        setPrivacyPolicy(true);
+    };
+    const closePrivacyPolicy = () => {
+        setPrivacyPolicy(false);
     };
 
     const {
@@ -374,7 +384,10 @@ export const UserForms = (props: any): JSX.Element => {
                                 <a href="#" onClick={openTermsOfUse}>
                                     Termos de Uso
                                 </a>{' '}
-                                e <br /> <a href="/">Política de Privacidade</a>
+                                e <br />{' '}
+                                <a href="#" onClick={openPrivacyPolicy}>
+                                    Política de Privacidade
+                                </a>
                             </TermsLink>
                         </Label>
                         {hasError && (
@@ -415,7 +428,11 @@ export const UserForms = (props: any): JSX.Element => {
                 />
             ) : null}
             <PopupHandler setPopup={setPopup} Popup={Popup} />
-            <TermsOfUse isOpen={tersmOfUse} onCLose={closeTermsOfUse} />
+            <TermsOfUse isOpen={termsOfUse} onClose={closeTermsOfUse} />
+            <PrivacyPolicy
+                isOpen={privacyPolicy}
+                onClose={closePrivacyPolicy}
+            />
         </>
     );
 };

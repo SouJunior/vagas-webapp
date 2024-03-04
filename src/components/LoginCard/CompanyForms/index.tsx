@@ -8,6 +8,8 @@ import { PasswordIcon } from '../../PasswordIcon';
 import { PopUpRegisterSucess } from '../PopUpRegisterSuccess';
 import { normalizeCnpjNumber } from '../MaskedInput/MaskedInput';
 import PopupHandler from '../PopUpRegisterSuccess/CloseModalEsc';
+import PrivacyPolicy from '../PrivacyPolicy';
+import TermsOfUse from '../TermsOfUse';
 import {
     schemaCompanyLoginForm,
     schemaCompanyRegisterForm,
@@ -39,6 +41,8 @@ import {
 import { Popup } from '../PopUpRegisterSuccess/styles';
 
 export const CompanyForms = (props: any): JSX.Element => {
+    const [privacyPolicy, setPrivacyPolicy] = useState(false);
+    const [termsOfUse, setTermsOfUse] = useState(false);
     const [hasError, setHasError] = useState(false);
     const [error, setError] = useState(false);
     const [otherErrors, setOtherErrors] = useState(false);
@@ -63,7 +67,19 @@ export const CompanyForms = (props: any): JSX.Element => {
     // Define qual formulário deverá ser validado
     const getFormValidation =
         isLogin === true ? schemaCompanyLoginForm : schemaCompanyRegisterForm;
+    const openTermsOfUse = () => {
+        setTermsOfUse(true);
+    };
+    const closeTermsOfUse = () => {
+        setTermsOfUse(false);
+    };
 
+    const openPrivacyPolicy = () => {
+        setPrivacyPolicy(true);
+    };
+    const closePrivacyPolicy = () => {
+        setPrivacyPolicy(false);
+    };
     const {
         register,
         handleSubmit,
@@ -372,10 +388,13 @@ export const CompanyForms = (props: any): JSX.Element => {
                             <TermsLink>
                                 {/* TODO: Direcionar para as páginas correspondentes após criadas */}
                                 Li e aceito os{' '}
-                                <a href="/">
+                                <a href="#" onClick={openTermsOfUse}>
                                     Termos de Uso <br />
                                 </a>{' '}
-                                e <a href="/">Política de Privacidade</a>
+                                e{' '}
+                                <a href="#" onClick={openPrivacyPolicy}>
+                                    Política de Privacidade
+                                </a>
                             </TermsLink>
                         </Label>
                         <MessageError2>
@@ -413,6 +432,11 @@ export const CompanyForms = (props: any): JSX.Element => {
                 />
             ) : null}
             <PopupHandler setPopup={setPopup} Popup={Popup} />
+            <TermsOfUse isOpen={termsOfUse} onClose={closeTermsOfUse} />
+            <PrivacyPolicy
+                isOpen={privacyPolicy}
+                onClose={closePrivacyPolicy}
+            />
         </>
     );
 };

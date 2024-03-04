@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from 'react';
 import {
     ModalContent,
     ModalTitle,
@@ -9,17 +10,46 @@ import { MaskBackground } from '../../LoginCard/PopUpRegisterSuccess/styles';
 
 interface TermsOfUseProps {
     isOpen: boolean;
-    onCLose: () => void;
+    onClose: () => void;
 }
 
-const TermsOfUse: React.FC<TermsOfUseProps> = ({ isOpen, onCLose }) => {
+const TermsOfUse: React.FC<TermsOfUseProps> = ({ isOpen, onClose }) => {
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleEsc = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                onClose();
+            }
+        };
+
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                modalRef.current &&
+                !modalRef.current.contains(event.target as Node)
+            ) {
+                onClose();
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('keydown', handleEsc);
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleEsc);
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen, onClose]);
+
     if (!isOpen) return null;
 
     return (
         <MaskBackground>
-            <ModalContent>
+            <ModalContent ref={modalRef}>
                 <CloseModal>
-                    <ModalCloseButton onClick={onCLose}>X</ModalCloseButton>
+                    <ModalCloseButton onClick={onClose}>X</ModalCloseButton>
                 </CloseModal>
                 <div className="modal--texts">
                     <ModalTitle>
@@ -41,7 +71,7 @@ const TermsOfUse: React.FC<TermsOfUseProps> = ({ isOpen, onCLose }) => {
                         Estes Termos descrevem as regras e regulamentos que
                         orientam o uso do SouJunior. Todos os materiais,
                         informações, documentos, serviços ou todas as outras
-                        entidades (coletivamente referidas como "conteúdo'') que
+                        entidades (coletivamente referidas como "conteúdo") que
                         aparecem no SouJunior serão administrados de acordo com
                         estes Termos e Condições. O site é destinado a usuários
                         com 18 (dezoito) anos de idade ou mais. Se você tem
