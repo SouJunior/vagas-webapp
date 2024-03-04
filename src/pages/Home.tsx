@@ -45,7 +45,6 @@ import VocationalTest from '../assets/imgs/vocational-teste.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
 import circle from '../assets/imgs/circle.svg';
 
-import ProfileTest from '../assets/imgs/profile-depoimento.png';
 import Testimonials from '../components/Home/Testimonials';
 import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
@@ -54,6 +53,8 @@ import { AuthContext } from '../contexts/Auth/AuthContext';
 import { Journey } from '../Mocks/MockJourney';
 import Index from '../components/Portal/Footer';
 import CarouselAreas from '../components/CarouselAreas';
+import { Testimonial } from '../Mocks/Testimonial';
+import { TestimonialType } from '../@types/testimonial-type';
 
 export interface AreaProps {
     id: string;
@@ -220,7 +221,7 @@ export const Home: React.FC = () => {
                     centeredSlides={true}
                     spaceBetween={100}
                     autoplay={{
-                        delay: 4500,
+                        delay: 5000,
                         disableOnInteraction: false,
                     }}
                     pagination={{
@@ -237,38 +238,16 @@ export const Home: React.FC = () => {
                     className="mySwiper"
                 >
                     <TestimonialWrapper>
-                        {/* Darei uma map aqui quando tiver os depoimentos disponiveis, 
-                        deixei informações estáticas somente para demonstrações */}
-                        <SwiperSlide>
-                            <Testimonials
-                                Text={
-                                    '“A SouJunior foi uma adição muito necessária na minha carreira profissional, eu ainda estava no começo da minha jornada como Designer e tive a oportunidade de integrar otime e me desenvolver muito, aprendi como funcionava arotina, os métodos, as aplicações, por isso sou muito grato e recomendo o projeto!”'
-                                }
-                                Author={'Lucas Sales'}
-                                Workplace={'UX Designer na Ilegra'}
-                                Profile={ProfileTest}
-                            />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Testimonials
-                                Text={
-                                    '“A SouJunior foi uma adição muito necessária na minha carreira profissional, eu ainda estava no começo da minha jornada como Designer e tive a oportunidade de integrar otime e me desenvolver muito, aprendi como funcionava arotina, os métodos, as aplicações, por isso sou muito grato e recomendo o projeto!”'
-                                }
-                                Author={'Lucas Sales'}
-                                Workplace={'UX Designer na Ilegra'}
-                                Profile={ProfileTest}
-                            />
-                        </SwiperSlide>{' '}
-                        <SwiperSlide>
-                            <Testimonials
-                                Text={
-                                    '“A SouJunior foi uma adição muito necessária na minha carreira profissional, eu ainda estava no começo da minha jornada como Designer e tive a oportunidade de integrar otime e me desenvolver muito, aprendi como funcionava arotina, os métodos, as aplicações, por isso sou muito grato e recomendo o projeto!”'
-                                }
-                                Author={'Lucas Sales'}
-                                Workplace={'UX Designer na Ilegra'}
-                                Profile={ProfileTest}
-                            />
-                        </SwiperSlide>
+                        {Testimonial.map((deposition: TestimonialType) => (
+                            <SwiperSlide key={deposition.Author}>
+                                <Testimonials
+                                    Text={deposition.Text}
+                                    Author={deposition.Author}
+                                    Workplace={deposition.Workplace}
+                                    Profile={deposition.Profile}
+                                />
+                            </SwiperSlide>
+                        ))}
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>

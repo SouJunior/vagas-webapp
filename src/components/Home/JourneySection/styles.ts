@@ -13,13 +13,8 @@ export const Img = styled.img`
 
 export const JourneyWrapper = styled.div`
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
-
-    // Foi retirado devido a fidelidade do prototipo
-    /* @media (max-width: 1200px) {
-        flex-direction: column;
-    } */
 `;
 
 export const JourneyDescription = styled.div`
@@ -31,6 +26,5 @@ export const JourneyDescription = styled.div`
     @media (max-width: 650px) {
         font-size: 20px;
         width: 100%;
-        /* text-align: le; */
     }
 `;
