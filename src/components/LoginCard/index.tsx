@@ -38,12 +38,7 @@ const LoginCard = () => {
                         Empresa
                     </button>
                 </LoginTypeButton>
-                <DivLogo
-                    style={{
-                        marginBottom: true ? '42px' : '18px',
-                        marginTop: true ? '22px' : '8px',
-                    }}
-                >
+                <DivLogo>
                     <LogoIcon />
                 </DivLogo>
 

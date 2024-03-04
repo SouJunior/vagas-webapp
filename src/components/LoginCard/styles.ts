@@ -21,6 +21,15 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 14px;
+    @media (max-width: 280px) {
+        width: 240px;
+    }
+
+    img {
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 export const Card = styled.div`
@@ -32,8 +41,24 @@ export const Card = styled.div`
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     max-height: 900px;
+    @media (max-height: 500px) {
+        margin-bottom: 0px;
+        padding: 5px;
+    }
     @media (min-width: 1024px) {
         max-width: 1024px;
+    }
+    @media (max-width: 550px) {
+        width: 98%;
+    }
+    @media (max-width: 400px) {
+        width: 350px;
+    }
+    @media (max-width: 280px) {
+        width: 260px;
+        padding: 0;
+        overflow-x: hidden;
+        margin-bottom: 0px;
     }
 `;
 
@@ -41,27 +66,62 @@ export const LoginTypeButton = styled.div`
     display: flex;
     justify-content: space-between;
     color: #1165ba;
-    margin: 8px 10px 0 10px;
+    margin-top: 8px;
     padding: 12px;
+
+    @media (max-height: 500px) {
+        padding: 10px 0;
+        margin: 0px;
+        justify-content: center;
+    }
     button {
+        display: inline;
+        margin-right: 10px;
+        margin-left: 10px;
         width: 145px;
         height: 35px;
         border: 1px solid #1165ba;
-        justify-content: center;
-        display: flex;
         gap: 10px;
         align-items: center;
         border-radius: 5px;
         font-size: 17px;
     }
+    @media (max-height: 500px) {
+        padding: 10px 0;
+    }
     button:hover {
         background-color: #00000022;
+    }
+
+    span {
+        padding: 0 10px;
     }
 `;
 
 export const DivLogo = styled.div`
     display: flex;
     justify-content: center;
+    margin-bottom: 42px;
+    margin-top: 22px;
+    @media (max-height: 450px) {
+        display: none;
+    }
+    @media (max-height: 600px) {
+        margin-bottom: 15px;
+        margin-top: 7px;
+    }
+    @media (max-width: 550px) {
+        margin-bottom: 22px;
+        margin-top: 11px;
+    }
+    @media (max-width: 400px) {
+        margin-bottom: 15px;
+        margin-top: 7px;
+    }
+    @media (max-width: 375px) {
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
 `;
 
 export const Title = styled.h1`
@@ -70,6 +130,9 @@ export const Title = styled.h1`
     text-align: center;
     color: #1165ba;
     margin-bottom: 8px;
+    @media (max-height: 450px) {
+        display: none;
+    }
 `;
 
 export const Divider = styled.hr`
@@ -78,6 +141,12 @@ export const Divider = styled.hr`
     width: 310px;
     margin: 0 auto;
     margin-bottom: 32px;
+    @media (max-height: 450px) {
+        display: none;
+    }
+    @media (max-width: 375px) {
+        margin-bottom: 0px;
+    }
 `;
 
 export const SecondDivider = styled(Divider)`
@@ -101,7 +170,12 @@ export const Input = styled.input`
     border: 1px solid #cdcdcd;
     border-radius: 6px;
     outline: none;
-
+    @media (max-height: 600px) {
+        height: 33px;
+    }
+    @media (max-width: 375px) {
+        width: 240px;
+    }
     &:focus {
         border: 1px solid #60a5fa;
         box-shadow: 0 0 0 3px rgba(128, 0, 128, 0.1);
@@ -145,6 +219,12 @@ export const CheckboxContainer = styled.div`
     display: flex;
     justify-content: space-between;
     width: 310px;
+    @media (max-width: 280px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     a {
         color: #1165ba;
         float: right;
@@ -165,6 +245,9 @@ export const InputContainer = styled.div`
     div {
         position: relative;
     }
+    @media (max-height: 620px) {
+        margin-bottom: 5px;
+    }
 `;
 
 export const ButtonContainer = styled.div`
@@ -181,6 +264,14 @@ export const LoginButton = styled.button`
     color: white;
     background-color: #1165ba;
     cursor: pointer;
+    @media (max-width: 375px) {
+        width: 240px;
+        height: 36px;
+    }
+    @media (max-height: 620px) {
+        height: 36px;
+    }
+
     &:disabled {
         background-color: #90cdf4;
         cursor: not-allowed;
@@ -190,6 +281,13 @@ export const RegisterButton = styled(LoginButton)`
     background-color: transparent;
     border: 1px solid #1165ba;
     color: #1165ba;
+    @media (max-width: 280px) {
+        width: 240px;
+        height: 36px;
+    }
+    @media (max-height: 620px) {
+        height: 36px;
+    }
 `;
 
 export const RegisterSubmitButton = styled(RegisterButton)`
@@ -198,6 +296,13 @@ export const RegisterSubmitButton = styled(RegisterButton)`
     margin-bottom: 8px;
     width: 300px;
     height: 52px;
+    @media (max-height: 620px) {
+        height: 36px;
+    }
+    @media (max-width: 375px) {
+        width: 240px;
+        height: 36px;
+    }
 `;
 
 export const TermsLink = styled.p`
@@ -237,6 +342,13 @@ export const Checklist = styled.div`
         margin-bottom: 5px;
         align-self: center;
         color: #1165ba;
+    }
+    @media (max-height: 1024px) {
+        display: none;
+        padding: 0;
+    }
+    @media (max-width: 375px) {
+        display: none;
     }
 `;
 

@@ -11,19 +11,32 @@ import {
     TelegramIcon,
 } from './styles';
 import LogoImageBlue from '../../../assets/imgs/logo-icon-name-h.svg';
-import GooglePlayImage from '../../../assets/imgs/googlePlay.svg';
 
 const Index = () => {
+
+    const handleScrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleKeyPress = (event: React.KeyboardEvent) => {
+        // Check if the key pressed is 'Enter' or 'Space'
+        if (event.key === 'Enter' || event.key === ' ') {
+            handleScrollToTop();
+        }
+    };
+
     return (
         <Footer>
             <div className="mobile-wrapper">
                 <div>
-                    <img
-                        src={LogoImageBlue}
-                        width="194px"
-                        height="29px"
-                        alt="logo"
-                    />
+                    <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0}>
+                        <img
+                            src={LogoImageBlue}
+                            width="194px"
+                            height="29px"
+                            alt="logo"
+                        />
+                    </button>
                 </div>
                 <div>
                     <h2>#MovimentoSouJunior</h2>
@@ -69,27 +82,29 @@ const Index = () => {
             </div>
 
             <div className="desktop-wrapper">
-                <div>
-                    <img
-                        src={LogoImageBlue}
-                        width="194px"
-                        height="29px"
-                        alt="logo"
-                    />
+                <div style={{cursor: 'pointer'}}>
+                    <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0}>
+                        <img
+                            src={LogoImageBlue}
+                            width="194px"
+                            height="29px"
+                            alt="logo"
+                        />
+                    </button>
                 </div>
                 <div>
                     <h3>Institucional</h3>
                     <ul>
                         <li>
                             <a href="https://www.soujunior.tech/">
-                                Site SouJunior
+                                SouJunior Tech
                             </a>
                         </li>
-                        <li>
+                        {/* <li>
                             <a href="https://mentores.soujunior.tech">
                                 Portal de mentoria
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                 <div>
@@ -104,9 +119,7 @@ const Index = () => {
                     <h3>Aplicativo</h3>
                     <ul>
                         <li>
-                            <a href="/">
-                                <img src={GooglePlayImage} alt="google play" />
-                            </a>
+                            <p>Logo mais, acesse também por qualquer dispositivo e fique por dentro das novidades</p>
                         </li>
                     </ul>
                 </div>

@@ -9,10 +9,11 @@ import {
     MobileHeader,
     HeaderBtns,
 } from './styles';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { Turn as Hamburger } from 'hamburger-react';
 import HomeJobFilter from '../HomeJobFilter/HomeJobFilter';
+import loginIcon from '../../../assets/imgs/Candidato-icone.svg'
 
 interface HeaderProps {
     isActive: boolean;
@@ -20,6 +21,7 @@ interface HeaderProps {
 
 const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
     const navigate = useNavigate();
+    const location = useLocation()
     const { setIsLogin } = useContext(AuthContext);
     const [isMobileOpen, setMobileOpen] = useState(false);
     const [isMobileSize, setIsMobileSize] = useState(false);
@@ -47,6 +49,19 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const handleScrollToTop = () => {
+        location.pathname === '/' ? window.scrollTo({ top: 0, behavior: 'smooth' }): navigate('/')
+        console.log(location)
+    };
+
+    const handleKeyPress = (event: React.KeyboardEvent) => {
+        // Check if the key pressed is 'Enter' or 'Space'
+        if (event.key === 'Enter' || event.key === ' ') {
+            handleScrollToTop();
+        }
+        };
+
 
     return (
         <>
@@ -83,26 +98,27 @@ const HomeHeader: React.FC<HeaderProps> = ({ isActive }) => {
                     <Hamburger toggled={isMobileOpen} toggle={setMobileOpen} />
                 </Menu>
                 <NavTitle>
-                    <a onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+                    <button onClick={handleScrollToTop} onKeyDown={handleKeyPress} tabIndex={0} >
                         <img
                             src={LogoName}
                             alt="Logo SouJunior"
                             width={200}
                             height={200}
                         />
-                    </a>
+                    </button>
                 </NavTitle>
                 {isActive && !isMobileSize && <HomeJobFilter />}
                 <HeaderBtns>
+                    <LoginButton onClick={handleLoginClick} isActive={isActive}>
+                    <img src={loginIcon} alt="Icone de login" />
+                        Login
+                    </LoginButton>
                     <RegisterButton
                         onClick={handleRegisterClick}
                         isActive={isActive}
                     >
                         Cadastre-se
                     </RegisterButton>
-                    <LoginButton onClick={handleLoginClick} isActive={isActive}>
-                        Login
-                    </LoginButton>
                 </HeaderBtns>
             </Header>
         </>
