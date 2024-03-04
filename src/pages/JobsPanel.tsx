@@ -30,7 +30,7 @@ import {
     OptionsBtn,
 } from './styles/JobsPanel';
 import EndJobModal from '../components/EndJobModal';
-import { Footer } from '../components/Footer';
+import Index from '../components/Portal/Footer';
 
 const JobsPanel = () => {
     const [selectedJob, setSelectedJob] = useState<string | null>('');
@@ -224,7 +224,7 @@ const JobsPanel = () => {
                         <NoJobsSelectedCard />
                     )}
                 </ContentWrapper>
-                <Footer />
+                <Index />
             </Container>
         </>
     );

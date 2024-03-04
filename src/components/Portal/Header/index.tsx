@@ -34,27 +34,35 @@ const Header = () => {
     };
 
     const handleKeyDown = (ev: React.KeyboardEvent<HTMLElement>) => {
-        if (ev.key === "Enter") {
+        if (ev.key === 'Enter') {
             handleClick();
         }
     };
 
     const [visible, setVisible] = useState(false);
 
+    const navigateHeader = useNavigate()
+
+    const backToHome = () => {
+        navigateHeader('/')
+        window.scrollTo({top:0, behavior:'smooth'})
+    }
+
     return (
         <>
             <HeaderWrapper>
                 <div>
-                    <HeaderLogo
-                        src={LogoImage}
-                        width="194px"
-                        height="29px"
-                        alt="logo"
-                    />
+                    <a href={'/'}>
+                        <HeaderLogo
+                            src={LogoImage}
+                            width="194px"
+                            height="29px"
+                            alt="logo"
+                        />
+                    </a>
                 </div>
 
                 <UserArea>
-
                     <span>
                         {auth.user ? (
                             <UserInfo>

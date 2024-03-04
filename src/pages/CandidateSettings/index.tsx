@@ -36,8 +36,8 @@ import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
-import { Footer } from '../../components/Footer';
 import InputMask from 'react-input-mask'
+import Index from '../../components/Portal/Footer';
 
 export const CandidateSettings: React.FC = () => {
 
@@ -446,7 +446,7 @@ export const CandidateSettings: React.FC = () => {
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
                 <Main />
-                <Footer />
+                <Index />
             </Position>
         </Container>
     );
