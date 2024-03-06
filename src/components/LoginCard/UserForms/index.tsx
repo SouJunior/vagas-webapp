@@ -390,13 +390,11 @@ export const UserForms = (props: any): JSX.Element => {
                                 </a>
                             </TermsLink>
                         </Label>
-                        {hasError && (
-                            <MessageError2>
-                                {errors.privacyTerms && (
-                                    <>{errors.privacyTerms.message}</>
-                                )}
-                            </MessageError2>
-                        )}
+                        <MessageError2>
+                            {errors.privacyTerms && (
+                                <>{errors.privacyTerms.message}</>
+                            )}
+                        </MessageError2>
                     </InputContainer>
                     <MessageError2>
                         {errorEmail && <>{errorEmail} </>}
