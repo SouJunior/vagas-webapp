@@ -5,6 +5,27 @@ export const FormWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
+
+    @media (max-width: 568px) {
+        
+        width: 320px;
+        height: 37;
+        margin-top: 110px;
+        align-items: center;
+        border-radius: 52px;
+        border: 2px;
+        padding: 2px 2px 2px 8px;
+    }
+    
+    @media (max-width: 320px) {
+        width: 287px;
+        height: 37px;
+        border: 2px;
+        position: relative;
+        top: 100px;
+        left: -40px;
+        
+    }
 `;
 
 export const Form = styled.form`
@@ -78,4 +99,6 @@ export const SearchButton = styled.button`
         max-width: 150px;
         max-height: 38px;
     }
+
+    
 `;

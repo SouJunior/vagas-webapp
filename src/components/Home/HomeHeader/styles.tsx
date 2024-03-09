@@ -30,6 +30,14 @@ export const Header = styled.header<HeaderProps>`
         justify-content: flex-start;
     }
 
+    @media (max-width: 320px) {
+        width: 320px;
+        height: 72px;
+        border: 1px;
+        
+        
+    }
+
     ${({ isMobileOpen }) =>
         isMobileOpen &&
         css`
@@ -58,6 +66,13 @@ export const NavTitle = styled.div`
 
     img {
         margin-left: 38px;
+    }
+
+    @media (max-width: 320px) {
+        width: 124px;
+        height: 18.61px;
+        border: 0.48px;
+        
     }
 `;
 
@@ -145,6 +160,12 @@ export const MobileHeader = styled.nav`
         .background {
             display: none;
         }
+    }
+
+    @media (max-width: 320px) {
+        width: 40px;
+        height: 40px;
+        
     }
 
     .wrapper {

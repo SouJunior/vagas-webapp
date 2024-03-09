@@ -7,6 +7,11 @@ export const HeaderWrapper = styled.header`
     padding: 10px;
     gap: 20px;
     background: ${({ theme }) => theme.colors.primaryLight};
+
+    @media (max-width: 568px) {
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 export const ProfileImg = styled.img`
@@ -55,6 +60,8 @@ export const Name = styled.div`
     @media (max-width: 540px) {
         display: none;
     }
+
+    
 `;
 export const Email = styled.div`
     font-size: 14px;
