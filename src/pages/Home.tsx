@@ -151,10 +151,12 @@ export const Home: React.FC = () => {
                     <VocationalImage src={VocationalTest} alt="" />
                 </VocationalBannerContainer>
             </VocationalBannerArea>
+
             <OurSitesSection>
                 <SecondaryTitle>
-                    Seja o Júnior que as empresas desejam
+                    Seja o profissional que as empresas desejam
                 </SecondaryTitle>
+
                 <CardWrapper>
                     <OurSitesCard
                         Link="https://mentores.soujunior.tech/"
@@ -176,6 +178,7 @@ export const Home: React.FC = () => {
                     />
                 </CardWrapper>
             </OurSitesSection>
+
             <JourneySection>
                 <JourneyContainer>
                     <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
