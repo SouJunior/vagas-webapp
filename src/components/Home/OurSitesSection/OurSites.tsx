@@ -15,7 +15,9 @@ const OurSitesCard: React.FC<OurSitesCardProps> = (props) => {
                 target="_blank"
                 aria-label={`Visitar ${props.Title}`}
             >
-                <abbr title={`Clique e seja redirecionado para ${props.Title}`}>
+                <abbr
+                    title={`Clique e seja redirecionado para ${props.Title}.`}
+                >
                     <Title>{props.Title}</Title>
                 </abbr>
             </a>
@@ -25,7 +27,9 @@ const OurSitesCard: React.FC<OurSitesCardProps> = (props) => {
                 target="_blank"
                 aria-label={`Visitar ${props.Title}`}
             >
-                <abbr title={`Clique e seja redirecionado para ${props.Title}`}>
+                <abbr
+                    title={`Clique e seja redirecionado para ${props.Title}.`}
+                >
                     <Img src={props.Img} alt={`Imagem de ${props.Title}`} />
                 </abbr>
             </a>
@@ -35,7 +39,9 @@ const OurSitesCard: React.FC<OurSitesCardProps> = (props) => {
                 target="_blank"
                 aria-label={`Visitar ${props.Title}`}
             >
-                <abbr title={`Clique e seja redirecionado para ${props.Title}`}>
+                <abbr
+                    title={`Clique e seja redirecionado para ${props.Title}.`}
+                >
                     <Description>{props.Description}</Description>
                 </abbr>
             </a>
