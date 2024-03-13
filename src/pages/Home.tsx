@@ -171,7 +171,7 @@ export const Home: React.FC = () => {
                         Description="Aprenda idiomas e aperfeiçoe-se!"
                     />
                     <OurSitesCard
-                        Link="https://www.youtube.com/@soujuniortech"
+                        Link="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
                         Title="SouJunior Labs"
                         Img={NosAcompanhe}
                         Description="Aqui você conseguirá por em prática seus conhecimentos, participando de projetos."
