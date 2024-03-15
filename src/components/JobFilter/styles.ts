@@ -12,7 +12,9 @@ export const Container = styled.div`
         justify-content: center;
         gap: 30px;
         height: 37px;
-    }
+    
+    }      
+
 `;
 
 export const PrimaryInput = styled.input`
@@ -28,10 +30,12 @@ export const PrimaryInput = styled.input`
     :focus {
         outline-color: #1165ba;
     }
+
 `;
 
 export const LocationInput = styled(PrimaryInput)`
     max-width: 234px;
+
 `;
 
 export const Button = styled.button`
@@ -53,4 +57,6 @@ export const Button = styled.button`
         color: #003986;
         border: 1px solid #003986;
     }
+
+    
 `;

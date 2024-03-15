@@ -8,6 +8,15 @@ export const Container = styled.div`
     @media (max-width: 1200px) {
         flex-direction: column;
     }
+
+    @media (max-width: 320px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 260px;
+        height: 1000px;
+        
+    }
 `;
 
 export const TestimonialsContainer = styled.div`
@@ -17,6 +26,12 @@ export const TestimonialsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 320px) {
+        width: 260px;
+        display: flex;
+        align-items: center;
+    }
 `;
 
 export const Testimonial = styled.p`
@@ -26,6 +41,12 @@ export const Testimonial = styled.p`
     color: #515151;
     width: 100%;
     max-width: 793px;
+
+    @media (max-width: 320px) {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
 `;
 
 export const Author = styled.p`
@@ -33,9 +54,23 @@ export const Author = styled.p`
     font-weight: 500;
     color: #515151;
     margin-top: 10px;
+
+    @media (max-width: 320px) {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify_content: center;
+
+    }
 `;
 
 export const ImageContainer = styled.div`
     width: 300px;
     border-radius: 50%;
+
+    @media (max-width: 320px) {
+        width: 100px;
+        height: 100px;
+    }
 `;

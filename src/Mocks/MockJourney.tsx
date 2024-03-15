@@ -1,10 +1,10 @@
-import Linkedin from '../assets/imgs/linkedin-rectangle.png';
-import Resume from '../assets/imgs/resume-rectangle.png';
+import DestaqueSeLkd from '../assets/imgs/DestaqueSeLkd.svg';
+import CurriculoJr from '../assets/imgs/CurriculoJr.svg';
 
 export const Journey = [{
     Id:'1',
-    Img: Linkedin,
-    Description:'Se destaque no Linkedin',
+    Img: DestaqueSeLkd,
+    Description:'Destaque-se no Linkedin',
     Content:`
 # 1. **Escola Imagens Adequadas**
 Ter uma boa foto de perfil no Linkedin traz maior autoridade e faz com que o seu perfil tenha um número maior de visitas. Para se destacar, é preciso considerar um fator muito importante: a escolha das imagens adequadas. 
@@ -64,9 +64,22 @@ Interaja em comentários e postagens de forma estratégica. Faça comentários p
     `
 }, {
     Id:'2',
-    Img: Resume,
-    Description: 'Como construir um currículo Júnior',
+    Img: CurriculoJr,
+    Description: 'Construa um Currículo Profissional',
     Content:'Resume Content',
 },]
 
 export {}
+
+//CONTEÚDO RETIRADO DO ARRAY NO MOMENTO, PARA SER USADO FUTURAMENTE SE FOR NECESSÁRIO
+
+/*, {
+    Id:'3',
+    Img: Process,
+    Description: 'Se prepare para o processo seletivo',
+    Content:'Process Content',
+}, {
+    Id:'4',
+    Img: KeyWords,
+    Description: 'Palavras Chave na área tech',
+    Content:'Keywords Content',*/
