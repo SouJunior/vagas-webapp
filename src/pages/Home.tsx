@@ -151,10 +151,12 @@ export const Home: React.FC = () => {
                     <VocationalImage src={VocationalTest} alt="" />
                 </VocationalBannerContainer>
             </VocationalBannerArea>
+
             <OurSitesSection>
                 <SecondaryTitle>
-                    Seja o Júnior que as empresas desejam
+                    Seja o profissional que as empresas desejam
                 </SecondaryTitle>
+
                 <CardWrapper>
                     <OurSitesCard
                         Link="https://mentores.soujunior.tech/"
@@ -163,19 +165,20 @@ export const Home: React.FC = () => {
                         Description="Seja mentorado por um profissional experiente."
                     />
                     <OurSitesCard
-                        Link="https://www.soujunior.tech/"
+                        Link="https://discord.com/invite/564CDre9F3"
                         Title="SouJunior Talk"
                         Img={Site}
                         Description="Aprenda idiomas e aperfeiçoe-se!"
                     />
                     <OurSitesCard
-                        Link="https://www.youtube.com/@soujuniortech"
+                        Link="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
                         Title="SouJunior Labs"
                         Img={NosAcompanhe}
                         Description="Aqui você conseguirá por em prática seus conhecimentos, participando de projetos."
                     />
                 </CardWrapper>
             </OurSitesSection>
+
             <JourneySection>
                 <JourneyContainer>
                     <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>

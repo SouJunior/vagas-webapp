@@ -1,9 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    abbr {
+        text-decoration: none;
+    }
 `;
 
 export const Title = styled.h1`
@@ -13,7 +17,7 @@ export const Title = styled.h1`
     text-align: center;
     color: #515050;
     margin-bottom: 16px;
-`
+`;
 
 export const Img = styled.img`
     width: 318px;
