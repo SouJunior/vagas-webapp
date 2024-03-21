@@ -107,9 +107,10 @@ export const Home: React.FC = () => {
                 <MainContent>
                     <MainSearchFilter>
                         <Title>
-                            Um portal de vagas <span>exclusivo</span> para o
+                            Um portal de vagas <span>exclusivo</span> para
                             profissionais <span>em início de carreira!</span>
                         </Title>
+
                         <JobFilter />
 
                         <JobsInfo>
@@ -124,8 +125,8 @@ export const Home: React.FC = () => {
             <AreasSection>
                 <SecondaryTitle>Não sabe por onde começar? </SecondaryTitle>
                 <Subtitle>
-                    Então conheça um pouco mais sobre as áreas que estão em
-                    constante crescimento no mercado
+                    Então conheça um pouco mais sobre às áreas que estão em
+                    constante crescimento no mercado.
                 </Subtitle>
                 <CarouselAreas />
             </AreasSection>
@@ -144,7 +145,7 @@ export const Home: React.FC = () => {
                             >
                                 Clique Aqui
                             </a>{' '}
-                            e faça o seu teste* agora mesmo!
+                            e faça o seu teste agora mesmo!
                         </p>
                         <p className="p2">*Seu teste será feito no g1.com</p>
                     </VocationalTextContainer>

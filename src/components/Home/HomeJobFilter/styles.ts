@@ -8,23 +8,37 @@ export const FormWrapper = styled.div`
 
     @media (max-width: 568px) {
         
-        width: 320px;
+        width: 420px;
         height: 37;
-        margin-top: 110px;
+        position: relative;
+        top: 135px;
         align-items: center;
         border-radius: 52px;
         border: 2px;
         padding: 2px 2px 2px 8px;
     }
+
+    @media (max-width: 375px) {
+        width: 300px;
+        position: relative;
+        left: -150px;
+        top: 50px;
+    }
+        
     
     @media (max-width: 320px) {
         width: 287px;
         height: 37px;
         border: 2px;
         position: relative;
-        top: 100px;
-        left: -40px;
-        
+        top: 160px;
+        left: -56px;
+    }
+     
+    @media (max-width: 415px) {
+        position: relative;
+        left: -75px;
+        width: 350px;   
     }
 `;
 
