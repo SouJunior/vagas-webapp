@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, IconButton, Typography, Button } from "@mui/material";
+import { Dialog, DialogContent, IconButton, Typography, Button, Box, useMediaQuery } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { SetStateAction } from "react";
 
@@ -9,6 +9,8 @@ interface PopUpAntiFraudStepsProps {
 };
 
 const PopUpAntiFraudSteps: React.FC<PopUpAntiFraudStepsProps> = ({ openFollowTheseSteps, setOpenFollowTheseSteps, setPopUpAntiFraudOpen }) => {
+    
+    const telaMobile = useMediaQuery('(max-width:600px)');
 
     const handleClose = () => {
         setOpenFollowTheseSteps(false);
@@ -26,15 +28,15 @@ const PopUpAntiFraudSteps: React.FC<PopUpAntiFraudStepsProps> = ({ openFollowThe
             >
                 <CloseIcon fontSize="inherit" />
             </IconButton>
-            <DialogContent sx={{ marginX: "8px", display: "flex", flexDirection: "column", gap: "18px" }}>
-                <div>
+            <DialogContent sx={{ marginX: !telaMobile ? "60px" : "8px", display: "flex", flexDirection: "column", gap: "18px" }}>
+                <Box>
                     <Typography fontWeight="bold">"Acho que fui vítima de fraude".</Typography>
                     <Typography fontWeight="bold" >O que posso fazer?</Typography>
-                </div>
-                <div>
+                </Box>
+                <Box>
                     <Typography>Acha que pode ter sido vítima de fraude?</Typography>
                     <Typography>A seguir, veja dicas e medidas a tomar:</Typography>
-                </div>
+                </Box>
                 <Typography>
                     Em primeiro lugar, interrompa a comunicação com qualquer pessoa que você acha que esteja tentando ou já tenha enganado você.
                     Depois, denuncie a fraude. É importante contatar as autoridades competentes assim que possível para tentar recuperar o dinheiro perdido e impedir que outras pessoas sejam vítimas do mesmo golpe.
@@ -50,7 +52,7 @@ const PopUpAntiFraudSteps: React.FC<PopUpAntiFraudStepsProps> = ({ openFollowThe
                 <Typography>
                     Se acredita que seu computador ou dispositivo foi infectado com malware ou comprometido de algum forma, execute uma análise de vírus, certifique-se de que a segurança do computador está atualizada e altere as senhas de suas contas on-line.
                 </Typography>
-                <Button onClick={handleClose} variant="contained" sx={{width:"180px", alignSelf:"center", marginTop:"50px", marginBottom:"20px"}}>Eu entendi</Button>
+                <Button onClick={handleClose} variant="contained" sx={{ width: "180px", alignSelf: "center", marginTop: "50px", marginBottom: "20px" }}>Eu entendi</Button>
             </DialogContent>
         </Dialog>
     )
