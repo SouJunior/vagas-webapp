@@ -7,11 +7,13 @@ export const FormWrapper = styled.div`
     width: 100%;
 
     @media (max-width: 568px) {
-        
         width: 420px;
         height: 37;
         position: relative;
         top: 135px;
+        width: 320px;
+        height: 37;
+        margin-top: 110px;
         align-items: center;
         border-radius: 52px;
         border: 2px;
@@ -24,8 +26,7 @@ export const FormWrapper = styled.div`
         left: -150px;
         top: 50px;
     }
-        
-    
+            
     @media (max-width: 320px) {
         width: 287px;
         height: 37px;
@@ -39,7 +40,9 @@ export const FormWrapper = styled.div`
         position: relative;
         left: -75px;
         width: 350px;   
-    }
+        top: 100px;
+        left: -40px;
+        }
 `;
 
 export const Form = styled.form`

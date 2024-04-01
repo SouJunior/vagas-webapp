@@ -89,7 +89,6 @@ export const NavTitle = styled.div`
         position: relative;
         left: -60px;   
     }
-        
 `;
 
 export const HeaderBtns = styled.div`
