@@ -27,4 +27,10 @@ export const JourneyDescription = styled.div`
         font-size: 20px;
         width: 100%;
     }
+
+    @media (max-width: 568px) {
+        width: 300px;
+        
+        
+    }
 `;

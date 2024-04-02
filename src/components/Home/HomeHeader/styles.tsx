@@ -68,11 +68,26 @@ export const NavTitle = styled.div`
         margin-left: 38px;
     }
 
+    @media (max-width: 568px) {
+       margin-left: 60px;
+    }
+
+    @media (max-width: 375px) {
+        position: relative;
+        left: -70px;
+     }
+
     @media (max-width: 320px) {
         width: 124px;
         height: 18.61px;
         border: 0.48px;
-        
+        position: relative;
+        left: -70px;
+    }
+
+    @media (max-width: 415px) {
+        position: relative;
+        left: -60px;   
     }
 `;
 
