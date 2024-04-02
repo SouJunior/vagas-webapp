@@ -19,8 +19,8 @@ export const Header = styled.header<HeaderProps>`
     top: 0;
     background-color: #fff;
     justify-content: space-between;
-    width: 100%;
-    padding: 20px 64px;
+    width: 100vw;
+    padding: 20px;
     height: 132px;
     position: fixed;
     transition: height 0.3s ease-in-out;
@@ -47,7 +47,7 @@ export const Header = styled.header<HeaderProps>`
         css`
             background-color: #fff;
             height: 80px;
-            padding: 20px 64px;
+            padding: 20px;
             transition: height 0.3s ease-in-out;
         `}
 `;
@@ -61,6 +61,10 @@ export const NavTitle = styled.div`
     place-self: center;
     transition: all 200ms ease-out;
     margin-right: 20px;
+
+    img {
+        margin-left: 38px;
+    }
 
     @media (max-width: 568px) {
         margin-left: 60px;
@@ -87,7 +91,7 @@ export const NavTitle = styled.div`
 
 export const HeaderBtns = styled.div`
     display: flex;
-    gap: 16px;
+    gap: 16 px;
 
     @media (max-width: 835px) {
         display: none;

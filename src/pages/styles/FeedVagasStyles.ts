@@ -1,16 +1,31 @@
 import styled from 'styled-components';
+import FeedJobsBackground from '../../assets/imgs/feedjobs-bg.svg';
 
 export const Wrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     justify-content: center;
     height: 100%;
-    width: 100%;
+    width: 100%; 
     min-height: 100vh;
 `;
 
 export const Content = styled.div`
     grid-column: 1 / -1;
+`;
+
+export const FilterContainer = styled.div`
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background-color: ${({ theme }) => theme.colors.primary};
+    background-image: url(${FeedJobsBackground});
+
+    div {
+        width: 100%;
+    }
 `;
 
 export const JobContainer = styled.div`
@@ -22,6 +37,13 @@ export const JobContainer = styled.div`
     width: 100%;
     padding-right: 20px;
     padding-left: 20px;
+`;
+
+export const PageTitle = styled.h1`
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 24px;
 `;
 
 export const ContentWrapper = styled.div`
