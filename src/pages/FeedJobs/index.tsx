@@ -1,25 +1,11 @@
-import { Job, useJobList } from '../hooks/useJobList';
-import JobCard from '../components/JobCard';
-import JobDetails from '../components/JobDetails';
-import FeedSearch from '../components/FeedVagas/FeedSearch';
-import QuickFilter from '../components/QuickFilter';
-import NoJobsSelectedCard from '../components/NoJobSelectedCard';
+import { Job, useJobList } from '../../hooks/useJobList';
+import JobCard from '../../components/JobCard';
+import JobDetails from '../../components/JobDetails';
+import FeedSearch from '../../components/FeedVagas/FeedSearch';
+import QuickFilter from '../../components/QuickFilter';
+import NoJobsSelectedCard from '../../components/NoJobSelectedCard';
 
-import {
-    ContentWrapper,
-    FilterContainer,
-    JobContainer,
-    JobsWrapper,
-    NoResultsMessage,
-    PageTitle,
-    ShowMore,
-    Wrapper,
-    Content,
-    JobList,
-    QuickFilterContainer,
-    JobDetailsWrapper,
-    NoJobsMargin,
-} from './styles/FeedVagasStyles';
+import * as S from './style';
 
 const FeedJobs = () => {
     const {
@@ -50,9 +36,9 @@ const FeedJobs = () => {
         }
 
         return (
-            <ShowMore disabled={true}>
+            <S.ShowMore disabled={true}>
                 Todas as vagas já foram exibidas.
-            </ShowMore>
+            </S.ShowMore>
         );
     }
 
@@ -60,19 +46,14 @@ const FeedJobs = () => {
 
     return (
         <>
-            <Wrapper>
-                <Content>
-                    <FilterContainer>
-                        <div>
-                            <FeedSearch onSearch={fetchFilteredJobs} />
-                        </div>
-                    </FilterContainer>
+            <S.Wrapper>
+                <S.Content>
+                    <FeedSearch onSearch={fetchFilteredJobs} />
 
-                    <JobContainer>
-                        <PageTitle>Feed de Vagas</PageTitle>
-                        <ContentWrapper>
-                            <JobsWrapper>
-                                <QuickFilterContainer>
+                    <S.JobContainer>
+                        <S.ContentWrapper>
+                            <S.JobsWrapper>
+                                <S.QuickFilterContainer>
                                     <QuickFilter
                                         options={[
                                             {
@@ -113,19 +94,19 @@ const FeedJobs = () => {
                                             setSortOrder(event.target.value)
                                         }
                                     />
-                                </QuickFilterContainer>
+                                </S.QuickFilterContainer>
                                 {jobs && Object.keys(jobs).length === 0 && (
-                                    <NoResultsMessage>
+                                    <S.NoResultsMessage>
                                         Nenhuma vaga encontrada.
-                                    </NoResultsMessage>
+                                    </S.NoResultsMessage>
                                 )}
 
                                 {isLoading ? (
-                                    <NoResultsMessage>
+                                    <S.NoResultsMessage>
                                         Carregando...
-                                    </NoResultsMessage>
+                                    </S.NoResultsMessage>
                                 ) : (
-                                    <JobList>
+                                    <S.JobList>
                                         {(jobs || []).map((job: Job) => (
                                             <JobCard
                                                 key={job.id}
@@ -157,43 +138,43 @@ const FeedJobs = () => {
                                                 }}
                                             />
                                         ))}
-                                    </JobList>
+                                    </S.JobList>
                                 )}
 
                                 {hasNextPage ? (
-                                    <ShowMore
+                                    <S.ShowMore
                                         onClick={() => fetchNextPage()}
                                         disabled={isLoading}
                                     >
                                         {isLoading
                                             ? 'Carregando...'
                                             : 'Ver mais'}
-                                    </ShowMore>
+                                    </S.ShowMore>
                                 ) : (
                                     <>{searchContent}</>
                                 )}
-                            </JobsWrapper>
+                            </S.JobsWrapper>
 
                             {jobs && Object.keys(jobs).length > 0 && (
                                 <>
                                     {selectedJob ? (
-                                        <JobDetailsWrapper>
+                                        <S.JobDetailsWrapper>
                                             <JobDetails
                                                 id={selectedJob}
                                                 clickedJob={clickedJob}
                                             />
-                                        </JobDetailsWrapper>
+                                        </S.JobDetailsWrapper>
                                     ) : (
-                                        <NoJobsMargin>
+                                        <S.NoJobsMargin>
                                             <NoJobsSelectedCard />
-                                        </NoJobsMargin>
+                                        </S.NoJobsMargin>
                                     )}
                                 </>
                             )}
-                        </ContentWrapper>
-                    </JobContainer>
-                </Content>
-            </Wrapper>
+                        </S.ContentWrapper>
+                    </S.JobContainer>
+                </S.Content>
+            </S.Wrapper>
         </>
     );
 };
