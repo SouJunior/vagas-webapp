@@ -6,7 +6,7 @@ export const Container = styled.div`
     flex-direction: column;
     min-height: 100vh;
     text-align: center;
-    background: #FDFFFC;
+    background: #fdfffc;
 `;
 export const Main = styled.main`
     display: flex;
@@ -26,9 +26,20 @@ export const Main = styled.main`
         padding-bottom: 60px;
     }
 `;
+
+export const ProfileImg = styled.img`
+    cursor: ${(props) => (props.width === '10%' ? 'default' : 'pointer')};
+    width: ${(props) => props.width};
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 15px;
+    aspect-ratio: 4 / 4;
+`;
+
 export const Position = styled.div`
     margin-top: auto;
 `;
+
 export const Row = styled.div`
     width: 90%;
     border-top: 2px solid #979797;

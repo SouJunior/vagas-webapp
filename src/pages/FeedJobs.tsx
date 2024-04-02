@@ -4,7 +4,6 @@ import JobDetails from '../components/JobDetails';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
 import QuickFilter from '../components/QuickFilter';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
-import Header from '../components/Portal/Header';
 
 import {
     ContentWrapper,
@@ -45,23 +44,22 @@ const FeedJobs = () => {
         if (isLoading) {
             return undefined;
         }
-    
+
         if (jobs && Object.keys(jobs).length === 0) {
             return null;
         }
-    
+
         return (
             <ShowMore disabled={true}>
                 Todas as vagas já foram exibidas.
             </ShowMore>
         );
-    };
+    }
 
     const searchContent = jobContent();
 
     return (
         <>
-            <Header />
             <Wrapper>
                 <Content>
                     <FilterContainer>
@@ -143,7 +141,7 @@ const FeedJobs = () => {
                                                 active={selectedJob === job.id}
                                                 opacity={
                                                     noJobSelected ||
-                                                        selectedJob === job.id
+                                                    selectedJob === job.id
                                                         ? 1
                                                         : 0.6
                                                 }
@@ -172,9 +170,7 @@ const FeedJobs = () => {
                                             : 'Ver mais'}
                                     </ShowMore>
                                 ) : (
-                                    <>
-                                        {searchContent}
-                                    </>
+                                    <>{searchContent}</>
                                 )}
                             </JobsWrapper>
 

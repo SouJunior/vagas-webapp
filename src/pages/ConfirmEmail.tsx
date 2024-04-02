@@ -6,13 +6,10 @@ import circlesImage from '../assets/imgs/circles.svg';
 import lockImage from '../assets/imgs/lock.svg';
 import rowImage from '../assets/imgs/row.svg';
 
-import '../App.css'
-
 import { useLocation } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
 
 const ConfirmEmail = () => {
-
     const {
         register,
         handleSubmit,
@@ -26,18 +23,17 @@ const ConfirmEmail = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
 
-    const type = searchParams.get("type");
+    const type = searchParams.get('type');
 
-    const onSubmitHandler = async (data:any, e:any) => {
-        
-        if (type === "user") {
-            api.userRecoveryPassword(data.email)
-        } else if (type === "company"){
-            api.companyRecoveryPassword(data.email)
-        } 
+    const onSubmitHandler = async (data: any, e: any) => {
+        if (type === 'user') {
+            api.userRecoveryPassword(data.email);
+        } else if (type === 'company') {
+            api.companyRecoveryPassword(data.email);
+        }
 
         e.preventDefault();
-    }         
+    };
 
     return (
         <main
@@ -49,22 +45,35 @@ const ConfirmEmail = () => {
                     <img src={rowImage} alt="linha horizontal" width="100%" />
                 </div>
                 <div className="font-semibold text-center text-3xl py-8 text-blue">
-                    {isValid && !isSubmitSuccessful && (<h1>
-                        Um e-mail de confirmação será enviado dentro de alguns minutos.
-                    </h1>)}
-                    {isSubmitSuccessful && (<h1>
-                        Será encaminhada uma mensagem para o e-mail cadastrado, informando os próximos passos para a redefinição da senha.
-                    </h1>)}
+                    {isValid && !isSubmitSuccessful && (
+                        <h1>
+                            Um e-mail de confirmação será enviado dentro de
+                            alguns minutos.
+                        </h1>
+                    )}
+                    {isSubmitSuccessful && (
+                        <h1>
+                            Será encaminhada uma mensagem para o e-mail
+                            cadastrado, informando os próximos passos para a
+                            redefinição da senha.
+                        </h1>
+                    )}
                 </div>
                 <div className="flex justify-center py-8">
-                    <img src={lockImage} width="258.47px" height="228.33px" alt="cadeado dentro de um círculo" />
+                    <img
+                        src={lockImage}
+                        width="258.47px"
+                        height="228.33px"
+                        alt="cadeado dentro de um círculo"
+                    />
                 </div>
                 <form
                     onSubmit={handleSubmit(onSubmitHandler)}
                     className="flex flex-col place-items-center gap-5 py-8"
                 >
                     <label className="flex flex-col gap-3">
-                        <strong className="text-gray-500">Digite seu e-mail
+                        <strong className="text-gray-500">
+                            Digite seu e-mail
                             <span className="text-red-600"> *</span>
                         </strong>
                         <input
@@ -72,7 +81,7 @@ const ConfirmEmail = () => {
                             className="w-full border border-blue-400 rounded p-3"
                             type="email"
                             placeholder="E-mail"
-                            {...register("email")}
+                            {...register('email')}
                         />
                     </label>
                     {errors.email && <>{errors.email.message}</>}
@@ -85,8 +94,7 @@ const ConfirmEmail = () => {
                 </form>
             </div>
         </main>
+    );
+};
 
-    )
-}
-
-export default ConfirmEmail
+export default ConfirmEmail;

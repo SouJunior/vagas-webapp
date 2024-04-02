@@ -1,16 +1,9 @@
 import React, { useContext, useState } from 'react';
-import Applicant from '../components/Applicant';
 import {
-    ApplicantsContainer,
-    ApplicantsList,
     PageTitle,
     Container,
     JobList,
     ContentWrapper,
-    DetailsJobTitle,
-    Subtitle,
-    Text,
-    JobHeadText,
     QuickFilterContainer,
 } from './styles/CompanyApplicationsStyles';
 import { AuthContext } from '../contexts/Auth/AuthContext';
@@ -20,7 +13,6 @@ import JobCard from '../components/JobCard';
 import { Job } from '../@types/jobs';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
 import QuickFilter from '../components/QuickFilter';
-import Header from '../components/Portal/Header';
 import {
     AboutColumn,
     DescriptionContainer,
@@ -30,7 +22,8 @@ import {
     OptionsBtn,
 } from './styles/JobsPanel';
 import EndJobModal from '../components/EndJobModal';
-import Index from '../components/Portal/Footer';
+import Header from '../components/Portal/Header';
+import Footer from '../components/Portal/Footer';
 
 const JobsPanel = () => {
     const [selectedJob, setSelectedJob] = useState<string | null>('');
@@ -162,7 +155,10 @@ const JobsPanel = () => {
                         <EndJobModal
                             id={JobClicked?.id}
                             title={JobClicked?.title}
-                            onClose={() => {setIsModalOpen(!isModalOpen);refetch()}}
+                            onClose={() => {
+                                setIsModalOpen(!isModalOpen);
+                                refetch();
+                            }}
                         />
                     )}
                     {selectedJob ? (
@@ -172,7 +168,7 @@ const JobsPanel = () => {
                                     <h2>
                                         {JobClicked?.title}{' '}
                                         <span>
-                                            {JobClicked?.status == 'ACTIVE'
+                                            {JobClicked?.status === 'ACTIVE'
                                                 ? 'Ativa'
                                                 : 'Encerrada'}
                                         </span>
@@ -193,7 +189,10 @@ const JobsPanel = () => {
                                                 'PRESENCIAL' &&
                                                 'PRESENCIAL'}{' '}
                                             - {JobClicked?.type} -{' '}
-                                            {JobClicked?.typeContract == "OTHER" ? "OUTRO" : JobClicked?.typeContract}
+                                            {JobClicked?.typeContract ===
+                                            'OTHER'
+                                                ? 'OUTRO'
+                                                : JobClicked?.typeContract}
                                         </h3>
                                     </h3>
                                 </HeadColumn>
@@ -224,7 +223,7 @@ const JobsPanel = () => {
                         <NoJobsSelectedCard />
                     )}
                 </ContentWrapper>
-                <Index />
+                <Footer />
             </Container>
         </>
     );
