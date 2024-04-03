@@ -67,7 +67,7 @@ export const JobsWrapper = styled.div`
 export const QuickFilterContainer = styled.div`
     display: flex;
     gap: 26px;
-    width: 100%;
+    width: 350px;
     max-width: 493px;
     margin-bottom: 26px;
 
@@ -92,6 +92,13 @@ export const JobList = styled.div`
         width: 15px;
     }
 `;
+
+export const JobCard = styled.div`
+    :focus { 
+        background-color: #D6E7FF;
+    }
+`;
+
 
 export const JobDetailsWrapper = styled.div`
     margin-top: 52px;
