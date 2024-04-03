@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
@@ -46,12 +46,8 @@ import doubleCircles from '../assets/imgs/DoubleCircle.svg';
 import circle from '../assets/imgs/circle.svg';
 
 import Testimonials from '../components/Home/Testimonials';
-import HomeHeader from '../components/Home/HomeHeader';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
-import Header from '../components/Portal/Header';
-import { AuthContext } from '../contexts/Auth/AuthContext';
 import { Journey } from '../Mocks/MockJourney';
-import Index from '../components/Portal/Footer';
 import CarouselAreas from '../components/CarouselAreas';
 import { Testimonial } from '../Mocks/Testimonial';
 import { TestimonialType } from '../@types/testimonial-type';
@@ -65,11 +61,9 @@ export interface AreaProps {
 SwiperCore.use([Navigation, Autoplay]);
 
 export const Home: React.FC = () => {
-    const [isActive, setIsActive] = useState(false);
     const [jobsCount, setJobsCount] = useState<number>();
 
     const api = useApi();
-    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         async function getJobs() {
@@ -81,28 +75,10 @@ export const Home: React.FC = () => {
             }
         }
         getJobs();
-
-        const handleScroll = () => {
-            const scrollTop = window.pageYOffset;
-            scrollTop > 300 ? setIsActive(true) : setIsActive(false);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
     }, []);
 
     return (
         <>
-            {user ? (
-                <div className="z-[2000] fixed w-full">
-                    <Header />
-                </div>
-            ) : (
-                <HomeHeader isActive={isActive} />
-            )}
             <Main>
                 <MainContent>
                     <MainSearchFilter>
@@ -255,7 +231,6 @@ export const Home: React.FC = () => {
                     </TestimonialWrapper>
                 </Swiper>
             </TestimonialSection>
-            <Index />
         </>
     );
 };

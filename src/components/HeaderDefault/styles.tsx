@@ -34,8 +34,6 @@ export const Header = styled.header<HeaderProps>`
         width: 320px;
         height: 72px;
         border: 1px;
-        
-        
     }
 
     ${({ isMobileOpen }) =>
@@ -69,13 +67,13 @@ export const NavTitle = styled.div`
     }
 
     @media (max-width: 568px) {
-       margin-left: 60px;
+        margin-left: 60px;
     }
 
     @media (max-width: 375px) {
         position: relative;
         left: -70px;
-     }
+    }
 
     @media (max-width: 320px) {
         width: 124px;
@@ -87,7 +85,7 @@ export const NavTitle = styled.div`
 
     @media (max-width: 415px) {
         position: relative;
-        left: -60px;   
+        left: -60px;
     }
 `;
 
@@ -101,19 +99,15 @@ export const HeaderBtns = styled.div`
 `;
 
 export const RegisterButton = styled.button<ButtonsProps>`
-    // background-color: ${({ theme }) => theme.colors.primary};
     font-size: 16px;
     font-weight: 500;
     width: 262px;
     height: 52px;
-    // color: #fff;
-    // border-radius: 4px;
-    color: ${({ theme }) => theme.colors.primary};;
+    color: ${({ theme }) => theme.colors.primary};
     padding: 8px, 16px;
 
     :hover {
-        // opacity: 0.8;
-        border: 1px solid #046AD0;
+        border: 1px solid #046ad0;
         border-radius: 4px;
     }
 
@@ -133,19 +127,11 @@ export const RegisterButton = styled.button<ButtonsProps>`
 `;
 
 export const LoginButton = styled(RegisterButton)<ButtonsProps>`
-    // background-color: transparent;
-    // color: ${({ theme }) => theme.colors.primary};
-    // font-size: 18px;
-    // font-weight: 600;
-    // border-radius: 4px;
-    // border: 1px solid ${({ theme }) => theme.colors.primary};
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 
     :hover {
-        // background-color: ${({ theme }) => theme.colors.primary};
-        // color: #fff;
         border-radius: 4px;
         border: 1px solid ${({ theme }) => theme.colors.primary};
         display: flex;
@@ -153,7 +139,7 @@ export const LoginButton = styled(RegisterButton)<ButtonsProps>`
 
     img {
         width: 16px;
-        margin-right:10px;
+        margin-right: 10px;
     }
 `;
 
@@ -180,7 +166,6 @@ export const MobileHeader = styled.nav`
     @media (max-width: 320px) {
         width: 40px;
         height: 40px;
-        
     }
 
     .wrapper {
@@ -213,61 +198,59 @@ export const MobileHeader = styled.nav`
         }
 
         @keyframes fadeIn {
-        from {
-            opacity: 0;
-            height: 0px;
-            transform: translateX(
-                -100%
-            ); /* Adicione esta linha para animar o translateY */
-        }
-        to {
-            opacity: 1;
-            height: 100vh;
-            transform: translateX(
-                0%
-            ); /* Adicione esta linha para animar o translateY */
-        }
-    }
-
-    ul {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding-left: 30px;
-        gap: 20px;
-        width: 80%;
-
-        li {
-            text-transform: capitalize;
-            font-size: 22pt;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 5px 15px;
-            color: ${({ theme }) => theme.colors.primary};
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background-image: linear-gradient(
-                ${({ theme }) => theme.colors.primary},
-                ${({ theme }) => theme.colors.primary}
-            );
-            background-size: 0% 3px;
-            background-repeat: no-repeat;
-            transition: background-size 0.3s;
-            margin: 5px 0;
-            background-position: 50% calc(100% - 0px);
-            :hover {
-                background-size: 100% 3px;
+            from {
+                opacity: 0;
+                height: 0px;
+                transform: translateX(
+                    -100%
+                ); /* Adicione esta linha para animar o translateY */
+            }
+            to {
+                opacity: 1;
+                height: 100vh;
+                transform: translateX(
+                    0%
+                ); /* Adicione esta linha para animar o translateY */
             }
         }
-    }
 
-    @media (min-width: 835px) {
-        display: none;
-    }
-    }
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 30px;
+            gap: 20px;
+            width: 80%;
 
-  
+            li {
+                text-transform: capitalize;
+                font-size: 22pt;
+                font-weight: 600;
+                cursor: pointer;
+                padding: 5px 15px;
+                color: ${({ theme }) => theme.colors.primary};
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                background-image: linear-gradient(
+                    ${({ theme }) => theme.colors.primary},
+                    ${({ theme }) => theme.colors.primary}
+                );
+                background-size: 0% 3px;
+                background-repeat: no-repeat;
+                transition: background-size 0.3s;
+                margin: 5px 0;
+                background-position: 50% calc(100% - 0px);
+                :hover {
+                    background-size: 100% 3px;
+                }
+            }
+        }
+
+        @media (min-width: 835px) {
+            display: none;
+        }
+    }
 `;
 
 export const Menu = styled.div`

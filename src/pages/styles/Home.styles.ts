@@ -15,27 +15,26 @@ export const Main = styled.main`
     @media (max-width: 1000px) {
         height: auto;
     }
-    
+
     @media (max-width: 375px) {
         width: 392px;
         height: 700px;
     }
-        
+
     @media (max-width: 568px) {
         width: 568px;
         height: 800px;
-    }    
+    }
 
     @media (max-width: 320px) {
         width: 324px;
         height: 600px;
-    }   
-     
+    }
+
     @media (max-width: 320px) {
         width: 324px;
         height: 600px;
-       
-    }    
+    }
 `;
 
 export const MainContent = styled.div`
@@ -56,7 +55,7 @@ export const MainContent = styled.div`
 
     @media (max-width: 375px) {
         width: 375px;
-    }   
+    }
 `;
 
 export const MainSearchFilter = styled.div`
@@ -84,7 +83,6 @@ export const Title = styled.h2`
     font-weight: 300;
     font-size: 2.9rem;
     line-height: 66px;
-   
 
     span {
         font-weight: 700;
@@ -102,27 +100,25 @@ export const Title = styled.h2`
         font-size: 30px;
     }
 
-    @media (max-width: 375px) {        
+    @media (max-width: 375px) {
         font-size: 24px;
         position: relative;
         left: -150px;
     }
-        
 
     @media (max-width: 320px) {
         position: relative;
         left: -50px;
         height: 40px;
-        font-size: 24px; 
-    }
- 
-    @media (max-width: 415px) {
-        position: relative;
-        left: -75px;   
+        font-size: 24px;
     }
 
-`;       
-     
+    @media (max-width: 415px) {
+        position: relative;
+        left: -75px;
+    }
+`;
+
 export const SecondaryTitle = styled.h3`
     font-weight: 600;
     font-size: 45px;
@@ -132,7 +128,7 @@ export const SecondaryTitle = styled.h3`
     @media (max-width: 780px) {
         width: 90%;
     }
-    
+
     @media (max-width: 568px) {
         width: 272px;
         height: 62px;
@@ -144,10 +140,8 @@ export const SecondaryTitle = styled.h3`
     @media (max-width: 375px) {
         position: relative;
         top: -70px;
-    }   
+    }
 `;
-
-
 
 export const Subtitle = styled.p`
     font-weight: 400;
@@ -170,7 +164,7 @@ export const Subtitle = styled.p`
     @media (max-width: 375px) {
         position: relative;
         top: 0px;
-    }        
+    }
 
     @media (max-width: 320px) {
         font-size: 20px;
@@ -195,7 +189,7 @@ export const JobsInfo = styled.p`
         height: 10px;
         top: 130px;
         font-size: 14px;
-        align-items: center; 
+        align-items: center;
     }
 
     @media (max-width: 375px) {
@@ -203,7 +197,6 @@ export const JobsInfo = styled.p`
         left: -145px;
         top: 40px;
     }
-        
 
     @media (max-width: 320px) {
         position: relative;
@@ -213,22 +206,20 @@ export const JobsInfo = styled.p`
 
     @media (max-width: 415px) {
         position: relative;
-        left: -75px;   
+        left: -75px;
         width: 174px;
         height: 10px;
         top: 2px;
         font-size: 8px;
-        align-items: center; 
+        align-items: center;
     }
 
     @media (max-width: 320px) {
         position: relative;
         top: 95px;
         left: -40px;
-    }    
+    }
 `;
-
-
 
 export const Image = styled.img`
     width: 403px;
@@ -245,11 +236,10 @@ export const Image = styled.img`
         width: 60%;
     }
 
- 
     @media (max-width: 568px) {
         width: 160px;
         height: 160px;
-        position relative;
+        position: relative;
         top: -70px;
         margin-left: 280px;
     }
@@ -260,27 +250,25 @@ export const Image = styled.img`
         bottom: 190px;
         left: -190px;
     }
-        
 
     @media (max-width: 320px) {
-       position: relative;
-       left: -100px;
-       top: -150px;
-       height: 120px;
+        position: relative;
+        left: -100px;
+        top: -150px;
+        height: 120px;
     }
 
     @media (max-width: 415px) {
-      height: 170px;
+        height: 170px;
         margin-top: 65px;
-        margin-left: 280px;       
+        margin-left: 280px;
     }
 
     @media (max-width: 320px) {
-       position: relative;
-       left: -70px;
-       bottom: 170px;
-       height: 120px;
-        
+        position: relative;
+        left: -70px;
+        bottom: 170px;
+        height: 120px;
     }
 `;
 
@@ -305,18 +293,17 @@ export const CircleImage = styled.img`
     @media (max-width: 568px) {
         bottom: -450px;
     }
-     
+
     @media (max-width: 375px) {
         width: 320px;
     }
-        
+
     @media (max-width: 320px) {
         width: 100px;
         height: 100px;
         position: relative;
         top: 200px;
         left: 700px;
-        
     }
 `;
 
@@ -327,7 +314,7 @@ export const Divider = styled.div`
     opacity: 0.6;
 `;
 
-export const OurSitesSection = styled.section` 
+export const OurSitesSection = styled.section`
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -338,8 +325,8 @@ export const OurSitesSection = styled.section`
         margin: 80px 0 4.5rem;
     }
 
-     h3: first-of-type {
-        @media (max-width: 568px) {
+    @media (max-width: 568px) {
+        h3: first-of-type {
             width: 272;
             height: 117;
             position: relative;
@@ -348,21 +335,21 @@ export const OurSitesSection = styled.section`
             flex-direction: column;
             align-items: center;
         }
-        
-        @media (max-width: 320px) {
-            width: 90vw;
-            display: flex;
-            flex-direction: column;
-            align-items:  center;
+    }
 
-        }
-         
-        @media (max-width: 320px) {
-            width: 90vw;
-            display: flex;
-            flex-direction: column;
-            align-items:  center;
-        }
+    @media (max-width: 320px) {
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (max-width: 320px) {
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 export const CardWrapper = styled.div`
@@ -381,7 +368,7 @@ export const CardWrapper = styled.div`
         position: relative;
         top: 40px;
     }
-     
+
     @media (max-width: 320px) {
         position: relative;
         top: -100px;
@@ -401,7 +388,7 @@ export const JourneyContainer = styled.div`
     border: 9px solid ${({ theme }) => theme.colors.primary};
     border-radius: 16px;
     position: relative;
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
 
     @media (max-width: 1200px) {
         width: 100%;
@@ -414,17 +401,16 @@ export const JourneyContainer = styled.div`
         position: relative;
         top: 60px;
     }
-    
+
     @media (max-width: 375px) {
         width: 360px;
-     }
-
+    }
 
     @media (max-width: 320px) {
-       width: 290px;
-       height: 400px;
-       position: relative;
-       top: -70px;
+        width: 290px;
+        height: 400px;
+        position: relative;
+        top: -70px;
     }
 `;
 
@@ -444,31 +430,30 @@ export const JourneyTitle = styled(SecondaryTitle)`
     }
 
     @media (max-width: 568px) {
-       position: relative;
-       top: -70px;
-       width: 500px;
-       width: 300px;
-       height: 86px;
-       border-radius: 16px;
-       padding: 4px 8px 4px 8px;
-       gap: 10px;
+        position: relative;
+        top: -70px;
+        width: 500px;
+        width: 300px;
+        height: 86px;
+        border-radius: 16px;
+        padding: 4px 8px 4px 8px;
+        gap: 10px;
     }
 
     @media (max-width: 375px) {
         width: 260px;
         font-size: 28px;
     }
-    
+
     @media (max-width: 415px) {
         font-size: 32px;
         width: 340px;
-           
     }
-    
+
     @media (max-width: 320px) {
         width: 250px;
         font-size: 32px;
-    } 
+    }
 `;
 
 export const JourneyCardWrapper = styled.div`
@@ -493,9 +478,9 @@ export const JourneyCardWrapper = styled.div`
     }
 
     @media (max-width: 375px) {
-        width: 300px;  
-        }
-        
+        width: 300px;
+    }
+
     @media (max-width: 320px) {
         position: relative;
         width: 240px;
@@ -504,7 +489,7 @@ export const JourneyCardWrapper = styled.div`
     }
 
     @media (max-width: 415px) {
-        width: 340px;   
+        width: 340px;
     }
 `;
 
@@ -519,7 +504,6 @@ export const AreasSection = styled.section`
 
     @media (max-width: 1000px) {
         margin: 80px 0 4.5rem;
-
     }
 `;
 
@@ -547,23 +531,20 @@ export const AreasCardWrapper = styled.div`
         position: relative;
         top: 40px;
     }
-        
 
     @media (max-width: 320px) {
         width: 300px;
         height: 100px;
         position: relative;
         top: -80px;
-      }
-      
-        @media (max-width: 320px) {
-        .wiperSlide {
-            width: 70px;
-            height: 60px;           
-            
-        }
     }
 
+    @media (max-width: 320px) {
+        .wiperSlide {
+            width: 70px;
+            height: 60px;
+        }
+    }
 `;
 
 export const CustomNextButton = styled.div`
@@ -611,7 +592,8 @@ export const TestimonialSection = styled.section`
     z-index: 995;
     margin-top: 180px;
 
-    .swiper-pagination-bullet { //Bolinhas de rolamento da sessão de depoimentos
+    .swiper-pagination-bullet {
+        //Bolinhas de rolamento da sessão de depoimentos
         width: 24px;
         height: 24px;
         background-color: #d9d9d9;
@@ -622,7 +604,7 @@ export const TestimonialSection = styled.section`
             width: 16px;
             height: 16px;
             position: relative;
-            top: -500px;           
+            top: -500px;
         }
     }
 
@@ -631,32 +613,26 @@ export const TestimonialSection = styled.section`
         opacity: 1;
     }
 
-    
-   
-
-     @media (max-width: 320px) {
+    @media (max-width: 320px) {
         position: relative;
         top: -300px;
         bottom: 180px;
     }
 `;
 
-
-
-
 export const TestimonialWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 997;
-          
+
     @media (max-width: 320px) {
         position: relative;
         bottom: 400px;
         display: flex;
         justify-content: center;
         align-items: center;
-    }  
+    }
 `;
 
 export const VocationalBannerArea = styled.div`
@@ -711,11 +687,7 @@ export const VocationalBannerContainer = styled.div`
         align-items: center;
         width: 310px;
         height: 160px;
-        
     }
-
-    
-        
 `;
 export const VocationalTextContainer = styled.div`
     color: white;
@@ -744,7 +716,7 @@ export const VocationalTextContainer = styled.div`
         bottom: 23px;
 
         @media (max-width: 320px) {
-           font-size: 10px;
+            font-size: 10px;
         }
     }
 
@@ -794,28 +766,22 @@ export const VocationalTextContainer = styled.div`
             top: 295px;
         }
 
-       
-            
-
-        @media (max-width: 320px){ 
+        @media (max-width: 320px) {
             .p2 {
-                min-width: 180px;  
+                min-width: 180px;
                 font-size: 10px;
+            }
+        }
 
-        @media (max-width: 320px){ 
+        @media (max-width: 320px) {
             .p2 {
-                min-width: 180px;  
+                min-width: 180px;
                 font-size: 1px;
                 position: relative;
                 top: 325px;
             }
-                
-                
         }
-        
     }
-
-   
 `;
 
 export const VocationalImage = styled.img`
@@ -841,19 +807,14 @@ export const VocationalImage = styled.img`
         width: 130px;
         position: relative;
         bottom: 270px;
-
     }
-        
+
     @media (max-width: 320px) {
-       max-width: 100px;
-       position:  relative;
-       left: -4px;
-       bottom: 220px;
-       
-       
+        max-width: 100px;
+        position: relative;
+        left: -4px;
+        bottom: 220px;
     }
-
-    
 `;
 
 export const AppBannerContainer = styled.section`
@@ -877,23 +838,15 @@ export const AppBannerContainer = styled.section`
         position: relative;
         bottom: 30px;
     }
-        
-        
 
-    CircleImage {
+    .CircleImage {
         @media (max-width: 320px) {
             width: 130px;
             height: 134px;
             position: relative;
-
         }
-            
-            
-            
     }
 `;
-
-
 
 export const AppBannerContainerInfo = styled.div`
     color: white;
@@ -916,10 +869,10 @@ export const AppBannerContainerInfo = styled.div`
             width: 320px;
             height: 150px;
             position: relative;
-            
+
             bottom: 110px;
             font-size: 10px;
-         }
+        }
     }
 
     span {
@@ -937,7 +890,6 @@ export const AppBannerContainerInfo = styled.div`
     @media (max-width: 320px) {
         h1 {
             font-size: 30px;
-            
         }
     }
 `;
@@ -964,7 +916,6 @@ export const BannerMobileImage = styled.img`
         position: relative;
         top: 30px;
     }
-  
 `;
 
 export const GooglePlayButton = styled.img`
@@ -984,5 +935,3 @@ export const GooglePlayButton = styled.img`
         top: 105px;
     }
 `;
-
-

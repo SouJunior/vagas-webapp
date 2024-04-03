@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+import App from '../routes/router';
 
 test('renderizar componente Button com texto', () => {
     render(<App />);

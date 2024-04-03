@@ -13,8 +13,6 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useContext, useEffect, useState } from 'react';
 import { useApi } from '../hooks/useApi';
-import { Footer } from '../components/Portal/Footer/styles';
-import Index from '../components/Portal/Footer';
 
 const CompanyPortal = () => {
     const navigate = useNavigate();
@@ -58,7 +56,6 @@ const CompanyPortal = () => {
                 <Main>
                     <Row />
                 </Main>
-                <Index />
                 <Main>
                     <Row />
                 </Main>

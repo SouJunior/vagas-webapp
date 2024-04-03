@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../components/Portal/Header';
-import { Footer } from '../components/Footer';
 import {
     Container,
     LeftContainer,
@@ -14,14 +11,12 @@ import {
 } from './styles/MatchJobs';
 import MatchCard from '../components/MatchCard';
 import { FiDownloadCloud } from 'react-icons/fi';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useApi } from '../hooks/useApi';
-import Index from '../components/Portal/Footer';
+import { useLocation } from 'react-router-dom';
+import Header from '../components/Portal/Header';
+import { Footer } from '../components/Portal/Footer/styles';
 
 function MatchJobs() {
-    const api = useApi();
     const location = useLocation();
-    const navigate = useNavigate();
 
     const currentJob = location?.state?.jobData;
     const curriculumData = location?.state?.curriculumData;
@@ -92,8 +87,7 @@ function MatchJobs() {
                         </PaymentInfo>
                     </RightContainer>
                 </Wrapper>
-
-                <Index />
+                <Footer />
             </Container>
         </>
     );
