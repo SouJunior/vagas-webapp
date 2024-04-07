@@ -1,23 +1,34 @@
 import { RightText } from './styles';
-import { config, animated, useTransition } from 'react-spring';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface RightContentInterface {
     content: React.ReactNode;
-    keyProp: string;
+    contentKey: string;
 }
 
-const RenderRightContent: React.FC<RightContentInterface> = ({ content, keyProp }) => {
-    const transitions = useTransition(content, {
-        key: keyProp,
-        from: { opacity: 0, transform: 'translate3d(0,50%,0)' },
-        enter: { opacity: 1, transform: 'translate3d(0,0%,0)' },
-        config: config.gentle,
-    });
+const containerVariants = {
+    initial: { opacity: 0, y: 100 },
+    enter: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, y: -50,  transition: { duration: 0.2 } },
+};
 
+const RenderRightContent: React.FC<RightContentInterface> = ({
+    content,
+    contentKey,
+}) => {
     return (
         <RightText>
-            {transitions((style, item) => 
-            item? <animated.div style={style}>{item}</animated.div> : null)}
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={contentKey}
+                    variants={containerVariants}
+                    initial="initial"
+                    animate="enter"
+                    exit="exit"
+                >
+                    {content}
+                </motion.div>
+            </AnimatePresence>
         </RightText>
     );
 };

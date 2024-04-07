@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import {
     FigureBox,
     ItemDescription,
@@ -13,10 +13,13 @@ import TituloLinkedinContent from './RightContent/TituloLinkedinContent';
 import ResumoLinkedinContent from './RightContent/ResumoLinkedinContent';
 import ExperienciaContent from './RightContent/ExperienciaContent';
 import PalavrasChavesContent from './RightContent/PalavrasChavesContent';
+import ThumbnailFigure from './RightContent/ThumbnailFigure';
+
+import CameraIcon from '../../../assets/imgs/photo_camera.svg'
 
 interface LeftMenuItemsInterface {
     id: number;
-    figure: ReactElement;
+    figure: React.ReactNode;
     title: string;
     intro: string;
     content: React.ReactNode;
@@ -29,7 +32,7 @@ interface ButtonSetContentInterface {
 export const Items = [
     {
         id: 1,
-        figure: <Camera size={25} color="#344054" />,
+        figure: <Camera size={25} color='#344054'/>,
         title: 'A Fotografia',
         intro: 'Importância da imagem no LinkedIn: descubra como uma foto profissional pode impactar suas oportunidades de carreira.',
         content: <FotografiaContent />,
@@ -65,14 +68,16 @@ export const Items = [
 ];
 
 const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({ setContent }) => {
+    const [activeItemId, setActiveItemId] = useState(0);
 
     return (
         <>
             <LeftMenu>
                 {Items.map((item: LeftMenuItemsInterface) => (
-                    <MenuItem
+                    <MenuItem 
+                        isActive={item.id === activeItemId}
                         key={item.id}
-                        onClick={() => setContent(item.content, `content-${item.id}`)}
+                        onClick={() => {setActiveItemId(item.id); setContent(item.content, `content-${item.id}`)}}
                     >
                         <FigureBox>{item.figure}</FigureBox>
                         <ItemDescription>

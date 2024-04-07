@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ContentContainer = styled.div`
     display: flex;
@@ -14,11 +14,25 @@ export const LeftMenu = styled.div`
     gap: 24px;
     flex: 1;
 `;
-export const MenuItem = styled.button`
+export const MenuItem = styled.button<{isActive: boolean}>`
     display: flex;
     gap: 18px;
     padding: 14px;
     align-items: flex-start;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: border-left 0.5s ease-in-out;
+
+    &:hover {
+    background-color: #E7F0F8;
+    transform: scale(1.05);
+  }
+
+  ${({ isActive }) =>
+  isActive &&
+  css`
+    background-color: #E7F0F8;
+    border-left: solid 3px #046AD0;
+  `}
 `;
 
 export const ItemDescription = styled.div`
@@ -69,7 +83,6 @@ export const RightText = styled.div`
     font-weight: 400;
     line-height: 140%;
     flex: 1;
-    overflow: hidden;
 `;
 
 export const AnimatedContent = styled.div`

@@ -43,7 +43,7 @@ const CurriculoButton = styled(ToggleButton)`
 
 
 const ToggleLinkedinCurriculoButton = () => {
-    const [activeButton, setActiveButton] = useState(null || '')
+    const [activeButton, setActiveButton] = useState('linkedinButton')
 
     return (
         <>
