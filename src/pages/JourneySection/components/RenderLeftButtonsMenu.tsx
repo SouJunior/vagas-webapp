@@ -23,7 +23,7 @@ interface LeftMenuItemsInterface {
 }
 
 interface ButtonSetContentInterface {
-    setContent: (component: React.ReactNode) => void;
+    setContent: (component: React.ReactNode, newKey: string) => void;
 }
 
 export const Items = [
@@ -72,7 +72,7 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({ setContent
                 {Items.map((item: LeftMenuItemsInterface) => (
                     <MenuItem
                         key={item.id}
-                        onClick={() => setContent(item.content)}
+                        onClick={() => setContent(item.content, `content-${item.id}`)}
                     >
                         <FigureBox>{item.figure}</FigureBox>
                         <ItemDescription>
