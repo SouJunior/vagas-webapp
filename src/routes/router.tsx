@@ -23,6 +23,7 @@ import JobsPanel from '../pages/JobsPanel';
 import MatchJobs from '../pages/MatchJobs';
 import RenderArea from '../pages/CarouselAreas/RenderArea';
 import CarouselLayout from '../layout/CarouselLayout';
+import JourneyLayout from '../layout/JourneyLayout';
 
 const NavRoutes: React.FC = () => {
     return (
@@ -35,6 +36,9 @@ const NavRoutes: React.FC = () => {
 
                     <Route path="areas" element={<CarouselLayout />}>
                         <Route path=":areaId" element={<RenderArea />} />
+                    </Route>
+
+                    <Route path='journey' element={<JourneyLayout/>}>
                     </Route>
                 </Route>
 
