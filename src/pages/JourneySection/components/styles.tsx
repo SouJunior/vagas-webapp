@@ -21,6 +21,14 @@ export const MenuItem = styled.button<{isActive: boolean}>`
     align-items: flex-start;
     transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, border-left 0.5s ease-in-out;
 
+    div{
+        background: '#FFF'
+
+        &:hover {
+            background: #E7F0F8;
+        }
+    }
+
     &:hover {
     background-color: #E7F0F8;
     transform: scale(1.05);
@@ -69,7 +77,6 @@ export const FigureBox = styled.div`
     width: 48px;
     hight: 48px;
     border-radius: 8px;
-    background: var(--Color, #fff);
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08);
 `;
 
