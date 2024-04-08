@@ -37,7 +37,7 @@ const FotografiaContent: React.FC = () => {
             <br />
             <Paragrafo>
                 Para avaliar sua foto de perfil Linkedin, o site abaixo pode ser
-                útil: <a href="https://www.snappr.com/photo-analyzer/">https://www.snappr.com/photo-analyzer/</a>.
+                útil: <a href="https://www.snappr.com/photo-analyzer/" style={{ color: '#2E90FA' }}>https://www.snappr.com/photo-analyzer/</a>.
             </Paragrafo>
         </Container>
     );

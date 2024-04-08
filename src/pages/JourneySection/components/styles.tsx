@@ -19,8 +19,7 @@ export const MenuItem = styled.button<{isActive: boolean}>`
     gap: 18px;
     padding: 14px;
     align-items: flex-start;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-    transition: border-left 0.5s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, border-left 0.5s ease-in-out;
 
     &:hover {
     background-color: #E7F0F8;

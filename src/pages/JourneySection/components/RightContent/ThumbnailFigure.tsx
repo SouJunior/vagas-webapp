@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const Figure = styled.img`
     width: 40px;
-    hight: 45px;
+    hight: 40px;
     color: #344054;
 `
 

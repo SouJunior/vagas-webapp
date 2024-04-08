@@ -27,7 +27,7 @@ const ExperienciaContent: React.FC = () => {
             <Paragrafo>
                 Dica profissional: use nomes de empresas e escolas. Quando você
                 fizer isso, uma imagem em miniatura aparecerá em seu perfil. Não
-                é nada demais, mas esteticamente parece mais bonito – e,
+                é nada demais, mas esteticamente parece mais bonito e,
                 infelizmente, os livros são julgados por suas capas.
             </Paragrafo>
         </Container>

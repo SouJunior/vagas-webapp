@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { useState } from 'react';
 import {
     FigureBox,
     ItemDescription,
@@ -13,10 +13,6 @@ import TituloLinkedinContent from './RightContent/TituloLinkedinContent';
 import ResumoLinkedinContent from './RightContent/ResumoLinkedinContent';
 import ExperienciaContent from './RightContent/ExperienciaContent';
 import PalavrasChavesContent from './RightContent/PalavrasChavesContent';
-import ThumbnailFigure from './RightContent/ThumbnailFigure';
-
-import CameraIcon from '../../../assets/imgs/photo_camera.svg'
-
 interface LeftMenuItemsInterface {
     id: number;
     figure: React.ReactNode;
@@ -68,7 +64,7 @@ export const Items = [
 ];
 
 const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({ setContent }) => {
-    const [activeItemId, setActiveItemId] = useState(0);
+    const [activeItemId, setActiveItemId] = useState(1);
 
     return (
         <>

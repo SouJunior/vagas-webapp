@@ -23,12 +23,18 @@ const PalavrasChavesContent: React.FC = () => {
             </p>
             <br />
             <p>
-                Personalize o seu URL para o seu nome:
-                <a href="www.linkedin.com/in/SeuNomeAqui">
-                    {' '}
+                Personalize o seu URL para o seu nome:{' '}
+                <a
+                    href="www.linkedin.com/in/SeuNomeAqui"
+                    style={{ color: '#2E90FA' }}
+                >
                     www.linkedin.com/in/SeuNomeAqui
                 </a>{' '}
-                - isso facilita na busca e deixa seu perfil personalizado.
+                isso facilita na busca e deixa seu perfil personalizado.
+            </p>
+            <br />
+            <p>
+                Fonte: <a href="https://forbes.com.br/carreira/2022/02/5-dicas-para-voce-montar-um-perfil-de-sucesso-no-linkedin/" style={{ color: '#2E90FA' }}>https://forbes.com.br/carreira/2022/02/5-dicas-para-voce-montar-um-perfil-de-sucesso-no-linkedin/</a>
             </p>
         </Container>
     );

@@ -4,7 +4,7 @@ import { ContentContainer } from './styles';
 import RenderRightContent from './RenderRightContent';
 import FotografiaContent from './RightContent/FotografiaContent';
 
-const JourneySection: React.FC = () => {
+const JourneyMainContent: React.FC = () => {
     const [contentKey, setContentKey] = useState<string>('initialKey');
     const [content, setContent] = useState<React.ReactNode>(
         <FotografiaContent />,
@@ -23,4 +23,4 @@ const JourneySection: React.FC = () => {
     );
 };
 
-export default JourneySection;
+export default JourneyMainContent;
