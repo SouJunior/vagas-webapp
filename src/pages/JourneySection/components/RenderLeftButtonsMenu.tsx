@@ -28,7 +28,7 @@ interface ButtonSetContentInterface {
 export const Items = [
     {
         id: 1,
-        figure: <Camera size={25} color='#344054'/>,
+        figure: <Camera size={25} color="#344054" />,
         title: 'A Fotografia',
         intro: 'Importância da imagem no LinkedIn: descubra como uma foto profissional pode impactar suas oportunidades de carreira.',
         content: <FotografiaContent />,
@@ -63,27 +63,30 @@ export const Items = [
     },
 ];
 
-const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({ setContent }) => {
+const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
+    setContent,
+}) => {
     const [activeItemId, setActiveItemId] = useState(1);
 
     return (
-        <>
-            <LeftMenu>
-                {Items.map((item: LeftMenuItemsInterface) => (
-                    <MenuItem 
-                        isActive={item.id === activeItemId}
-                        key={item.id}
-                        onClick={() => {setActiveItemId(item.id); setContent(item.content, `content-${item.id}`)}}
-                    >
-                        <FigureBox>{item.figure}</FigureBox>
-                        <ItemDescription>
-                            <ItemTitle>{item.title}</ItemTitle>
-                            <ItemSubtitle>{item.intro}</ItemSubtitle>
-                        </ItemDescription>
-                    </MenuItem>
-                ))}
-            </LeftMenu>
-        </>
+        <LeftMenu>
+            {Items.map((item: LeftMenuItemsInterface) => (
+                <MenuItem
+                    isActive={item.id === activeItemId}
+                    key={item.id}
+                    onClick={() => {
+                        setActiveItemId(item.id);
+                        setContent(item.content, `content-${item.id}`);
+                    }}
+                >
+                    <FigureBox>{item.figure}</FigureBox>
+                    <ItemDescription>
+                        <ItemTitle>{item.title}</ItemTitle>
+                        <ItemSubtitle>{item.intro}</ItemSubtitle>
+                    </ItemDescription>
+                </MenuItem>
+            ))}
+        </LeftMenu>
     );
 };
 
