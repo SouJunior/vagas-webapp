@@ -6,8 +6,6 @@ import verticalLine from '../assets/imgs/verticalLine.svg';
 import LoginCard from '../components/LoginCard';
 import { AchorLink } from './styles/Main.styled';
 
-import '../App.css';
-
 const Login = () => {
     const navigate = useNavigate();
     const handleKeyPress = (event: React.KeyboardEvent) => {

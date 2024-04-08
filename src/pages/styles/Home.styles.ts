@@ -16,12 +16,25 @@ export const Main = styled.main`
         height: auto;
     }
 
+    @media (max-width: 375px) {
+        width: 392px;
+        height: 700px;
+    }
+
+    @media (max-width: 568px) {
+        width: 568px;
+        height: 800px;
+    }
+
     @media (max-width: 320px) {
         width: 324px;
         height: 600px;
-       
     }
-    
+
+    @media (max-width: 320px) {
+        width: 324px;
+        height: 600px;
+    }
 `;
 
 export const MainContent = styled.div`
@@ -40,7 +53,9 @@ export const MainContent = styled.div`
         justify-content: space-between;
     }
 
-   
+    @media (max-width: 375px) {
+        width: 375px;
+    }
 `;
 
 export const MainSearchFilter = styled.div`
@@ -61,9 +76,6 @@ export const MainSearchFilter = styled.div`
         height: 470px;
         margin-top: 75px;
     }
-
-    
-    
 `;
 
 export const Title = styled.h2`
@@ -71,7 +83,6 @@ export const Title = styled.h2`
     font-weight: 300;
     font-size: 2.9rem;
     line-height: 66px;
-   
 
     span {
         font-weight: 700;
@@ -84,23 +95,29 @@ export const Title = styled.h2`
     @media (max-width: 568px) {
         width: 272px;
         height: 144px;
-        max-margin-top: 30px;
-        align-items: center;
+        position: relative;
+        top: -50px;
         font-size: 30px;
+    }
+
+    @media (max-width: 375px) {
+        font-size: 24px;
+        position: relative;
+        left: -150px;
     }
 
     @media (max-width: 320px) {
         position: relative;
-        left: -38px;
+        left: -50px;
         height: 40px;
-        font-size: 24px; 
+        font-size: 24px;
     }
-        
-    `;
-        
-        
-      
-   
+
+    @media (max-width: 415px) {
+        position: relative;
+        left: -75px;
+    }
+`;
 
 export const SecondaryTitle = styled.h3`
     font-weight: 600;
@@ -111,23 +128,20 @@ export const SecondaryTitle = styled.h3`
     @media (max-width: 780px) {
         width: 90%;
     }
-        
 
     @media (max-width: 568px) {
         width: 272px;
         height: 62px;
-        margin-top: 10px;
+        position: relative;
+        top: -40px;
         font-size: 32px;
     }
-    
-    @media (max-width: 320px) {
-        font-size: 24px;
-        margin-bottom: 30px;
+
+    @media (max-width: 375px) {
+        position: relative;
+        top: -70px;
     }
-
 `;
-
-
 
 export const Subtitle = styled.p`
     font-weight: 400;
@@ -147,9 +161,15 @@ export const Subtitle = styled.p`
         align-items: center;
     }
 
+    @media (max-width: 375px) {
+        position: relative;
+        top: 0px;
+    }
+
     @media (max-width: 320px) {
         font-size: 20px;
-        margin-bottom: 50px;
+        position: relative;
+        top: -100;
     }
 `;
 
@@ -165,12 +185,33 @@ export const JobsInfo = styled.p`
 
     @media (max-width: 568px) {
         position: relative;
+        width: 400px;
+        height: 10px;
+        top: 130px;
+        font-size: 14px;
+        align-items: center;
+    }
+
+    @media (max-width: 375px) {
+        position: relative;
+        left: -145px;
+        top: 40px;
+    }
+
+    @media (max-width: 320px) {
+        position: relative;
+        top: 150px;
+        left: -50px;
+    }
+
+    @media (max-width: 415px) {
+        position: relative;
+        left: -75px;
         width: 174px;
         height: 10px;
         top: 2px;
-        
         font-size: 8px;
-        align-items: center; 
+        align-items: center;
     }
 
     @media (max-width: 320px) {
@@ -178,10 +219,7 @@ export const JobsInfo = styled.p`
         top: 95px;
         left: -40px;
     }
-    
 `;
-
-
 
 export const Image = styled.img`
     width: 403px;
@@ -198,24 +236,40 @@ export const Image = styled.img`
         width: 60%;
     }
 
- 
     @media (max-width: 568px) {
-        
         width: 160px;
+        height: 160px;
+        position: relative;
+        top: -70px;
+        margin-left: 280px;
+    }
+
+    @media (max-width: 375px) {
+        width: 200px;
+        position: relative;
+        bottom: 190px;
+        left: -190px;
+    }
+
+    @media (max-width: 320px) {
+        position: relative;
+        left: -100px;
+        top: -150px;
+        height: 120px;
+    }
+
+    @media (max-width: 415px) {
         height: 170px;
         margin-top: 65px;
         margin-left: 280px;
     }
 
     @media (max-width: 320px) {
-       position: relative;
-       left: -70px;
-       bottom: 170px;
-       height: 120px;
-        
+        position: relative;
+        left: -70px;
+        bottom: 170px;
+        height: 120px;
     }
-   
-
 `;
 
 export const Circle = styled.img`
@@ -239,21 +293,18 @@ export const CircleImage = styled.img`
     @media (max-width: 568px) {
         bottom: -450px;
     }
-     
+
+    @media (max-width: 375px) {
+        width: 320px;
+    }
+
     @media (max-width: 320px) {
         width: 100px;
         height: 100px;
         position: relative;
         top: 200px;
         left: 700px;
-        
     }
-      
-       
-        
-       
-
-  
 `;
 
 export const Divider = styled.div`
@@ -263,7 +314,7 @@ export const Divider = styled.div`
     opacity: 0.6;
 `;
 
-export const OurSitesSection = styled.section` 
+export const OurSitesSection = styled.section`
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -274,8 +325,8 @@ export const OurSitesSection = styled.section`
         margin: 80px 0 4.5rem;
     }
 
-     h3: first-of-type {
-        @media (max-width: 568px) {
+    @media (max-width: 568px) {
+        h3: first-of-type {
             width: 272;
             height: 117;
             position: relative;
@@ -284,14 +335,20 @@ export const OurSitesSection = styled.section`
             flex-direction: column;
             align-items: center;
         }
-         
-        @media (max-width: 320px) {
-            width: 90vw;
-            
-            display: flex;
-            flex-direction: column;
-            align-items:  center;
-        }
+    }
+
+    @media (max-width: 320px) {
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (max-width: 320px) {
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 `;
 
@@ -307,9 +364,14 @@ export const CardWrapper = styled.div`
     }
 
     @media (max-width: 568px) {
+        width: 560px;
         position: relative;
         top: 40px;
-        
+    }
+
+    @media (max-width: 320px) {
+        position: relative;
+        top: -100px;
     }
 `;
 
@@ -326,23 +388,29 @@ export const JourneyContainer = styled.div`
     border: 9px solid ${({ theme }) => theme.colors.primary};
     border-radius: 16px;
     position: relative;
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
 
     @media (max-width: 1200px) {
         width: 100%;
     }
 
     @media (max-width: 568px) {
-        width: 350px;
+        width: 550px;
         height: 482px;
         border-radius: 32px;
         position: relative;
         top: 60px;
     }
 
+    @media (max-width: 375px) {
+        width: 360px;
+    }
+
     @media (max-width: 320px) {
-       width: 310px;
-       height: 400px;
+        width: 290px;
+        height: 400px;
+        position: relative;
+        top: -70px;
     }
 `;
 
@@ -362,20 +430,30 @@ export const JourneyTitle = styled(SecondaryTitle)`
     }
 
     @media (max-width: 568px) {
-       position: relative;
-       top: -70px;
-       width: 300px;
-       height: 86px;
-       border-radius: 16px;
-       padding: 4px 8px 4px 8px;
-       gap: 10px;
-        
+        position: relative;
+        top: -70px;
+        width: 500px;
+        width: 300px;
+        height: 86px;
+        border-radius: 16px;
+        padding: 4px 8px 4px 8px;
+        gap: 10px;
+    }
+
+    @media (max-width: 375px) {
+        width: 260px;
+        font-size: 28px;
+    }
+
+    @media (max-width: 415px) {
+        font-size: 32px;
+        width: 340px;
     }
 
     @media (max-width: 320px) {
         width: 250px;
         font-size: 32px;
-     }
+    }
 `;
 
 export const JourneyCardWrapper = styled.div`
@@ -393,22 +471,26 @@ export const JourneyCardWrapper = styled.div`
     }
 
     @media (max-width: 568px) {
-        width: 320px;
+        width: 380px;
         height: 364px;
         position: relative;
         bottom: 100px;
     }
-        
+
+    @media (max-width: 375px) {
+        width: 300px;
+    }
 
     @media (max-width: 320px) {
         position: relative;
-        width: 260px;
+        width: 240px;
         bottom: 140px;
         font-size: 4px;
-        
-        
-     }
- 
+    }
+
+    @media (max-width: 415px) {
+        width: 340px;
+    }
 `;
 
 export const AreasSection = styled.section`
@@ -422,7 +504,6 @@ export const AreasSection = styled.section`
 
     @media (max-width: 1000px) {
         margin: 80px 0 4.5rem;
-
     }
 `;
 
@@ -440,29 +521,30 @@ export const AreasCardWrapper = styled.div`
     }
 
     @media (max-width: 568px) {
-        
-        width: 408px;
+        width: 568px;
         height: 100px;
-        margin-top: 100px;
+        margin-top: 220px;
         gap: 8px;
+    }
+
+    @media (max-width: 375px) {
+        position: relative;
+        top: 40px;
     }
 
     @media (max-width: 320px) {
         width: 300px;
         height: 100px;
-        margin-top: 100px;
-        
+        position: relative;
+        top: -80px;
     }
 
-    .wiperSlide {
-        @media (max-width: 320px) {
+    @media (max-width: 320px) {
+        .wiperSlide {
             width: 70px;
             height: 60px;
-            
-            
         }
     }
-
 `;
 
 export const CustomNextButton = styled.div`
@@ -510,7 +592,8 @@ export const TestimonialSection = styled.section`
     z-index: 995;
     margin-top: 180px;
 
-    .swiper-pagination-bullet { //Bolinhas de rolamento da sessão de depoimentos
+    .swiper-pagination-bullet {
+        //Bolinhas de rolamento da sessão de depoimentos
         width: 24px;
         height: 24px;
         background-color: #d9d9d9;
@@ -518,8 +601,10 @@ export const TestimonialSection = styled.section`
         border-radius: 50%;
 
         @media (max-width: 320px) {
-            display: none;
-            
+            width: 16px;
+            height: 16px;
+            position: relative;
+            top: -500px;
         }
     }
 
@@ -528,42 +613,26 @@ export const TestimonialSection = styled.section`
         opacity: 1;
     }
 
-    
-   
-
-     @media (max-width: 320px) {
+    @media (max-width: 320px) {
         position: relative;
+        top: -300px;
         bottom: 180px;
-        width: 320px;
-        height: auto;
     }
-        
-        
-
-   
-
 `;
-
-
-
 
 export const TestimonialWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 997;
-          
+
     @media (max-width: 320px) {
         position: relative;
         bottom: 400px;
         display: flex;
-    justify-content: center;
-    align-items: center;
-        
-        
+        justify-content: center;
+        align-items: center;
     }
-
-  
 `;
 
 export const VocationalBannerArea = styled.div`
@@ -618,11 +687,7 @@ export const VocationalBannerContainer = styled.div`
         align-items: center;
         width: 310px;
         height: 160px;
-        
     }
-
-    
-        
 `;
 export const VocationalTextContainer = styled.div`
     color: white;
@@ -649,6 +714,10 @@ export const VocationalTextContainer = styled.div`
         line-height: 15.3px;
         position: absolute;
         bottom: 23px;
+
+        @media (max-width: 320px) {
+            font-size: 10px;
+        }
     }
 
     a {
@@ -697,20 +766,22 @@ export const VocationalTextContainer = styled.div`
             top: 295px;
         }
 
-        @media (max-width: 320px){ 
+        @media (max-width: 320px) {
             .p2 {
-                min-width: 180px;  
+                min-width: 180px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .p2 {
+                min-width: 180px;
                 font-size: 1px;
                 position: relative;
                 top: 325px;
             }
-                
-                
         }
-        
     }
-
-   
 `;
 
 export const VocationalImage = styled.img`
@@ -728,16 +799,22 @@ export const VocationalImage = styled.img`
         right: 10px;
     }
 
-    @media (max-width: 320px) {
-       max-width: 100px;
-       position:  relative;
-       left: -4px;
-       bottom: 220px;
-       
-       
+    @media (max-width: 568px) {
+        height: 130px;
     }
 
-    
+    @media (max-width: 375px) {
+        width: 130px;
+        position: relative;
+        bottom: 270px;
+    }
+
+    @media (max-width: 320px) {
+        max-width: 100px;
+        position: relative;
+        left: -4px;
+        bottom: 220px;
+    }
 `;
 
 export const AppBannerContainer = styled.section`
@@ -761,23 +838,15 @@ export const AppBannerContainer = styled.section`
         position: relative;
         bottom: 30px;
     }
-        
-        
 
-    CircleImage {
+    .CircleImage {
         @media (max-width: 320px) {
             width: 130px;
             height: 134px;
             position: relative;
-
         }
-            
-            
-            
     }
 `;
-
-
 
 export const AppBannerContainerInfo = styled.div`
     color: white;
@@ -800,10 +869,10 @@ export const AppBannerContainerInfo = styled.div`
             width: 320px;
             height: 150px;
             position: relative;
-            
+
             bottom: 110px;
             font-size: 10px;
-         }
+        }
     }
 
     span {
@@ -821,7 +890,6 @@ export const AppBannerContainerInfo = styled.div`
     @media (max-width: 320px) {
         h1 {
             font-size: 30px;
-            
         }
     }
 `;
@@ -848,7 +916,6 @@ export const BannerMobileImage = styled.img`
         position: relative;
         top: 30px;
     }
-  
 `;
 
 export const GooglePlayButton = styled.img`
@@ -868,5 +935,3 @@ export const GooglePlayButton = styled.img`
         top: 105px;
     }
 `;
-
-

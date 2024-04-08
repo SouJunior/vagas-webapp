@@ -14,17 +14,11 @@ import {
     ErrorMessages,
     Spacing,
 } from './style';
-import {
-    Position,
-    Main,
-    Row,
-} from '../styles/CandidatePortalStyles';
+import { Position, Main, Row } from '../styles/CandidatePortalStyles';
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
 import location from '../ProfileSettings/data/location';
-import Header from '../../components/Portal/Header';
-import { ProfileImg } from '../../components/Portal/Header/styles';
 import { HandleInputsRenderCandidate } from './utils/handleInputsRenderCandidate';
 import inputConfigCandidate from './data/inputConfigCandidate';
 import { useState, useContext, useEffect } from 'react';
@@ -36,11 +30,12 @@ import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
-import InputMask from 'react-input-mask'
-import Index from '../../components/Portal/Footer';
+import InputMask from 'react-input-mask';
+import { ProfileImg } from '../styles/CompanyPortalStyles';
+import Header from '../../components/Portal/Header';
+import Footer from '../../components/Portal/Footer';
 
 export const CandidateSettings: React.FC = () => {
-
     const HandleOptionsRender = (arr: any): [] => {
         return arr.map((element: any) => {
             const key = element.id;
@@ -71,7 +66,7 @@ export const CandidateSettings: React.FC = () => {
         setValue,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(CandidateUpdateFormSchema)
+        resolver: yupResolver(CandidateUpdateFormSchema),
     });
 
     const api = useApi();
@@ -86,7 +81,7 @@ export const CandidateSettings: React.FC = () => {
                 setFileKey1(userCurriculum1.fileKey);
                 setFileUrl1(userCurriculum1.file);
                 setDeleteButton1(true);
-                setValue("fileInput1", [fileUrl1]);
+                setValue('fileInput1', [fileUrl1]);
             }
 
             if (curriculums[1]) {
@@ -94,30 +89,43 @@ export const CandidateSettings: React.FC = () => {
                 setFileKey2(userCurriculum2.fileKey);
                 setFileUrl2(userCurriculum2.file);
                 setDeleteButton2(true);
-                setValue("fileInput2", [fileUrl2]);
+                setValue('fileInput2', [fileUrl2]);
             }
 
             return () => {
                 userCurriculum();
-            }
-        }
+            };
+        };
         userCurriculum();
     }, []);
 
-    const formatPhoneNumberForForm = (phoneNumber: string, formatted: boolean) => {
+    const formatPhoneNumberForForm = (
+        phoneNumber: string,
+        formatted: boolean,
+    ) => {
         const length = formatted ? 15 : 11;
-        return (phoneNumber || "").length < length ? "(99) 9999-99999" : "(99) 99999-9999";
+        return (phoneNumber || '').length < length
+            ? '(99) 9999-99999'
+            : '(99) 99999-9999';
     };
 
-    const [mask1, setMask1] = useState(formatPhoneNumberForForm(auth.user.mainPhone, false));
-    const [mask2, setMask2] = useState(formatPhoneNumberForForm(auth.user.phone, false));
+    const [mask1, setMask1] = useState(
+        formatPhoneNumberForForm(auth.user.mainPhone, false),
+    );
+    const [mask2, setMask2] = useState(
+        formatPhoneNumberForForm(auth.user.phone, false),
+    );
 
-    const handlePhoneNumberChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePhoneNumberChange1 = (
+        e: React.ChangeEvent<HTMLInputElement>,
+    ) => {
         const value = e.target.value;
         setMask1(formatPhoneNumberForForm(value, true));
     };
 
-    const handlePhoneNumberChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePhoneNumberChange2 = (
+        e: React.ChangeEvent<HTMLInputElement>,
+    ) => {
         const value = e.target.value;
         setMask2(formatPhoneNumberForForm(value, true));
     };
@@ -130,10 +138,12 @@ export const CandidateSettings: React.FC = () => {
             return;
         }
         setDeleteButton1(true);
-        clearErrors("fileInput1");
+        clearErrors('fileInput1');
     };
 
-    const handleFileChange2 = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange2 = async (
+        e: React.ChangeEvent<HTMLInputElement>,
+    ) => {
         const fileObj2 = e.target.files && e.target.files[0];
         setFile2(fileObj2);
 
@@ -144,7 +154,6 @@ export const CandidateSettings: React.FC = () => {
     };
 
     const resetFileInput1 = async () => {
-
         if (fileKey1) {
             try {
                 await api.deleteUserCurriculum(fileKey1);
@@ -152,14 +161,13 @@ export const CandidateSettings: React.FC = () => {
                 //TODO ver mensagem de erro para o usuário
             }
         }
-        setValue("fileInput1", "");
+        setValue('fileInput1', '');
         setDeleteButton1(false);
         setFile1(false);
         setFileKey1(undefined);
     };
 
     const resetFileInput2 = async () => {
-
         if (fileKey2) {
             try {
                 await api.deleteUserCurriculum(fileKey2);
@@ -167,14 +175,13 @@ export const CandidateSettings: React.FC = () => {
                 //TODO ver mensagem de erro para o usuário
             }
         }
-        setValue("fileInput2", "");
+        setValue('fileInput2', '');
         setDeleteButton2(false);
         setFile2(false);
         setFileKey2(undefined);
     };
 
     // Função do modal de cancelamento
-
 
     const handleCancelModal = (e: any) => {
         e.preventDefault();
@@ -190,35 +197,40 @@ export const CandidateSettings: React.FC = () => {
         const regExPhoneNumber2 = data.phoneNumber2.replace(/\D/g, '');
 
         const formData = new FormData();
-        formData.append("name", data.name);
-        formData.append("mainPhone", regExPhoneNumber1);
-        formData.append("phone", regExPhoneNumber2);
-        formData.append("city", data.city);
-        formData.append("state", data.uf);
+        formData.append('name', data.name);
+        formData.append('mainPhone', regExPhoneNumber1);
+        formData.append('phone', regExPhoneNumber2);
+        formData.append('city', data.city);
+        formData.append('state', data.uf);
 
         if (selectedImage) {
-            formData.append("file", selectedImage);
-            formData.append("profileKey", auth.user.profileKey ?? 'lkjhgfdsa');
+            formData.append('file', selectedImage);
+            formData.append('profileKey', auth.user.profileKey ?? 'lkjhgfdsa');
         }
 
         let formDataCurriculum1;
 
         if (file1) {
             formDataCurriculum1 = new FormData();
-            formDataCurriculum1.append("file", file1);
-            formDataCurriculum1.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
+            formDataCurriculum1.append('file', file1);
+            formDataCurriculum1.append(
+                'fileKey',
+                auth.user.fileKey ?? 'lkjhgfdsa',
+            );
         }
 
         let formDataCurriculum2;
 
         if (file2) {
             formDataCurriculum2 = new FormData();
-            formDataCurriculum2.append("file", file2);
-            formDataCurriculum2.append("fileKey", auth.user.fileKey ?? 'lkjhgfdsa');
+            formDataCurriculum2.append('file', file2);
+            formDataCurriculum2.append(
+                'fileKey',
+                auth.user.fileKey ?? 'lkjhgfdsa',
+            );
         }
 
         try {
-
             if (formData) {
                 await api.updateCandidateProfile(formData);
             }
@@ -231,10 +243,9 @@ export const CandidateSettings: React.FC = () => {
                 await api.updateUserCurriculum(formDataCurriculum2);
             }
 
-            setConfirmModal(true)
+            setConfirmModal(true);
             window.scrollTo(0, 0);
             document.body.style.overflow = 'hidden';
-
         } catch (error) {
             //TODO ver mensagem de erro para o usuário
         }
@@ -246,20 +257,23 @@ export const CandidateSettings: React.FC = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <ProfilePicWrapper>
                     <ProfileImg
-                        src={imagePreview || (auth.user.profile ?? profilePicture)}
+                        src={
+                            imagePreview ||
+                            (auth.user.profile ?? profilePicture)
+                        }
                         alt="Foto de perfil"
                         width={'138px'}
                     />
                     <div className="upload">
                         <label htmlFor="profPic">Alterar foto</label>
                         <input
-                            {...register("profPic", {
+                            {...register('profPic', {
                                 onChange: (e: any) =>
                                     handleImgFile({
                                         e,
                                         setSelectedImage,
                                         setImagePreview,
-                                    })
+                                    }),
                             })}
                             id="profPic"
                             type="file"
@@ -281,7 +295,11 @@ export const CandidateSettings: React.FC = () => {
                 <Form>
                     <div className="form__left">
                         <InputWrapper>
-                            {HandleInputsRenderCandidate(inputConfigCandidate, register, errors)}
+                            {HandleInputsRenderCandidate(
+                                inputConfigCandidate,
+                                register,
+                                errors,
+                            )}
                             <label>
                                 Telefone 1<Required>*</Required>
                                 <InputMask
@@ -290,11 +308,15 @@ export const CandidateSettings: React.FC = () => {
                                     defaultValue={auth.user.mainPhone}
                                     type="tel"
                                     placeholder="(00) 00000-0000"
-                                    {...register("phoneNumber1", { onChange: handlePhoneNumberChange1 })}
+                                    {...register('phoneNumber1', {
+                                        onChange: handlePhoneNumberChange1,
+                                    })}
                                 />
                             </label>
                             <ErrorMessages>
-                                {errors.phoneNumber1 && <>{errors.phoneNumber1.message}</>}
+                                {errors.phoneNumber1 && (
+                                    <>{errors.phoneNumber1.message}</>
+                                )}
                             </ErrorMessages>
                         </InputWrapper>
                     </div>
@@ -304,7 +326,7 @@ export const CandidateSettings: React.FC = () => {
                                 Cidade<Required>*</Required>
                                 <input
                                     defaultValue={auth.user.city}
-                                    {...register("city")}
+                                    {...register('city')}
                                     type="text"
                                     placeholder="Insira sua cidade"
                                 />
@@ -321,7 +343,7 @@ export const CandidateSettings: React.FC = () => {
                             <select
                                 id="states"
                                 defaultValue={auth.user.state}
-                                {...register("uf")}
+                                {...register('uf')}
                             >
                                 <option value="DEFAULT">--</option>
                                 {HandleOptionsRender(location)}
@@ -339,7 +361,9 @@ export const CandidateSettings: React.FC = () => {
                                     maskChar=""
                                     type="tel"
                                     defaultValue={auth.user.phone}
-                                    {...register("phoneNumber2", { onChange: handlePhoneNumberChange2 })}
+                                    {...register('phoneNumber2', {
+                                        onChange: handlePhoneNumberChange2,
+                                    })}
                                     placeholder="(00) 00000-0000"
                                 />
                             </label>
@@ -353,37 +377,50 @@ export const CandidateSettings: React.FC = () => {
                 <Form>
                     <div className="form__left">
                         <CurriculoWrapper>
-                            <span>Currículo 1 <Required>*</Required></span>
+                            <span>
+                                Currículo 1 <Required>*</Required>
+                            </span>
                             <div>
-                                {!file1 && fileUrl1 && deleteButton1 &&
-                                    <CurriculumLink href={fileUrl1} target='_blank' rel="noreferrer">
+                                {!file1 && fileUrl1 && deleteButton1 && (
+                                    <CurriculumLink
+                                        href={fileUrl1}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
                                         Visualizar currículo
                                     </CurriculumLink>
-                                }
-                                {file1 &&
-                                    (<label htmlFor="fileInput1">
+                                )}
+                                {file1 && (
+                                    <label htmlFor="fileInput1">
                                         {file1.name}
-                                    </label>)
-                                }
-                                {!deleteButton1 &&
+                                    </label>
+                                )}
+                                {!deleteButton1 && (
                                     <label htmlFor="fileInput1">
                                         Insira seu currículo em PDF
                                     </label>
-                                }
+                                )}
                                 {deleteButton1 && (
                                     <Trash onClick={resetFileInput1}>
-                                        <img src={trashPicture} alt="Deletar arquivo" />
+                                        <img
+                                            src={trashPicture}
+                                            alt="Deletar arquivo"
+                                        />
                                     </Trash>
                                 )}
                             </div>
                             <ErrorMessages>
-                                {errors.fileInput1 && <>{errors.fileInput1.message}</>}
+                                {errors.fileInput1 && (
+                                    <>{errors.fileInput1.message}</>
+                                )}
                             </ErrorMessages>
                             <input
                                 type="file"
                                 id="fileInput1"
                                 accept=".pdf"
-                                {...register("fileInput1", { onChange: handleFileChange1 })}
+                                {...register('fileInput1', {
+                                    onChange: handleFileChange1,
+                                })}
                             />
                         </CurriculoWrapper>
                     </div>
@@ -391,29 +428,38 @@ export const CandidateSettings: React.FC = () => {
                         <CurriculoWrapper>
                             <span>Currículo 2</span>
                             <div>
-                                {!file2 && fileUrl2 && deleteButton2 &&
-                                    <CurriculumLink href={fileUrl2} target='_blank' rel="noreferrer">
+                                {!file2 && fileUrl2 && deleteButton2 && (
+                                    <CurriculumLink
+                                        href={fileUrl2}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
                                         Visualizar currículo
                                     </CurriculumLink>
-                                }
-                                {file2 &&
-                                    (<label htmlFor="fileInput2">
+                                )}
+                                {file2 && (
+                                    <label htmlFor="fileInput2">
                                         {file2.name}
-                                    </label>)
-                                }
-                                {!deleteButton2 &&
+                                    </label>
+                                )}
+                                {!deleteButton2 && (
                                     <label htmlFor="fileInput2">
                                         Insira seu currículo em PDF
                                     </label>
-                                }
+                                )}
                                 {deleteButton2 && (
                                     <Trash onClick={resetFileInput2}>
-                                        <img src={trashPicture} alt="Deletar arquivo" />
+                                        <img
+                                            src={trashPicture}
+                                            alt="Deletar arquivo"
+                                        />
                                     </Trash>
                                 )}
                             </div>
                             <input
-                                {...register("fileInput2", { onChange: handleFileChange2 })}
+                                {...register('fileInput2', {
+                                    onChange: handleFileChange2,
+                                })}
                                 type="file"
                                 id="fileInput2"
                                 accept=".pdf"
@@ -426,14 +472,13 @@ export const CandidateSettings: React.FC = () => {
                 </Main>
                 <Buttons>
                     <div>
-                        <Button
-                            type="submit"
-                        >
-                            Atualizar
-                        </Button>
+                        <Button type="submit">Atualizar</Button>
                     </div>
                     <div>
-                        <Button background="outline" onClick={handleCancelModal}>
+                        <Button
+                            background="outline"
+                            onClick={handleCancelModal}
+                        >
                             Cancelar
                         </Button>
                     </div>
@@ -446,7 +491,7 @@ export const CandidateSettings: React.FC = () => {
             {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
             <Position>
                 <Main />
-                <Index />
+                <Footer />
             </Position>
         </Container>
     );

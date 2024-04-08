@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import { GlobalStyle } from './components/styles/Global';
-import './index.css';
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from './components/styles/Theme';
 import { AuthProvider } from './contexts/Auth/AuthProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import Router from './routes/router';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+import './index.css';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement,
@@ -20,7 +23,8 @@ root.render(
             <AuthProvider>
                 <ThemeProvider theme={mainTheme}>
                     <GlobalStyle />
-                    <App />
+                    <Router />
+                    <ToastContainer />
                 </ThemeProvider>
             </AuthProvider>
         </QueryClientProvider>

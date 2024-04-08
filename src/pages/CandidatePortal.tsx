@@ -15,6 +15,7 @@ import { useContext } from 'react';
 import Footer from '../components/Portal/Footer';
 import PopUpAntiFraudMessage from '../components/LoginCard/PopUpAntiFraudMessage';
 
+
 const CandidatePortal = () => {
     const navigate = useNavigate();
     const { popUpAntiFraudOpen } = useContext(AuthContext);

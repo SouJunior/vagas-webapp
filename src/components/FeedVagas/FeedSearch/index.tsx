@@ -1,6 +1,7 @@
-import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
-import { Container, Button, Input } from './styles';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import * as S from './styles';
 
 const FeedSearch = ({ onSearch }: any) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -12,7 +13,7 @@ const FeedSearch = ({ onSearch }: any) => {
     useEffect(() => {
         const searchParams = new URLSearchParams(search);
         const searchTermFromUrl = searchParams.get('search');
-        const locationFromUrl = searchParams.get("location");
+        const locationFromUrl = searchParams.get('location');
         setSearchTerm(searchTermFromUrl || '');
         setLocation(locationFromUrl || '');
     }, [search]);
@@ -26,29 +27,27 @@ const FeedSearch = ({ onSearch }: any) => {
     };
 
     return (
-        <Container>
-            <form onSubmit={handleSubmit}>
-                <Input
-                    type="text"
-                    placeholder="Cargo, empresa, palavra-chave"
-                    maxLength={30}
-                    value={searchTerm}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        setSearchTerm(event.target.value)
-                    }
-                />
-                <Input
-                    type="text"
-                    placeholder="Local"
-                    maxLength={30}
-                    value={location}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        setLocation(event.target.value)
-                    }
-                />
-                <Button type="submit">Buscar Vagas</Button>
-            </form>
-        </Container>
+        <S.Container onSubmit={handleSubmit}>
+            <S.Input
+                type="text"
+                placeholder="Cargo, empresa, palavra-chave"
+                maxLength={30}
+                value={searchTerm}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                    setSearchTerm(event.target.value)
+                }
+            />
+            <S.Input
+                type="text"
+                placeholder="Local"
+                maxLength={30}
+                value={location}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                    setLocation(event.target.value)
+                }
+            />
+            <S.Button type="submit">Buscar Vagas</S.Button>
+        </S.Container>
     );
 };
 
