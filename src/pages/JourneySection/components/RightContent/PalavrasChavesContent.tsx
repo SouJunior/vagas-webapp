@@ -34,7 +34,13 @@ const PalavrasChavesContent: React.FC = () => {
             </p>
             <br />
             <p>
-                Fonte: <a href="https://forbes.com.br/carreira/2022/02/5-dicas-para-voce-montar-um-perfil-de-sucesso-no-linkedin/" style={{ color: '#2E90FA' }}>https://forbes.com.br/carreira/2022/02/5-dicas-para-voce-montar-um-perfil-de-sucesso-no-linkedin/</a>
+                Fonte:{' '}
+                <a
+                    href="https://forbes.com.br/carreira/2022/02/5-dicas-para-voce-montar-um-perfil-de-sucesso-no-linkedin/"
+                    style={{ color: '#2E90FA' }}
+                >
+                    https://forbes.com.br/carreira/2022/02/5-dicas-para-voce-montar-um-perfil-de-sucesso-no-linkedin/
+                </a>
             </p>
         </Container>
     );
