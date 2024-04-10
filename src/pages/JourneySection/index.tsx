@@ -56,7 +56,7 @@ const JourneySection = () => {
     return (
         <JourneyLayout>
             <TitleContainer>
-                <Title>Vamos Juntos nessa Jornada</Title>
+                <Title>Vamos juntos nessa jornada</Title>
             </TitleContainer>
 
             <ToggleLinkedinCurriculoButton />

@@ -1,35 +1,13 @@
-import LogoImageBlue from '../../assets/imgs/logo-icon-name-h.svg';
-
+import ScrollToTopButton from '../ScrollToTopButton';
+import SocialLinks from '../SocialLinks';
 import * as S from './styles';
 
 const FooterDefault = () => {
-    const handleScrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    const handleKeyPress = (event: React.KeyboardEvent) => {
-        // Check if the key pressed is 'Enter' or 'Space'
-        if (event.key === 'Enter' || event.key === ' ') {
-            handleScrollToTop();
-        }
-    };
-
     return (
         <S.Footer>
             <div className="mobile-wrapper">
                 <div>
-                    <button
-                        onClick={handleScrollToTop}
-                        onKeyDown={handleKeyPress}
-                        tabIndex={0}
-                    >
-                        <img
-                            src={LogoImageBlue}
-                            width="194px"
-                            height="29px"
-                            alt="logo"
-                        />
-                    </button>
+                    <ScrollToTopButton />
                 </div>
                 <div>
                     <h2>#MovimentoSouJunior</h2>
@@ -45,62 +23,14 @@ const FooterDefault = () => {
                         @ 2023 SouJunior Todos os direitos reservados.
                     </small>
                 </div>
-                <ul className="contacts">
-                    <li>
-                        <a href="https://www.facebook.com/people/SouJunior/100086671131030/">
-                            <S.FacebookIcon />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/soujunior.tech/">
-                            <S.InstagramIcon />
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://www.youtube.com/@soujuniortech"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
-                            <S.YouTubeIcon />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/company/soujunior/">
-                            <S.LinkedInIcon />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/SouJunior">
-                            <S.GitHubIcon />
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://t.me/soujuniortech"
-                            rel="noreferrer"
-                            target="_blank"
-                        >
-                            <S.TelegramIcon />
-                        </a>
-                    </li>
+                <ul className='contacts'>
+                    <SocialLinks />
                 </ul>
             </div>
 
             <div className="desktop-wrapper">
                 <div style={{ cursor: 'pointer' }}>
-                    <button
-                        onClick={handleScrollToTop}
-                        onKeyDown={handleKeyPress}
-                        tabIndex={0}
-                    >
-                        <img
-                            src={LogoImageBlue}
-                            width="194px"
-                            height="29px"
-                            alt="logo"
-                        />
-                    </button>
+                    <ScrollToTopButton />
                 </div>
                 <div>
                     <h3>Institucional</h3>
@@ -151,61 +81,7 @@ const FooterDefault = () => {
                 <div>
                     <h3>Redes sociais</h3>
                     <S.Grid>
-                        <li>
-                            <a
-                                href="https://www.facebook.com/people/SouJunior/100086671131030/"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                <S.FacebookIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.instagram.com/soujunior.tech/"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                <S.InstagramIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.youtube.com/@soujuniortech"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                <S.YouTubeIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.linkedin.com/company/soujunior/"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                <S.LinkedInIcon />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://github.com/SouJunior"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                <S.GitHubIcon />
-                            </a>
-                        </li>
-
-                        <li>
-                            <a
-                                href="https://t.me/soujuniortech"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                <S.TelegramIcon />
-                            </a>
-                        </li>
+                        <SocialLinks/>
                     </S.Grid>
                 </div>
             </div>
