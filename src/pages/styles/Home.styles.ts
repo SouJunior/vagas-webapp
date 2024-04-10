@@ -139,7 +139,7 @@ export const SecondaryTitle = styled.h3`
 
     @media (max-width: 375px) {
         position: relative;
-        top: -70px;
+        top: -50px;
     }
 `;
 
@@ -367,6 +367,7 @@ export const CardWrapper = styled.div`
         width: 560px;
         position: relative;
         top: 40px;
+        margin-bottom: 50px;
     }
 
     @media (max-width: 320px) {
