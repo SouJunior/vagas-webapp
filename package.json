@@ -24,6 +24,7 @@
     "@types/node": "^18.11.18",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
+    "framer-motion": "^11.0.25",
     "fuse.js": "^6.6.2",
     "hamburger-react": "^2.5.0",
     "phosphor-react": "^1.4.1",

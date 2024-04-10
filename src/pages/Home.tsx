@@ -16,9 +16,6 @@ import {
     Image,
     OurSitesSection,
     CardWrapper,
-    JourneySection,
-    JourneyTitle,
-    JourneyCardWrapper,
     AreasSection,
     VocationalBannerArea,
     VocationalBannerContainer,
@@ -27,7 +24,6 @@ import {
     TestimonialSection,
     TestimonialWrapper,
     CircleImage,
-    JourneyContainer,
     Circle,
     MainContent,
     SecondaryTitle,
@@ -35,7 +31,6 @@ import {
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
-import JourneyCard from '../components/Home/JourneySection/JourneyCard';
 
 import ImageHome from '../assets/imgs/home-image.svg';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
@@ -47,10 +42,10 @@ import circle from '../assets/imgs/circle.svg';
 
 import Testimonials from '../components/Home/Testimonials';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
-import { Journey } from '../Mocks/MockJourney';
 import CarouselAreas from '../components/CarouselAreas';
 import { Testimonial } from '../Mocks/Testimonial';
 import { TestimonialType } from '../@types/testimonial-type';
+import JourneySection from '../pages/JourneySection/index'
 
 export interface AreaProps {
     id: string;
@@ -156,7 +151,9 @@ export const Home: React.FC = () => {
                 </CardWrapper>
             </OurSitesSection>
 
-            <JourneySection>
+            <JourneySection/>
+
+            {/* <JourneySection>
                 <JourneyContainer>
                     <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
                     <JourneyCardWrapper>
@@ -170,7 +167,7 @@ export const Home: React.FC = () => {
                         ))}
                     </JourneyCardWrapper>
                 </JourneyContainer>
-            </JourneySection>
+            </JourneySection> */}
 
             {/* <AppBannerContainer>
                 <AppBannerContainerInfo>
