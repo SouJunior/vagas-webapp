@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import RenderLeftButtonsMenu from './RenderLeftButtonsMenu';
+import { ContentContainer } from './styles';
+import RenderRightContent from './RenderRightContent';
+import FotografiaContent from './RightContent/FotografiaContent';
+import { motion, AnimatePresence } from 'framer-motion';
+
 interface ToggleButtonInterface {
     isActive: boolean;
 }
@@ -41,25 +47,67 @@ const CurriculoButton = styled(ToggleButton)`
     border-left: 0;
 `;
 
+const containerVariants = {
+    initial: { opacity: 0, y: 100 },
+    enter: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, y: -50, transition: { duration: 0.2 } },
+};
+
 const ToggleLinkedinCurriculoButton = () => {
     const [activeButton, setActiveButton] = useState('linkedinButton');
 
-    return (
-        <ToggleButtonSection>
-            <LinkedinButton
-                isActive={activeButton === 'linkedinButton'}
-                onClick={() => setActiveButton('linkedinButton')}
-            >
-                Lindedin
-            </LinkedinButton>
+    const [contentKey, setContentKey] = useState<string>('initialKey');
+    const [content, setContent] = useState<React.ReactNode>(
+        <FotografiaContent />,
+    );
 
-            <CurriculoButton
-                isActive={activeButton === 'curriculoButton'}
-                onClick={() => setActiveButton('curriculoButton')}
-            >
-                Currículo
-            </CurriculoButton>
-        </ToggleButtonSection>
+    const changeContent = (newContent: React.ReactNode, newKey: string) => {
+        setContent(newContent);
+        setContentKey(newKey);
+    };
+
+    return (
+        <>
+            <ToggleButtonSection>
+                <LinkedinButton
+                    isActive={activeButton === 'linkedinButton'}
+                    onClick={() => setActiveButton('linkedinButton')}
+                >
+                    Lindedin
+                </LinkedinButton>
+
+                <CurriculoButton
+                    isActive={activeButton === 'curriculoButton'}
+                    onClick={() => setActiveButton('curriculoButton')}
+                >
+                    Currículo
+                </CurriculoButton>
+            </ToggleButtonSection>
+
+            <div>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeButton}
+                        variants={containerVariants}
+                        initial="initial"
+                        animate="enter"
+                        exit="exit"
+                    >
+                        <ContentContainer>
+                            <RenderLeftButtonsMenu
+                                setContent={changeContent}
+                                whichContent={activeButton}
+                            />
+                            <RenderRightContent
+                                content={content}
+                                contentKey={contentKey}
+                                whichContent={activeButton}
+                            />
+                        </ContentContainer>
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+        </>
     );
 };
 

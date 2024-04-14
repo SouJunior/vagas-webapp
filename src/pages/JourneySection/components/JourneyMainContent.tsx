@@ -17,8 +17,8 @@ const JourneyMainContent: React.FC = () => {
 
     return (
         <ContentContainer>
-            <RenderLeftButtonsMenu setContent={changeContent} />
-            <RenderRightContent content={content} contentKey={contentKey} />
+            {/* <RenderLeftButtonsMenu setContent={changeContent} whichContent='' />
+            <RenderRightContent content={content} contentKey={contentKey} /> */}
         </ContentContainer>
     );
 };

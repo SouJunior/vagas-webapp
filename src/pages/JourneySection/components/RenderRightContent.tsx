@@ -4,17 +4,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface RightContentInterface {
     content: React.ReactNode;
     contentKey: string;
+    whichContent: string;
 }
 
 const containerVariants = {
     initial: { opacity: 0, y: 100 },
     enter: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    exit: { opacity: 0, y: -50,  transition: { duration: 0.2 } },
+    exit: { opacity: 0, y: -50, transition: { duration: 0.2 } },
 };
 
 const RenderRightContent: React.FC<RightContentInterface> = ({
     content,
     contentKey,
+    whichContent,
 }) => {
     return (
         <RightText>
