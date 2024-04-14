@@ -148,9 +148,9 @@ export const UserForms = (props: any): JSX.Element => {
     return (
         <>
             {isLogin === 'login' ? (
-                <Title>Candidato</Title>
+                <Title>Login</Title>
             ) : (
-                <Title>Cadastro de candidato</Title>
+                <Title>Cadastro</Title>
             )}
 
             <Divider
