@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 //import { CompanyForms } from './CompanyForms';
 import { UserForms } from './UserForms';
@@ -14,10 +14,6 @@ const LoginCard = () => {
     //const [company, setCompany] = useState(false);
 
     // renderiza o form de login do usuário
-
-    useEffect(() => {
-        setUser(true);
-    }, []);
     
     /*const userHandler = () => {
         setUser(true);

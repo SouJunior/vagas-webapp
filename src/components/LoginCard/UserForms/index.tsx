@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ import {
     List,
     MessageChecklist,
 } from '../styles';
-import { MaskBackground, Popup } from '../PopUpRegisterSuccess/styles';
+import { Popup } from '../PopUpRegisterSuccess/styles';
 
 export const UserForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
@@ -44,15 +44,12 @@ export const UserForms = (props: any): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const { isRegistered, setIsRegistered } = useContext(AuthContext);
+    const { isRegistered, errorEmail, isLogin, setIsLogin } = useContext(AuthContext);
 
     const characters = /^(?=.{8,20}$).*$/;
     const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
-
-    const { errorEmail, setErrorEmail } = useContext(AuthContext);
-    const { isLogin, setIsLogin } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -73,6 +70,7 @@ export const UserForms = (props: any): JSX.Element => {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(getFormValidation),
@@ -241,6 +239,7 @@ export const UserForms = (props: any): JSX.Element => {
                             type="button"
                             onClick={() => {
                                 setIsLogin('register');
+                                reset();
                             }}
                         >
                             Criar conta
@@ -390,6 +389,7 @@ export const UserForms = (props: any): JSX.Element => {
                         Já tem conta? {/* redireciona se isLogin === true */}
                         <button
                             onClick={() => {
+                                reset();
                                 return setIsLogin('login');
                             }}
                         >
