@@ -1,5 +1,5 @@
-import { Container, Img, Paragrafo } from "./styles";
-import Contract from "../../../../assets/imgs/contract.svg"
+import { Container, Img, Paragrafo } from "../styles";
+import Contract from "../../../../../assets/imgs/contract.svg"
 
 const ExperienciaContent: React.FC = () => {
     return (

@@ -1,9 +1,9 @@
 import { Article, Camera, Key, Scroll, UserSquare } from "phosphor-react";
-import FotografiaContent from "../components/RightContent/FotografiaContent";
-import TituloLinkedinContent from "../components/RightContent/TituloLinkedinContent";
-import ResumoLinkedinContent from "../components/RightContent/ResumoLinkedinContent";
-import ExperienciaContent from "../components/RightContent/ExperienciaContent";
-import PalavrasChavesContent from "../components/RightContent/PalavrasChavesContent";
+import FotografiaContent from "../components/RightContent/Linkedin/FotografiaContent";
+import TituloLinkedinContent from "../components/RightContent/Linkedin/TituloLinkedinContent";
+import ResumoLinkedinContent from "../components/RightContent/Linkedin/ResumoLinkedinContent";
+import ExperienciaContent from "../components/RightContent/Linkedin/ExperienciaContent";
+import PalavrasChavesContent from "../components/RightContent/Linkedin/PalavrasChavesContent";
 
 const linkedinItems = [
     {

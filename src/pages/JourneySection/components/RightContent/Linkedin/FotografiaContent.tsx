@@ -1,5 +1,5 @@
-import PhotoCamera from '../../../../assets/imgs/photo_camera.svg';
-import { Container, Img, Paragrafo } from './styles';
+import PhotoCamera from '../../../../../assets/imgs/photo_camera.svg';
+import { Container, Img, Paragrafo } from '../styles';
 
 const FotografiaContent: React.FC = () => {
     return (

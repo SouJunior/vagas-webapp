@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface RightContentInterface {
     content: React.ReactNode;
     contentKey: string;
-    whichContent: string;
 }
 
 const containerVariants = {
@@ -16,7 +15,6 @@ const containerVariants = {
 const RenderRightContent: React.FC<RightContentInterface> = ({
     content,
     contentKey,
-    whichContent,
 }) => {
     return (
         <RightText>

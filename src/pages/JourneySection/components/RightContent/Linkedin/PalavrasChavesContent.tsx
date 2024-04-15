@@ -1,5 +1,5 @@
-import { Container, Img } from './styles';
-import Key from '../../../../assets/imgs/key.svg';
+import { Container, Img } from '../styles';
+import Key from '../../../../../assets/imgs/key.svg';
 
 const PalavrasChavesContent: React.FC = () => {
     return (

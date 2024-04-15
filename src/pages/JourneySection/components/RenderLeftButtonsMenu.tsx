@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
     FigureBox,
     ItemDescription,
@@ -27,6 +27,7 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
     whichContent,
 }) => {
     const [activeItemId, setActiveItemId] = useState(1);
+    const scrollToNewcomponent = useRef<HTMLDivElement>(null)
 
     return (
         <>
@@ -58,6 +59,10 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
                             onClick={() => {
                                 setActiveItemId(item.id);
                                 setContent(item.content, `content-${item.id}`);
+                                scrollToNewcomponent.current?.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start',
+                                })
                             }}
                         >
                             <FigureBox>{item.figure}</FigureBox>

@@ -1,5 +1,5 @@
-import { Container, Img, Paragrafo } from './styles';
-import UserIcon from '../../../../assets/imgs/assignment_ind.svg';
+import { Container, Img, Paragrafo } from '../styles';
+import UserIcon from '../../../../../assets/imgs/assignment_ind.svg';
 
 const ResumoLinkedinContent: React.FC = () => {
     return (

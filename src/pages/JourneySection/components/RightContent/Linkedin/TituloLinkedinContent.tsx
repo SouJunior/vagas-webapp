@@ -1,5 +1,5 @@
-import { Container, Img, Paragrafo } from './styles';
-import Article from '../../../../assets/imgs/article.svg'
+import { Container, Img, Paragrafo } from '../styles';
+import Article from '../../../../../assets/imgs/article.svg'
 
 const TituloLinkedinContent: React.FC = () => {
     return (
