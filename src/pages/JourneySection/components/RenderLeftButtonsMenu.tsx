@@ -1,4 +1,6 @@
+
 import { useState, useRef } from 'react';
+
 import {
     FigureBox,
     ItemDescription,
@@ -7,8 +9,10 @@ import {
     MenuItem,
     LeftMenu,
 } from './styles';
+
 import { curriculoItems } from '../ItemsList/CurriculoItems';
 import { linkedinItems } from '../ItemsList/LinkedinItems';
+
 interface LeftMenuItemsInterface {
     id: number;
     figure: React.ReactNode;
@@ -19,6 +23,7 @@ interface LeftMenuItemsInterface {
 
 interface ButtonSetContentInterface {
     setContent: (component: React.ReactNode, newKey: string) => void;
+
     whichContent: string;
 }
 
@@ -75,6 +80,7 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
                 </LeftMenu>
             )}
         </>
+
     );
 };
 

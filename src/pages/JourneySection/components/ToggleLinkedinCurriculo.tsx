@@ -1,3 +1,4 @@
+
 import { useRef, useState } from 'react';
 import RenderLeftButtonsMenu from './RenderLeftButtonsMenu';
 import { ContentContainer, CurriculoButton, LinkedinButton, ToggleButtonSection } from './styles';
@@ -14,8 +15,10 @@ const containerVariants = {
     exit: { opacity: 0, y: -50, transition: { duration: 0.2 } },
 };
 
+
 const ToggleLinkedinCurriculoButton = () => {
     const [activeButton, setActiveButton] = useState('linkedinButton');
+
 
     const [contentKey, setContentKey] = useState<string>('initialKey');
     const [content, setContent] = useState<React.ReactNode>(
@@ -75,6 +78,7 @@ const ToggleLinkedinCurriculoButton = () => {
                 </AnimatePresence>
             </div>
         </div>
+
     );
 };
 

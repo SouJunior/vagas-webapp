@@ -1,8 +1,10 @@
 import styled, { css } from "styled-components";
 
+
 interface ToggleButtonInterface {
     isActive: boolean;
 }
+
 
 export const ContentContainer = styled.div`
     display: flex;
@@ -108,6 +110,7 @@ export const AnimatedContent = styled.div`
             opacity: 1;
         }
     }
+
 `
 
 
@@ -148,3 +151,4 @@ export const CurriculoButton = styled(ToggleButton)`
     border-radius: 0px 100px 100px 0px;
     border-left: 0;
 `;
+
