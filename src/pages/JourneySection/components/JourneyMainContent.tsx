@@ -2,7 +2,9 @@ import { useState } from 'react';
 import RenderLeftButtonsMenu from './RenderLeftButtonsMenu';
 import { ContentContainer } from './styles';
 import RenderRightContent from './RenderRightContent';
+
 import FotografiaContent from './RightContent/Linkedin/FotografiaContent';
+
 
 const JourneyMainContent: React.FC = () => {
     const [contentKey, setContentKey] = useState<string>('initialKey');
@@ -17,8 +19,10 @@ const JourneyMainContent: React.FC = () => {
 
     return (
         <ContentContainer>
+
             {/* <RenderLeftButtonsMenu setContent={changeContent} whichContent='' />
             <RenderRightContent content={content} contentKey={contentKey} /> */}
+
         </ContentContainer>
     );
 };
