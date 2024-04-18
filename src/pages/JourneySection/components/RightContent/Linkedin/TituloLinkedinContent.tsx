@@ -1,5 +1,5 @@
 import { Article } from 'phosphor-react';
-import { Container, Img, ImgWrap, Paragrafo } from '../styles';
+import { Container, ImgWrap, Paragrafo } from '../styles';
 
 const TituloLinkedinContent: React.FC = () => {
     return (

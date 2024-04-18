@@ -1,5 +1,5 @@
 import { Rocket } from 'phosphor-react';
-import { Container, Img, ImgWrap, Paragrafo } from '../styles';
+import { Container, ImgWrap, Paragrafo } from '../styles';
 
 const ExperienciaProfissional: React.FC = () => {
     return (
