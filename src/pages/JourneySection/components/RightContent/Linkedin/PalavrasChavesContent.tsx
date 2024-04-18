@@ -1,10 +1,12 @@
-import { Container, Img } from './styles';
-import Key from '../../../../assets/imgs/key.svg';
+import { Key } from 'phosphor-react';
+import { Container, ImgWrap } from '../styles';
 
 const PalavrasChavesContent: React.FC = () => {
     return (
         <Container>
-            <Img src={Key} alt="'Ícone de uma chave com borda azul"></Img>
+            <ImgWrap>
+                <Key size={200} color="#046AD0" opacity="0.6" />
+            </ImgWrap>
             <p>
                 Os recrutadores começam com uma pesquisa por palavra-chave para
                 encontrar candidatos viáveis. Faça uma busca rápida de emprego

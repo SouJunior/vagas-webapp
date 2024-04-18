@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import JourneyMainContent from "./components/JourneyMainContent";
+
+
 import ToggleLinkedinCurriculoButton from "./components/ToggleLinkedinCurriculo"
 import JourneyLayout from "../../layout/JourneyLayout";
 import { SecondaryTitle } from "../styles/Home.styles";
@@ -15,6 +16,9 @@ const TitleContainer = styled.div`
 `;
 
 const JourneySection = () => {
+
+
+
     return (
         <JourneyLayout>
             <TitleContainer>
@@ -23,7 +27,8 @@ const JourneySection = () => {
 
             <ToggleLinkedinCurriculoButton />
 
-            <JourneyMainContent/>
+
+
         </JourneyLayout>
     )
 }

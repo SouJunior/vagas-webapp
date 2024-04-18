@@ -1,10 +1,12 @@
-import PhotoCamera from '../../../../assets/imgs/photo_camera.svg';
-import { Container, Img, Paragrafo } from './styles';
+import { Camera } from 'phosphor-react';
+import { Container, ImgWrap, Paragrafo } from '../styles';
 
 const FotografiaContent: React.FC = () => {
     return (
         <Container>
-            <Img src={PhotoCamera} alt="Ícone de uma câmera fotogtáfica" />
+             <ImgWrap>
+                <Camera size={200} color="#046AD0" opacity="0.6" />
+            </ImgWrap>
             <Paragrafo>
                 Em uma pesquisa da Passport-Photo Online, mais de 80% dos
                 recrutadores disseram que uma foto do LinkedIn era um fator
