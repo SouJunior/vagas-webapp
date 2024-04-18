@@ -1,5 +1,5 @@
 import { Key } from 'phosphor-react';
-import { Container, Img, ImgWrap } from '../styles';
+import { Container, ImgWrap } from '../styles';
 
 const PalavrasChavesContent: React.FC = () => {
     return (
