@@ -1,11 +1,11 @@
-import { Container, Img, ImgWrap, Paragrafo } from '../styles';
-import Rocket from '../../../../../assets/imgs/rocket.svg';
+import { Rocket } from 'phosphor-react';
+import { Container, ImgWrap, Paragrafo } from '../styles';
 
 const InfoComplementares: React.FC = () => {
     return (
         <Container>
             <ImgWrap>
-            <Img src={Rocket} alt="Ícone de um foguete" />
+                <Rocket size={200} color="#046AD0" opacity='0.6'/>
             </ImgWrap>
             <Paragrafo>
                 Outra forma de valorizar ainda mais o seu primeiro currículo é

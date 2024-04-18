@@ -1,11 +1,11 @@
-import { Container, Img, ImgWrap, Paragrafo } from '../styles';
-import Globe from '../../../../../assets/imgs/globe.svg';
+import { Globe } from 'phosphor-react';
+import { Container, ImgWrap, Paragrafo } from '../styles';
 
 const TrabalhosVoluntarios: React.FC = () => {
     return (
         <Container>
             <ImgWrap>
-            <Img src={Globe} alt="Ícone de um globo" />
+            <Globe size={200} color="#046AD0" opacity='0.6'/>
             </ImgWrap>
             <Paragrafo>
                 Caso você já tenha feito trabalho voluntário ou pequenos

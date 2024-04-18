@@ -1,11 +1,11 @@
-import { Container, Img, ImgWrap, Paragrafo } from '../styles';
-import Target from '../../../../../assets/imgs/target.svg';
+import { Container, ImgWrap, Paragrafo } from '../styles';
+import { Crosshair } from 'phosphor-react';
 
 const ExperienciaProfissional: React.FC = () => {
     return (
         <Container>
             <ImgWrap>
-            <Img src={Target} alt="Ícone de um alvo"/>
+                <Crosshair size={200} color="#046AD0" opacity="0.6" />
             </ImgWrap>
             <Paragrafo>
                 O segundo passo na elaboração do seu primeiro currículo é
@@ -16,13 +16,13 @@ const ExperienciaProfissional: React.FC = () => {
             <br />
             <Paragrafo>
                 Desejo conquistar a minha independência pessoal em um ambiente
-                de trabalho que traga oportunidades de crescimento. 
+                de trabalho que traga oportunidades de crescimento.
             </Paragrafo>
             <br />
             <Paragrafo>
-                Um texto assim soa vago, não diz nada. Supondo que você esteja tentando
-                uma vaga de vendas em uma loja, você pode escrever algo como:
-                Desejo atuar na área de vendas, aprimorando as minhas
+                Um texto assim soa vago, não diz nada. Supondo que você esteja
+                tentando uma vaga de vendas em uma loja, você pode escrever algo
+                como: Desejo atuar na área de vendas, aprimorando as minhas
                 habilidades comerciais e ganhando experiência em lidar com o
                 público.
             </Paragrafo>

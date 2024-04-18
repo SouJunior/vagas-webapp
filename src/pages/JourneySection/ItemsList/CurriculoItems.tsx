@@ -1,9 +1,8 @@
-import { Crosshair, Desktop, Globe, Rocket, Star, SuitcaseSimple, XCircle } from "phosphor-react";
+import { Crosshair, Desktop, Globe, Rocket, Star, XCircle } from "phosphor-react";
 import ObjetivoProfissional from "../components/RightContent/Curriculo/ObjetivoProfissional";
 import Formacao from '../components/RightContent/Curriculo/Formacao'
 import TrabalhosVoluntarios from '../components/RightContent/Curriculo/TrabalhosVoluntarios'
 import Qualificacoes from "../components/RightContent/Curriculo/Qualificacoes";
-import Certificacoes from '../components/RightContent/Curriculo/Certificacoes'
 import InfoComplementares from "../components/RightContent/Curriculo/InfoComplementares";
 import OQueEvitar from "../components/RightContent/Curriculo/OQueEvitar";
 
@@ -39,19 +38,12 @@ const curriculoItems = [
     {
         id: 5,
         figure: <Rocket size={25} color="#344054"/>,
-        title: 'Informe sobre certificações',
-        intro: 'Enriquecer seu currículo destacando certificados e informações complementares importantes.',
-        content: <Certificacoes />,
-    },
-    {
-        id: 6,
-        figure: <SuitcaseSimple size={25} color="#344054"/>,
         title: 'Não esqueça das informações complementares',
         intro: 'Destaque seus certificados e informações adicionais para turbinar seu currículo. Veja como:',
         content: <InfoComplementares />,
     },
     {
-        id: 7,
+        id: 6,
         figure: <XCircle size={25} color="#344054"/>,
         title: 'O que evitar',
         intro: 'Por fim, é necessário tomar alguns cuidados para não deixar o seu currículo muito extenso ou difícil de ler. Confira abaixo o que deve ser evitado:',

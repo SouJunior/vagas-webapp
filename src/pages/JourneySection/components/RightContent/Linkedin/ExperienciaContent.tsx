@@ -1,10 +1,12 @@
-import { Container, Img, Paragrafo } from "../styles";
-import Contract from "../../../../../assets/imgs/contract.svg"
+import { Container, ImgWrap, Paragrafo } from "../styles";
+import { Scroll } from "phosphor-react";
 
 const ExperienciaContent: React.FC = () => {
     return (
         <Container>
-            <Img src={Contract} alt="Ícone de um contrato"/>
+            <ImgWrap>
+                <Scroll size={200} color="#046AD0" opacity="0.6" />
+            </ImgWrap>
             <Paragrafo>
                 Esta parte é o seu “currículo” do LinkedIn. Se a empresa não for
                 muito conhecida, inclua um breve resumo do que a empresa faz,

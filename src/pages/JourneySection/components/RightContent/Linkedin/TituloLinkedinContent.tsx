@@ -1,10 +1,12 @@
-import { Container, Img, Paragrafo } from '../styles';
-import Article from '../../../../../assets/imgs/article.svg'
+import { Article } from 'phosphor-react';
+import { Container, Img, ImgWrap, Paragrafo } from '../styles';
 
 const TituloLinkedinContent: React.FC = () => {
     return (
         <Container>
-            <Img src={Article} alt='Ícone de um artigo'></Img>
+            <ImgWrap>
+                <Article size={200} color="#046AD0" opacity="0.6" />
+            </ImgWrap>
             <Paragrafo>
                 Esta é sem dúvida uma das partes mais importantes do seu perfil
                 do LinkedIn. É aquela descrição de 120 caracteres diretamente

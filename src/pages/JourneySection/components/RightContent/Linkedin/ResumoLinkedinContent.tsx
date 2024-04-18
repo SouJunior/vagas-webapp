@@ -1,10 +1,12 @@
-import { Container, Img, Paragrafo } from '../styles';
-import UserIcon from '../../../../../assets/imgs/assignment_ind.svg';
+import { Container, ImgWrap, Paragrafo } from '../styles';
+import { UserSquare } from 'phosphor-react';
 
 const ResumoLinkedinContent: React.FC = () => {
     return (
         <Container>
-            <Img src={UserIcon} alt="Ícone de usuário"></Img>
+            <ImgWrap>
+                <UserSquare size={200} color="#046AD0" opacity="0.6" />
+            </ImgWrap>
             <Paragrafo>
                 A seção de resumo oferece muita liberdade, mas aqui está uma
                 fórmula infalível de 8 parágrafos para se destacar de acordo com

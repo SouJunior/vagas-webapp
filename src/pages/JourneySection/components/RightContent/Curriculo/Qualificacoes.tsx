@@ -1,11 +1,12 @@
-import { Container, Img, ImgWrap, Paragrafo } from '../styles';
-import Star from '../../../../../assets/imgs/star.svg';
+import { Star } from 'phosphor-react';
+import { Container, ImgWrap, Paragrafo } from '../styles';
+
 
 const Qualificacoes: React.FC = () => {
     return (
         <Container>
             <ImgWrap>
-            <Img src={Star} alt="Ícone de uma estrela" />
+            <Star size={200} color="#046AD0" opacity='0.6'/>
             </ImgWrap>
             <Paragrafo>
                 Ao escrever o primeiro currículo, o campo “Experiência

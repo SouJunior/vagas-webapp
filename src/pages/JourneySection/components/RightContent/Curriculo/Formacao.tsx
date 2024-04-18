@@ -1,11 +1,11 @@
-import { Container, Img, ImgWrap, Paragrafo } from '../styles';
-import Workspace from '../../../../../assets/imgs/workspace_premium.svg';
+import { Container, ImgWrap, Paragrafo } from '../styles';
+import { Desktop } from 'phosphor-react';
 
 const ExperienciaProfissional: React.FC = () => {
     return (
         <Container>
             <ImgWrap>
-                <Img src={Workspace} alt="Ícone de uma medalha" />
+                <Desktop size={200} color="#046AD0" opacity='0.6' />
             </ImgWrap>
             <Paragrafo>
                 Não se contente apenas em informar onde você cursou o ensino

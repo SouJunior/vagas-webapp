@@ -1,11 +1,11 @@
-import { Container, Img, ImgWrap, Paragrafo } from '../styles';
-import Bussines from '../../../../../assets/imgs/business_center.svg';
+import { Container, ImgWrap, Paragrafo } from '../styles';
+import { XCircle } from 'phosphor-react';
 
 const OQueEvitar: React.FC = () => {
     return (
         <Container>
             <ImgWrap>
-                <Img src={Bussines} alt="Ícone de uma mala" />
+                <XCircle size={200} color="#046AD0" opacity='0.6'/>
             </ImgWrap>
             <Paragrafo>Formatação e Ortografia</Paragrafo>
             <Paragrafo>
@@ -48,6 +48,7 @@ const OQueEvitar: React.FC = () => {
                     </li>
                 </ul>
             </Paragrafo>
+            <br />
             <Paragrafo>Conhecimentos e Habilidades</Paragrafo>
             <Paragrafo>
                 <ul>

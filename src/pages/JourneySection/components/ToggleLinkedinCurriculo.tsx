@@ -3,6 +3,7 @@ import RenderLeftButtonsMenu from './RenderLeftButtonsMenu';
 import { ContentContainer, CurriculoButton, LinkedinButton, ToggleButtonSection } from './styles';
 import RenderRightContent from './RenderRightContent';
 import FotografiaContent from './RightContent/Linkedin/FotografiaContent';
+import ObjetivoProfissional from "../components/RightContent/Curriculo/ObjetivoProfissional"
 import { motion, AnimatePresence } from 'framer-motion';
 
 
@@ -18,7 +19,7 @@ const ToggleLinkedinCurriculoButton = () => {
 
     const [contentKey, setContentKey] = useState<string>('initialKey');
     const [content, setContent] = useState<React.ReactNode>(
-        <FotografiaContent />,
+        <FotografiaContent/>
     );
     const contentRef = useRef<HTMLDivElement>(null);
 
@@ -38,14 +39,14 @@ const ToggleLinkedinCurriculoButton = () => {
             <ToggleButtonSection >
                 <LinkedinButton
                     isActive={activeButton === 'linkedinButton'}
-                    onClick={() => setActiveButton('linkedinButton')}
+                    onClick={() => {setActiveButton('linkedinButton'); setContent(<FotografiaContent/>)}}
                 >
                     Lindedin
                 </LinkedinButton>
 
                 <CurriculoButton
                     isActive={activeButton === 'curriculoButton'}
-                    onClick={() => setActiveButton('curriculoButton')}
+                    onClick={() => { setActiveButton('curriculoButton'); setContent(<ObjetivoProfissional/>)}}
                 >
                     Currículo
                 </CurriculoButton>
