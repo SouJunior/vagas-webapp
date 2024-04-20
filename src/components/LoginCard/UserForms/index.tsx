@@ -45,6 +45,7 @@ export const UserForms = (props: any): JSX.Element => {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+
     const characters = /^(?=.{8,20}$).*$/;
     const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
@@ -70,6 +71,7 @@ export const UserForms = (props: any): JSX.Element => {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(getFormValidation),
@@ -144,9 +146,9 @@ export const UserForms = (props: any): JSX.Element => {
     return (
         <>
             {isLogin === 'login' ? (
-                <Title>Candidato</Title>
+                <Title>Login</Title>
             ) : (
-                <Title>Cadastro de candidato</Title>
+                <Title>Cadastro</Title>
             )}
 
             <Divider
@@ -237,6 +239,7 @@ export const UserForms = (props: any): JSX.Element => {
                             type="button"
                             onClick={() => {
                                 setIsLogin('register');
+                                reset();
                             }}
                         >
                             Criar conta
@@ -386,6 +389,7 @@ export const UserForms = (props: any): JSX.Element => {
                         Já tem conta? {/* redireciona se isLogin === true */}
                         <button
                             onClick={() => {
+                                reset();
                                 return setIsLogin('login');
                             }}
                         >
