@@ -44,16 +44,17 @@ export const UserForms = (props: any): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const { isRegistered, errorEmail, isLogin, setIsLogin } = useContext(AuthContext);
+
 
     const characters = /^(?=.{8,20}$).*$/;
     const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
 
+    const { errorEmail, isLogin, setIsLogin, isRegistered, setPopUpAntiFraudOpen } = useContext(AuthContext);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
@@ -82,10 +83,9 @@ export const UserForms = (props: any): JSX.Element => {
 
         try {
             // Recebe dados do contexto para verificação
-
             await auth.login(email, password, userType);
-
             navigate('/candidate-portal');
+            setPopUpAntiFraudOpen(true);
         } catch (err: any) {
             if (err.response.status > 400) {
                 setError(true);
