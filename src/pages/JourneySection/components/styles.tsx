@@ -93,7 +93,7 @@ export const ItemSubtitle = styled.p`
     line-height: 140%;
     text-align: left;
 
-    @media (max-width: 678px) {
+    @media (max-width: 768px) {
         display: none;
     }
 `;
