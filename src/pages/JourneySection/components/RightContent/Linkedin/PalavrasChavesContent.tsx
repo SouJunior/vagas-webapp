@@ -28,7 +28,7 @@ const PalavrasChavesContent: React.FC = () => {
                 Personalize o seu URL para o seu nome:{' '}
                 <a
                     href="www.linkedin.com/in/SeuNomeAqui"
-                    style={{ color: '#2E90FA' }}
+                    style={{ color: '#2E90FA', pointerEvents: 'auto' }}
                 >
                     www.linkedin.com/in/SeuNomeAqui
                 </a>{' '}
@@ -39,7 +39,7 @@ const PalavrasChavesContent: React.FC = () => {
                 Fonte:{' '}
                 <a
                     href="https://forbes.com.br/carreira/2022/02/5-dicas-para-voce-montar-um-perfil-de-sucesso-no-linkedin/"
-                    style={{ color: '#2E90FA' }}
+                    style={{ color: '#2E90FA', pointerEvents: 'auto' }}
                 >
                     https://forbes.com.br/carreira/2022/02/5-dicas-para-voce-montar-um-perfil-de-sucesso-no-linkedin/
                 </a>

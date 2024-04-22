@@ -31,4 +31,8 @@ export const ImgWrap = styled.div`
    display: flex;
     justify-content: center;
     margin-bottom: 16px;
+
+    @media (max-width: 768px){
+        display: none;
+    }
 `;

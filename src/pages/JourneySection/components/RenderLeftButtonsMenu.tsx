@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 
 import {
@@ -8,6 +7,8 @@ import {
     ItemTitle,
     MenuItem,
     LeftMenu,
+    ContainerContentMobile,
+    CenterMobile,
 } from './styles';
 
 import { curriculoItems } from '../ItemsList/CurriculoItems';
@@ -32,7 +33,7 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
     whichContent,
 }) => {
     const [activeItemId, setActiveItemId] = useState(1);
-    const scrollToNewcomponent = useRef<HTMLDivElement>(null)
+    const scrollToNewcomponent = useRef<HTMLDivElement>(null);
 
     return (
         <>
@@ -47,11 +48,16 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
                                 setContent(item.content, `content-${item.id}`);
                             }}
                         >
-                            <FigureBox>{item.figure}</FigureBox>
-                            <ItemDescription>
-                                <ItemTitle>{item.title}</ItemTitle>
-                                <ItemSubtitle>{item.intro}</ItemSubtitle>
-                            </ItemDescription>
+                            <CenterMobile>
+                                <FigureBox>{item.figure}</FigureBox>
+                                <ItemDescription>
+                                    <ItemTitle>{item.title}</ItemTitle>
+                                    <ItemSubtitle>{item.intro}</ItemSubtitle>
+                                </ItemDescription>
+                            </CenterMobile>
+                            <ContainerContentMobile>
+                                {item.content}
+                            </ContainerContentMobile>
                         </MenuItem>
                     ))}
                 </LeftMenu>
@@ -67,20 +73,24 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
                                 scrollToNewcomponent.current?.scrollIntoView({
                                     behavior: 'smooth',
                                     block: 'start',
-                                })
+                                });
                             }}
                         >
-                            <FigureBox>{item.figure}</FigureBox>
-                            <ItemDescription>
-                                <ItemTitle>{item.title}</ItemTitle>
-                                <ItemSubtitle>{item.intro}</ItemSubtitle>
-                            </ItemDescription>
+                            <CenterMobile>
+                                <FigureBox>{item.figure}</FigureBox>
+                                <ItemDescription>
+                                    <ItemTitle>{item.title}</ItemTitle>
+                                    <ItemSubtitle>{item.intro}</ItemSubtitle>
+                                </ItemDescription>
+                            </CenterMobile>
+                            <ContainerContentMobile>
+                                {item.content}
+                            </ContainerContentMobile>
                         </MenuItem>
                     ))}
                 </LeftMenu>
             )}
         </>
-
     );
 };
 
