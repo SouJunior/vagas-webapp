@@ -38,7 +38,7 @@ export const Input = styled.input`
 export const Button = styled.button`
     width: 182px;
     height: 48px;
-    background-color: #003986;
+    background-color: ${({ theme }) => theme.colors.primary};
     border: none;
     border-radius: 40px;
     font-weight: 600;
@@ -48,8 +48,6 @@ export const Button = styled.button`
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background-color: #fff;
-        color: #003986;
-        border: 1px solid #003986;
+        opacity: 0.8;
     }
 `;

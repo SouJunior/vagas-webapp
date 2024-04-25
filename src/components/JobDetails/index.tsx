@@ -15,11 +15,10 @@ import {
 import ProfileDefault from '../../assets/imgs/profile-image.svg';
 
 function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
-    
     if (Array.isArray(clickedJob)) {
         clickedJob = Object.assign({}, ...clickedJob);
     }
-   
+
     return (
         <Container>
             <JobHead>
@@ -31,8 +30,10 @@ function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
                     </Subtitle>
                     <Text>{clickedJob.contractType}</Text>
                 </JobHeadText>
-                <ApplyButtonLink to={`/apply/${clickedJob.id}?search=${clickedJob.title}`}>
-                    <ApplyButton>Me candidatar</ApplyButton>
+                <ApplyButtonLink
+                    to={`/apply/${clickedJob.id}?search=${clickedJob.title}`}
+                >
+                    <ApplyButton>Candidate-se</ApplyButton>
                 </ApplyButtonLink>
             </JobHead>
             <CompanyInfo>
