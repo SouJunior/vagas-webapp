@@ -13,14 +13,18 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useContext } from 'react';
 import Footer from '../components/Portal/Footer';
+import PopUpAntiFraudMessage from '../components/LoginCard/PopUpAntiFraudMessage';
+
 
 const CandidatePortal = () => {
     const navigate = useNavigate();
+    const { popUpAntiFraudOpen } = useContext(AuthContext);
     const auth: any = useContext(AuthContext);
-
+  
     return (
         <Container>
             <Header />
+            {popUpAntiFraudOpen && <PopUpAntiFraudMessage />}
             <Main>
                 <Search />
                 <Row />

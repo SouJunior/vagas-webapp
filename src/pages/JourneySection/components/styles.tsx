@@ -4,6 +4,12 @@ interface ToggleButtonInterface {
     isActive: boolean;
 }
 
+
+interface ToggleButtonInterface {
+    isActive: boolean;
+}
+
+
 export const ContentContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -139,6 +145,7 @@ export const AnimatedContent = styled.div`
     }
 `;
 
+
 export const ToggleButtonSection = styled.div`
     display: flex;
     margin: 32px 0 32px;
@@ -191,3 +198,4 @@ export const CenterMobile = styled.div`
         margin-bottom: 16px;
     }
 `;
+

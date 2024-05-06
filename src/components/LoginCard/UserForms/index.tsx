@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ import {
     List,
     MessageChecklist,
 } from '../styles';
-import { MaskBackground, Popup } from '../PopUpRegisterSuccess/styles';
+import { Popup } from '../PopUpRegisterSuccess/styles';
 
 export const UserForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
@@ -44,19 +44,17 @@ export const UserForms = (props: any): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const { isRegistered, setIsRegistered } = useContext(AuthContext);
+
 
     const characters = /^(?=.{8,20}$).*$/;
     const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
 
-    const { errorEmail, setErrorEmail } = useContext(AuthContext);
-    const { isLogin, setIsLogin } = useContext(AuthContext);
+    const { errorEmail, isLogin, setIsLogin, isRegistered, setPopUpAntiFraudOpen } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
@@ -73,6 +71,7 @@ export const UserForms = (props: any): JSX.Element => {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(getFormValidation),
@@ -84,10 +83,9 @@ export const UserForms = (props: any): JSX.Element => {
 
         try {
             // Recebe dados do contexto para verificação
-
             await auth.login(email, password, userType);
-
             navigate('/candidate-portal');
+            setPopUpAntiFraudOpen(true);
         } catch (err: any) {
             if (err.response.status > 400) {
                 setError(true);
@@ -148,9 +146,9 @@ export const UserForms = (props: any): JSX.Element => {
     return (
         <>
             {isLogin === 'login' ? (
-                <Title>Candidato</Title>
+                <Title>Login</Title>
             ) : (
-                <Title>Cadastro de candidato</Title>
+                <Title>Cadastro</Title>
             )}
 
             <Divider
@@ -241,6 +239,7 @@ export const UserForms = (props: any): JSX.Element => {
                             type="button"
                             onClick={() => {
                                 setIsLogin('register');
+                                reset();
                             }}
                         >
                             Criar conta
@@ -390,6 +389,7 @@ export const UserForms = (props: any): JSX.Element => {
                         Já tem conta? {/* redireciona se isLogin === true */}
                         <button
                             onClick={() => {
+                                reset();
                                 return setIsLogin('login');
                             }}
                         >

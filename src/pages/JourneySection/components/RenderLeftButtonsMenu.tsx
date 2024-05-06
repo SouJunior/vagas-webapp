@@ -33,7 +33,9 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
     whichContent,
 }) => {
     const [activeItemId, setActiveItemId] = useState(1);
+
     const scrollToNewcomponent = useRef<HTMLDivElement>(null);
+
 
     return (
         <>
@@ -58,7 +60,7 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
                             <ContainerContentMobile>
                                 {item.content}
                             </ContainerContentMobile>
-                        </MenuItem>
+         </MenuItem>
                     ))}
                 </LeftMenu>
             ) : (
@@ -73,6 +75,7 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
                                 scrollToNewcomponent.current?.scrollIntoView({
                                     behavior: 'smooth',
                                     block: 'start',
+
                                 });
                             }}
                         >
@@ -86,6 +89,7 @@ const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
                             <ContainerContentMobile>
                                 {item.content}
                             </ContainerContentMobile>
+
                         </MenuItem>
                     ))}
                 </LeftMenu>
