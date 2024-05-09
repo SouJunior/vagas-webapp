@@ -75,7 +75,7 @@ const FeedJobs = () => {
                                                 event.target.value,
                                             )
                                         }
-                                        placeholder="Tipo de vaga"
+                                        placeholder="Modelo de Trabalho"
                                     />
                                     <QuickFilter
                                         options={[

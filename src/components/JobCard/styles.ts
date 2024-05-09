@@ -10,7 +10,7 @@ export const Card = styled.div<CardProps>`
   border-radius: 6px;
   display: flex;
   color: ${props => (props.active ? "#fff" : "#515050")};
-  background-color: ${props => (props.active ? "#1165BA" : "#fff")};
+  background-color: ${props => (props.active ? "#007aff" : "#fff")};
   width: 493px;
   max-width: 473px;
   padding: 16px;

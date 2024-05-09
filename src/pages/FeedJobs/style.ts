@@ -64,10 +64,12 @@ export const JobsWrapper = styled.div`
     max-height: 614px;
 `;
 
+
+
 export const QuickFilterContainer = styled.div`
     display: flex;
     gap: 26px;
-    width: 100%;
+    width: 390px;
     max-width: 493px;
     margin-bottom: 26px;
 
