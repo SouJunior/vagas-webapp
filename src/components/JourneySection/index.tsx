@@ -6,14 +6,20 @@ import RightContent from './components/RightContent';
 
 import { curriculoItems } from '../../Mocks/CurriculoItems';
 import { linkedinItems } from '../../Mocks/LinkedinItems';
+
 import { ContentProps } from './types';
 
 import * as S from './style';
 
 const JourneySection = () => {
     const [content, setContent] = useState<ContentProps[]>(linkedinItems);
-    const [expandedItemId, setExpandedItemId] = useState(1);
+    const [expandedItemId, setExpandedItemId] = useState<number>(1);
+    const [contentKey, setContentKey] = useState<number>(0);
     const contentRef = useRef<HTMLDivElement>(null);
+
+    if (!content) {
+        return null;
+    }
 
     const handleItemClick = (id: number) => {
         setExpandedItemId(id);
@@ -26,11 +32,8 @@ const JourneySection = () => {
     const handleChangeContent = (item: ContentProps[]) => {
         setContent(item);
         setExpandedItemId(1);
+        setContentKey((prevKey) => prevKey + 1);
     };
-
-    if (!content) {
-        return null;
-    }
 
     const selectedContent = content.find(({ id }) => id === expandedItemId);
 
@@ -56,13 +59,14 @@ const JourneySection = () => {
                 </S.CurriculoButton>
             </S.ToggleButtonSection>
 
-            <AnimatePresence>
-                {selectedContent && (
+            {selectedContent && (
+                <AnimatePresence>
                     <motion.div
-                        key={selectedContent.title}
+                        key={contentKey}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
                     >
                         <S.ContentContainer>
                             <RenderLeftButtonsMenu
@@ -74,8 +78,8 @@ const JourneySection = () => {
                             <RightContent content={selectedContent} />
                         </S.ContentContainer>
                     </motion.div>
-                )}
-            </AnimatePresence>
+                </AnimatePresence>
+            )}
         </S.ContainerJourney>
     );
 };
