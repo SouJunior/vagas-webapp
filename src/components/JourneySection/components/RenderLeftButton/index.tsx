@@ -1,38 +1,19 @@
-import React, { useState, useRef } from 'react';
-
-import { curriculoItems } from '../../ItemsList/CurriculoItems';
-import { linkedinItems } from '../../ItemsList/LinkedinItems';
-
-import { ButtonSetContentInterface, LeftMenuItemsInterface } from './types';
+import { RenderLeftButtonsMenuProps } from './types';
 
 import * as S from './styles';
 
-const RenderLeftButtonsMenu: React.FC<ButtonSetContentInterface> = ({
-    setContent,
-    whichContent,
+const RenderLeftButtonsMenu: React.FC<RenderLeftButtonsMenuProps> = ({
+    content,
+    expandedItemId,
+    onItemClick,
 }) => {
-    const [activeItemId, setActiveItemId] = useState(1);
-    const scrollToNewcomponent = useRef<HTMLDivElement>(null);
-
-    const handleMenuItemClick = (item: LeftMenuItemsInterface) => {
-        setActiveItemId(item.id);
-        setContent(item.content, `content-${item.id}`);
-        scrollToNewcomponent.current?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        });
-    };
-
-    const menuItems =
-        whichContent === 'linkedinButton' ? linkedinItems : curriculoItems;
-
     return (
         <S.LeftMenu>
-            {menuItems.map((item: LeftMenuItemsInterface) => (
+            {content.map((item) => (
                 <S.MenuItem
-                    isActive={item.id === activeItemId}
                     key={item.id}
-                    onClick={() => handleMenuItemClick(item)}
+                    onClick={() => onItemClick(item.id)}
+                    isActive={expandedItemId === item.id}
                 >
                     <S.FigureBox>{item.figure}</S.FigureBox>
                     <S.ItemDescription>

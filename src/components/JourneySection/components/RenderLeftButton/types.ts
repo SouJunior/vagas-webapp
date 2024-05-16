@@ -1,12 +1,12 @@
-export interface LeftMenuItemsInterface {
+interface ContentProps {
     id: number;
-    figure: React.ReactNode;
+    figure: JSX.Element;
     title: string;
     intro: string;
-    content: React.ReactNode;
 }
 
-export interface ButtonSetContentInterface {
-    setContent: (component: React.ReactNode, newKey: string) => void;
-    whichContent: string;
+export interface RenderLeftButtonsMenuProps {
+    content: ContentProps[];
+    expandedItemId: number;
+    onItemClick: (id: number) => void;
 }
