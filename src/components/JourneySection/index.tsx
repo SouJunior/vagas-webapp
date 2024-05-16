@@ -4,8 +4,8 @@ import { useState, useRef } from 'react';
 import RenderLeftButtonsMenu from './components/RenderLeftButton';
 import RightContent from './components/RightContent';
 
-import { curriculoItems } from './ItemsList/CurriculoItems';
-import { linkedinItems } from './ItemsList/LinkedinItems';
+import { curriculoItems } from '../../Mocks/CurriculoItems';
+import { linkedinItems } from '../../Mocks/LinkedinItems';
 import { ContentProps } from './types';
 
 import * as S from './style';
@@ -57,23 +57,24 @@ const JourneySection = () => {
             </S.ToggleButtonSection>
 
             <AnimatePresence>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
-                    <S.ContentContainer key={expandedItemId}>
-                        <RenderLeftButtonsMenu
-                            content={content}
-                            expandedItemId={expandedItemId}
-                            onItemClick={handleItemClick}
-                        />
+                {selectedContent && (
+                    <motion.div
+                        key={selectedContent.title}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <S.ContentContainer>
+                            <RenderLeftButtonsMenu
+                                content={content}
+                                expandedItemId={expandedItemId}
+                                onItemClick={handleItemClick}
+                            />
 
-                        {selectedContent && (
                             <RightContent content={selectedContent} />
-                        )}
-                    </S.ContentContainer>
-                </motion.div>
+                        </S.ContentContainer>
+                    </motion.div>
+                )}
             </AnimatePresence>
         </S.ContainerJourney>
     );
