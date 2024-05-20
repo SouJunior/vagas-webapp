@@ -6,7 +6,7 @@ const linkedinItems = [
         figure: <Camera size={25} color="#344054" />,
         title: 'A Fotografia',
         intro: 'Importância da imagem no LinkedIn: descubra como uma foto profissional pode impactar suas oportunidades de carreira.',
-        contentIcon: <Camera size={120} color="#046AD0" opacity="0.6" />,
+        contentIcon: <Camera size={120} color="#046AD0" />,
         content: [
             {
                 text: `Em uma pesquisa da Passport-Photo Online, mais de 80% dos recrutadores disseram que uma foto do LinkedIn era um fator importante de classificação. Já 8 em cada 10 concordaram que a foto do perfil de um candidato no LinkedIn foi usada como uma forma de conhecer melhor a pessoa. Mesmo que os entrevistados concordem 82% das vezes que não se deve julgar um livro pela capa, isso acontece. Os candidatos a emprego podem ser rejeitados por sua foto de perfil do LinkedIn em até 70% das vezes.`,
@@ -32,7 +32,7 @@ const linkedinItems = [
         figure: <Article size={25} color="#344054" />,
         title: 'O Título do Linkedin',
         intro: 'O resumo é crucial: destaca habilidades e experiências, capturando a atenção de recrutadores e conexões.',
-        contentIcon: <Article size={120} color="#046AD0" opacity="0.6" />,
+        contentIcon: <Article size={120} color="#046AD0" />,
         content: [
             {
                 text: `Esta é sem dúvida uma das partes mais importantes do seu perfil do LinkedIn. É aquela descrição de 120 caracteres diretamente abaixo do seu nome. O resumo aparece na sua página de perfil, mas também aparece toda vez que você se envolve no LinkedIn. Seja específico. Liste as habilidades técnicas e os cargos. Use palavras-chave para a posição desejada.`,
@@ -47,7 +47,7 @@ const linkedinItems = [
         figure: <UserSquare size={25} color="#344054" />,
         title: 'O Resumo do Linkedin (sobre)',
         intro: 'Não pule esta seção. Se precisar de ajuda, contrate um redator, mas inclua um resumo. ',
-        contentIcon: <UserSquare size={120} color="#046AD0" opacity="0.6" />,
+        contentIcon: <UserSquare size={120} color="#046AD0" />,
         content: [
             {
                 text: `A seção de resumo oferece muita liberdade, mas aqui está uma fórmula infalível de 8 parágrafos para se destacar de acordo com a especialista em LinkedIn Mindi Rosser.`,
@@ -72,7 +72,7 @@ const linkedinItems = [
         figure: <Scroll size={25} color="#344054" />,
         title: 'Sua experiência de trabalho e educação',
         intro: 'Aprimore seu perfil no LinkedIn! Exponha sua jornada e habilidades essenciais com palavras-chave direcionadas.',
-        contentIcon: <Scroll size={120} color="#046AD0" opacity="0.6" />,
+        contentIcon: <Scroll size={120} color="#046AD0" />,
         content: [
             {
                 text: `Esta parte é o seu “currículo” do LinkedIn. Se a empresa não for muito conhecida, inclua um breve resumo do que a empresa faz, liste seu cargo e pontos destacando suas responsabilidades. Este é um ótimo lugar para adicionar palavras-chave. Como o LinkedIn não possui um “teclado” robusto, use este truque: digite um hífen seguido pelo sinal de maior que no teclado para formar uma seta para usar como marcador. Mostre progressão na carreira, mas mantenha-a em 3 ou 4 pontos principais.`,
@@ -94,7 +94,7 @@ const linkedinItems = [
         figure: <Key size={25} color="#344054" />,
         title: 'Adicionar as palavras-chave corretas.',
         intro: 'Destaque suas habilidades ao buscar empregos. Identifique palavras-chave nos requisitos e seja autêntico.',
-        contentIcon: <Scroll size={120} color="#046AD0" opacity="0.6" />,
+        contentIcon: <Key size={120} color="#046AD0" />,
         content: [
             {
                 text: `Os recrutadores começam com uma pesquisa por palavra-chave para encontrar candidatos viáveis. Faça uma busca rápida de emprego para as posições que você deseja. Identifique palavras-chave lendo os requisitos do trabalho. Inclua hard skills e soft skills apenas se você tiver essas habilidades em seu repertório. Essa também é uma ótima maneira de ver se você precisa aprimorar suas habilidades para se tornar mais comercializável.`,
