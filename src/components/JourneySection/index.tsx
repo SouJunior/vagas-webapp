@@ -1,4 +1,3 @@
-import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 
 import RenderLeftButtonsMenu from './components/RenderLeftButton';
@@ -14,7 +13,6 @@ import * as S from './style';
 const JourneySection = () => {
     const [content, setContent] = useState<ContentProps[]>(linkedinItems);
     const [expandedItemId, setExpandedItemId] = useState<number>(1);
-    const [contentKey, setContentKey] = useState<number>(0);
     const contentRef = useRef<HTMLDivElement>(null);
 
     if (!content) {
@@ -32,7 +30,6 @@ const JourneySection = () => {
     const handleChangeContent = (item: ContentProps[]) => {
         setContent(item);
         setExpandedItemId(1);
-        setContentKey((prevKey) => prevKey + 1);
     };
 
     const selectedContent = content.find(({ id }) => id === expandedItemId);
@@ -60,25 +57,15 @@ const JourneySection = () => {
             </S.ToggleButtonSection>
 
             {selectedContent && (
-                <AnimatePresence>
-                    <motion.div
-                        key={contentKey}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <S.ContentContainer>
-                            <RenderLeftButtonsMenu
-                                content={content}
-                                expandedItemId={expandedItemId}
-                                onItemClick={handleItemClick}
-                            />
+                <S.ContentContainer>
+                    <RenderLeftButtonsMenu
+                        content={content}
+                        expandedItemId={expandedItemId}
+                        onItemClick={handleItemClick}
+                    />
 
-                            <RightContent content={selectedContent} />
-                        </S.ContentContainer>
-                    </motion.div>
-                </AnimatePresence>
+                    <RightContent content={selectedContent} />
+                </S.ContentContainer>
             )}
         </S.ContainerJourney>
     );

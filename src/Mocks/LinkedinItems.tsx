@@ -30,7 +30,7 @@ const linkedinItems = [
     {
         id: 2,
         figure: <Article size={25} color="#344054" />,
-        title: 'O Título do Linkedin',
+        title: 'O Título do LinkedIn',
         intro: 'O resumo é crucial: destaca habilidades e experiências, capturando a atenção de recrutadores e conexões.',
         contentIcon: <Article size={120} color="#046AD0" />,
         content: [
@@ -45,7 +45,7 @@ const linkedinItems = [
     {
         id: 3,
         figure: <UserSquare size={25} color="#344054" />,
-        title: 'O Resumo do Linkedin (sobre)',
+        title: 'O Resumo do LinkedIn (sobre)',
         intro: 'Não pule esta seção. Se precisar de ajuda, contrate um redator, mas inclua um resumo. ',
         contentIcon: <UserSquare size={120} color="#046AD0" />,
         content: [
