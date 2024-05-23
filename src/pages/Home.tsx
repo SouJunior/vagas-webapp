@@ -16,7 +16,6 @@ import {
     Image,
     OurSitesSection,
     CardWrapper,
-    AreasSection,
     VocationalBannerArea,
     VocationalBannerContainer,
     VocationalImage,
@@ -27,7 +26,6 @@ import {
     Circle,
     MainContent,
     SecondaryTitle,
-    Subtitle,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
@@ -42,10 +40,9 @@ import circle from '../assets/imgs/circle.svg';
 
 import Testimonials from '../components/Home/Testimonials';
 import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
-import CarouselAreas from '../components/CarouselAreas';
 import { Testimonial } from '../Mocks/Testimonial';
 import { TestimonialType } from '../@types/testimonial-type';
-import JourneySection from '../pages/JourneySection/index'
+import JourneySection from '../components/JourneySection/index';
 
 export interface AreaProps {
     id: string;
@@ -65,8 +62,8 @@ export const Home: React.FC = () => {
             const jobsData = await api.getJobs();
             if (jobsData.meta) {
                 const jobsCount = jobsData.meta.itemCount;
-                const roundedCount = Math.floor(jobsCount / 10) * 10;
-                setJobsCount(roundedCount);
+
+                setJobsCount(jobsCount);
             }
         }
         getJobs();
@@ -93,14 +90,7 @@ export const Home: React.FC = () => {
                 <Circle src={circle} />
                 <CircleImage src={doubleCircles} />
             </Main>
-            <AreasSection>
-                <SecondaryTitle>Não sabe por onde começar? </SecondaryTitle>
-                <Subtitle>
-                    Então conheça um pouco mais sobre às áreas que estão em
-                    constante crescimento no mercado.
-                </Subtitle>
-                <CarouselAreas />
-            </AreasSection>
+
             <VocationalBannerArea>
                 <VocationalBannerContainer>
                     <VocationalTextContainer>
@@ -151,7 +141,7 @@ export const Home: React.FC = () => {
                 </CardWrapper>
             </OurSitesSection>
 
-            <JourneySection/>
+            <JourneySection />
 
             {/* <JourneySection>
                 <JourneyContainer>

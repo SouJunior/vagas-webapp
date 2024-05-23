@@ -21,8 +21,6 @@ import { CandidateSettings } from '../pages/CandidateSettings';
 import CompanyApplications from '../pages/CompanyApplications';
 import JobsPanel from '../pages/JobsPanel';
 import MatchJobs from '../pages/MatchJobs';
-import RenderArea from '../pages/CarouselAreas/RenderArea';
-import CarouselLayout from '../layout/CarouselLayout';
 
 const NavRoutes: React.FC = () => {
     return (
@@ -32,10 +30,6 @@ const NavRoutes: React.FC = () => {
                     <Route index element={<Home />} />
                     <Route path="jobs" element={<FeedJobs />} />
                     <Route path="jobs/:searchTerm" element={<FeedJobs />} />
-
-                    <Route path="areas" element={<CarouselLayout />}>
-                        <Route path=":areaId" element={<RenderArea />} />
-                    </Route>
                 </Route>
 
                 <Route path="/login" element={<Login />} />

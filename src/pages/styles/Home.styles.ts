@@ -143,36 +143,6 @@ export const SecondaryTitle = styled.h3`
     }
 `;
 
-export const Subtitle = styled.p`
-    font-weight: 400;
-    font-size: 30px;
-    color: #515050;
-
-    @media (max-width: 1000px) {
-        font-size: 25px;
-        padding: 0 1rem;
-    }
-
-    @media (max-width: 568px) {
-        width: 272px;
-        height: 31px;
-        margin-top: 30px;
-        font-size: 24px;
-        align-items: center;
-    }
-
-    @media (max-width: 375px) {
-        position: relative;
-        top: 0px;
-    }
-
-    @media (max-width: 320px) {
-        font-size: 20px;
-        position: relative;
-        top: -100;
-    }
-`;
-
 export const JobsInfo = styled.p`
     font-weight: 400;
     font-size: 16px;
@@ -494,20 +464,6 @@ export const JourneyCardWrapper = styled.div`
     }
 `;
 
-export const AreasSection = styled.section`
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    margin-top: 120px;
-    margin-bottom: 196px;
-    width: 100%;
-
-    @media (max-width: 1000px) {
-        margin: 80px 0 4.5rem;
-    }
-`;
-
 export const AreasCardWrapper = styled.div`
     display: flex;
     margin-top: 42px;
@@ -639,7 +595,7 @@ export const TestimonialWrapper = styled.div`
 export const VocationalBannerArea = styled.div`
     max-width: 1200px;
     height: 412px;
-    margin: auto;
+    margin: 80px auto 0 auto;
     background-color: ${({ theme }) => theme.colors.primary};
     background-image: url(${VocationalBanner});
     background-repeat: no-repeat;
