@@ -1,181 +1,395 @@
-import { Job, useJobList } from '../../hooks/useJobList';
-import JobCard from '../../components/JobCard';
-import JobDetails from '../../components/JobDetails';
-import FeedSearch from '../../components/FeedVagas/FeedSearch';
-import QuickFilter from '../../components/QuickFilter';
-import NoJobsSelectedCard from '../../components/NoJobSelectedCard';
+import Cognito from '../../assets/imgs/cognito.svg';
+import Work from '../../assets/imgs/work.svg';
+
+import Select from 'react-select';
 
 import * as S from './style';
 
+const options = [
+    { value: 'recents', label: 'Mais recentes' },
+    { value: 'old', label: 'Mais antigos' },
+];
+
 const FeedJobs = () => {
-    const {
-        selectedJob,
-        clickedJob,
-        noJobSelected,
-        setNoJobSelected,
-        sortOrder,
-        setSortOrder,
-        setSelectedJob,
-        modalityFilter,
-        setModalityFilter,
-        fetchFilteredJobs,
-        fetchNextPage,
-        hasNextPage,
-        isLoading,
-        jobs,
-        selecionaVaga,
-    } = useJobList();
-
-    function jobContent() {
-        if (isLoading) {
-            return undefined;
-        }
-
-        if (jobs && Object.keys(jobs).length === 0) {
-            return null;
-        }
-
-        return (
-            <S.ShowMore disabled={true}>
-                Todas as vagas já foram exibidas.
-            </S.ShowMore>
-        );
-    }
-
-    const searchContent = jobContent();
-
     return (
-        <>
-            <S.Wrapper>
-                <S.Content>
-                    <FeedSearch onSearch={fetchFilteredJobs} />
+        <S.Container>
+            <S.SectionFilters>
+                <Select
+                    options={options}
+                    defaultValue={[options[0]]}
+                    styles={S.SelectDate}
+                />
+            </S.SectionFilters>
 
-                    <S.JobContainer>
-                        <S.ContentWrapper>
-                            <S.JobsWrapper>
-                                <S.QuickFilterContainer>
-                                    <QuickFilter
-                                        options={[
-                                            {
-                                                label: 'Remoto',
-                                                value: 'REMOTE',
-                                            },
-                                            {
-                                                label: 'Híbrido',
-                                                value: 'HYBRID',
-                                            },
-                                            {
-                                                label: 'Presencial',
-                                                value: 'IN_PERSON',
-                                            },
-                                        ]}
-                                        selectedValue={modalityFilter}
-                                        onChange={(event: any) =>
-                                            setModalityFilter(
-                                                event.target.value,
-                                            )
-                                        }
-                                        placeholder="Tipo de vaga"
-                                    />
-                                    <QuickFilter
-                                        options={[
-                                            {
-                                                label: 'Mais Recente',
-                                                value: 'DESC',
-                                            },
-                                            {
-                                                label: 'Mais Antigo',
-                                                value: 'ASC',
-                                            },
-                                        ]}
-                                        placeholder="Data do Anúncio"
-                                        selectedValue={sortOrder}
-                                        onChange={(event: any) =>
-                                            setSortOrder(event.target.value)
-                                        }
-                                    />
-                                </S.QuickFilterContainer>
-                                {jobs && Object.keys(jobs).length === 0 && (
-                                    <S.NoResultsMessage>
-                                        Nenhuma vaga encontrada.
-                                    </S.NoResultsMessage>
-                                )}
+            <S.SectionJob>
+                <S.ContainerAllJobs>
+                    <S.HeaderAllJobs>
+                        <S.AllJobsTitle>UX Design</S.AllJobsTitle>
+                        <S.AllJobsQuantity>
+                            <strong> 50 vagas </strong> encontradas
+                        </S.AllJobsQuantity>
+                    </S.HeaderAllJobs>
 
-                                {isLoading ? (
-                                    <S.NoResultsMessage>
-                                        Carregando...
-                                    </S.NoResultsMessage>
-                                ) : (
-                                    <S.JobList>
-                                        {(jobs || []).map((job: Job) => (
-                                            <JobCard
-                                                key={job.id}
-                                                id={job.id}
-                                                title={job.title}
-                                                city={job.city}
-                                                federalUnit={job.federalUnit}
-                                                modality={job.modality}
-                                                jobType={job.type}
-                                                typeContract={job.typeContract}
-                                                publishedAt={job.createdAt}
-                                                company={job.company}
-                                                active={selectedJob === job.id}
-                                                opacity={
-                                                    noJobSelected ||
-                                                    selectedJob === job.id
-                                                        ? 1
-                                                        : 0.6
-                                                }
-                                                onClick={() => {
-                                                    if (
-                                                        selectedJob === job.id
-                                                    ) {
-                                                        setSelectedJob(null);
-                                                        setNoJobSelected(true);
-                                                    } else {
-                                                        selecionaVaga(job.id);
-                                                    }
-                                                }}
-                                            />
-                                        ))}
-                                    </S.JobList>
-                                )}
+                    <S.BoxJob isActive>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
 
-                                {hasNextPage ? (
-                                    <S.ShowMore
-                                        onClick={() => fetchNextPage()}
-                                        disabled={isLoading}
-                                    >
-                                        {isLoading
-                                            ? 'Carregando...'
-                                            : 'Ver mais'}
-                                    </S.ShowMore>
-                                ) : (
-                                    <>{searchContent}</>
-                                )}
-                            </S.JobsWrapper>
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
 
-                            {jobs && Object.keys(jobs).length > 0 && (
-                                <>
-                                    {selectedJob ? (
-                                        <S.JobDetailsWrapper>
-                                            <JobDetails
-                                                id={selectedJob}
-                                                clickedJob={clickedJob}
-                                            />
-                                        </S.JobDetailsWrapper>
-                                    ) : (
-                                        <S.NoJobsMargin>
-                                            <NoJobsSelectedCard />
-                                        </S.NoJobsMargin>
-                                    )}
-                                </>
-                            )}
-                        </S.ContentWrapper>
-                    </S.JobContainer>
-                </S.Content>
-            </S.Wrapper>
-        </>
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+
+                    <S.BoxJob>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
+
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
+
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                    <S.BoxJob>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
+
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
+
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                    <S.BoxJob>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
+
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
+
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                    <S.BoxJob>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
+
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
+
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                    <S.BoxJob>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
+
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
+
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                    <S.BoxJob>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
+
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
+
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                    <S.BoxJob>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
+
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
+
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                    <S.BoxJob>
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
+
+                        <S.JobInfo>
+                            <S.ParagraphMd>
+                                UI/UX Designer Junior - São Paulo
+                            </S.ParagraphMd>
+
+                            <S.ParagraphSm>Cognito</S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                São Paulo Capital, São Paulo, Brasil
+                            </S.ParagraphSm>
+
+                            <S.ParagraphSm opacity="0.9">
+                                Remoto - Junior - CLT
+                            </S.ParagraphSm>
+
+                            <S.LabelSm opacity="0.9">Há 22h</S.LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                </S.ContainerAllJobs>
+
+                <S.ContainerSelectedJob>
+                    <S.HeaderSelectedJob>
+                        <S.BoxHeaderSelectedJob>
+                            <S.SubtitleSm>
+                                UX Designer Junior - São Paulo
+                            </S.SubtitleSm>
+
+                            <S.InlineContent gap="4px">
+                                <S.ParagraphSm color="#323232" weigth="500">
+                                    Cognito
+                                </S.ParagraphSm>
+
+                                <S.ParagraphSm color="#323232" opacity="0.9">
+                                    São Paulo Capital, São Paulo, Brasil
+                                </S.ParagraphSm>
+                            </S.InlineContent>
+
+                            <S.InlineContent gap="4px">
+                                <S.LabelSm> Há 22h - </S.LabelSm>
+                                <S.LabelSm color="#323232">
+                                    {' '}
+                                    50 candidaturas
+                                </S.LabelSm>
+                            </S.InlineContent>
+                        </S.BoxHeaderSelectedJob>
+
+                        <div>
+                            <S.Button>Candidatar-se</S.Button>
+                        </div>
+                    </S.HeaderSelectedJob>
+
+                    <S.SelectedJobContent>
+                        <S.InlineContent gap="8px">
+                            <S.IconWork src={Work} alt="work" />
+
+                            <S.Badge>
+                                <S.ParagraphSm color="#001633">
+                                    Tempo Integral
+                                </S.ParagraphSm>
+                            </S.Badge>
+                            <S.Badge>
+                                <S.ParagraphSm color="#001633">
+                                    Remoto
+                                </S.ParagraphSm>
+                            </S.Badge>
+                            <S.Badge>
+                                <S.ParagraphSm color="#001633">
+                                    Junior
+                                </S.ParagraphSm>
+                            </S.Badge>
+                            <S.Badge>
+                                <S.ParagraphSm color="#001633">
+                                    CLT
+                                </S.ParagraphSm>
+                            </S.Badge>
+                        </S.InlineContent>
+
+                        <S.ParagraphMd>Descrição da vaga</S.ParagraphMd>
+
+                        <S.ParagraphSm color="#515050">
+                            Procuramos um profissional para ocupar a posição de
+                            UX Designer em um cliente referência no setor de
+                            produção de imunobiológicos (vacinas) e análises
+                            laboratoriais veterinários.
+                        </S.ParagraphSm>
+
+                        <S.ParagraphSm color="#515050">
+                            Culturalmente, procuramos uma pessoa que:
+                        </S.ParagraphSm>
+
+                        <S.List>
+                            <li>seja curiosa por natureza</li>
+                            <li>perfil mão na massa e ágil</li>
+                            <li>sabe ouvir e se comunicar</li>
+                            <li>
+                                busca e tenha um histórico de aprendizado
+                                contínuo;
+                            </li>
+                            <li>
+                                busca e fomenta a colaboração, mas também tenha
+                                as suas contribuições individuais inovadoras
+                            </li>
+                            <li>
+                                entenda o objetivo e propósito da empresa, e
+                                consiga atuar com autonomia dentro de suas
+                                responsabilidades.
+                            </li>
+                        </S.List>
+                        <S.ParagraphSm color="#515050">
+                            Procuramos um profissional para ocupar a posição de
+                            UX Designer em um cliente referência no setor de
+                            produção de imunobiológicos (vacinas) e análises
+                            laboratoriais veterinários.
+                        </S.ParagraphSm>
+
+                        <S.ParagraphSm color="#515050">
+                            Culturalmente, procuramos uma pessoa que:
+                        </S.ParagraphSm>
+
+                        <S.List>
+                            <li>seja curiosa por natureza</li>
+                            <li>perfil mão na massa e ágil</li>
+                            <li>sabe ouvir e se comunicar</li>
+                            <li>
+                                busca e tenha um histórico de aprendizado
+                                contínuo;
+                            </li>
+                            <li>
+                                busca e fomenta a colaboração, mas também tenha
+                                as suas contribuições individuais inovadoras
+                            </li>
+                            <li>
+                                entenda o objetivo e propósito da empresa, e
+                                consiga atuar com autonomia dentro de suas
+                                responsabilidades.
+                            </li>
+                        </S.List>
+                        <S.ParagraphSm color="#515050">
+                            Procuramos um profissional para ocupar a posição de
+                            UX Designer em um cliente referência no setor de
+                            produção de imunobiológicos (vacinas) e análises
+                            laboratoriais veterinários.
+                        </S.ParagraphSm>
+
+                        <S.ParagraphSm color="#515050">
+                            Culturalmente, procuramos uma pessoa que:
+                        </S.ParagraphSm>
+
+                        <S.List>
+                            <li>seja curiosa por natureza</li>
+                            <li>perfil mão na massa e ágil</li>
+                            <li>sabe ouvir e se comunicar</li>
+                            <li>
+                                busca e tenha um histórico de aprendizado
+                                contínuo;
+                            </li>
+                            <li>
+                                busca e fomenta a colaboração, mas também tenha
+                                as suas contribuições individuais inovadoras
+                            </li>
+                            <li>
+                                entenda o objetivo e propósito da empresa, e
+                                consiga atuar com autonomia dentro de suas
+                                responsabilidades.
+                            </li>
+                        </S.List>
+                    </S.SelectedJobContent>
+                </S.ContainerSelectedJob>
+            </S.SectionJob>
+        </S.Container>
     );
 };
 

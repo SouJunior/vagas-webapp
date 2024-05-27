@@ -53,7 +53,7 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "react-select": "^5.7.2",
+    "react-select": "^5.8.0",
     "react-toastify": "^9.1.1",
     "rehype-raw": "^7.0.0",
     "styled-components": "^5.3.5",
