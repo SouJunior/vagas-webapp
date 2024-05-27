@@ -75,21 +75,6 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 [Projeto Vagas - Backend](https://github.com/SouJunior/vagas-backend)
 
-## Autor(es) 🙎🏻‍♂️
-
--   Filipe Reis | [GitHub](https://github.com/FilipeLeoni) - [LinkedIn](https://www.linkedin.com/in/filipe-leoni-5745551a8/)
--   Igor Gonçalves | [GitHub](https://github.com/igords-goncalves) - [Linkedin](https://www.linkedin.com/in/igords-goncalves/)
--   Isabela S. Hyeda Buitoni | [GitHub](https://github.com/isabelahyeda) - [Linkedin](https://www.linkedin.com/in/isabelahyeda/)
--   Leonardo Dias Monteiro | [GitHub](https://github.com/Leodias2204) - [Linkedin](https://www.linkedin.com/in/leonardo-dias-monteiro-54642264/)
-
-## Ex-Autor(es) 🙎🏻‍♂️
-
-- João Vitor Kremer | [GitHub](https://github.com/JoaoKremerDev) - [LinkedIn](https://www.linkedin.com/in/joaokremer/)
--   Alberto Santos | [GitHub](https://github.com/allbertuu) - [LinkedIn](https://www.linkedin.com/in/albertov-albuquerque/) - [Portfólio](https://portfolio-allbertuu.vercel.app/)
--   Carlos Junior | [GitHub](https://github.com/CarlosJunioor) - [LinkedIn](https://www.linkedin.com/in/carlosjuniordev/)
--   Rafael Pires | [GitHub](https://github.com/RafaelPires2) - [Linkedin](https://www.linkedin.com/in/rafael-pires-075891212/)
--   Silvia Luiza | [GitHub](https://github.com/SilviaLTeixeira) - [LinkedIn](https://www.linkedin.com/in/silvialuiza/)
-
 ## Feedback 💬
 
 Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [site](https://soujunior.tech). Ou fazendo uma [contribuição](#contribuição).
