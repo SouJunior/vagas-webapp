@@ -39,7 +39,7 @@ import doubleCircles from '../assets/imgs/DoubleCircle.svg';
 import circle from '../assets/imgs/circle.svg';
 
 import Testimonials from '../components/Home/Testimonials';
-import JobFilter from '../components/Home/HomeJobFilter/HomeJobFilter';
+import JobFilter from '../components/Home/HomeJobFilter';
 import { Testimonial } from '../Mocks/Testimonial';
 import { TestimonialType } from '../@types/testimonial-type';
 import JourneySection from '../components/JourneySection/index';
