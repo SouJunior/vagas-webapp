@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 export const ParagraphSm = styled.p<ParagraphSmProps>`
     font-family: 'Radio Canada';
     font-size: 14px;
-    font-weight: ${({ weigth }) => weigth || '400'};
+    font-weight: ${({ weight }) => weight || '400'};
     line-height: 120%;
     color: ${({ color }) => color || '#182230'};
     opacity: ${({ opacity }) => opacity || '1'};
