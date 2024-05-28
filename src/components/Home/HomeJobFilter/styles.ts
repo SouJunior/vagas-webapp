@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const FormWrapper = styled.div`
     position: relative;
@@ -26,7 +26,7 @@ export const FormWrapper = styled.div`
         left: -150px;
         top: 50px;
     }
-            
+
     @media (max-width: 320px) {
         width: 287px;
         height: 37px;
@@ -35,14 +35,14 @@ export const FormWrapper = styled.div`
         top: 160px;
         left: -56px;
     }
-     
+
     @media (max-width: 415px) {
         position: relative;
         left: -75px;
-        width: 350px;   
+        width: 350px;
         top: 100px;
         left: -40px;
-        }
+    }
 `;
 
 export const Form = styled.form`
@@ -116,6 +116,4 @@ export const SearchButton = styled.button`
         max-width: 150px;
         max-height: 38px;
     }
-
-    
 `;
