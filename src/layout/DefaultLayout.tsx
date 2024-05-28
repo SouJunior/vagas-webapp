@@ -10,8 +10,11 @@ const DefaultLayout = () => {
 
     const updateIsActive = () => {
         const { scrollY, innerWidth } = window;
-        setIsActive(pathname === '/' ? scrollY > 300 : true);
-        setIsActive(innerWidth < 1280 ? true : false);
+        const isHomePage = pathname === '/';
+        const shouldActivate =
+            !isHomePage || scrollY > 400 || innerWidth < 1280;
+
+        setIsActive(shouldActivate);
     };
 
     useEffect(() => {
