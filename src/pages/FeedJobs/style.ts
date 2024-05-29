@@ -1,11 +1,12 @@
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import ArrowDropDown from '../../assets/imgs/arrow-drop-down.svg';
+
+import styled, { css } from 'styled-components';
 
 export const Container = styled.main`
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 130px 64px;
+    padding: 130px 64px 64px 64px;
     min-height: calc(100vh - 147px);
     max-width: 1440px;
     margin: 0 auto;
@@ -17,25 +18,40 @@ export const SectionFilters = styled.section`
     gap: 8px;
 `;
 
-export const SelectDate = {
-    control: (provided: any) => ({
-        ...provided,
-        padding: '0 14px',
-        borderRadius: '147px',
-        border: '1px solid #c1dfff',
-        background: '#fff',
-        fontSize: '14px',
-        fontStyle: 'normal',
-        fontWeight: '600',
-        lineHeight: '120%',
-        color: '#475467',
-        zIndex: '999',
-    }),
-    singleValue: (provided: any) => ({
-        ...provided,
-        zIndex: '999',
-    }),
-};
+export const SelectBox = styled.div`
+    z-index: 40;
+    padding-right: 16px;
+    border-radius: 147px;
+    border: 1px solid #c1dfff;
+    background: url(${ArrowDropDown}) no-repeat right transparent;
+    background-position: calc(100% - 10px) center;
+
+    select {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 0;
+        outline: none;
+        background: transparent;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 120%;
+        color: #475467;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    option {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 120%;
+        color: #475467;
+    }
+
+    option:first-child {
+        display: none;
+    }
+`;
 
 export const SectionJob = styled.section`
     display: flex;
@@ -84,7 +100,6 @@ export const AllJobsQuantity = styled.h2`
 
 export const BoxJob = styled.div<ParahgraphType>`
     display: flex;
-    justify-content: flex-start;
     gap: 8px;
     padding: 12px;
     border: 1px solid #e8e8e8;
@@ -98,22 +113,25 @@ export const BoxJob = styled.div<ParahgraphType>`
 `;
 
 export const CompanyImage = styled.img`
+    flex: 1;
     width: 56px;
     height: 56px;
 `;
 
 export const JobInfo = styled.div`
+    flex: 2;
     display: flex;
     flex-direction: column;
     gap: 8px;
 `;
 
-export const ParagraphMd = styled.p`
+export const ParagraphMd = styled.p<ParahgraphType>`
     font-family: 'Radio Canada';
     font-size: 16px;
     font-weight: 400;
     line-height: 140%;
     color: ${({ color }) => color || '#003986'};
+    text-transform: ${({ transform }) => transform || 'none'};
 `;
 
 interface ParahgraphType {
@@ -122,6 +140,9 @@ interface ParahgraphType {
     weigth?: string;
     gap?: string;
     isActive?: boolean;
+    transform?: string;
+    inline?: boolean;
+    description?: boolean;
 }
 
 export const ParagraphSm = styled.p<ParahgraphType>`
@@ -131,6 +152,14 @@ export const ParagraphSm = styled.p<ParahgraphType>`
     line-height: 120%;
     color: ${({ color }) => color || '#182230'};
     opacity: ${({ opacity }) => opacity || '1'};
+
+    ${({ description }) =>
+        description &&
+        css`
+            max-width: 513px;
+            margin-bottom: 16px;
+            line-height: 140%;
+        `}
 `;
 
 export const LabelSm = styled.p<ParahgraphType>`
@@ -143,73 +172,14 @@ export const LabelSm = styled.p<ParahgraphType>`
     opacity: ${({ opacity }) => opacity || '1'};
 `;
 
-export const ContainerSelectedJob = styled.div`
-    position: relative;
-    flex: 1.5;
-`;
-
-export const HeaderSelectedJob = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    padding: 16px;
-    background: #e7f0f8;
-`;
-
-export const Button = styled.button`
-    padding: 16px 24px;
-    border-radius: 8px;
-    background: #003986;
-    font-family: 'Radio Canada';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 120%;
-    color: #fff;
-    transition: 0.2s all ease-in-out;
-
-    &:hover {
-        opacity: 0.8;
-    }
-`;
-
-export const BoxHeaderSelectedJob = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-`;
-
-export const SubtitleSm = styled.h2`
+export const SubtitleSm = styled.h2<ParahgraphType>`
     font-family: 'Radio Canada';
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 120%;
     color: #003986;
-`;
-
-export const InlineContent = styled.div<ParahgraphType>`
-    display: flex;
-    align-items: center;
-    gap: ${({ gap }) => gap || '0'};
-`;
-
-export const SelectedJobContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    height: 530px;
-    padding: 24px 16px;
-    border: 1px solid #e8e8e8;
-    overflow-y: auto;
-`;
-
-export const IconWork = styled.img`
-    width: 24px;
-    height: 24px;
+    text-transform: ${({ transform }) => transform || 'none'};
 `;
 
 export const Badge = styled.span`
