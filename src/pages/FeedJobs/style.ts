@@ -10,6 +10,10 @@ export const Container = styled.main`
     min-height: calc(100vh - 147px);
     max-width: 1440px;
     margin: 0 auto;
+
+    @media (max-width: 1024px) {
+        padding: 130px 32px 32px 32px;
+    }
 `;
 
 export const SectionFilters = styled.section`
@@ -57,6 +61,10 @@ export const SectionJob = styled.section`
     display: flex;
     justify-content: space-between;
     gap: 64px;
+
+    @media (max-width: 1024px) {
+        gap: 32px;
+    }
 `;
 
 export const ContainerAllJobs = styled.div`
