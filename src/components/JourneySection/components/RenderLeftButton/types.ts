@@ -9,6 +9,4 @@ export interface RenderLeftButtonsMenuProps {
     content: ContentProps[];
     expandedItemId: number;
     onItemClick: (id: number) => void;
-    isMobile? : boolean;
-    selectedContent? : any;
 }

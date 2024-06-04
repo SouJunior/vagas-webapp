@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import devices from '../../../src/pages/styles/devices';
 
 export const ContainerJourney = styled.section`
     display: flex;
@@ -88,10 +87,4 @@ export const ContentContainer = styled.div`
     align-items: flex-start;
     gap: 64px;
     max-width: 1234px;
-
-    @media ${devices.mobileS} {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 `;
