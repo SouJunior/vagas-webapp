@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import devices from '../../../../pages/styles/devices';
 
 export const LeftMenu = styled.div`
     display: flex;
@@ -13,6 +14,11 @@ export const LeftMenu = styled.div`
     @media (max-width: 1280px) {
         width: 380px;
         gap: 16px;
+    }
+
+    @media ${devices.mobileS} {
+        max-width: 288px;
+        gap: 8px;
     }
 `;
 
@@ -34,6 +40,11 @@ export const MenuItem = styled.button<{ isActive: boolean }>`
             background-color: #e7f0f8;
             box-shadow: inset 3px 0 0 #046ad0;
         `}
+
+        @media ${devices.mobileS} {
+            max-width: 288px;
+            flex-direction: column;
+        }
 `;
 
 export const FigureBox = styled.div`

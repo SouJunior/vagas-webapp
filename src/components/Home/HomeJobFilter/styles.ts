@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import devices  from '../../../pages/styles/devices';
 
 export const FormWrapper = styled.div`
     position: relative;
@@ -20,21 +21,7 @@ export const FormWrapper = styled.div`
         padding: 2px 2px 2px 8px;
     }
 
-    @media (max-width: 375px) {
-        width: 300px;
-        position: relative;
-        left: -150px;
-        top: 50px;
-    }
-            
-    @media (max-width: 320px) {
-        width: 287px;
-        height: 37px;
-        border: 2px;
-        position: relative;
-        top: 160px;
-        left: -56px;
-    }
+    
      
     @media (max-width: 415px) {
         position: relative;
@@ -42,8 +29,23 @@ export const FormWrapper = styled.div`
         width: 350px;   
         top: 100px;
         left: -40px;
-        }
+    }
+
+    @media (max-width: 375px) {
+        width: 300px;
+        position: relative;
+        left: -150px;
+        
+    }
+                
+    @media ${devices.mobileS} {
+        position: absolute;
+        left: -88px;
+        top: 14rem;
+    }
 `;
+
+
 
 export const Form = styled.form`
     display: flex;
