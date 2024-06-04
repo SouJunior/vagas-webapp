@@ -115,7 +115,7 @@ export const Home: React.FC = () => {
             </VocationalBannerArea>
 
             <OurSitesSection>
-                <SecondaryTitle>
+                <SecondaryTitle className='SecondaryTitle2'>
                     Seja o profissional que as empresas desejam
                 </SecondaryTitle>
 
