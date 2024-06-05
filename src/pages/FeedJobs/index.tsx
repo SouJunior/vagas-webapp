@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
-
+import { useSearchParams } from 'react-router-dom';
 import Cognito from '../../assets/imgs/cognito.svg';
-
 import SelectedJobVacancy from './components/SelectedJobVacancy';
-
 import { JobsProps } from './types';
 import apiJobs from '../../services/apiJobs';
-import parseTime from '../../utils/parseTime';
-
 import * as S from './style';
+import Pagination from '../../components/Ui/Pagination';
+import formatTimeAgo from '../../utils/formatTimeAgo';
+
+const ITEMS_PER_PAGE = 10;
 
 const FeedJobs = () => {
     const [jobs, setJobs] = useState<JobsProps[]>([]);
     const [selectedJob, setSelectedJob] = useState<JobsProps | null>(null);
-    const [sortOrder, setSortOrder] = useState('Mais Recentes');
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const sortOrder = searchParams.get('sort') || 'default';
 
     const getJob = async () => {
         setLoading(true);
@@ -34,24 +37,31 @@ const FeedJobs = () => {
 
     const handleClick = (id: string) => {
         const selected = jobs.find((item) => item.id === id);
-
         if (selected) {
             setSelectedJob(selected);
         }
     };
 
+    const handleSortChange = (value: string) => {
+        setCurrentPage(0);
+        setSearchParams({ sort: value });
+    };
+
     const filteredJobs = jobs.sort((a, b) => {
-        const timeA = parseTime(a.time);
-        const timeB = parseTime(b.time);
+        const dateA = new Date(a.created_date).getTime();
+        const dateB = new Date(b.created_date).getTime();
 
         if (sortOrder === 'Mais Recentes') {
-            return timeA - timeB;
-        } else if (sortOrder === 'Mais Antigos') {
-            return timeB - timeA;
+            return dateB - dateA;
+        } else {
+            return dateA - dateB;
         }
-
-        return 0;
     });
+
+    const totalPages = Math.ceil(filteredJobs.length / ITEMS_PER_PAGE);
+    const startIndex = currentPage * ITEMS_PER_PAGE;
+    const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filteredJobs.length);
+    const currentJobs = filteredJobs.slice(startIndex, endIndex);
 
     useEffect(() => {
         getJob();
@@ -75,7 +85,7 @@ const FeedJobs = () => {
                 <S.SelectBox>
                     <select
                         defaultValue={'default'}
-                        onChange={(e) => setSortOrder(e.target.value)}
+                        onChange={(e) => handleSortChange(e.target.value)}
                         value={sortOrder}
                     >
                         <option value="default" disabled>
@@ -96,7 +106,7 @@ const FeedJobs = () => {
                         </S.AllJobsQuantity>
                     </S.HeaderAllJobs>
 
-                    {filteredJobs.map((item) => (
+                    {currentJobs.map((item) => (
                         <S.BoxJob
                             key={item.id}
                             onClick={() => handleClick(item.id)}
@@ -123,14 +133,18 @@ const FeedJobs = () => {
                                     </S.ParagraphSm>
                                 )}
 
-                                <S.ParagraphSm opacity="0.9">
-                                    Remoto - Junior - CLT
-                                </S.ParagraphSm>
-
-                                <S.LabelSm opacity="0.9">{item.time}</S.LabelSm>
+                                <S.LabelSm opacity="0.9">
+                                    {formatTimeAgo(item.created_date)}
+                                </S.LabelSm>
                             </S.JobInfo>
                         </S.BoxJob>
                     ))}
+
+                    <Pagination
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                        onPageChange={(page) => setCurrentPage(page)}
+                    />
                 </S.ContainerAllJobs>
 
                 {selectedJob && (

@@ -8,7 +8,7 @@ export interface SelectedJobVacancyProps {
         title: string;
         company: string;
         location: string;
-        time: string;
+        created_date: string;
         link: string;
         description: string;
     };

@@ -1,6 +1,3 @@
-import Work from '../../../../assets/imgs/work.svg';
-
-import Badge from '../../../../components/Ui/Badge/';
 import LabelSm from '../../../../components/Ui/LabelSm';
 import ParagraphMd from '../../../../components/Ui/ParagraphMd';
 import ParagraphSm from '../../../../components/Ui/ParagraphSm';
@@ -9,6 +6,8 @@ import SubtitleSm from '../../../../components/Ui/SubtitleSm';
 import { SelectedJobVacancyProps } from './types';
 
 import * as S from './style';
+import renderTextWithLinksAndBreaks from '../../../../utils/renderTextWithLinksAndBreaks';
+import formatTimeAgo from '../../../../utils/formatTimeAgo';
 
 const SelectedJobVacancy: React.FC<SelectedJobVacancyProps> = ({
     selectedJob,
@@ -35,10 +34,7 @@ const SelectedJobVacancy: React.FC<SelectedJobVacancyProps> = ({
                         )}
                     </S.InlineContent>
 
-                    <S.InlineContent gap="4px">
-                        <LabelSm>{selectedJob.time}</LabelSm>
-                        <LabelSm color="#323232">50 candidaturas</LabelSm>
-                    </S.InlineContent>
+                    <LabelSm>{formatTimeAgo(selectedJob.created_date)}</LabelSm>
                 </S.BoxHeaderSelectedJob>
 
                 <a
@@ -52,35 +48,13 @@ const SelectedJobVacancy: React.FC<SelectedJobVacancyProps> = ({
             </S.HeaderSelectedJob>
 
             <S.SelectedJobContent>
-                <S.InlineContent gap="8px" inline>
-                    <S.IconWork src={Work} alt="work" />
+                {selectedJob.description && (
+                    <ParagraphMd>Descrição da vaga</ParagraphMd>
+                )}
 
-                    <Badge>
-                        <ParagraphSm color="#001633">
-                            Tempo Integral
-                        </ParagraphSm>
-                    </Badge>
-
-                    <Badge>
-                        <ParagraphSm color="#001633">Remoto</ParagraphSm>
-                    </Badge>
-
-                    <Badge>
-                        <ParagraphSm color="#001633">Junior</ParagraphSm>
-                    </Badge>
-
-                    <Badge>
-                        <ParagraphSm color="#001633">CLT</ParagraphSm>
-                    </Badge>
-                </S.InlineContent>
-
-                <ParagraphMd>Descrição da vaga</ParagraphMd>
-
-                <div>
-                    <ParagraphSm color="#515050" description>
-                        {selectedJob.description}
-                    </ParagraphSm>
-                </div>
+                <S.BoxDescriptionText>
+                    {renderTextWithLinksAndBreaks(selectedJob.description)}
+                </S.BoxDescriptionText>
             </S.SelectedJobContent>
         </S.ContainerSelectedJob>
     );

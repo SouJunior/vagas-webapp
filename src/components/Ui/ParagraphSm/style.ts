@@ -14,7 +14,6 @@ export const ParagraphSm = styled.p<ParagraphSmProps>`
         description &&
         css`
             max-width: 513px;
-            margin-bottom: 16px;
             line-height: 140%;
         `}
 `;

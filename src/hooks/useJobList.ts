@@ -80,7 +80,7 @@ export const useJobList = () => {
         const item: Job = jobs.filter((item: Job) => item.id === id);
         setClickedJob(item);
         setNoJobSelected(false);
-    };
+    }
 
     return {
         selectedJob,
@@ -105,5 +105,5 @@ export const useJobList = () => {
         jobs,
         selecionaVaga,
     };
-}
+};
 export default useJobList;

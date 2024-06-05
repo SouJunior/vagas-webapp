@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export const ContainerSelectedJob = styled.div`
     position: relative;
     flex: 1.5;
+    height: 632px;
 `;
 
 export const HeaderSelectedJob = styled.div`
@@ -16,6 +17,7 @@ export const HeaderSelectedJob = styled.div`
     position: sticky;
     top: 0;
     z-index: 20;
+    min-height: 102px;
     padding: 16px;
     background: #e7f0f8;
 `;
@@ -25,6 +27,10 @@ export const BoxHeaderSelectedJob = styled.div`
     flex-direction: column;
     gap: 8px;
     max-width: 450px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-all;
+    overflow: hidden;
 
     @media (max-width: 1280px) {
         max-width: 310px;
@@ -86,4 +92,12 @@ export const SelectedJobContent = styled.div`
 export const IconWork = styled.img`
     width: 24px;
     height: 24px;
+`;
+
+export const BoxDescriptionText = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 512px;
+    line-height: 140%;
 `;
