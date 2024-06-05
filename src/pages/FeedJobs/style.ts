@@ -72,6 +72,11 @@ export const ContainerAllJobs = styled.div`
     flex: 1;
     height: 632px;
     overflow-y: auto;
+
+    @media (max-width: 767px) {
+        height: auto;
+        overflow-y: hidden;
+    }
 `;
 
 export const HeaderAllJobs = styled.div`

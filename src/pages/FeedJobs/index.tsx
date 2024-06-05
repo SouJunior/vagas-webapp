@@ -1,12 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 import Cognito from '../../assets/imgs/cognito.svg';
+
 import SelectedJobVacancy from './components/SelectedJobVacancy';
-import { JobsProps } from './types';
-import apiJobs from '../../services/apiJobs';
-import * as S from './style';
 import Pagination from '../../components/Ui/Pagination';
+
+import apiJobs from '../../services/apiJobs';
 import formatTimeAgo from '../../utils/formatTimeAgo';
+import usePagination from '../../hooks/usePagination';
+
+import { JobsProps } from './types';
+
+import * as S from './style';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -15,8 +21,8 @@ const FeedJobs = () => {
     const [selectedJob, setSelectedJob] = useState<JobsProps | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
-    const [currentPage, setCurrentPage] = useState<number>(0);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [isMobile, setIsMobile] = useState<boolean>(false);
 
     const sortOrder = searchParams.get('sort') || 'default';
 
@@ -26,7 +32,6 @@ const FeedJobs = () => {
         try {
             const { data: response } = await apiJobs.get('/job');
             setJobs(response.data);
-            setSelectedJob(response.data[0]);
         } catch (error) {
             console.error('Error fetching jobs:', error);
             setError('Error fetching jobs');
@@ -43,8 +48,8 @@ const FeedJobs = () => {
     };
 
     const handleSortChange = (value: string) => {
-        setCurrentPage(0);
         setSearchParams({ sort: value });
+        setCurrentPage(0);
     };
 
     const filteredJobs = jobs.sort((a, b) => {
@@ -58,14 +63,45 @@ const FeedJobs = () => {
         }
     });
 
-    const totalPages = Math.ceil(filteredJobs.length / ITEMS_PER_PAGE);
-    const startIndex = currentPage * ITEMS_PER_PAGE;
-    const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filteredJobs.length);
-    const currentJobs = filteredJobs.slice(startIndex, endIndex);
+    const {
+        currentPage,
+        paginatedItems: currentJobs,
+        totalPages,
+        setCurrentPage,
+    } = usePagination<JobsProps>(filteredJobs, ITEMS_PER_PAGE);
+
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        if (containerRef.current) {
+            containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    const checkWidthSize = () => {
+        const { innerWidth: width } = window;
+
+        if (width < 768) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+    };
 
     useEffect(() => {
+        checkWidthSize();
         getJob();
+        window.addEventListener('resize', checkWidthSize);
+
+        return () => window.removeEventListener('resize', checkWidthSize);
     }, []);
+
+    useEffect(() => {
+        if (currentJobs.length > 0) {
+            setSelectedJob(currentJobs[0]);
+        }
+    }, [currentJobs, sortOrder]);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -98,7 +134,7 @@ const FeedJobs = () => {
             </S.SectionFilters>
 
             <S.SectionJob>
-                <S.ContainerAllJobs>
+                <S.ContainerAllJobs ref={containerRef}>
                     <S.HeaderAllJobs>
                         <S.AllJobsTitle>UX Design</S.AllJobsTitle>
                         <S.AllJobsQuantity>
@@ -143,11 +179,11 @@ const FeedJobs = () => {
                     <Pagination
                         totalPages={totalPages}
                         currentPage={currentPage}
-                        onPageChange={(page) => setCurrentPage(page)}
+                        onPageChange={handlePageChange}
                     />
                 </S.ContainerAllJobs>
 
-                {selectedJob && (
+                {!isMobile && selectedJob && (
                     <SelectedJobVacancy selectedJob={selectedJob} />
                 )}
             </S.SectionJob>
