@@ -1,3 +1,5 @@
+import ParagraphSm from '../components/Ui/ParagraphSm';
+
 const renderTextWithLinksAndBreaks = (text: string) => {
     return text.split('\n').map((line, index) => {
         const linkMatch = line.match(/(https?:\/\/[^\s]+)/);
@@ -6,7 +8,7 @@ const renderTextWithLinksAndBreaks = (text: string) => {
             const lineWithoutLink = line.replace(linkMatch[0], '');
 
             return (
-                <p key={index}>
+                <ParagraphSm key={index}>
                     {lineWithoutLink}
                     <a
                         href={linkMatch[0]}
@@ -17,11 +19,11 @@ const renderTextWithLinksAndBreaks = (text: string) => {
                     >
                         {linkMatch[0]}
                     </a>
-                </p>
+                </ParagraphSm>
             );
         }
 
-        return <p key={index}>{line}</p>;
+        return <ParagraphSm key={index}>{line}</ParagraphSm>;
     });
 };
 
