@@ -8,23 +8,26 @@ import { JobsProps } from '../pages/FeedJobs/types';
 
 const ITEMS_PER_PAGE = 10;
 
-const useJobsFeed = () => {
+const useJobs = () => {
     const [jobs, setJobs] = useState<JobsProps[]>([]);
+    const [selectedJob, setSelectedJob] = useState<JobsProps | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
-    const [selectedJob, setSelectedJob] = useState<JobsProps | null>(null);
-    const [sortOrder, setSortOrder] = useState<string>('default');
-    const [currentPage, setCurrentPage] = useState<number>(0);
+
     const [searchParams, setSearchParams] = useSearchParams();
+    const searchTerm = searchParams.get('search') || '';
+    const location = searchParams.get('location') || '';
+    const sortOrder = searchParams.get('sort') || 'default';
 
     const getJobs = async () => {
         setLoading(true);
+
         try {
             const { data: response } = await apiJobs.get('/job');
             setJobs(response.data);
         } catch (error) {
-            console.error('Error fetching jobs:', error);
-            setError('Error fetching jobs');
+            console.error('Erro ao buscar vagas:', error);
+            setError('Erro ao buscar vagas');
         } finally {
             setLoading(false);
         }
@@ -34,42 +37,38 @@ const useJobsFeed = () => {
         getJobs();
     }, []);
 
-    useEffect(() => {
-        const sortParam = searchParams.get('sort');
-        if (
-            sortParam &&
-            (sortParam === 'Mais Recentes' || sortParam === 'Mais Antigos')
-        ) {
-            setSortOrder(sortParam);
-        }
-    }, [searchParams]);
+    const filterJobs = (
+        jobs: JobsProps[],
+        searchTerm: string,
+        location: string,
+    ) => {
+        return jobs.filter((job) => {
+            const matchesSearchTerm = job.title
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase());
+            const matchesLocation = job.location
+                .toLowerCase()
+                .includes(location.toLowerCase());
 
-    const handleSortChange = (value: string) => {
-        setSearchParams({ sort: value });
-        setSortOrder(value);
-        setCurrentPage(0);
+            return matchesSearchTerm && matchesLocation;
+        });
     };
 
-    const handleClick = (id: string) => {
-        const selected = jobs.find((item) => item.id === id);
-        if (selected) {
-            setSelectedJob(selected);
-        }
-    };
-
-    const filteredJobs = jobs.sort((a, b) => {
+    const sortedJobs = jobs.sort((a, b) => {
         const dateA = new Date(a.created_date).getTime();
         const dateB = new Date(b.created_date).getTime();
 
-        if (sortOrder === 'Mais Recentes') {
-            return dateB - dateA;
-        } else {
-            return dateA - dateB;
-        }
+        return sortOrder === 'Mais Recentes' ? dateB - dateA : dateA - dateB;
     });
 
-    const { paginatedItems: currentJobs, totalPages } =
-        usePagination<JobsProps>(filteredJobs, ITEMS_PER_PAGE);
+    const filteredJobs = filterJobs(sortedJobs, searchTerm, location);
+
+    const {
+        currentPage,
+        paginatedItems: currentJobs,
+        totalPages,
+        setCurrentPage,
+    } = usePagination<JobsProps>(filteredJobs, ITEMS_PER_PAGE);
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -80,27 +79,50 @@ const useJobsFeed = () => {
         setCurrentPage(page);
     };
 
+    const isMobile = window.innerWidth < 768;
+
     useEffect(() => {
-        if (currentJobs.length > 0) {
-            setSelectedJob(currentJobs[0]);
+        if (
+            !selectedJob ||
+            !currentJobs.some((job) => job.id === selectedJob.id)
+        ) {
+            setSelectedJob(currentJobs.length > 0 ? currentJobs[0] : null);
         }
-    }, [currentJobs, sortOrder]);
+    }, [currentJobs, selectedJob]);
+
+    const handleSortChange = (value: string) => {
+        setSearchParams((prevParams) => {
+            const params = new URLSearchParams(prevParams);
+            params.set('sort', value);
+            return params;
+        });
+        setCurrentPage(0);
+    };
+
+    const handleClick = (id: string) => {
+        const selected = jobs.find((item) => item.id === id);
+        if (selected) {
+            setSelectedJob(selected);
+        }
+    };
 
     return {
         jobs,
         loading,
         error,
         sortOrder,
-        setSearchParams,
         selectedJob,
         currentJobs,
         currentPage,
         totalPages,
+        containerRef,
+        isMobile,
+        searchTerm,
+        setSearchParams,
         handleSortChange,
         handleClick,
         handlePageChange,
-        containerRef,
     };
 };
 
-export default useJobsFeed;
+export default useJobs;
