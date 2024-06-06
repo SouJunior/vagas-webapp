@@ -59,6 +59,7 @@ export const BoxLogo = styled.figure`
     img {
         width: 217px;
         height: 32px;
+        cursor: pointer;
 
         @media (max-width: 450px) {
             width: 124px;

@@ -1,17 +1,28 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 
 import * as S from './styles';
 
 const JobFilter = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [location, setLocation] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchTerm, setSearchTerm] = useState(
+        searchParams.get('search') || '',
+    );
+    const [location, setLocation] = useState(
+        searchParams.get('location') || '',
+    );
 
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        navigate(`/job?search=${searchTerm}`);
+
+        if (pathname !== '/job') {
+            setSearchParams({});
+        }
+
+        navigate(`/job?search=${searchTerm}&location=${location}`);
     };
 
     return (
