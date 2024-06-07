@@ -20,41 +20,42 @@ const AllJobs: React.FC<AllJobsProps> = ({
             <S.HeaderAllJobs>
                 <S.AllJobsTitle>{searchTerm} </S.AllJobsTitle>
                 <S.AllJobsQuantity>
-                    <strong>{currentJobs.length} vagas</strong> encontradas
+                    <strong>{currentJobs!.length} vagas</strong> encontradas
                 </S.AllJobsQuantity>
             </S.HeaderAllJobs>
 
-            {currentJobs.map((item) => (
-                <S.BoxJob
-                    key={item.id}
-                    onClick={() => handleClick(item.id)}
-                    isActive={selectedJob?.id === item.id}
-                >
-                    <figure>
-                        <S.CompanyImage src={Cognito} alt="cognito" />
-                    </figure>
+            {handleClick &&
+                currentJobs!.map((item: any) => (
+                    <S.BoxJob
+                        key={item.id}
+                        onClick={() => handleClick(item.id)}
+                        isActive={selectedJob?.id === item.id}
+                    >
+                        <figure>
+                            <S.CompanyImage src={Cognito} alt="cognito" />
+                        </figure>
 
-                    <S.JobInfo>
-                        <ParagraphMd transform="capitalize">
-                            {item.title}
-                        </ParagraphMd>
+                        <S.JobInfo>
+                            <ParagraphMd transform="capitalize">
+                                {item.title}
+                            </ParagraphMd>
 
-                        {item.company && (
-                            <ParagraphSm>{item.company}</ParagraphSm>
-                        )}
+                            {item.company && (
+                                <ParagraphSm>{item.company}</ParagraphSm>
+                            )}
 
-                        {item.location && (
-                            <ParagraphSm opacity="0.9">
-                                {item.location}
-                            </ParagraphSm>
-                        )}
+                            {item.location && (
+                                <ParagraphSm opacity="0.9">
+                                    {item.location}
+                                </ParagraphSm>
+                            )}
 
-                        <LabelSm opacity="0.9">
-                            {formatTimeAgo(item.created_date)}
-                        </LabelSm>
-                    </S.JobInfo>
-                </S.BoxJob>
-            ))}
+                            <LabelSm opacity="0.9">
+                                {formatTimeAgo(item.created_date)}
+                            </LabelSm>
+                        </S.JobInfo>
+                    </S.BoxJob>
+                ))}
         </>
     );
 };
