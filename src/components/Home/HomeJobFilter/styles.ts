@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import devices from '../../../pages/styles/devices';
 
 export const FormWrapper = styled.div`
     position: relative;
@@ -42,6 +43,18 @@ export const FormWrapper = styled.div`
         width: 350px;
         top: 100px;
         left: -40px;
+    }
+
+    @media (max-width: 375px) {
+        width: 300px;
+        position: relative;
+        left: -150px;
+    }
+
+    @media ${devices.mobileS} {
+        position: absolute;
+        left: -88px;
+        top: 14rem;
     }
 `;
 
