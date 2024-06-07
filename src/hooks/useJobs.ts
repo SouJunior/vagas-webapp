@@ -88,7 +88,7 @@ const useJobs = () => {
         ) {
             setSelectedJob(currentJobs.length > 0 ? currentJobs[0] : null);
         }
-    }, [currentJobs, selectedJob]);
+    }, [currentJobs, selectedJob, setSelectedJob]);
 
     const handleSortChange = (value: string) => {
         setSearchParams((prevParams) => {
@@ -96,7 +96,7 @@ const useJobs = () => {
             params.set('sort', value);
             return params;
         });
-        setCurrentPage(0);
+        setCurrentPage(0); // Reset page to 0 on sort change
     };
 
     const handleClick = (id: string) => {
@@ -105,6 +105,10 @@ const useJobs = () => {
             setSelectedJob(selected);
         }
     };
+
+    useEffect(() => {
+        setCurrentPage(0);
+    }, [searchTerm, location, sortOrder, setCurrentPage]);
 
     return {
         jobs,

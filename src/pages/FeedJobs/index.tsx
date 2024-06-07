@@ -1,30 +1,28 @@
-import Cognito from '../../assets/imgs/cognito.svg';
-
-import SelectedJobVacancy from './components/SelectedJobVacancy';
+import AllJobs from './components/AllJobs';
 import Pagination from '../../components/Ui/Pagination';
+import SelectedJobVacancy from './components/SelectedJobVacancy';
+import Select from './components/Select';
 
-import formatTimeAgo from '../../utils/formatTimeAgo';
+import useJobs from '../../hooks/useJobs';
 
 import * as S from './style';
-import useJobsFeed from '../../hooks/useJobs';
 
 const FeedJobs = () => {
     const {
         loading,
         error,
         sortOrder,
-        jobs,
-        selectedJob,
+        containerRef,
+        searchTerm,
         currentJobs,
-        currentPage,
+        selectedJob,
         totalPages,
+        currentPage,
+        isMobile,
         handleSortChange,
         handleClick,
         handlePageChange,
-        containerRef,
-    } = useJobsFeed();
-
-    const isMobile = window.innerWidth < 768;
+    } = useJobs();
 
     if (loading) {
         return <p>Loading...</p>;
@@ -41,62 +39,17 @@ const FeedJobs = () => {
     return (
         <S.Container>
             <S.SectionFilters>
-                <S.SelectBox>
-                    <select
-                        defaultValue={'default'}
-                        onChange={(e) => handleSortChange(e.target.value)}
-                        value={sortOrder}
-                    >
-                        <option value="default" disabled>
-                            Filtrar por:
-                        </option>
-                        <option value="Mais Recentes">Mais recentes</option>
-                        <option value="Mais Antigos">Mais antigos</option>
-                    </select>
-                </S.SelectBox>
+                <Select onSortChange={handleSortChange} sortOrder={sortOrder} />
             </S.SectionFilters>
 
             <S.SectionJob>
                 <S.ContainerAllJobs ref={containerRef}>
-                    <S.HeaderAllJobs>
-                        <S.AllJobsTitle>UX Design</S.AllJobsTitle>
-                        <S.AllJobsQuantity>
-                            <strong>{jobs.length} vagas</strong> encontradas
-                        </S.AllJobsQuantity>
-                    </S.HeaderAllJobs>
-                    {currentJobs.map((item) => (
-                        <S.BoxJob
-                            key={item.id}
-                            onClick={() => handleClick(item.id)}
-                            isActive={selectedJob?.id === item.id}
-                        >
-                            <figure>
-                                <S.CompanyImage src={Cognito} alt="cognito" />
-                            </figure>
-
-                            <S.JobInfo>
-                                <S.ParagraphMd transform="capitalize">
-                                    {item.title}
-                                </S.ParagraphMd>
-
-                                {item.company && (
-                                    <S.ParagraphSm>
-                                        {item.company}
-                                    </S.ParagraphSm>
-                                )}
-
-                                {item.location && (
-                                    <S.ParagraphSm opacity="0.9">
-                                        {item.location}
-                                    </S.ParagraphSm>
-                                )}
-
-                                <S.LabelSm opacity="0.9">
-                                    {formatTimeAgo(item.created_date)}
-                                </S.LabelSm>
-                            </S.JobInfo>
-                        </S.BoxJob>
-                    ))}
+                    <AllJobs
+                        searchTerm={searchTerm}
+                        currentJobs={currentJobs}
+                        selectedJob={selectedJob}
+                        handleClick={handleClick}
+                    />
 
                     <Pagination
                         totalPages={totalPages}
