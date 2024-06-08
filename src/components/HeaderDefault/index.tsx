@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import LogoName from '../../assets/imgs/logo-icon-name-h.svg';
-import * as S from './styles';
+import loginIcon from '../../assets/imgs/Candidato-icone.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
+
 import { Turn as Hamburger } from 'hamburger-react';
-import loginIcon from '../../assets/imgs/Candidato-icone.svg';
-import HomeJobFilter from '../Home/HomeJobFilter/HomeJobFilter';
+import JobFilter from './components/JobFilter';
+
+import * as S from './styles';
 
 interface HeaderProps {
     isActive: boolean;
@@ -31,20 +33,13 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
     }
 
     const handleResize = () => {
-        setIsMobileSize(window.innerWidth < 1250);
+        setIsMobileSize(window.innerWidth < 1280);
     };
 
     const handleScrollToTop = () => {
         location.pathname === '/'
             ? window.scrollTo({ top: 0, behavior: 'smooth' })
             : navigate('/');
-        console.log(location);
-    };
-
-    const handleKeyPress = (event: React.KeyboardEvent) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            handleScrollToTop();
-        }
     };
 
     useEffect(() => {
@@ -92,42 +87,40 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
             )}
 
             <S.Header isActive={isActive} isMobileOpen={isMobileOpen}>
-                <S.Menu>
-                    <Hamburger toggled={isMobileOpen} toggle={setMobileOpen} />
-                </S.Menu>
+                <section>
+                    <S.Menu>
+                        <Hamburger
+                            toggled={isMobileOpen}
+                            toggle={setMobileOpen}
+                        />
+                    </S.Menu>
 
-                <S.NavTitle>
-                    <button
-                        onClick={handleScrollToTop}
-                        onKeyDown={handleKeyPress}
-                        tabIndex={0}
-                    >
+                    <S.BoxLogo>
                         <img
                             src={LogoName}
                             alt="Logo SouJunior"
-                            width={200}
-                            height={200}
+                            onClick={handleScrollToTop}
                         />
-                    </button>
-                </S.NavTitle>
+                    </S.BoxLogo>
 
-                {activeSearch && isActive && !isMobileSize && <HomeJobFilter />}
+                    {activeSearch && isActive && !isMobileSize && <JobFilter />}
 
-                <S.HeaderBtns>
-                    <S.LoginButton
-                        onClick={handleLoginClick}
-                        isActive={isActive}
-                    >
-                        <img src={loginIcon} alt="Icone de login" />
-                        Login
-                    </S.LoginButton>
-                    <S.RegisterButton
-                        onClick={handleRegisterClick}
-                        isActive={isActive}
-                    >
-                        Cadastre-se
-                    </S.RegisterButton>
-                </S.HeaderBtns>
+                    <S.HeaderBtns>
+                        <S.LoginButton
+                            onClick={handleLoginClick}
+                            isActive={isActive}
+                        >
+                            <img src={loginIcon} alt="Icone de login" />
+                            Login
+                        </S.LoginButton>
+                        <S.RegisterButton
+                            onClick={handleRegisterClick}
+                            isActive={isActive}
+                        >
+                            Cadastre-se
+                        </S.RegisterButton>
+                    </S.HeaderBtns>
+                </section>
             </S.Header>
         </>
     );

@@ -1,181 +1,68 @@
-import { Job, useJobList } from '../../hooks/useJobList';
-import JobCard from '../../components/JobCard';
-import JobDetails from '../../components/JobDetails';
-import FeedSearch from '../../components/FeedVagas/FeedSearch';
-import QuickFilter from '../../components/QuickFilter';
-import NoJobsSelectedCard from '../../components/NoJobSelectedCard';
+import AllJobs from './components/AllJobs';
+import Pagination from '../../components/Ui/Pagination';
+import SelectedJobVacancy from './components/SelectedJobVacancy';
+import Select from './components/Select';
+
+import useJobs from '../../hooks/useJobs';
 
 import * as S from './style';
 
 const FeedJobs = () => {
     const {
-        selectedJob,
-        clickedJob,
-        noJobSelected,
-        setNoJobSelected,
+        loading,
+        error,
         sortOrder,
-        setSortOrder,
-        setSelectedJob,
-        modalityFilter,
-        setModalityFilter,
-        fetchFilteredJobs,
-        fetchNextPage,
-        hasNextPage,
-        isLoading,
-        jobs,
-        selecionaVaga,
-    } = useJobList();
+        containerRef,
+        searchTerm,
+        currentJobs,
+        selectedJob,
+        totalPages,
+        currentPage,
+        isMobile,
+        handleSortChange,
+        handleClick,
+        handlePageChange,
+    } = useJobs();
 
-    function jobContent() {
-        if (isLoading) {
-            return undefined;
-        }
-
-        if (jobs && Object.keys(jobs).length === 0) {
-            return null;
-        }
-
-        return (
-            <S.ShowMore disabled={true}>
-                Todas as vagas já foram exibidas.
-            </S.ShowMore>
-        );
+    if (loading) {
+        return <p>Loading...</p>;
     }
 
-    const searchContent = jobContent();
+    if (error) {
+        return <p>{error}</p>;
+    }
+
+    if (currentJobs.length === 0) {
+        return <p>No jobs available</p>;
+    }
 
     return (
-        <>
-            <S.Wrapper>
-                <S.Content>
-                    <FeedSearch onSearch={fetchFilteredJobs} />
+        <S.Container>
+            <S.SectionFilters>
+                <Select onSortChange={handleSortChange} sortOrder={sortOrder} />
+            </S.SectionFilters>
 
-                    <S.JobContainer>
-                        <S.ContentWrapper>
-                            <S.JobsWrapper>
-                                <S.QuickFilterContainer>
-                                    <QuickFilter
-                                        options={[
-                                            {
-                                                label: 'Remoto',
-                                                value: 'REMOTE',
-                                            },
-                                            {
-                                                label: 'Híbrido',
-                                                value: 'HYBRID',
-                                            },
-                                            {
-                                                label: 'Presencial',
-                                                value: 'IN_PERSON',
-                                            },
-                                        ]}
-                                        selectedValue={modalityFilter}
-                                        onChange={(event: any) =>
-                                            setModalityFilter(
-                                                event.target.value,
-                                            )
-                                        }
-                                        placeholder="Tipo de vaga"
-                                    />
-                                    <QuickFilter
-                                        options={[
-                                            {
-                                                label: 'Mais Recente',
-                                                value: 'DESC',
-                                            },
-                                            {
-                                                label: 'Mais Antigo',
-                                                value: 'ASC',
-                                            },
-                                        ]}
-                                        placeholder="Data do Anúncio"
-                                        selectedValue={sortOrder}
-                                        onChange={(event: any) =>
-                                            setSortOrder(event.target.value)
-                                        }
-                                    />
-                                </S.QuickFilterContainer>
-                                {jobs && Object.keys(jobs).length === 0 && (
-                                    <S.NoResultsMessage>
-                                        Nenhuma vaga encontrada.
-                                    </S.NoResultsMessage>
-                                )}
+            <S.SectionJob>
+                <S.ContainerAllJobs ref={containerRef}>
+                    <AllJobs
+                        searchTerm={searchTerm}
+                        currentJobs={currentJobs}
+                        selectedJob={selectedJob}
+                        handleClick={handleClick}
+                    />
 
-                                {isLoading ? (
-                                    <S.NoResultsMessage>
-                                        Carregando...
-                                    </S.NoResultsMessage>
-                                ) : (
-                                    <S.JobList>
-                                        {(jobs || []).map((job: Job) => (
-                                            <JobCard
-                                                key={job.id}
-                                                id={job.id}
-                                                title={job.title}
-                                                city={job.city}
-                                                federalUnit={job.federalUnit}
-                                                modality={job.modality}
-                                                jobType={job.type}
-                                                typeContract={job.typeContract}
-                                                publishedAt={job.createdAt}
-                                                company={job.company}
-                                                active={selectedJob === job.id}
-                                                opacity={
-                                                    noJobSelected ||
-                                                    selectedJob === job.id
-                                                        ? 1
-                                                        : 0.6
-                                                }
-                                                onClick={() => {
-                                                    if (
-                                                        selectedJob === job.id
-                                                    ) {
-                                                        setSelectedJob(null);
-                                                        setNoJobSelected(true);
-                                                    } else {
-                                                        selecionaVaga(job.id);
-                                                    }
-                                                }}
-                                            />
-                                        ))}
-                                    </S.JobList>
-                                )}
+                    <Pagination
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                    />
+                </S.ContainerAllJobs>
 
-                                {hasNextPage ? (
-                                    <S.ShowMore
-                                        onClick={() => fetchNextPage()}
-                                        disabled={isLoading}
-                                    >
-                                        {isLoading
-                                            ? 'Carregando...'
-                                            : 'Ver mais'}
-                                    </S.ShowMore>
-                                ) : (
-                                    <>{searchContent}</>
-                                )}
-                            </S.JobsWrapper>
-
-                            {jobs && Object.keys(jobs).length > 0 && (
-                                <>
-                                    {selectedJob ? (
-                                        <S.JobDetailsWrapper>
-                                            <JobDetails
-                                                id={selectedJob}
-                                                clickedJob={clickedJob}
-                                            />
-                                        </S.JobDetailsWrapper>
-                                    ) : (
-                                        <S.NoJobsMargin>
-                                            <NoJobsSelectedCard />
-                                        </S.NoJobsMargin>
-                                    )}
-                                </>
-                            )}
-                        </S.ContentWrapper>
-                    </S.JobContainer>
-                </S.Content>
-            </S.Wrapper>
-        </>
+                {!isMobile && selectedJob && (
+                    <SelectedJobVacancy selectedJob={selectedJob} />
+                )}
+            </S.SectionJob>
+        </S.Container>
     );
 };
 

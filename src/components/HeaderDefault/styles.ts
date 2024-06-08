@@ -10,30 +10,35 @@ interface ButtonsProps {
 }
 
 export const Header = styled.header<HeaderProps>`
-    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 132px;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    z-index: 999;
+    transition: height 0.3s ease-in-out;
     filter: ${({ isMobileOpen }) =>
         isMobileOpen ? 'none' : 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))'};
-    gap: 12px;
-    align-items: center;
-    top: 0;
-    background-color: #fff;
-    justify-content: space-between;
-    width: 100vw;
-    padding: 20px;
-    height: 132px;
-    position: fixed;
-    transition: height 0.3s ease-in-out;
-    z-index: 998;
 
-    @media (max-width: 1023px) {
-        justify-content: flex-start;
-    }
+    section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 1440px;
+        height: 100%;
+        padding: 24px;
+        margin: 0 auto;
 
-    @media (max-width: 320px) {
-        width: 320px;
-        height: 72px;
-        border: 1px;
+        @media (max-width: 1440px) {
+            padding: 0 64px;
+        }
+
+        @media (max-width: 768px) {
+            padding: 0 32px;
+        }
     }
 
     ${({ isMobileOpen }) =>
@@ -45,53 +50,27 @@ export const Header = styled.header<HeaderProps>`
     ${({ isActive }) =>
         isActive &&
         css`
-            background-color: #fff;
             height: 80px;
-            padding: 20px;
             transition: height 0.3s ease-in-out;
         `}
 `;
 
-export const NavTitle = styled.div`
-    color: white;
-    display: flex;
-    font-size: 44px;
-    gap: 20px;
-    font-weight: bold;
-    place-self: center;
-    transition: all 200ms ease-out;
-    margin-right: 20px;
-
+export const BoxLogo = styled.figure`
     img {
-        margin-left: 38px;
-    }
+        width: 217px;
+        height: 32px;
+        cursor: pointer;
 
-    @media (max-width: 568px) {
-        margin-left: 60px;
-    }
-
-    @media (max-width: 375px) {
-        position: relative;
-        left: -70px;
-    }
-
-    @media (max-width: 320px) {
-        width: 124px;
-        height: 18.61px;
-        border: 0.48px;
-        position: relative;
-        left: -70px;
-    }
-
-    @media (max-width: 415px) {
-        position: relative;
-        left: -60px;
+        @media (max-width: 450px) {
+            width: 124px;
+            height: 18px;
+        }
     }
 `;
 
 export const HeaderBtns = styled.div`
     display: flex;
-    gap: 16 px;
+    gap: 16px;
 
     @media (max-width: 835px) {
         display: none;
@@ -99,12 +78,12 @@ export const HeaderBtns = styled.div`
 `;
 
 export const RegisterButton = styled.button<ButtonsProps>`
-    font-size: 16px;
-    font-weight: 500;
     width: 262px;
     height: 52px;
-    color: ${({ theme }) => theme.colors.primary};
     padding: 8px, 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.colors.primary};
 
     :hover {
         border: 1px solid #046ad0;

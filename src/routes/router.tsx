@@ -28,8 +28,8 @@ const NavRoutes: React.FC = () => {
             <Routes>
                 <Route element={<DefaultLayout />}>
                     <Route index element={<Home />} />
-                    <Route path="jobs" element={<FeedJobs />} />
-                    <Route path="jobs/:searchTerm" element={<FeedJobs />} />
+                    <Route path="job" element={<FeedJobs />} />
+                    <Route path="job/:searchTerm" element={<FeedJobs />} />
                 </Route>
 
                 <Route path="/login" element={<Login />} />
