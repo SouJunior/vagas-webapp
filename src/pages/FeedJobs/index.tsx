@@ -22,18 +22,31 @@ const FeedJobs = () => {
         handleSortChange,
         handleClick,
         handlePageChange,
+        filteredJobsCount,
     } = useJobs();
 
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <S.Container>
+                <p>Loading...</p>
+            </S.Container>
+        );
     }
 
     if (error) {
-        return <p>{error}</p>;
+        return (
+            <S.Container>
+                <p>{error}</p>
+            </S.Container>
+        );
     }
 
     if (currentJobs.length === 0) {
-        return <p>No jobs available</p>;
+        return (
+            <S.Container>
+                <p>No jobs available</p>
+            </S.Container>
+        );
     }
 
     return (
@@ -44,18 +57,23 @@ const FeedJobs = () => {
 
             <S.SectionJob>
                 <S.ContainerAllJobs ref={containerRef}>
-                    <AllJobs
-                        searchTerm={searchTerm}
-                        currentJobs={currentJobs}
-                        selectedJob={selectedJob}
-                        handleClick={handleClick}
-                    />
+                    <S.ContainerContentJobs>
+                        <AllJobs
+                            searchTerm={searchTerm}
+                            currentJobs={currentJobs}
+                            selectedJob={selectedJob}
+                            handleClick={handleClick}
+                            filteredJobsCount={filteredJobsCount}
+                        />
+                    </S.ContainerContentJobs>
 
-                    <Pagination
-                        totalPages={totalPages}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                    />
+                    <div>
+                        <Pagination
+                            totalPages={totalPages}
+                            currentPage={currentPage}
+                            onPageChange={handlePageChange}
+                        />
+                    </div>
                 </S.ContainerAllJobs>
 
                 {!isMobile && selectedJob && (

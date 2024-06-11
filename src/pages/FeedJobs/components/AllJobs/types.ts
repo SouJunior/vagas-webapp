@@ -6,4 +6,5 @@ export interface AllJobsProps {
     currentJobs?: JobsProps[];
     selectedJob?: JobsProps | null;
     handleClick?: (value: string) => void;
+    filteredJobsCount?: number;
 }

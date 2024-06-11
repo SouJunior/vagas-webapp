@@ -13,6 +13,7 @@ const useJobs = () => {
     const [selectedJob, setSelectedJob] = useState<JobsProps | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+    const [filteredJobsCount, setFilteredJobsCount] = useState<number>(0);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const searchTerm = searchParams.get('search') || '';
@@ -63,6 +64,10 @@ const useJobs = () => {
 
     const filteredJobs = filterJobs(sortedJobs, searchTerm, location);
 
+    useEffect(() => {
+        setFilteredJobsCount(filteredJobs.length);
+    }, [filteredJobs]);
+
     const {
         currentPage,
         paginatedItems: currentJobs,
@@ -96,7 +101,7 @@ const useJobs = () => {
             params.set('sort', value);
             return params;
         });
-        setCurrentPage(0); // Reset page to 0 on sort change
+        setCurrentPage(0);
     };
 
     const handleClick = (id: string) => {
@@ -126,6 +131,7 @@ const useJobs = () => {
         handleSortChange,
         handleClick,
         handlePageChange,
+        filteredJobsCount,
     };
 };
 
