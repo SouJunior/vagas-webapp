@@ -36,7 +36,7 @@ export const BoxJob = styled.div<AllJobsProps>`
     display: flex;
     gap: 8px;
     padding: 12px;
-    border-bottom: 1px solid #e8e8e8;
+    border: 1px solid #e8e8e8;
     cursor: pointer;
     ${({ isActive }) =>
         isActive &&

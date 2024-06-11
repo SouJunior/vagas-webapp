@@ -34,9 +34,6 @@ export const SectionJob = styled.section`
 export const ContainerAllJobs = styled.div`
     position: relative;
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     height: 632px;
     overflow-y: auto;
 
@@ -44,11 +41,6 @@ export const ContainerAllJobs = styled.div`
         height: auto;
         overflow-y: hidden;
     }
-`;
-
-export const ContainerContentJobs = styled.div`
-    height: 100%;
-    border: 1px solid #e8e8e8;
 `;
 
 export const HeaderAllJobs = styled.div`

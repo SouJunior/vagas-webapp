@@ -6,6 +6,7 @@ import Select from './components/Select';
 import useJobs from '../../hooks/useJobs';
 
 import * as S from './style';
+import Loading from '../../components/Loading';
 
 const FeedJobs = () => {
     const {
@@ -26,11 +27,7 @@ const FeedJobs = () => {
     } = useJobs();
 
     if (loading) {
-        return (
-            <S.Container>
-                <p>Loading...</p>
-            </S.Container>
-        );
+        return <Loading />;
     }
 
     if (error) {
@@ -57,23 +54,19 @@ const FeedJobs = () => {
 
             <S.SectionJob>
                 <S.ContainerAllJobs ref={containerRef}>
-                    <S.ContainerContentJobs>
-                        <AllJobs
-                            searchTerm={searchTerm}
-                            currentJobs={currentJobs}
-                            selectedJob={selectedJob}
-                            handleClick={handleClick}
-                            filteredJobsCount={filteredJobsCount}
-                        />
-                    </S.ContainerContentJobs>
+                    <AllJobs
+                        searchTerm={searchTerm}
+                        currentJobs={currentJobs}
+                        selectedJob={selectedJob}
+                        handleClick={handleClick}
+                        filteredJobsCount={filteredJobsCount}
+                    />
 
-                    <div>
-                        <Pagination
-                            totalPages={totalPages}
-                            currentPage={currentPage}
-                            onPageChange={handlePageChange}
-                        />
-                    </div>
+                    <Pagination
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                    />
                 </S.ContainerAllJobs>
 
                 {!isMobile && selectedJob && (
