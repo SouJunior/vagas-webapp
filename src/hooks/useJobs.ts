@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import apiJobs from '../services/apiJobs';
 import usePagination from './usePagination';
@@ -14,11 +14,25 @@ const useJobs = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     const [filteredJobsCount, setFilteredJobsCount] = useState<number>(0);
+    const [isMobile, setIsMobile] = useState<boolean>();
 
     const [searchParams, setSearchParams] = useSearchParams();
     const searchTerm = searchParams.get('search') || '';
     const location = searchParams.get('location') || '';
     const sortOrder = searchParams.get('sort') || 'default';
+    const navigate = useNavigate();
+
+    const handleResize = () => {
+        setIsMobile(window.innerWidth < 767);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const getJobs = async () => {
         setLoading(true);
@@ -84,8 +98,6 @@ const useJobs = () => {
         setCurrentPage(page);
     };
 
-    const isMobile = window.innerWidth < 768;
-
     useEffect(() => {
         if (
             !selectedJob ||
@@ -106,6 +118,11 @@ const useJobs = () => {
 
     const handleClick = (id: string) => {
         const selected = jobs.find((item) => item.id === id);
+
+        if (isMobile) {
+            return navigate(`/job/selected/${id}`);
+        }
+
         if (selected) {
             setSelectedJob(selected);
         }
@@ -125,13 +142,13 @@ const useJobs = () => {
         currentPage,
         totalPages,
         containerRef,
-        isMobile,
         searchTerm,
         setSearchParams,
         handleSortChange,
         handleClick,
         handlePageChange,
         filteredJobsCount,
+        isMobile,
     };
 };
 

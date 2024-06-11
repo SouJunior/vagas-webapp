@@ -10,4 +10,8 @@ export const SubtitleSm = styled.h2<SubtitleSmProps>`
     line-height: 120%;
     color: #003986;
     text-transform: ${({ transform }) => transform || 'none'};
+
+    @media (max-width: 767px) {
+        font-size: 16px;
+    }
 `;
