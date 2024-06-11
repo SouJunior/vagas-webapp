@@ -1,6 +1,6 @@
 import AllJobs from './components/AllJobs';
 import Pagination from '../../components/Ui/Pagination';
-import SelectedJobVacancy from './components/SelectedJobVacancy';
+import SelectedJobVacancy from '../../components/SelectedJobVacancy';
 import Select from './components/Select';
 
 import useJobs from '../../hooks/useJobs';
@@ -19,11 +19,11 @@ const FeedJobs = () => {
         selectedJob,
         totalPages,
         currentPage,
-        isMobile,
         handleSortChange,
         handleClick,
         handlePageChange,
         filteredJobsCount,
+        isMobile,
     } = useJobs();
 
     if (loading) {

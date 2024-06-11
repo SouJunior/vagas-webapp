@@ -13,6 +13,10 @@ export const Container = styled.main`
     @media (max-width: 1024px) {
         padding: 130px 32px 32px 32px;
     }
+
+    @media (max-width: 767px) {
+        padding: 96px 32px 32px 32px;
+    }
 `;
 
 export const SectionFilters = styled.section`

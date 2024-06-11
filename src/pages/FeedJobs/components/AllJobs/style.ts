@@ -50,6 +50,14 @@ export const CompanyImage = styled.img`
     flex: 1;
     width: 56px;
     height: 56px;
+
+    @media (max-width: 1023px) {
+        display: none;
+    }
+
+    @media (max-width: 767px) {
+        display: flex;
+    }
 `;
 
 export const JobInfo = styled.div`
