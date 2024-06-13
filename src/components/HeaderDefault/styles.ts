@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 interface HeaderProps {
     isActive: boolean;
     isMobileOpen: boolean;
+    feedJob: boolean;
 }
 
 interface ButtonsProps {
@@ -20,6 +21,25 @@ export const Header = styled.header<HeaderProps>`
     transition: height 0.3s ease-in-out;
     filter: ${({ isMobileOpen }) =>
         isMobileOpen ? 'none' : 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))'};
+
+    @media (max-width: 559px) {
+        height: auto;
+        padding: 12px 0;
+    }
+
+    ${({ feedJob }) =>
+        feedJob &&
+        css`
+            border: none;
+            filter: none;
+
+            section {
+                @media (max-width: 559px) {
+                    flex-direction: column;
+                    gap: 16px;
+                }
+            }
+        `}
 
     section {
         display: flex;
@@ -55,13 +75,22 @@ export const Header = styled.header<HeaderProps>`
         `}
 `;
 
+export const Return = styled.button`
+    position: absolute;
+    top: 7px;
+    left: 38px;
+    padding: 4px;
+    border-radius: 66px;
+    background: #eff3f9;
+`;
+
 export const BoxLogo = styled.figure`
     img {
         width: 217px;
         height: 32px;
         cursor: pointer;
 
-        @media (max-width: 450px) {
+        @media (max-width: 767px) {
             width: 124px;
             height: 18px;
         }

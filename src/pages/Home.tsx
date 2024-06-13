@@ -43,6 +43,8 @@ import JobFilter from '../components/Home/HomeJobFilter';
 import { Testimonial } from '../Mocks/Testimonial';
 import { TestimonialType } from '../@types/testimonial-type';
 import JourneySection from '../components/JourneySection/index';
+import useJobs from '../hooks/useJobs';
+import Loading from '../components/Loading';
 
 export interface AreaProps {
     id: string;
@@ -53,21 +55,7 @@ export interface AreaProps {
 SwiperCore.use([Navigation, Autoplay]);
 
 export const Home: React.FC = () => {
-    const [jobsCount, setJobsCount] = useState<number>();
-
-    const api = useApi();
-
-    useEffect(() => {
-        async function getJobs() {
-            const jobsData = await api.getJobs();
-            if (jobsData.meta) {
-                const jobsCount = jobsData.meta.itemCount;
-
-                setJobsCount(jobsCount);
-            }
-        }
-        getJobs();
-    }, []);
+    const { filteredJobsCount } = useJobs();
 
     return (
         <>
@@ -82,7 +70,8 @@ export const Home: React.FC = () => {
                         <JobFilter />
 
                         <JobsInfo>
-                            Mais de {jobsCount} vagas disponíveis para você!{' '}
+                            Mais de {filteredJobsCount} vagas disponíveis para
+                            você!
                         </JobsInfo>
                     </MainSearchFilter>
                     <Image src={ImageHome}></Image>

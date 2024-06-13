@@ -14,13 +14,14 @@ const AllJobs: React.FC<AllJobsProps> = ({
     currentJobs,
     selectedJob,
     handleClick,
+    filteredJobsCount,
 }) => {
     return (
         <>
             <S.HeaderAllJobs>
                 <S.AllJobsTitle>{searchTerm} </S.AllJobsTitle>
                 <S.AllJobsQuantity>
-                    <strong>{currentJobs!.length} vagas</strong> encontradas
+                    <strong>{filteredJobsCount} vagas</strong> encontradas
                 </S.AllJobsQuantity>
             </S.HeaderAllJobs>
 

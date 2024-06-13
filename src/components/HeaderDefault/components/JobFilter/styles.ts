@@ -1,6 +1,3 @@
-import Search from '../../../../assets/imgs/search.svg';
-import Location from '../../../../assets/imgs/location.svg';
-
 import styled from 'styled-components';
 
 export const Container = styled.form`
@@ -8,16 +5,40 @@ export const Container = styled.form`
     align-items: center;
     gap: 16px;
     height: 100%;
+
+    @media (max-width: 1280px) {
+        .location {
+            display: none;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        gap: 8px;
+    }
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+`;
+
+export const BoxInput = styled.div`
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 256px;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
 `;
 
 export const Input = styled.input`
-    width: 256px;
+    position: relative;
+    width: 100%;
     height: 45px;
-    padding: 0 16px 0 44px;
+    padding: 0 16px 0 40px;
     border: 1px solid #c1dfff;
     background: #eff3f9;
-    background-position: left 16px center;
-    background-repeat: no-repeat;
     border-radius: 42px;
     font-size: 14px;
     line-height: 120%;
@@ -26,14 +47,15 @@ export const Input = styled.input`
     :focus {
         outline-color: #1165ba;
     }
+
+    @media (max-width: 767px) {
+        height: 36px;
+    }
 `;
 
-export const SearchJob = styled(Input)`
-    background-image: url(${Search});
-`;
-
-export const LocationInput = styled(Input)`
-    background-image: url(${Location});
+export const BtnIcon = styled.button`
+    position: absolute;
+    left: 14px;
 `;
 
 export const Button = styled.button`
@@ -51,5 +73,9 @@ export const Button = styled.button`
 
     &:hover {
         opacity: 0.8;
+    }
+
+    @media (max-width: 1024px) {
+        display: none;
     }
 `;

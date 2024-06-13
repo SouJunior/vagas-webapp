@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
 import LogoName from '../../assets/imgs/logo-icon-name-h.svg';
 import loginIcon from '../../assets/imgs/Candidato-icone.svg';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 import { Turn as Hamburger } from 'hamburger-react';
 import JobFilter from './components/JobFilter';
 
 import * as S from './styles';
+import { CaretLeft } from 'phosphor-react';
 
 interface HeaderProps {
     isActive: boolean;
@@ -15,8 +16,9 @@ interface HeaderProps {
 
 const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
     const [isMobileOpen, setMobileOpen] = useState(false);
-    const [isMobileSize, setIsMobileSize] = useState(false);
-    const [activeSearch, setActiveSearch] = useState(true);
+    const [isLaptop, setIsLaptop] = useState(false);
+    const [feedJob, setFeedJob] = useState(false);
+    const [isSelectedPage, setIsSelectedPage] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -33,7 +35,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
     }
 
     const handleResize = () => {
-        setIsMobileSize(window.innerWidth < 1280);
+        setIsLaptop(window.innerWidth > 768);
     };
 
     const handleScrollToTop = () => {
@@ -43,7 +45,10 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
     };
 
     useEffect(() => {
-        setActiveSearch(location.pathname !== '/jobs');
+        const isJobPage = location.pathname.startsWith('/job');
+        const isSelectedJobPage = location.pathname.startsWith('/job/selected');
+        setFeedJob(isJobPage);
+        setIsSelectedPage(isSelectedJobPage);
 
         window.addEventListener('resize', handleResize);
 
@@ -53,6 +58,9 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
             window.removeEventListener('resize', handleResize);
         };
     }, [location.pathname]);
+
+    const shouldShowJobFilter = (isActive && isLaptop) || feedJob;
+    const isFeed = !isLaptop && feedJob;
 
     return (
         <>
@@ -86,14 +94,28 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                 </S.MobileHeader>
             )}
 
-            <S.Header isActive={isActive} isMobileOpen={isMobileOpen}>
+            <S.Header
+                feedJob={feedJob}
+                isActive={isActive}
+                isMobileOpen={isMobileOpen}
+            >
                 <section>
-                    <S.Menu>
-                        <Hamburger
-                            toggled={isMobileOpen}
-                            toggle={setMobileOpen}
-                        />
-                    </S.Menu>
+                    {!isFeed && (
+                        <S.Menu>
+                            <Hamburger
+                                toggled={isMobileOpen}
+                                toggle={setMobileOpen}
+                            />
+                        </S.Menu>
+                    )}
+
+                    {!isLaptop && isSelectedPage && (
+                        <S.Return>
+                            <Link to="/job">
+                                <CaretLeft size={16} color="#666666" />
+                            </Link>
+                        </S.Return>
+                    )}
 
                     <S.BoxLogo>
                         <img
@@ -103,7 +125,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                         />
                     </S.BoxLogo>
 
-                    {activeSearch && isActive && !isMobileSize && <JobFilter />}
+                    {shouldShowJobFilter && <JobFilter />}
 
                     <S.HeaderBtns>
                         <S.LoginButton

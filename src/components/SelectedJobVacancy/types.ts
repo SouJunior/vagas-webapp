@@ -13,3 +13,7 @@ export interface SelectedJobVacancyProps {
         description: string;
     };
 }
+
+export interface LocationValue {
+    location: boolean;
+}
