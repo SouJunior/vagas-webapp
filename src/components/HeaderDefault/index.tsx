@@ -94,19 +94,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                             </li>
                             <li>Apoio</li>
                             <hr />
-                            <li><S.RegisterButton
-                                onClick={handleRegisterClick}
-                                isActive={isActive}
-                            >
-                                Cadastre-se
-                            </S.RegisterButton></li>
-                            <li><S.LoginButton
-                                onClick={handleLoginClick}
-                                isActive={isActive}
-                            >
-                                Login
-                            </S.LoginButton></li>
-                            {/* <S.RegisterButton
+                            <S.RegisterButton
                                 onClick={handleRegisterClick}
                                 isActive={isActive}
                             >
@@ -117,7 +105,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                                 isActive={isActive}
                             >
                                 Login
-                            </S.LoginButton> */}
+                            </S.LoginButton>
                         </ul>
                     </div>
                     <div
