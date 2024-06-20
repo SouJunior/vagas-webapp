@@ -68,12 +68,45 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                 <S.MobileHeader>
                     <div className="wrapper">
                         <ul>
-                            <li>SouJunior</li>
-                            <li>Suporte</li>
-                            <li>Time</li>
+                            <li>
+                                <a  href="https://www.soujunior.tech/"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
+                                    SouJuniorTech
+                                </a>
+                            </li>
+                            <li>
+                                <a  href=" https://www.soujunior.tech/ouvidoria"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
+                                    Ouvidoria
+                                </a>
+                            </li>
+                            <li>
+                                <a  href="https://www.soujunior.tech/?#participation"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
+                                    Faça parte
+                                    </a>
+                            </li>
                             <li>Apoio</li>
                             <hr />
-                            <S.RegisterButton
+                            <li><S.RegisterButton
+                                onClick={handleRegisterClick}
+                                isActive={isActive}
+                            >
+                                Cadastre-se
+                            </S.RegisterButton></li>
+                            <li><S.LoginButton
+                                onClick={handleLoginClick}
+                                isActive={isActive}
+                            >
+                                Login
+                            </S.LoginButton></li>
+                            {/* <S.RegisterButton
                                 onClick={handleRegisterClick}
                                 isActive={isActive}
                             >
@@ -84,7 +117,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                                 isActive={isActive}
                             >
                                 Login
-                            </S.LoginButton>
+                            </S.LoginButton> */}
                         </ul>
                     </div>
                     <div
