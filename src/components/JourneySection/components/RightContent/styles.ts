@@ -25,6 +25,10 @@ export const Container = styled.div`
         font-size: 14px;
     }
 
+    @media (max-width: 780px) {
+        display: none;
+    }
+
     @media ${devices.mobileS} {
         max-width: 288px;
     }

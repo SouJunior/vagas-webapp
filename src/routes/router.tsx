@@ -25,7 +25,7 @@ import MatchJobs from '../pages/MatchJobs';
 import JobSelected from '../pages/JobSelected';
 
 const NavRoutes: React.FC = () => {
-    ReactGA.initialize(`${process.env.REACT_APP_GOOGLE_ANALYTICS_KEY}`);
+    ReactGA.initialize(`G-1TSQDBDCNZ`);
     ReactGA.pageview(window.location.pathname + window.location.search);
 
     return (

@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 
 import RenderLeftButtonsMenu from './components/RenderLeftButton';
 import RightContent from './components/RightContent';
+import JourneyResponsive from './components/JourneyResponsive';
 
 import { curriculoItems } from '../../Mocks/CurriculoItems';
 import { linkedinItems } from '../../Mocks/LinkedinItems';
@@ -55,6 +56,8 @@ const JourneySection = () => {
                     Currículo
                 </S.CurriculoButton>
             </S.ToggleButtonSection>
+
+            <JourneyResponsive data={content} />
 
             {selectedContent && (
                 <S.ContentContainer>
