@@ -75,7 +75,10 @@ export const CandidateSettings: React.FC = () => {
     useEffect(() => {
         const userCurriculum = () => {
             const curriculums = auth.user.curriculums;
-
+            if (curriculums == null) {
+                return;
+            }
+            
             if (curriculums[0]) {
                 const userCurriculum1 = curriculums[0];
                 setFileKey1(userCurriculum1.fileKey);

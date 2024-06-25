@@ -222,4 +222,17 @@ export const useApi = () => ({
         const res = await api.patch(`/company/${id}`);
         return res.data;
     },
+
+    changePassword: async (oldPassword: string, password: string, confirmNewPassword: string) => {
+        const token = localStorage.getItem('authToken');
+        const res: any = await api.patch('/user/update_password', {
+            oldPassword,
+            password,
+            confirmNewPassword,
+        }, { headers: {
+            Authorization: `Bearer ${token}`,
+        },});
+
+        return res.data;
+    },
 });

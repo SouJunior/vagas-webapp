@@ -89,6 +89,7 @@ const Menu = () => {
                                 <li
                                     tabIndex={0}
                                     onKeyDown={handleKeyDown}
+                                    onClick={() => navigate('/change-password')}
                                 >
                                     <img
                                         src={PasswordIcon}
