@@ -8,6 +8,7 @@ interface HeaderProps {
 
 interface ButtonsProps {
     isActive: boolean;
+    isMobileOpen: boolean;
 }
 
 export const Header = styled.header<HeaderProps>`
@@ -107,29 +108,30 @@ export const HeaderBtns = styled.div`
 `;
 
 export const RegisterButton = styled.button<ButtonsProps>`
-    width: 262px;
-    height: 52px;
-    padding: 8px, 16px, 8px, 16px;
     border-radius: 4px;
     font-size: 16px;
     font-weight: 500;
     background-color: ${({ theme }) => theme.colors.primary};
-    color : #fff;
+    color: #fff;
     border: 1px solid #046ad0;
-    border-radius: 4px;
+    transition: all 300ms ease-in-out;
 
-    ${({ isActive }) =>
-        isActive
+    ${({ isMobileOpen, isActive }) =>
+        isMobileOpen
             ? css`
                   width: 262px;
+                  padding: 8px 16px;
+                  height: 50px; 
+              `
+            : isActive
+            ? css`
+                  width: 110px;
                   height: 42px;
-                  transition: all 300ms ease-in-out;
                   font-size: 16px;
               `
             : css`
-                  width: 262px;
+                  width: 122px;
                   height: 35px;
-                  transition: all 300ms ease-in-out;
               `}
 `;
 
@@ -250,6 +252,10 @@ export const MobileHeader = styled.nav`
                 :hover {
                     background-size: 100% 3px;
                 }
+                
+                @media (max-width: 768px) {
+                    font-size: 18pt;
+                    }
             }
         }
 
@@ -268,7 +274,7 @@ export const BoxLogoMobile = styled.div`
     
 `
 
-export const Buttons = styled.div`
+export const ButtonsBox = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;

@@ -106,20 +106,22 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                             </ul>   
                         </div>
                         
-                        <S.Buttons>
+                        <S.ButtonsBox>
                             <S.RegisterButton
                                     onClick={handleRegisterClick}
                                     isActive={isActive}
+                                    isMobileOpen={isMobileOpen}
                                 >
                                     Cadastre-se
                                 </S.RegisterButton>
                                 <S.LoginButton
                                     onClick={handleLoginClick}
                                     isActive={isActive}
+                                    isMobileOpen={isMobileOpen}
                                 >
                                     Login
                                 </S.LoginButton>
-                        </S.Buttons>
+                        </S.ButtonsBox>
                     </div>
                     <div
                         className="background"
@@ -165,6 +167,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                         <S.LoginButton
                             onClick={handleLoginClick}
                             isActive={isActive}
+                            isMobileOpen={isMobileOpen}
                         >
                             <img src={loginIcon} alt="Icone de login" />
                             Login
@@ -172,6 +175,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                         <S.RegisterButton
                             onClick={handleRegisterClick}
                             isActive={isActive}
+                            isMobileOpen={isMobileOpen}
                         >
                             Cadastre-se
                         </S.RegisterButton>
