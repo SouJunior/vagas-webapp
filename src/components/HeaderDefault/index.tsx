@@ -66,47 +66,60 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
         <>
             {isMobileOpen && (
                 <S.MobileHeader>
-                    <div className="wrapper">
-                        <ul>
-                            <li>
-                                <a  href="https://www.soujunior.tech/"
-                                    rel="noreferrer"
-                                    target="_blank"
-                                >
-                                    SouJuniorTech
-                                </a>
-                            </li>
-                            <li>
-                                <a  href=" https://www.soujunior.tech/ouvidoria"
-                                    rel="noreferrer"
-                                    target="_blank"
-                                >
-                                    Ouvidoria
-                                </a>
-                            </li>
-                            <li>
-                                <a  href="https://www.soujunior.tech/?#participation"
-                                    rel="noreferrer"
-                                    target="_blank"
-                                >
-                                    Faça parte
+                    <div className="wrapper"> 
+                        <div>
+                            <S.BoxLogoMobile>
+                                <S.BoxLogo>
+                                    <img
+                                    src={LogoName}
+                                    alt="Logo SouJunior"
+                                    onClick={handleScrollToTop}
+                                    />
+                                </S.BoxLogo>
+                            </S.BoxLogoMobile>
+                            <ul>
+                                <li>
+                                    <a  href="https://www.soujunior.tech/"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        SouJuniorTech
                                     </a>
-                            </li>
-                            <li>Apoio</li>
-                            <hr />
+                                </li>
+                                <li>
+                                    <a  href=" https://www.soujunior.tech/ouvidoria"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        Ouvidoria
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  href="https://www.soujunior.tech/?#participation"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        Faça parte
+                                        </a>
+                                </li>
+                                <hr />
+                            </ul>   
+                        </div>
+                        
+                        <S.Buttons>
                             <S.RegisterButton
-                                onClick={handleRegisterClick}
-                                isActive={isActive}
-                            >
-                                Cadastre-se
-                            </S.RegisterButton>
-                            <S.LoginButton
-                                onClick={handleLoginClick}
-                                isActive={isActive}
-                            >
-                                Login
-                            </S.LoginButton>
-                        </ul>
+                                    onClick={handleRegisterClick}
+                                    isActive={isActive}
+                                >
+                                    Cadastre-se
+                                </S.RegisterButton>
+                                <S.LoginButton
+                                    onClick={handleLoginClick}
+                                    isActive={isActive}
+                                >
+                                    Login
+                                </S.LoginButton>
+                        </S.Buttons>
                     </div>
                     <div
                         className="background"
