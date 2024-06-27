@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 import Login from '../pages/Login';
 import Report from '../pages/Report';
@@ -25,8 +25,7 @@ import MatchJobs from '../pages/MatchJobs';
 import JobSelected from '../pages/JobSelected';
 
 const NavRoutes: React.FC = () => {
-    ReactGA.initialize(`G-1TSQDBDCNZ`);
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.initialize(`${process.env.REACT_APP_GOOGLE_ANALYTICS_KEY}`)
 
     return (
         <BrowserRouter>
