@@ -245,6 +245,9 @@ export const Circle = styled.img`
     position: absolute;
     top: 0px;
     right: 0px;
+    @media (max-width: 568px) {
+        top:-32px;
+    }
 `;
 
 export const CircleImage = styled.img`
@@ -260,7 +263,9 @@ export const CircleImage = styled.img`
     }
 
     @media (max-width: 568px) {
-        bottom: -450px;
+        bottom: -145px;
+        left: 76px;
+        width:300px;
     }
 
     @media (max-width: 375px) {
