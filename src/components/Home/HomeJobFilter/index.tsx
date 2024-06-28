@@ -21,18 +21,18 @@ const HomeJobFilter: React.FC = () => {
                     onChange={(event) => setSearchTerm(event.target.value)}
                     placeholder="Digite o cargo, tipo de contrato ou localidade desejados"
                 />
-                <S.SearchButton
-                    type="submit"
-                    onClick={() =>
-                        window.scrollTo({
-                            top: 0,
-                            left: 0,
-                            behavior: 'smooth',
-                        })
-                    }
-                >
-                    Buscar Vaga
-                </S.SearchButton>
+                    <S.SearchButton
+                        type="submit"
+                        onClick={() =>
+                            window.scrollTo({
+                                top: 0,
+                                left: 0,
+                                behavior: 'smooth',
+                            })
+                        }
+                    >
+                        Buscar Vaga
+                    </S.SearchButton>
             </S.Form>
         </S.FormWrapper>
     );

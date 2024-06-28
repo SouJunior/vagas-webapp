@@ -13,7 +13,7 @@ interface ButtonsProps {
 export const Header = styled.header<HeaderProps>`
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 132px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     background-color: #fff;

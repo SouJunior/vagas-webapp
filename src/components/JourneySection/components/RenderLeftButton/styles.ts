@@ -15,6 +15,9 @@ export const LeftMenu = styled.div`
         width: 380px;
         gap: 16px;
     }
+    @media (max-width: 780px) {
+        display: none;
+    }
 
     @media ${devices.mobileS} {
         max-width: 288px;
@@ -41,10 +44,10 @@ export const MenuItem = styled.button<{ isActive: boolean }>`
             box-shadow: inset 3px 0 0 #046ad0;
         `}
 
-        @media ${devices.mobileS} {
-            max-width: 288px;
-            flex-direction: column;
-        }
+       @media ${devices.mobileS} {
+        max-width: 288px;
+        flex-direction: column;
+    }
 `;
 
 export const FigureBox = styled.div`

@@ -76,7 +76,6 @@ export const MainSearchFilter = styled.div`
     }
 
     @media (max-width: 568px) {
-        width: 324px;
         height: 470px;
         margin-top: 75px;
     }
@@ -86,7 +85,6 @@ export const Title = styled.h2`
     max-width: 920px;
     font-weight: 300;
     font-size: 2.9rem;
-    line-height: 66px;
 
     span {
         font-weight: 700;
@@ -97,11 +95,10 @@ export const Title = styled.h2`
     }
 
     @media (max-width: 568px) {
-        width: 272px;
         height: 144px;
         position: relative;
         top: -50px;
-        font-size: 30px;
+        font-size: 40px;
     }
 
     
