@@ -3,37 +3,63 @@ import styled, { css } from 'styled-components';
 interface HeaderProps {
     isActive: boolean;
     isMobileOpen: boolean;
+    feedJob: boolean;
 }
 
 interface ButtonsProps {
     isActive: boolean;
+    isMobileOpen: boolean;
 }
 
 export const Header = styled.header<HeaderProps>`
-    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 132px;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    z-index: 999;
+    transition: height 0.3s ease-in-out;
     filter: ${({ isMobileOpen }) =>
         isMobileOpen ? 'none' : 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))'};
-    gap: 12px;
-    align-items: center;
-    top: 0;
-    background-color: #fff;
-    justify-content: space-between;
-    width: 100vw;
-    padding: 20px;
-    height: 132px;
-    position: fixed;
-    transition: height 0.3s ease-in-out;
-    z-index: 998;
 
-    @media (max-width: 1023px) {
-        justify-content: flex-start;
+    @media (max-width: 559px) {
+        height: auto;
+        padding: 12px 0;
     }
 
-    @media (max-width: 320px) {
-        width: 320px;
-        height: 72px;
-        border: 1px;
+    ${({ feedJob }) =>
+        feedJob &&
+        css`
+            border: none;
+            filter: none;
+
+            section {
+                @media (max-width: 559px) {
+                    flex-direction: column;
+                    gap: 16px;
+                }
+            }
+        `}
+
+    section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 1440px;
+        height: 100%;
+        padding: 24px;
+        margin: 0 auto;
+
+        @media (max-width: 1440px) {
+            padding: 0 64px;
+        }
+
+        @media (max-width: 768px) {
+            padding: 0 32px;
+        }
     }
 
     ${({ isMobileOpen }) =>
@@ -45,53 +71,36 @@ export const Header = styled.header<HeaderProps>`
     ${({ isActive }) =>
         isActive &&
         css`
-            background-color: #fff;
             height: 80px;
-            padding: 20px;
             transition: height 0.3s ease-in-out;
         `}
 `;
 
-export const NavTitle = styled.div`
-    color: white;
-    display: flex;
-    font-size: 44px;
-    gap: 20px;
-    font-weight: bold;
-    place-self: center;
-    transition: all 200ms ease-out;
-    margin-right: 20px;
+export const Return = styled.button`
+    position: absolute;
+    top: 7px;
+    left: 38px;
+    padding: 4px;
+    border-radius: 66px;
+    background: #eff3f9;
+`;
 
+export const BoxLogo = styled.figure`
     img {
-        margin-left: 38px;
-    }
+        width: 217px;
+        height: 32px;
+        cursor: pointer;
 
-    @media (max-width: 568px) {
-        margin-left: 60px;
-    }
-
-    @media (max-width: 375px) {
-        position: relative;
-        left: -70px;
-    }
-
-    @media (max-width: 320px) {
-        width: 124px;
-        height: 18.61px;
-        border: 0.48px;
-        position: relative;
-        left: -70px;
-    }
-
-    @media (max-width: 415px) {
-        position: relative;
-        left: -60px;
+        @media (max-width: 767px) {
+            width: 180px;
+            height: 18px;
+        }
     }
 `;
 
 export const HeaderBtns = styled.div`
     display: flex;
-    gap: 16 px;
+    gap: 16px;
 
     @media (max-width: 835px) {
         display: none;
@@ -99,30 +108,30 @@ export const HeaderBtns = styled.div`
 `;
 
 export const RegisterButton = styled.button<ButtonsProps>`
+    border-radius: 4px;
     font-size: 16px;
     font-weight: 500;
-    width: 262px;
-    height: 52px;
-    color: ${({ theme }) => theme.colors.primary};
-    padding: 8px, 16px;
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: #fff;
+    border: 1px solid #046ad0;
+    transition: all 300ms ease-in-out;
 
-    :hover {
-        border: 1px solid #046ad0;
-        border-radius: 4px;
-    }
-
-    ${({ isActive }) =>
-        isActive
+    ${({ isMobileOpen, isActive }) =>
+        isMobileOpen
+            ? css`
+                  width: 262px;
+                  padding: 8px 16px;
+                  height: 50px; 
+              `
+            : isActive
             ? css`
                   width: 110px;
                   height: 42px;
-                  transition: all 300ms ease-in-out;
                   font-size: 16px;
               `
             : css`
                   width: 122px;
                   height: 35px;
-                  transition: all 300ms ease-in-out;
               `}
 `;
 
@@ -130,12 +139,11 @@ export const LoginButton = styled(RegisterButton)<ButtonsProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    :hover {
-        border-radius: 4px;
-        border: 1px solid ${({ theme }) => theme.colors.primary};
-        display: flex;
-    }
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid ${({ theme }) => theme.colors.primary};
+    display: flex;
+    color: ${({ theme }) => theme.colors.primary};
 
     img {
         width: 16px;
@@ -170,7 +178,8 @@ export const MobileHeader = styled.nav`
 
     .wrapper {
         display: flex;
-        justify-content: flex-start;
+        flex-direction: column;
+        justify-content: space-between;
         text-align: left;
         align-items: center;
         width: 350px;
@@ -185,9 +194,7 @@ export const MobileHeader = styled.nav`
         animation-fill-mode: both;
         transition: all 0.2s;
 
-        @media (max-width: 700px) {
-            width: 80vw;
-        }
+
 
         @media (max-width: 500px) {
             width: 90vw !important;
@@ -214,14 +221,15 @@ export const MobileHeader = styled.nav`
             }
         }
 
+
         ul {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding-left: 30px;
-            gap: 20px;
+            justify-content: center;
             width: 80%;
-
+            margin-top: 24px;
+          
             li {
                 text-transform: capitalize;
                 font-size: 22pt;
@@ -244,6 +252,10 @@ export const MobileHeader = styled.nav`
                 :hover {
                     background-size: 100% 3px;
                 }
+                
+                @media (max-width: 768px) {
+                    font-size: 18pt;
+                    }
             }
         }
 
@@ -251,6 +263,24 @@ export const MobileHeader = styled.nav`
             display: none;
         }
     }
+`;
+
+export const BoxLogoMobile = styled.div`
+        margin-top: 100px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+`
+
+export const ButtonsBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 `;
 
 export const Menu = styled.div`

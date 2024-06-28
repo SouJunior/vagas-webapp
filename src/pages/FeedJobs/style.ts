@@ -1,122 +1,106 @@
-import styled from 'styled-components';
-import FeedJobsBackground from '../../assets/imgs/feedjobs-bg.svg';
+import styled, { css } from 'styled-components';
+import { AllJobsProps } from './components/AllJobs/types';
 
-export const Wrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    justify-content: center;
-    height: 100%;
-    width: 100%; 
-    min-height: 100vh;
-`;
-
-export const Content = styled.div`
-    grid-column: 1 / -1;
-`;
-
-export const FilterContainer = styled.div`
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-    background-color: ${({ theme }) => theme.colors.primary};
-    background-image: url(${FeedJobsBackground});
-
-    div {
-        width: 100%;
-    }
-`;
-
-export const JobContainer = styled.div`
+export const Container = styled.main`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 16px;
+    padding: 130px 64px 64px 64px;
+    min-height: calc(100vh - 147px);
+    max-width: 1440px;
+    margin: 0 auto;
+
+    @media (max-width: 1024px) {
+        padding: 130px 32px 32px 32px;
+    }
+
+    @media (max-width: 767px) {
+        padding: 96px 32px 32px 32px;
+    }
+`;
+
+export const SectionFilters = styled.section`
+    display: flex;
     align-items: center;
-    margin-bottom: 56px;
-    width: 100%;
-    padding-right: 20px;
-    padding-left: 20px;
+    gap: 8px;
 `;
 
-export const PageTitle = styled.h1`
-    font-size: 36px;
-    font-weight: 700;
-    margin-top: 40px;
-    margin-bottom: 24px;
-`;
-
-export const ContentWrapper = styled.div`
+export const SectionJob = styled.section`
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    width: 100%;
+    justify-content: space-between;
+    gap: 64px;
 
-    @media (max-width: 1200px) {
-        flex-wrap: wrap;
+    @media (max-width: 1024px) {
+        gap: 32px;
     }
 `;
 
-export const JobsWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    max-height: 614px;
-`;
-
-export const QuickFilterContainer = styled.div`
-    display: flex;
-    gap: 26px;
-    width: 100%;
-    max-width: 493px;
-    margin-bottom: 26px;
-
-    @media (max-width: 768px) {
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-`;
-
-export const JobList = styled.div`
-    display: flex;
+export const ContainerAllJobs = styled.div`
     position: relative;
-    flex-direction: column;
-    gap: 4px;
-    max-height: 557px;
-    max-width: 518px;
-    width: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    flex: 1;
+    height: 632px;
+    overflow-y: auto;
 
-    ::-webkit-scrollbar {
-        width: 15px;
+    @media (max-width: 767px) {
+        height: auto;
+        overflow-y: hidden;
     }
 `;
 
-export const JobDetailsWrapper = styled.div`
-    margin-top: 52px;
+export const HeaderAllJobs = styled.div`
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 8px 12px;
+    z-index: 100;
+    background: #344054;
+`;
+
+export const AllJobsTitle = styled.h1`
+    font-family: 'Radio Canada';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 140%;
+    color: #fff;
+`;
+
+export const AllJobsQuantity = styled.h2`
+    font-family: 'Radio Canada';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 140%;
+    color: #fff;
+    opacity: 0.9;
+
+    strong {
+        font-weight: 500;
+        opacity: 1;
+    }
+`;
+
+export const BoxJob = styled.div<AllJobsProps>`
     display: flex;
-    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid #e8e8e8;
+    cursor: pointer;
+    ${({ isActive }) =>
+        isActive &&
+        css`
+            background-color: #e7f0f8;
+            box-shadow: inset 3px 0 0 #046ad0;
+        `}
 `;
 
-export const ShowMore = styled.button`
-    font-weight: 600;
-    text-align: center;
-    color: #515050;
-    grid-column-start: 1;
-    margin-top: 20px;
-
-    :hover {
-        text-decoration: underline;
-    }
+export const CompanyImage = styled.img`
+    flex: 1;
+    width: 56px;
+    height: 56px;
 `;
 
-export const NoResultsMessage = styled.div`
-    color: #515050;
-    text-align: center;
-    width: 100%;
-`;
-
-export const NoJobsMargin = styled.div`
-    margin-top: 52px;
+export const JobInfo = styled.div`
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 `;

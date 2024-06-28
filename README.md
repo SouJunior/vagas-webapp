@@ -43,6 +43,14 @@ Instale as dependências
   yarn install
 ```
 
+Configurar as variaveis de ambiente:
+
+REACT_APP_GOOGLE_ANALYTICS_KEY= # GA do SouJunior
+REACT_APP_URL= # link do backend
+REACT_APP_URL_JOBS= # link da api de jobs
+
+
+
 ## Rodando localmente ▶
 
 Inicie o servidor
