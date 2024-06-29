@@ -1,5 +1,10 @@
 import api from '../services/api';
 
+type ChangePasswordResponse = {
+    success: boolean;
+    message: string;
+};
+
 export const useApi = () => ({
     login: async (email: string, password: string, type: string | any) => {
         const res: any = await api.post('/auth/login', {
@@ -223,9 +228,9 @@ export const useApi = () => ({
         return res.data;
     },
 
-    changePassword: async (oldPassword: string, password: string, confirmNewPassword: string) => {
+    changePassword: async (oldPassword: string, password: string, confirmNewPassword: string): Promise<ChangePasswordResponse> => {
         const token = localStorage.getItem('authToken');
-        const res: any = await api.patch('/user/update_password', {
+        const res = await api.patch<ChangePasswordResponse>('/user/update_password', {
             oldPassword,
             password,
             confirmNewPassword,

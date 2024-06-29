@@ -14,7 +14,7 @@ interface ChangePasswordModalProps {
     setChangePasswordModal: (value: boolean) => void;
 }
 
-const ChangePasswordModal = ({ setChangePasswordModal  }: ChangePasswordModalProps ) => {
+const ChangePasswordModal = ({ setChangePasswordModal }: ChangePasswordModalProps ) => {
     const navigate = useNavigate();
     const auth = useContext(AuthContext);
     const modalRef = useRef<HTMLDivElement | null>(null);
@@ -49,9 +49,6 @@ const ChangePasswordModal = ({ setChangePasswordModal  }: ChangePasswordModalPro
             <ModalContent ref={modalRef}>
                 <CloseModal>
                     <ModalCloseButton
-                        /**
-                         * @see https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
-                        */
                         onClick={handleClick}
                     >
                         X

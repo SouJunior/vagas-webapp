@@ -50,7 +50,6 @@ export const Form = styled.form`
         font-style: normal;
         font-weight: 500;
         line-height: normal;
-
         }
 
     }
@@ -108,6 +107,7 @@ export const StyledIconOpenEyes = styled(AiFillEye)`
     justify-self: end;
     fill: #cbd5e1;
 `
+
 export const StyledIconClosedEyes = styled(RiEyeCloseLine)`
     height: 30px;
     width: 30px;

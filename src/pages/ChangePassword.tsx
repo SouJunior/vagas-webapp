@@ -21,20 +21,20 @@ import Footer from '../components/Portal/Footer';
 import ChangePasswordModal from '../components/Portal/ProfileModal/ChangePasswordModal'; 
 import CancelModal from '../components/Portal/ProfileModal/CancelModal';
 
-
 interface ChangePasswordForm {
   oldPassword: string;
   password: string;
   confirmNewPassword: string;
-}
+};
 
 const ChangePassword = () => {
   const [oldVisible, setOldVisible] = useState(false);
   const [visible, setVisible] = useState(false);
   const [confirmVisible, setConfirmVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [changePasswordModal, setChangePasswordModal] = useState(false); 
   const [cancelModal, setCancelModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const {
     register,
@@ -56,19 +56,17 @@ const ChangePassword = () => {
 
   const onSubmitHandler: SubmitHandler<ChangePasswordForm> = async (data, e) => {
     e?.preventDefault();
-    // console.log('bianca', data);
     try {
       await api.changePassword(data.oldPassword, data.password, data.confirmNewPassword);
       setChangePasswordModal(true); 
     } catch (error: any) {
       setErrorMessage(error.response.data.message);
-      // console.log('bianca erros', error.response.data.message);
-    }
-  }
+    };
+  };
 
   const handleCancelModal = (e: any) => {
     e.preventDefault();
-    document.body.style.overflow = 'hidden';
+    setIsModalOpen(false);
     setCancelModal(true);
     window.scrollTo(0, 0);
   };
@@ -172,7 +170,7 @@ const ChangePassword = () => {
           <Button
             style={{ backgroundColor: "#086BCF", color: "white" }}
             type="submit"
-            onClick={handleSubmit(onSubmitHandler)} // Adicionado onClick aqui
+            onClick={handleSubmit(onSubmitHandler)}
           >
             Alterar senha
           </Button>
@@ -185,10 +183,10 @@ const ChangePassword = () => {
         </div>
       </Form>
       {changePasswordModal && <ChangePasswordModal setChangePasswordModal={setChangePasswordModal} />} 
-      {cancelModal && <CancelModal setCancelModal={setCancelModal} />}
+      {cancelModal && <CancelModal setCancelModal={setCancelModal} open={isModalOpen} />}
       <Footer />
     </Container>
   );
-}
+};
 
 export default ChangePassword;
