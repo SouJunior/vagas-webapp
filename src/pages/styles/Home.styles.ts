@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import devices from '../styles/devices';
 import VocationalBanner from '../../assets/imgs/VocationalBanner.svg';
 
 export const Main = styled.main`
@@ -26,15 +27,11 @@ export const Main = styled.main`
         height: 800px;
     }
 
-    @media (max-width: 320px) {
-        width: 324px;
-        height: 600px;
+    @media ${devices.mobileS} {
+        height: 470px; 
     }
 
-    @media (max-width: 320px) {
-        width: 324px;
-        height: 600px;
-    }
+
 `;
 
 export const MainContent = styled.div`
@@ -55,6 +52,13 @@ export const MainContent = styled.div`
 
     @media (max-width: 375px) {
         width: 375px;
+    }
+
+    @media ${devices.mobileS} {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 `;
 
@@ -100,23 +104,29 @@ export const Title = styled.h2`
         font-size: 30px;
     }
 
+    
+
+    @media (max-width: 415px) {
+        position: relative;
+        left: -75px;
+    }
+    
     @media (max-width: 375px) {
         font-size: 24px;
         position: relative;
         left: -150px;
     }
 
-    @media (max-width: 320px) {
-        position: relative;
-        left: -50px;
-        height: 40px;
-        font-size: 24px;
+    @media ${devices.mobileS} {
+        height: 144px;
+        font-size: 26px;
+        line-height: 2rem;
+        position: absolute;
+        top: 13rem;
+        left: -4rem;
     }
 
-    @media (max-width: 415px) {
-        position: relative;
-        left: -75px;
-    }
+    
 `;
 
 export const SecondaryTitle = styled.h3`
@@ -140,7 +150,7 @@ export const SecondaryTitle = styled.h3`
     @media (max-width: 375px) {
         position: relative;
         top: -50px;
-    }
+    }    
 `;
 
 export const JobsInfo = styled.p`
@@ -168,12 +178,6 @@ export const JobsInfo = styled.p`
         top: 40px;
     }
 
-    @media (max-width: 320px) {
-        position: relative;
-        top: 150px;
-        left: -50px;
-    }
-
     @media (max-width: 415px) {
         position: relative;
         left: -75px;
@@ -184,10 +188,12 @@ export const JobsInfo = styled.p`
         align-items: center;
     }
 
-    @media (max-width: 320px) {
+    @media ${devices.mobileS} {
+        width: 320px;
+        font-size: 10px;
         position: relative;
-        top: 95px;
-        left: -40px;
+        top: 214px;
+        left: -121px;
     }
 `;
 
@@ -221,12 +227,7 @@ export const Image = styled.img`
         left: -190px;
     }
 
-    @media (max-width: 320px) {
-        position: relative;
-        left: -100px;
-        top: -150px;
-        height: 120px;
-    }
+    
 
     @media (max-width: 415px) {
         height: 170px;
@@ -234,11 +235,12 @@ export const Image = styled.img`
         margin-left: 280px;
     }
 
-    @media (max-width: 320px) {
+    @media ${devices.mobileS} {
+        width: 100px;
+        height: 100px;
         position: relative;
-        left: -70px;
-        bottom: 170px;
-        height: 120px;
+        top: -230px;
+        left: -170px; 
     }
 `;
 
@@ -269,11 +271,12 @@ export const CircleImage = styled.img`
     }
 
     @media (max-width: 320px) {
-        width: 100px;
-        height: 100px;
-        position: relative;
-        top: 200px;
-        left: 700px;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 20rem;
+        left: -3rem;
+        overflow: hidden;
     }
 `;
 
@@ -314,11 +317,14 @@ export const OurSitesSection = styled.section`
         align-items: center;
     }
 
-    @media (max-width: 320px) {
-        width: 90vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    @media ${devices.mobileS} {
+        .SecondaryTitle2 {
+
+            position: relative;
+            top: -100px;
+            left: 16px;
+            line-height: 35px;
+        }
     }
 `;
 
@@ -340,9 +346,11 @@ export const CardWrapper = styled.div`
         margin-bottom: 50px;
     }
 
-    @media (max-width: 320px) {
-        position: relative;
-        top: -100px;
+    @media ${devices.mobileS} {
+       width: 320px;
+       position: relative;
+       left: 16px;
+       top: -10px;
     }
 `;
 
@@ -557,11 +565,11 @@ export const TestimonialSection = styled.section`
         opacity: 0.8;
         border-radius: 50%;
 
-        @media (max-width: 320px) {
+        @media ${devices.mobileS} {
             width: 16px;
             height: 16px;
             position: relative;
-            top: -500px;
+            bottom: 34rem;
         }
     }
 
@@ -570,10 +578,10 @@ export const TestimonialSection = styled.section`
         opacity: 1;
     }
 
-    @media (max-width: 320px) {
+    @media ${devices.mobileS} {
+        max-width: 320px;
         position: relative;
-        top: -300px;
-        bottom: 180px;
+        bottom: 13rem;
     }
 `;
 
@@ -583,12 +591,8 @@ export const TestimonialWrapper = styled.div`
     align-items: center;
     z-index: 997;
 
-    @media (max-width: 320px) {
-        position: relative;
-        bottom: 400px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    @media ${devices.mobileS} {
+        max-width: 320px;
     }
 `;
 
@@ -608,6 +612,11 @@ export const VocationalBannerArea = styled.div`
         width: 95%;
         height: auto;
         padding: 1.1rem 0;
+    }
+
+    @media ${devices.mobileS} {
+        position: relative;
+        top: -70px;
     }
 `;
 
@@ -638,8 +647,8 @@ export const VocationalBannerContainer = styled.div`
         height: 130px;
         margin-top: 150px;
     }
-
-    @media (max-width: 320px) {
+    
+    @media  ${devices.mobileS} {
         display: flex;
         align-items: center;
         width: 310px;

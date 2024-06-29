@@ -1,11 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
 import LogoName from '../../assets/imgs/logo-icon-name-h.svg';
-import * as S from './styles';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/Auth/AuthContext';
-import { Turn as Hamburger } from 'hamburger-react';
 import loginIcon from '../../assets/imgs/Candidato-icone.svg';
-import HomeJobFilter from '../Home/HomeJobFilter/HomeJobFilter';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
+
+import { Turn as Hamburger } from 'hamburger-react';
+import JobFilter from './components/JobFilter';
+
+import * as S from './styles';
+import { CaretLeft } from 'phosphor-react';
 
 interface HeaderProps {
     isActive: boolean;
@@ -13,8 +16,9 @@ interface HeaderProps {
 
 const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
     const [isMobileOpen, setMobileOpen] = useState(false);
-    const [isMobileSize, setIsMobileSize] = useState(false);
-    const [activeSearch, setActiveSearch] = useState(true);
+    const [isLaptop, setIsLaptop] = useState(false);
+    const [feedJob, setFeedJob] = useState(false);
+    const [isSelectedPage, setIsSelectedPage] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -31,24 +35,20 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
     }
 
     const handleResize = () => {
-        setIsMobileSize(window.innerWidth < 1250);
+        setIsLaptop(window.innerWidth > 768);
     };
 
     const handleScrollToTop = () => {
         location.pathname === '/'
             ? window.scrollTo({ top: 0, behavior: 'smooth' })
             : navigate('/');
-        console.log(location);
-    };
-
-    const handleKeyPress = (event: React.KeyboardEvent) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            handleScrollToTop();
-        }
     };
 
     useEffect(() => {
-        setActiveSearch(location.pathname !== '/jobs');
+        const isJobPage = location.pathname.startsWith('/job');
+        const isSelectedJobPage = location.pathname.startsWith('/job/selected');
+        setFeedJob(isJobPage);
+        setIsSelectedPage(isSelectedJobPage);
 
         window.addEventListener('resize', handleResize);
 
@@ -59,30 +59,69 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
         };
     }, [location.pathname]);
 
+    const shouldShowJobFilter = (isActive && isLaptop) || feedJob;
+    const isFeed = !isLaptop && feedJob;
+
     return (
         <>
             {isMobileOpen && (
                 <S.MobileHeader>
-                    <div className="wrapper">
-                        <ul>
-                            <li>SouJunior</li>
-                            <li>Suporte</li>
-                            <li>Time</li>
-                            <li>Apoio</li>
-                            <hr />
+                    <div className="wrapper"> 
+                        <div>
+                            <S.BoxLogoMobile>
+                                <S.BoxLogo>
+                                    <img
+                                    src={LogoName}
+                                    alt="Logo SouJunior"
+                                    onClick={handleScrollToTop}
+                                    />
+                                </S.BoxLogo>
+                            </S.BoxLogoMobile>
+                            <ul>
+                                <li>
+                                    <a  href="https://www.soujunior.tech/"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        SouJuniorTech
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  href=" https://www.soujunior.tech/ouvidoria"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        Ouvidoria
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  href="https://www.soujunior.tech/?#participation"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        Faça parte
+                                        </a>
+                                </li>
+                                <hr />
+                            </ul>   
+                        </div>
+                        
+                        <S.ButtonsBox>
                             <S.RegisterButton
-                                onClick={handleRegisterClick}
-                                isActive={isActive}
-                            >
-                                Cadastre-se
-                            </S.RegisterButton>
-                            <S.LoginButton
-                                onClick={handleLoginClick}
-                                isActive={isActive}
-                            >
-                                Login
-                            </S.LoginButton>
-                        </ul>
+                                    onClick={handleRegisterClick}
+                                    isActive={isActive}
+                                    isMobileOpen={isMobileOpen}
+                                >
+                                    Cadastre-se
+                                </S.RegisterButton>
+                                <S.LoginButton
+                                    onClick={handleLoginClick}
+                                    isActive={isActive}
+                                    isMobileOpen={isMobileOpen}
+                                >
+                                    Login
+                                </S.LoginButton>
+                        </S.ButtonsBox>
                     </div>
                     <div
                         className="background"
@@ -91,43 +130,57 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                 </S.MobileHeader>
             )}
 
-            <S.Header isActive={isActive} isMobileOpen={isMobileOpen}>
-                <S.Menu>
-                    <Hamburger toggled={isMobileOpen} toggle={setMobileOpen} />
-                </S.Menu>
+            <S.Header
+                feedJob={feedJob}
+                isActive={isActive}
+                isMobileOpen={isMobileOpen}
+            >
+                <section>
+                    {!isFeed && (
+                        <S.Menu>
+                            <Hamburger
+                                toggled={isMobileOpen}
+                                toggle={setMobileOpen}
+                            />
+                        </S.Menu>
+                    )}
 
-                <S.NavTitle>
-                    <button
-                        onClick={handleScrollToTop}
-                        onKeyDown={handleKeyPress}
-                        tabIndex={0}
-                    >
+                    {!isLaptop && isSelectedPage && (
+                        <S.Return>
+                            <Link to="/job">
+                                <CaretLeft size={16} color="#666666" />
+                            </Link>
+                        </S.Return>
+                    )}
+
+                    <S.BoxLogo>
                         <img
                             src={LogoName}
                             alt="Logo SouJunior"
-                            width={200}
-                            height={200}
+                            onClick={handleScrollToTop}
                         />
-                    </button>
-                </S.NavTitle>
+                    </S.BoxLogo>
 
-                {activeSearch && isActive && !isMobileSize && <HomeJobFilter />}
+                    {shouldShowJobFilter && <JobFilter />}
 
-                <S.HeaderBtns>
-                    <S.LoginButton
-                        onClick={handleLoginClick}
-                        isActive={isActive}
-                    >
-                        <img src={loginIcon} alt="Icone de login" />
-                        Login
-                    </S.LoginButton>
-                    <S.RegisterButton
-                        onClick={handleRegisterClick}
-                        isActive={isActive}
-                    >
-                        Cadastre-se
-                    </S.RegisterButton>
-                </S.HeaderBtns>
+                    <S.HeaderBtns>
+                        <S.LoginButton
+                            onClick={handleLoginClick}
+                            isActive={isActive}
+                            isMobileOpen={isMobileOpen}
+                        >
+                            <img src={loginIcon} alt="Icone de login" />
+                            Login
+                        </S.LoginButton>
+                        <S.RegisterButton
+                            onClick={handleRegisterClick}
+                            isActive={isActive}
+                            isMobileOpen={isMobileOpen}
+                        >
+                            Cadastre-se
+                        </S.RegisterButton>
+                    </S.HeaderBtns>
+                </section>
             </S.Header>
         </>
     );

@@ -9,8 +9,12 @@ const DefaultLayout = () => {
     const { pathname } = useLocation();
 
     const updateIsActive = () => {
-        const { scrollY } = window;
-        setIsActive(pathname === '/' ? scrollY > 300 : true);
+        const { scrollY, innerWidth } = window;
+        const isHomePage = pathname === '/';
+        const shouldActivate =
+            !isHomePage || scrollY > 400 || innerWidth < 1280;
+
+        setIsActive(shouldActivate);
     };
 
     useEffect(() => {

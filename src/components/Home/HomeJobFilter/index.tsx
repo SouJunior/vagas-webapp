@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { Form, FormWrapper, Input, SearchButton } from './styles';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import * as S from './styles';
 
 const HomeJobFilter: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -9,18 +10,18 @@ const HomeJobFilter: React.FC = () => {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        navigate(`/jobs?search=${searchTerm}`);
+        navigate(`/job?search=${searchTerm}`);
     };
 
     return (
-        <FormWrapper>
-            <Form onSubmit={handleSubmit}>
-                <Input
+        <S.FormWrapper>
+            <S.Form onSubmit={handleSubmit}>
+                <S.Input
                     type="text"
                     onChange={(event) => setSearchTerm(event.target.value)}
                     placeholder="Digite o cargo, tipo de contrato ou localidade desejados"
                 />
-                <SearchButton
+                <S.SearchButton
                     type="submit"
                     onClick={() =>
                         window.scrollTo({
@@ -31,9 +32,9 @@ const HomeJobFilter: React.FC = () => {
                     }
                 >
                     Buscar Vaga
-                </SearchButton>
-            </Form>
-        </FormWrapper>
+                </S.SearchButton>
+            </S.Form>
+        </S.FormWrapper>
     );
 };
 
