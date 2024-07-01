@@ -41,7 +41,7 @@ const FooterDefault = () => {
                                 rel="noreferrer"
                                 target="_blank"
                             >
-                                Site Sou Junior
+                                Site SouJunior
                             </a>
                             <li>
                                 <a
