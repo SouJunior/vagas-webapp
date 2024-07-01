@@ -9,6 +9,7 @@ import { linkedinItems } from '../../Mocks/LinkedinItems';
 import { ContentProps } from './types';
 
 import * as S from './style';
+import JourneyResponsive from './components/JourneyResponsive';
 
 const JourneySection = () => {
     const [content, setContent] = useState<ContentProps[]>(linkedinItems);
@@ -55,7 +56,7 @@ const JourneySection = () => {
                     Currículo
                 </S.CurriculoButton>
             </S.ToggleButtonSection>
-
+            <JourneyResponsive data={content} />
             {selectedContent && (
                 <S.ContentContainer>
                     <RenderLeftButtonsMenu
