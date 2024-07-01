@@ -19,41 +19,27 @@ export const FormWrapper = styled.div`
         padding: 2px 2px 2px 8px;
     }
 
-    @media (max-width: 375px) {
-        width: 300px;
-        position: relative;
-        left: -150px;
-        top: 50px;
-    }
 
-    @media (max-width: 320px) {
-        width: 287px;
-        height: 37px;
-        border: 2px;
-        position: relative;
-        top: 160px;
-        left: -56px;
-    }
 
     @media (max-width: 415px) {
         position: relative;
-        left: -75px;
-        width: 350px;
         top: 100px;
-        left: -40px;
+    }
+    @media ${devices.mobileL} {
+        top: 80px;
     }
 
-    @media (max-width: 375px) {
-        width: 300px;
+    @media ${devices.mobileM} {
         position: relative;
-        left: -150px;
     }
-
     @media ${devices.mobileS} {
-        position: absolute;
-        left: -88px;
-        top: 14rem;
+        width: 80%;
+        height: 37px;
+        border: 2px;
+        top:0px;
     }
+ 
+
     :focus {
         outline-color: ${({ theme }) => theme.colors.primary};
     }
@@ -65,6 +51,7 @@ export const Form = styled.form`
     justify-content: space-between;
     align-items: center;
     gap: 28px;
+    padding: 2px 2px;
     position: relative;
     z-index: 997;
     background-color: #fff;
@@ -72,6 +59,10 @@ export const Form = styled.form`
     border-radius: 52px;
     @media (max-width: 1000px) {
         width: 90%;
+    }
+    @media ${devices.mobileS} {
+        width: 100%;
+    
     }
 `;
 
@@ -121,9 +112,21 @@ export const SearchButton = styled.button`
     max-width: 207px;
     opacity: 1;
     transition: all 0.2s;
-
     :hover {
         opacity: 0.8;
     }
+    @media ${devices.mobileL} {
+        padding: 12px 0px;
+        width: 50%;
+    }
+    @media ${devices.mobileM} {
+        width: 70%;
+    }
+    @media ${devices.mobileS} {
+        width: 100%;
+        padding: 12px;
+        font-size: 12px;
+    }
+
 
 `;

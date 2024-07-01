@@ -26,6 +26,7 @@ import {
     Circle,
     MainContent,
     SecondaryTitle,
+    VocationalImageWrapper,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
@@ -87,7 +88,7 @@ export const Home: React.FC = () => {
                             TESTE <br />
                             <span>VOCACIONAL</span>
                         </h1>
-                        <p className="mb-24">
+                        <p className='mb-10'>
                             <a
                                 href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
                                 target="_blank"
@@ -99,7 +100,9 @@ export const Home: React.FC = () => {
                         </p>
                         <p className="p2">*Seu teste será feito no g1.com</p>
                     </VocationalTextContainer>
-                    <VocationalImage src={VocationalTest} alt="" />
+                    <VocationalImageWrapper>
+                        <VocationalImage src={VocationalTest} alt="" />
+                    </VocationalImageWrapper>
                 </VocationalBannerContainer>
             </VocationalBannerArea>
 

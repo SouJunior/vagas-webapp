@@ -26,9 +26,14 @@ const JourneyResponsive: React.FC<Props> = ({ data }) => {
         <S.Layout>
             {data.map((item) => (
                 <Accordion className="dropdown" key={item.id}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>{item.figure}</Typography>
-                        <Typography>{item.title}</Typography>
+                    <AccordionSummary className='flex items-center gap-2' expandIcon={<ExpandMoreIcon />}>
+                        <S.AccordationHeaderWrapper>
+                            <S.AccordationHeader>
+                                <S.FigureBox>{item.figure}</S.FigureBox>
+                                <S.ItemTitle>{item.title}</S.ItemTitle>
+                            </S.AccordationHeader>
+                            <S.ItemSubtitle className='block'>{item.intro}</S.ItemSubtitle>
+                        </S.AccordationHeaderWrapper>
                     </AccordionSummary>
                     <AccordionDetails>
                         {item.content.map((paragraph, index) => (

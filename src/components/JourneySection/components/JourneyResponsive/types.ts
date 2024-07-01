@@ -7,6 +7,7 @@ export interface JourneyResponsiveProps {
     figure: React.ReactNode;
     title: string;
     content: Paragraph[];
+    intro : string;
 }
 
 export interface Props {

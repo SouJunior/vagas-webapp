@@ -88,9 +88,8 @@ export const ContentContainer = styled.div`
     align-items: flex-start;
     gap: 64px;
     max-width: 1234px;
-
-    @media ${devices.mobileS} {
-        display: flex;
+    @media ${devices.mobileS && devices.mobileM && devices.mobileL && devices.tablet} {
+        display: none;
         flex-direction: column;
         align-items: center;
     }
