@@ -1,6 +1,7 @@
 
 <div align="center">
-  <img src="https://api.netlify.com/api/v1/badges/5ddd4df3-b319-4622-bf22-a16e2f66b52f/deploy-status" />
+  <img src="https://api.netlify.com/api/v1/badges/5ddd4df3-b319-4622-bf22-a16e2f66b52f/deploy-status?branch=hmg" />
+  
    <img src="https://img.shields.io/badge/status-developing-blue" />
 </div>
 <div align="center">
