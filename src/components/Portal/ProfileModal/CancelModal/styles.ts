@@ -9,9 +9,7 @@ export const ModalContent = styled.div`
     gap: 20px;
     position: fixed;
     background: white;
-
-    border: 2px solid ${({ theme }) => theme.colors.primaryDark};
-    border-radius: 10px;
+    border-radius: 8px;
 
     @media (max-width: 280px) {
         width: 100%;

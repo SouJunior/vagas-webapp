@@ -50,7 +50,6 @@ const ChangePassword = () => {
   const letters = /(?=.*[a-z])(?=.*[A-Z])\w+/;
   const number = /(?=.*[0-9])\w+/;
   const specialCharacters = /(?=.*\W+).*$/;
-
   const newPasswordValue = watch("password");
   const api = useApi();
 
