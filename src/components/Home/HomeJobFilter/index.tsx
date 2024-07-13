@@ -19,7 +19,7 @@ const HomeJobFilter: React.FC = () => {
                 <S.Input
                     type="text"
                     onChange={(event) => setSearchTerm(event.target.value)}
-                    placeholder="Digite o cargo, tipo de contrato ou localidade desejados"
+                    placeholder="Digite o cargo, tipo de contrato ou local"
                 />
                     <S.SearchButton
                         type="submit"
