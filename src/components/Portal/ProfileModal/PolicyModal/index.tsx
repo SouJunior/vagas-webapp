@@ -21,6 +21,15 @@ const PolicyModal: React.FC<PolicyModalProps> = ({ setPolicyModal }) => {
         setPolicyModal(false);
     };
 
+    useEffect(() => {
+        const handleOutsideClick = (e: MouseEvent) => {
+          if (modalRef.current && e.target instanceof Node && !modalRef.current.contains(e.target)) {
+            setPolicyModal(false);
+          }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+      }, []);
+      
     return (
         <MaskBackground>
             <ModalContent ref={modalRef}>

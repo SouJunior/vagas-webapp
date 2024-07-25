@@ -15,7 +15,6 @@ import { useContext } from 'react';
 import Footer from '../components/Portal/Footer';
 import PopUpAntiFraudMessage from '../components/LoginCard/PopUpAntiFraudMessage';
 
-
 const CandidatePortal = () => {
     const navigate = useNavigate();
     const { popUpAntiFraudOpen } = useContext(AuthContext);
@@ -26,15 +25,15 @@ const CandidatePortal = () => {
             <Header />
             {popUpAntiFraudOpen && <PopUpAntiFraudMessage />}
             <Main>
+                <ProfileButton onClick={() => navigate('/candidate-settings')}>
                 <Search />
                 <Row />
                 <h1>Olá, {auth.user.name}</h1>
-                {/* <ProfileButton onClick={() => navigate('/candidate-settings')}>
                     <div>
                         <img src={CurriculumImage} alt="currículo" />
                     </div>
                     <div>Atualizar meu currículo</div>
-                </ProfileButton> */}
+                </ProfileButton>
             </Main>
             <Position>
                 <Footer />
