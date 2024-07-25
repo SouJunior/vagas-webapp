@@ -23,9 +23,9 @@ const CandidatePortal = () => {
     return (
         <Container>
             <Header />
-            {popUpAntiFraudOpen && <PopUpAntiFraudMessage />}
+            {/* {popUpAntiFraudOpen && <PopUpAntiFraudMessage />} */}
             <Main>
-                <ProfileButton onClick={() => navigate('/candidate-settings')}>
+                {/* <ProfileButton onClick={() => navigate('/candidate-settings')}>
                 <Search />
                 <Row />
                 <h1>Olá, {auth.user.name}</h1>
@@ -33,7 +33,7 @@ const CandidatePortal = () => {
                         <img src={CurriculumImage} alt="currículo" />
                     </div>
                     <div>Atualizar meu currículo</div>
-                </ProfileButton>
+                </ProfileButton> */}
             </Main>
             <Position>
                 <Footer />
