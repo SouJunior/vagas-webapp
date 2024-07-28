@@ -87,6 +87,7 @@ export const Title = styled.h2`
     max-width: 920px;
     font-weight: 300;
     font-size: 2.9rem;
+    font-family: 'Radio Canada', sans-serif;
 
     span {
         font-weight: 700;
@@ -122,6 +123,7 @@ export const SecondaryTitle = styled.h3`
     font-size: 45px;
     color: #515050;
     text-align: center;
+    font-family: 'Radio Canada', sans-serif;
 
     @media (max-width: 780px) {
         width: 90%;
@@ -334,6 +336,7 @@ export const CardWrapper = styled.div`
     gap: 156px;
     flex-wrap: wrap;
     justify-content: center;
+    font-family: 'Radio Canada', sans-serif;
 
     @media (max-width: 1300px) {
         gap: 90px;
@@ -556,6 +559,7 @@ export const TestimonialSection = styled.section`
     margin-bottom: 100px;
     z-index: 995;
     margin-top: 180px;
+    font-family: 'Radio Canada', sans-serif;
     
     @media ${devices.mobileS && devices.mobileM && devices.mobileL && devices.tablet} {
         margin-top: 80px;
@@ -631,7 +635,7 @@ export const VocationalBannerContainer = styled.div`
     max-width: 100%;
     gap: 100px;
     height: 100%;
-    padding: 15px;
+    padding: 15px 50px;
 
     @media ${devices.laptop} {
         margin: 0;
@@ -663,6 +667,7 @@ export const VocationalTextContainer = styled.div`
         font-weight: 400;
         line-height: 90px;
         text-transform: uppercase;
+        font-family: 'Radio Canada', sans-serif;
     }
 
     span {
@@ -672,6 +677,8 @@ export const VocationalTextContainer = styled.div`
 
     p {
         font-size: 20px;
+        font-family: 'Radio Canada', sans-serif;
+
     }
 
     p.p2 {
