@@ -81,30 +81,7 @@ export const Home: React.FC = () => {
                 <CircleImage src={doubleCircles} />
             </Main>
 
-            <VocationalBannerArea>
-                <VocationalBannerContainer>
-                    <VocationalTextContainer>
-                        <h1>
-                            TESTE <br />
-                            <span>VOCACIONAL</span>
-                        </h1>
-                        <p className='mb-10'>
-                            <a
-                                href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Clique Aqui
-                            </a>{' '}
-                            e faça o seu teste agora mesmo!
-                        </p>
-                        <p className="p2">*Seu teste será feito no g1.com</p>
-                    </VocationalTextContainer>
-                    <VocationalImageWrapper>
-                        <VocationalImage src={VocationalTest} alt="" />
-                    </VocationalImageWrapper>
-                </VocationalBannerContainer>
-            </VocationalBannerArea>
+
 
             <OurSitesSection>
                 <SecondaryTitle className="SecondaryTitle2">
@@ -128,6 +105,32 @@ export const Home: React.FC = () => {
             </OurSitesSection>
 
             <JourneySection />
+
+            
+            <VocationalBannerArea>
+                <VocationalBannerContainer>
+                    <VocationalTextContainer>
+                        <h1>
+                            TESTE <br />
+                            <span>VOCACIONAL</span>
+                        </h1>
+                        <p className='mb-10'>
+                            <a
+                                href="https://www.thecareertest.org/?gad_source=1&gclid=CjwKCAjwhvi0BhA4EiwAX25uj26Id5ReMCx95jSfAa3hWvO0kNaf1tbYa34D6la9EJNiCF49uKDaXRoCCakQAvD_BwE"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Clique Aqui
+                            </a>{' '}
+                            e faça o seu teste agora mesmo!
+                        </p>
+                        <p className="p2">*Seu teste será feito no g1.com</p>
+                    </VocationalTextContainer>
+                    <VocationalImageWrapper>
+                        <VocationalImage src={VocationalTest} alt="" />
+                    </VocationalImageWrapper>
+                </VocationalBannerContainer>
+            </VocationalBannerArea>
 
             {/* <JourneySection>
                 <JourneyContainer>
