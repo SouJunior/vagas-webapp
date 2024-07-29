@@ -138,31 +138,25 @@ export const Grid = styled.ul`
 export const FacebookIcon = styled(TiSocialFacebook)`
     width: 20px;
     height: 20px;
-    color: #212121;
 `;
 
 export const YouTubeIcon = styled(BsYoutube)`
     width: 20px;
     height: 20px;
-    color: #212121;
 `;
 export const GitHubIcon = styled(BsGithub)`
     width: 20px;
     height: 20px;
-    color: #212121;
 `;
 export const LinkedInIcon = styled(AiFillLinkedin)`
     width: 20px;
     height: 20px;
-    color: #212121;
 `;
 export const InstagramIcon = styled(RiInstagramFill)`
     width: 20px;
     height: 20px;
-    color: #212121;
 `;
 export const TelegramIcon = styled(BsTelegram)`
     width: 20px;
     height: 20px;
-    color: #212121;
 `;

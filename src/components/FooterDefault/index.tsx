@@ -67,15 +67,6 @@ const FooterDefault = () => {
                                 SouJunior Labs
                             </a>
                         </li>
-                        <li>
-                            <a
-                                href="https://discord.com/invite/564CDre9F3"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                SouJunior Talk
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 <div>

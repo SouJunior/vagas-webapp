@@ -119,12 +119,6 @@ export const Home: React.FC = () => {
                         Description="Seja mentorado por um profissional experiente."
                     />
                     <OurSitesCard
-                        Link="https://discord.com/invite/564CDre9F3"
-                        Title="SouJunior Talk"
-                        Img={Site}
-                        Description="Aprenda idiomas e aperfeiçoe-se!"
-                    />
-                    <OurSitesCard
                         Link="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
                         Title="SouJunior Labs"
                         Img={NosAcompanhe}

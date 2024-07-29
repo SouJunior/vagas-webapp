@@ -291,7 +291,8 @@ export const OurSitesSection = styled.section`
     align-items: center;
     flex-direction: column;
     margin-top: 180px;
-    margin-bottom: 196px;
+    gap:24px;
+    margin-bottom: 89px;
 
     @media (max-width: 1000px) {
         margin: 80px 0 4.5rem;
