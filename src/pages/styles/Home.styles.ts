@@ -130,17 +130,9 @@ export const SecondaryTitle = styled.h3`
     }
 
     @media (max-width: 568px) {
-        width: 272px;
-        height: 62px;
-        position: relative;
-        top: -40px;
         font-size: 32px;
     }
-
-    @media (max-width: 375px) {
-        position: relative;
-        top: -50px;
-    }    
+  
 `;
 
 export const JobsInfo = styled.p`
@@ -300,31 +292,17 @@ export const OurSitesSection = styled.section`
         margin: 80px 0 4.5rem;
     }
 
-    @media (max-width: 568px) {
-        h3: first-of-type {
-            width: 272;
-            height: 117;
-            position: relative;
-            bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
+
 
     @media (max-width: 320px) {
-        width: 90vw;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
 
     @media ${devices.mobileS} {
         .SecondaryTitle2 {
-
-            position: relative;
-            top: -100px;
-            left: 16px;
             line-height: 35px;
         }
     }
@@ -343,18 +321,10 @@ export const CardWrapper = styled.div`
     }
 
     @media (max-width: 568px) {
-        width: 560px;
-        position: relative;
-        top: 40px;
         margin-bottom: 50px;
     }
 
-    @media ${devices.mobileS} {
-       width: 320px;
-       position: relative;
-       left: 16px;
-       top: -10px;
-    }
+
 `;
 
 export const JourneySection = styled.section`
