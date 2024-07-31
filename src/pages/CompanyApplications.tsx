@@ -20,9 +20,9 @@ import JobCard from '../components/JobCard';
 import { Job } from '../@types/jobs';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
 import QuickFilter from '../components/QuickFilter';
-import Header from '../components/Portal/Header';
-import { Footer } from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Portal/Header';
+import Footer from '../components/Portal/Footer';
 
 const CompanyApplications = () => {
     const [selectedJob, setSelectedJob] = useState<string | null>('');
@@ -143,7 +143,18 @@ const CompanyApplications = () => {
                             <ApplicantsList>
                                 {applications.length > 0 ? (
                                     applications.map((candidate: any) => (
-                                        <Applicant onClick={() => navigate(`/match-jobs`, {state: {curriculumData:candidate?.curriculum, jobData: JobClicked}})} key={candidate.id}>
+                                        <Applicant
+                                            onClick={() =>
+                                                navigate(`/match-jobs`, {
+                                                    state: {
+                                                        curriculumData:
+                                                            candidate?.curriculum,
+                                                        jobData: JobClicked,
+                                                    },
+                                                })
+                                            }
+                                            key={candidate.id}
+                                        >
                                             {candidate?.user?.name}
                                         </Applicant>
                                     ))

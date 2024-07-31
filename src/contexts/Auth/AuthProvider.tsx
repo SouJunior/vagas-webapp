@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [isAuth, setIsAuth] = useState<boolean | any>(null);
     const [isLogin, setIsLogin] = useState<'login' | 'register'>('login');
     const [errorEmail, setErrorEmail] = useState<string | null>(null);
+    const [popUpAntiFraudOpen, setPopUpAntiFraudOpen] = useState(false);
     const api = useApi();
 
     useEffect(() => {
@@ -102,7 +103,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
             }
         } catch (err: any) {
             if (err.response.status > 400) {
-                console.log(err.response.data);
                 setErrorEmail('Email já cadastrado');
             }
         }
@@ -124,6 +124,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
                 isAuth,
                 errorEmail,
                 isRegistered,
+                popUpAntiFraudOpen,
+                setPopUpAntiFraudOpen,
             }}
         >
             {children}

@@ -12,25 +12,28 @@ import CurriculumImage from '../assets/imgs/cv.svg';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth/AuthContext';
 import { useContext } from 'react';
-import { Footer } from '../components/Footer';
+import Footer from '../components/Portal/Footer';
+import PopUpAntiFraudMessage from '../components/LoginCard/PopUpAntiFraudMessage';
 
 const CandidatePortal = () => {
     const navigate = useNavigate();
+    const { popUpAntiFraudOpen } = useContext(AuthContext);
     const auth: any = useContext(AuthContext);
-
+  
     return (
         <Container>
             <Header />
+            {/* {popUpAntiFraudOpen && <PopUpAntiFraudMessage />} */}
             <Main>
+                {/* <ProfileButton onClick={() => navigate('/candidate-settings')}>
                 <Search />
                 <Row />
-                <h1>{auth.user.name}, atualize seu currículo!</h1>
-                <ProfileButton onClick={() => navigate('/candidate-settings')}>
+                <h1>Olá, {auth.user.name}</h1>
                     <div>
                         <img src={CurriculumImage} alt="currículo" />
                     </div>
                     <div>Atualizar meu currículo</div>
-                </ProfileButton>
+                </ProfileButton> */}
             </Main>
             <Position>
                 <Footer />

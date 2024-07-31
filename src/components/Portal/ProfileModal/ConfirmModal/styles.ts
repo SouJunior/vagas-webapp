@@ -6,7 +6,7 @@ export const ModalContent = styled.div`
     align-items: center;
     gap: 20px;
     position: fixed;
-    background: #FDFFFC;
+    background: white;
 
     border: 2px solid ${({theme}) => theme.colors.primaryDark};
     border-radius: 10px;

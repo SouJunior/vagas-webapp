@@ -1,4 +1,4 @@
-import { Description, Img, Title, Container } from './styles';
+import * as S from './styles';
 
 interface OurSitesCardProps {
     Link: string;
@@ -9,13 +9,22 @@ interface OurSitesCardProps {
 
 const OurSitesCard: React.FC<OurSitesCardProps> = (props) => {
     return (
-        <Container>
-            <a href={props.Link}>
-                <Title>{props.Title}</Title>
-            </a>
-            <Img src={props.Img} />
-            <Description>{props.Description}</Description>
-        </Container>
+        <a
+            href={props.Link}
+            target="_blank"
+            aria-label={`Visitar ${props.Title}`}
+            rel="noreferrer"
+        >
+            <S.Container>
+                <S.Title>{props.Title}</S.Title>
+
+                <S.ContainerImg>
+                    <S.Img src={props.Img} alt={`Imagem de ${props.Title}`} />
+                </S.ContainerImg>
+
+                <S.Description>{props.Description}</S.Description>
+            </S.Container>
+        </a>
     );
 };
 

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,9 @@ import {
     List,
     MessageChecklist,
 } from '../styles';
-import { MaskBackground, Popup } from '../PopUpRegisterSuccess/styles';
+import { Popup } from '../PopUpRegisterSuccess/styles';
+import TermsModal from '../../Portal/ProfileModal/TermsModal';
+import PolicyModal from '../../Portal/ProfileModal/PolicyModal';
 
 export const UserForms = (props: any): JSX.Element => {
     const [hasError, setHasError] = useState(false);
@@ -44,28 +46,34 @@ export const UserForms = (props: any): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const { isRegistered, setIsRegistered } = useContext(AuthContext);
+    const [policyModal, setPolicyModal] = useState<boolean>(false);
+    const [termsModal, setTermsModal] = useState<boolean>(false);
 
+
+    const handlePolicyModal = () => {
+        setPolicyModal(true);
+    };
+
+    const handleTermsModal = () => {
+        setTermsModal(true);
+    };
+    
     const characters = /^(?=.{8,20}$).*$/;
-    const letters = /^(?=.*[a-zA-Z]).*$/;
+    const letters = /^(?=.*[a-z])(?=.*[A-Z]).*$/;
     const number = /^(?=.*\d).*$/;
     const specialCharacters = /^(?=.*\W).*$/;
 
-    const { errorEmail, setErrorEmail } = useContext(AuthContext);
-    const { isLogin, setIsLogin } = useContext(AuthContext);
+    const { errorEmail, isLogin, setIsLogin, isRegistered, setPopUpAntiFraudOpen } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [popup, setPopup] = useState(false);
 
     const navigate = useNavigate();
     const auth: any = useContext(AuthContext);
 
-    // Recebe o tipo do usuário
     const userType = props.type;
 
-    // Define qual formulário deverá ser validado
     const getFormValidation =
         isLogin === 'login' ? schemaUserLoginForm : schemaUserRegisterForm;
 
@@ -73,23 +81,19 @@ export const UserForms = (props: any): JSX.Element => {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(getFormValidation),
     });
 
-    // Realiza o login e maniopula dados
     async function handleFormOnSubmit() {
         setIsFormSubmitted(true);
 
         try {
-            // Recebe dados do contexto para verificação
-
             await auth.login(email, password, userType);
-
-
-
             navigate('/candidate-portal');
+            setPopUpAntiFraudOpen(true);
         } catch (err: any) {
             if (err.response.status > 400) {
                 setError(true);
@@ -150,9 +154,9 @@ export const UserForms = (props: any): JSX.Element => {
     return (
         <>
             {isLogin === 'login' ? (
-                <Title>Candidato</Title>
+                <Title>Login</Title>
             ) : (
-                <Title>Cadastro de candidato</Title>
+                <Title>Cadastro</Title>
             )}
 
             <Divider
@@ -208,12 +212,10 @@ export const UserForms = (props: any): JSX.Element => {
                             {errors.password && <>{errors.password.message}</>}
                         </MessageError>
                         <MessageError>
-                            {error && <>e-mail ou senha não conferem</>}
+                            {error && <>desculpe, algo inesperado aconteceu</>}
                         </MessageError>
                         <MessageError>
-                            {otherErrors && (
-                                <>desculpe, algo inesperado aconteceu</>
-                            )}
+                            {otherErrors && <>e-mail ou senha não conferem</>}
                         </MessageError>
                     </InputContainer>
                     <InputContainer>
@@ -245,6 +247,7 @@ export const UserForms = (props: any): JSX.Element => {
                             type="button"
                             onClick={() => {
                                 setIsLogin('register');
+                                reset();
                             }}
                         >
                             Criar conta
@@ -264,6 +267,7 @@ export const UserForms = (props: any): JSX.Element => {
                             placeholder="Digite seu nome completo"
                             aria-label="Nome do candidato"
                             maxLength={50}
+                            pattern="[A-Za-z\s]+"
                         ></Input>
                         <MessageError>
                             {errors.registerName && (
@@ -364,20 +368,22 @@ export const UserForms = (props: any): JSX.Element => {
                     </Checklist>
                     <InputContainer>
                         <Label>
-                            <CheckboxInput {...register('privacyTerms')} />
+                        <CheckboxInput
+                            id="privacyTerms"
+                            {...register('privacyTerms', {
+                                required: 'Você deve aceitar os termos de uso e política de privacidade.'
+                            })}
+                        />
                             <TermsLink>
-                                {/* TODO: Direcionar para as páginas correspondentes após criadas */}
-                                Li e aceito os <a href="/">Termos de Uso</a> e{' '}
-                                <a href="/">Política de Privacidade</a>
+                                Li e aceito os <a onClick={handleTermsModal}>Termos de Uso</a> e{' '}
+                                <br /> <a onClick={handlePolicyModal}>Política de Privacidade</a>
                             </TermsLink>
                         </Label>
-                        {hasError && (
                             <MessageError2>
                                 {errors.privacyTerms && (
                                     <>{errors.privacyTerms.message}</>
                                 )}
                             </MessageError2>
-                        )}
                     </InputContainer>
                     <MessageError2>
                         {errorEmail && <>{errorEmail} </>}
@@ -394,6 +400,7 @@ export const UserForms = (props: any): JSX.Element => {
                         Já tem conta? {/* redireciona se isLogin === true */}
                         <button
                             onClick={() => {
+                                reset();
                                 return setIsLogin('login');
                             }}
                         >
@@ -409,6 +416,8 @@ export const UserForms = (props: any): JSX.Element => {
                 />
             ) : null}
             <PopupHandler setPopup={setPopup} Popup={Popup} />
+            {termsModal && <TermsModal setTermsModal={setTermsModal} />}
+            {policyModal && <PolicyModal setPolicyModal={setPolicyModal} />}
         </>
     );
 };

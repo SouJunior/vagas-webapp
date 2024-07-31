@@ -1,5 +1,7 @@
+
 <div align="center">
-  <img src="https://img.shields.io/badge/status-developing-blue" />
+  <img src="https://api.netlify.com/api/v1/badges/5ddd4df3-b319-4622-bf22-a16e2f66b52f/deploy-status" />
+   <img src="https://img.shields.io/badge/status-developing-blue" />
 </div>
 <div align="center">
   <img src="https://img.shields.io/badge/React-%2320232a.svg?&logo=react&logoColor=%2361DAFB" />
@@ -43,6 +45,12 @@ Instale as dependências
   yarn install
 ```
 
+Configurar as variaveis de ambiente:
+
+REACT_APP_GOOGLE_ANALYTICS_KEY= # GA do SouJunior
+REACT_APP_URL= # link do backend
+REACT_APP_URL_JOBS= # link da api de jobs
+
 ## Rodando localmente ▶
 
 Inicie o servidor
@@ -75,6 +83,7 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 [Projeto Vagas - Backend](https://github.com/SouJunior/vagas-backend)
 
+
 ## Autor(es) 🙎🏻‍♂️
 
 -   Max Faria | [GitHub](https://github.com/max-faria) - [Linkedin](https://www.linkedin.com/in/maxfariaa/)
@@ -93,12 +102,12 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 ## Feedback 💬
 
-Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [site](https://soujunior.tech). Ou fazendo uma [contribuição](#contribuição).
+Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [site](https://soujunior.tech). Ou fazendo uma [contribuição](#contribuição-).
 
 ## Contribuição 💙
 
 Contribuições são sempre bem-vindas!
 
-Veja `contribuindo.md` para saber como começar.
+Veja [`contribuindo.md`](contribuindo.md) para saber como começar.
 
 [Voltar ao 🔝](#vagas-frontend)
