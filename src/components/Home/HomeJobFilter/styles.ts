@@ -74,9 +74,6 @@ export const Input = styled.input`
     background-color: transparent;
     text-overflow: ellipsis;
 
-    ::placeholder {
-        margin-right: 190px;
-    }
 
     @keyframes initialAnimation {
         from {
