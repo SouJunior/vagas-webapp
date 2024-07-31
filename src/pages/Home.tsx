@@ -124,7 +124,7 @@ export const Home: React.FC = () => {
                             </a>{' '}
                             e faça o seu teste agora mesmo!
                         </p>
-                        <p className="p2">*Seu teste será feito no g1.com</p>
+                        <p className="p2">*Seu teste será feito no thecareertest.org</p>
                     </VocationalTextContainer>
                     <VocationalImageWrapper>
                         <VocationalImage src={VocationalTest} alt="" />
