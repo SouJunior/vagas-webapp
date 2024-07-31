@@ -72,10 +72,8 @@ export const UserForms = (props: any): JSX.Element => {
     const navigate = useNavigate();
     const auth: any = useContext(AuthContext);
 
-    // Recebe o tipo do usuário
     const userType = props.type;
 
-    // Define qual formulário deverá ser validado
     const getFormValidation =
         isLogin === 'login' ? schemaUserLoginForm : schemaUserRegisterForm;
 
@@ -89,12 +87,10 @@ export const UserForms = (props: any): JSX.Element => {
         resolver: yupResolver(getFormValidation),
     });
 
-    // Realiza o login e maniopula dados
     async function handleFormOnSubmit() {
         setIsFormSubmitted(true);
 
         try {
-            // Recebe dados do contexto para verificação
             await auth.login(email, password, userType);
             navigate('/candidate-portal');
             setPopUpAntiFraudOpen(true);
@@ -271,6 +267,7 @@ export const UserForms = (props: any): JSX.Element => {
                             placeholder="Digite seu nome completo"
                             aria-label="Nome do candidato"
                             maxLength={50}
+                            pattern="[A-Za-z\s]+"
                         ></Input>
                         <MessageError>
                             {errors.registerName && (
@@ -371,20 +368,22 @@ export const UserForms = (props: any): JSX.Element => {
                     </Checklist>
                     <InputContainer>
                         <Label>
-                            <CheckboxInput {...register('privacyTerms')} />
+                        <CheckboxInput
+                            id="privacyTerms"
+                            {...register('privacyTerms', {
+                                required: 'Você deve aceitar os termos de uso e política de privacidade.'
+                            })}
+                        />
                             <TermsLink>
-                                {/* TODO: Direcionar para as páginas correspondentes após criadas */}
                                 Li e aceito os <a onClick={handleTermsModal}>Termos de Uso</a> e{' '}
                                 <br /> <a onClick={handlePolicyModal}>Política de Privacidade</a>
                             </TermsLink>
                         </Label>
-                        {hasError && (
                             <MessageError2>
                                 {errors.privacyTerms && (
                                     <>{errors.privacyTerms.message}</>
                                 )}
                             </MessageError2>
-                        )}
                     </InputContainer>
                     <MessageError2>
                         {errorEmail && <>{errorEmail} </>}

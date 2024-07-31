@@ -20,12 +20,11 @@ const ChangePasswordModal = ({ setChangePasswordModal }: ChangePasswordModalProp
     const modalRef = useRef<HTMLDivElement | null>(null);
 
     const handleClick = () => {
-        setChangePasswordModal (false);
-        auth.user.type === 'USER' ?
-            (navigate('/candidate-portal'))
-            :
-            (navigate('/company-portal'))
-        setTimeout(() => window.location.reload(), 0)
+        setChangePasswordModal(false);
+        navigate('/change-password');
+        setTimeout(() => {
+            window.location.reload();
+        }, 0); 
         document.body.style.overflow = 'auto';
     }
 
