@@ -11,7 +11,7 @@ const curriculoItems = [
     {
         id: 1,
         figure: <Crosshair size={25} color="#344054" />,
-        title: 'Defina um objetivo profissional',
+        title: 'Defina um Objetivo Profissional',
         intro: 'Saiba como redigir um objetivo claro e direcionado à vaga desejada.',
         contentIcon: <Crosshair size={120} color="#046AD0" />,
         content: [
@@ -34,7 +34,7 @@ const curriculoItems = [
     {
         id: 2,
         figure: <Desktop size={25} color="#344054" />,
-        title: 'Destaque a sua formação ',
+        title: 'Destaque a Sua Formação ',
         intro: 'Preparar um currículo é mais do que apenas listar sua formação acadêmica. É uma oportunidade de se destacar.',
         contentIcon: <Desktop size={120} color="#046AD0" />,
         content: [
@@ -45,7 +45,7 @@ const curriculoItems = [
                 text: `Esse é um momento de mostrar que, mesmo que lhe falte experiência profissional, você está sempre em busca de aprendizados e tem um foco de carreira definido. Isso enriquecerá bastante o seu primeiro currículo e vai diferenciá-lo dos concorrentes.`,
             },
             {
-                text: ` Ao preencher esse campo, você deve começar da formação mais recente para baixo, sempre preenchendo o nome do curso, da instituição e o ano de conclusão ou previsão de término.Não se esqueça também dos conhecimentos de idiomas, sendo realista em seu domínio da língua. Por exemplo:`,
+                text: ` Ao preencher esse campo, você deve começar da formação mais recente para baixo, sempre preenchendo o nome do curso, da instituição e o ano de conclusão ou previsão de término. Não se esqueça também dos conhecimentos de idiomas, sendo realista em seu domínio da língua. Por exemplo:`,
             },
             {
                 text: ` • Inglês — Ípsilon Idiomas —  2015 - Nível Intermediário em Leitura, com facilidade em escrever pequenos parágrafos. Nível básico em conversação.`,
@@ -55,8 +55,8 @@ const curriculoItems = [
     {
         id: 3,
         figure: <Globe size={25} color="#344054" />,
-        title: 'Mencione seus trabalhos voluntários',
-        intro: 'Em uma pesquisa da Passport-Photo Online, mais de 80% dos recrutadores disseram que uma foto do LinkedIn era um fator ',
+        title: 'Mencione Seus Trabalhos Voluntários',
+        intro: 'Trabalho voluntário é um diferencial entre os demais candidatos, pois demonstra sua disposição em dar de si em prol de outros. ',
         contentIcon: <Globe size={120} color="#046AD0" />,
         content: [
             {
@@ -67,7 +67,7 @@ const curriculoItems = [
     {
         id: 4,
         figure: <Star size={25} color="#344054" />,
-        title: 'Destaque suas qualificações profissionais',
+        title: 'Destaque Suas Qualificações Profissionais',
         intro: 'Enfatize suas habilidades e competências para maximizar suas chances na vaga pretendida.',
         contentIcon: <Star size={120} color="#046AD0" />,
         content: [
@@ -75,7 +75,7 @@ const curriculoItems = [
                 text: `Ao escrever o primeiro currículo, o campo “Experiência Profissional” pode ser substituído pelas suas qualificações, as características e conhecimentos que você acumulou ao longo dos anos e que o ajudarão na vaga pretendida.`,
             },
             {
-                text: `Assim, você precisa fazer um exercício de autoconhecimento. Pensando nas atribuições da vaga que você está disputando, quais as habilidades e competências que ela exige e que você possui?\n Por exemplo, uma vaga como “Estágio em Social Media” exige candidatos que tenham afinidade com redes sociais, facilidade em escrever para públicos distintos e conhecimentos em métricas como engajamento, entre outros. E você percebe que possui as seguintes qualificações, se:`,
+                text: `Assim, você precisa fazer um exercício de autoconhecimento. Pensando nas atribuições da vaga que você está disputando, quais as habilidades e competências que ela exige e que você possui? Por exemplo, uma vaga como “Estágio em Social Media” exige candidatos que tenham afinidade com redes sociais, facilidade em escrever para públicos distintos e conhecimentos em métricas como engajamento, entre outros. E você percebe que possui as seguintes qualificações, se:`,
             },
             {
                 text: `
@@ -95,7 +95,7 @@ const curriculoItems = [
     {
         id: 5,
         figure: <Rocket size={25} color="#344054" />,
-        title: 'Não esqueça das informações complementares',
+        title: 'Não Esqueça das Informações Complementares',
         intro: 'Destaque seus certificados e informações adicionais para turbinar seu currículo. Veja como:',
         contentIcon: <Rocket size={120} color="#046AD0" />,
         content: [
@@ -126,8 +126,8 @@ const curriculoItems = [
     {
         id: 6,
         figure: <XCircle size={25} color="#344054" />,
-        title: 'O que evitar',
-        intro: 'Por fim, é necessário tomar alguns cuidados para não deixar o seu currículo muito extenso ou difícil de ler. Confira abaixo o que deve ser evitado:',
+        title: 'O que Evitar',
+        intro: 'Por fim, é necessário tomar alguns cuidados para não deixar o seu currículo muito extenso ou difícil de ler. Confira o que deve ser evitado:',
         contentIcon: <XCircle size={120} color="#046AD0" />,
         content: [
             {
