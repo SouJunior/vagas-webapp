@@ -5,6 +5,9 @@ import {
     Testimonial,
     TestimonialsContainer,
     Container,
+    WorkPlace,
+    AuthorAndWorkPlaceConteiner
+
 } from './styles';
 import { useState, useEffect } from 'react';
 
@@ -27,33 +30,22 @@ const Testimonials: React.FC<TestimonialType> = (props) => {
 
     return (
         <Container>
-            {isWidthLessThan1200 ? (
                 <>
-                    <TestimonialsContainer>
-                        <Testimonial>{props.Text}</Testimonial>
-                        <br />
-                        <ImageContainer>
-                            <img src={props.Profile} alt={props.Author} />
-                        </ImageContainer>
-                        <Author>
-                            {props.Author},{props.Workplace}
-                        </Author>
-                        <br />
-                    </TestimonialsContainer>
-                </>
-            ) : (
-                <>
-                    <TestimonialsContainer>
-                        <Testimonial>{props.Text}</Testimonial>
-                        <Author>
-                            {props.Author}, {props.Workplace}
-                        </Author>
-                    </TestimonialsContainer>
                     <ImageContainer>
                         <img src={props.Profile} alt={props.Author} />
                     </ImageContainer>
+                    <AuthorAndWorkPlaceConteiner>
+                        <Author>
+                                {props.Author}
+                        </Author>
+                        <WorkPlace>
+                            {props.Workplace}
+                        </WorkPlace>
+                    </AuthorAndWorkPlaceConteiner>
+                    <TestimonialsContainer>
+                        <Testimonial>{props.Text}</Testimonial>
+                    </TestimonialsContainer>
                 </>
-            )}
         </Container>
     );
 };
