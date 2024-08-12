@@ -573,8 +573,7 @@ export const TestimonialSection = styled.section`
         @media ${devices.mobileS} {
             width: 16px;
             height: 16px;
-            position: relative;
-            bottom: 34rem;
+
         }
     }
 
@@ -585,8 +584,6 @@ export const TestimonialSection = styled.section`
 
     @media ${devices.mobileS} {
         max-width: 320px;
-        position: relative;
-        bottom: 5rem;
     }
 `;
 
