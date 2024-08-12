@@ -27,7 +27,10 @@ const RightContent: React.FC<RightContentProps> = ({ content }) => {
                 <S.ImgWrap>{contentIcon}</S.ImgWrap>
                 {paragraphs.map((paragraph, index) => (
                     <div key={index}>
-                        {renderTextWithLinksAndBreaks(paragraph.text)}
+                            {paragraph.text ? renderTextWithLinksAndBreaks(paragraph.text)
+                            :paragraph.sub ? <i>{renderTextWithLinksAndBreaks(paragraph.sub)}</i>
+                            : null
+                        }
                     </div>
                 ))}
             </S.Container>
