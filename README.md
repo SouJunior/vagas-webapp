@@ -52,8 +52,6 @@ REACT_APP_GOOGLE_ANALYTICS_KEY= # GA do SouJunior
 REACT_APP_URL= # link do backend
 REACT_APP_URL_JOBS= # link da api de jobs
 
-
-
 ## Rodando localmente ▶
 
 Inicie o servidor
@@ -88,12 +86,12 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 
 ## Feedback 💬
 
-Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [site](https://soujunior.tech). Ou fazendo uma [contribuição](#contribuição).
+Se você tiver algum feedback, por favor nos deixe saber por meio do nosso [site](https://soujunior.tech). Ou fazendo uma [contribuição](#contribuição-).
 
 ## Contribuição 💙
 
 Contribuições são sempre bem-vindas!
 
-Veja `contribuindo.md` para saber como começar.
+Veja [`contribuindo.md`](contribuindo.md) para saber como começar.
 
 [Voltar ao 🔝](#vagas-frontend)
