@@ -41,7 +41,7 @@ const FooterDefault = () => {
                                 rel="noreferrer"
                                 target="_blank"
                             >
-                                Site Sou Junior
+                                Site SouJunior
                             </a>
                             <li>
                                 <a
@@ -65,15 +65,6 @@ const FooterDefault = () => {
                                 target="_blank"
                             >
                                 SouJunior Labs
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://discord.com/invite/564CDre9F3"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                SouJunior Talk
                             </a>
                         </li>
                     </ul>

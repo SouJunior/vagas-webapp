@@ -8,12 +8,13 @@ interface HeaderProps {
 
 interface ButtonsProps {
     isActive: boolean;
+    isMobileOpen: boolean;
 }
 
 export const Header = styled.header<HeaderProps>`
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 132px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     background-color: #fff;
@@ -91,7 +92,7 @@ export const BoxLogo = styled.figure`
         cursor: pointer;
 
         @media (max-width: 767px) {
-            width: 124px;
+            width: 180px;
             height: 18px;
         }
     }
@@ -107,30 +108,30 @@ export const HeaderBtns = styled.div`
 `;
 
 export const RegisterButton = styled.button<ButtonsProps>`
-    width: 262px;
-    height: 52px;
-    padding: 8px, 16px;
+    border-radius: 4px;
     font-size: 16px;
     font-weight: 500;
-    color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: #fff;
+    border: 1px solid #046ad0;
+    transition: all 300ms ease-in-out;
 
-    :hover {
-        border: 1px solid #046ad0;
-        border-radius: 4px;
-    }
-
-    ${({ isActive }) =>
-        isActive
+    ${({ isMobileOpen, isActive }) =>
+        isMobileOpen
+            ? css`
+                  width: 262px;
+                  padding: 8px 16px;
+                  height: 50px; 
+              `
+            : isActive
             ? css`
                   width: 110px;
                   height: 42px;
-                  transition: all 300ms ease-in-out;
                   font-size: 16px;
               `
             : css`
                   width: 122px;
                   height: 35px;
-                  transition: all 300ms ease-in-out;
               `}
 `;
 
@@ -138,12 +139,11 @@ export const LoginButton = styled(RegisterButton)<ButtonsProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    :hover {
-        border-radius: 4px;
-        border: 1px solid ${({ theme }) => theme.colors.primary};
-        display: flex;
-    }
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid ${({ theme }) => theme.colors.primary};
+    display: flex;
+    color: ${({ theme }) => theme.colors.primary};
 
     img {
         width: 16px;
@@ -178,7 +178,8 @@ export const MobileHeader = styled.nav`
 
     .wrapper {
         display: flex;
-        justify-content: flex-start;
+        flex-direction: column;
+        justify-content: space-between;
         text-align: left;
         align-items: center;
         width: 350px;
@@ -193,9 +194,7 @@ export const MobileHeader = styled.nav`
         animation-fill-mode: both;
         transition: all 0.2s;
 
-        @media (max-width: 700px) {
-            width: 80vw;
-        }
+
 
         @media (max-width: 500px) {
             width: 90vw !important;
@@ -222,14 +221,15 @@ export const MobileHeader = styled.nav`
             }
         }
 
+
         ul {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding-left: 30px;
-            gap: 20px;
+            justify-content: center;
             width: 80%;
-
+            margin-top: 24px;
+          
             li {
                 text-transform: capitalize;
                 font-size: 22pt;
@@ -252,6 +252,10 @@ export const MobileHeader = styled.nav`
                 :hover {
                     background-size: 100% 3px;
                 }
+                
+                @media (max-width: 768px) {
+                    font-size: 18pt;
+                    }
             }
         }
 
@@ -259,6 +263,24 @@ export const MobileHeader = styled.nav`
             display: none;
         }
     }
+`;
+
+export const BoxLogoMobile = styled.div`
+        margin-top: 100px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+`
+
+export const ButtonsBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 `;
 
 export const Menu = styled.div`

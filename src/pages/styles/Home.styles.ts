@@ -23,12 +23,13 @@ export const Main = styled.main`
     }
 
     @media (max-width: 568px) {
-        width: 568px;
         height: 800px;
     }
 
     @media ${devices.mobileS} {
         height: 470px; 
+        width: 100%;
+
     }
 
 
@@ -76,9 +77,9 @@ export const MainSearchFilter = styled.div`
     }
 
     @media (max-width: 568px) {
-        width: 324px;
         height: 470px;
-        margin-top: 75px;
+        margin-top: 65px;
+        gap: 25px;
     }
 `;
 
@@ -86,7 +87,6 @@ export const Title = styled.h2`
     max-width: 920px;
     font-weight: 300;
     font-size: 2.9rem;
-    line-height: 66px;
 
     span {
         font-weight: 700;
@@ -97,33 +97,21 @@ export const Title = styled.h2`
     }
 
     @media (max-width: 568px) {
-        width: 272px;
         height: 144px;
-        position: relative;
-        top: -50px;
-        font-size: 30px;
+        font-size: 40px;
     }
 
-    
-
-    @media (max-width: 415px) {
-        position: relative;
-        left: -75px;
-    }
     
     @media (max-width: 375px) {
         font-size: 24px;
         position: relative;
-        left: -150px;
     }
 
     @media ${devices.mobileS} {
         height: 144px;
         font-size: 26px;
         line-height: 2rem;
-        position: absolute;
-        top: 13rem;
-        left: -4rem;
+
     }
 
     
@@ -179,11 +167,8 @@ export const JobsInfo = styled.p`
     }
 
     @media (max-width: 415px) {
-        position: relative;
-        left: -75px;
         width: 174px;
         height: 10px;
-        top: 2px;
         font-size: 8px;
         align-items: center;
     }
@@ -192,8 +177,8 @@ export const JobsInfo = styled.p`
         width: 320px;
         font-size: 10px;
         position: relative;
-        top: 214px;
-        left: -121px;
+        top: 0px;
+        left: 0px;
     }
 `;
 
@@ -206,10 +191,11 @@ export const Image = styled.img`
     @media (max-width: 1000px) {
         position: relative;
         width: 40%;
+        left: 11%;
     }
 
     @media (max-width: 750px) {
-        width: 60%;
+        width: 35%;
     }
 
     @media (max-width: 568px) {
@@ -217,7 +203,7 @@ export const Image = styled.img`
         height: 160px;
         position: relative;
         top: -70px;
-        margin-left: 280px;
+        margin-left: 30px;
     }
 
     @media (max-width: 375px) {
@@ -231,16 +217,14 @@ export const Image = styled.img`
 
     @media (max-width: 415px) {
         height: 170px;
-        margin-top: 65px;
-        margin-left: 280px;
     }
 
     @media ${devices.mobileS} {
         width: 100px;
         height: 100px;
         position: relative;
-        top: -230px;
-        left: -170px; 
+        top: -195px;
+        left: 0px; 
     }
 `;
 
@@ -248,22 +232,37 @@ export const Circle = styled.img`
     position: absolute;
     top: 0px;
     right: 0px;
+    @media (max-width: 568px) {
+        top:-32px;
+    }
 `;
 
 export const CircleImage = styled.img`
     position: absolute;
-    left: -170px;
-    bottom: 40px;
+    left: -13%;
+    bottom: -15%;
     z-index: 0;
-    width: 600px;
+    width: 80%;
     overflow: hidden;
 
     @media (max-width: 1280px) {
-        bottom: -200px;
+        bottom: -2%;
+        width:60%;
+    }
+    
+    @media(max-width: 1000px) {
+        bottom: -2%;
+        width: 60%;
+    }
+
+    @media (max-width: 750px) {
+        bottom: 7%;
     }
 
     @media (max-width: 568px) {
-        bottom: -450px;
+        bottom: 17%;
+        left: 0px;
+        width:300px;
     }
 
     @media (max-width: 375px) {
@@ -292,7 +291,8 @@ export const OurSitesSection = styled.section`
     align-items: center;
     flex-direction: column;
     margin-top: 180px;
-    margin-bottom: 196px;
+    gap:24px;
+    margin-bottom: 89px;
 
     @media (max-width: 1000px) {
         margin: 80px 0 4.5rem;
@@ -556,6 +556,11 @@ export const TestimonialSection = styled.section`
     margin-bottom: 100px;
     z-index: 995;
     margin-top: 180px;
+    
+    @media ${devices.mobileS && devices.mobileM && devices.mobileL && devices.tablet} {
+        margin-top: 80px;
+    
+    }
 
     .swiper-pagination-bullet {
         //Bolinhas de rolamento da sessão de depoimentos
@@ -581,7 +586,7 @@ export const TestimonialSection = styled.section`
     @media ${devices.mobileS} {
         max-width: 320px;
         position: relative;
-        bottom: 13rem;
+        bottom: 5rem;
     }
 `;
 
@@ -598,6 +603,7 @@ export const TestimonialWrapper = styled.div`
 
 export const VocationalBannerArea = styled.div`
     max-width: 1200px;
+    width: 95%;
     height: 412px;
     margin: 80px auto 0 auto;
     background-color: ${({ theme }) => theme.colors.primary};
@@ -609,7 +615,6 @@ export const VocationalBannerArea = styled.div`
     position: relative;
 
     @media (max-width: 1200px) {
-        width: 95%;
         height: auto;
         padding: 1.1rem 0;
     }
@@ -623,19 +628,18 @@ export const VocationalBannerArea = styled.div`
 export const VocationalBannerContainer = styled.div`
     display: flex;
     align-items: center;
-    margin-inline: 84px;
     max-width: 100%;
     gap: 100px;
     height: 100%;
+    padding: 15px;
 
-    @media (max-width: 1200px) {
-        flex-direction: column;
-        width: 95%;
+    @media ${devices.laptop} {
         margin: 0;
-        padding-left: 50px;
+        flex-direction: column;
+        gap: 0px;
     }
 
-    @media (max-width: 780px) {
+    @media ${devices.tablet} {
         gap: 50px;
         padding-left: 15px;
     }
@@ -644,20 +648,16 @@ export const VocationalBannerContainer = styled.div`
         display: flex;
         align-items: center;
         width: 1500px;
-        height: 130px;
-        margin-top: 150px;
     }
     
     @media  ${devices.mobileS} {
         display: flex;
         align-items: center;
         width: 310px;
-        height: 160px;
     }
 `;
 export const VocationalTextContainer = styled.div`
     color: white;
-
     h1 {
         font-size: 90px;
         font-weight: 400;
@@ -666,7 +666,7 @@ export const VocationalTextContainer = styled.div`
     }
 
     span {
-        font-size: 80px;
+        font-size: 70px;
         font-weight: 700;
     }
 
@@ -710,8 +710,6 @@ export const VocationalTextContainer = styled.div`
         h1 {
             font-size: 50px;
             line-height: 50px;
-            position: relative;
-            bottom: 130px;
         }
 
         span {
@@ -729,7 +727,6 @@ export const VocationalTextContainer = styled.div`
 
         .p2 {
             position: relative;
-            top: 295px;
         }
 
         @media (max-width: 320px) {
@@ -744,42 +741,27 @@ export const VocationalTextContainer = styled.div`
                 min-width: 180px;
                 font-size: 1px;
                 position: relative;
-                top: 325px;
             }
         }
     }
 `;
-
-export const VocationalImage = styled.img`
-    position: absolute;
-    right: 70px;
-    bottom: 0px;
-
-    @media (max-width: 1200px) {
-        /* position: relative; */
-        align-self: flex-end;
+export const VocationalImageWrapper = styled.div`
+    align-self: flex-end;
+    @media ${devices.laptop} {
+        display:flex;
+        align-items: center;
+        justify-content: flex-end;
+        min-width: 100%;
     }
-
+`
+export const VocationalImage = styled.img`
+    
     @media (max-width: 780px) {
         width: 45%;
-        right: 10px;
     }
 
     @media (max-width: 568px) {
         height: 130px;
-    }
-
-    @media (max-width: 375px) {
-        width: 130px;
-        position: relative;
-        bottom: 270px;
-    }
-
-    @media (max-width: 320px) {
-        max-width: 100px;
-        position: relative;
-        left: -4px;
-        bottom: 220px;
     }
 `;
 

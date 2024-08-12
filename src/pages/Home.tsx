@@ -26,6 +26,7 @@ import {
     Circle,
     MainContent,
     SecondaryTitle,
+    VocationalImageWrapper,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
@@ -87,7 +88,7 @@ export const Home: React.FC = () => {
                             TESTE <br />
                             <span>VOCACIONAL</span>
                         </h1>
-                        <p className="mb-24">
+                        <p className='mb-10'>
                             <a
                                 href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
                                 target="_blank"
@@ -99,7 +100,9 @@ export const Home: React.FC = () => {
                         </p>
                         <p className="p2">*Seu teste será feito no g1.com</p>
                     </VocationalTextContainer>
-                    <VocationalImage src={VocationalTest} alt="" />
+                    <VocationalImageWrapper>
+                        <VocationalImage src={VocationalTest} alt="" />
+                    </VocationalImageWrapper>
                 </VocationalBannerContainer>
             </VocationalBannerArea>
 
@@ -114,12 +117,6 @@ export const Home: React.FC = () => {
                         Title="Portal de Mentoria"
                         Img={PortalMentoria}
                         Description="Seja mentorado por um profissional experiente."
-                    />
-                    <OurSitesCard
-                        Link="https://discord.com/invite/564CDre9F3"
-                        Title="SouJunior Talk"
-                        Img={Site}
-                        Description="Aprenda idiomas e aperfeiçoe-se!"
                     />
                     <OurSitesCard
                         Link="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
