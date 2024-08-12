@@ -19,13 +19,13 @@ const curriculoItems = [
                 text: `O segundo passo na elaboração do seu primeiro currículo é definir qual o seu objetivo profissional. Mas, o que escrever? O ideal é que você tenha clareza e direcione o objetivo à vaga. Evite escrever coisas como:`,
             },
             {
-                text: `“Desejo conquistar a minha independência pessoal em um ambiente de trabalho que traga oportunidades de crescimento”.`,
+                sub: `“Desejo conquistar a minha independência pessoal em um ambiente de trabalho que traga oportunidades de crescimento”.`,
             },
             {
                 text: `Um texto assim soa vago, não diz nada. Supondo que você esteja tentando uma vaga de vendas em uma loja, você pode escrever algo como:`,
             },
             {
-                text : `
+                sub : `
                     “Desejo atuar na área de vendas, aprimorando as minhas habilidades comerciais e ganhando experiência em lidar com o público”.
                 `
             }
