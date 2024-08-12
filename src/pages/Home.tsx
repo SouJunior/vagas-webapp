@@ -33,7 +33,7 @@ import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
 
 import ImageHome from '../assets/imgs/home-image.svg';
 import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
-import Site from '../assets/imgs/siteSouJunior-img.svg';
+import Blog from '../assets/imgs/blogSouJunior-img.svg';
 import NosAcompanhe from '../assets/imgs/followUs-img.svg';
 import VocationalTest from '../assets/imgs/vocational-teste.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
@@ -113,10 +113,10 @@ export const Home: React.FC = () => {
 
                 <CardWrapper>
                     <OurSitesCard
-                        Link="https://mentores.soujunior.tech/"
-                        Title="Portal de Mentoria"
-                        Img={PortalMentoria}
-                        Description="Seja mentorado por um profissional experiente."
+                        Link="https://blog.soujunior.tech/"
+                        Title="Blog da SouJunior"
+                        Img={Blog}
+                        Description="Conheça nossos artigos."
                     />
                     <OurSitesCard
                         Link="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
