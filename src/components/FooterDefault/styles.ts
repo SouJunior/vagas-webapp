@@ -9,6 +9,7 @@ export const Footer = styled.footer`
     display: flex;
     justify-content: center;
     padding: 25px 0;
+    font-family: 'Radio Canada', sans-serif;
 
     .mobile-wrapper {
         display: none;

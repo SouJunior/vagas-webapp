@@ -87,6 +87,7 @@ export const Title = styled.h2`
     max-width: 920px;
     font-weight: 300;
     font-size: 2.9rem;
+    font-family: 'Radio Canada', sans-serif;
 
     span {
         font-weight: 700;
@@ -122,23 +123,16 @@ export const SecondaryTitle = styled.h3`
     font-size: 45px;
     color: #515050;
     text-align: center;
+    font-family: 'Radio Canada', sans-serif;
 
     @media (max-width: 780px) {
         width: 90%;
     }
 
     @media (max-width: 568px) {
-        width: 272px;
-        height: 62px;
-        position: relative;
-        top: -40px;
         font-size: 32px;
     }
-
-    @media (max-width: 375px) {
-        position: relative;
-        top: -50px;
-    }    
+  
 `;
 
 export const JobsInfo = styled.p`
@@ -298,31 +292,17 @@ export const OurSitesSection = styled.section`
         margin: 80px 0 4.5rem;
     }
 
-    @media (max-width: 568px) {
-        h3: first-of-type {
-            width: 272;
-            height: 117;
-            position: relative;
-            bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
+
 
     @media (max-width: 320px) {
-        width: 90vw;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
 
     @media ${devices.mobileS} {
         .SecondaryTitle2 {
-
-            position: relative;
-            top: -100px;
-            left: 16px;
             line-height: 35px;
         }
     }
@@ -334,24 +314,17 @@ export const CardWrapper = styled.div`
     gap: 156px;
     flex-wrap: wrap;
     justify-content: center;
+    font-family: 'Radio Canada', sans-serif;
 
     @media (max-width: 1300px) {
         gap: 90px;
     }
 
     @media (max-width: 568px) {
-        width: 560px;
-        position: relative;
-        top: 40px;
         margin-bottom: 50px;
     }
 
-    @media ${devices.mobileS} {
-       width: 320px;
-       position: relative;
-       left: 16px;
-       top: -10px;
-    }
+
 `;
 
 export const JourneySection = styled.section`
@@ -556,6 +529,7 @@ export const TestimonialSection = styled.section`
     margin-bottom: 100px;
     z-index: 995;
     margin-top: 180px;
+    font-family: 'Radio Canada', sans-serif;
     
     @media ${devices.mobileS && devices.mobileM && devices.mobileL && devices.tablet} {
         margin-top: 80px;
@@ -631,7 +605,7 @@ export const VocationalBannerContainer = styled.div`
     max-width: 100%;
     gap: 100px;
     height: 100%;
-    padding: 15px;
+    padding: 15px 50px;
 
     @media ${devices.laptop} {
         margin: 0;
@@ -663,6 +637,7 @@ export const VocationalTextContainer = styled.div`
         font-weight: 400;
         line-height: 90px;
         text-transform: uppercase;
+        font-family: 'Radio Canada', sans-serif;
     }
 
     span {
@@ -672,6 +647,8 @@ export const VocationalTextContainer = styled.div`
 
     p {
         font-size: 20px;
+        font-family: 'Radio Canada', sans-serif;
+
     }
 
     p.p2 {
