@@ -59,10 +59,9 @@ export const Name = styled.div`
 
     @media (max-width: 540px) {
         display: none;
-    }
-
-    
+    }    
 `;
+
 export const Email = styled.div`
     font-size: 14px;
     font-weight: 400;

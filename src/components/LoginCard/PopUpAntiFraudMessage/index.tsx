@@ -50,7 +50,7 @@ const PopUpAntiFraudMessage = () => {
                                 '& .MuiAlert-message': { width: "100%" },
                             }}
                         >
-                            <AlertTitle>
+                            <AlertTitle sx={{ marginTop: "6px" }}>
                                 Cuidado com fraudes de pessoas ou empresas que tentam se passar pela SouJunior! <Link sx={{ cursor: "pointer" }} underline="none" onClick={handleExpand}>Ler Mais</Link>.
                             </AlertTitle>
                         </Alert>

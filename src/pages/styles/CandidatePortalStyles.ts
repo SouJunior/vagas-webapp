@@ -28,11 +28,13 @@ export const Main = styled.main`
 export const Position = styled.div`
     margin-top: auto;
 `
+
 export const Row = styled.div`  
     width: 90%;
     border-top: 2px solid #979797;
     opacity: 0.2;
     margin-bottom: auto;
+    margin-top: 30px;
 `
 export const Copyright = styled.span`
     font-size: 14px;

@@ -55,6 +55,8 @@ const NavRoutes: React.FC = () => {
                         </RequireAuth>
                     }
                 />
+                <Route path="/candidate-portal/job" element={<FeedJobs />} />
+                <Route path="/candidate-portal/job/selected/:id" element={<JobSelected />} />
 
                 {/* atualizar layout */}
                 <Route

@@ -7,8 +7,16 @@ import useJobs from '../../hooks/useJobs';
 
 import * as S from './style';
 import Loading from '../../components/Loading';
+import Header from '../../components/Portal/Header';
+import JobFilterPerfil from '../../components/JobFilterPerfil';
+import { useLocation } from 'react-router-dom';
+import FooterDefault from '../../components/FooterDefault';
+
 
 const FeedJobs = () => {
+    const location = useLocation();
+    const isJobPage = location.pathname.startsWith('/candidate-portal/job');
+
     const {
         loading,
         error,
@@ -47,33 +55,38 @@ const FeedJobs = () => {
     }
 
     return (
-        <S.Container>
-            <S.SectionFilters>
-                <Select onSortChange={handleSortChange} sortOrder={sortOrder} />
-            </S.SectionFilters>
+        <div>
+            {isJobPage && <Header />}
+            <S.Container noPadding={isJobPage} >
+                {isJobPage && <JobFilterPerfil />}
+                <S.SectionFilters>
+                    <Select onSortChange={handleSortChange} sortOrder={sortOrder} />
+                </S.SectionFilters>
 
-            <S.SectionJob>
-                <S.ContainerAllJobs ref={containerRef}>
-                    <AllJobs
-                        searchTerm={searchTerm}
-                        currentJobs={currentJobs}
-                        selectedJob={selectedJob}
-                        handleClick={handleClick}
-                        filteredJobsCount={filteredJobsCount}
-                    />
+                <S.SectionJob>
+                    <S.ContainerAllJobs ref={containerRef}>
+                        <AllJobs
+                            searchTerm={searchTerm}
+                            currentJobs={currentJobs}
+                            selectedJob={selectedJob}
+                            handleClick={handleClick}
+                            filteredJobsCount={filteredJobsCount}
+                        />
 
-                    <Pagination
-                        totalPages={totalPages}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                    />
-                </S.ContainerAllJobs>
+                        <Pagination
+                            totalPages={totalPages}
+                            currentPage={currentPage}
+                            onPageChange={handlePageChange}
+                        />
+                    </S.ContainerAllJobs>
 
-                {!isMobile && selectedJob && (
-                    <SelectedJobVacancy selectedJob={selectedJob} />
-                )}
-            </S.SectionJob>
-        </S.Container>
+                    {!isMobile && selectedJob && (
+                        <SelectedJobVacancy selectedJob={selectedJob} />
+                    )}
+                </S.SectionJob>
+            </S.Container>
+            {isJobPage && <FooterDefault />}
+        </div>
     );
 };
 
