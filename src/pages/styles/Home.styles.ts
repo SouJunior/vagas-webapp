@@ -333,6 +333,7 @@ export const CardWrapper = styled.div`
     margin-top: 52px;
     gap: 156px;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
 
     @media (max-width: 1300px) {
