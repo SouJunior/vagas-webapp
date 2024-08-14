@@ -562,6 +562,11 @@ export const TestimonialSection = styled.section`
     
     }
 
+    .swiper-pagination {
+        position: static;
+        
+    }
+
     .swiper-pagination-bullet {
         //Bolinhas de rolamento da sessão de depoimentos
         width: 24px;
@@ -569,6 +574,7 @@ export const TestimonialSection = styled.section`
         background-color: #d9d9d9;
         opacity: 0.8;
         border-radius: 50%;
+        margin: 0 4px;
 
         @media ${devices.mobileS} {
             width: 16px;
