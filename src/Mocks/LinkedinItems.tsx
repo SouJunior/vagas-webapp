@@ -45,7 +45,7 @@ const linkedinItems = [
     {
         id: 3,
         figure: <UserSquare size={25} color="#344054" />,
-        title: 'O Resumo do LinkedIn (sobre)',
+        title: 'O Resumo do LinkedIn (Sobre)',
         intro: 'Não pule esta seção. Se precisar de ajuda, contrate um redator, mas inclua um resumo. ',
         contentIcon: <UserSquare size={120} color="#046AD0" />,
         content: [
@@ -66,7 +66,7 @@ const linkedinItems = [
             },
             {
                 text : `
-                     Dica profissional: escreva esta seção para a posição desejada. Mostrar progressão na carreira. Use palavras-chave comumente encontradas nas descrições dos empregos que você deseja ter.\n
+                     Dica profissional: escreva esta seção para a posição desejada. Mostre progressão na carreira. Use palavras-chave comumente encontradas nas descrições dos empregos que você deseja ter.\n
 
                 `
             }
@@ -75,7 +75,7 @@ const linkedinItems = [
     {
         id: 4,
         figure: <Scroll size={25} color="#344054" />,
-        title: 'Sua experiência de trabalho e educação',
+        title: 'Sua Experiência de Trabalho e Educação',
         intro: 'Aprimore seu perfil no LinkedIn! Exponha sua jornada e habilidades essenciais com palavras-chave direcionadas.',
         contentIcon: <Scroll size={120} color="#046AD0" />,
         content: [
@@ -102,7 +102,7 @@ const linkedinItems = [
     {
         id: 5,
         figure: <Key size={25} color="#344054" />,
-        title: 'Adicionar as palavras-chave corretas.',
+        title: 'Adicionar as Palavras-Chave Corretas',
         intro: 'Destaque suas habilidades ao buscar empregos. Identifique palavras-chave nos requisitos e seja autêntico.',
         contentIcon: <Key size={120} color="#046AD0" />,
         content: [

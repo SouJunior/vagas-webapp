@@ -1,5 +1,6 @@
 export interface Paragraph {
-    text: string;
+    text?: string;
+    sub?: string;
 }
 
 export interface JourneyResponsiveProps {
