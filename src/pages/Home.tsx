@@ -180,13 +180,7 @@ export const Home: React.FC = () => {
                     pagination={{
                         clickable: true,
                         bulletClass: 'swiper-pagination-bullet',
-                    }}
-                    style={{
-                        width: '95%',
-                        maxWidth: '1080px',
-                        height: 'auto',
-                        margin: '0 auto',
-                        padding: '80px 0',
+                        modifierClass: 'swiper-pagination',
                     }}
                     className="mySwiper"
                 >
