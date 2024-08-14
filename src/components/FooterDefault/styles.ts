@@ -126,10 +126,6 @@ export const Footer = styled.footer`
         max-width: 300px;
     }
 
-    @media (max-width: 320px) {
-        position: relative;
-        bottom: 700px;
-    }
 `;
 export const Grid = styled.ul`
     display: grid;
