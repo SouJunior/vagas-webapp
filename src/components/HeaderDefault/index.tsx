@@ -9,6 +9,7 @@ import JobFilter from './components/JobFilter';
 
 import * as S from './styles';
 import { CaretLeft } from 'phosphor-react';
+import Header from '../Header';
 
 interface HeaderProps {
     isActive: boolean;
@@ -61,7 +62,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
 
     const shouldShowJobFilter = (isActive && isLaptop) || feedJob;
     const isFeed = !isLaptop && feedJob;
-
+     
     return (
         <>
             {isMobileOpen && (

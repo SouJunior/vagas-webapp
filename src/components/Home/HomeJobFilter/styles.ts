@@ -72,6 +72,7 @@ export const Input = styled.input`
     padding: 0 56px;
     color: #515151;
     background-color: transparent;
+    outline: none;
     text-overflow: ellipsis;
 
     ::placeholder {

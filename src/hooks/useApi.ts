@@ -236,7 +236,8 @@ export const useApi = () => ({
             confirmNewPassword,
         }, { headers: {
             Authorization: `Bearer ${token}`,
-        },});
+        },}
+        );
 
         return res.data;
     },
