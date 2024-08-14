@@ -32,6 +32,15 @@ const SocialLinks = () => {
                 </a>
             </li>
             <li>
+                <a 
+                href="https://www.tiktok.com/@soujuniortech"
+                rel='noreferrer'
+                target='_blank'
+                >
+                    <S.TiktokIcon/>
+                </a>
+            </li>
+            <li>
                 <a
                     href="https://www.linkedin.com/company/soujunior/"
                     rel="noreferrer"

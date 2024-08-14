@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { TiSocialFacebook } from 'react-icons/ti';
 import { RiInstagramFill } from 'react-icons/ri';
 import { BsYoutube, BsTelegram, BsGithub } from 'react-icons/bs';
+import { SiTiktok } from "react-icons/si";
 import { AiFillLinkedin } from 'react-icons/ai';
 
 export const Footer = styled.footer`
@@ -132,7 +133,7 @@ export const Footer = styled.footer`
 `;
 export const Grid = styled.ul`
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(4,1fr);
     column-width: 10px;
     gap: 10px;
 `;
@@ -140,7 +141,10 @@ export const FacebookIcon = styled(TiSocialFacebook)`
     width: 20px;
     height: 20px;
 `;
-
+export const TiktokIcon = styled(SiTiktok)`
+    width: 20px;
+    height: 20px;
+`
 export const YouTubeIcon = styled(BsYoutube)`
     width: 20px;
     height: 20px;
