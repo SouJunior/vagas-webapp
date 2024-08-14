@@ -28,8 +28,7 @@ const RightContent: React.FC<RightContentProps> = ({ content }) => {
                 {paragraphs.map((paragraph, index) => (
                     <div key={index}>
                             {paragraph.text ? renderTextWithLinksAndBreaks(paragraph.text)
-                            :paragraph.sub ? <i>{renderTextWithLinksAndBreaks(paragraph.sub)}</i>
-                            : null
+                            :paragraph.sub && <i>{renderTextWithLinksAndBreaks(paragraph.sub)}</i>
                         }
                     </div>
                 ))}
