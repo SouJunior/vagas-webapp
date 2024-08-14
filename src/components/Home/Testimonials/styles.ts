@@ -10,7 +10,6 @@ export const Container = styled.div`
     @media (max-width: 320px) {
         display: flex;
         align-items: center;
-        width: 260px;        
     }
 `;
 
@@ -18,9 +17,9 @@ export const TestimonialsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 20px;
 
     @media (max-width: 320px) {
-        width: 260px;
         display: flex;
         align-items: center;
     }
