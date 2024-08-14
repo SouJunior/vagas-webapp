@@ -16,7 +16,6 @@ export const Title = styled.h1`
 `;
 
 export const ContainerImg = styled.figure`
-    width: 330px;
     height: auto;
     overflow: hidden;
     border-radius: 16px;

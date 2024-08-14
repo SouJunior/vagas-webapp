@@ -313,6 +313,7 @@ export const CardWrapper = styled.div`
     margin-top: 52px;
     gap: 156px;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     font-family: 'Radio Canada', sans-serif;
 

@@ -45,11 +45,11 @@ const FooterDefault = () => {
                             </a>
                             <li>
                                 <a
-                                    href="https://mentoria-online.vercel.app/"
+                                    href="https://blog.soujunior.tech/"
                                     rel="noreferrer"
                                     target="_blank"
                                 >
-                                    Portal de mentoria
+                                   Blog da SouJunior
                                 </a>
                             </li>
                         </li>
