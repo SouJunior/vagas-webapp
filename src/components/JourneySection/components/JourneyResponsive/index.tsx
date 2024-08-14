@@ -38,7 +38,9 @@ const JourneyResponsive: React.FC<Props> = ({ data }) => {
                     <AccordionDetails>
                         {item.content.map((paragraph, index) => (
                             <div key={index}>
-                                {renderTextWithLinksAndBreaks(paragraph.text)}
+                                {paragraph.text ? renderTextWithLinksAndBreaks(paragraph.text)
+                                :paragraph.sub && <i>{renderTextWithLinksAndBreaks(paragraph.sub)}</i>
+                                }
                             </div>
                         ))}
                     </AccordionDetails>
