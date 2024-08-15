@@ -5,20 +5,21 @@ import Search from '../../assets/imgs/search.svg';
 import Location from '../../assets/imgs/location.svg';
 
 import * as S from './styles';
-import SwitchButton from '../SwitchButton';
+// button comentado aguardando novas funcionalidades
+// import SwitchButton from '../SwitchButton'; 
 
 
 const JobFilterPerfil = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '',);
     const [location, setLocation] = useState(searchParams.get('location') || '',);
-    const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+    // const [isSwitchChecked, setIsSwitchChecked] = useState(false);
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
-    useEffect(() => {
-        setIsSwitchChecked(false);
-    }, [searchTerm, location]);
+    // useEffect(() => {
+    //     setIsSwitchChecked(false);
+    // }, [searchTerm, location]);
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -62,10 +63,10 @@ const JobFilterPerfil = () => {
 
             </S.BoxInput>
                 
-            <SwitchButton
+            {/* <SwitchButton
                 checked={isSwitchChecked}
                 onChange={(event: any) => setIsSwitchChecked(event.target.checked)}
-            />
+            /> */}
 
             {/* <S.Button type="submit">Pesquisar</S.Button> */}
         </S.Container>

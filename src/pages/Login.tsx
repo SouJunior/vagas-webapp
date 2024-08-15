@@ -5,6 +5,7 @@ import loginPeople from '../assets/imgs/login-people.svg';
 import verticalLine from '../assets/imgs/verticalLine.svg';
 import LoginCard from '../components/LoginCard';
 import { AchorLink } from './styles/Main.styled';
+import FooterDefault from '../components/FooterDefault';
 
 const Login = () => {
     const navigate = useNavigate();
