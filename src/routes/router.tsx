@@ -4,6 +4,7 @@ import Login from '../pages/Login';
 import Report from '../pages/Report';
 import ErrorPage from '../pages/ErrorPage';
 import DefaultLayout from '../layout/DefaultLayout';
+import LoginLayout from '../layout/LoginLayout';
 import { Home } from '../pages/Home';
 import { InsertJobs } from '../pages/InsertJobs';
 import { RequireAuth } from '../contexts/Auth/RequireAuth';
@@ -37,7 +38,10 @@ const NavRoutes: React.FC = () => {
                     <Route path="job/selected/:id" element={<JobSelected />} />
                 </Route>
 
-                <Route path="/login" element={<Login />} />
+                <Route element={<LoginLayout />}>
+                    <Route path="/login" element={<Login />} />
+                </Route>
+
                 <Route path="confirm-email" element={<ConfirmEmail />} />
                 <Route path="userconfirmation" element={<ConfirmRegister />} />
                 <Route
@@ -56,7 +60,10 @@ const NavRoutes: React.FC = () => {
                     }
                 />
                 <Route path="/candidate-portal/job" element={<FeedJobs />} />
-                <Route path="/candidate-portal/job/selected/:id" element={<JobSelected />} />
+                <Route
+                    path="/candidate-portal/job/selected/:id"
+                    element={<JobSelected />}
+                />
 
                 {/* atualizar layout */}
                 <Route
