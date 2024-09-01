@@ -103,6 +103,14 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                                         Faça parte
                                         </a>
                                 </li>
+                                <li>
+                                    <a  href="https://www.soujunior.tech/?#about"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        Indique uma vaga
+                                    </a>
+                                </li>
                                 <hr />
                             </ul>   
                         </div>
@@ -165,6 +173,12 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                     {shouldShowJobFilter && <JobFilter />}
 
                     <S.HeaderBtns>
+                        <S.IndicateButton
+                            isActive={isActive}
+                            isMobileOpen={isMobileOpen}
+                        >
+                            Indique uma vaga
+                        </S.IndicateButton>
                         <S.LoginButton
                             onClick={handleLoginClick}
                             isActive={isActive}
