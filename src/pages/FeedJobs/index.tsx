@@ -49,9 +49,18 @@ const FeedJobs = () => {
 
     if (currentJobs.length === 0) {
         return (
-            <S.Container>
-                <p>No jobs available</p>
-            </S.Container>
+            <S.ErrorContainer>
+                <h1>Nenhum resultado foi encontrado</h1>
+                <p>Dicas para melhorar a sua busca:</p>
+                <ul>
+                    <li><span>Evite usar abreviações;</span></li>
+                    <li><span>Confira se as palavras estão escritas corretamente;</span></li>
+                    <li><span>Tente termos mais genéricos ou retire os filtros de sua busca.</span></li>
+                </ul>
+                <S.ImageWrapper>
+                    <img src={vagasNaoEncontradasImg} alt="vagas não encontradas" />
+                </S.ImageWrapper>
+            </S.ErrorContainer>
         );
     }
 
