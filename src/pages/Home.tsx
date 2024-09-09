@@ -74,11 +74,12 @@ export const Home: React.FC = () => {
                             Mais de {filteredJobsCount} vagas disponíveis para
                             você!
                         </JobsInfo>
+                        
+                        <Image src={ImageHome}></Image>
                     </MainSearchFilter>
-                    <Image src={ImageHome}></Image>
                 </MainContent>
-                <Circle src={circle} />
-                <CircleImage src={doubleCircles} />
+                {/* <Circle src={circle} />
+                <CircleImage src={doubleCircles} /> */}
             </Main>
 
             <VocationalBannerArea>
