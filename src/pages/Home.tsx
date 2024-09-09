@@ -78,8 +78,8 @@ export const Home: React.FC = () => {
                         <Image src={ImageHome}></Image>
                     </MainSearchFilter>
                 </MainContent>
-                {/* <Circle src={circle} />
-                <CircleImage src={doubleCircles} /> */}
+                <Circle src={circle} />
+                <CircleImage src={doubleCircles} />
             </Main>
 
             <VocationalBannerArea>

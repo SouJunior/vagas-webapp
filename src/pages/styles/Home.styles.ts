@@ -88,9 +88,7 @@ export const Title = styled.h2`
         font-weight: 700;
     }
 
-    @media (max-width: 1024px) {
-        width: 95%;
-    }
+    
 
     @media (max-width: 568px) {
         font-size: 2rem;
@@ -158,7 +156,6 @@ export const Image = styled.img`
     @media (max-width: 1024px) {
         position: relative;
         width: 40%;
-        left: 10%;
         margin-bottom: 2rem;
     }
 
