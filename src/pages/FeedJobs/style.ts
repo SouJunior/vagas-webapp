@@ -1,25 +1,27 @@
 import styled, { css } from 'styled-components';
 import { AllJobsProps } from './components/AllJobs/types';
 import devices from '../styles/devices';
-export const Container = styled.main`
-    display: flex;
-    flex-direction: column;
-    font-family: 'Radio Canada';
-
-    gap: 16px;
-    padding: 130px 64px 64px 64px;
-    min-height: calc(100vh - 147px);
-    max-width: 1440px;
-    margin: 0 auto;
-   
-    @media (max-width: 1024px) {
-        padding: 130px 32px 32px 32px;
-    }
-
-    @media (max-width: 767px) {
-        padding: 96px 32px 32px 32px;
-    }
-`;
+interface ContainerProps {
+    noPadding?: boolean;
+  }
+  
+  export const Container = styled.div<ContainerProps>`
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: ${(props) => props.noPadding ? '50px 64px 64px 64px' : '130px 64px 64px 64px'};
+      min-height: calc(100vh - 147px);
+      max-width: 1440px;
+      margin: 0 auto;
+  
+      @media (max-width: 1024px) {
+          padding: ${(props) => props.noPadding ? '40px 32px 32px 32px' : '130px 32px 32px 32px'};
+      }
+  
+      @media (max-width: 767px) {
+          padding: ${(props) => props.noPadding ? '35px 32px 32px 32px' : '96px 32px 32px 32px'};
+      }
+  `;
 export const ErrorContainer = styled.div`
     display: flex;
     flex-direction: column;
