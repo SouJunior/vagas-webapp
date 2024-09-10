@@ -62,19 +62,24 @@ export const ErrorContainer = styled.div`
             font-size: 16px;
             line-height: 24px;
         }
-    }
-`;
+`
+interface ContainerProps {
+  noPadding?: boolean;
+}
 
-export const ImageWrapper = styled.div`
+
+export const ImageWrapper = styled.div<ContainerProps>`
     display: flex;
     justify-content: center;
     align-items: center;
     img{
         width: 100%;
         max-width: 300px;
+=======
+    @media (max-width: 767px) {
+        padding: ${(props) => props.noPadding ? '35px 32px 32px 32px' : '96px 32px 32px 32px'};
     }
 `;
-
 
 export const SectionFilters = styled.section`
     display: flex;
