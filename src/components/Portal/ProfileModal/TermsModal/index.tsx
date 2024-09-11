@@ -21,6 +21,15 @@ const TermsModal: React.FC<TermsModalProps> = ({ setTermsModal }) => {
         setTermsModal(false);
     };
 
+    useEffect(() => {
+        const handleOutsideClick = (e: MouseEvent) => {
+          if (modalRef.current && e.target instanceof Node && !modalRef.current.contains(e.target)) {
+            setTermsModal(false);
+          }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+      }, []);
+
     return (
         <MaskBackground>
             <ModalContent ref={modalRef}>

@@ -1,27 +1,29 @@
 import styled, { css } from 'styled-components';
 import { AllJobsProps } from './components/AllJobs/types';
 import devices from '../styles/devices';
+
 interface ContainerProps {
-    noPadding?: boolean;
-  }
-  
-  export const Container = styled.div<ContainerProps>`
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: ${(props) => props.noPadding ? '50px 64px 64px 64px' : '130px 64px 64px 64px'};
-      min-height: calc(100vh - 147px);
-      max-width: 1440px;
-      margin: 0 auto;
-  
-      @media (max-width: 1024px) {
-          padding: ${(props) => props.noPadding ? '40px 32px 32px 32px' : '130px 32px 32px 32px'};
-      }
-  
-      @media (max-width: 767px) {
-          padding: ${(props) => props.noPadding ? '35px 32px 32px 32px' : '96px 32px 32px 32px'};
-      }
-  `;
+  noPadding?: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: ${(props) => props.noPadding ? '50px 64px 64px 64px' : '130px 64px 64px 64px'};
+    min-height: calc(100vh - 147px);
+    max-width: 1440px;
+    margin: 0 auto;
+
+    @media (max-width: 1024px) {
+        padding: ${(props) => props.noPadding ? '40px 32px 32px 32px' : '130px 32px 32px 32px'};
+    }
+
+    @media (max-width: 767px) {
+        padding: ${(props) => props.noPadding ? '35px 32px 32px 32px' : '96px 32px 32px 32px'};
+    }
+`;
+
 export const ErrorContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -29,55 +31,52 @@ export const ErrorContainer = styled.div`
     align-items: center;
     padding: 130px 64px 64px 64px;
     text-align: left;
-   h1{
+
+    h1 {
         font-size: 36px;
         font-weight: 700;
         line-height: 54px;
         color: #001633;
     }
-    p{
+
+    p {
         font-size: 20px;
         font-weight: 600;
         line-height: 24px;
         color: #344054;
     }
-    span{
+
+    span {
         font-size: 20px;
         font-weight: 400;
         line-height: 24px;
         color: #344054;
     }
 
-
     @media ${devices.mobileL} {
-        h1{
+        h1 {
             font-size: 20px;
             line-height: 30px;
         }
-        p{
+        p {
             font-size: 16px;
             line-height: 24px;
         }
-        span{
+        span {
             font-size: 16px;
             line-height: 24px;
         }
-`
-interface ContainerProps {
-  noPadding?: boolean;
-}
-
+    }
+`;
 
 export const ImageWrapper = styled.div<ContainerProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    img{
+
+    img {
         width: 100%;
         max-width: 300px;
-=======
-    @media (max-width: 767px) {
-        padding: ${(props) => props.noPadding ? '35px 32px 32px 32px' : '96px 32px 32px 32px'};
     }
 `;
 
