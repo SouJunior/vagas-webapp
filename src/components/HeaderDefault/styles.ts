@@ -15,6 +15,7 @@ export const Header = styled.header<HeaderProps>`
     position: fixed;
     top: 0;
     width: 100vw;
+    font-family: 'Radio Canada', sans-serif;
     height: 132px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     background-color: #fff;
@@ -135,6 +136,10 @@ export const RegisterButton = styled.button<ButtonsProps>`
               `}
 `;
 
+export const IndicateButton = styled.button<ButtonsProps>`
+    color: ${({ theme }) => theme.colors.primary};
+`
+
 export const LoginButton = styled(RegisterButton)<ButtonsProps>`
     display: flex;
     justify-content: center;
@@ -227,12 +232,12 @@ export const MobileHeader = styled.nav`
             flex-direction: column;
             align-items: flex-start;
             justify-content: center;
-            width: 80%;
+            width: 100%;
             margin-top: 24px;
           
             li {
                 text-transform: capitalize;
-                font-size: 22pt;
+                font-size: 18px;
                 font-weight: 600;
                 cursor: pointer;
                 padding: 5px 15px;
@@ -253,9 +258,7 @@ export const MobileHeader = styled.nav`
                     background-size: 100% 3px;
                 }
                 
-                @media (max-width: 768px) {
-                    font-size: 18pt;
-                    }
+                
             }
         }
 
