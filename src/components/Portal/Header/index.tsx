@@ -52,7 +52,7 @@ const Header = () => {
         <>
             <HeaderWrapper>
                 <div>
-                    <a href={'/'}>
+                    <a href={'/candidate-portal'}>
                         <HeaderLogo
                             src={LogoImage}
                             width="194px"
