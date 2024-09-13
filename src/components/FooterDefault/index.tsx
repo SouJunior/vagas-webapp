@@ -1,6 +1,7 @@
 import ScrollToTopButton from '../ScrollToTopButton';
 import SocialLinks from '../SocialLinks';
 import * as S from './styles';
+import forkme from '../../assets/imgs/fork-me.png';
 
 const FooterDefault = () => {
     return (
@@ -17,6 +18,15 @@ const FooterDefault = () => {
                         A SouJunior ajuda você a encontrar um lugar de destaque
                         para sua primeira experiência profissional!
                     </p>
+                </div>
+                <div>
+                    <a 
+                        href="https://github.com/SouJunior/vagas-webapp"
+                        rel="noreferrer"
+                        target="_blank"
+                    >
+                        <img src={forkme} alt='fork me on github logo' width="100px" height="29px"/>
+                    </a>
                 </div>
                 <div>
                     <small>
@@ -74,6 +84,15 @@ const FooterDefault = () => {
                     <S.Grid>
                         <SocialLinks/>
                     </S.Grid>
+                </div>
+                <div>
+                    <a 
+                        href="https://github.com/SouJunior/vagas-webapp"
+                        rel="noreferrer"
+                        target="_blank"
+                    >
+                        <img src={forkme} alt='fork me on github logo' width="100px" height="29px"/>
+                    </a>
                 </div>
             </div>
         </S.Footer>
