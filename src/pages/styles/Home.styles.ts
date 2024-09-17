@@ -13,78 +13,74 @@ export const Main = styled.main`
     background-color: ${({ theme }) => theme.colors.primary};
     text-align: center;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1024px) {
         height: auto;
+        padding-top: 80px;
+        flex-direction: column;
+        gap: 32px;
     }
 
-    @media (max-width: 375px) {
-        width: 392px;
-        height: 700px;
+    @media (max-width: 768px) {
+        padding-top: 60px;
     }
 
     @media (max-width: 568px) {
-        height: 800px;
-    }
-
-    @media ${devices.mobileS} {
-        height: 470px; 
+        padding-top: 40px;
+        height: auto;
         width: 100%;
-
+        gap: 24px;
     }
 
-
+    @media (max-width: 375px) {
+        padding-top: 20px;
+        width: 100%;
+    }
 `;
 
 export const MainContent = styled.div`
     width: 100%;
     max-width: 1400px;
-    position: relative;
     display: flex;
     align-items: center;
     height: 100%;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1024px) {
         height: auto;
-        flex-wrap: wrap;
         flex-direction: column;
-        padding-top: 90px;
         justify-content: space-between;
+        gap: 20px;
     }
 
-    @media (max-width: 375px) {
-        width: 375px;
-    }
-
-    @media ${devices.mobileS} {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    @media (max-width: 568px) {
+        padding: 0 16px;
+        gap: 16px;
     }
 `;
 
 export const MainSearchFilter = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-left: 60px;
+    align-items: center;
+    gap: 2.5rem;
     width: 60%;
 
-    @media (max-width: 1000px) {
-        margin-left: 0px;
-        align-items: center;
-        width: 100%;
+    margin: 1rem; // Margin para não grudar conteúdo nos cantos
+    
+    @media (max-width: 768px) {
+        width: 80%;
+        gap: 2rem;
+
+        margin-top: 5rem;
     }
 
     @media (max-width: 568px) {
-        height: 470px;
-        margin-top: 65px;
-        gap: 25px;
+        width: 100%;
+        gap: 1.5rem;
     }
 `;
 
 export const Title = styled.h2`
-    max-width: 920px;
+    max-width: 100%;
     font-weight: 300;
     font-size: 2.9rem;
 
@@ -92,29 +88,17 @@ export const Title = styled.h2`
         font-weight: 700;
     }
 
-    @media (max-width: 1000px) {
-        width: 95%;
-    }
+    
 
     @media (max-width: 568px) {
-        height: 144px;
-        font-size: 40px;
+        font-size: 2rem;
+        line-height: 2.5rem;
     }
 
-    
     @media (max-width: 375px) {
-        font-size: 24px;
-        position: relative;
-    }
-
-    @media ${devices.mobileS} {
-        height: 144px;
-        font-size: 26px;
+        font-size: 1.6rem;
         line-height: 2rem;
-
     }
-
-    
 `;
 
 export const SecondaryTitle = styled.h3`
@@ -125,20 +109,18 @@ export const SecondaryTitle = styled.h3`
 
     @media (max-width: 780px) {
         width: 90%;
+        font-size: 36px;
     }
 
     @media (max-width: 568px) {
-        width: 272px;
-        height: 62px;
-        position: relative;
-        top: -40px;
-        font-size: 32px;
+        width: 80%;
+        font-size: 28px;
     }
 
     @media (max-width: 375px) {
-        position: relative;
-        top: -50px;
-    }    
+        width: 90%;
+        font-size: 24px;
+    }
 `;
 
 export const JobsInfo = styled.p`
@@ -146,87 +128,49 @@ export const JobsInfo = styled.p`
     font-size: 16px;
     line-height: 19px;
     max-width: 796px;
+    text-align: center;
 
-    @media (max-width: 1000px) {
-        margin-bottom: 80px;
+    @media (max-width: 1024px) {
+        font-size: 14px;
     }
 
     @media (max-width: 568px) {
-        position: relative;
-        width: 400px;
-        height: 10px;
-        top: 130px;
-        font-size: 14px;
-        align-items: center;
+        width: 90%;
+        font-size: 12px;
+        line-height: 1.5rem;
     }
 
     @media (max-width: 375px) {
-        position: relative;
-        left: -145px;
-        top: 40px;
-    }
-
-    @media (max-width: 415px) {
-        width: 174px;
-        height: 10px;
-        font-size: 8px;
-        align-items: center;
-    }
-
-    @media ${devices.mobileS} {
-        width: 320px;
-        font-size: 10px;
-        position: relative;
-        top: 0px;
-        left: 0px;
+        font-size: 11px;
+        line-height: 1.4rem;
     }
 `;
 
 export const Image = styled.img`
     width: 403px;
     position: absolute;
-    bottom: 0px;
+    
     right: 0px;
+    margin-bottom: 4rem;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1024px) {
         position: relative;
         width: 40%;
-        left: 11%;
+        margin-bottom: 2rem;
     }
 
     @media (max-width: 750px) {
         width: 35%;
+        margin-bottom: 1.5rem;
     }
 
     @media (max-width: 568px) {
-        width: 160px;
-        height: 160px;
-        position: relative;
-        top: -70px;
-        margin-left: 30px;
-    }
-
-    @media (max-width: 375px) {
-        width: 200px;
-        position: relative;
-        bottom: 190px;
-        left: -190px;
+        display: none;
     }
 
     
-
-    @media (max-width: 415px) {
-        height: 170px;
-    }
-
-    @media ${devices.mobileS} {
-        width: 100px;
-        height: 100px;
-        position: relative;
-        top: -195px;
-        left: 0px; 
-    }
 `;
+
 
 export const Circle = styled.img`
     position: absolute;
@@ -250,7 +194,7 @@ export const CircleImage = styled.img`
         width:60%;
     }
     
-    @media(max-width: 1000px) {
+    @media(max-width: 1024px) {
         bottom: -2%;
         width: 60%;
     }
@@ -294,7 +238,7 @@ export const OurSitesSection = styled.section`
     gap:24px;
     margin-bottom: 89px;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1024px) {
         margin: 80px 0 4.5rem;
     }
 
