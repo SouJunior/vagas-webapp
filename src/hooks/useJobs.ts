@@ -5,11 +5,13 @@ import apiJobs from '../services/apiJobs';
 import usePagination from './usePagination';
 
 import { JobsProps } from '../pages/FeedJobs/types';
+import api from '../services/api';
 
 const ITEMS_PER_PAGE = 10;
 
 const useJobs = () => {
     const [jobs, setJobs] = useState<JobsProps[]>([]);
+    const [jobsCount,setJobsCount] = useState<number>()
     const [selectedJob, setSelectedJob] = useState<JobsProps | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
@@ -52,6 +54,24 @@ const useJobs = () => {
         getJobs();
     }, []);
 
+    const getJobsQuantity = async () =>{
+        setLoading(true)
+        try{
+            const {data:response} = await apiJobs.get('/job/counter')
+            setJobsCount(response.total)
+        }catch(error){
+            console.error('Erro ao buscar quantidade de vagas:',error)
+            setError('Erro ao buscar quantidade de vagas')
+        }finally{
+            setLoading(false)
+        }
+        
+    }
+
+    useEffect(()=>{
+        getJobsQuantity()
+    },[])
+
     const filterJobs = (
         jobs: JobsProps[],
         searchTerm: string,
@@ -77,7 +97,7 @@ const useJobs = () => {
     });
 
     const filteredJobs = filterJobs(sortedJobs, searchTerm, location);
-    const allJobs = jobs.length
+    const allJobs = jobsCount
 
     useEffect(() => {
         setFilteredJobsCount(filteredJobs.length);
