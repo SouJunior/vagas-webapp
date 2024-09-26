@@ -77,6 +77,7 @@ const useJobs = () => {
     });
 
     const filteredJobs = filterJobs(sortedJobs, searchTerm, location);
+    const allJobs = jobs.length
 
     useEffect(() => {
         setFilteredJobsCount(filteredJobs.length);
@@ -133,6 +134,7 @@ const useJobs = () => {
     }, [searchTerm, location, sortOrder, setCurrentPage]);
 
     return {
+        allJobs,
         jobs,
         loading,
         error,
