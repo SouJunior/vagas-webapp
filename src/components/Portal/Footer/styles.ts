@@ -29,13 +29,17 @@ export const Footer = styled.footer`
         align-self: center;
     }
 
+    div:last-child{
+        align-self: center;
+    }
+
     @media (max-width: 280px) {
         flex-direction: column;
         text-align: center;
         align-items: center;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 707px) {
         .mobile-wrapper {
             display: flex;
             flex-direction: column;
@@ -94,7 +98,7 @@ export const Footer = styled.footer`
         }
     }
 
-    @media (min-width: 640px) and (max-width: 920px) {
+    @media (min-width: 640px) and (max-width: 978px) {
         div:first-child {
             width: 100%;
             text-align: center;

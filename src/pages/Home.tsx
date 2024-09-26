@@ -56,7 +56,7 @@ export interface AreaProps {
 SwiperCore.use([Navigation, Autoplay]);
 
 export const Home: React.FC = () => {
-    const { filteredJobsCount } = useJobs();
+    const { allJobs } = useJobs();
 
     return (
         <>
@@ -71,7 +71,7 @@ export const Home: React.FC = () => {
                         <JobFilter />
 
                         <JobsInfo>
-                            Mais de {filteredJobsCount} vagas disponíveis para
+                            Mais de {allJobs} vagas disponíveis para
                             você!
                         </JobsInfo>
                         

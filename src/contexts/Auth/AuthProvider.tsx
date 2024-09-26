@@ -18,15 +18,11 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
     const validateToken = async () => {
         const storagedToken = localStorage.getItem('authToken');
+        let userLogged = JSON.parse(localStorage.getItem('user') || '{}');
 
-        if (storagedToken) {
-            const res = await api.validateToken(storagedToken);
-            if (res) {
-                setUser(res);
-                setIsAuth(true);
-            } else {
-                setIsAuth(false);
-            }
+        if (storagedToken && userLogged) {
+            setUser(userLogged);
+            setIsAuth(true);
         } else {
             setIsAuth(false);
         }
@@ -37,7 +33,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         if (res.info && res.token) {
             setUser(res.info);
             setIsAuth(true);
-            setToken(res.token);
+            setTokenAndUser(res.token, res.info);
         }
         return res;
     };
@@ -46,12 +42,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
      * @param authToken key
      * @param token value
      */
-    const setToken = (token: string) => {
+    const setTokenAndUser = (token: string, user: User) => {
         localStorage.setItem('authToken', token);
+        localStorage.setItem('user', JSON.stringify(user));
     };
 
     const logout = async () => {
-        localStorage.removeItem('authToken');
+        localStorage.clear();
         setUser(null);
         setIsAuth(false);
     };
