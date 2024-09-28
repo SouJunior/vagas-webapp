@@ -23,6 +23,7 @@ import JobsPanel from '../pages/JobsPanel';
 import MatchJobs from '../pages/MatchJobs';
 import ChangePassword from '../pages/ChangePassword';
 import JobSelected from '../pages/JobSelected';
+import MyApplications from '../pages/MyApplications';
 
 const NavRoutes: React.FC = () => {
     ReactGA.initialize(`${process.env.REACT_APP_GOOGLE_ANALYTICS_KEY}`);
@@ -48,6 +49,7 @@ const NavRoutes: React.FC = () => {
                     path="companyconfirmation"
                     element={<ConfirmRegister />}
                 />
+                <Route path="my-applications" element={<MyApplications />} />
                 <Route path="recovery-password" element={<ResetPassword />} />
                 <Route path="change-password" element={<ChangePassword />} />
                 {/* atualizar layout */}
