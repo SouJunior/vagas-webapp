@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app  # Para desenvolvimento com hot-reload
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
