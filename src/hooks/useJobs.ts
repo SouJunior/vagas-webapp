@@ -5,6 +5,7 @@ import apiJobs from '../services/apiJobs';
 import usePagination from './usePagination';
 
 import { JobsProps } from '../pages/FeedJobs/types';
+import { tr } from 'date-fns/locale';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -52,42 +53,41 @@ const useJobs = () => {
         getJobs();
     }, []);
 
-    const filterJobs = (
-        jobs: JobsProps[],
+    const filterJobs = async (
         searchTerm: string,
-        location: string,
     ) => {
-        return jobs.filter((job) => {
-            const matchesSearchTerm = job.title
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase());
-            const matchesLocation = job.location
-                .toLowerCase()
-                .includes(location.toLowerCase());
+         let order = 'ASC'
+         console.log(sortOrder)
+        if(sortOrder === "Mais Antigos"){
+           order = 'DESC'
+        }else{
+            order = 'ASC'
+        }
+        try{
+            const { data : data } = await apiJobs.get(`/job?filter=${searchTerm}&sort=${order}`)
+            console.log(data.data)
+            setJobs(data.data)
+        } catch (error) {
+            console.error('Erro ao filtrar vagas:', error);
+            setError('Erro ao filtrar vagas');
+        }
 
-            return matchesSearchTerm && matchesLocation;
-        });
     };
+    
+    useEffect(()=>{
+        filterJobs(searchTerm)
+        setFilteredJobsCount(jobs.length)
+    },[searchTerm,jobs])
 
-    const sortedJobs = jobs.sort((a, b) => {
-        const dateA = new Date(a.created_date).getTime();
-        const dateB = new Date(b.created_date).getTime();
-
-        return sortOrder === 'Mais Recentes' ? dateB - dateA : dateA - dateB;
-    });
-
-    const filteredJobs = filterJobs(sortedJobs, searchTerm, location);
-
-    useEffect(() => {
-        setFilteredJobsCount(filteredJobs.length);
-    }, [filteredJobs]);
+  
+   
 
     const {
         currentPage,
         paginatedItems: currentJobs,
         totalPages,
         setCurrentPage,
-    } = usePagination<JobsProps>(filteredJobs, ITEMS_PER_PAGE);
+    } = usePagination<JobsProps>(jobs, ITEMS_PER_PAGE);
 
     const containerRef = useRef<HTMLDivElement>(null);
 
