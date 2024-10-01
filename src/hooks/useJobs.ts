@@ -5,7 +5,6 @@ import apiJobs from '../services/apiJobs';
 import usePagination from './usePagination';
 
 import { JobsProps } from '../pages/FeedJobs/types';
-import { tr } from 'date-fns/locale';
 
 const ITEMS_PER_PAGE = 10;
 
