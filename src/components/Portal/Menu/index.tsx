@@ -1,5 +1,6 @@
 import { Container, MenuItems, PopUp, Border } from './styles';
 import ProfileIcon from '../../../assets/imgs/profile.svg';
+import ApplicationIcon from '../../../assets/imgs/application.svg';
 import NewJobIcon from '../../../assets/imgs/new-job.svg';
 import ConfigIcon from '../../../assets/imgs/config.svg';
 import TermsIcon from '../../../assets/imgs/terms.svg';
@@ -52,9 +53,7 @@ const Menu = () => {
                         <img src={ProfileIcon} alt="perfil" />
                         Meu perfil
                     </li>
-
                     <Border /> */}
-
                     {auth.user.type !== 'USER' && (
                         <li
                             onClick={() => navigate('/addjobs')}
@@ -66,7 +65,16 @@ const Menu = () => {
                             Anunciar vagas
                         </li>
                     )}
-                    {/* <Border /> */}
+                    {/* <li 
+                        onClick={() => navigate('/my-applications')}
+                        onKeyDown={handleKeyDown}
+                        tabIndex={0}
+                    >
+
+                        <img src={ApplicationIcon} alt="candidaturas" />
+                        Minhas candidaturas
+                    </li>
+                    <Border /> */}
                     <li
                         onClick={() => {
                             setVisible(!visible);
