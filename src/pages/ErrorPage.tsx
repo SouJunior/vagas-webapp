@@ -1,11 +1,18 @@
 import { Link } from 'react-router-dom';
-
-export default function ErrorPage() {
+import error404Image from '../assets/imgs/pagina-nao-encontraga-img.svg'
+import {Container, Content} from './styles/ErrorPage.styles';
+const ErrorPage = () => {
     return (
-        <main>
-            <h1>Esta página não existe</h1>
-            <div style={{ padding: '1rem 0' }}></div>
-            <Link to="/">Voltar para Tela Inicial?</Link>
-        </main>
+        <Container>
+            <Content>
+                <img src={error404Image} alt="" />
+                <h1>Página não encontrada!</h1>
+                <p>Parece que algo deu errado ou a página não existe. <br /> 
+                Por favor, volte para home.</p>
+                <Link to="/">Voltar</Link>
+            </Content>
+        </Container>
     );
 }
+
+export default ErrorPage;

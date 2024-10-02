@@ -5,11 +5,13 @@ import apiJobs from '../services/apiJobs';
 import usePagination from './usePagination';
 
 import { JobsProps } from '../pages/FeedJobs/types';
+import api from '../services/api';
 
 const ITEMS_PER_PAGE = 10;
 
 const useJobs = () => {
     const [jobs, setJobs] = useState<JobsProps[]>([]);
+    const [jobsCount,setJobsCount] = useState<number>()
     const [selectedJob, setSelectedJob] = useState<JobsProps | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
@@ -47,16 +49,30 @@ const useJobs = () => {
             setLoading(false);
         }
     };
-
+    const getJobsQuantity = async () =>{
+        setLoading(true)
+        try{
+            const {data:response} = await apiJobs.get('/job/counter')
+            setJobsCount(response.total)
+        }catch(error){
+            console.error('Erro ao buscar quantidade de vagas:',error)
+            setError('Erro ao buscar quantidade de vagas')
+        }finally{
+            setLoading(false)
+        }
+        
+    }
     useEffect(() => {
         getJobs();
+        getJobsQuantity()
+
     }, []);
 
     const filterJobs = async (
+
         searchTerm: string,
     ) => {
          let order = 'ASC'
-         console.log(sortOrder)
         if(sortOrder === "Mais Antigos"){
            order = 'DESC'
         }else{
@@ -64,19 +80,21 @@ const useJobs = () => {
         }
         try{
             const { data : data } = await apiJobs.get(`/job?filter=${searchTerm}&sort=${order}`)
-            console.log(data.data)
             setJobs(data.data)
         } catch (error) {
             console.error('Erro ao filtrar vagas:', error);
             setError('Erro ao filtrar vagas');
         }
+      };
 
-    };
+
     
     useEffect(()=>{
         filterJobs(searchTerm)
         setFilteredJobsCount(jobs.length)
     },[searchTerm,jobs])
+
+    const allJobs = jobsCount
 
   
    
@@ -132,6 +150,7 @@ const useJobs = () => {
     }, [searchTerm, location, sortOrder, setCurrentPage]);
 
     return {
+        allJobs,
         jobs,
         loading,
         error,
