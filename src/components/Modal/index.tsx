@@ -19,31 +19,32 @@ import Confirme from '../../assets/imgs/confirme.svg';
 interface IModal {
     isOpen: boolean;
     setOpen: (isOpen: boolean) => void;
-    isAlert: boolean;
-    setAlert: (isOpen: boolean) => void;
+    isApplicationApplied: boolean;
+    setApplicationApplied: (isApplicationApplied: boolean) => void;
 }
 
-export default function Modal({ isOpen, setOpen, isAlert, setAlert }: IModal) {
+export default function Modal({ isOpen, setOpen, isApplicationApplied, setApplicationApplied }: IModal) {
 
-    const [sim, setSim] = useState(false);
-    const [not, setNot] = useState(false);
-    const [teste, setTeste] = useState(false);
+    const [confirmationAlert, setConfirmationAlert] = useState(false);
+    const [denialAlert, setDenialAlert] = useState(false);
+    const [confirmationModal, setConfirmationModal] = useState(false);
 
     function cancelApplication() {
-        setNot(true);
+        setDenialAlert(true);
         setOpen(!isOpen);
-        setAlert(true);
     }
 
     function ConfirmApplication() {
-        setSim(true);
-        setTeste(true);
+        setConfirmationAlert(true);
+        setConfirmationModal(true);
+        setApplicationApplied(true);
     }
 
     function closeModal() {
         setOpen(false);
-        setTeste(false);
-        setSim(false);
+        setConfirmationModal(false);
+        setConfirmationAlert(true);
+        setApplicationApplied(true);
     }
 
     if (isOpen) {
@@ -51,18 +52,7 @@ export default function Modal({ isOpen, setOpen, isAlert, setAlert }: IModal) {
             <div>
 
                 <Background>
-                    <Box sx={{ width: "579px", height: "46px", display: "block", alignItems: "end" }}>
-                        <Box sx={{ marginTop: "8px", marginX: "5px", }}>
-                            <Collapse in={sim}>
-                                <Alert severity="success">
-                                    <AlertTitle>Successo
-                                        <CloseIcon onClick={() => setSim(false)} fontSize="inherit" />
-                                    </AlertTitle>
-                                    Sua aplicação para a candidatura foi registrada.
-                                </Alert>
-                            </Collapse>
-                        </Box>
-                    </Box>
+
 
                     <ContainerModal>
                         <Close>
@@ -75,7 +65,7 @@ export default function Modal({ isOpen, setOpen, isAlert, setAlert }: IModal) {
                         </ButtonContainer >
                     </ContainerModal>
 
-                    {teste === true ? (
+                    {confirmationModal === true ? (
                         <ConfirmeModal>
                             <Close>
                                 <CloseIcon onClick={() => closeModal()} fontSize="inherit" />
@@ -90,14 +80,29 @@ export default function Modal({ isOpen, setOpen, isAlert, setAlert }: IModal) {
                 </Background>
             </div>
         )
-    } else if (!isOpen && isAlert) {
+    } else if (!isOpen && isApplicationApplied) {
         return (
             <Box sx={{ width: "579px", height: "46px", display: "block", alignItems: "end" }}>
                 <Box sx={{ marginTop: "8px", marginX: "5px", }}>
-                    <Collapse in={not}>
+                    <Collapse in={confirmationAlert}>
                         <Alert severity="success">
                             <AlertTitle>Successo
-                                <CloseIcon onClick={() => setNot(false)} fontSize="inherit" />
+                                <CloseIcon onClick={() => setConfirmationAlert(false)} fontSize="inherit" />
+                            </AlertTitle>
+                            Sua aplicação para a candidatura foi registrada.
+                        </Alert>
+                    </Collapse>
+                </Box>
+            </Box>
+        )
+    } else {
+        return (
+            <Box sx={{ width: "579px", height: "46px", display: "block", alignItems: "end" }}>
+                <Box sx={{ marginTop: "8px", marginX: "5px", }}>
+                    <Collapse in={denialAlert}>
+                        <Alert severity="success">
+                            <AlertTitle>Successo
+                                <CloseIcon onClick={() => setDenialAlert(false)} fontSize="inherit" />
                             </AlertTitle>
                             Sua aplicação para a candidatura não foi registrada.
                         </Alert>
@@ -105,8 +110,5 @@ export default function Modal({ isOpen, setOpen, isAlert, setAlert }: IModal) {
                 </Box>
             </Box>
         )
-    }
-    else {
-        return <></>
     }
 }
