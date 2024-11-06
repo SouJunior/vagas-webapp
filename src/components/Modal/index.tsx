@@ -11,7 +11,7 @@ import {
     Close
 } from './styles';
 
-import { Box, Alert, AlertTitle, Button, Collapse } from '@mui/material';
+import { Box, Alert, AlertTitle, Collapse } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 import Confirme from '../../assets/imgs/confirme.svg';
