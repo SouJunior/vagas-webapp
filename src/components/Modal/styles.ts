@@ -72,3 +72,36 @@ export const AffirmationButton = styled.button`
     background-color: #1165BA;
     margin: 20px 0 0 10px;
 `;
+
+export const ConfirmeModal = styled.div`
+    width: 1044px;
+    height: 405.78px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 4rem;
+    position: relative
+`;
+
+export const ConfirmationParagraph = styled.p`
+    font-family: 'Radio Canada';
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26.4px;
+    text-align: center;
+    color: #777777;
+    margin: 30px 0;
+`;
+
+export const Close = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+`;
