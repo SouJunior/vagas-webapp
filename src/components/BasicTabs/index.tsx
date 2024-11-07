@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import CircleGreen from '../../assets/imgs/circle-application-green.svg';
 import CircleRed from '../../assets/imgs/circle-application-red.svg';
 import OutlinedCard from '../OutlinedCard';
+import Modal from '../Modal';
+import { useState } from 'react';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -42,37 +44,52 @@ export default function BasicTabs() {
     setValue(newValue);
   };
 
-  const activeCount = 1; 
-  const closedCount = 1; 
+  const activeCount = 1;
+  const closedCount = 1;
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [applicationApplied, setApplicationApplied] = useState<boolean>(false);
 
   return (
     <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
       <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '80%' }}>
         <Tabs centered value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab 
-            style={{ fontFamily: 'Radio Canada', color: '#101828' }} 
+          <Tab
+            style={{ fontFamily: 'Radio Canada', color: '#101828' }}
             label={
               <Box sx={{ display: 'flex', fontSize: '16px' }}>
                 <img src={CircleGreen} alt="Circle Green" style={{ width: '12px', marginRight: '8px' }} />
                 {`Ativas (${activeCount})`}
               </Box>
             } {...a11yProps(0)} />
-          <Tab 
-            style={{ fontFamily: 'Radio Canada' }} 
+          <Tab
+            style={{ fontFamily: 'Radio Canada' }}
             label={
-              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '16px'}}>
+              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '16px' }}>
                 <img src={CircleRed} alt="Circle Red" style={{ width: '12px', marginRight: '8px' }} />
                 {`Encerradas (${closedCount})`}
               </Box>
             } {...a11yProps(1)} />
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
-        <OutlinedCard />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <OutlinedCard />
-      </CustomTabPanel>
+      <div onClick={() => setOpen(!open)}>
+        <CustomTabPanel value={value} index={0} >
+          <OutlinedCard />
+        </CustomTabPanel>
+      </div>
+      <div onClick={() => setOpen(!open)}>
+        <CustomTabPanel value={value} index={1}>
+          <OutlinedCard />
+        </CustomTabPanel>
+      </div>
+
+      <Modal
+          isOpen={open}
+          setOpen={setOpen}
+          isApplicationApplied={applicationApplied}
+          setApplicationApplied={setApplicationApplied}
+        />
     </Box>
   );
 }
