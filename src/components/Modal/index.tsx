@@ -43,8 +43,6 @@ export default function Modal({ isOpen, setOpen, isApplicationApplied, setApplic
     function closeModal() {
         setOpen(false);
         setConfirmationModal(false);
-        setConfirmationAlert(true);
-        setApplicationApplied(true);
     }
 
     if (isOpen) {
