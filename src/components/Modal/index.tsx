@@ -32,6 +32,7 @@ export default function Modal({ isOpen, setOpen, isApplicationApplied, setApplic
     function cancelApplication() {
         setDenialAlert(true);
         setOpen(!isOpen);
+        setApplicationApplied(false);
     }
 
     function ConfirmApplication() {
@@ -47,65 +48,110 @@ export default function Modal({ isOpen, setOpen, isApplicationApplied, setApplic
 
     if (isOpen) {
         return (
-            <div>
-
-                <Background>
+            <Background>
 
 
-                    <ContainerModal>
+                <ContainerModal>
+                    <Close>
+                        <CloseIcon onClick={() => closeModal()} fontSize="inherit" />
+                    </Close>
+                    <ContainerPhrase>Você concluiu a sua candidatura? </ContainerPhrase>
+                    <ButtonContainer >
+                        <DenyButton onClick={() => cancelApplication()}>Não</DenyButton>
+                        <AffirmationButton onClick={() => ConfirmApplication()}>Sim</AffirmationButton>
+                    </ButtonContainer >
+                </ContainerModal>
+
+                {confirmationModal === true ? (
+                    <ConfirmeModal>
                         <Close>
-                            <CloseIcon onClick={() => setOpen(!isOpen)} fontSize="inherit" />
+                            <CloseIcon onClick={() => closeModal()} fontSize="inherit" />
                         </Close>
-                        <ContainerPhrase>Você concluiu a sua candidatura? </ContainerPhrase>
-                        <ButtonContainer >
-                            <DenyButton onClick={() => cancelApplication()}>Não</DenyButton>
-                            <AffirmationButton onClick={() => ConfirmApplication()}>Sim</AffirmationButton>
-                        </ButtonContainer >
-                    </ContainerModal>
-
-                    {confirmationModal === true ? (
-                        <ConfirmeModal>
-                            <Close>
-                                <CloseIcon onClick={() => closeModal()} fontSize="inherit" />
-                            </Close>
-                            <ContainerPhrase>Sua candidatura foi registrada</ContainerPhrase>
-                            <ConfirmationParagraph>Acompanhe os status de suas candidaturas em "Minhas candidaturas"</ConfirmationParagraph>
-                            <img src={Confirme} alt="confirmation icon" />
-                        </ConfirmeModal>
-                    ) : (
-                        <></>
-                    )}
-                </Background>
-            </div>
+                        <ContainerPhrase>Sua candidatura foi registrada</ContainerPhrase>
+                        <ConfirmationParagraph>Acompanhe os status de suas candidaturas em "Minhas candidaturas"</ConfirmationParagraph>
+                        <img src={Confirme} alt="confirmation icon" />
+                    </ConfirmeModal>
+                ) : (
+                    <></>
+                )}
+            </Background>
         )
     } else if (!isOpen && isApplicationApplied) {
         return (
-            <Box sx={{ width: "579px", height: "46px", display: "block", alignItems: "end" }}>
-                <Box sx={{ marginTop: "8px", marginX: "5px", }}>
-                    <Collapse in={confirmationAlert}>
-                        <Alert severity="success">
-                            <AlertTitle>Successo
-                                <CloseIcon onClick={() => setConfirmationAlert(false)} fontSize="inherit" />
-                            </AlertTitle>
+            <Box sx={{ minWidth: "635px", position: "fixed", top: "1%", left: "56%" }}>
+                <Collapse in={confirmationAlert}>
+                    <Box sx={{
+                        marginTop: "2px",
+                        display: "flex",
+                        minWidth: "100%"
+                    }}>
+                        <Alert severity="success" sx={{
+                            display: "flex",
+                            minWidth: "100%",
+                            justifyContent: "flex-start",
+                            marginLeft: "2px",
+                            marginRight: "30px",
+                            color: "#083D07",
+                            backgroundColor: "#C1F7C1",
+                            fontFamily: 'Radio Canada',
+                            fontSize: "16px",
+                            fontWeight: "400",
+                            lineHeight: "22.4px"
+                        }}>
+                            <AlertTitle sx={{ fontFamily: 'Radio Canada', fontSize: "20px", fontWeight: "500", lineHeight: "24px" }}>Sucesso</AlertTitle>
                             Sua aplicação para a candidatura foi registrada.
                         </Alert>
-                    </Collapse>
-                </Box>
+                    </Box>
+                    <CloseIcon onClick={() => setConfirmationAlert(false)} fontSize="inherit"
+                        sx={{
+                            width: "24px",
+                            height: "24px",
+                            marginLeft: "50px",
+                            position: "relative",
+                            bottom: "50%",
+                            left: "88%",
+                            color: "#083D07"
+                        }} />
+                </Collapse>
             </Box>
         )
     } else {
         return (
-            <Box sx={{ width: "579px", height: "46px", display: "block", alignItems: "end" }}>
-                <Box sx={{ marginTop: "8px", marginX: "5px", }}>
-                    <Collapse in={denialAlert}>
-                        <Alert severity="success">
-                            <AlertTitle>Successo
-                                <CloseIcon onClick={() => setDenialAlert(false)} fontSize="inherit" />
-                            </AlertTitle>
+            <Box sx={{ minWidth: "635px", minHeight: "62px", position: "fixed", top: "1%", left: "56%" }}>
+                <Collapse in={denialAlert}>
+                    <Box sx={{
+                        marginTop: "2px",
+                        display: "flex",
+                        minWidth: "100%"
+                    }}>
+                        <Alert severity="success" sx={{
+                            display: "flex",
+                            minWidth: "100%",
+                            justifyContent: "flex-start",
+                            marginLeft: "2px",
+                            marginRight: "30px",
+                            color: "#083D07",
+                            backgroundColor: "#C1F7C1",
+                            fontFamily: 'Radio Canada',
+                            fontSize: "16px",
+                            fontWeight: "400",
+                            lineHeight: "22.4px"
+                        }}>
+                            <AlertTitle sx={{ fontFamily: 'Radio Canada', fontSize: "20px", fontWeight: "500", lineHeight: "24px" }}>Sucesso</AlertTitle>
                             Sua aplicação para a candidatura não foi registrada.
                         </Alert>
-                    </Collapse>
-                </Box>
+                    </Box>
+                    <CloseIcon onClick={() => setDenialAlert(false)} fontSize="inherit"
+                        sx={{
+                            width: "24px",
+                            height: "24px",
+                            marginLeft: "50px",
+                            position: "relative",
+                            bottom: "50%",
+                            left: "88%",
+                            color: "#083D07"
+                        }} />
+                </Collapse>
             </Box>
         )
     }
