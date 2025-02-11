@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Background,
     ContainerModal,
@@ -24,6 +24,7 @@ interface IModal {
 }
 
 export default function Modal({ isOpen, setOpen, isApplicationApplied, setApplicationApplied }: IModal) {
+    const modalRef = useRef<HTMLDivElement | null>(null);
 
     const [error, setError] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -46,11 +47,26 @@ export default function Modal({ isOpen, setOpen, isApplicationApplied, setApplic
         setConfirmationModal(false);
     }
 
+    useEffect(() => {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (modalRef.current && e.target instanceof Node && !modalRef.current.contains(e.target)) {
+                setOpen(false);
+                setConfirmationModal(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, []);
+
     if (isOpen) {
         return (
             <Background>
 
-                <ContainerModal>
+                <ContainerModal ref={modalRef}>
                     <Close>
                         <CloseIcon onClick={() => closeModal()} fontSize="inherit" />
                     </Close>
