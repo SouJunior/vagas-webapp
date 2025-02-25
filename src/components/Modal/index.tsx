@@ -60,7 +60,7 @@ export default function Modal({ isOpen, setOpen, isApplicationApplied, setApplic
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
         };
-    }, []);
+    }, [setOpen]);
 
     if (isOpen) {
         return (
@@ -78,7 +78,7 @@ export default function Modal({ isOpen, setOpen, isApplicationApplied, setApplic
                 </ContainerModal>
 
                 {confirmationModal === true ? (
-                    <ConfirmeModal>
+                    <ConfirmeModal ref={modalRef}>
                         <Close>
                             <CloseIcon onClick={() => closeModal()} fontSize="inherit" />
                         </Close>

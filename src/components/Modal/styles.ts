@@ -54,7 +54,6 @@ export const DenyButton = styled.button`
     gap: 8px;
     border-radius: 5px;
     border: solid 1px #1165BA;
-    opacity: 0px;
     margin: 20px 10px 0 0 ;
 `;
 
@@ -85,7 +84,6 @@ export const ConfirmeModal = styled.div`
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 4rem;
-    position: relative
 `;
 
 export const ConfirmationParagraph = styled.p`

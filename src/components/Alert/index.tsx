@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import { Box, Alert, AlertTitle, Collapse } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -10,7 +8,7 @@ interface IAlert {
     textAlert: string;
     textColor: string;
     backgroundColor: string;
-    alertSeverityType: any;
+    alertSeverityType: 'error' | 'warning' | 'info' | 'success';
 }
 
 export default function AlertNotifications({ isShowAlert, setShowAlert, textColor, backgroundColor, alertSeverityType, titleAlert, textAlert}: IAlert) {
@@ -29,8 +27,8 @@ export default function AlertNotifications({ isShowAlert, setShowAlert, textColo
                         justifyContent: "flex-start",
                         marginLeft: "2px",
                         marginRight: "30px",
-                        color: { textColor },
-                        backgroundColor: { backgroundColor },
+                        color: textColor,
+                        backgroundColor: backgroundColor,
                         fontFamily: 'Radio Canada',
                         fontSize: "16px",
                         fontWeight: "400",
@@ -48,7 +46,7 @@ export default function AlertNotifications({ isShowAlert, setShowAlert, textColo
                         position: "relative",
                         bottom: "50%",
                         left: "88%",
-                        color: { textColor }
+                        color: textColor
                     }} />
             </Collapse>
         </Box>
