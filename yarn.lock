@@ -1611,7 +1611,7 @@ date-fns@^2.29.3:
   dependencies:
     "@babel/runtime" "^7.21.0"
 
-debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1:
+debug@^4.0.0, debug@^4.1.0, debug@^4.3.1:
   version "4.3.4"
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -2001,11 +2001,6 @@ globals@^11.1.0:
   version "11.12.0"
   resolved "https://registry.npmjs.org/globals/-/globals-11.12.0.tgz"
   integrity sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==
-
-globrex@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.npmjs.org/globrex/-/globrex-0.1.2.tgz"
-  integrity sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==
 
 gopd@^1.0.1:
   version "1.0.1"
@@ -4047,11 +4042,6 @@ ts-interface-checker@^0.1.9:
   resolved "https://registry.npmjs.org/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
 
-tsconfck@^3.0.3:
-  version "3.1.5"
-  resolved "https://registry.npmjs.org/tsconfck/-/tsconfck-3.1.5.tgz"
-  integrity sha512-CLDfGgUp7XPswWnezWwsCRxNmgQjhYq3VXHM0/XIRxhVrKw0M1if9agzryh1QS3nxjCROvV+xWxoJO1YctzzWg==
-
 tslib@2.6.2, tslib@^2.4.0:
   version "2.6.2"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
@@ -4205,15 +4195,6 @@ vite-plugin-dynamic-import@^1.6.0:
     es-module-lexer "^1.5.4"
     fast-glob "^3.3.2"
     magic-string "^0.30.11"
-
-vite-tsconfig-paths@^5.1.4:
-  version "5.1.4"
-  resolved "https://registry.npmjs.org/vite-tsconfig-paths/-/vite-tsconfig-paths-5.1.4.tgz"
-  integrity sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==
-  dependencies:
-    debug "^4.1.1"
-    globrex "^0.1.2"
-    tsconfck "^3.0.3"
 
 vite@^6.2.2:
   version "6.2.2"

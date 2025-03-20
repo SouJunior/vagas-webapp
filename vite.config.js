@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import commonjs from 'vite-plugin-commonjs';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   base: '/',
-  plugins: [react(), tsconfigPaths(), commonjs()],
+  plugins: [commonjs(), react()],
   build: {
     outDir: 'build',
     assetsDir: 'assets',
