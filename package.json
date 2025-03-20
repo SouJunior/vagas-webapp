@@ -54,7 +54,6 @@
     "react-number-format": "^5.1.4",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.26.0",
-    "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
     "rehype-raw": "^7.0.0",
     "styled-components": "^6.1.12",
