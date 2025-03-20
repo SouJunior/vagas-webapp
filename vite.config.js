@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import commonjs from 'vite-plugin-commonjs';
 import react from '@vitejs/plugin-react';
 
@@ -17,5 +17,12 @@ export default defineConfig({
     },
     server: {
         port: 3000,
+    },
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: './src/setupTests.ts',
+        css: true,
+        reporters: ['verbose'],
     },
 });
