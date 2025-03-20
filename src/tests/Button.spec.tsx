@@ -1,14 +1,16 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../setupTests';
 import { Button } from '../components/Button';
 
-test('componente Button permite cliques', () => {
-    render(<Button />);
-    const ButtonElement = screen.getByRole('button');
-    expect(ButtonElement).toBeEnabled();
-});
+describe('Button Component', () => {
+  test('deveria permitir cliques', () => {
+    render(<Button>Click me</Button>);
+    const buttonElement = screen.getByRole('button');
+    expect(buttonElement).toBeEnabled();
+  });
 
-test('renderizar componente Button', () => {
-    render(<Button />);
-    const ButtonElement = screen.getByRole('button');
-    expect(ButtonElement).toBeInTheDocument();
+  test('deveria renderizar corretamente', () => {
+    render(<Button>Click me</Button>);
+    const buttonElement = screen.getByRole('button');
+    expect(buttonElement).toBeInTheDocument();
+  });
 });
