@@ -76,7 +76,7 @@
     "@types/react-select": "^5.0.1",
     "@types/styled-components": "^5.1.25",
     "@types/uuid": "^8.3.4",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react-swc": "^3.8.1",
     "autoprefixer": "^10.4.7",
     "jsdom": "^26.0.0",
     "postcss": "^8.4.14",
