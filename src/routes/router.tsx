@@ -40,9 +40,9 @@ const NavRoutes: React.FC = () => {
                 </Route>
 
                 <Route element={<LoginLayout />}>
-	                <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
                 </Route>
-                
+
                 <Route path="confirm-email" element={<ConfirmEmail />} />
                 <Route path="userconfirmation" element={<ConfirmRegister />} />
                 <Route
@@ -62,7 +62,10 @@ const NavRoutes: React.FC = () => {
                     }
                 />
                 <Route path="/candidate-portal/job" element={<FeedJobs />} />
-                <Route path="/candidate-portal/job/selected/:id" element={<JobSelected />} />
+                <Route
+                    path="/candidate-portal/job/selected/:id"
+                    element={<JobSelected />}
+                />
 
                 {/* atualizar layout */}
                 <Route
