@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM oven/bun:1.2.5-alpine
 
 WORKDIR /app
 
@@ -8,8 +8,11 @@ RUN bun install --ignore-scripts
 COPY src/ ./src/
 COPY public/ ./public/
 
-RUN mkdir -p node_modules/.cache && chmod -R 754 node_modules/.cache
+# Create directories and set permissions for the bun user
+RUN mkdir -p node_modules/.cache node_modules/.vite && \
+    chown -R bun:bun /app && \
+    chmod -R 755 /app
 
-USER node
+USER bun
 EXPOSE 3000
 CMD ["bun", "dev"]
