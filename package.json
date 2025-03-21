@@ -122,6 +122,9 @@
   ],
   "license": "GPL-3.0",
   "name": "vagas-webapp",
+  "overrides": {
+    "vite": "npm:rolldown-vite@latest"
+  },
   "private": true,
   "repository": {
     "type": "git",
