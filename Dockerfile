@@ -15,4 +15,4 @@ RUN mkdir -p node_modules/.cache node_modules/.vite && \
 
 USER bun
 EXPOSE 3000
-CMD ["bun", "dev"]
+CMD ["bun", "run", "dev", "--host"]
