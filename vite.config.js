@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitest/config';
 import commonjs from 'vite-plugin-commonjs';
 import react from '@vitejs/plugin-react-swc';
-import svgr from "vite-plugin-svgr";
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
     base: '/',
