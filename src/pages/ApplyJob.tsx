@@ -25,7 +25,7 @@ import ChooseResume from '../components/ApplyJob/ChooseResume';
 import { useMutation, useQuery } from 'react-query';
 import Modal from '../components/ApplyJob/Modal';
 import FeedSearch from '../components/FeedVagas/FeedSearch';
-import SouJuniorLogo from '../assets/imgs/logo-name-h.svg';
+// import SouJuniorLogo from '../assets/imgs/logo-name-h.svg';
 
 const JobApply = () => {
     const {
@@ -221,7 +221,7 @@ const JobApply = () => {
                 <Modal
                     title={
                         <>
-                            <img src={SouJuniorLogo} alt="Logo" width={200} />
+                            <img src="/assets/logo-name-h.svg" alt="Logo" width={200} />
                         </>
                     }
                     cancelText="Ok"

@@ -1,4 +1,3 @@
-import profilePicture from '../../assets/imgs/profile-image.svg';
 import trashPicture from '../../assets/imgs/trash.svg';
 import {
     Container,
@@ -261,7 +260,7 @@ export const CandidateSettings: React.FC = () => {
                     <ProfileImg
                         src={
                             imagePreview ||
-                            (auth.user.profile ?? profilePicture)
+                            (auth.user.profile ?? "/assets/profile-image.svg")
                         }
                         alt="Foto de perfil"
                         width={'138px'}

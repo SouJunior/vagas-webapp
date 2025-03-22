@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import devices from '../styles/devices';
-import VocationalBanner from '../../assets/imgs/VocationalBanner.svg';
 
 export const Main = styled.main`
     color: #fff;
@@ -551,7 +550,7 @@ export const VocationalBannerArea = styled.div`
     height: 412px;
     margin: 80px auto 0 auto;
     background-color: ${({ theme }) => theme.colors.primary};
-    background-image: url(${VocationalBanner});
+    background-image: url('/assets/VocationalBanner.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

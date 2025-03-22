@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import FeedJobsBackground from '../../assets/imgs/feedjobs-bg.svg';
 
 export const JobApplyContainer = styled.div`
     display: grid;
@@ -17,7 +16,7 @@ export const FilterContainer = styled.div`
     width: 100%;
     justify-content: center;
     height: 200px;
-    background-image: url(${FeedJobsBackground});
+    background-image: url('/assets/feedjobs-bg.svg');
     max-width: 100vw;
 
     div {

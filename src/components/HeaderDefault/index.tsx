@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-import LogoName from '../../assets/imgs/logo-icon-name-h.svg';
 import loginIcon from '../../assets/imgs/Candidato-icone.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
@@ -72,7 +71,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
                             <S.BoxLogoMobile>
                                 <S.BoxLogo>
                                     <img
-                                    src={LogoName}
+                                    src="/assets/logo-icon-name-h.svg"
                                     alt="Logo SouJunior"
                                     onClick={handleScrollToTop}
                                     />
@@ -156,7 +155,7 @@ const HeaderDefault: React.FC<HeaderProps> = ({ isActive }) => {
 
                     <S.BoxLogo>
                         <img
-                            src={LogoName}
+                            src="/assets/logo-icon-name-h.svg"
                             alt="Logo SouJunior"
                             onClick={handleScrollToTop}
                         />

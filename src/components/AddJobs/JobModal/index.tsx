@@ -8,7 +8,6 @@ import {
     ViewJobButton,
 } from './styles';
 
-import SuccessModalIcon from '../../../assets/imgs/SucessModal.svg';
 interface Props {
     onClose: () => void;
 }
@@ -18,7 +17,7 @@ const JobModal: React.FC<Props> = ({ onClose }) => {
         <ModalContainer onClick={onClose}>
             <ModalContent>
                 <ModalTitle>Sua Vaga foi publicada com Sucesso!!</ModalTitle>
-                <img src={SuccessModalIcon} alt="Sucesso" />
+                <img src="/assets/SucessModal.svg" alt="Sucesso" />
                 <ButtonContainer>
                     <BackButton onClick={onClose}>Voltar ao início</BackButton>
                     <ViewJobButton>Visualizar Vaga</ViewJobButton>

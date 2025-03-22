@@ -8,7 +8,6 @@ import {
     LinkedInIcon,
     TelegramIcon,
 } from './styles';
-import LogoImageBlue from '../../../assets/imgs/logo-icon-name-h.svg';
 import forkme from '../../../assets/imgs/fork-me.png';
 
 const Index = () => {
@@ -33,7 +32,7 @@ const Index = () => {
                         tabIndex={0}
                     >
                         <img
-                            src={LogoImageBlue}
+                            src="/assets/logo-icon-name-h.svg"
                             width="194px"
                             height="29px"
                             alt="logo"
@@ -113,7 +112,7 @@ const Index = () => {
                         tabIndex={0}
                     >
                         <img
-                            src={LogoImageBlue}
+                            src="/assets/logo-icon-name-h.svg"
                             width="194px"
                             height="29px"
                             alt="logo"
