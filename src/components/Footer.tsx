@@ -5,7 +5,6 @@ import {
     RiGithubFill,
     RiDiscordFill,
 } from 'react-icons/ri';
-import logoIcon from '../assets/imgs/logo-icon-name-h.svg';
 
 export function Footer() {
     return (
@@ -14,7 +13,7 @@ export function Footer() {
             <div className="flex md:flex-row flex-col my-14 justify-center ">
 
                 <div className="md:mr-12 flex flex-col text-center md:text-start items-center md:items-start md:ml-14">
-                    <img src={logoIcon} width="265px" alt="Logo SouJunior" />
+                    <img src="/assets/logo-icon-name-h.svg" width="265px" alt="Logo SouJunior" />
                     <h2 className="font-semibold text-gray-darker text-[25px] mt-1 ">
                         #MovimentoSouJunior
                     </h2>

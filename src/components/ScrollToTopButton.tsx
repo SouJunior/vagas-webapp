@@ -1,5 +1,3 @@
-import LogoImageBlue from '../assets/imgs/logo-icon-name-h.svg';
-
 const ScrollToTopButton = () => {
     const handleScrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -18,7 +16,7 @@ const ScrollToTopButton = () => {
             onKeyDown={handleKeyPress}
             tabIndex={0}
         >
-            <img src={LogoImageBlue} width="194px" height="29px" alt="logo" />
+            <img src="/assets/logo-icon-name-h.svg" width="194px" height="29px" alt="logo" />
         </button>
     );
 };

@@ -1,6 +1,5 @@
 import { Paperclip } from 'phosphor-react';
 import { Attach, ChooseResumeContainer, ResumesContainer } from './styles';
-import PdfIcon from '../../../assets/imgs/choose-pdf.svg';
 
 // NOTE: Not typed yet because de data type is gonna change
 const ChooseResume = ({ data, setSelectedResume }: any) => {
@@ -23,7 +22,7 @@ const ChooseResume = ({ data, setSelectedResume }: any) => {
                                 onClick={() => setSelectedResume(resume)}
                             >
                                 <img
-                                    src={PdfIcon}
+                                    src="/assets/choose-pdf.svg"
                                     alt="PDF"
                                     width={32}
                                     height={32}

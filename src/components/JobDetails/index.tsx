@@ -12,7 +12,6 @@ import {
     TextContainer,
     Title,
 } from './styles';
-import ProfileDefault from '../../assets/imgs/profile-image.svg';
 
 function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
     if (Array.isArray(clickedJob)) {
@@ -39,7 +38,7 @@ function JobDetails({ id, clickedJob }: { id: any; clickedJob: any }) {
             <CompanyInfo>
                 <CompanyLogoImg>
                     {clickedJob.company.profile === null ? (
-                        <img src={ProfileDefault} alt="Default" />
+                        <img src="/assets/profile-image.svg" alt="Default" />
                     ) : (
                         <img
                             src={clickedJob.company.profile}

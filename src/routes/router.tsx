@@ -26,7 +26,7 @@ import JobSelected from '../pages/JobSelected';
 import MyApplications from '../pages/MyApplications';
 
 const NavRoutes: React.FC = () => {
-    ReactGA.initialize(`${process.env.REACT_APP_GOOGLE_ANALYTICS_KEY}`);
+    ReactGA.initialize(`${import.meta.env.VITE_APP_GOOGLE_ANALYTICS_KEY}`);
     // ReactGA.pageview(window.location.pathname + window.location.search);
 
     return (
@@ -40,9 +40,9 @@ const NavRoutes: React.FC = () => {
                 </Route>
 
                 <Route element={<LoginLayout />}>
-	                <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
                 </Route>
-                
+
                 <Route path="confirm-email" element={<ConfirmEmail />} />
                 <Route path="userconfirmation" element={<ConfirmRegister />} />
                 <Route
@@ -62,7 +62,10 @@ const NavRoutes: React.FC = () => {
                     }
                 />
                 <Route path="/candidate-portal/job" element={<FeedJobs />} />
-                <Route path="/candidate-portal/job/selected/:id" element={<JobSelected />} />
+                <Route
+                    path="/candidate-portal/job/selected/:id"
+                    element={<JobSelected />}
+                />
 
                 {/* atualizar layout */}
                 <Route

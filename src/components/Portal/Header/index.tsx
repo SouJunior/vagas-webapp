@@ -10,7 +10,6 @@ import {
 } from './styles';
 import Menu from '../Menu';
 import LogoImage from '../../../assets/imgs/logotipo-icone-extendida.svg';
-import ProfileImage from '../../../assets/imgs/profile-image.svg';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -85,8 +84,8 @@ const Header = () => {
                         onKeyDown={handleKeyDown}
                         src={
                             auth.user
-                                ? auth.user.profile ?? ProfileImage
-                                : ProfileImage
+                                ? auth.user.profile ?? "/assets/profile-image.svg"
+                                : "/assets/profile-image.svg"
                         }
                         alt="foto de perfil"
                         tabIndex={0}

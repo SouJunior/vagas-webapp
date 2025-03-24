@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../components/Header';
-import logoNameEmpresa from '../assets/imgs/logo-name-empresa.svg';
 import {
     Form,
     FormHeader,
@@ -166,7 +165,7 @@ const AddJobs = () => {
             <Header pageName="Criar vaga" backTo={'/company-portal'}></Header>
             <HeaderContainer>
                 <LogoImage
-                    src={logoNameEmpresa}
+                    src="/assets/logo-name-empresa.svg"
                     alt="Logo SouJunior Empresa"
                     className="mx-auto my-4 w-[315px]"
                 />
