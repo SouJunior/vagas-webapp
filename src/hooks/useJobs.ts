@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import { JobsProps } from '../pages/FeedJobs/types';
 import apiJobs from '../services/apiJobs';
 import usePagination from './usePagination';
-
-import { JobsProps } from '../pages/FeedJobs/types';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -39,7 +38,7 @@ const useJobs = () => {
 
         try {
             const { data: response } = await apiJobs.get('/job');
-            setJobs(response.data);
+            setJobs(Array.isArray(response) ? response : response.data);
         } catch (error) {
             console.error('Erro ao buscar vagas:', error);
             setError('Erro ao buscar vagas');
