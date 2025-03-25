@@ -1,27 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "author": "SouJunior Core",
-  "browserslist": {
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ],
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ]
+  "name": "vagas-webapp",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "lint": "prettier --check .",
+    "serve": "vite preview",
+    "test": "vitest",
+    "type-check": "tsc --noEmit"
   },
-  "bugs": {
-    "url": "https://github.com/SouJunior/vagas-webapp/issues"
-  },
-  "contributors": [
-    {
-      "name": "SouJunior Core",
-      "url": "https://github.com/SouJunior/vagas-webapp/graphs/contributors"
-    }
-  ],
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
@@ -39,7 +28,6 @@
     "@tiptap/pm": "^2.0.2",
     "@tiptap/react": "^2.0.0-beta.206",
     "@tiptap/starter-kit": "^2.0.0-beta.206",
-    "@types/node": "^18.11.18",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
     "framer-motion": "^11.0.25",
@@ -84,6 +72,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^28.1.5",
+    "@types/node": "^18.11.18",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/react-hooks-helper": "^1.6.4",
@@ -122,7 +111,6 @@
     "vite"
   ],
   "license": "GPL-3.0",
-  "name": "vagas-webapp",
   "overrides": {
     "vite": "npm:rolldown-vite@latest"
   },
@@ -131,13 +119,25 @@
     "type": "git",
     "url": "https://github.com/SouJunior/vagas-webapp.git"
   },
-  "scripts": {
-    "build": "tsc && vite build",
-    "dev": "vite",
-    "lint": "prettier --check .",
-    "serve": "vite preview",
-    "test": "vitest",
-    "type-check": "tsc --noEmit"
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
   },
-  "version": "0.1.0"
+  "bugs": {
+    "url": "https://github.com/SouJunior/vagas-webapp/issues"
+  },
+  "contributors": [
+    {
+      "name": "SouJunior Core",
+      "url": "https://github.com/SouJunior/vagas-webapp/graphs/contributors"
+    }
+  ]
 }
