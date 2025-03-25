@@ -2,6 +2,7 @@
   "$schema": "https://json.schemastore.org/package.json",
   "author": "SouJunior Core",
   "name": "vagas-webapp",
+  "description": "Vagas Frontend - Projeto Opensource que visa melhorar o match entre os profissionais Juniors e empresas",
   "version": "0.1.0",
   "scripts": {
     "build": "tsc && vite build",
@@ -9,7 +10,8 @@
     "lint": "prettier --check .",
     "serve": "vite preview",
     "test": "vitest",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "fakeapi": "json-server --watch fake_api_db.json --port 8000"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -65,7 +67,6 @@
     "vite-plugin-svgr": "^4.3.0",
     "yup": "^0.32.11"
   },
-  "description": "Vagas Frontend - Projeto Opensource que visa melhorar o match entre os profissionais Juniors e empresas",
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.8",
     "@testing-library/jest-dom": "^5.14.1",
@@ -83,6 +84,7 @@
     "@vitejs/plugin-react-swc": "^3.8.1",
     "autoprefixer": "^10.4.7",
     "jsdom": "^26.0.0",
+    "json-server": "^1.0.0-beta.3",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.6",
