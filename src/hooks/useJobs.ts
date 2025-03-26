@@ -42,6 +42,7 @@ const useJobs = () => {
         } catch (error) {
             console.error('Erro ao buscar vagas:', error);
             setError('Erro ao buscar vagas');
+            setJobs([]);
         } finally {
             setLoading(false);
         }
@@ -68,7 +69,7 @@ const useJobs = () => {
         });
     };
 
-    const sortedJobs = jobs.sort((a, b) => {
+    const sortedJobs = (jobs || []).sort((a, b) => {
         const dateA = new Date(a.created_date).getTime();
         const dateB = new Date(b.created_date).getTime();
 
@@ -116,7 +117,7 @@ const useJobs = () => {
     };
 
     const handleClick = (id: string) => {
-        const selected = jobs.find((item) => item.id === id);
+        const selected = jobs?.find((item) => item.id === id);
 
         if (isMobile) {
             return navigate(`/job/selected/${id}`);
