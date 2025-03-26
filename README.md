@@ -59,12 +59,25 @@ Inicie o servidor
   yarn start
 ```
 
-Caso precise, rode a api fake local em um terminal separado do `yarn start` pra não depender do backend, porém vai precisar verificar se o arquivo `fake_api_db.json` está criado e no formato da api. Se baseie no arquivo `fake_api_db.example.json`.  
-A api fake com o json-server vai ficar alterando esse json caso faça algum post ou put, por isso ele está no gitignore e não deve ser commitado, apenas o db.example deve ser atualizado e commitado caso haja alterações no retorno da api original.
+### 🔧 API Fake (mock com json-server)
+
+Caso não queira depender do backend, você pode rodar uma API fake localmente usando o `json-server`. Para isso, execute o comando abaixo **em um terminal separado do `yarn start`**:
 
 ```bash
-  yarn fakeapi
+yarn fakeapi
 ```
+
+Antes de rodar, certifique-se de que o arquivo `fake_api_db.json` exista e esteja no formato esperado pela API.  
+Você pode usá-lo como base copiando o arquivo `fake_api_db.example.json`.
+
+⚠️ **Importante:**  
+A API fake irá modificar o `fake_api_db.json` ao realizar requisições `POST`, `PUT`, etc.  
+Por esse motivo, esse arquivo está no `.gitignore` e **não deve ser versionado**.  
+Caso a estrutura da API original mude, atualize e commite apenas o `fake_api_db.example.json`.
+
+📚 Documentação do `json-server`:  
+https://www.npmjs.com/package/json-server/v/1.0.0-beta.3
+
 
 ## Usado por 🛰
 
