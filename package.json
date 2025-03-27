@@ -93,7 +93,7 @@
     "vitest": "^3.0.9"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "eslintConfig": {
     "extends": [
