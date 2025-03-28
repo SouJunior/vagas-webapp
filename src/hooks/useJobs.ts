@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import { JobsProps } from '../pages/FeedJobs/types';
 import apiJobs from '../services/apiJobs';
 import usePagination from './usePagination';
-
-import { JobsProps } from '../pages/FeedJobs/types';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -39,10 +38,11 @@ const useJobs = () => {
 
         try {
             const { data: response } = await apiJobs.get('/job');
-            setJobs(response.data);
+            setJobs(Array.isArray(response) ? response : response.data);
         } catch (error) {
             console.error('Erro ao buscar vagas:', error);
             setError('Erro ao buscar vagas');
+            setJobs([]);
         } finally {
             setLoading(false);
         }
@@ -69,7 +69,7 @@ const useJobs = () => {
         });
     };
 
-    const sortedJobs = jobs.sort((a, b) => {
+    const sortedJobs = (jobs || []).sort((a, b) => {
         const dateA = new Date(a.created_date).getTime();
         const dateB = new Date(b.created_date).getTime();
 
@@ -117,7 +117,7 @@ const useJobs = () => {
     };
 
     const handleClick = (id: string) => {
-        const selected = jobs.find((item) => item.id === id);
+        const selected = jobs?.find((item) => item.id === id);
 
         if (isMobile) {
             return navigate(`/job/selected/${id}`);

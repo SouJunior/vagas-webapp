@@ -29,10 +29,13 @@ import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
-import InputMask from 'react-input-mask';
+import ReactInputMask from 'react-input-mask';
 import { ProfileImg } from '../styles/CompanyPortalStyles';
 import Header from '../../components/Portal/Header';
 import Footer from '../../components/Portal/Footer';
+
+// foi necessário forçar o type any pois o type da lib estava dando erro no build
+const InputMask = ReactInputMask as any;
 
 export const CandidateSettings: React.FC = () => {
     const HandleOptionsRender = (arr: any): [] => {

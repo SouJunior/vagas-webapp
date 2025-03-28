@@ -7,4 +7,7 @@ export interface JobsProps {
     link: string;
     description: string;
     created_date: string;
+    jobName: string;
+    visa: boolean;
+    source: string;
 }
