@@ -25,3 +25,5 @@ yarn-error.log*
 
 # VSCode
 .vscode
+
+*db.json
