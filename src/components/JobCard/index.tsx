@@ -1,6 +1,5 @@
 import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import ProfileDefault from '../../assets/imgs/profile-image.svg';
 import {
     Card,
     Company,
@@ -50,7 +49,7 @@ const JobCard: React.FC<Props> = ({
     return (
         <Card tabIndex={0} onClick={onClick} active={active} opacity={opacity}>
             {company.profile === null ? (
-                <Logo src={ProfileDefault} alt="default Image" />
+                <Logo src="/assets/imgs/profile-image.svg" alt="default Image" />
             ) : (
                 <Logo src={company.profile} alt={company.companyName} />
             )}

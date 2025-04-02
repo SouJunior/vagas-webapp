@@ -1,13 +1,17 @@
 {
-  "name": "linkedin-frontend",
+  "$schema": "https://json.schemastore.org/package.json",
+  "author": "SouJunior Core",
+  "name": "vagas-webapp",
+  "description": "Vagas Frontend - Projeto Opensource que visa melhorar o match entre os profissionais Juniors e empresas",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prettier": "prettier --write ."
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "lint": "prettier --check .",
+    "serve": "vite preview",
+    "test": "vitest",
+    "type-check": "tsc --noEmit",
+    "fakeapi": "npx json-server --watch fake_api_db.json --port 8000"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -26,7 +30,6 @@
     "@tiptap/pm": "^2.0.2",
     "@tiptap/react": "^2.0.0-beta.206",
     "@tiptap/starter-kit": "^2.0.0-beta.206",
-    "@types/node": "^18.11.18",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
     "framer-motion": "^11.0.25",
@@ -55,13 +58,13 @@
     "react-number-format": "^5.1.4",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.26.0",
-    "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
     "rehype-raw": "^7.0.0",
     "styled-components": "^6.1.12",
     "swiper": "^9.3.2",
     "tiptap": "^1.32.2",
     "uuid": "^9.0.0",
+    "vite-plugin-svgr": "^4.3.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -70,6 +73,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^28.1.5",
+    "@types/node": "^18.11.18",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/react-hooks-helper": "^1.6.4",
@@ -77,11 +81,19 @@
     "@types/react-select": "^5.0.1",
     "@types/styled-components": "^5.1.25",
     "@types/uuid": "^8.3.4",
+    "@vitejs/plugin-react-swc": "^3.8.1",
     "autoprefixer": "^10.4.7",
+    "jsdom": "^26.0.0",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.6",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "vite": "^6.2.2",
+    "vite-plugin-commonjs": "^0.10.4",
+    "vitest": "^3.0.9"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "eslintConfig": {
     "extends": [
@@ -89,16 +101,44 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://vagas.soujunior.tech",
+  "keywords": [
+    "job-board",
+    "junior-developers",
+    "react",
+    "soujunior",
+    "tech-careers",
+    "typescript",
+    "vite"
+  ],
+  "license": "GPL-3.0",
+  "overrides": {
+    "vite": "npm:rolldown-vite@latest"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SouJunior/vagas-webapp.git"
+  },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ]
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/SouJunior/vagas-webapp/issues"
+  },
+  "contributors": [
+    {
+      "name": "SouJunior Core",
+      "url": "https://github.com/SouJunior/vagas-webapp/graphs/contributors"
+    }
+  ]
 }
