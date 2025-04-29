@@ -1,5 +1,4 @@
 import api from '../services/api';
-import apiJobs from '../services/apiJobs';
 
 type ChangePasswordResponse = {
     success: boolean;

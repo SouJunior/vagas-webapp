@@ -38,8 +38,6 @@ import Footer from '../../components/Portal/Footer';
 // @ts-ignore
 import InputMask from 'react-input-mask';
 
-// const InputMask = require('react-input-mask');
-
 export const CandidateSettings: React.FC = () => {
     const HandleOptionsRender = (arr: any): [] => {
         return arr.map((element: any) => {
