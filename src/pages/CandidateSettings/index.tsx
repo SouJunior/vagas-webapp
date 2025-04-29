@@ -36,7 +36,9 @@ import Footer from '../../components/Portal/Footer';
 // solução temporária para evitar problema na pipeline.
 // precisará ser trocado pela lib https://www.npmjs.com/package/@react-input/mask que é mais atualizada
 // @ts-ignore
-const InputMask = require('react-input-mask');
+import InputMask from 'react-input-mask';
+
+// const InputMask = require('react-input-mask');
 
 export const CandidateSettings: React.FC = () => {
     const HandleOptionsRender = (arr: any): [] => {

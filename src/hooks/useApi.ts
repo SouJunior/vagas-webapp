@@ -12,6 +12,7 @@ export const useApi = () => ({
             password,
             type,
         });
+        console.log(res.data);
         return res.data;
     },
 
@@ -241,4 +242,10 @@ export const useApi = () => ({
 
         return res.data;
     },
+
+    getApplications: async () => {
+        const res: any = await api.get(`/myApplications`);
+        return res.data;
+    },
+
 });
