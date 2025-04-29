@@ -31,10 +31,9 @@ interface ApplicationProps {
   onFavoriteToggle: () => void;
 }
 
-const api = useApi();
-
 export default function OutlinedCard({ id, image, enterprise, position, applicationDate, closingDate, status, favorite, onFavoriteToggle }: ApplicationProps) {
 
+  const api = useApi();
   const [liked, setLiked] = useState(favorite);
 
   async function favoriteApplication() {
