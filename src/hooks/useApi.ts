@@ -244,6 +244,15 @@ export const useApi = () => ({
         return res.data;
     },
 
+    getApplications: async () => {
+        try {
+            const response = await api.get('/candidacy');
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao buscar os dados:', error);
+        }
+    },
+
     updateFavorite: async (id: string, favorite: boolean) => {
         try {
             const response = await api.patch(`/candidacy/${id}`, { favorite });

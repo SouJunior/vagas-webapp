@@ -57,8 +57,7 @@ export default function BasicTabs() {
 
   const fetchData = async () => {
     try {
-      const res = await fetch('http://localhost:8000/candidacy');
-      const response = await res.json();
+      const response = await api.getApplications();
       setResults(response);
 
       const fechadas = response.filter(vaga => vaga.status === 'closed');

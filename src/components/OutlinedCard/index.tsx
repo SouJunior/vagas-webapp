@@ -40,7 +40,7 @@ export default function OutlinedCard({ id, image, enterprise, position, applicat
   async function favoriteApplication() {
     const newValue = !liked;
     setLiked(newValue);
-  
+
     try {
       await api.updateFavorite(id, newValue);
       onFavoriteToggle();
@@ -69,7 +69,8 @@ export default function OutlinedCard({ id, image, enterprise, position, applicat
                 <Typography
                   color="rgba(62, 62, 62, 1)"
                   sx={{ mb: 1.5 }}>
-                  {position}</Typography>
+                  {position}
+                </Typography>
               </div>
             </Information>
             <Favorite>
