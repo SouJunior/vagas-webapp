@@ -32,7 +32,7 @@ interface ApplicationProps {
 
 export default function OutlinedCard({ id, image, enterprise, position, applicationDate, closingDate, status, favorite, onFavoriteToggle }: ApplicationProps) {
 
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(favorite);
 
   async function favoriteApplication() {
     const newValue = !liked;
