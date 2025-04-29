@@ -1,4 +1,5 @@
 import api from '../services/api';
+import apiJobs from '../services/apiJobs';
 
 type ChangePasswordResponse = {
     success: boolean;
@@ -121,7 +122,7 @@ export const useApi = () => ({
         const headers = {
             Authorization: `Bearer ${token}`,
         };
-        const res: any = await api.post('/job',  JobData , { headers });
+        const res: any = await api.post('/job', JobData, { headers });
         return res.data;
     },
 
@@ -234,11 +235,22 @@ export const useApi = () => ({
             oldPassword,
             password,
             confirmNewPassword,
-        }, { headers: {
-            Authorization: `Bearer ${token}`,
-        },}
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
         );
 
         return res.data;
+    },
+
+    updateFavorite: async (id: string, favorite: boolean) => {
+        try {
+            const response = await api.patch(`/candidacy/${id}`, { favorite });
+            return response.data;
+        } catch (error) {
+            throw new Error('Erro ao atualizar favorito');
+        }
     },
 });

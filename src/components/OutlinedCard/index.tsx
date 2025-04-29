@@ -3,6 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 import { useState } from "react";
+import { useApi } from '../../hooks/useApi';
 
 import starImage from '../../assets/imgs/kid_star.svg';
 import favoriteImage from '../../assets/imgs/kid_star_filled.svg';
@@ -30,6 +31,8 @@ interface ApplicationProps {
   onFavoriteToggle: () => void;
 }
 
+const api = useApi();
+
 export default function OutlinedCard({ id, image, enterprise, position, applicationDate, closingDate, status, favorite, onFavoriteToggle }: ApplicationProps) {
 
   const [liked, setLiked] = useState(favorite);
@@ -37,22 +40,10 @@ export default function OutlinedCard({ id, image, enterprise, position, applicat
   async function favoriteApplication() {
     const newValue = !liked;
     setLiked(newValue);
-
+  
     try {
-      const response = await fetch(`http://localhost:8000/candidacy/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ favorite: newValue }),
-
-      });
-      if (!response.ok) {
-        throw new Error('Erro ao atualizar favorito');
-      }
-
+      await api.updateFavorite(id, newValue);
       onFavoriteToggle();
-
     } catch (error) {
       console.error('Erro ao atualizar favorito:', error);
       setLiked(!newValue);
