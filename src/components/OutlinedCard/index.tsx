@@ -82,16 +82,22 @@ export default function OutlinedCard({ id, image, enterprise, position, applicat
               </div>
             </Information>
             <Favorite>
-              <img
-
-
-                src={favorite === false ? starImage : favoriteImage}
-                alt="estrela"
-                title={favorite === true ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-                width="100%"
+              <button
                 onClick={favoriteApplication}
-                style={{ cursor: 'pointer' }}
-              />
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    favoriteApplication();
+                  }
+                }}
+                title={favorite === true ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+              >
+                <img
+                  src={favorite === false ? starImage : favoriteImage}
+                  alt="estrela"
+                  width="100%"
+                />
+              </button>
             </Favorite>
           </Container>
 
