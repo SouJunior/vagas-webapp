@@ -39,7 +39,7 @@ const NavRoutes: React.FC = () => {
                     <Route path="job/selected/:id" element={<JobSelected />} />
                 </Route>
 
-                <Route element={<MyApplications />}>
+                <Route element={<LoginLayout />}>
                     <Route path="/login" element={<Login />} />
                 </Route>
 
@@ -56,9 +56,9 @@ const NavRoutes: React.FC = () => {
                 <Route
                     path="company-portal"
                     element={
-                        // <RequireAuth>
+                        <RequireAuth>
                             <CompanyPortal />
-                        //  </RequireAuth>
+                        </RequireAuth>
                     }
                 />
                 <Route path="/candidate-portal/job" element={<FeedJobs />} />
@@ -71,9 +71,9 @@ const NavRoutes: React.FC = () => {
                 <Route
                     path="candidate-portal"
                     element={
-                        // <RequireAuth>
+                        <RequireAuth>
                             <CandidatePortal />
-                        // </RequireAuth>
+                        </RequireAuth>
                     }
                 />
 
@@ -81,9 +81,9 @@ const NavRoutes: React.FC = () => {
                 <Route
                     path="candidate-settings"
                     element={
-                        // <RequireAuth>
+                        <RequireAuth>
                             <CandidateSettings />
-                        // </RequireAuth>
+                        </RequireAuth>
                     }
                 />
 
