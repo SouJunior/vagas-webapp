@@ -102,7 +102,7 @@ export default function BasicTabs() {
 
       <CustomTabPanel value={value} index={0}>
         <ContainerCards>
-          {vagasAtivas && vagasAtivas.map((vaga) => (
+          {vagasAtivas?.map((vaga) => (
             <OutlinedCard
               key={vaga.id}
               id={vaga.id}
@@ -122,7 +122,7 @@ export default function BasicTabs() {
 
       <CustomTabPanel value={value} index={1}>
         <ContainerCards>
-          {vagasFechadas && vagasFechadas.map((vaga) => (
+          {vagasFechadas?.map((vaga) => (
             <OutlinedCard
               key={vaga.id}
               id={vaga.id}
