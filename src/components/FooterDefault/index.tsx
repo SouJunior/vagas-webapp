@@ -1,7 +1,6 @@
 import ScrollToTopButton from '../ScrollToTopButton';
 import SocialLinks from '../SocialLinks';
 import * as S from './styles';
-import forkme from '../../assets/imgs/fork-me.png';
 
 const FooterDefault = () => {
     return (
@@ -25,7 +24,7 @@ const FooterDefault = () => {
                         rel="noreferrer"
                         target="_blank"
                     >
-                        <img src={forkme} alt='fork me on github logo' width="100px" height="29px"/>
+                        <img src="/assets/fork-me.png" alt='fork me on github logo' width="100px" height="29px"/>
                     </a>
                 </div>
                 <div>
@@ -91,7 +90,7 @@ const FooterDefault = () => {
                         rel="noreferrer"
                         target="_blank"
                     >
-                        <img src={forkme} alt='fork me on github logo' width="100px" height="29px"/>
+                        <img src="/assets/fork-me.png" alt='fork me on github logo' width="100px" height="29px"/>
                     </a>
                 </div>
             </div>

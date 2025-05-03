@@ -8,8 +8,6 @@ import {
     LinkedInIcon,
     TelegramIcon,
 } from './styles';
-import LogoImageBlue from '../../../assets/imgs/logo-icon-name-h.svg';
-import forkme from '../../../assets/imgs/fork-me.png';
 
 const Index = () => {
     const handleScrollToTop = () => {
@@ -33,7 +31,7 @@ const Index = () => {
                         tabIndex={0}
                     >
                         <img
-                            src={LogoImageBlue}
+                            src="/assets/logo-icon-name-h.svg"
                             width="194px"
                             height="29px"
                             alt="logo"
@@ -55,7 +53,7 @@ const Index = () => {
                         rel="noreferrer"
                         target="_blank"
                     >
-                        <img src={forkme} alt='fork me on github logo' width="100px" height="29px"/>
+                        <img src="/assets/fork-me.png" alt='fork me on github logo' width="100px" height="29px"/>
                     </a>
                 </div>
                 <div>
@@ -113,7 +111,7 @@ const Index = () => {
                         tabIndex={0}
                     >
                         <img
-                            src={LogoImageBlue}
+                            src="/assets/logo-icon-name-h.svg"
                             width="194px"
                             height="29px"
                             alt="logo"
@@ -232,7 +230,7 @@ const Index = () => {
                         rel="noreferrer"
                         target="_blank"
                     >
-                        <img src={forkme} alt='fork me on github logo' width="100px" height="29px"/>
+                        <img src="/assets/fork-me.png" alt='fork me on github logo' width="100px" height="29px"/>
                     </a>
                 </div>
             </div>

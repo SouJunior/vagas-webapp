@@ -14,7 +14,6 @@ import {
     RiArrowDropDownLine as ArrowDropdown,
     RiInformationLine,
 } from 'react-icons/ri';
-import logoNameEmpresa from '../assets/imgs/logo-name-empresa.svg';
 import Tiptap from '../components/Tiptap';
 
 export interface JobData {
@@ -115,7 +114,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
             <main className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-[6.1875rem] w-full max-w-[74.5625rem] mx-auto border-b mb-0.5">
                 <div className="col-span-full">
                     <img
-                        src={logoNameEmpresa}
+                        src="/assets/logo-name-empresa.svg"
                         alt="Logo SouJunior Empresa"
                         className="mx-auto my-4 w-[315px]"
                     />

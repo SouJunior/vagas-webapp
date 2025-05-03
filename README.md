@@ -47,9 +47,9 @@ Instale as dependências
 
 Configurar as variaveis de ambiente:
 
-REACT_APP_GOOGLE_ANALYTICS_KEY= # GA do SouJunior
-REACT_APP_URL= # link do backend
-REACT_APP_URL_JOBS= # link da api de jobs
+VITE_APP_GOOGLE_ANALYTICS_KEY= # GA do SouJunior
+VITE_APP_URL= # link do backend
+VITE_APP_URL_JOBS= # link da api de jobs
 
 ## Rodando localmente ▶
 
@@ -58,6 +58,26 @@ Inicie o servidor
 ```bash
   yarn start
 ```
+
+### 🔧 API Fake (mock com json-server)
+
+Caso não queira depender do backend, você pode rodar uma API fake localmente usando o `json-server`. Para isso, execute o comando abaixo **em um terminal separado do `yarn start`**:
+
+```bash
+yarn fakeapi
+```
+
+Antes de rodar, certifique-se de que o arquivo `fake_api_db.json` exista e esteja no formato esperado pela API.  
+Você pode usá-lo como base copiando o arquivo `fake_api_db.example.json`.
+
+⚠️ **Importante:**  
+A API fake irá modificar o `fake_api_db.json` ao realizar requisições `POST`, `PUT`, etc.  
+Por esse motivo, esse arquivo está no `.gitignore` e **não deve ser versionado**.  
+Caso a estrutura da API original mude, atualize e commite apenas o `fake_api_db.example.json`.
+
+📚 Documentação do `json-server`:  
+https://www.npmjs.com/package/json-server/v/1.0.0-beta.3
+
 
 ## Usado por 🛰
 
@@ -78,6 +98,27 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 **Ambiente de desenvolvimento:**
 <img align="center" alt="Webpack badge" src="https://img.shields.io/badge/WEBPACK-2d7eee?style=for-the-badge&logo=webpack&logoColor=white">
 <img align="center" alt="Babel badge" src="https://img.shields.io/badge/babel-f5da55?style=for-the-badge&logo=babel&logoColor=white">
+
+## DevOps
+
+```mermaid
+sequenceDiagram
+    actor Dev as Desenvolvedores
+    participant Git as GitHub
+    participant Net as Netlify
+
+    Note over Dev,Net: Fluxo de Deploy com Preview
+
+    Dev->>Git: Abre Pull Request (PR) para main
+    Git->>Net: Novo Evento: PR criada
+    Net-->>Git: Deploy Preview criado
+    
+    Note over Dev,Net: Loop de desenvolvimento
+    
+    Dev->>Git: Aprova e mergeia PR para main
+    Git->>Net: Novo Evento: Branch main atualizada
+    Net-->>Git: Deploy de Produção atualizado
+```
 
 ## Relacionados ⚡
 

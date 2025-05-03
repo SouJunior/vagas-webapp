@@ -2,7 +2,6 @@ import { HTMLAttributes } from 'react';
 import { RiArrowLeftLine as ArrowLeftIcon } from 'react-icons/ri';
 import { Link, To } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import logoIconName from '../assets/imgs/logo-icon-name-h.svg';
 import Hamburger from 'hamburger-react';
 import { MainHeader } from '../pages/styles/Main.styled';
 import { Menu, MobileHeader } from './HeaderDefault/styles';
@@ -65,7 +64,7 @@ export default function Header({ backTo, pageName, ...props }: HeaderProps) {
                 <div className="main">
                     <img
                         width={198}
-                        src={logoIconName}
+                        src="/assets/logo-icon-name-h.svg"
                         alt="Logotipo-estendida-com-ícone-da-SouJunior"
                     />
                     <span className="h-1 w-1 mx-3 bg-gray-dark rounded-full" />

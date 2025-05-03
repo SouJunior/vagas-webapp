@@ -14,7 +14,6 @@ import {
     LoadingBar, 
     ProgressBar
 } from './styles';
-import ProfileDefault from '../../assets/imgs/profile-image.svg';
 import { useApi } from '../../hooks/useApi';
 
 interface Props {
@@ -68,7 +67,7 @@ function EndJobModal({ title, onClose, id }: Props) {
                 ) : (
                     <ModalRow>
                         <ModalColumn>
-                            <img src={ProfileDefault} />
+                            <img src="/assets/profile-image.svg" />
                         </ModalColumn>
                         <ModalColumn>
                             <h2>Qual o motivo de encerramento da vaga?</h2>

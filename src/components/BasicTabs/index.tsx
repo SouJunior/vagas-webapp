@@ -5,6 +5,13 @@ import Box from '@mui/material/Box';
 import CircleGreen from '../../assets/imgs/circle-application-green.svg';
 import CircleRed from '../../assets/imgs/circle-application-red.svg';
 import OutlinedCard from '../OutlinedCard';
+import { useEffect, useState } from 'react';
+
+import { useApi } from '../../hooks/useApi';
+
+import {
+  ContainerCards
+} from './styles';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -42,37 +49,95 @@ export default function BasicTabs() {
     setValue(newValue);
   };
 
-  const activeCount = 1; 
-  const closedCount = 1; 
+
+  const api = useApi();
+  const [results, setResults] = useState([]);
+  const [vagasFechadas, setVagasFechadas] = useState([]);
+  const [vagasAtivas, setVagasAtivas] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await api.getApplications();
+      setResults(response);
+
+      const fechadas = response.filter(vaga => vaga.status === 'closed');
+      const abertas = response.filter(vaga => vaga.status === 'active');
+
+      setVagasFechadas(fechadas);
+      setVagasAtivas(abertas);
+    } catch (error) {
+      console.error('Erro ao buscar os dados:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const activeCount = vagasAtivas.length;
+  const closedCount = vagasFechadas.length;
 
   return (
     <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '80%' }}>
         <Tabs centered value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab 
-            style={{ fontFamily: 'Radio Canada', color: '#101828' }} 
+          <Tab
+            style={{ fontFamily: 'Radio Canada', color: '#101828' }}
             label={
               <Box sx={{ display: 'flex', fontSize: '16px' }}>
                 <img src={CircleGreen} alt="Circle Green" style={{ width: '12px', marginRight: '8px' }} />
                 {`Ativas (${activeCount})`}
               </Box>
             } {...a11yProps(0)} />
-          <Tab 
-            style={{ fontFamily: 'Radio Canada' }} 
+          <Tab
+            style={{ fontFamily: 'Radio Canada' }}
             label={
-              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '16px'}}>
+              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '16px' }}>
                 <img src={CircleRed} alt="Circle Red" style={{ width: '12px', marginRight: '8px' }} />
                 {`Encerradas (${closedCount})`}
               </Box>
             } {...a11yProps(1)} />
         </Tabs>
       </Box>
+
       <CustomTabPanel value={value} index={0}>
-        <OutlinedCard />
+        <ContainerCards>
+          {vagasAtivas?.map((vaga) => (
+            <OutlinedCard
+              key={vaga.id}
+              id={vaga.id}
+              image={vaga.image}
+              enterprise={vaga.enterprise}
+              position={vaga.position}
+              applicationDate={vaga.applicationDate}
+              closingDate={vaga.closingDate}
+              status={vaga.status}
+              favorite={vaga.favorite}
+              onFavoriteToggle={fetchData}
+            />
+          ))}
+        </ContainerCards>
       </CustomTabPanel>
+
+
       <CustomTabPanel value={value} index={1}>
-        <OutlinedCard />
+        <ContainerCards>
+          {vagasFechadas?.map((vaga) => (
+            <OutlinedCard
+              key={vaga.id}
+              id={vaga.id}
+              image={vaga.image}
+              enterprise={vaga.enterprise}
+              position={vaga.position}
+              applicationDate={vaga.applicationDate}
+              closingDate={vaga.closingDate}
+              status={vaga.status}
+              favorite={vaga.favorite}
+              onFavoriteToggle={fetchData}
+            />
+          ))}
+        </ContainerCards>
       </CustomTabPanel>
-    </Box>
+    </Box >
   );
 }

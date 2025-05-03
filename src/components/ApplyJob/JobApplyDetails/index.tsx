@@ -1,5 +1,4 @@
 import { JobApplyDetailsContainer } from './styles';
-import ProfileDefault from '../../../assets/imgs/profile-image.svg';
 import {
     CompanyInfo,
     CompanyLogoImg,
@@ -28,8 +27,8 @@ const JobApplyDetails = ({ Job, isLoading }: any) => {
 
                     <CompanyInfo>
                         <CompanyLogoImg>
-                            {ProfileDefault === null ? (
-                                <img src={ProfileDefault} alt="Default" />
+                            {Job?.company?.profile === null ? (
+                                <img src="/assets/imgs/profile-image.svg" alt="Default" />
                             ) : (
                                 <img
                                     src={Job?.company?.profile}

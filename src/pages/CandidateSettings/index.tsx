@@ -1,4 +1,3 @@
-import profilePicture from '../../assets/imgs/profile-image.svg';
 import trashPicture from '../../assets/imgs/trash.svg';
 import {
     Container,
@@ -30,10 +29,14 @@ import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
-import InputMask from 'react-input-mask';
 import { ProfileImg } from '../styles/CompanyPortalStyles';
 import Header from '../../components/Portal/Header';
 import Footer from '../../components/Portal/Footer';
+
+// solução temporária para evitar problema na pipeline.
+// precisará ser trocado pela lib https://www.npmjs.com/package/@react-input/mask que é mais atualizada
+// @ts-ignore
+import InputMask from 'react-input-mask';
 
 export const CandidateSettings: React.FC = () => {
     const HandleOptionsRender = (arr: any): [] => {
@@ -261,7 +264,7 @@ export const CandidateSettings: React.FC = () => {
                     <ProfileImg
                         src={
                             imagePreview ||
-                            (auth.user.profile ?? profilePicture)
+                            (auth.user.profile ?? "/assets/profile-image.svg")
                         }
                         alt="Foto de perfil"
                         width={'138px'}
