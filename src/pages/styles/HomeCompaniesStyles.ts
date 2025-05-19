@@ -98,7 +98,7 @@ export const HireTitle = styled.h1`
 `;
 
 export const HireDescription = styled.p`
-    font-weight: 400px;
+    font-weight: 400;
     color: #082e54;
     max-width: 520px;
     font-size: 2rem;
