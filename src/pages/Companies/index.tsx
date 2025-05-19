@@ -21,13 +21,13 @@ export default function Companies() {
                 <Container>
                     <HeaderWrapper>
                         <img src={Logo} alt="Sou Junior empresas" />
-                        <nav>
+                        <nav aria-label="navegação principal">
                             <HeaderNavigation>
                                 <ListItem>
-                                    <a href="">Home</a>
+                                    <a href="/">Home</a>
                                 </ListItem>
                                 <ListItem>
-                                    <a href="">Sobre nós</a>
+                                    <a href="#">Sobre nós</a>
                                 </ListItem>
                             </HeaderNavigation>
                         </nav>{' '}
@@ -38,15 +38,22 @@ export default function Companies() {
             <HireJuniorsSection>
                 <Container>
                     <HireSectionWrapper>
-                        <HireTitle>Contrate Juniores!</HireTitle>
-                        <HireDescription>
-                            Encontre talentos iniciantes prontos para crescer
-                            com sua empresa.
-                        </HireDescription>
+                        <div>
+                            <HireTitle>Contrate Juniores!</HireTitle>
+                            <HireDescription>
+                                Encontre talentos iniciantes prontos para
+                                crescer com sua empresa.
+                            </HireDescription>
 
-                        <ButtonRegister>Cadastre sua empresa</ButtonRegister>
+                            <ButtonRegister>
+                                Cadastre sua empresa
+                            </ButtonRegister>
+                        </div>
 
-                        <Image src={HireImage} />
+                        <Image
+                            src={HireImage}
+                            alt="Ilustração da seção de contratação"
+                        />
                     </HireSectionWrapper>
                 </Container>
             </HireJuniorsSection>
