@@ -3,10 +3,19 @@ import { Button } from '../../components/HeaderDefault/components/JobFilter/styl
 import devices from '../styles/devices';
 
 import imageBackground from '../../assets/imgs/background-companies.png';
+import { style } from '@mui/system';
+
+const font = 'Radio Canada';
 
 export const Container = styled.div`
     max-width: 1400px;
     margin: 0 auto;
+
+    padding-inline: 70px;
+
+    @media ${devices.mobileL} {
+        padding-inline: 16px;
+    }
 `;
 
 export const Header = styled.header``;
@@ -15,7 +24,7 @@ export const HeaderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 70px;
+    padding: 25px 0px;
 
     img {
         max-width: 204px;
@@ -40,7 +49,7 @@ export const HeaderNavigation = styled.ul`
 export const ListItem = styled.li`
     list-style: none;
     color: #082e54;
-    font-family: 'Radio Canada';
+    font-family: ${font};
 
     a {
         font-weight: bold;
@@ -70,8 +79,6 @@ export const HireSectionWrapper = styled.section`
 
     height: 623px;
 
-    padding-inline: 70px;
-
     @media ${devices.mobileL} {
         flex-direction: column-reverse;
         justify-content: flex-end;
@@ -89,7 +96,7 @@ export const HireTitle = styled.h1`
     font-weight: 700;
     font-size: 2.25rem;
     color: #082e54;
-    font-family: 'Radio Canada';
+    font-family: ${font};
 
     @media ${devices.mobileL} {
         font-size: 1.5rem;
@@ -102,7 +109,7 @@ export const HireDescription = styled.p`
     color: #082e54;
     max-width: 520px;
     font-size: 2rem;
-    font-family: 'Radio Canada';
+    font-family: ${font};
 
     margin-top: 11px;
 
@@ -125,7 +132,7 @@ export const ButtonRegister = styled(Button)`
     border-radius: 10px;
 
     margin-top: 58px;
-    font-family: 'Radio Canada';
+    font-family: ${font};
     font-weight: 700;
     font-size: 1.5rem;
     letter-spacing: 1px;
@@ -144,5 +151,85 @@ export const Image = styled.img`
         max-width: 358px;
         max-height: 257px;
         margin-bottom: 10px;
+    }
+`;
+
+export const Subtitle = styled(HireTitle)`
+    margin-top: 92px;
+    text-align: center;
+    color: #082e54;
+`;
+
+export const Explanation = styled.p`
+    font-family: ${font};
+    margin-top: 24px;
+    color: #082e54;
+    margin-bottom: 59px;
+
+    @media ${devices.mobileL} {
+        text-align: center;
+    }
+`;
+
+export const CardsWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 79px;
+
+    @media ${devices.mobileL} {
+        grid-template-columns: 1fr;
+        margin-bottom: 32px;
+        gap: 25px;
+    }
+`;
+
+export const Call = styled.p`
+    color: #082e54;
+    font-family: ${font};
+
+    margin-bottom: 78px;
+
+    @media ${devices.mobileL} {
+        padding-inline: 16px;
+        font-size: 0.9rem;
+    }
+`;
+
+export const ContentWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 0px 53px 0px;
+
+    @media ${devices.mobileL} {
+        flex-direction: column;
+    }
+`;
+
+export const LinksWrapper = styled.div`
+    display: flex;
+    gap: 102px;
+
+    @media ${devices.mobileL} {
+        flex-direction: column;
+        gap: 25px;
+    }
+`;
+
+export const LinkHeading = styled.h4`
+    color: #046ad0;
+    font-family: ${font};
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+`;
+
+export const Links = styled.ul`
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 158px;
+    gap: 16px;
+    a:hover {
+        text-decoration: underline;
     }
 `;
