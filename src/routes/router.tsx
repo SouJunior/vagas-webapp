@@ -24,6 +24,7 @@ import MatchJobs from '../pages/MatchJobs';
 import ChangePassword from '../pages/ChangePassword';
 import JobSelected from '../pages/JobSelected';
 import MyApplications from '../pages/MyApplications';
+import Companies from '../pages/Companies';
 
 const NavRoutes: React.FC = () => {
     ReactGA.initialize(`${import.meta.env.VITE_APP_GOOGLE_ANALYTICS_KEY}`);
@@ -145,6 +146,8 @@ const NavRoutes: React.FC = () => {
                         </RequireAuth>
                     }
                 />
+
+                <Route path="companies" element={<Companies />} />
 
                 <Route path="report/:id" element={<Report />} />
                 <Route path="*" element={<ErrorPage />} />
