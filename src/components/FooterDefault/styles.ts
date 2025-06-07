@@ -7,61 +7,62 @@ import { FaCodeFork } from 'react-icons/fa6';
 import { SiTiktok } from 'react-icons/si';
 
 export const Footer = styled.footer`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 32px;
+    width: 100vw;
     background-color: white;
 
-    .mobile-wrapper {
-        display: none;
-    }
-
+    
     .desktop-wrapper {
         display: flex;
-        width: 90%;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-between;
-                    
+        gap: 24px; /* gap-6 = 24px */
+        padding: 24px; /* p-6 = 24px */
     }
 
+    @media (min-width: 768px) {
+    .desktop-wrapper {
+        flex-direction: row;
+    }
+    }
 
-    @media (max-width: 280px) {
+    @media (min-width: 1024px) {
+    .desktop-wrapper {
+        gap: 0px; 
+        padding: 32px;
+    }
+    }
+
+    .footer-links-container {
+        display: flex;
         flex-direction: column;
-        text-align: center;
-        align-items: center;
+        gap: 24px;
     }
 
-    @media (min-width: 281px) and (max-width: 639px) {
-        div:first-child {
-            width: 100%;
-            text-align: center;
-        }
-        
-        img {
-            display: inline;
-            cursor: pointer;
-        }
+    @media (min-width: 768px) {
+    .footer-links-container {
+        flex-direction: row;
+        gap: 40px;
+    }
     }
 
-    @media (min-width: 640px) and (max-width: 990px) {
-        div:first-child {
-            width: 100%;
-            text-align: center;
-        }
-        
-        img {
-            display: inline;
-            cursor: pointer;
-        }
+    @media (min-width: 1024px) {
+    .footer-links-container {
+        gap: 80px;
+        justify-content: flex-end;
+    }
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
     }
 
     h3 {
         font-size: 18px;
-        font-weight: 700;
-        padding-bottom: 10px;
-        color: #046ad0;
+        font-weight: 500;
+        color: #338AFF;
     }
 
     li {
@@ -76,62 +77,12 @@ export const Footer = styled.footer`
         max-width: 300px;
     }
 
-    @media (max-width: 718px) {
-        .mobile-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            width: 80% !important;
-
-            h2 {
-                font-size: 1.5rem;
-                font-weight: 700;
-            }
-
-            small {
-                color: ${(props) => props.theme.colors.primary};
-                font-weight: 700;
-            }
-
-            .contacts {
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-
-                svg {
-                    color: #046ad0;
-                }
-            }
-        }
-
-        .desktop-wrapper {
-            display: none;
-        }
-
-        .about {
-            display: block;
-        }
-
-        .hashtag {
-            display: block;
-
-            h2 {
-                font-size: 1.8rem !important;
-                font-weight: 700;
-            }
-        }
-
-    }    
-
-    @media (max-width: 320px) {
-        position: relative;
-        bottom: 700px;
-    }
+    
 `;
 
 export const Grid = styled.ul`
     display: grid;
+    width: 140px;
     grid-template-columns: repeat(4, auto);
     column-width: 10px;
     gap: 10px;
