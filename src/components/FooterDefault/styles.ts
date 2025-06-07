@@ -9,7 +9,7 @@ export const Footer = styled.footer`
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 25px 0;
+    padding: 32px;
     background-color: white;
 
     .mobile-wrapper {
@@ -17,23 +17,14 @@ export const Footer = styled.footer`
     }
 
     .desktop-wrapper {
-        display: inline-flex;
+        display: flex;
         width: 90%;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
-        align-self: center;
-        align-items: flex-start;
-        gap: 50px;
+        justify-content: space-between;
+                    
     }
 
-    div:first-child {
-        align-self: center;
-    }
-
-    div:last-child{
-        align-self: center;
-    }
 
     @media (max-width: 280px) {
         flex-direction: column;

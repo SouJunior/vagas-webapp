@@ -16,7 +16,7 @@ const ScrollToTopButton = () => {
             onKeyDown={handleKeyPress}
             tabIndex={0}
         >
-            <img src="/assets/logo-icon-name-h.svg" width="194px" height="29px" alt="logo" />
+            <img src="/assets/logo-icon-name-h.svg" width="190px" height="29px" alt="logo" />
         </button>
     );
 };
