@@ -31,13 +31,13 @@ const SocialLinks = () => {
                     <S.YouTubeIcon />
                 </a>
             </li>
-            <li>
+              <li>
                 <a
-                    href="https://www.linkedin.com/company/soujunior/"
+                    href="https://www.tiktok.com/@soujuniortech/"
                     rel="noreferrer"
                     target="_blank"
                 >
-                    <S.LinkedInIcon />
+                    <S.TikTokIcon />
                 </a>
             </li>
             <li>
@@ -49,7 +49,15 @@ const SocialLinks = () => {
                     <S.GitHubIcon />
                 </a>
             </li>
-
+            <li>
+                <a
+                    href="https://www.linkedin.com/company/soujunior/"
+                    rel="noreferrer"
+                    target="_blank"
+                >
+                    <S.LinkedInIcon />
+                </a>
+            </li>
             <li>
                 <a
                     href="https://t.me/soujuniortech"

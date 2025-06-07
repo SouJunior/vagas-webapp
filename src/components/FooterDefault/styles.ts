@@ -4,6 +4,7 @@ import { RiInstagramFill } from 'react-icons/ri';
 import { BsYoutube, BsTelegram, BsGithub } from 'react-icons/bs';
 import { AiFillLinkedin } from 'react-icons/ai';
 import { FaCodeFork } from 'react-icons/fa6';
+import { SiTiktok } from 'react-icons/si';
 
 export const Footer = styled.footer`
     width: 100%;
@@ -131,7 +132,7 @@ export const Footer = styled.footer`
 
 export const Grid = styled.ul`
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(4, auto);
     column-width: 10px;
     gap: 10px;
 `;
@@ -149,6 +150,11 @@ export const YouTubeIcon = styled(BsYoutube)`
 export const GitHubIcon = styled(BsGithub)`
     width: 20px;
     height: 20px;
+`;
+
+export const TikTokIcon = styled(SiTiktok)`
+    width: 18px;
+    height: 18px;
 `;
 
 export const LinkedInIcon = styled(AiFillLinkedin)`

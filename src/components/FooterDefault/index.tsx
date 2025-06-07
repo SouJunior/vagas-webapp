@@ -56,11 +56,11 @@ const FooterDefault = () => {
                                 </a>
                                 <li>
                                     <a
-                                        href="https://blog.soujunior.tech/"
+                                        href=""
                                         rel="noreferrer"
                                         target="_blank"
                                     >
-                                        Blog da SouJunior
+                                        Indique uma vaga
                                     </a>
                                 </li>
                             </li>
@@ -77,6 +77,24 @@ const FooterDefault = () => {
                                 >
                                     SouJunior Labs
                                 </a>
+                                <li>
+                                    <a
+                                        href=""
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        SouJunior Talks
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://blog.soujunior.tech/"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+                                        Blog da SouJunior
+                                    </a>
+                                </li>
                             </li>
                         </ul>
                     </div>
