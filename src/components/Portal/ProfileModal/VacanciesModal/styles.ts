@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const MaskBackground = styled.div`
-    width: 100%;
-    height: 100%;
-    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,4 +97,4 @@ export const ModalCloseButton = styled.button`
         color: #fff;
         border-radius: 10px;
     }
-`;
+`

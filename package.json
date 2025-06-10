@@ -113,6 +113,9 @@
     "vite"
   ],
   "license": "GPL-3.0",
+  "overrides": {
+    "vite": "npm:rolldown-vite@latest"
+  },
   "private": true,
   "repository": {
     "type": "git",

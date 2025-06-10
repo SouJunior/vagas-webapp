@@ -257,7 +257,7 @@ export const useApi = () => ({
     getApplications: async () => {
         try {
             const response = await api.get('/candidacy');
-            return response.data.job;
+            return response.data;
         } catch (error) {
             console.error('Erro ao buscar os dados:', error);
         }

@@ -11,6 +11,8 @@ import DownArrowImage from '../../../assets/imgs/arrow-down.svg';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import StarIcon from '../../../assets/imgs/kid_star2.svg';
+
 
 const Menu = () => {
     const auth: any = useContext(AuthContext);
@@ -66,6 +68,16 @@ const Menu = () => {
                         </li>
                     )}
                     {/* <li 
+                        onClick={() => navigate('/saved-vacancies')}
+                        onKeyDown={handleKeyDown}
+                        tabIndex={0}
+                    >
+
+                        <img src={StarIcon} alt="vagas-salvas" />
+                        Vagas salvas
+                    </li>
+                    <Border />
+                    <li 
                         onClick={() => navigate('/my-applications')}
                         onKeyDown={handleKeyDown}
                         tabIndex={0}

@@ -41,7 +41,7 @@ const NavRoutes: React.FC = () => {
                     <Route path="job/selected/:id" element={<JobSelected />} />
                 </Route>
 
-                <Route element={<MyApplications />}>
+                <Route element={<LoginLayout />}>
                     <Route path="/login" element={<Login />} />
                 </Route>
 
@@ -51,6 +51,7 @@ const NavRoutes: React.FC = () => {
                     path="companyconfirmation"
                     element={<ConfirmRegister />}
                 />
+                <Route path="saved-vacancies" element={<SavedVacancies />} />
                 <Route path="my-applications" element={<MyApplications />} />
                 <Route path="recovery-password" element={<ResetPassword />} />
                 <Route path="change-password" element={<ChangePassword />} />
