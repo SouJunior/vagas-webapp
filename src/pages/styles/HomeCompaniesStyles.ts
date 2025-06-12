@@ -3,7 +3,6 @@ import { Button } from '../../components/HeaderDefault/components/JobFilter/styl
 import devices from '../styles/devices';
 
 import imageBackground from '../../assets/imgs/background-companies.png';
-import { style } from '@mui/system';
 
 const font = 'Radio Canada';
 
@@ -231,5 +230,73 @@ export const Links = styled.ul`
     gap: 16px;
     a:hover {
         text-decoration: underline;
+    }
+`;
+
+//seção carrossel
+
+export const SecaoCarrossel = styled.section`
+    background-color: #f1f8ff;
+    width: 100%;
+
+    height: 490px;
+    max-height: 490px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: relative;
+
+    @media ${devices.mobileL} {
+        overflow: hidden;
+    }
+`;
+
+export const CarrosselWrapper = styled.div`
+    overflow: hidden;
+`;
+
+export const CarrosselContainer = styled.div`
+    display: flex;
+    width: 1000px;
+`;
+
+export const CarrosselViewPort = styled.div``;
+
+export const ButtonNext = styled.button`
+    background-color: #046ad0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    z-index: 999;
+
+    &:disabled {
+        color: gray;
+    }
+`;
+
+export const CarrosselSlide = styled.div`
+    flex: 0 0 100%;
+    min-width: 0;
+`;
+export const slideGroup = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    img {
+        max-width: 90px;
+        max-height: 90px;
+    }
+
+    @media ${devices.mobileL} {
+        gap: 25px;
+        justify-content: space-evenly;
     }
 `;
