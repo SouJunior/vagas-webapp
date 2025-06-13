@@ -235,6 +235,20 @@ export const Links = styled.ul`
 
 //seção carrossel
 
+export const title = styled.h3`
+    font-weight: 700;
+    font-family: ${font};
+    font-size: 2rem;
+    color: #082e54;
+    text-align: center;
+    margin-bottom: 86px;
+    margin-top: 32px;
+
+    @media ${devices.mobileL} {
+        font-size: 1.5rem;
+    }
+`;
+
 export const SecaoCarrossel = styled.section`
     background-color: #f1f8ff;
     width: 100%;
@@ -243,8 +257,6 @@ export const SecaoCarrossel = styled.section`
     max-height: 490px;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;
 
     position: relative;
 
@@ -260,6 +272,10 @@ export const CarrosselWrapper = styled.div`
 export const CarrosselContainer = styled.div`
     display: flex;
     width: 1000px;
+
+    @media ${devices.mobileL} {
+        width: 400px;
+    }
 `;
 
 export const CarrosselViewPort = styled.div``;
@@ -273,7 +289,7 @@ export const ButtonNext = styled.button`
     font-weight: bold;
     position: absolute;
     right: 10px;
-    top: 45%;
+    top: 40%;
     z-index: 999;
 
     &:disabled {
@@ -296,7 +312,20 @@ export const slideGroup = styled.div`
     }
 
     @media ${devices.mobileL} {
-        gap: 25px;
+        gap: 45px;
         justify-content: space-evenly;
+
+        img {
+            max-width: 80px;
+            max-height: 80px;
+        }
     }
 `;
+
+export const WrapperCTA = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 37px;
+`;
+
+export const ButtonCTA = styled(ButtonRegister)``;

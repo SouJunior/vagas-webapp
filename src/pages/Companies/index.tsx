@@ -185,27 +185,43 @@ da empresa"
 
             <s.SecaoCarrossel>
                 <s.Container>
-                    <s.CarrosselWrapper>
-                        <s.ButtonNext
-                            onClick={scrollNext}
-                            disabled={currentSlideIndex === slides.length}
-                        >
-                            {'>'}
-                        </s.ButtonNext>
-                        <s.CarrosselViewPort ref={emblaRef}>
-                            <s.CarrosselContainer>
-                                {slides.map((group, index) => (
-                                    <s.CarrosselSlide key={index}>
-                                        <s.slideGroup>
-                                            {group.map((logo, idx) => (
-                                                <img src={logo.url} key={idx} />
-                                            ))}
-                                        </s.slideGroup>
-                                    </s.CarrosselSlide>
-                                ))}
-                            </s.CarrosselContainer>
-                        </s.CarrosselViewPort>
-                    </s.CarrosselWrapper>
+                    {slides.length > 0 ? (
+                        <>
+                            <s.title>Empresas parceiras</s.title>
+                            <s.CarrosselWrapper>
+                                <s.ButtonNext
+                                    onClick={scrollNext}
+                                    disabled={
+                                        currentSlideIndex === slides.length
+                                    }
+                                >
+                                    {'>'}
+                                </s.ButtonNext>
+                                <s.CarrosselViewPort ref={emblaRef}>
+                                    <s.CarrosselContainer>
+                                        {slides.map((group, index) => (
+                                            <s.CarrosselSlide key={index}>
+                                                <s.slideGroup>
+                                                    {group.map((logo, idx) => (
+                                                        <img
+                                                            src={logo.url}
+                                                            key={idx}
+                                                        />
+                                                    ))}
+                                                </s.slideGroup>
+                                            </s.CarrosselSlide>
+                                        ))}
+                                    </s.CarrosselContainer>
+                                </s.CarrosselViewPort>
+                            </s.CarrosselWrapper>
+
+                            <s.WrapperCTA>
+                                <s.ButtonCTA>Cadastre sua empresa</s.ButtonCTA>
+                            </s.WrapperCTA>
+                        </>
+                    ) : (
+                        <s.title>Seja um parceiro</s.title>
+                    )}
                 </s.Container>
             </s.SecaoCarrossel>
 
