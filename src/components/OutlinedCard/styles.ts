@@ -22,7 +22,7 @@ export const Image = styled.div`
     width: 90px;
     height: 90px;
     border-radius: 25px;
-    background-color: pink;
+    background-color: #086bcf;
     margin-right: 15px;
 
     img {

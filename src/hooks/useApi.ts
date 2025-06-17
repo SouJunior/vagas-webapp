@@ -228,17 +228,24 @@ export const useApi = () => ({
         return res.data;
     },
 
-    changePassword: async (oldPassword: string, password: string, confirmNewPassword: string): Promise<ChangePasswordResponse> => {
+    changePassword: async (
+        oldPassword: string,
+        password: string,
+        confirmNewPassword: string,
+    ): Promise<ChangePasswordResponse> => {
         const token = localStorage.getItem('authToken');
-        const res = await api.patch<ChangePasswordResponse>('/user/update_password', {
-            oldPassword,
-            password,
-            confirmNewPassword,
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`,
+        const res = await api.patch<ChangePasswordResponse>(
+            '/user/update_password',
+            {
+                oldPassword,
+                password,
+                confirmNewPassword,
             },
-        }
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            },
         );
 
         return res.data;
@@ -246,8 +253,18 @@ export const useApi = () => ({
 
     getApplications: async () => {
         try {
-            const response = await api.get('/candidacy');
-            return response.data;
+            const token = localStorage.getItem('authToken');
+            const response = await api.get('/candidacy', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (response.data) {
+                return response.data;
+            }
+            
+            return response;
         } catch (error) {
             console.error('Erro ao buscar os dados:', error);
         }
