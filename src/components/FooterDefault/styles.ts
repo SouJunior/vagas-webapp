@@ -9,40 +9,36 @@ import { SiTiktok } from 'react-icons/si';
 export const Footer = styled.footer`
     width: 100vw;
     background-color: white;
-
     
     .desktop-wrapper {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-between;
-        gap: 24px; /* gap-6 = 24px */
-        padding: 24px; /* p-6 = 24px */
-    }
-
-    @media (min-width: 768px) {
-    .desktop-wrapper {
-        flex-direction: row;
-    }
+        margin: 24px 16px;
     }
 
     @media (min-width: 1024px) {
     .desktop-wrapper {
-        gap: 0px; 
-        padding: 32px;
-    }
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 24px 32px;    
+        }
     }
 
     .footer-links-container {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 32px;
+        margin: 24px 0px;
     }
 
     @media (min-width: 768px) {
     .footer-links-container {
+        justify-content: flex-end;
         flex-direction: row;
-        gap: 40px;
+        gap: 32px;
+        margin: 24px 16px 32px 16px;
     }
     }
 
@@ -58,6 +54,12 @@ export const Footer = styled.footer`
         flex-direction: column;
         gap: 12px;
     }
+    
+    .ul-footer-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        }
 
     h3 {
         font-size: 18px;
@@ -65,12 +67,13 @@ export const Footer = styled.footer`
         color: #338AFF;
     }
 
+
     li {
         list-style-type: none;
         font-size: 14px;
         line-height: 30px;
         margin: 0;
-        color: #4d4d4d;
+        color: #002C66;
         &:hover {
             color: #046ad0;
         }
@@ -85,7 +88,7 @@ export const Grid = styled.ul`
     width: 140px;
     grid-template-columns: repeat(4, auto);
     column-width: 10px;
-    gap: 10px;
+    gap: 12px;
 `;
 
 export const FacebookIcon = styled(TiSocialFacebook)`

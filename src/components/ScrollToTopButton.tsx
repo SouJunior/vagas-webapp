@@ -1,3 +1,5 @@
+import logoSouJunior from "../assets/imgs/Logotipo-SouJunior.svg"
+
 const ScrollToTopButton = () => {
     const handleScrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -16,7 +18,11 @@ const ScrollToTopButton = () => {
             onKeyDown={handleKeyPress}
             tabIndex={0}
         >
-            <img src="/assets/logo-icon-name-h.svg" className="w-40 lg:w-48"  alt="logo" />
+            <img 
+              src={logoSouJunior} 
+              className="w-48 lg:w-[248px]"  
+              alt="logo"
+            />
         </button>
     );
 };

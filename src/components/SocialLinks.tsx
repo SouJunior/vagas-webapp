@@ -1,7 +1,10 @@
 import * as S from './FooterDefault/styles';
 
+type SocialLinksProps = {
+  color: string;
+};
 
-const SocialLinks = () => {
+const SocialLinks = ({ color }: SocialLinksProps) => {
     return (
         <>
             <li>
@@ -9,6 +12,7 @@ const SocialLinks = () => {
                     href="https://www.facebook.com/people/SouJunior/100086671131030/"
                     rel="noreferrer"
                     target="_blank"
+                    className={`text-[${color}]`}
                 >
                     <S.FacebookIcon />
                 </a>
@@ -17,7 +21,8 @@ const SocialLinks = () => {
                 <a
                     href="https://www.instagram.com/soujunior.tech/"
                     rel="noreferrer"
-                    target="_blank"
+                    target="_blank"  
+                    className={`text-[${color}]`}
                 >
                     <S.InstagramIcon />
                 </a>
@@ -27,6 +32,7 @@ const SocialLinks = () => {
                     href="https://www.youtube.com/@soujuniortech"
                     rel="noreferrer"
                     target="_blank"
+                    className={`text-[${color}]`}
                 >
                     <S.YouTubeIcon />
                 </a>
@@ -36,6 +42,7 @@ const SocialLinks = () => {
                     href="https://www.tiktok.com/@soujuniortech/"
                     rel="noreferrer"
                     target="_blank"
+                    className={`text-[${color}]`}
                 >
                     <S.TikTokIcon />
                 </a>
@@ -45,6 +52,7 @@ const SocialLinks = () => {
                     href="https://github.com/SouJunior"
                     rel="noreferrer"
                     target="_blank"
+                    className={`text-[${color}]`}
                 >
                     <S.GitHubIcon />
                 </a>
@@ -54,6 +62,7 @@ const SocialLinks = () => {
                     href="https://www.linkedin.com/company/soujunior/"
                     rel="noreferrer"
                     target="_blank"
+                    className={`text-[${color}]`}
                 >
                     <S.LinkedInIcon />
                 </a>
@@ -63,6 +72,7 @@ const SocialLinks = () => {
                     href="https://t.me/soujuniortech"
                     rel="noreferrer"
                     target="_blank"
+                    className={`text-[${color}]`}
                 >
                     <S.TelegramIcon />
                 </a>
