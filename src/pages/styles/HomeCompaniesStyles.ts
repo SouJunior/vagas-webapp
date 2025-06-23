@@ -271,14 +271,16 @@ export const CarrosselWrapper = styled.div`
 
 export const CarrosselContainer = styled.div`
     display: flex;
-    width: 1000px;
+    width: max-content;
 
     @media ${devices.mobileL} {
         width: 400px;
     }
 `;
 
-export const CarrosselViewPort = styled.div``;
+export const CarrosselViewPort = styled.div`
+    overflow: hidden;
+`;
 
 export const ButtonNext = styled.button`
     background-color: #046ad0;
@@ -294,6 +296,7 @@ export const ButtonNext = styled.button`
 
     &:disabled {
         color: gray;
+        pointer-events: none;
     }
 `;
 
@@ -307,8 +310,9 @@ export const slideGroup = styled.div`
     gap: 1rem;
 
     img {
-        max-width: 90px;
-        max-height: 90px;
+        width: 90px;
+        height: auto;
+        object-fit: contain;
     }
 
     @media ${devices.mobileL} {

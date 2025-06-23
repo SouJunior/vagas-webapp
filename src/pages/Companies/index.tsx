@@ -22,7 +22,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 
 export default function Companies() {
     const [emblaRef, emblaApi] = useEmblaCarousel();
-    const [currentSlideIndex, setCurrentSlideIndex] = React.useState(1);
+    const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
 
     const parceiras = [
         {
@@ -67,12 +67,12 @@ export default function Companies() {
         return result;
     };
 
-    const slides = chunkArray(parceiras, 5);
+    const slides = React.useMemo(() => chunkArray(parceiras, 5), []);
 
     const scrollNext = React.useCallback(() => {
-        if (currentSlideIndex < slides.length) {
+        if (emblaApi && emblaApi.canScrollNext()) {
+            emblaApi.scrollNext();
             setCurrentSlideIndex((prev) => prev + 1);
-            emblaApi?.scrollNext();
         }
     }, [currentSlideIndex, slides.length, emblaApi]);
 
@@ -194,6 +194,7 @@ da empresa"
                                     disabled={
                                         currentSlideIndex === slides.length
                                     }
+                                    aria-label="Próximo slide"
                                 >
                                     {'>'}
                                 </s.ButtonNext>
@@ -206,6 +207,9 @@ da empresa"
                                                         <img
                                                             src={logo.url}
                                                             key={idx}
+                                                            alt={`logo da empresa parceira ${
+                                                                idx + 1
+                                                            }`}
                                                         />
                                                     ))}
                                                 </s.slideGroup>
