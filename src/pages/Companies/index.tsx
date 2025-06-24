@@ -1,3 +1,4 @@
+import React from 'react';
 import * as s from '../styles/HomeCompaniesStyles';
 
 import Logo from '../../assets/imgs/soujunior-empresas.png';
@@ -11,7 +12,70 @@ import { Card } from './components/Card';
 
 import * as I from './components/Icons';
 
+import logoClaro from './assets/empresas-parceiras/Logo-claro.png';
+import logoCoca from './assets/empresas-parceiras/Logo-Coca.png';
+import logoGlobo from './assets/empresas-parceiras/Logo-Globo.png';
+import logoHp from './assets/empresas-parceiras/Logo-HP.png';
+import logoPositivo from './assets/empresas-parceiras/Logo-Positivo.png';
+
+import useEmblaCarousel from 'embla-carousel-react';
+
 export default function Companies() {
+    const [emblaRef, emblaApi] = useEmblaCarousel();
+    const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
+
+    const parceiras = [
+        {
+            url: logoClaro,
+        },
+        {
+            url: logoCoca,
+        },
+        {
+            url: logoHp,
+        },
+        {
+            url: logoGlobo,
+        },
+        {
+            url: logoPositivo,
+        },
+        {
+            url: logoClaro,
+        },
+        {
+            url: logoCoca,
+        },
+        {
+            url: logoHp,
+        },
+        {
+            url: logoGlobo,
+        },
+        {
+            url: logoPositivo,
+        },
+    ] as const;
+
+    type arrType = typeof parceiras;
+
+    const chunkArray = (arr: arrType, size: number) => {
+        const result = [];
+        for (let i = 0; i < arr.length; i += size) {
+            result.push(arr.slice(i, i + size));
+        }
+        return result;
+    };
+
+    const slides = React.useMemo(() => chunkArray(parceiras, 5), []);
+
+    const scrollNext = React.useCallback(() => {
+        if (emblaApi && emblaApi.canScrollNext()) {
+            emblaApi.scrollNext();
+            setCurrentSlideIndex((prev) => prev + 1);
+        }
+    }, [currentSlideIndex, slides.length, emblaApi]);
+
     return (
         <>
             <s.Header>
@@ -118,6 +182,52 @@ da empresa"
                     </s.Call>
                 </s.Container>
             </section>
+
+            <s.SecaoCarrossel>
+                <s.Container>
+                    {slides.length > 0 ? (
+                        <>
+                            <s.title>Empresas parceiras</s.title>
+                            <s.CarrosselWrapper>
+                                <s.ButtonNext
+                                    onClick={scrollNext}
+                                    disabled={
+                                        currentSlideIndex === slides.length - 1
+                                    }
+                                    aria-label="Próximo slide"
+                                >
+                                    {'>'}
+                                </s.ButtonNext>
+                                <s.CarrosselViewPort ref={emblaRef}>
+                                    <s.CarrosselContainer>
+                                        {slides.map((group, index) => (
+                                            <s.CarrosselSlide key={index}>
+                                                <s.slideGroup>
+                                                    {group.map((logo, idx) => (
+                                                        <img
+                                                            src={logo.url}
+                                                            key={idx}
+                                                            alt={`logo da empresa parceira ${
+                                                                idx + 1
+                                                            }`}
+                                                        />
+                                                    ))}
+                                                </s.slideGroup>
+                                            </s.CarrosselSlide>
+                                        ))}
+                                    </s.CarrosselContainer>
+                                </s.CarrosselViewPort>
+                            </s.CarrosselWrapper>
+
+                            <s.WrapperCTA>
+                                <s.ButtonCTA>Cadastre sua empresa</s.ButtonCTA>
+                            </s.WrapperCTA>
+                        </>
+                    ) : (
+                        <s.title>Seja um parceiro</s.title>
+                    )}
+                </s.Container>
+            </s.SecaoCarrossel>
 
             <footer>
                 <s.Container>
