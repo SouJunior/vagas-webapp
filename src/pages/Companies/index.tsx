@@ -192,7 +192,7 @@ da empresa"
                                 <s.ButtonNext
                                     onClick={scrollNext}
                                     disabled={
-                                        currentSlideIndex === slides.length
+                                        currentSlideIndex === slides.length - 1
                                     }
                                     aria-label="Próximo slide"
                                 >
