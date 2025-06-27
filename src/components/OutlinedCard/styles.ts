@@ -33,11 +33,6 @@ export const Image = styled.div`
     }
 `;
 
-export const Favorite = styled.div`
-    width: 32px;
-    height: 32px;
-`;
-
 export const ContainerStatus = styled.div`
     display: flex;
     justify-content: space-between;

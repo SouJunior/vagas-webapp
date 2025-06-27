@@ -2,17 +2,10 @@ import * as React from 'react';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-import { useState } from 'react';
-import { useApi } from '../../hooks/useApi';
-
-import starImage from '../../assets/imgs/kid_star.svg';
-import favoriteImage from '../../assets/imgs/kid_star_filled.svg';
-
 import {
     Image,
     Container,
     Information,
-    Favorite,
     ContainerStatus,
     Closed,
     InProgress,
@@ -27,8 +20,6 @@ interface ApplicationProps {
     applicationDate: string;
     closingDate: string;
     status: string;
-    favorite: boolean;
-    onFavoriteToggle: () => void;
 }
 
 export default function OutlinedCard({
@@ -38,25 +29,8 @@ export default function OutlinedCard({
     position,
     applicationDate,
     closingDate,
-    status,
-    favorite,
-    onFavoriteToggle,
+    status
 }: ApplicationProps) {
-    const api = useApi();
-    const [liked, setLiked] = useState(favorite);
-
-    async function favoriteApplication() {
-        const newValue = !liked;
-        setLiked(newValue);
-
-        try {
-            await api.updateFavorite(id, newValue);
-            onFavoriteToggle();
-        } catch (error) {
-            console.error('Erro ao atualizar favorito:', error);
-            setLiked(!newValue);
-        }
-    }
 
     return (
         <Card>
@@ -90,32 +64,6 @@ export default function OutlinedCard({
                                 </Typography>
                             </div>
                         </Information>
-                        <Favorite>
-                            <button
-                                onClick={favoriteApplication}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter' || e.key === ' ') {
-                                        e.preventDefault();
-                                        favoriteApplication();
-                                    }
-                                }}
-                                title={
-                                    favorite === true
-                                        ? 'Remover dos favoritos'
-                                        : 'Adicionar aos favoritos'
-                                }
-                            >
-                                <img
-                                    src={
-                                        favorite === false
-                                            ? starImage
-                                            : favoriteImage
-                                    }
-                                    alt="estrela"
-                                    width="100%"
-                                />
-                            </button>
-                        </Favorite>
                     </Container>
 
                     {status === 'em andamento' && (
