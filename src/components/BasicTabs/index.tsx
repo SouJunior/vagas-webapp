@@ -59,7 +59,6 @@ export default function BasicTabs() {
         jobDetails: any[],
     ) => {
         return applications.map((app) => {
-            console.log('teste', app);
             const detail = jobDetails.find((job) => job.id === app.jobId);
             return {
                 id: app.id,
@@ -70,7 +69,6 @@ export default function BasicTabs() {
                 applicationDate: app.dateCandidacy,
                 closingDate: app.dateClosing,
                 status: app.status,
-                favorite: app.favorite,
             };
         });
     };
@@ -111,8 +109,6 @@ export default function BasicTabs() {
                     jobDetails,
                 );
 
-                console.log('sasa', merged);
-
                 const fechadas = merged.filter(
                     (vaga) => vaga.status !== 'em andamento',
                 );
@@ -127,8 +123,6 @@ export default function BasicTabs() {
             console.error('Erro ao buscar os dados:', error);
         }
     };
-
-    console.log(jobDetails);
 
     useEffect(() => {
         fetchData();
@@ -213,8 +207,6 @@ export default function BasicTabs() {
                             applicationDate={vaga.applicationDate}
                             closingDate={vaga.closingDate}
                             status={vaga.status}
-                            favorite={vaga.favorite}
-                            onFavoriteToggle={fetchData}
                         />
                     ))}
                 </ContainerCards>
@@ -236,8 +228,6 @@ export default function BasicTabs() {
                             applicationDate={vaga.applicationDate}
                             closingDate={vaga.closingDate}
                             status={vaga.status}
-                            favorite={vaga.favorite}
-                            onFavoriteToggle={fetchData}
                         />
                     ))}
                 </ContainerCards>
