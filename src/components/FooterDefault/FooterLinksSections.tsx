@@ -20,7 +20,7 @@ const FooterLinksSection = ({
             <ul className="flex flex-col gap-3">
                 {links.map(({ label, to, disabled }) => (
                     <li
-                        key={label}
+                        key={`${to}-${label}`}
                         className={`list-none text-[14px] leading-[30px] m-0 text-[#002C66] hover:text-[#046ad0] max-w-[300px]
             ${disabled ? 'pointer-events-none opacity-50' : ''}`}
                     >
