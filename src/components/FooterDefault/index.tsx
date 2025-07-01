@@ -1,101 +1,37 @@
 import ScrollToTopButton from '../ScrollToTopButton';
 import SocialLinks from '../SocialLinks';
-import * as S from './styles';
+import FooterLinksSection from './FooterLinksSections';
+import { institutionalLinks } from './Links/institutionalLinks';
+import { channelLinks } from './Links/channelLinks';
 
-const FooterDefault = () => {
-    return (
-        <S.Footer>
-            <div className="mobile-wrapper">
-                <div>
-                    <ScrollToTopButton />
-                </div>
-                <div>
-                    <h2>#MovimentoSouJunior</h2>
-                </div>
-                <div>
-                    <p>
-                        A SouJunior ajuda você a encontrar um lugar de destaque
-                        para sua primeira experiência profissional!
-                    </p>
-                </div>
-                <div>
-                    <a 
-                        href="https://github.com/SouJunior/vagas-webapp"
-                        rel="noreferrer"
-                        target="_blank"
-                    >
-                        <img src="/assets/fork-me.png" alt='fork me on github logo' width="100px" height="29px"/>
-                    </a>
-                </div>
-                <div>
-                    <small>
-                        @ 2023 SouJunior Todos os direitos reservados.
-                    </small>
-                </div>
-                <ul className='contacts'>
+const FooterDefault = () => (
+    <footer className="w-full bg-white">
+        <div
+            className="flex flex-col flex-wrap justify-between my-6 mx-4
+                            lg:flex-row lg:mx-8"
+        >
+            <div style={{ cursor: 'pointer' }}>
+                <ScrollToTopButton />
+            </div>
+            <div
+                className=" flex flex-col gap-8 my-6 mx-0                     
+                                md:flex-row md:justify-end md:mt-6 md:mr-4 md:mb-8 md:ml-4
+                                lg:gap-20 "
+            >
+                <FooterLinksSection
+                    title="Institucional"
+                    links={institutionalLinks}
+                />
+                <FooterLinksSection
+                    title="Canais SouJunior"
+                    links={channelLinks}
+                />
+                <FooterLinksSection title="Redes Sociais">
                     <SocialLinks />
-                </ul>
+                </FooterLinksSection>
             </div>
-
-            <div className="desktop-wrapper">
-                <div style={{ cursor: 'pointer' }}>
-                    <ScrollToTopButton />
-                </div>
-                <div>
-                    <h3>Institucional</h3>
-                    <ul>
-                        <li>
-                            <a
-                                href="https://www.soujunior.tech/"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                Site SouJunior
-                            </a>
-                            <li>
-                                <a
-                                    href="https://blog.soujunior.tech/"
-                                    rel="noreferrer"
-                                    target="_blank"
-                                >
-                                    Blog da SouJunior
-                                </a>
-                            </li>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Canais SouJunior</h3>
-                    <ul>
-                        <li>
-                            <a
-                                href="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
-                                rel="noreferrer"
-                                target="_blank"
-                            >
-                                SouJunior Labs
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Redes sociais</h3>
-                    <S.Grid>
-                        <SocialLinks/>
-                    </S.Grid>
-                </div>
-                <div>
-                    <a 
-                        href="https://github.com/SouJunior/vagas-webapp"
-                        rel="noreferrer"
-                        target="_blank"
-                    >
-                        <img src="/assets/fork-me.png" alt='fork me on github logo' width="100px" height="29px"/>
-                    </a>
-                </div>
-            </div>
-        </S.Footer>
-    );
-};
+        </div>
+    </footer>
+);
 
 export default FooterDefault;
