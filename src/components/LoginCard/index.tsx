@@ -9,29 +9,23 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { Container, Card, LoginTypeButton, DivLogo } from './styles';
 
+enum UserType {
+    COMPANY = 'COMPANY',
+    USER = 'USER',
+}
+
 const LoginCard = () => {
-    const [user, setUser] = useState(true);
-    const [company, setCompany] = useState(false);
-
-    const userHandler = () => {
-        setUser(true);
-        setCompany(false);
-    };
-
-    const companyHandler = () => {
-        setCompany(true);
-        setUser(false);
-    };
+    const [loginType, setLoginType] = useState<UserType>(UserType.USER);
 
     return (
         <Container>
             <Card>
                 <LoginTypeButton>
-                    <button onClick={userHandler}>
+                    <button onClick={() => setLoginType(UserType.USER)}>
                         <img src={CandidatoIcon} alt="Candidato" />
                         Candidato
                     </button>
-                    <button onClick={companyHandler}>
+                    <button onClick={() => setLoginType(UserType.COMPANY)}>
                         <img src={EmpresaIcon} alt="Empresa" />
                         Empresa
                     </button>
@@ -40,9 +34,13 @@ const LoginCard = () => {
                     <LogoIcon />
                 </DivLogo>
 
-                {company && <CompanyForms type="COMPANY" />}
+                {loginType === UserType.COMPANY && (
+                    <CompanyForms type={UserType.COMPANY} />
+                )}
 
-                {user && <UserForms type="USER" />}
+                {loginType === UserType.USER && (
+                    <UserForms type={UserType.USER} />
+                )}
             </Card>
             <ToastContainer />
         </Container>
