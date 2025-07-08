@@ -1,53 +1,46 @@
 import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
-//import { CompanyForms } from './CompanyForms';
+import { CompanyForms } from './CompanyForms';
 import { UserForms } from './UserForms';
 import { LogoIcon } from '../LogoIcon';
-//import CandidatoIcon from '../../assets/imgs/Candidato-icone.svg';
-//import EmpresaIcon from '../../assets/imgs/Buildings-icone.svg';
+import CandidatoIcon from '../../assets/imgs/Candidato-icone.svg';
+import EmpresaIcon from '../../assets/imgs/Buildings-icone.svg';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Container, Card, LoginTypeButton, DivLogo } from './styles';
 
+enum UserType {
+    COMPANY = 'COMPANY',
+    USER = 'USER',
+}
+
 const LoginCard = () => {
-    const [user, setUser] = useState(true);
-    //const [company, setCompany] = useState(false);
-
-    // renderiza o form de login do usuário
-    
-    /*const userHandler = () => {
-        setUser(true);
-        setCompany(false);
-    };*/
-
-    // renderiza o form de login do candidato
-    /*const companyHandler = () => {
-        setCompany(true);
-        setUser(false);
-    };*/
+    const [loginType, setLoginType] = useState<UserType>(UserType.USER);
 
     return (
         <Container>
             <Card>
                 <LoginTypeButton>
-                    {/*<button onClick={userHandler}>
+                    <button onClick={() => setLoginType(UserType.USER)}>
                         <img src={CandidatoIcon} alt="Candidato" />
                         Candidato
-                     </button>*/}
-                    {/*<button onClick={companyHandler}>
+                    </button>
+                    <button onClick={() => setLoginType(UserType.COMPANY)}>
                         <img src={EmpresaIcon} alt="Empresa" />
                         Empresa
-                    </button>*/}
+                    </button>
                 </LoginTypeButton>
                 <DivLogo>
                     <LogoIcon />
                 </DivLogo>
 
-                {/* Envia tipo de usuário por parâmetro */}
+                {loginType === UserType.COMPANY && (
+                    <CompanyForms type={UserType.COMPANY} />
+                )}
 
-                {/*company && <CompanyForms type="COMPANY" />*/}
-
-                {user && <UserForms type="USER" />}
+                {loginType === UserType.USER && (
+                    <UserForms type={UserType.USER} />
+                )}
             </Card>
             <ToastContainer />
         </Container>
