@@ -14,8 +14,8 @@ import {
 
 interface ApplicationProps {
     id: string;
+    companyName: string;
     image: string;
-    enterprise: string;
     position: string;
     applicationDate: string;
     closingDate: string;
@@ -25,7 +25,7 @@ interface ApplicationProps {
 export default function OutlinedCard({
     id,
     image,
-    enterprise,
+    companyName,
     position,
     applicationDate,
     closingDate,
@@ -52,9 +52,7 @@ export default function OutlinedCard({
                                     component="div"
                                     sx={{ fontWeight: 600 }}
                                 >
-                                    {enterprise
-                                        ? enterprise
-                                        : 'Nome da empresa'}
+                                    {companyName}
                                 </Typography>
                                 <Typography
                                     color="rgba(62, 62, 62, 1)"
