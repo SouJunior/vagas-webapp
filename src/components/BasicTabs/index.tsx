@@ -8,6 +8,8 @@ import OutlinedCard from '../OutlinedCard';
 import { useEffect, useState } from 'react';
 import ProfileIcon from '../../assets/imgs/userIcon.svg';
 import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 import { useApi } from '../../hooks/useApi';
 
@@ -106,10 +108,10 @@ export default function BasicTabs() {
   };
 
   const api = useApi();
-  const [results, setResults] = useState<MergedVaga[]>([]);
   const [vagasFechadas, setVagasFechadas] = useState<MergedVaga[]>([]);
   const [vagasAtivas, setVagasAtivas] = useState<MergedVaga[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const mergeApplicationWithJobDetails = (
     applications: Application[],
@@ -163,6 +165,7 @@ export default function BasicTabs() {
   };
   const fetchData = async () => {
     setLoading(true);
+    setError(null);
     try {
       const response: ApiResponse = await api.getApplications();
 
@@ -181,6 +184,7 @@ export default function BasicTabs() {
       } else {
 
         console.error('Erro na API:', response.statusCode, response.message);
+        setError('Erro ao carregar suas candidaturas. Por favor, tente novamente.');
       }
     } catch (error) {
       console.error('Erro ao buscar os dados:', error);
@@ -210,6 +214,13 @@ export default function BasicTabs() {
         <Box sx={{ marginTop: 4 }}>
           <CircularProgress />
         </Box>
+      ) : error ? (
+        <Box sx={{ marginTop: 4, textAlign: 'center' }}>
+          +          <Typography color="error">{error}</Typography>
+          +          <Button onClick={fetchData} sx={{ mt: 2 }}>
+            +            Tentar novamente
+            +          </Button>
+          +        </Box>
       ) :
         (
           <>

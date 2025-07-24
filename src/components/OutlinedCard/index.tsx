@@ -42,7 +42,6 @@ export default function OutlinedCard({
                                 <img
                                     src={image}
                                     alt="Logo da empresa"
-                                    border-radius="10px"
                                 />
                             </Image>
 
