@@ -22,7 +22,7 @@ export const Image = styled.div`
     width: 90px;
     height: 90px;
     border-radius: 25px;
-    background-color: pink;
+    background-color: #086bcf;
     margin-right: 15px;
 
     img {
@@ -31,11 +31,6 @@ export const Image = styled.div`
         object-fit: cover;
         border-radius: 10px;
     }
-`;
-
-export const Favorite = styled.div`
-    width: 32px;
-    height: 32px;
 `;
 
 export const ContainerStatus = styled.div`

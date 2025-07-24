@@ -65,7 +65,7 @@ const Menu = () => {
                             Anunciar vagas
                         </li>
                     )}
-                    {/* <li 
+                    <li 
                         onClick={() => navigate('/my-applications')}
                         onKeyDown={handleKeyDown}
                         tabIndex={0}
@@ -74,7 +74,7 @@ const Menu = () => {
                         <img src={ApplicationIcon} alt="candidaturas" />
                         Minhas candidaturas
                     </li>
-                    <Border /> */}
+                    <Border />
                     <li
                         onClick={() => {
                             setVisible(!visible);
