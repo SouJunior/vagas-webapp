@@ -11,6 +11,7 @@ import logoFooter from '../../assets/imgs/Logo-blue-souJunior.svg';
 import { Card } from './components/Card';
 
 import * as I from './components/Icons';
+import FooterDefault from '../../components/FooterDefault';
 
 import logoClaro from './assets/empresas-parceiras/Logo-claro.png';
 import logoCoca from './assets/empresas-parceiras/Logo-Coca.png';
