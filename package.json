@@ -32,6 +32,7 @@
     "@tiptap/starter-kit": "^2.0.0-beta.206",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
+    "embla-carousel-react": "^8.6.0",
     "framer-motion": "^11.0.25",
     "fuse.js": "^6.6.2",
     "hamburger-react": "^2.5.0",
