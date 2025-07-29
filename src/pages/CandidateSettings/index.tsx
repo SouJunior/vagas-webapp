@@ -16,6 +16,7 @@ import {
 import { Position, Main, Row } from '../styles/CandidatePortalStyles';
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
+import { InputMask } from '@react-input/mask';
 import { Button } from '../../components/Button';
 import location from '../ProfileSettings/data/location';
 import { HandleInputsRenderCandidate } from './utils/handleInputsRenderCandidate';
@@ -32,11 +33,6 @@ import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateForm
 import { ProfileImg } from '../styles/CompanyPortalStyles';
 import Header from '../../components/Portal/Header';
 import Footer from '../../components/Portal/Footer';
-
-// solução temporária para evitar problema na pipeline.
-// precisará ser trocado pela lib https://www.npmjs.com/package/@react-input/mask que é mais atualizada
-// @ts-ignore
-import InputMask from 'react-input-mask';
 
 export const CandidateSettings: React.FC = () => {
     const HandleOptionsRender = (arr: any): [] => {
@@ -82,7 +78,7 @@ export const CandidateSettings: React.FC = () => {
             if (curriculums == null) {
                 return;
             }
-            
+
             if (curriculums[0]) {
                 const userCurriculum1 = curriculums[0];
                 setFileKey1(userCurriculum1.fileKey);
@@ -308,11 +304,11 @@ export const CandidateSettings: React.FC = () => {
                             <label>
                                 Telefone 1<Required>*</Required>
                                 <InputMask
-                                    mask={mask1}
-                                    maskChar=""
+                                    mask="(__) _____-____"
+                                    replacement={{ _: /\d/ }}
                                     defaultValue={auth.user.mainPhone}
-                                    type="tel"
                                     placeholder="(00) 00000-0000"
+                                    type="tel"
                                     {...register('phoneNumber1', {
                                         onChange: handlePhoneNumberChange1,
                                     })}
@@ -362,14 +358,14 @@ export const CandidateSettings: React.FC = () => {
                             <label>
                                 Telefone 2
                                 <InputMask
-                                    mask={mask2}
-                                    maskChar=""
-                                    type="tel"
+                                    mask="(__) _____-____"
+                                    replacement={{ _: /\d/ }}
                                     defaultValue={auth.user.phone}
+                                    placeholder="(00) 00000-0000"
+                                    type="tel"
                                     {...register('phoneNumber2', {
                                         onChange: handlePhoneNumberChange2,
                                     })}
-                                    placeholder="(00) 00000-0000"
                                 />
                             </label>
                         </InputWrapper>
