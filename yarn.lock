@@ -697,6 +697,18 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
+"@react-input/core@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@react-input/core/-/core-2.0.2.tgz#c7094c5ab955e740d4c34777688aff54785024a1"
+  integrity sha512-xLLBueYFbant9308uv3cIJQz5NYSixeGspjP3Nt6jogRHTcHYMRmlVFUuSzQiP8Z8/5BdnPkudRSsN0/AJ1fbw==
+
+"@react-input/mask@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@react-input/mask/-/mask-2.0.4.tgz#0a8df2694962ac10a76a329469d91f6ed01037b8"
+  integrity sha512-NOielvQSBOlGLVuEcxtkjaGneC0GJFXjC7KOF99ed9H9XSDruWnQirjht5uSbWqLeeiOup0VD2YjM+6FH+aWBg==
+  dependencies:
+    "@react-input/core" "^2.0.2"
+
 "@remirror/core-constants@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@remirror/core-constants/-/core-constants-3.0.0.tgz#96fdb89d25c62e7b6a5d08caf0ce5114370e3b8f"
@@ -1376,7 +1388,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-input-mask@^3.0.4":
+"@types/react-input-mask@^3.0.6":
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/@types/react-input-mask/-/react-input-mask-3.0.6.tgz#1bc7d625405b81c4b0c1c0bd4ccd4a1f4b199ce5"
   integrity sha512-+5I18WKyG3eWIj7TVPWfK1VitI9mPpS9y6jE/BfmTCe+iL27NfBw/yzKRvCFp1DRBvlvvcsiZf05bub0YC1k8A==

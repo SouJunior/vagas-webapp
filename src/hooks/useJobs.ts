@@ -58,10 +58,13 @@ const useJobs = () => {
         location: string,
     ) => {
         return jobs.filter((job) => {
-            const matchesSearchTerm = job.title
+            const title = job.title ?? '';
+            const jobLocation = job.location ?? '';
+
+            const matchesSearchTerm = title
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase());
-            const matchesLocation = job.location
+            const matchesLocation = jobLocation
                 .toLowerCase()
                 .includes(location.toLowerCase());
 
