@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 interface FeatureCardProps {
     title: string;
     description: string;
@@ -11,17 +13,19 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
     imgSrc,
     imgAlt,
 }) => {
+    const cardId = useId();
+    const titleId = `${cardId}-title`;
     return (
         <div
             className="flex flex-col items-center justify-center w-[21.875rem] py-1.5 px-4 bg-white rounded-[0.625rem] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10)]
                         md:max-w-[22.8125rem] md:h-32 lg:min-w-[27.6875rem]"
-            aria-labelledby="section-benefits"
+            aria-labelledby={titleId}
         >
             <ul className="flex flex-wrap gap-6">
                 <li
                     className="flex flex-col"
                     role="article"
-                    aria-labelledby="card-why"
+                    aria-labelledby={titleId}
                 >
                     <figure className="flex items-center h-auto">
                         <img
@@ -32,7 +36,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
                         />
                         <figcaption className="flex flex-col gap-1 ">
                             <h3
-                                id="card-why"
+                                id={titleId}
                                 className="text-blue-900 text-base font-medium leading-tight"
                             >
                                 {title}

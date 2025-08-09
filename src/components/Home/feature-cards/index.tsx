@@ -1,7 +1,7 @@
 import { FeatureCard } from './feature-card';
 import { featureCardsData } from './feature-cards-data';
 
-export const FeatureCards: React.FC = ({}) => {
+export const FeatureCards: React.FC = () => {
     return (
         <section
             className="w-full max-w-[90rem] flex flex-col p-4 gap-6 items-center 
