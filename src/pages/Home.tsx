@@ -46,6 +46,7 @@ import { TestimonialType } from '../@types/testimonial-type';
 import JourneySection from '../components/JourneySection/index';
 import useJobs from '../hooks/useJobs';
 import Loading from '../components/Loading';
+import { FeatureCards } from '../components/Home/feature-cards';
 
 export interface AreaProps {
     id: string;
@@ -74,14 +75,14 @@ export const Home: React.FC = () => {
                             Mais de {filteredJobsCount} vagas disponíveis para
                             você!
                         </JobsInfo>
-                        
+
                         <Image src={ImageHome}></Image>
                     </MainSearchFilter>
                 </MainContent>
                 <Circle src={circle} />
                 <CircleImage src={doubleCircles} />
             </Main>
-
+            <FeatureCards />
             <VocationalBannerArea>
                 <VocationalBannerContainer>
                     <VocationalTextContainer>
@@ -89,7 +90,7 @@ export const Home: React.FC = () => {
                             TESTE <br />
                             <span>VOCACIONAL</span>
                         </h1>
-                        <p className='mb-10'>
+                        <p className="mb-10">
                             <a
                                 href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
                                 target="_blank"

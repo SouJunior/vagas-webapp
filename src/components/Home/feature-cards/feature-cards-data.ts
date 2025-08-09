@@ -1,3 +1,6 @@
+import Search from '../../../assets/imgs/search_for_employees_online.svg';
+import SocialMedia from '../../../assets/imgs/liking_photos_on_social_media.svg';
+import Smartphone from '../../../assets/imgs/smartphone_with_online_support_chat.svg';
 export interface FeatureCard {
     title: string;
     description: string;
@@ -5,25 +8,25 @@ export interface FeatureCard {
     imgAlt: string;
 }
 
-export const homeFeatureCardsData: FeatureCard[] = [
+export const featureCardsData: FeatureCard[] = [
     {
         title: 'Porque contratar pela SJ?',
         description:
             'Conheça mais sobre os benefícios de contratar pelo nosso site.',
-        imgSrc: '../../../assets/imgs/search_for_employees_online.svg',
+        imgSrc: Search,
         imgAlt: 'Ícone representando contratação',
     },
     {
         title: 'Blog da SouJunior',
         description: 'Conheça nossos artigos e cresça cada vez mais.',
-        imgSrc: '../../../assets/imgs/liking_photos_on_social_media.svg',
+        imgSrc: SocialMedia,
         imgAlt: 'Ícone representando artigos e blog',
     },
     {
         title: 'Apoia-se',
         description:
             'Conheça nossa campanha de doação e nos ajude a financiar o projeto.',
-        imgSrc: '../../../assets/imgs/smartphone_with_online_support_chat.svg',
+        imgSrc: Smartphone,
         imgAlt: 'Ícone representando campanha de doação',
     },
 ];

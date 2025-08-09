@@ -1,16 +1,12 @@
 import { FeatureCard } from './feature-card';
+import { featureCardsData } from './feature-cards-data';
 
 export const FeatureCards: React.FC = ({}) => {
     return (
         <>
-            <FeatureCard
-                title={'Porque devemos utilizar a SJ?'}
-                description={
-                    'A SJ é uma ferramenta poderosa para desenvolvimento.'
-                }
-                imgSrc={'/path/to/image.jpg'}
-                imgAlt={'Descrição da imagem'}
-            />
+            {featureCardsData.map((card, index) => (
+                <FeatureCard key={index} {...card} />
+            ))}
         </>
     );
 };
