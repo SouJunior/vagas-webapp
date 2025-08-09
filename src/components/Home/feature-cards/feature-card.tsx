@@ -13,7 +13,8 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
 }) => {
     return (
         <div
-            className="flex items-center justify-center w-[350px] py-1.5 px-4 bg-white rounded-[10px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10)] flex-col md:max-w-[365px] md:h-32 lg:min-w-[443px]"
+            className="flex flex-col items-center justify-center w-[21.875rem] py-1.5 px-4 bg-white rounded-[0.625rem] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10)]
+                        md:max-w-[22.8125rem] md:h-32 lg:min-w-[27.6875rem]"
             aria-labelledby="section-benefits"
         >
             <ul className="flex flex-wrap gap-6">
@@ -24,7 +25,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
                 >
                     <figure className="flex items-center h-auto">
                         <img
-                            className="w-[126px] md:w-24 lg:w-[126px]"
+                            className="w-[7.875rem] md:w-24 lg:w-[7.875rem]"
                             src={imgSrc}
                             alt={imgAlt}
                             loading="lazy"
