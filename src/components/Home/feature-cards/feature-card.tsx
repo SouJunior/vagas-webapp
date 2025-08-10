@@ -1,31 +1,23 @@
-import { useId } from 'react';
+import { IFeatureCard } from './types';
 
-interface FeatureCardProps {
-    title: string;
-    description: string;
-    imgSrc: string;
-    imgAlt: string;
-}
-
-export const FeatureCard: React.FC<FeatureCardProps> = ({
+export const FeatureCard: React.FC<IFeatureCard> = ({
+    id,
     title,
     description,
     imgSrc,
     imgAlt,
 }) => {
-    const cardId = useId();
-    const titleId = `${cardId}-title`;
     return (
         <div
             className="flex flex-col items-center justify-center w-[21.875rem] py-1.5 px-4 bg-white rounded-[0.625rem] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10)]
                         md:max-w-[22.8125rem] md:h-32 lg:min-w-[27.6875rem]"
-            aria-labelledby={titleId}
+            aria-labelledby={id}
         >
             <ul className="flex flex-wrap gap-6">
                 <li
                     className="flex flex-col"
                     role="article"
-                    aria-labelledby={titleId}
+                    aria-labelledby={id}
                 >
                     <figure className="flex items-center h-auto">
                         <img
@@ -36,7 +28,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
                         />
                         <figcaption className="flex flex-col gap-1 ">
                             <h3
-                                id={titleId}
+                                id={id}
                                 className="text-blue-900 text-base font-medium leading-tight"
                             >
                                 {title}
