@@ -1,6 +1,6 @@
-import Search from '../../../assets/imgs/search_for_employees_online.svg';
-import SocialMedia from '../../../assets/imgs/liking_photos_on_social_media.svg';
-import Smartphone from '../../../assets/imgs/smartphone_with_online_support_chat.svg';
+import Search from '../assets/imgs/search_for_employees_online.svg';
+import SocialMedia from '../assets/imgs/liking_photos_on_social_media.svg';
+import Smartphone from '../assets/imgs/smartphone_with_online_support_chat.svg';
 import { IFeatureCard } from '../components/Home/feature-cards/types';
 
 export const featureCardsData: IFeatureCard[] = [
