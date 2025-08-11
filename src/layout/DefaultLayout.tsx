@@ -35,7 +35,7 @@ const DefaultLayout = () => {
 
     return (
         <>
-            <HeaderDefault isActive={isActive} />
+            <HeaderDefault />
             <Outlet />
             <FooterDefault />
         </>
