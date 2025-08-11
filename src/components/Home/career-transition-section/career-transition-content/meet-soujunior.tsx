@@ -1,0 +1,25 @@
+export const MeetSouJunior: React.FC = () => {
+    return (
+        <div className="flex flex-col items-center gap-4 text-center">
+            <h2 className="text-blue-950 text-xl font-semibold font-['Radio_Canada'] leading-normal">
+                Conheça a SouJunior
+            </h2>
+
+            <div className="text-center justify-center">
+                <p className="text-blue-900 text-sm font-normal font-['Radio_Canada'] leading-tight">
+                    A {''}
+                    <span className="font-semibold">SouJunior {''}</span>
+                    oferece a oportunidade de trabalhar com produtos digitais e
+                    adquirir habilidades valiosas para sua transição de
+                    carreira.
+                    <br />
+                    <br />
+                    Com nosso apoio, você terá a chance de desenvolver
+                    competências e aprofundar o conhecimento em áreas de seu
+                    interesse, aumentando as chances de sucesso na sua
+                    trajetória profissional.
+                </p>
+            </div>
+        </div>
+    );
+};

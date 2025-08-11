@@ -47,6 +47,7 @@ import JourneySection from '../components/JourneySection/index';
 import useJobs from '../hooks/useJobs';
 import Loading from '../components/Loading';
 import { FeatureCards } from '../components/Home/feature-cards';
+import { CareerTransitionSection } from '../components/Home/career-transition-section/index';
 
 export interface AreaProps {
     id: string;
@@ -107,7 +108,7 @@ export const Home: React.FC = () => {
                     </VocationalImageWrapper>
                 </VocationalBannerContainer>
             </VocationalBannerArea>
-
+            <CareerTransitionSection />
             <OurSitesSection>
                 <SecondaryTitle className="SecondaryTitle2">
                     Seja o profissional que as empresas desejam
