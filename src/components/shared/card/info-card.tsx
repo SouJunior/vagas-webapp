@@ -6,7 +6,7 @@ interface IInfoCardProps {
     lazyImageAriaLabel: string;
     title?: string;
     description?: string;
-    ariaLabelledBy?: string;
+    ariaLabelledBy: string;
 }
 
 export const InfoCard: React.FC<IInfoCardProps> = ({
@@ -23,7 +23,7 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
                        rounded-lg flex flex-col gap-4
                        md:w-[27.6875rem] md:h-[8.25rem]"
             role="article"
-            {...(ariaLabelledBy && { 'aria-labelledby': ariaLabelledBy })}
+            aria-labelledby={ariaLabelledBy}
         >
             <div className="flex items-center ">
                 <figure className="flex-shrink-0">
@@ -37,6 +37,7 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
                 <div>
                     {title && (
                         <h3
+                            id={ariaLabelledBy}
                             className="text-blue-900 text-base font-medium font-['Radio_Canada'] leading-tight
                                         lg:text-xl lg:leading-normal"
                         >

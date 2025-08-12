@@ -11,7 +11,6 @@ export const featureCardsData: IFeatureCard[] = [
             'Conheça mais sobre os benefícios de contratar pelo nosso site.',
         imgSrc: Search,
         imgAlt: 'Ícone representando contratação',
-        ariaLabelledBy: 'feature-1-title',
     },
     {
         id: 'feature-2',
@@ -19,7 +18,6 @@ export const featureCardsData: IFeatureCard[] = [
         description: 'Conheça nossos artigos e cresça cada vez mais.',
         imgSrc: SocialMedia,
         imgAlt: 'Ícone representando artigos e blog',
-        ariaLabelledBy: 'feature-2-title',
     },
     {
         id: 'feature-3',
@@ -28,6 +26,5 @@ export const featureCardsData: IFeatureCard[] = [
             'Conheça nossa campanha de doação e nos ajude a financiar o projeto.',
         imgSrc: Smartphone,
         imgAlt: 'Ícone representando campanha de doação',
-        ariaLabelledBy: 'feature-3-title',
     },
 ];
