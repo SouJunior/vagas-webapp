@@ -64,7 +64,7 @@ export const MainSearchFilter = styled.div`
     width: 60%;
 
     margin: 1rem; // Margin para não grudar conteúdo nos cantos
-    
+
     @media (max-width: 768px) {
         width: 80%;
         gap: 2rem;
@@ -86,8 +86,6 @@ export const Title = styled.h2`
     span {
         font-weight: 700;
     }
-
-    
 
     @media (max-width: 568px) {
         font-size: 2rem;
@@ -148,7 +146,7 @@ export const JobsInfo = styled.p`
 export const Image = styled.img`
     width: 403px;
     position: absolute;
-    
+
     right: 0px;
     margin-bottom: 4rem;
 
@@ -166,17 +164,14 @@ export const Image = styled.img`
     @media (max-width: 568px) {
         display: none;
     }
-
-    
 `;
-
 
 export const Circle = styled.img`
     position: absolute;
     top: 0px;
     right: 0px;
     @media (max-width: 568px) {
-        top:-32px;
+        top: -32px;
     }
 `;
 
@@ -190,10 +185,10 @@ export const CircleImage = styled.img`
 
     @media (max-width: 1280px) {
         bottom: -2%;
-        width:60%;
+        width: 60%;
     }
-    
-    @media(max-width: 1024px) {
+
+    @media (max-width: 1024px) {
         bottom: -2%;
         width: 60%;
     }
@@ -205,7 +200,7 @@ export const CircleImage = styled.img`
     @media (max-width: 568px) {
         bottom: 17%;
         left: 0px;
-        width:300px;
+        width: 300px;
     }
 
     @media (max-width: 375px) {
@@ -234,7 +229,7 @@ export const OurSitesSection = styled.section`
     align-items: center;
     flex-direction: column;
     margin-top: 180px;
-    gap:24px;
+    gap: 24px;
     margin-bottom: 89px;
 
     @media (max-width: 1024px) {
@@ -262,7 +257,6 @@ export const OurSitesSection = styled.section`
 
     @media ${devices.mobileS} {
         .SecondaryTitle2 {
-
             position: relative;
             top: -100px;
             left: 16px;
@@ -290,10 +284,10 @@ export const CardWrapper = styled.div`
     }
 
     @media ${devices.mobileS} {
-       width: 320px;
-       position: relative;
-       left: 16px;
-       top: -10px;
+        width: 320px;
+        position: relative;
+        left: 16px;
+        top: -10px;
     }
 `;
 
@@ -499,10 +493,12 @@ export const TestimonialSection = styled.section`
     margin-bottom: 100px;
     z-index: 995;
     margin-top: 180px;
-    
-    @media ${devices.mobileS && devices.mobileM && devices.mobileL && devices.tablet} {
+
+    @media ${devices.mobileS &&
+        devices.mobileM &&
+        devices.mobileL &&
+        devices.tablet} {
         margin-top: 80px;
-    
     }
 
     .swiper-pagination-bullet {
@@ -541,170 +537,6 @@ export const TestimonialWrapper = styled.div`
 
     @media ${devices.mobileS} {
         max-width: 320px;
-    }
-`;
-
-export const VocationalBannerArea = styled.div`
-    max-width: 1200px;
-    width: 95%;
-    height: 412px;
-    margin: 80px auto 0 auto;
-    background-color: ${({ theme }) => theme.colors.primary};
-    background-image: url('/assets/VocationalBanner.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    border-radius: 25px;
-    position: relative;
-
-    @media (max-width: 1200px) {
-        height: auto;
-        padding: 1.1rem 0;
-    }
-
-    @media ${devices.mobileS} {
-        position: relative;
-        top: -70px;
-    }
-`;
-
-export const VocationalBannerContainer = styled.div`
-    display: flex;
-    align-items: center;
-    max-width: 100%;
-    gap: 100px;
-    height: 100%;
-    padding: 15px;
-
-    @media ${devices.laptop} {
-        margin: 0;
-        flex-direction: column;
-        gap: 0px;
-    }
-
-    @media ${devices.tablet} {
-        gap: 50px;
-        padding-left: 15px;
-    }
-
-    @media (max-width: 568px) {
-        display: flex;
-        align-items: center;
-        width: 1500px;
-    }
-    
-    @media  ${devices.mobileS} {
-        display: flex;
-        align-items: center;
-        width: 310px;
-    }
-`;
-export const VocationalTextContainer = styled.div`
-    color: white;
-    h1 {
-        font-size: 90px;
-        font-weight: 400;
-        line-height: 90px;
-        text-transform: uppercase;
-    }
-
-    span {
-        font-size: 70px;
-        font-weight: 700;
-    }
-
-    p {
-        font-size: 20px;
-    }
-
-    p.p2 {
-        font-weight: 100;
-        font-size: 13px;
-        line-height: 15.3px;
-        position: absolute;
-        bottom: 23px;
-
-        @media (max-width: 320px) {
-            font-size: 10px;
-        }
-    }
-
-    a {
-        text-decoration: underline;
-        font-weight: 500;
-    }
-
-    @media (max-width: 1200px) {
-        align-self: flex-start;
-    }
-
-    @media (max-width: 780px) {
-        h1 {
-            font-size: 70px;
-            line-height: 70px;
-        }
-
-        span {
-            font-size: 60px;
-        }
-    }
-
-    @media (max-width: 540px) {
-        h1 {
-            font-size: 50px;
-            line-height: 50px;
-        }
-
-        span {
-            font-size: 40px;
-        }
-
-        p {
-            font-size: 1.5rem;
-        }
-
-        .mb-24 {
-            position: relative;
-            bottom: 130px;
-        }
-
-        .p2 {
-            position: relative;
-        }
-
-        @media (max-width: 320px) {
-            .p2 {
-                min-width: 180px;
-                font-size: 10px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .p2 {
-                min-width: 180px;
-                font-size: 1px;
-                position: relative;
-            }
-        }
-    }
-`;
-export const VocationalImageWrapper = styled.div`
-    align-self: flex-end;
-    @media ${devices.laptop} {
-        display:flex;
-        align-items: center;
-        justify-content: flex-end;
-        min-width: 100%;
-    }
-`
-export const VocationalImage = styled.img`
-    
-    @media (max-width: 780px) {
-        width: 45%;
-    }
-
-    @media (max-width: 568px) {
-        height: 130px;
     }
 `;
 

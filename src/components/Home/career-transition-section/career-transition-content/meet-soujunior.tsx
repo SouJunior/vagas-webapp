@@ -6,7 +6,7 @@ export const MeetSouJunior: React.FC = () => {
                         lg:items-start"
         >
             <h2
-                className="text-blue-950 text-xl font-semibold font-['Radio_Canada'] leading-normal
+                className="text-blue-950 text-xl font-semibold font-canada leading-normal
                             md:text-4xl md:leading-10
                             lg:leading-[3rem]"
             >
@@ -18,17 +18,22 @@ export const MeetSouJunior: React.FC = () => {
                         lg:text-start"
             >
                 <p
-                    className="text-blue-900 text-sm font-normal font-['Radio_Canada'] leading-tight
-                            md:text-base md:leading-snug
+                    className="text-blue-900 text-sm font-normal font-font-canada leading-tight
+                            md:text-base md:leading-snug mb-4
                             "
                 >
                     A {''}
-                    <span className="font-semibold">SouJunior {''}</span>
+                    <strong>SouJunior {''}</strong>
                     oferece a oportunidade de trabalhar com produtos digitais e
                     adquirir habilidades valiosas para sua transição de
                     carreira.
-                    <br />
-                    <br />
+                </p>
+
+                <p
+                    className="text-blue-900 text-sm font-normal font-font-canada leading-tight
+                            md:text-base md:leading-snug
+                            "
+                >
                     Com nosso apoio, você terá a chance de desenvolver
                     competências e aprofundar o conhecimento em áreas de seu
                     interesse, aumentando as chances de sucesso na sua

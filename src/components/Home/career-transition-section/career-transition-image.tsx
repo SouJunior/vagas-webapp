@@ -5,15 +5,12 @@ import { LazyImage } from '../../Ui/lazy-image/index';
 export const CareerTransitionImage: React.FC = () => {
     return (
         <figure className="flex items-center justify-center w-full">
-            {/* Mobile optimized image */}
             <LazyImage
                 src={CareerTransitionMobileImage}
                 alt="Ilustração de transição de carreira mostrando oportunidades de crescimento e desenvolvimento profissional"
                 className="block lg:hidden w-full max-w-md"
                 ariaLabel="Representação visual de transição de carreira para dispositivos móveis"
             />
-
-            {/* Desktop optimized image */}
             <LazyImage
                 src={CareerTransitionDesktopImage}
                 alt="Ilustração de transição de carreira mostrando oportunidades de crescimento e desenvolvimento profissional"
