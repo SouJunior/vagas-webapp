@@ -1,12 +1,8 @@
-import { useState, useEffect } from 'react';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-import { useApi } from '../hooks/useApi';
 
 import {
     Title,
@@ -16,26 +12,19 @@ import {
     Image,
     OurSitesSection,
     CardWrapper,
-    VocationalBannerArea,
-    VocationalBannerContainer,
-    VocationalImage,
-    VocationalTextContainer,
     TestimonialSection,
     TestimonialWrapper,
     CircleImage,
     Circle,
     MainContent,
     SecondaryTitle,
-    VocationalImageWrapper,
 } from './styles/Home.styles';
 
 import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
 
 import ImageHome from '../assets/imgs/home-image.svg';
-import PortalMentoria from '../assets/imgs/portalMentoria-img.svg';
 import Blog from '../assets/imgs/blogSouJunior-img.svg';
 import NosAcompanhe from '../assets/imgs/followUs-img.svg';
-import VocationalTest from '../assets/imgs/vocational-teste.svg';
 import doubleCircles from '../assets/imgs/DoubleCircle.svg';
 import circle from '../assets/imgs/circle.svg';
 
@@ -45,8 +34,8 @@ import { Testimonial } from '../Mocks/Testimonial';
 import { TestimonialType } from '../@types/testimonial-type';
 import JourneySection from '../components/JourneySection/index';
 import useJobs from '../hooks/useJobs';
-import Loading from '../components/Loading';
 import { FeatureCards } from '../components/Home/feature-cards';
+import { CareerTransitionSection } from '../components/Home/career-transition-section/index';
 
 export interface AreaProps {
     id: string;
@@ -83,31 +72,7 @@ export const Home: React.FC = () => {
                 <CircleImage src={doubleCircles} />
             </Main>
             <FeatureCards />
-            <VocationalBannerArea>
-                <VocationalBannerContainer>
-                    <VocationalTextContainer>
-                        <h1>
-                            TESTE <br />
-                            <span>VOCACIONAL</span>
-                        </h1>
-                        <p className="mb-10">
-                            <a
-                                href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Clique Aqui
-                            </a>{' '}
-                            e faça o seu teste agora mesmo!
-                        </p>
-                        <p className="p2">*Seu teste será feito no g1.com</p>
-                    </VocationalTextContainer>
-                    <VocationalImageWrapper>
-                        <VocationalImage src={VocationalTest} alt="" />
-                    </VocationalImageWrapper>
-                </VocationalBannerContainer>
-            </VocationalBannerArea>
-
+            <CareerTransitionSection />
             <OurSitesSection>
                 <SecondaryTitle className="SecondaryTitle2">
                     Seja o profissional que as empresas desejam
