@@ -1,5 +1,5 @@
-import { FeatureCard } from './feature-card';
 import { featureCardsData } from '../../../Mocks/feature-cards-data';
+import { InfoCard } from '../../shared/card/info-card';
 
 export const FeatureCards: React.FC = () => {
     return (
@@ -9,7 +9,14 @@ export const FeatureCards: React.FC = () => {
                             lg:gap-6 lg:flex-nowrap"
         >
             {featureCardsData.map((card, index) => (
-                <FeatureCard key={index} {...card} />
+                <InfoCard
+                    key={index}
+                    lazyImageSrc={card.imgSrc}
+                    lazyImageAlt={card.imgAlt}
+                    lazyImageAriaLabel={card.imgAlt}
+                    title={card.title}
+                    description={card.description}
+                />
             ))}
         </section>
     );

@@ -34,13 +34,19 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
                 </figure>
                 <div>
                     {title && (
-                        <h3 className="text-blue-900 text-xl font-medium font-['Radio_Canada'] leading-normal">
+                        <h3
+                            className="text-blue-900 text-base font-medium font-['Radio_Canada'] leading-tight
+                                        lg:text-xl lg:leading-normal"
+                        >
                             {title}
                         </h3>
                     )}
 
                     {description && (
-                        <p className="text-blue-900 text-base font-normal font-['Radio_Canada'] leading-snug">
+                        <p
+                            className="text-blue-900 text-sm font-normal font-['Radio_Canada'] leading-tight
+                                    lg:text-base lg:leading-snug"
+                        >
                             {description}
                         </p>
                     )}
