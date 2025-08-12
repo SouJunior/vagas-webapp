@@ -14,6 +14,7 @@ export const FeatureCards: React.FC = () => {
                     lazyImageSrc={card.imgSrc}
                     lazyImageAlt={card.imgAlt}
                     lazyImageAriaLabel={card.imgAlt}
+                    ariaLabelledBy={card.ariaLabelledBy}
                     title={card.title}
                     description={card.description}
                 />

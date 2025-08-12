@@ -6,6 +6,7 @@ interface IInfoCardProps {
     lazyImageAriaLabel: string;
     title?: string;
     description?: string;
+    ariaLabelledBy?: string;
 }
 
 export const InfoCard: React.FC<IInfoCardProps> = ({
@@ -14,6 +15,7 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
     lazyImageAriaLabel,
     title,
     description,
+    ariaLabelledBy,
 }) => {
     return (
         <article
@@ -21,7 +23,7 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
                        rounded-lg flex flex-col gap-4
                        md:w-[27.6875rem] md:h-[8.25rem]"
             role="article"
-            aria-labelledby="soujunior-labs-title"
+            {...(ariaLabelledBy && { 'aria-labelledby': ariaLabelledBy })}
         >
             <div className="flex items-center ">
                 <figure className="flex-shrink-0">

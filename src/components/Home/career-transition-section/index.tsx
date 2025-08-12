@@ -11,6 +11,7 @@ export const CareerTransitionSection: React.FC = () => {
         >
             <header className="text-start">
                 <h2
+                    id="career-transition-title"
                     className="justify-center text-blue-900 text-base font-medium font-['Radio_Canada'] leading-tight
                 md:text-xl md:leading-normal"
                 >

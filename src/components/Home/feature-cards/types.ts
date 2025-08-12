@@ -4,4 +4,5 @@ export interface IFeatureCard {
     description: string;
     imgSrc: string;
     imgAlt: string;
+    ariaLabelledBy: string;
 }

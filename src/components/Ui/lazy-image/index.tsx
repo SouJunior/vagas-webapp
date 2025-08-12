@@ -41,7 +41,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
     return (
         <img
             ref={imgRef}
-            src={isVisible ? src : placeholderSrc}
+            src={isVisible ? src : placeholderSrc ?? ''}
             alt={alt}
             aria-label={ariaLabel}
             role="img"

@@ -15,6 +15,7 @@ export const CareerTransitionContent: React.FC = () => {
                 lazyImageSrc={lazyImageSrc}
                 lazyImageAlt="Equipamentos de laboratório científico"
                 lazyImageAriaLabel="Equipamentos de laboratório científico  "
+                ariaLabelledBy="soujunior-labs-title"
                 title="SouJunior Labs"
                 description="Coloque em prática seu conhecimento, participando de projetos reais."
             />
