@@ -18,7 +18,8 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
     return (
         <article
             className="w-full max-w-[22.375rem] px-4 py-[0.375rem] bg-white shadow-[0px_2px_4px_0px_rgba(0,0,0,0.10)] 
-                       rounded-lg flex flex-col gap-4"
+                       rounded-lg flex flex-col gap-4
+                       md:w-[27.6875rem] md:h-[8.25rem]"
             role="article"
             aria-labelledby="soujunior-labs-title"
         >
@@ -31,7 +32,7 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
                         ariaLabel={lazyImageAriaLabel}
                     />
                 </figure>
-                <div className="">
+                <div>
                     {title && (
                         <h3 className="text-blue-900 text-xl font-medium font-['Radio_Canada'] leading-normal">
                             {title}

@@ -5,7 +5,9 @@ import { MeetSouJunior } from './meet-soujunior';
 export const CareerTransitionContent: React.FC = () => {
     return (
         <section
-            className="flex flex-col items-center justify-center pt-6 pb-8 gap-8 bg-blue-50"
+            className="flex flex-col items-center justify-center pt-6 pb-8 gap-8
+                        md:pt-4 md:pb-6
+                        lg:py-6 lg:pl-[7.3125rem] lg:items-start lg:h-fit"
             aria-labelledby="career-transition-content"
         >
             <MeetSouJunior />
