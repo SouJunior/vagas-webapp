@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
@@ -35,6 +35,7 @@ import JourneySection from '../components/JourneySection/index';
 import useJobs from '../hooks/useJobs';
 
 import heroHome from '../assets/imgs/hero-home.svg';
+import decorateHome from '../assets/imgs/decorate-home.svg';
 
 export interface AreaProps {
     id: string;
@@ -45,17 +46,29 @@ export interface AreaProps {
 SwiperCore.use([Navigation, Autoplay]);
 
 export const Home: React.FC = () => {
+    const [isVisible, setIsVisible] = React.useState<boolean>(false);
     const { filteredJobsCount } = useJobs();
+
+    React.useEffect(() => {
+        setIsVisible(true);
+    }, []);
 
     return (
         <>
             <main className="bg-blue-lightTransparent p-4 md:py-6 lg:p-8 lg:pb-0 ">
-                <div className="max-w-[1400px] m-[0_auto] ">
+                <div
+                    className={`max-w-[1440px] m-[0_auto] relative transition-all duration-700 ease-out
+                                ${
+                                    isVisible
+                                        ? 'opacity-100 translate-y-0'
+                                        : 'opacity-0 translate-y-4'
+                                }`}
+                >
                     <p className="text-blue-dark200 font-canada text-base md:text-xl font-medium">
                         Para empresas
                     </p>
-                    <div className="flex flex-col lg:flex-row-reverse lg:justify-between lg:pl-[117px]">
-                        <div className="flex justify-center  items-end p-0 mt-5 md:mt-4  lg:items-end  lg:h-[416px] ">
+                    <div className="flex flex-col items-center lg:flex-row-reverse lg:justify-between lg:pl-[117px] ">
+                        <div className="flex justify-center  items-end p-0 mb-4 md:mb-0 mt-5 md:mt-4  lg:items-end  lg:h-[416px] ">
                             <img
                                 className="ml-10 lg:w-[450px]  object-cover"
                                 src={heroHome}
@@ -63,7 +76,7 @@ export const Home: React.FC = () => {
                             />
                         </div>
 
-                        <div className="flex flex-col justify-center pt-4 md:pt-9 lg:pt-0">
+                        <div className="flex flex-col justify-center   items-centerpt-4 md:pt-9 lg:pt-0 max-w-[500px]">
                             <h1 className="font-canada text-xl md:text-4xl lg:text-[40px] text-center lg:text-left font-semibold text-blue-dark300">
                                 Sua empresa com os maiores talentos da área!
                             </h1>
@@ -78,6 +91,11 @@ export const Home: React.FC = () => {
                             </p>
                         </div>
                     </div>
+                    <img
+                        src={decorateHome}
+                        alt=""
+                        className="absolute top-0 left-[45%] hidden lg:block"
+                    />
                 </div>
             </main>
 
