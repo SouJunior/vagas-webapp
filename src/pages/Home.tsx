@@ -47,6 +47,7 @@ import JourneySection from '../components/JourneySection/index';
 import useJobs from '../hooks/useJobs';
 import Loading from '../components/Loading';
 import { FeatureCards } from '../components/Home/feature-cards';
+import { CandidateSection } from '../components/Home/candidate-section/candidate-section';
 
 export interface AreaProps {
     id: string;
@@ -83,6 +84,8 @@ export const Home: React.FC = () => {
                 <CircleImage src={doubleCircles} />
             </Main>
             <FeatureCards />
+
+            <CandidateSection />
             <VocationalBannerArea>
                 <VocationalBannerContainer>
                     <VocationalTextContainer>
