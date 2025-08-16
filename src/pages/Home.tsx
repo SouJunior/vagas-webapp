@@ -55,8 +55,6 @@ export interface AreaProps {
     icon: React.ReactNode;
 }
 
-SwiperCore.use([Navigation, Autoplay]);
-
 export const Home: React.FC = () => {
     const { filteredJobsCount } = useJobs();
 
@@ -174,7 +172,7 @@ export const Home: React.FC = () => {
 
             <TestimonialSection>
                 <Swiper
-                    modules={[Autoplay, Pagination]}
+                    modules={[Navigation, Autoplay, Pagination]}
                     loop
                     centeredSlides={true}
                     spaceBetween={100}
