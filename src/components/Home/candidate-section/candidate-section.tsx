@@ -4,8 +4,7 @@ import { LazyImage } from '../../Ui/lazy-images';
 
 import { useNavigate } from 'react-router';
 
-export const CandidateSection = ({
-}) => {
+export const CandidateSection = () => {
 
     const navigate = useNavigate();
 
