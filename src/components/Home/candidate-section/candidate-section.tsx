@@ -20,8 +20,8 @@ export const CandidateSection = () => {
             flex flex-col items-center 
             w-full max-w-[1440px] min-w-[360px] 
             h-[600px] p-6 gap-6 bg-[rgba(51,138,255,0.05)] opacity-100 lg:h-[641px]
-            max-[391px]:h-[464px]
-
+            max-[391px]:h-[464px] max-[450px]:h-[464px] max-[769px]:h-[641px]
+            
             lg:flex-row lg:gap-12 lg:p-8 
         ">
 
@@ -60,6 +60,7 @@ export const CandidateSection = () => {
             ">
                 <p className="font-medium text-[20px] leading-[120%] mb-[74px] 
                     max-[769px]:absolute max-[769px]:-top-[290px] max-[769px]:right-[270px] max-[769px]:w-full max-[769px]:text-center max-[769px]:z-[3]
+                    max-[450px]:absolute min-[391px]:-top-[240px] min-[391px]:-left-[140px] min-[391px]:text-[16px]
                     max-[391px]:absolute max-[391px]:-top-[240px] max-[391px]:-left-[100px] max-[391px]:text-[16px]
                 ">
                     Para candidatos
@@ -68,7 +69,7 @@ export const CandidateSection = () => {
                 <h2
                     className="
                     font-semibold text-[40px] leading-[120%] text-[rgba(0,44,102,1)] mb-3
-                    sm:text-[32px] max-[769px]:text-[20px]
+                    sm:text-[32px] max-[769px]:text-[20px] max-[450px]:my-0
                     max-[391px]:text-[20px] max-[391px]:min-w-[390px]
                 ">
                     Encontre oportunidades para você!
@@ -78,6 +79,7 @@ export const CandidateSection = () => {
                     className="
                     font-normal text-[16px] leading-[140%] max-w-[400px] my-4
                     sm:max-w-[90%]
+                    max-[450px]:text-[14px] max-[450px]:my-2
                     max-[391px]:text-[14px] max-[391px]:my-2
                 ">
                     Um portal exclusivo para profissionais em início de carreira!
@@ -85,12 +87,14 @@ export const CandidateSection = () => {
 
                 <p className="font-normal text-[16px] leading-[140%] 
                     max-w-[400px] sm:max-w-[90%] 
+                    max-[450px]:text-[14px]
                     max-[391px]:text-[14px]
                 ">
                     Toda jornada tem um primeiro passo.
                 </p>
 
-                <p className="font-bold max-[391px]:text-[14px]">
+                <p className="font-bold max-[391px]:text-[14px]
+                max-[450px]:text-[14px]">
                     Cadastre-se e encontre a sua vaga!
                 </p>
 
@@ -99,6 +103,7 @@ export const CandidateSection = () => {
                     className="
                     w-[206px] h-[44px] rounded-lg bg-[rgba(0,57,134,1)] text-white mt-6 
                     flex justify-center items-center
+                    max-[450px]:h-[36px] max-[450px]:text-[14px]
                     max-[391px]:h-[36px] max-[391px]:mt-4 max-[391px]:text-[14px]
                 ">
                     Quero me candidatar
