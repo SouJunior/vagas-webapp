@@ -59,7 +59,7 @@ export const CandidateSection = () => {
                 sm:pt-6
             ">
                 <p className="font-medium text-[20px] leading-[120%] mb-[74px] 
-                    max-[769px]:absolute max-[769px]:-top-[290px] max-[769px]:right-[46%] max-[769px]:w-full max-[769px]:text-center max-[769px]:z-[3] 
+                    max-[769px]:absolute max-[769px]:-top-[290px] max-[769px]:right-[270px] max-[769px]:w-full max-[769px]:text-center max-[769px]:z-[3]
                     max-[391px]:absolute max-[391px]:-top-[240px] max-[391px]:-left-[100px] max-[391px]:text-[16px]
                 ">
                     Para candidatos
@@ -68,7 +68,7 @@ export const CandidateSection = () => {
                 <h2
                     className="
                     font-semibold text-[40px] leading-[120%] text-[rgba(0,44,102,1)] mb-3
-                    sm:text-[32px]
+                    sm:text-[32px] max-[769px]:text-[20px]
                     max-[391px]:text-[20px] max-[391px]:min-w-[390px]
                 ">
                     Encontre oportunidades para você!
