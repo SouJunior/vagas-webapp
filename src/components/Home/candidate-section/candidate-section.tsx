@@ -15,12 +15,18 @@ export const CandidateSection = () => {
     };
 
     return (
-        <div className="
-            w-full h-[600px] min-w-[390px] p-8 gap-12 opacity-100 flex bg-[rgba(51,138,255,0.05)]
-    max-[769px]:flex max-[769px]:flex-col max-[769px]:items-center max-[769px]:min-h-[641px]
-    max-[391px]:min-h-[464px] max-[391px]:h-[464px] max-[391px]:w-[390px] max-[391px]:p-0
-">
-            <figure className="flex-shrink-0">
+        <div
+            className="
+            flex flex-col items-center 
+            w-full max-w-[1440px] min-w-[360px] 
+            h-[600px] p-6 gap-6 bg-[rgba(51,138,255,0.05)] opacity-100 lg:h-[641px]
+            max-[391px]:h-[464px]
+
+            lg:flex-row lg:gap-12 lg:p-8 
+        ">
+
+            <figure className="relative flex-shrink-0 flex justify-center items-center mt-8">
+
                 <LazyImage
                     src={SectionImage}
                     alt={ImageDescription}
@@ -31,68 +37,70 @@ export const CandidateSection = () => {
                 <LazyImage
                     src={MobileSectionImage}
                     alt={ImageDescription}
-                    className="hidden sm:block lg:hidden w-[298px] h-[261px] absolute top-[1280px] bottom-[200px] left-[268px]"
+                    className="hidden sm:block lg:hidden w-[280px] h-auto relative top-[20px]"
                     ariaLabel={ImageDescription}
                 />
+
 
                 <LazyImage
                     src={MobileSectionImage}
                     alt={ImageDescription}
-                    className="block sm:hidden w-[210px] h-[183.5px] absolute top-[950px] bottom-[200px] left-[120px]"
+                    className="block sm:hidden w-[210px] h-auto relative top-[5px]"
                     ariaLabel={ImageDescription}
                 />
             </figure>
 
-            <div className="
-        flex flex-col w-[582px] text-[rgba(0,57,134,1)] font-[Radio Canada] relative
-        max-[769px]:w-[768px] max-[769px]:h-[641px] max-[769px]:justify-center max-[769px]:items-center max-[769px]:min-w-[390px] max-[769px]:max-w-[1440px] max-[769px]:pt-6 max-[769px]:relative max-[769px]:top-[120px]
-        max-[391px]:w-[358px] max-[391px]:top-[80px] max-[391px]:flex max-[391px]:justify-center max-[391px]:items-center max-[391px]:text-center
-    ">
-                <p className="
-            font-medium text-[20px] leading-[120%] mb-[74px]
-            max-[769px]:absolute max-[769px]:-top-[170px] max-[769px]:right-[280px] max-[769px]:w-full max-[769px]:text-center max-[769px]:z-[3]
-            max-[391px]:absolute max-[391px]:-top-[105px] max-[391px]:-left-[120px] max-[391px]:text-[16px]
-        ">
+
+            <div
+                className="
+                flex flex-col w-full max-w-[582px] text-[rgba(0,57,134,1)] font-[Radio Canada] relative
+                items-center text-center
+                lg:items-start lg:text-left
+                sm:pt-6
+            ">
+                <p className="font-medium text-[20px] leading-[120%] mb-[74px] 
+                    max-[769px]:absolute max-[769px]:-top-[290px] max-[769px]:right-[46%] max-[769px]:w-full max-[769px]:text-center max-[769px]:z-[3] 
+                    max-[391px]:absolute max-[391px]:-top-[240px] max-[391px]:-left-[100px] max-[391px]:text-[16px]
+                ">
                     Para candidatos
                 </p>
 
-                <h2 className="
-            font-semibold text-[40px] leading-[120%] text-[rgba(0,44,102,1)] mb-[10px]
-            max-[769px]:text-[36px]
-            max-[391px]:text-[20px] max-[391px]:max-w-[358px] max-[391px]:text-center
-            ">
+                <h2
+                    className="
+                    font-semibold text-[40px] leading-[120%] text-[rgba(0,44,102,1)] mb-3
+                    sm:text-[32px]
+                    max-[391px]:text-[20px] max-[391px]:min-w-[390px]
+                ">
                     Encontre oportunidades para você!
                 </h2>
 
-                <p className="
-            font-normal text-[16px] leading-[140%] max-w-[400px] my-[18px]
-            max-[769px]:text-[16px] max-[769px]:min-w-[600px] max-[769px]:text-center
-            max-[391px]:text-[14px] max-[391px]:px-[130px] max-[391px]:my-[10px]
-        ">
+                <p
+                    className="
+                    font-normal text-[16px] leading-[140%] max-w-[400px] my-4
+                    sm:max-w-[90%]
+                    max-[391px]:text-[14px] max-[391px]:my-2
+                ">
                     Um portal exclusivo para profissionais em início de carreira!
                 </p>
 
-                <p className="
-            font-normal text-[16px] leading-[140%] max-w-[400px]
-            max-[391px]:text-[14px]
-        ">
+                <p className="font-normal text-[16px] leading-[140%] 
+                    max-w-[400px] sm:max-w-[90%] 
+                    max-[391px]:text-[14px]
+                ">
                     Toda jornada tem um primeiro passo.
                 </p>
 
-                <p className="
-            font-bold
-            max-[391px]:text-[14px]
-        ">
+                <p className="font-bold max-[391px]:text-[14px]">
                     Cadastre-se e encontre a sua vaga!
                 </p>
 
                 <button
                     onClick={handleClick}
                     className="
-                w-[206px] h-[44px] rounded-lg bg-[rgba(0,57,134,1)] text-white mt-[28px] flex justify-center items-center
-                max-[391px]:h-[36px] max-[391px]:mt-[18px] max-[391px]:text-[16px]
-            "
-                >
+                    w-[206px] h-[44px] rounded-lg bg-[rgba(0,57,134,1)] text-white mt-6 
+                    flex justify-center items-center
+                    max-[391px]:h-[36px] max-[391px]:mt-4 max-[391px]:text-[14px]
+                ">
                     Quero me candidatar
                 </button>
             </div>
