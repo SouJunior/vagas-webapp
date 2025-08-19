@@ -60,7 +60,7 @@ export const CandidateSection = () => {
             ">
                 <p className="font-medium text-[20px] leading-[120%] mb-[74px] 
                     max-[769px]:absolute max-[769px]:-top-[290px] max-[769px]:right-[270px] max-[769px]:w-full max-[769px]:text-center max-[769px]:z-[3]
-                    max-[450px]:absolute min-[391px]:-top-[240px] min-[391px]:-left-[140px] min-[391px]:text-[16px]
+                    max-[450px]:absolute min-[391px]:-top-[240px] min-[391px]:-left-[120px] min-[391px]:text-[16px]
                     max-[391px]:absolute max-[391px]:-top-[240px] max-[391px]:-left-[100px] max-[391px]:text-[16px]
                 ">
                     Para candidatos
