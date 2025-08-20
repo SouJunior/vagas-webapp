@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 import img from './assets/Learn.png';
 
-import logoFooter from '../../assets/imgs/Logo-blue-souJunior.svg';
 import { Card } from './components/Card';
 
 import * as I from './components/Icons';
@@ -120,7 +119,7 @@ da empresa"
                 </s.Container>
             </section>
 
-            <FooterDefault/>          
+            <FooterDefault />
         </>
     );
 }
