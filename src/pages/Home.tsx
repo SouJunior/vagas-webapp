@@ -36,6 +36,7 @@ import useJobs from '../hooks/useJobs';
 
 import heroHome from '../assets/imgs/hero-home.svg';
 import decorateHome from '../assets/imgs/decorate-home.svg';
+import { Button } from '../components/Ui/ButtonUi/Button';
 
 export interface AreaProps {
     id: string;
@@ -89,12 +90,21 @@ export const Home: React.FC = () => {
                                     Cadastre-se agora mesmo!
                                 </span>
                             </p>
+
+                            <div className="flex justify-center lg:justify-start">
+                                <Button
+                                    intent="primary"
+                                    className="mt-4  lg:mt-8"
+                                >
+                                    quero contratar
+                                </Button>
+                            </div>
                         </div>
                     </div>
                     <img
                         src={decorateHome}
                         alt=""
-                        className="absolute top-0 left-[45%] hidden lg:block"
+                        className="absolute top-0 left-[45%] hidden lg:block "
                     />
                 </div>
             </main>
