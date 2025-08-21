@@ -77,7 +77,7 @@ export const Home: React.FC = () => {
                             />
                         </div>
 
-                        <div className="flex flex-col justify-center   items-centerpt-4 md:pt-9 lg:pt-0 max-w-[500px]">
+                        <div className="flex flex-col justify-center items-center lg:items-start pt-4 md:pt-9 lg:pt-0 max-w-[500px]">
                             <h1 className="font-canada text-xl md:text-4xl lg:text-[40px] text-center lg:text-left font-semibold text-blue-dark300">
                                 Sua empresa com os maiores talentos da área!
                             </h1>

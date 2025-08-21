@@ -15,11 +15,14 @@ const buttonVariants = cva(
                     'border-0 text-blue-dark200 hover:text-blue-dark300 active:text-blue-dark400 focus-visible:outline-hidden focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-blue-light300 disabled:text-gray-disabled',
             },
         },
+        defaultVariants: {
+            intent: 'primary',
+        },
     },
 );
 
 export interface ButtonProps
-    extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, ''>,
+    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
         VariantProps<typeof buttonVariants> {}
 
 export const Button: React.FC<ButtonProps> = ({
@@ -30,6 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
     return (
         <button
+            type={props.type ?? 'button'}
             className={buttonVariants({ intent, className })}
             disabled={disabled || undefined}
             {...props}
