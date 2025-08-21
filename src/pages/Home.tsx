@@ -35,6 +35,7 @@ import { TestimonialType } from '../@types/testimonial-type';
 import JourneySection from '../components/JourneySection/index';
 import useJobs from '../hooks/useJobs';
 import { FeatureCards } from '../components/Home/feature-cards';
+import { CandidateSection } from '../components/Home/candidate-section/candidate-section';
 import { CareerTransitionSection } from '../components/Home/career-transition-section/index';
 
 export interface AreaProps {
@@ -42,8 +43,6 @@ export interface AreaProps {
     name: string;
     icon: React.ReactNode;
 }
-
-SwiperCore.use([Navigation, Autoplay]);
 
 export const Home: React.FC = () => {
     const { filteredJobsCount } = useJobs();
@@ -72,6 +71,8 @@ export const Home: React.FC = () => {
                 <CircleImage src={doubleCircles} />
             </Main>
             <FeatureCards />
+
+            <CandidateSection />
             <CareerTransitionSection />
             <OurSitesSection>
                 <SecondaryTitle className="SecondaryTitle2">
@@ -136,7 +137,7 @@ export const Home: React.FC = () => {
 
             <TestimonialSection>
                 <Swiper
-                    modules={[Autoplay, Pagination]}
+                    modules={[Navigation, Autoplay, Pagination]}
                     loop
                     centeredSlides={true}
                     spaceBetween={100}
