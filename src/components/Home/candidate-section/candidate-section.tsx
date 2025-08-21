@@ -53,7 +53,7 @@ export const CandidateSection = () => {
 
             <div
                 className="
-                flex flex-col w-full max-w-[582px] text-[rgba(0,57,134,1)] font-[Radio Canada] relative
+                flex flex-col w-full max-w-[582px] text-[rgba(0,57,134,1)] font-canada relative
                 items-end text-center justify-center max-[769px]:items-center max-[769px]:mt-6
                 lg:items-start lg:text-left
             ">
