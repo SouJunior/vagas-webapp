@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTestimonials } from '../../../hooks/useTestimonials';
 import TestimonialHeader from './TestimonialHeader';
 import TestimonialCarousel from './TestimonialCarousel';
+import TestimonialGrid from './TestimonialGrid';
 import SkipToTestimonials from './SkipToTestimonials';
-import { useTestimonials } from '../../../hooks/useTestimonials';
+import { TestimonialIDs } from './testimonial-ids';
 
 const TestimonialSection: React.FC = () => {
     const { testimonials, isLoading, error, announceMessage } =
@@ -15,11 +17,12 @@ const TestimonialSection: React.FC = () => {
 
         return (
             <section
+                id={TestimonialIDs.section}
                 className="min-h-[37.5rem] px-4 py-10 bg-blue-500/5 flex flex-col justify-center items-center"
-                aria-labelledby="testimonials-title"
+                aria-labelledby={TestimonialIDs.title}
                 role="region"
             >
-                <h2 id="testimonials-title" className="sr-only">
+                <h2 id={TestimonialIDs.title} className="sr-only">
                     Seção de Depoimentos
                 </h2>
                 <div className="text-center text-red-500" role="alert">
@@ -33,8 +36,9 @@ const TestimonialSection: React.FC = () => {
         <>
             <SkipToTestimonials />
             <section
+                id={TestimonialIDs.section}
                 className="min-h-[37.5rem] px-4 py-10 bg-blue-500/5 flex flex-col justify-start items-center gap-20"
-                aria-labelledby="testimonials-title"
+                aria-labelledby={TestimonialIDs.title}
                 role="region"
             >
                 <TestimonialHeader title="O que dizem sobre nós" />

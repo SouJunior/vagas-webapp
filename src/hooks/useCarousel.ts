@@ -15,7 +15,13 @@ export const useCarousel = (
     const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
     const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const [isPlaying, setIsPlaying] = useState(true);
+    const [isPlaying, setIsPlaying] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return !window.matchMedia('(prefers-reduced-motion: reduce)')
+                .matches;
+        }
+        return true;
+    });
     const autoplayTimerRef = useRef<ReturnType<typeof setInterval> | null>(
         null,
     );
@@ -98,6 +104,24 @@ export const useCarousel = (
             emblaApi.off('reInit', onSelect);
         };
     }, [emblaApi, onSelect]);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const mediaQuery = window.matchMedia(
+            '(prefers-reduced-motion: reduce)',
+        );
+
+        const handleMediaQueryChange = (event: MediaQueryListEvent) => {
+            setIsPlaying(!event.matches);
+        };
+
+        mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+        return () => {
+            mediaQuery.removeEventListener('change', handleMediaQueryChange);
+        };
+    }, []);
 
     useEffect(() => {
         if (!emblaApi || !isPlaying) return;

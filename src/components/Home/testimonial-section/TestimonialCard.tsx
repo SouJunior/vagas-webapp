@@ -20,9 +20,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         Number.isInteger(index) &&
         Number.isInteger(total) &&
         total > 0 &&
-        index >= 0 &&
-        index < total
-            ? `Depoimento ${index + 1} de ${total}`
+        index >= 1 &&
+        index <= total
+            ? `Depoimento ${index} de ${total}`
             : undefined;
 
     return (
