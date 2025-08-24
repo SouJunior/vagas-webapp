@@ -62,7 +62,6 @@
     "react-toastify": "^9.1.1",
     "rehype-raw": "^7.0.0",
     "styled-components": "^6.1.12",
-    "swiper": "^9.3.2",
     "tiptap": "^1.32.2",
     "uuid": "^9.0.0",
     "vite-plugin-svgr": "^4.3.0",
