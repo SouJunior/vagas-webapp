@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useErrorHandler } from '../../hooks/useErrorHandler';
 
 const ErrorTestComponent: React.FC = () => {
     const { throwError } = useErrorHandler();
+    const [error, setError] = useState<Error | null>(null);
 
     const handleRenderError = () => {
-        throwError(new Error('Test render error triggered manually'));
+        const err = new Error('Test render error triggered manually');
+        setError(err);
     };
 
     const handleAsyncError = async () => {
         try {
             throw new Error('Test async error');
         } catch (error) {
-            throwError(error as Error);
+            setError(error as Error);
         }
     };
 
     const handlePromiseRejection = () => {
         Promise.reject('Unhandled promise rejection test');
     };
+
+    if (error) {
+        throw error;
+    }
 
     if (process.env.NODE_ENV !== 'development') {
         return null;

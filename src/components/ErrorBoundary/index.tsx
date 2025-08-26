@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import React, { Component, ErrorInfo, ReactNode, createRef } from 'react';
 
 interface Props {
     children: ReactNode;
@@ -12,6 +12,8 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
+    private fallbackRef = createRef<HTMLDivElement>();
+
     constructor(props: Props) {
         super(props);
         this.state = { hasError: false };
@@ -30,10 +32,17 @@ class ErrorBoundary extends Component<Props, State> {
             console.error('Error Info:', errorInfo);
         }
 
-        this.setState({
-            error,
-            errorInfo,
-        });
+        this.setState(
+            {
+                error,
+                errorInfo,
+            },
+            () => {
+                if (this.fallbackRef.current) {
+                    this.fallbackRef.current.focus();
+                }
+            },
+        );
     }
 
     private handleRetry = (): void => {
@@ -52,9 +61,10 @@ class ErrorBoundary extends Component<Props, State> {
 
             return (
                 <div
+                    ref={this.fallbackRef}
                     className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4"
                     role="alert"
-                    aria-live="polite"
+                    tabIndex={-1}
                 >
                     <div className="max-w-md w-full text-center">
                         <div className="mb-6">

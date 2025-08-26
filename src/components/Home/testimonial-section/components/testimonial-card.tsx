@@ -1,18 +1,13 @@
 import React from 'react';
-import { ITestimonial } from '../types';
-
-interface TestimonialCardProps {
-    testimonial: ITestimonial;
-    index?: number;
-    total?: number;
-}
+import { ITestimonial, TestimonialCardProps } from '../types';
 
 export const TestimonialCard: React.FC<TestimonialCardProps> = ({
     testimonial,
     index,
     total,
+    className,
 }) => {
-    const { id, image, author, testimony, position } = testimonial;
+    const { image, author, testimony, position } = testimonial;
 
     const ordinalLabel =
         index && total && index <= total
@@ -21,8 +16,8 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
     return (
         <figure
-            className="w-[23.75rem] h-80 p-4 relative bg-white rounded-[1.25rem] shadow-md flex justify-start items-center
-                 md:w-[38.3125rem] md:h-[18.75rem] md:p-6"
+            className={`w-[23.75rem] h-80 p-4 relative bg-white rounded-[1.25rem] shadow-md flex justify-start items-center
+                 md:w-[38.3125rem] md:h-[18.75rem] md:p-6 ${className || ''}`}
         >
             <img
                 className="w-24 h-24 rounded-full border-2 border-blue-900/60"

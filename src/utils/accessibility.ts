@@ -9,7 +9,7 @@ export const ACCESSIBILITY_CLASSES = {
 
     /** Focus visible - shows when focused via keyboard */
     focusVisible:
-        'focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50',
+        'focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[99999]',
 
     /** Skip links - for keyboard navigation */
     skipLink:

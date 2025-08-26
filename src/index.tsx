@@ -8,9 +8,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import Router from './routes/router';
 import { ToastContainer } from 'react-toastify';
 import ErrorBoundary from './components/ErrorBoundary';
+import { setupGlobalErrorHandler } from './setupErrorHandler';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
+
+// Setup global error handler once at application startup
+setupGlobalErrorHandler();
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement,
