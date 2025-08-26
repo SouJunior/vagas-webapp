@@ -7,6 +7,7 @@ import { AuthProvider } from './contexts/Auth/AuthProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Router from './routes/router';
 import { ToastContainer } from 'react-toastify';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
@@ -19,14 +20,16 @@ const queryClient = new QueryClient();
 
 root.render(
     <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <AuthProvider>
-                <ThemeProvider theme={mainTheme}>
-                    <GlobalStyle />
-                    <Router />
-                    <ToastContainer />
-                </ThemeProvider>
-            </AuthProvider>
-        </QueryClientProvider>
+        <ErrorBoundary>
+            <QueryClientProvider client={queryClient}>
+                <AuthProvider>
+                    <ThemeProvider theme={mainTheme}>
+                        <GlobalStyle />
+                        <Router />
+                        <ToastContainer />
+                    </ThemeProvider>
+                </AuthProvider>
+            </QueryClientProvider>
+        </ErrorBoundary>
     </React.StrictMode>,
 );

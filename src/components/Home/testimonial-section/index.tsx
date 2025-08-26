@@ -1,44 +1,60 @@
 import React from 'react';
 import { useTestimonials } from '../../../hooks/useTestimonials';
-import TestimonialHeader from './TestimonialHeader';
-import TestimonialCarousel from './TestimonialCarousel';
-import TestimonialGrid from './TestimonialGrid';
-import SkipToTestimonials from './SkipToTestimonials';
-import { TestimonialIDs } from './testimonial-ids';
+import { useCarousel } from '../../../hooks/useCarousel';
+import { ACCESSIBILITY_CLASSES } from '../../../utils/accessibility';
+import {
+    TestimonialHeaderDefault as TestimonialHeader,
+    TestimonialCard,
+} from './components';
+import type { TestimonialSectionProps } from './types';
 
-const TestimonialSection: React.FC = () => {
-    const { testimonials, isLoading, error, announceMessage } =
+const TestimonialSection: React.FC<TestimonialSectionProps> = ({
+    testimonials: externalTestimonials,
+    className = '',
+}) => {
+    const { testimonials: hookTestimonials, announceMessage } =
         useTestimonials();
 
-    if (error) {
-        if (process.env.NODE_ENV === 'development') {
-            console.error('Error loading testimonials:', error);
-        }
+    const testimonials = externalTestimonials || hookTestimonials;
 
-        return (
-            <section
-                id={TestimonialIDs.section}
-                className="min-h-[37.5rem] px-4 py-10 bg-blue-500/5 flex flex-col justify-center items-center"
-                aria-labelledby={TestimonialIDs.title}
-                role="region"
-            >
-                <h2 id={TestimonialIDs.title} className="sr-only">
-                    Seção de Depoimentos
-                </h2>
-                <div className="text-center text-red-500" role="alert">
-                    Não foi possível carregar os depoimentos.
-                </div>
-            </section>
-        );
-    }
+    const emblaOptions = React.useMemo(
+        () => ({
+            align: 'start' as const,
+            loop: testimonials.length > 1,
+            slidesToScroll: 1,
+            containScroll: 'trimSnaps' as const,
+            dragFree: false,
+        }),
+        [testimonials.length],
+    );
+
+    const {
+        emblaRef,
+        emblaApi,
+        selectedIndex,
+        scrollTo,
+        isPlaying,
+        handleKeyDown,
+    } = useCarousel({
+        autoplayDelay: 5000,
+        stopOnInteraction: true,
+        emblaOptions,
+    });
 
     return (
         <>
-            <SkipToTestimonials />
+            <a
+                href="#testimonials-title"
+                className={`${ACCESSIBILITY_CLASSES.srOnly} ${ACCESSIBILITY_CLASSES.focusVisible} ${ACCESSIBILITY_CLASSES.skipLink}`}
+                tabIndex={0}
+            >
+                Pular para depoimentos
+            </a>
+
             <section
-                id={TestimonialIDs.section}
-                className="min-h-[37.5rem] px-4 py-10 bg-blue-500/5 flex flex-col justify-start items-center gap-20"
-                aria-labelledby={TestimonialIDs.title}
+                id="testimonials-section"
+                className={`px-4 py-10 bg-blue-500/5 flex flex-col justify-start items-center gap-20 ${className}`}
+                aria-labelledby="testimonials-title"
                 role="region"
             >
                 <TestimonialHeader title="O que dizem sobre nós" />
@@ -53,18 +69,101 @@ const TestimonialSection: React.FC = () => {
                     </div>
                 )}
 
-                {isLoading ? (
+                {!testimonials.length ? (
                     <div
-                        className="text-center text-gray-500"
+                        className="w-full text-center text-gray-500"
                         role="status"
                         aria-live="polite"
-                        aria-label="Carregando depoimentos"
                     >
-                        <span className="sr-only">Carregando, aguarde...</span>
-                        Carregando depoimentos...
+                        Nenhum depoimento disponível no momento.
                     </div>
                 ) : (
-                    <TestimonialCarousel testimonials={testimonials} />
+                    <div
+                        className="w-full max-w-none relative"
+                        role="region"
+                        aria-roledescription="carrossel"
+                        aria-label="Carrossel de depoimentos"
+                        tabIndex={0}
+                        aria-keyshortcuts="ArrowLeft ArrowRight"
+                        onKeyDown={handleKeyDown}
+                    >
+                        <div className="overflow-hidden" ref={emblaRef}>
+                            <div className="flex">
+                                {testimonials.map((testimonial, index) => (
+                                    <div
+                                        key={testimonial.id}
+                                        className="flex-shrink-0 flex justify-center px-3 md:px-3 lg:px-4"
+                                        role="group"
+                                        aria-roledescription="slide"
+                                        aria-label={`${index + 1} de ${
+                                            testimonials.length
+                                        }`}
+                                    >
+                                        <TestimonialCard
+                                            testimonial={testimonial}
+                                            index={index + 1}
+                                            total={testimonials.length}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="flex justify-center items-center mt-8">
+                            <div
+                                className="flex gap-3"
+                                role="group"
+                                aria-label="Navegação por depoimentos"
+                            >
+                                {testimonials.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => scrollTo(index)}
+                                        onKeyDown={(e) => {
+                                            if (
+                                                e.key === 'Enter' ||
+                                                e.key === ' '
+                                            ) {
+                                                e.preventDefault();
+                                                scrollTo(index);
+                                            }
+                                        }}
+                                        className={`w-4 h-4 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:scale-110 ${
+                                            index === selectedIndex
+                                                ? 'bg-blue-600 scale-110'
+                                                : 'bg-gray-300 hover:bg-gray-400'
+                                        }`}
+                                        {...(index === selectedIndex && {
+                                            'aria-current': 'true',
+                                        })}
+                                        aria-label={`Ir para depoimento ${
+                                            index + 1
+                                        } de ${testimonials.length}`}
+                                        type="button"
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        <div
+                            className="sr-only"
+                            aria-live="polite"
+                            aria-atomic="true"
+                        >
+                            Depoimento {selectedIndex + 1} de{' '}
+                            {testimonials.length}
+                            {isPlaying
+                                ? ' - Reprodução automática ativada'
+                                : ' - Reprodução automática pausada'}
+                        </div>
+
+                        <div className="sr-only">
+                            Use as bolinhas abaixo ou as teclas de seta do
+                            teclado para navegar pelos depoimentos. O carrossel
+                            avança automaticamente e pausa quando você interage
+                            com ele.
+                        </div>
+                    </div>
                 )}
             </section>
         </>

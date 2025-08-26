@@ -1,11 +1,11 @@
 import React from 'react';
+import { TestimonialHeaderProps } from '../types';
 
-interface TestimonialHeaderProps {
-    title: string;
-}
-
-const TestimonialHeader: React.FC<TestimonialHeaderProps> = ({ title }) => (
-    <header className="text-center">
+export const TestimonialHeader: React.FC<TestimonialHeaderProps> = ({
+    title,
+    className = '',
+}) => (
+    <header className={`text-center ${className}`}>
         <h2
             id="testimonials-title"
             className="text-blue-950 text-center text-xl md:text-4xl lg:leading-[3rem] font-semibold font-canada leading-normal"

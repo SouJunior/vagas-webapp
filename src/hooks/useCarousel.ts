@@ -1,16 +1,21 @@
-import { useCallback, useEffect, useState, useRef } from 'react';
-import { UseEmblaCarouselType } from 'embla-carousel-react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { EmblaOptionsType } from 'embla-carousel';
 
 interface UseCarouselOptions {
     autoplayDelay?: number;
     stopOnInteraction?: boolean;
+    emblaOptions?: EmblaOptionsType;
 }
 
-export const useCarousel = (
-    emblaApi: UseEmblaCarouselType[1] | undefined,
-    options: UseCarouselOptions = {},
-) => {
-    const { autoplayDelay = 5000, stopOnInteraction = true } = options;
+export const useCarousel = (options: UseCarouselOptions = {}) => {
+    const {
+        autoplayDelay = 5000,
+        stopOnInteraction = true,
+        emblaOptions = {},
+    } = options;
+
+    const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions);
 
     const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
     const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
@@ -84,6 +89,26 @@ export const useCarousel = (
         }
     }, [isPlaying, startAutoplay, stopAutoplay]);
 
+    const handleKeyDown = useCallback(
+        (e: React.KeyboardEvent<HTMLDivElement>) => {
+            if (!emblaApi) return;
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                emblaApi.scrollPrev();
+                if (stopOnInteraction) {
+                    stopAutoplay();
+                }
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                emblaApi.scrollNext();
+                if (stopOnInteraction) {
+                    stopAutoplay();
+                }
+            }
+        },
+        [emblaApi, stopOnInteraction, stopAutoplay],
+    );
+
     const onSelect = useCallback(() => {
         if (!emblaApi) return;
 
@@ -145,16 +170,12 @@ export const useCarousel = (
     useEffect(() => {
         const handleVisibilityChange = () => {
             if (document.hidden) {
-                // Salva o estado atual antes de pausar
                 wasPlayingBeforeHideRef.current = isPlaying;
-                // Apenas pausa o timer, sem alterar isPlaying
                 pauseTimer();
             } else if (document.visibilityState === 'visible') {
-                // Restaura autoplay apenas se estava tocando antes de esconder
                 if (wasPlayingBeforeHideRef.current) {
                     setIsPlaying(true);
                 }
-                // Limpa a flag transitória
                 wasPlayingBeforeHideRef.current = false;
             }
         };
@@ -170,6 +191,8 @@ export const useCarousel = (
     }, [isPlaying, pauseTimer]);
 
     return {
+        emblaRef,
+        emblaApi,
         selectedIndex,
         prevBtnDisabled,
         nextBtnDisabled,
@@ -180,5 +203,6 @@ export const useCarousel = (
         startAutoplay,
         stopAutoplay,
         toggleAutoplay,
+        handleKeyDown,
     };
 };
