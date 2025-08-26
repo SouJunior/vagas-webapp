@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { useTestimonials } from '../../../hooks/useTestimonials';
 import { useCarousel } from '../../../hooks/useCarousel';
 import { ACCESSIBILITY_CLASSES } from '../../../utils/accessibility';
@@ -12,6 +12,9 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     testimonials: externalTestimonials,
     className = '',
 }) => {
+    const sectionId = useId();
+    const headerId = `testimonials-title-${sectionId}`;
+
     const { testimonials: hookTestimonials, announceMessage } =
         useTestimonials();
 
@@ -44,7 +47,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     return (
         <>
             <a
-                href="#testimonials-title"
+                href={`#${headerId}`}
                 className={`${ACCESSIBILITY_CLASSES.srOnly} ${ACCESSIBILITY_CLASSES.focusVisible} ${ACCESSIBILITY_CLASSES.skipLink}`}
                 tabIndex={0}
             >
@@ -54,10 +57,13 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             <section
                 id="testimonials-section"
                 className={`px-4 py-10 bg-blue-500/5 flex flex-col justify-start items-center gap-20 ${className}`}
-                aria-labelledby="testimonials-title"
+                aria-labelledby={headerId}
                 role="region"
             >
-                <TestimonialHeader title="O que dizem sobre nós" />
+                <TestimonialHeader
+                    title="O que dizem sobre nós"
+                    id={headerId}
+                />
 
                 {announceMessage && (
                     <div
@@ -92,7 +98,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
                                 {testimonials.map((testimonial, index) => (
                                     <div
                                         key={testimonial.id}
-                                        className="flex-shrink-0 flex justify-center px-3 md:px-3 lg:px-4"
+                                        className="w-full shrink-0 flex justify-center px-3 md:px-3 lg:px-4"
                                         role="group"
                                         aria-roledescription="slide"
                                         aria-label={`${index + 1} de ${

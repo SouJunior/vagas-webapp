@@ -5,7 +5,7 @@ const ErrorTestComponent: React.FC = () => {
     const { throwError } = useErrorHandler();
 
     const handleRenderError = () => {
-        throwError('Test render error triggered manually');
+        throwError(new Error('Test render error triggered manually'));
     };
 
     const handleAsyncError = async () => {

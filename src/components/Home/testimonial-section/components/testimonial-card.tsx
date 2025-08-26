@@ -29,9 +29,12 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
                 src={image}
                 alt={`Foto de perfil de ${author}`}
                 loading="lazy"
-                onError={(e) =>
-                    (e.currentTarget.src = '/images/placeholder.png')
-                }
+                onError={(e) => {
+                    if (e.currentTarget.src !== '/images/placeholder.png') {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/images/placeholder.png';
+                    }
+                }}
             />
             <div
                 className="flex flex-col pl-2 gap-3

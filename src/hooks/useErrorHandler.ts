@@ -19,14 +19,16 @@ export const withErrorHandler = <P extends object>(
 
         useEffect(() => {
             const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+                event.preventDefault();
+
                 console.error('Unhandled promise rejection:', event.reason);
 
                 if (process.env.NODE_ENV === 'development') {
-                    throwError(
-                        new Error(
-                            `Unhandled Promise Rejection: ${event.reason}`,
-                        ),
-                    );
+                    console.error('Promise rejection details:', {
+                        reason: event.reason,
+                        promise: event.promise,
+                        timestamp: new Date().toISOString(),
+                    });
                 }
             };
 
@@ -44,7 +46,11 @@ export const withErrorHandler = <P extends object>(
         }, [throwError]);
 
         return React.createElement(WrappedComponent, props);
-    };
+    }; // TODO: In a real app, you might want to:
+    // - Send to error reporting service (e.g., Sentry)
+    // - Show a non-blocking toast notification
+    // - Trigger telemetry hooks
+    // Example:
 
     WithErrorHandlerComponent.displayName = `withErrorHandler(${
         WrappedComponent.displayName || WrappedComponent.name

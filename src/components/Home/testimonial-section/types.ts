@@ -21,4 +21,5 @@ export interface TestimonialCardProps {
 export interface TestimonialHeaderProps {
     title: string;
     className?: string;
+    id?: string;
 }

@@ -16,11 +16,14 @@ export const useTestimonials = (): UseTestimonialsReturn => {
 
     const announceMessage = useMemo(() => {
         const count = filteredTestimonials.length;
-        return count > 0
-            ? `${count} depoimento${count > 1 ? 's' : ''} disponível${
-                  count > 1 ? 'eis' : ''
-              }.`
-            : 'Nenhum depoimento disponível no momento.';
+
+        if (count === 0) {
+            return 'Nenhum depoimento disponível no momento.';
+        } else if (count === 1) {
+            return '1 depoimento disponível.';
+        } else {
+            return `${count} depoimentos disponíveis.`;
+        }
     }, [filteredTestimonials.length]);
 
     return {
