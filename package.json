@@ -11,7 +11,8 @@
     "serve": "vite preview",
     "test": "vitest",
     "type-check": "tsc --noEmit",
-    "fakeapi": "npx json-server --watch fake_api_db.json --port 8000"
+    "fakeapi": "npx json-server --watch fake_api_db.json --port 8000",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
