@@ -20,8 +20,8 @@ export const CareerTransitionSection: React.FC = () => {
             </header>
             <div
                 className="flex flex-col
-                            md:flex-row-reverse md:gap-4
-                            lg:items-center"
+                            md:gap-4
+                            xl:flex-row-reverse xl:items-center"
             >
                 <CareerTransitionImage />
                 <CareerTransitionContent />
