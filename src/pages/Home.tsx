@@ -4,12 +4,12 @@ import { CareerTransitionSection } from '../components/Home/career-transition-se
 import TestimonialSection from '../components/Home/testimonial-section/index';
 
 export const Home: React.FC = () => {
-    return (
-        <>
-            <FeatureCards />
-            <CandidateSection />
-            <CareerTransitionSection />
-            <TestimonialSection />
-        </>
-    );
+  return (
+    <>
+      <FeatureCards />
+      <CandidateSection />
+      <CareerTransitionSection />
+      <TestimonialSection />
+    </>
+  );
 };

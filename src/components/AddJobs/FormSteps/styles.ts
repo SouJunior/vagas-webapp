@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { NumericFormat } from 'react-number-format';
 
 export const Label = styled.label`
@@ -12,38 +12,38 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  border: 1px solid #E8E8E8;
+  border: 1px solid #e8e8e8;
   border-radius: 6px;
   height: 50px;
   padding-left: 16px;
 
   &:focus {
     outline: none;
-    border: 2px solid #0077FF;
+    border: 2px solid #0077ff;
   }
 
   ::placeholder {
-    color: #D8D8D8;
+    color: #d8d8d8;
   }
-`
+`;
 
 export const TextArea = styled.textarea`
-  border: 1px solid #E8E8E8;
+  border: 1px solid #e8e8e8;
   border-radius: 6px;
   height: 100px;
   padding: 10px 16px;
 
   &:focus {
     outline: none;
-    border: 2px solid #0077FF;
+    border: 2px solid #0077ff;
   }
 
   ::placeholder {
-    color: #D8D8D8;
+    color: #d8d8d8;
   }
-`
+`;
 export const ErrorMessage = styled.span`
-  color: #FF0000;
+  color: #ff0000;
   opacity: 0.8;
   font-size: 14px;
   margin-left: 8px;
@@ -64,7 +64,7 @@ export const SelectInput = styled.select<{ width?: number }>`
   -moz-appearance: none;
   padding-right: 30px;
   padding-left: 16px;
-  width: ${props => props.width ? `${props.width}px` : 'auto'};
+  width: ${(props) => (props.width ? `${props.width}px` : 'auto')};
   }
 
   &:focus {
@@ -80,17 +80,17 @@ export const FormHeader = styled.div`
 `;
 
 export const FormTitle = styled.h1`
-font-weight: 600;
-font-size: 26px;
-line-height: 31px;
-color: #515050;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 31px;
+  color: #515050;
 `;
 
 export const FormSteps = styled.p`
-font-weight: 600;
-font-size: 16px;
-line-height: 19px;
-color: #515050;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #515050;
 `;
 
 export const HorizontalLine = styled.hr`
@@ -102,16 +102,16 @@ export const HorizontalLine = styled.hr`
 export const Button = styled.button`
   width: 262px;
   height: 52px;
-  background: #1165BA;
+  background: #1165ba;
   border-radius: 4px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: 23px;
 `;
 
 export const CancelButton = styled(Button)`
   background: transparent;
-  color: #1165BA;
-  border: 1px solid #1165BA;
+  color: #1165ba;
+  border: 1px solid #1165ba;
 `;
 
 export const ButtonSection = styled.div`
@@ -126,27 +126,27 @@ export const SalarySection = styled.div`
 `;
 
 export const SalaryInputContainer = styled.div`
-display: flex;
-gap: 8px;
+  display: flex;
+  gap: 8px;
 `;
 
 export const SalaryInput = styled(NumericFormat)`
   width: 250px;
   height: 50px;
-  border: 1px solid #1165BA;
+  border: 1px solid #1165ba;
   border-radius: 6px;
   padding-left: 12px;
   font-size: 18px;
 
-    ::placeholder {
-      color: #D8D8D8;
-      font-size: 16px;
-    }
+  ::placeholder {
+    color: #d8d8d8;
+    font-size: 16px;
+  }
 
-    &:focus {
-      outline: none;
-      border: 2px solid #0077FF;
-    }
+  &:focus {
+    outline: none;
+    border: 2px solid #0077ff;
+  }
 `;
 
 export const RadioInputContainer = styled.div`
@@ -154,19 +154,19 @@ export const RadioInputContainer = styled.div`
   gap: 50px;
 
   label {
-  color: #515050;
-  font-size: 16px;
-  margin-top: 4px;
-  line-height: 19px;
-  display: flex;
-  align-items: center;
+    color: #515050;
+    font-size: 16px;
+    margin-top: 4px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
   }
-  `;
+`;
 
 export const RadioInput = styled.input.attrs({ type: 'radio' })`
   margin-right: 10px;
   width: 20px;
-  height: 20px;  
+  height: 20px;
 `;
 
 export const Container = styled.div`

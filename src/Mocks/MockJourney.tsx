@@ -1,11 +1,12 @@
 import DestaqueSeLkd from '../assets/imgs/DestaqueSeLkd.svg';
 import CurriculoJr from '../assets/imgs/CurriculoJr.svg';
 
-export const Journey = [{
-    Id:'1',
+export const Journey = [
+  {
+    Id: '1',
     Img: DestaqueSeLkd,
-    Description:'Destaque-se no Linkedin',
-    Content:`
+    Description: 'Destaque-se no Linkedin',
+    Content: `
 # 1. **Escola Imagens Adequadas**
 Ter uma boa foto de perfil no Linkedin traz maior autoridade e faz com que o seu perfil tenha um número maior de visitas. Para se destacar, é preciso considerar um fator muito importante: a escolha das imagens adequadas. 
 É preciso ter atenção para escolher a foto do perfil e a foto de capa do Linkedin, pensando na imagem que se deseja passar à rede. Preferencialmente escolha as fotografias nas quais você está sozinho para o perfil — ou seja, deixe os retratos divertidos com amigos, familiares e pets para outras redes sociais — e vestido adequadamente para o que se pretende. Para a imagem de capa, escolha uma imagem que comunique com a sua área de atuação, que ajude a conectar uma mensagem.
@@ -61,15 +62,17 @@ Passo-a-passo:
 # 7. **Interaja**
 Interaja em comentários e postagens de forma estratégica. Faça comentários pertinentes e evite posicionamento político e de cunho racistas. Use em seu benefício.
 
-    `
-}, {
-    Id:'2',
+    `,
+  },
+  {
+    Id: '2',
     Img: CurriculoJr,
     Description: 'Construa um Currículo Profissional',
-    Content:'Resume Content',
-},]
+    Content: 'Resume Content',
+  },
+];
 
-export {}
+export {};
 
 //CONTEÚDO RETIRADO DO ARRAY NO MOMENTO, PARA SER USADO FUTURAMENTE SE FOR NECESSÁRIO
 

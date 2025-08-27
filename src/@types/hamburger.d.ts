@@ -1,1 +1,1 @@
-declare module "hamburger-react"
+declare module 'hamburger-react';

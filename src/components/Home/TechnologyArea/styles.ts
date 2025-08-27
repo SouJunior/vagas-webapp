@@ -1,47 +1,47 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-interface AreaNameProps{
-  active: boolean,  
+interface AreaNameProps {
+  active: boolean;
 }
 
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: end;
-    gap: 6px;
-    width: 120px;
-    height: 100px;
-    border-radius: 8px;
-    margin-right: 8px;
-    // background-color: ${({ theme }) => theme.colors.primary};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: 6px;
+  width: 120px;
+  height: 100px;
+  border-radius: 8px;
+  margin-right: 8px;
+  // background-color: ${({ theme }) => theme.colors.primary};
 
-    &.open{
-      background-color: #D6E7FF;
-    }
+  &.open {
+    background-color: #d6e7ff;
+  }
 
-    &.closed{
-      background-color: #1165BA;
-    }
+  &.closed {
+    background-color: #1165ba;
+  }
 
-    @media (max-width: 420px) {
-      margin-right: 15px !important;
-    }
+  @media (max-width: 420px) {
+    margin-right: 15px !important;
+  }
 `;
 
 export const IconImage = styled.div<AreaNameProps>`
-    width: 32px;
-    place-items: center;
-    color: ${props => props.active? '#046AD0' : '#FFF'};
-    font-size: 36px;
+  width: 32px;
+  place-items: center;
+  color: ${(props) => (props.active ? '#046AD0' : '#FFF')};
+  font-size: 36px;
 `;
 
 export const AreaName = styled.p<AreaNameProps>`
-    font-size: 14px;
-    color: ${props => props.active ? '#046AD0' : 'white'};
-    font-weight: 600;
-    margin-bottom: 8px;
-    margin-top: 6px;
+  font-size: 14px;
+  color: ${(props) => (props.active ? '#046AD0' : 'white')};
+  font-weight: 600;
+  margin-bottom: 8px;
+  margin-top: 6px;
 `;
 
 export const ModalWrapper = styled.div`
@@ -58,7 +58,7 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalTitle = styled.h1`
-    font-size: 24px;
+  font-size: 24px;
 `;
 
 export const ModalContent = styled.div`
@@ -80,17 +80,17 @@ export const ModalDescriptions = styled.p`
 `;
 
 export const ModalSource = styled.p`
-    margin-top: 28px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: break-all;
-    overflow: hidden;
+  margin-top: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-all;
+  overflow: hidden;
 
-    a {
-        text-decoration: underline;
-        color: blue;
-        font-weight: 500;
-    }
+  a {
+    text-decoration: underline;
+    color: blue;
+    font-weight: 500;
+  }
 `;
 
 export const CloseButton = styled.button`

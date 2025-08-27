@@ -130,7 +130,8 @@ export default function BasicTabs() {
           ? detail.company.companyName
           : 'Nome da empresa';
 
-      const position = detail && detail.title ? detail.title : 'Cargo não informado';
+      const position =
+        detail && detail.title ? detail.title : 'Cargo não informado';
 
       return {
         id: app.id,
@@ -170,21 +171,23 @@ export default function BasicTabs() {
       const response: ApiResponse = await api.getApplications();
 
       if (Array.isArray(response)) {
-
         const jobIds = response.map((job) => job.jobId);
         const jobDetails = await fetchJobDetails(jobIds);
 
         const merged = mergeApplicationWithJobDetails(response, jobDetails);
 
-        const fechadas = merged.filter((vaga) => vaga.status !== 'em andamento');
+        const fechadas = merged.filter(
+          (vaga) => vaga.status !== 'em andamento',
+        );
         const abertas = merged.filter((vaga) => vaga.status === 'em andamento');
 
         setVagasFechadas(fechadas);
         setVagasAtivas(abertas);
       } else {
-
         console.error('Erro na API:', response.statusCode, response.message);
-        setError('Erro ao carregar suas candidaturas. Por favor, tente novamente.');
+        setError(
+          'Erro ao carregar suas candidaturas. Por favor, tente novamente.',
+        );
       }
     } catch (error) {
       console.error('Erro ao buscar os dados:', error);
@@ -216,99 +219,99 @@ export default function BasicTabs() {
         </Box>
       ) : error ? (
         <Box sx={{ marginTop: 4, textAlign: 'center' }}>
-          +          <Typography color="error">{error}</Typography>
-          +          <Button onClick={fetchData} sx={{ mt: 2 }}>
-            +            Tentar novamente
-            +          </Button>
-          +        </Box>
-      ) :
-        (
-          <>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '80%' }}>
-              <Tabs
-                centered
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-              >
-                <Tab
-                  style={{ fontFamily: 'Radio Canada', color: '#101828' }}
-                  label={
-                    <Box sx={{ display: 'flex', fontSize: '16px' }}>
-                      <img
-                        src={CircleGreen}
-                        alt="Circle Green"
-                        style={{
-                          width: '12px',
-                          marginRight: '8px',
-                        }}
-                      />
-                      {`Ativas (${activeCount})`}
-                    </Box>
-                  }
-                  {...a11yProps(0)}
-                />
-                <Tab
-                  style={{ fontFamily: 'Radio Canada' }}
-                  label={
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontSize: '16px',
+          + <Typography color="error">{error}</Typography>+{' '}
+          <Button onClick={fetchData} sx={{ mt: 2 }}>
+            + Tentar novamente +{' '}
+          </Button>
+          +{' '}
+        </Box>
+      ) : (
+        <>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '80%' }}>
+            <Tabs
+              centered
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+            >
+              <Tab
+                style={{ fontFamily: 'Radio Canada', color: '#101828' }}
+                label={
+                  <Box sx={{ display: 'flex', fontSize: '16px' }}>
+                    <img
+                      src={CircleGreen}
+                      alt="Circle Green"
+                      style={{
+                        width: '12px',
+                        marginRight: '8px',
                       }}
-                    >
-                      <img
-                        src={CircleRed}
-                        alt="Circle Red"
-                        style={{
-                          width: '12px',
-                          marginRight: '8px',
-                        }}
-                      />
-                      {`Encerradas (${closedCount})`}
-                    </Box>
-                  }
-                  {...a11yProps(1)}
+                    />
+                    {`Ativas (${activeCount})`}
+                  </Box>
+                }
+                {...a11yProps(0)}
+              />
+              <Tab
+                style={{ fontFamily: 'Radio Canada' }}
+                label={
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: '16px',
+                    }}
+                  >
+                    <img
+                      src={CircleRed}
+                      alt="Circle Red"
+                      style={{
+                        width: '12px',
+                        marginRight: '8px',
+                      }}
+                    />
+                    {`Encerradas (${closedCount})`}
+                  </Box>
+                }
+                {...a11yProps(1)}
+              />
+            </Tabs>
+          </Box>
+
+          <CustomTabPanel value={value} index={0}>
+            <ContainerCards>
+              {vagasAtivas?.map((vaga) => (
+                <OutlinedCard
+                  key={vaga.id}
+                  id={vaga.id}
+                  image={vaga.image}
+                  companyName={vaga.companyName}
+                  position={vaga.position}
+                  applicationDate={vaga.applicationDate}
+                  closingDate={vaga.closingDate}
+                  status={vaga.status}
                 />
-              </Tabs>
-            </Box>
+              ))}
+            </ContainerCards>
+          </CustomTabPanel>
 
-            <CustomTabPanel value={value} index={0}>
-              <ContainerCards>
-                {vagasAtivas?.map((vaga) => (
-                  <OutlinedCard
-                    key={vaga.id}
-                    id={vaga.id}
-                    image={vaga.image}
-                    companyName={vaga.companyName}
-                    position={vaga.position}
-                    applicationDate={vaga.applicationDate}
-                    closingDate={vaga.closingDate}
-                    status={vaga.status}
-                  />
-                ))}
-              </ContainerCards>
-            </CustomTabPanel>
-
-            <CustomTabPanel value={value} index={1}>
-              <ContainerCards>
-                {vagasFechadas?.map((vaga) => (
-                  <OutlinedCard
-                    key={vaga.id}
-                    id={vaga.id}
-                    image={vaga.image}
-                    companyName={vaga.companyName ?? 'Nome da empresa'}
-                    position={vaga.position}
-                    applicationDate={vaga.applicationDate}
-                    closingDate={vaga.closingDate}
-                    status={vaga.status}
-                  />
-                ))}
-              </ContainerCards>
-            </CustomTabPanel>
-          </>
-        )}
+          <CustomTabPanel value={value} index={1}>
+            <ContainerCards>
+              {vagasFechadas?.map((vaga) => (
+                <OutlinedCard
+                  key={vaga.id}
+                  id={vaga.id}
+                  image={vaga.image}
+                  companyName={vaga.companyName ?? 'Nome da empresa'}
+                  position={vaga.position}
+                  applicationDate={vaga.applicationDate}
+                  closingDate={vaga.closingDate}
+                  status={vaga.status}
+                />
+              ))}
+            </ContainerCards>
+          </CustomTabPanel>
+        </>
+      )}
     </Box>
   );
 }

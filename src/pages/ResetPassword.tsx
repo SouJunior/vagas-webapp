@@ -18,7 +18,6 @@ import { useLocation } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
 
 const ResetPassword = () => {
-
   const [visible, setVisible] = useState(false);
   const [repeatVisible, setRepeatVisible] = useState(false);
 
@@ -37,27 +36,35 @@ const ResetPassword = () => {
   const number = /(?=.*[0-9])\w+/;
   const specialCharacters = /(?=.*\W+).*$/;
 
-  const newPasswordValue = watch("newPassword");
+  const newPasswordValue = watch('newPassword');
 
   const api = useApi();
- 
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
-  const type = searchParams.get("type");
-  const recoveryToken = searchParams.get("token")
+  const type = searchParams.get('type');
+  const recoveryToken = searchParams.get('token');
 
   const onSubmitHandler = async (data: any, e: any) => {
     if (recoveryToken !== null) {
-      if (type === "USER") {
-        api.userUpdatePassword(data.newPassword, data.confirmPassword, recoveryToken)
-      } else if (type === "COMPANY") {
-        api.companyUpdatePassword(data.newPassword, data.confirmPassword, recoveryToken)
+      if (type === 'USER') {
+        api.userUpdatePassword(
+          data.newPassword,
+          data.confirmPassword,
+          recoveryToken,
+        );
+      } else if (type === 'COMPANY') {
+        api.companyUpdatePassword(
+          data.newPassword,
+          data.confirmPassword,
+          recoveryToken,
+        );
       }
     }
 
     e.preventDefault();
-  }
+  };
 
   return (
     <Container>
@@ -65,21 +72,23 @@ const ResetPassword = () => {
         <h1>Redefinir senha</h1>
         <label>
           <span>Nova senha</span>
-          <ConfirmPasswordErrorMessage error={errors.confirmPassword !== undefined}>
+          <ConfirmPasswordErrorMessage
+            error={errors.confirmPassword !== undefined}
+          >
             <input
               maxLength={20}
-              type={visible ? "text" : "password"}
-              {...register(("newPassword"), { onChange: () => isSubmitted && trigger("confirmPassword") })}
+              type={visible ? 'text' : 'password'}
+              {...register('newPassword', {
+                onChange: () => isSubmitted && trigger('confirmPassword'),
+              })}
             />
             <button
               type="button"
-              onClick={() => { setVisible(!visible) }}
+              onClick={() => {
+                setVisible(!visible);
+              }}
             >
-              {
-                visible ?
-                  (<StyledIconClosedEyes />) :
-                  (<StyledIconOpenEyes />)
-              }
+              {visible ? <StyledIconClosedEyes /> : <StyledIconOpenEyes />}
             </button>
           </ConfirmPasswordErrorMessage>
         </label>
@@ -88,21 +97,25 @@ const ResetPassword = () => {
         </ErrorMessages>
         <label>
           <span>Repetir senha</span>
-          <ConfirmPasswordErrorMessage error={errors.confirmPassword !== undefined}>
+          <ConfirmPasswordErrorMessage
+            error={errors.confirmPassword !== undefined}
+          >
             <input
-              type={repeatVisible ? "text" : "password"}
-              onFocus={async () => await trigger("newPassword")}
-              {...register("confirmPassword")}
+              type={repeatVisible ? 'text' : 'password'}
+              onFocus={async () => await trigger('newPassword')}
+              {...register('confirmPassword')}
             />
             <button
               type="button"
-              onClick={() => { setRepeatVisible(!repeatVisible) }}
+              onClick={() => {
+                setRepeatVisible(!repeatVisible);
+              }}
             >
-              {
-                repeatVisible ?
-                  (<StyledIconClosedEyes />) :
-                  (<StyledIconOpenEyes />)
-              }
+              {repeatVisible ? (
+                <StyledIconClosedEyes />
+              ) : (
+                <StyledIconOpenEyes />
+              )}
             </button>
           </ConfirmPasswordErrorMessage>
         </label>
@@ -110,10 +123,7 @@ const ResetPassword = () => {
           {errors.confirmPassword && <>{errors.confirmPassword?.message}</>}
         </ErrorMessages>
         <ErrorMessages>
-          {isSubmitSuccessful && (<h2>
-            Senha redefinida com sucesso.
-          </h2>)
-          }
+          {isSubmitSuccessful && <h2>Senha redefinida com sucesso.</h2>}
         </ErrorMessages>
         <Checklist>
           <h2>Sua senha deve conter:</h2>
@@ -122,22 +132,24 @@ const ResetPassword = () => {
               <MessageChecklist>No mínimo 8 caracteres</MessageChecklist>
             </List>
             <List valid={newPasswordValue?.match(letters)}>
-              <MessageChecklist>Letras maiúsculas e minúsculas</MessageChecklist>
+              <MessageChecklist>
+                Letras maiúsculas e minúsculas
+              </MessageChecklist>
             </List>
             <List valid={newPasswordValue?.match(number)}>
               <MessageChecklist>No mínimo 1 número</MessageChecklist>
             </List>
             <List valid={newPasswordValue?.match(specialCharacters)}>
-              <MessageChecklist>No mínimo um caracter especial (!@?{ }...)</MessageChecklist>
+              <MessageChecklist>
+                No mínimo um caracter especial (!@?{}...)
+              </MessageChecklist>
             </List>
           </ul>
         </Checklist>
-        <Button type="submit">
-          Definir nova senha
-        </Button>
+        <Button type="submit">Definir nova senha</Button>
       </Form>
     </Container>
-  )
-}
+  );
+};
 
 export default ResetPassword;

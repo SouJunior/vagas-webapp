@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { RiInformationLine } from 'react-icons/ri';
 
 export const Container = styled.div`
@@ -7,21 +7,21 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const  MainGrid = styled.main`
-display: grid;
-grid-template-columns: 1fr;
+export const MainGrid = styled.main`
+  display: grid;
+  grid-template-columns: 1fr;
 
-@media (min-width: 768px) {
-  grid-template-columns: repeat(2, 1fr);
-}
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-gap: 62px;
-margin-top: 6.1875rem;
-width: 100%;
-max-width: 79rem;
-margin: 0.5rem;
-border-bottom: 1px solid #E8E8E8;
-border-top: 1px solid #E8E8E8;
+  gap: 62px;
+  margin-top: 6.1875rem;
+  width: 100%;
+  max-width: 79rem;
+  margin: 0.5rem;
+  border-bottom: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
 `;
 
 export const HeaderContainer = styled.div`
@@ -37,9 +37,9 @@ export const LogoImage = styled.img`
 `;
 
 export const FormSection = styled.section`
-    width: 100%;
-    margin-bottom: 62px;
-    margin-top: 32px;
+  width: 100%;
+  margin-bottom: 62px;
+  margin-top: 32px;
 `;
 
 export const Form = styled.form`
@@ -47,8 +47,8 @@ export const Form = styled.form`
   flex-direction: column;
   width: 583px;
   min-height: 655px;
-  background: #FFFFFF;
-  border: 1px solid #E8E8E8;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
   box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
   border-radius: 6px;
   padding: 24px;
@@ -61,17 +61,17 @@ export const FormHeader = styled.div`
 `;
 
 export const FormTitle = styled.h1`
-font-weight: 600;
-font-size: 26px;
-line-height: 31px;
-color: #515050;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 31px;
+  color: #515050;
 `;
 
 export const FormSteps = styled.p`
-font-weight: 600;
-font-size: 16px;
-line-height: 19px;
-color: #515050;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #515050;
 `;
 
 export const HorizontalLine = styled.hr`
@@ -84,27 +84,26 @@ export const NoJobsContainer = styled.div`
   margin-top: 32px;
   width: 599px;
   height: 655px;
-  border: 2px dashed #1165BA;
+  border: 2px dashed #1165ba;
   border-radius: 0.375rem;
   text-align: center;
   padding: 6rem;
 `;
 
 export const PreviewContainer = styled.div`
-  border: 1px solid #E8E8E8;
+  border: 1px solid #e8e8e8;
   width: 599px;
   height: 655px;
   margin-top: 32px;
   box-shadow: 0px 2px 5px rgba(27, 30, 33, 0.08);
   border-radius: 6px;
   padding: 20px;
-
 `;
 
 export const InnerContainer = styled.div`
   margin-bottom: 45px;
   margin: 0 auto;
-  border: 1px solid #1165BA;
+  border: 1px solid #1165ba;
   border-radius: 50%;
   width: 10.625rem;
   padding: 36px;
@@ -112,7 +111,7 @@ export const InnerContainer = styled.div`
 
 export const Icon = styled(RiInformationLine)`
   font-size: 6rem;
-  color: #1165BA;
+  color: #1165ba;
 `;
 
 export const Title = styled.p`
@@ -131,5 +130,5 @@ export const Message = styled.p`
   font-size: 23px;
   line-height: 28px;
   font-weight: normal;
-  color: #1165BA;
+  color: #1165ba;
 `;

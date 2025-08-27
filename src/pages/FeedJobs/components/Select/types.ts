@@ -1,4 +1,4 @@
 export interface SortSelectProps {
-    sortOrder: string;
-    onSortChange: (value: string) => void;
+  sortOrder: string;
+  onSortChange: (value: string) => void;
 }

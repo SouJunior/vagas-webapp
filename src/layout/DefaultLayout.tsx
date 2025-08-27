@@ -5,41 +5,40 @@ import HeaderDefault from '../components/HeaderDefault';
 import FooterDefault from '../components/FooterDefault';
 
 const DefaultLayout = () => {
-    const [isActive, setIsActive] = useState<boolean>(false);
-    const { pathname } = useLocation();
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const { pathname } = useLocation();
 
-    const updateIsActive = () => {
-        const { scrollY, innerWidth } = window;
-        const isHomePage = pathname === '/';
-        const shouldActivate =
-            !isHomePage || scrollY > 400 || innerWidth < 1280;
+  const updateIsActive = () => {
+    const { scrollY, innerWidth } = window;
+    const isHomePage = pathname === '/';
+    const shouldActivate = !isHomePage || scrollY > 400 || innerWidth < 1280;
 
-        setIsActive(shouldActivate);
+    setIsActive(shouldActivate);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      updateIsActive();
     };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            updateIsActive();
-        };
+    window.addEventListener('scroll', handleScroll);
 
-        window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [pathname]);
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [pathname]);
+  useEffect(() => {
+    updateIsActive();
+  }, [pathname]);
 
-    useEffect(() => {
-        updateIsActive();
-    }, [pathname]);
-
-    return (
-        <>
-            <HeaderDefault isActive={isActive} />
-            <Outlet />
-            <FooterDefault />
-        </>
-    );
+  return (
+    <>
+      <HeaderDefault isActive={isActive} />
+      <Outlet />
+      <FooterDefault />
+    </>
+  );
 };
 
 export default DefaultLayout;

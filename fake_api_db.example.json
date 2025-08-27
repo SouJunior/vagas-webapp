@@ -1,43 +1,43 @@
 {
-    "job": [
-        {
-            "id": "1",
-            "title": "desenvolvedor de front-end",
-            "company": "FK Partners",
-            "location": "São Paulo, SP",
-            "time": "Há 20 horas",
-            "link": "https://br.linkedin.com/jobs/view/desenvolvedor-de-front-end-at-fkpartners-3968404522?position=1&pageNum=0&refId=fi7UnG0YR5K4qbIA1Sg%2BUQ%3D%3D&trackingId=ateuJz%2FFXy8ZWAr9Mo%2BAQw%3D%3D&trk=public_jobs_jserp-result_search-card",
-            "jobName": "desenvolvedor-de-front-end-at-fkpartners-3968404522",
-            "created_date": "2024-07-07T14:39:33.032Z",
-            "visa": false,
-            "description": "",
-            "source": "Linkedin"
-        },
-        {
-            "id": "2",
-            "title": "engenheiro de dados",
-            "company": "ABC Tecnologia",
-            "location": "Rio de Janeiro, RJ",
-            "time": "Há 10 horas",
-            "link": "https://br.linkedin.com/jobs/view/engenheiro-de-dados-at-abctecnologia-123456789?position=1&pageNum=0&refId=fi7UnG0YR5K4qbIA1Sg%2BUQ%3D%3D&trackingId=ateuJz%2FFXy8ZWAr9Mo%2BAQw%3D%3D&trk=public_jobs_jserp-result_search-card",
-            "jobName": "engenheiro-de-dados-at-abctecnologia-123456789",
-            "created_date": "2024-07-06T10:00:00.000Z",
-            "visa": true,
-            "description": "Desenvolver soluções de dados utilizando Python e SQL.",
-            "source": "Linkedin"
-        },
-        {
-            "id": "3",
-            "title": "desenvolvedor de back-end",
-            "company": "XYZ Soluções",
-            "location": "Belo Horizonte, MG",
-            "time": "Há 5 horas",
-            "link": "https://br.linkedin.com/jobs/view/desenvolvedor-de-back-end-at-xyzsolucoes-987654321?position=1&pageNum=0&refId=fi7UnG0YR5K4qbIA1Sg%2BUQ%3D%3D&trackingId=ateuJz%2FFXy8ZWAr9Mo%2BAQw%3D%3D&trk=public_jobs_jserp-result_search-card",
-            "jobName": "desenvolvedor-de-back-end-at-xyzsolucoes-987654321",
-            "created_date": "2024-07-08T12:00:00.000Z",
-            "visa": false,
-            "description": "Desenvolver aplicações web utilizando Node.js e Express.",
-            "source": "Linkedin"
-        }
-    ]
+  "job": [
+    {
+      "id": "1",
+      "title": "desenvolvedor de front-end",
+      "company": "FK Partners",
+      "location": "São Paulo, SP",
+      "time": "Há 20 horas",
+      "link": "https://br.linkedin.com/jobs/view/desenvolvedor-de-front-end-at-fkpartners-3968404522?position=1&pageNum=0&refId=fi7UnG0YR5K4qbIA1Sg%2BUQ%3D%3D&trackingId=ateuJz%2FFXy8ZWAr9Mo%2BAQw%3D%3D&trk=public_jobs_jserp-result_search-card",
+      "jobName": "desenvolvedor-de-front-end-at-fkpartners-3968404522",
+      "created_date": "2024-07-07T14:39:33.032Z",
+      "visa": false,
+      "description": "",
+      "source": "Linkedin"
+    },
+    {
+      "id": "2",
+      "title": "engenheiro de dados",
+      "company": "ABC Tecnologia",
+      "location": "Rio de Janeiro, RJ",
+      "time": "Há 10 horas",
+      "link": "https://br.linkedin.com/jobs/view/engenheiro-de-dados-at-abctecnologia-123456789?position=1&pageNum=0&refId=fi7UnG0YR5K4qbIA1Sg%2BUQ%3D%3D&trackingId=ateuJz%2FFXy8ZWAr9Mo%2BAQw%3D%3D&trk=public_jobs_jserp-result_search-card",
+      "jobName": "engenheiro-de-dados-at-abctecnologia-123456789",
+      "created_date": "2024-07-06T10:00:00.000Z",
+      "visa": true,
+      "description": "Desenvolver soluções de dados utilizando Python e SQL.",
+      "source": "Linkedin"
+    },
+    {
+      "id": "3",
+      "title": "desenvolvedor de back-end",
+      "company": "XYZ Soluções",
+      "location": "Belo Horizonte, MG",
+      "time": "Há 5 horas",
+      "link": "https://br.linkedin.com/jobs/view/desenvolvedor-de-back-end-at-xyzsolucoes-987654321?position=1&pageNum=0&refId=fi7UnG0YR5K4qbIA1Sg%2BUQ%3D%3D&trackingId=ateuJz%2FFXy8ZWAr9Mo%2BAQw%3D%3D&trk=public_jobs_jserp-result_search-card",
+      "jobName": "desenvolvedor-de-back-end-at-xyzsolucoes-987654321",
+      "created_date": "2024-07-08T12:00:00.000Z",
+      "visa": false,
+      "description": "Desenvolver aplicações web utilizando Node.js e Express.",
+      "source": "Linkedin"
+    }
+  ]
 }

@@ -1,45 +1,45 @@
 import { createContext } from 'react';
-import { User } from '../../@types/User';
+import type { User } from '../../@types/User';
 
 export type AuthContextType = {
-    user: User | null;
+  user: User | null;
 
-    login: (
-        email: string,
-        password: string,
-        type: string | any,
-    ) => Promise<boolean>;
+  login: (
+    email: string,
+    password: string,
+    type: string | any,
+  ) => Promise<boolean>;
 
-    register: (
-        name: string,
-        email: string,
-        password: string,
-        confirmPassword: string,
-    ) => Promise<boolean>;
+  register: (
+    name: string,
+    email: string,
+    password: string,
+    confirmPassword: string,
+  ) => Promise<boolean>;
 
-    registerCompany: (
-        companyName: string,
-        email: string,
-        cnpj: string,
-        password: string,
-        passwordConfirmation: string,
-    ) => Promise<boolean>;
+  registerCompany: (
+    companyName: string,
+    email: string,
+    cnpj: string,
+    password: string,
+    passwordConfirmation: string,
+  ) => Promise<boolean>;
 
-    validateToken: (token: string) => Promise<any>;
+  validateToken: (token: string) => Promise<any>;
 
-    logout: () => void;
+  logout: () => void;
 
-    isLogin: 'login' | 'register';
-    setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  isLogin: 'login' | 'register';
+  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const AuthContext = createContext<any>({
-    user: null,
-    isLogin: 'login',
-    login: async () => false,
-    register: async () => false,
-    registerCompany: async () => false,
-    validateToken: async () => null,
-    logout: () => {},
-    setIsLogin: () => {},
+  user: null,
+  isLogin: 'login',
+  login: async () => false,
+  register: async () => false,
+  registerCompany: async () => false,
+  validateToken: async () => null,
+  logout: () => {},
+  setIsLogin: () => {},
 });
