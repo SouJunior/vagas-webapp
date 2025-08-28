@@ -6,7 +6,7 @@ export const FeatureCards: React.FC = () => {
         <section
             className="container mx-auto flex flex-col py-4 gap-6 items-center
                             md:flex-row md:flex-wrap md:justify-center md:gap-x-4 md:gap-y-6 
-                            lg:gap-6 lg:flex-nowrap"
+                            lg:gap-6 lg:flex-nowrap bg-white"
         >
             {featureCardsData.map((card, index) => (
                 <InfoCard

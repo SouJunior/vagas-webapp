@@ -3,7 +3,7 @@ import { cva, cx, type VariantProps } from 'class-variance-authority';
 export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
 const buttonVariants = cva(
-    'text-blue-dark200 px-6 py-[8.5px] font-canada  font-medium text-sm max-w-[168px] max-h-[44px] md:py-[10.5px] lg:py-3 rounded-lg cursor-pointer capitalize disabled:cursor-not-allowed',
+    'text-blue-dark200 px-6 py-[8.5px] font-canada  font-medium text-sm max-w-[206px] max-h-[44px] md:py-[10.5px] lg:py-3 rounded-lg cursor-pointer capitalize disabled:cursor-not-allowed',
     {
         variants: {
             intent: {
