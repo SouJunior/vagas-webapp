@@ -1,42 +1,13 @@
 import React from 'react';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
-import { useApi } from '../hooks/useApi';
-
-import {
-    OurSitesSection,
-    CardWrapper,
-    VocationalBannerArea,
-    VocationalBannerContainer,
-    VocationalImage,
-    VocationalTextContainer,
-    TestimonialSection,
-    TestimonialWrapper,
-    SecondaryTitle,
-    VocationalImageWrapper,
-} from './styles/Home.styles';
-
-import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
-
-import Blog from '../assets/imgs/blogSouJunior-img.svg';
-import NosAcompanhe from '../assets/imgs/followUs-img.svg';
-import VocationalTest from '../assets/imgs/vocational-teste.svg';
-
-import Testimonials from '../components/Home/Testimonials';
-
-import { Testimonial } from '../Mocks/Testimonial';
-import { TestimonialType } from '../@types/testimonial-type';
-import JourneySection from '../components/JourneySection/index';
-import useJobs from '../hooks/useJobs';
+import { FeatureCards } from '../components/Home/feature-cards';
+import { CandidateSection } from '../components/Home/candidate-section/candidate-section';
+import { CareerTransitionSection } from '../components/Home/career-transition-section/index';
+import { Button } from '../components/Ui/ButtonUi/Button';
+import TestimonialSection from '../components/Home/testimonial-section/index';
 
 import heroHome from '../assets/imgs/hero-home.svg';
 import decorateHome from '../assets/imgs/decorate-home.svg';
-import { Button } from '../components/Ui/ButtonUi/Button';
 
 export interface AreaProps {
     id: string;
@@ -44,11 +15,8 @@ export interface AreaProps {
     icon: React.ReactNode;
 }
 
-SwiperCore.use([Navigation, Autoplay]);
-
 export const Home: React.FC = () => {
     const [isVisible, setIsVisible] = React.useState<boolean>(false);
-    const { filteredJobsCount } = useJobs();
 
     React.useEffect(() => {
         setIsVisible(true);
@@ -108,130 +76,10 @@ export const Home: React.FC = () => {
                     />
                 </div>
             </main>
-
-            <VocationalBannerArea>
-                <VocationalBannerContainer>
-                    <VocationalTextContainer>
-                        <h1>
-                            TESTE <br />
-                            <span>VOCACIONAL</span>
-                        </h1>
-                        <p className="mb-10">
-                            <a
-                                href="https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Clique Aqui
-                            </a>{' '}
-                            e faça o seu teste agora mesmo!
-                        </p>
-                        <p className="p2">*Seu teste será feito no g1.com</p>
-                    </VocationalTextContainer>
-                    <VocationalImageWrapper>
-                        <VocationalImage src={VocationalTest} alt="" />
-                    </VocationalImageWrapper>
-                </VocationalBannerContainer>
-            </VocationalBannerArea>
-
-            <OurSitesSection>
-                <SecondaryTitle className="SecondaryTitle2">
-                    Seja o profissional que as empresas desejam
-                </SecondaryTitle>
-
-                <CardWrapper>
-                    <OurSitesCard
-                        Link="https://blog.soujunior.tech/"
-                        Title="Blog da SouJunior"
-                        Img={Blog}
-                        Description="Conheça nossos artigos."
-                    />
-                    <OurSitesCard
-                        Link="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
-                        Title="SouJunior Labs"
-                        Img={NosAcompanhe}
-                        Description="Aqui você conseguirá por em prática seus conhecimentos, participando de projetos."
-                    />
-                </CardWrapper>
-            </OurSitesSection>
-
-            <JourneySection />
-
-            {/* <JourneySection>
-                <JourneyContainer>
-                    <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
-                    <JourneyCardWrapper>
-                        {Journey.map((journey) => (
-                            <div key={journey.Id} tabIndex={0} role="button">
-                                <JourneyCard
-                                    Img={journey.Img}
-                                    Description={journey.Description}
-                                />
-                            </div>
-                        ))}
-                    </JourneyCardWrapper>
-                </JourneyContainer>
-            </JourneySection> */}
-
-            {/* <AppBannerContainer>
-                <AppBannerContainerInfo>
-                    <h1>
-                        Baixe nosso aplicativo
-                        <br />
-                        no seu dispositivo <span>Android</span>
-                        <br />
-                        e fique por dentro das <br />
-                        novidades!
-                    </h1>
-                    <a
-                        href="https://play.google.com/store/apps?hl=pt_BR&gl=US"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <GooglePlayButton src={googlePlayBadge} />
-                    </a>
-                </AppBannerContainerInfo>
-                <BannerMobileImage src={BannerMobile} />
-                <CircleImage src={doubleCircles} />
-            </AppBannerContainer> */}
-
-            <TestimonialSection>
-                <Swiper
-                    modules={[Autoplay, Pagination]}
-                    loop
-                    centeredSlides={true}
-                    spaceBetween={100}
-                    autoplay={{
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    }}
-                    pagination={{
-                        clickable: true,
-                        bulletClass: 'swiper-pagination-bullet',
-                    }}
-                    style={{
-                        width: '95%',
-                        maxWidth: '1080px',
-                        height: 'auto',
-                        margin: '0 auto',
-                        padding: '80px 0',
-                    }}
-                    className="mySwiper"
-                >
-                    <TestimonialWrapper>
-                        {Testimonial.map((deposition: TestimonialType) => (
-                            <SwiperSlide key={deposition.Author}>
-                                <Testimonials
-                                    Text={deposition.Text}
-                                    Author={deposition.Author}
-                                    Workplace={deposition.Workplace}
-                                    Profile={deposition.Profile}
-                                />
-                            </SwiperSlide>
-                        ))}
-                    </TestimonialWrapper>
-                </Swiper>
-            </TestimonialSection>
+            <FeatureCards />
+            <CandidateSection />
+            <CareerTransitionSection />
+            <TestimonialSection />
         </>
     );
 };

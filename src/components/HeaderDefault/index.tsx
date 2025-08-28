@@ -6,7 +6,11 @@ import MobileMenu from './MobileMenu';
 import MenuLinks from './MenuLinks';
 import Logo from './Logo';
 
-const HeaderDefault: React.FC = () => {
+interface HeaderDefaultProps {
+    isActive: boolean;
+}
+
+const HeaderDefault: React.FC<HeaderDefaultProps> = ({ isActive }) => {
     const [isMobileOpen, setMobileOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();

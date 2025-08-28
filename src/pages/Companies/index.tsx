@@ -1,3 +1,4 @@
+import React from 'react';
 import * as s from '../styles/HomeCompaniesStyles';
 
 import Logo from '../../assets/imgs/soujunior-empresas.png';
@@ -9,9 +10,72 @@ import img from './assets/Learn.png';
 import { Card } from './components/Card';
 
 import * as I from './components/Icons';
-import FooterDefault from '../../components/FooterDefault';
+import logoFooter from '../../assets/imgs/Logo-blue-souJunior.svg';
+
+import logoClaro from './assets/empresas-parceiras/Logo-claro.png';
+import logoCoca from './assets/empresas-parceiras/Logo-Coca.png';
+import logoGlobo from './assets/empresas-parceiras/Logo-Globo.png';
+import logoHp from './assets/empresas-parceiras/Logo-HP.png';
+import logoPositivo from './assets/empresas-parceiras/Logo-Positivo.png';
+
+import useEmblaCarousel from 'embla-carousel-react';
 
 export default function Companies() {
+    const [emblaRef, emblaApi] = useEmblaCarousel();
+    const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
+
+    const parceiras = [
+        {
+            url: logoClaro,
+        },
+        {
+            url: logoCoca,
+        },
+        {
+            url: logoHp,
+        },
+        {
+            url: logoGlobo,
+        },
+        {
+            url: logoPositivo,
+        },
+        {
+            url: logoClaro,
+        },
+        {
+            url: logoCoca,
+        },
+        {
+            url: logoHp,
+        },
+        {
+            url: logoGlobo,
+        },
+        {
+            url: logoPositivo,
+        },
+    ] as const;
+
+    type arrType = typeof parceiras;
+
+    const chunkArray = (arr: arrType, size: number) => {
+        const result = [];
+        for (let i = 0; i < arr.length; i += size) {
+            result.push(arr.slice(i, i + size));
+        }
+        return result;
+    };
+
+    const slides = React.useMemo(() => chunkArray(parceiras, 5), []);
+
+    const scrollNext = React.useCallback(() => {
+        if (emblaApi && emblaApi.canScrollNext()) {
+            emblaApi.scrollNext();
+            setCurrentSlideIndex((prev) => prev + 1);
+        }
+    }, [currentSlideIndex, slides.length, emblaApi]);
+
     return (
         <>
             <s.Header>
@@ -119,7 +183,129 @@ da empresa"
                 </s.Container>
             </section>
 
-            <FooterDefault />
+            <s.SecaoCarrossel>
+                <s.Container>
+                    {slides.length > 0 ? (
+                        <>
+                            <s.title>Empresas parceiras</s.title>
+                            <s.CarrosselWrapper>
+                                <s.ButtonNext
+                                    onClick={scrollNext}
+                                    disabled={
+                                        currentSlideIndex === slides.length - 1
+                                    }
+                                    aria-label="Próximo slide"
+                                >
+                                    {'>'}
+                                </s.ButtonNext>
+                                <s.CarrosselViewPort ref={emblaRef}>
+                                    <s.CarrosselContainer>
+                                        {slides.map((group, index) => (
+                                            <s.CarrosselSlide key={index}>
+                                                <s.slideGroup>
+                                                    {group.map((logo, idx) => (
+                                                        <img
+                                                            src={logo.url}
+                                                            key={idx}
+                                                            alt={`logo da empresa parceira ${
+                                                                idx + 1
+                                                            }`}
+                                                        />
+                                                    ))}
+                                                </s.slideGroup>
+                                            </s.CarrosselSlide>
+                                        ))}
+                                    </s.CarrosselContainer>
+                                </s.CarrosselViewPort>
+                            </s.CarrosselWrapper>
+
+                            <s.WrapperCTA>
+                                <s.ButtonCTA>Cadastre sua empresa</s.ButtonCTA>
+                            </s.WrapperCTA>
+                        </>
+                    ) : (
+                        <s.title>Seja um parceiro</s.title>
+                    )}
+                </s.Container>
+            </s.SecaoCarrossel>
+
+            <footer>
+                <s.Container>
+                    <s.ContentWrapper>
+                        <img src={logoFooter} alt="Sou Junior" />
+
+                        <s.LinksWrapper>
+                            <div>
+                                <s.LinkHeading>Institucional</s.LinkHeading>
+                                <s.Links>
+                                    <Link to={'#'}>SJ Site</Link>
+                                    <Link to={'#'}>SJ Vagas</Link>
+                                    <Link to={'#'}>SJ Empresas</Link>
+                                </s.Links>
+                            </div>
+
+                            <div>
+                                <s.LinkHeading>Canais SouJunior</s.LinkHeading>
+                                <s.Links>
+                                    <Link to={'#'}>SouJunior Labs</Link>
+                                    <Link to={'#'}>SouJunior Talks</Link>
+                                    <Link to={'#'}>Blog SouJunior</Link>
+                                </s.Links>
+                            </div>
+
+                            <div>
+                                <s.LinkHeading>Redes Sociais</s.LinkHeading>
+                                <s.Links>
+                                    <Link to={'#'}>
+                                        <img
+                                            src={I.Facebook}
+                                            alt="Facebook sou junior"
+                                        />
+                                    </Link>
+                                    <Link to={'#'}>
+                                        <img
+                                            src={I.Instragram}
+                                            alt="Instagram sou junior"
+                                        />
+                                    </Link>
+
+                                    <Link to={'#'}>
+                                        <img
+                                            src={I.Youtube}
+                                            alt="Youtube sou junior"
+                                        />
+                                    </Link>
+
+                                    <Link to={'#'}>
+                                        <img
+                                            src={I.Tiktok}
+                                            alt="TikTok sou junior"
+                                        />
+                                    </Link>
+                                    <Link to={'#'}>
+                                        <img
+                                            src={I.Github}
+                                            alt="Github sou junior"
+                                        />
+                                    </Link>
+                                    <Link to={'#'}>
+                                        <img
+                                            src={I.Linkedin}
+                                            alt="Linkedin sou junior"
+                                        />
+                                    </Link>
+                                    <Link to={'#'}>
+                                        <img
+                                            src={I.Telegram}
+                                            alt="Telegram sou junior"
+                                        />
+                                    </Link>
+                                </s.Links>
+                            </div>
+                        </s.LinksWrapper>
+                    </s.ContentWrapper>
+                </s.Container>
+            </footer>
         </>
     );
 }
