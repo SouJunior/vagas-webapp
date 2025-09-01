@@ -6,6 +6,7 @@ import { CareerTransitionSection } from '../components/Home/career-transition-se
 
 import TestimonialSection from '../components/Home/testimonial-section/index';
 import { EnterprisesSection } from '../components/Home/enterprises-section';
+import { AnimationEntry } from '../components/Ui/Animation-entry';
 
 export interface AreaProps {
     id: string;
@@ -17,12 +18,25 @@ export const Home: React.FC = () => {
     return (
         <>
             <main className="bg-blue-lightTransparent p-4 md:py-6 lg:p-8 lg:pb-0 ">
-                <EnterprisesSection />
+                <AnimationEntry>
+                    <EnterprisesSection />
+                </AnimationEntry>
             </main>
-            <FeatureCards />
-            <CandidateSection />
-            <CareerTransitionSection />
-            <TestimonialSection />
+            <AnimationEntry>
+                <FeatureCards />
+            </AnimationEntry>
+
+            <AnimationEntry>
+                <CandidateSection />
+            </AnimationEntry>
+
+            <AnimationEntry>
+                <CareerTransitionSection />
+            </AnimationEntry>
+
+            <AnimationEntry>
+                <TestimonialSection />
+            </AnimationEntry>
         </>
     );
 };

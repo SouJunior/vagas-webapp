@@ -1,26 +1,12 @@
-import React from 'react';
-
-import heroHome from '../../../assets/imgs/hero-home.svg';
-import decorateHome from '../../../assets/imgs/decorate-home.svg';
-
 import { Button } from '../../Ui/ButtonUi/Button';
+import {
+    EnterprisesLazyBackgroundImage,
+    EnterprisesLazyImage,
+} from './entrerprises-image';
 
 export function EnterprisesSection() {
-    const [isVisible, setIsVisible] = React.useState<boolean>(false);
-
-    React.useEffect(() => {
-        setIsVisible(true);
-    }, []);
-
     return (
-        <div
-            className={`container relative mx-auto transition-all duration-700 ease-out
-                                ${
-                                    isVisible
-                                        ? 'opacity-100 translate-y-0'
-                                        : 'opacity-0 translate-y-4'
-                                }`}
-        >
+        <div className={`container relative mx-auto `}>
             <p className="text-blue-dark200 font-canada text-base md:text-xl font-medium">
                 Para empresas
             </p>
@@ -34,13 +20,7 @@ export function EnterprisesSection() {
                 flex justify-center  items-end p-0 mb-4 md:mb-0 mt-5 md:mt-4  lg:items-end  lg:h-[416px] 
                 "
                 >
-                    <img
-                        className="
-                        ml-10 lg:w-[450px]  object-cover
-                        "
-                        src={heroHome}
-                        alt="Mulher branca em pé, sorrindo e olhando para a direita, segurando um notebook nas mãos"
-                    />
+                    <EnterprisesLazyImage />
                 </div>
 
                 <div
@@ -83,11 +63,7 @@ export function EnterprisesSection() {
                     </div>
                 </div>
             </div>
-            <img
-                src={decorateHome}
-                alt=""
-                className="absolute top-0 left-[45%] hidden lg:block "
-            />
+            <EnterprisesLazyBackgroundImage />
         </div>
     );
 }
