@@ -24,9 +24,9 @@ module.exports = {
                     light300: '#338AFF',
                     DEFAULT: '#1165BA',
                     dark: '#014C97',
-                    dark200: '#003986',
-                    dark300: '#002C66',
-                    dark400: '#001633',
+                    200: '#003986',
+                    300: '#002C66',
+                    400: '#001633',
                 },
                 gray: {
                     light: '#FCFCFC',

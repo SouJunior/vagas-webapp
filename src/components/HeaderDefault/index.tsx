@@ -7,7 +7,7 @@ import MenuLinks from './MenuLinks';
 import Logo from './Logo';
 
 interface HeaderDefaultProps {
-    isActive: boolean;
+    isActive?: boolean;
 }
 
 const HeaderDefault: React.FC<HeaderDefaultProps> = ({ isActive }) => {

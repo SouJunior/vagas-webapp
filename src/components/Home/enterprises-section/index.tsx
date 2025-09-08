@@ -1,13 +1,34 @@
-import { Button } from '../../Ui/ButtonUi/Button';
-import {
-    EnterprisesLazyBackgroundImage,
-    EnterprisesLazyImage,
-} from './entrerprises-image';
+import { Button } from '../../Ui/button';
+
+import { LazyImage } from '../../Ui/lazy-image';
+
+import enterprisesHome from '../../../assets/imgs/hero-home.svg';
+import decorateHome from '../../../assets/imgs/decorate-home.svg';
+
+function EnterprisesLazyImage() {
+    return (
+        <LazyImage
+            src={enterprisesHome}
+            alt="Mulher branca em pé, sorrindo e olhando para a direita, segurando um notebook nas mãos"
+            className="ml-10 lg:w-[450px]  object-cover"
+        />
+    );
+}
+
+function EnterprisesLazyBackgroundImage() {
+    return (
+        <LazyImage
+            src={decorateHome}
+            alt=""
+            className="absolute top-0 left-[45%] hidden lg:block "
+        />
+    );
+}
 
 export function EnterprisesSection() {
     return (
         <div className={`container relative mx-auto `}>
-            <p className="text-blue-dark200 font-canada text-base md:text-xl font-medium">
+            <p className="text-blue-200 font-canada text-base md:text-xl font-medium">
                 Para empresas
             </p>
             <div
@@ -30,7 +51,7 @@ export function EnterprisesSection() {
                 >
                     <h1
                         className="
-                    font-canada text-xl md:text-4xl lg:text-[40px] text-center lg:text-left font-semibold text-blue-dark300
+                    font-canada text-xl md:text-4xl lg:text-[40px] text-center lg:text-left font-semibold text-blue-300
                     "
                     >
                         Sua empresa com os maiores talentos da área!
@@ -38,11 +59,10 @@ export function EnterprisesSection() {
 
                     <p
                         className="
-                    mt-2 md:mt-4 lg:mt-[18px]  text-center lg:text-left font-canada font-normal text-sm md:text-base text-blue-dark200
+                    mt-2 md:mt-4 lg:mt-[18px] max-w-[350px] md:max-w-[400px] lg:max-w-[420px] text-center lg:text-left font-canada font-normal text-sm md:text-base text-blue-200
                     "
                     >
-                        Um portal de juniores para seu banco de talentos.
-                        <br />
+                        Um portal de juniores para seu banco de talentos.{' '}
                         <span className="font-semibold">
                             Cadastre-se agora mesmo!
                         </span>

@@ -4,7 +4,7 @@ import { LazyImage } from '../../Ui/lazy-image';
 
 import { useNavigate } from 'react-router';
 
-import { Button } from '../../Ui/ButtonUi/Button';
+import { Button } from '../../Ui/button';
 
 export const CandidateSection = () => {
     const navigate = useNavigate();

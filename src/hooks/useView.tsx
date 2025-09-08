@@ -7,6 +7,14 @@ export function useInView(options?: IntersectionObserverInit) {
     React.useEffect(() => {
         if (!ref.current) return;
 
+        if (
+            typeof window === 'undefined' ||
+            typeof IntersectionObserver === 'undefined'
+        ) {
+            setIsVisible(true);
+            return;
+        }
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {

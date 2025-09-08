@@ -67,7 +67,7 @@ export default function Companies() {
         return result;
     };
 
-    const slides = React.useMemo(() => chunkArray(parceiras, 5), []);
+    const slides = React.useMemo(() => chunkArray(parceiras, 5), [parceiras]);
 
     const scrollNext = React.useCallback(() => {
         if (emblaApi && emblaApi.canScrollNext()) {
@@ -155,8 +155,7 @@ export default function Companies() {
                         />
 
                         <Card
-                            heading="Formação moldada às necessidades 
-da empresa"
+                            heading="Formação moldada às necessidades da empresa"
                             description="Ao investir em talentos juniores, as empresas têm a oportunidade de formar profissionais sob medida, alinhados à sua cultura e processos. Isso pode gerar maior engajamento e retenção, já que o colaborador sente que está crescendo junto com a empresa."
                             img={I.Mindset}
                         />
@@ -207,6 +206,7 @@ da empresa"
                                                         <img
                                                             src={logo.url}
                                                             key={idx}
+                                                            loading="lazy"
                                                             alt={`logo da empresa parceira ${
                                                                 idx + 1
                                                             }`}
