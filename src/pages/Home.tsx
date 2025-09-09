@@ -6,7 +6,7 @@ import { CareerTransitionSection } from '../components/Home/career-transition-se
 
 import TestimonialSection from '../components/Home/testimonial-section/index';
 import { EnterprisesSection } from '../components/Home/enterprises-section';
-import { AnimationEntry } from '../components/Ui/animation-entry';
+import { AnimationEntry } from '../components/Ui/animation-entry/index';
 
 export interface AreaProps {
     id: string;
