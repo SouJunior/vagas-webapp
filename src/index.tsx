@@ -13,7 +13,6 @@ import { setupGlobalErrorHandler } from './setupErrorHandler';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
-// Setup global error handler once at application startup
 setupGlobalErrorHandler();
 
 const root = ReactDOM.createRoot(
