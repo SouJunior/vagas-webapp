@@ -98,7 +98,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
                                 {testimonials.map((testimonial, index) => (
                                     <div
                                         key={testimonial.id}
-                                        className="w-full shrink-0 flex justify-center px-3 md:px-3 lg:px-4"
+                                        className="w-fit shrink-0 flex justify-center px-3 md:px-3 lg:px-4"
                                         role="group"
                                         aria-roledescription="slide"
                                         aria-label={`${index + 1} de ${
