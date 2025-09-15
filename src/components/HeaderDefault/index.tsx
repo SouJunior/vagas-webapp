@@ -7,7 +7,7 @@ import MenuLinks from './MenuLinks';
 import Logo from './Logo';
 
 interface HeaderDefaultProps {
-    isActive: boolean;
+    isActive?: boolean;
 }
 
 const HeaderDefault: React.FC<HeaderDefaultProps> = ({ isActive }) => {
@@ -31,7 +31,7 @@ const HeaderDefault: React.FC<HeaderDefaultProps> = ({ isActive }) => {
                 onClose={() => setMobileOpen(false)}
                 isHomePage={isHomePage}
             />
-            <header className="fixed top-0 flex w-full bg-white h-28 items-center justify-between px-4 z-40">
+            <header className="sticky top-0 flex w-full bg-white h-28 items-center justify-between px-4 z-[999]">
                 <Logo onClick={handleLogoClick} />
                 <nav className="hidden md:block">
                     <MenuLinks isHomePage={isHomePage} />

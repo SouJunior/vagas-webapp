@@ -2,6 +2,15 @@
 module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
     theme: {
+        keyframes: {
+            'fade-in-up': {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+        },
+        animation: {
+            'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+        },
         fontFamily: {
             sans: ['Inter', 'sans-serif'],
             canada: ['Radio Canada', 'sans-serif'],
@@ -11,14 +20,20 @@ module.exports = {
                 blue: {
                     lighter: '#ECF5FF',
                     light: '#086BCF',
+                    lightTransparent: '#338AFF33',
+                    light300: '#338AFF',
                     DEFAULT: '#1165BA',
                     dark: '#014C97',
+                    200: '#003986',
+                    300: '#002C66',
+                    400: '#001633',
                 },
                 gray: {
                     light: '#FCFCFC',
                     DEFAULT: '#F3F3F3',
                     dark: '#C1C1C1',
                     darker: '#515050',
+                    disabled: '#DEDEDE',
                 },
             },
             backgroundImage: {
@@ -31,5 +46,6 @@ module.exports = {
             },
         },
     },
+
     plugins: [],
 };
