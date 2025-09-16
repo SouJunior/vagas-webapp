@@ -6,13 +6,24 @@ interface UseStepperProps {
 }
 
 export function useStepper({ initialStep = 0, steps }: UseStepperProps) {
-    const [currentStep, setCurrentStep] = useState(initialStep);
+    const maxIndex = Math.max(0, steps - 1);
+    const safeInitialStep = Math.min(Math.max(initialStep, 0), maxIndex);
+    const [currentStep, setCurrentStep] = useState(safeInitialStep);
 
-    const nextStep = () =>
-        setCurrentStep((prev) => Math.min(prev + 1, steps - 1));
-    const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
+    const nextStep = () => {
+        if (steps === 0) return;
+        setCurrentStep((prev) => Math.min(prev + 1, maxIndex));
+    };
+
+    const prevStep = () => {
+        if (steps === 0) return;
+        setCurrentStep((prev) => Math.max(prev - 1, 0));
+    };
+
     const goToStep = (step: number) => {
-        if (step >= 0 && step < steps) setCurrentStep(step);
+        if (steps === 0) return;
+        const clampedStep = Math.min(Math.max(step, 0), maxIndex);
+        setCurrentStep(clampedStep);
     };
 
     return {

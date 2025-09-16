@@ -42,7 +42,7 @@ export const Stepper: React.FC<StepperProps> = ({
         >
             <ol
                 className="flex space-x-8 items-center"
-                {...ARIA_ATTRIBUTES.labelledBy('stepper-label')}
+                aria-label="Lista de etapas"
             >
                 {steps.map((step, idx) => (
                     <li key={step.label} className="list-none">
@@ -51,11 +51,11 @@ export const Stepper: React.FC<StepperProps> = ({
                             className={`flex items-center justify-center w-8 h-8 p-2 rounded-full transition-colors duration-200  ${getCircleClass(
                                 idx,
                             )}`}
+                            aria-label={step.label}
                             aria-current={
                                 currentStep === idx ? 'step' : undefined
                             }
-                            aria-disabled={currentStep === idx}
-                            tabIndex={0}
+                            disabled={currentStep === idx}
                             onClick={() => goToStep(idx)}
                         >
                             {idx < currentStep ? (
@@ -65,10 +65,7 @@ export const Stepper: React.FC<StepperProps> = ({
                                     aria-hidden="true"
                                 />
                             ) : (
-                                <span
-                                    id={idx === 0 ? 'stepper-label' : undefined}
-                                    className="text-sm font-normal font-canada leading-none"
-                                >
+                                <span className="text-sm font-normal font-canada leading-none">
                                     {idx + 1}
                                 </span>
                             )}
