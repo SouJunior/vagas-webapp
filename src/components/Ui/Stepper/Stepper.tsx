@@ -1,38 +1,40 @@
 import React from 'react';
 import { HiCheck } from 'react-icons/hi';
-import { useStepper } from '../../../hooks/useStepper';
-import { ARIA_ATTRIBUTES } from '../../../utils/accessibility';
+import { useControllableState } from '../../../hooks/useControllableState';
 
 export interface Step {
     label: string;
-    status?: string;
 }
 
 export interface StepperProps {
     steps: Step[];
     initialStep?: number;
+    step?: number;
     onStepChange?: (step: number) => void;
 }
 
 export const Stepper: React.FC<StepperProps> = ({
     steps,
     initialStep = 0,
+    step: controlledStep,
     onStepChange,
 }) => {
-    const { currentStep, goToStep } = useStepper({
+    const [currentStep, setCurrentStep] = useControllableState(
+        controlledStep,
         initialStep,
-        steps: steps.length,
-    });
-
-    React.useEffect(() => {
-        if (onStepChange) onStepChange(currentStep);
-    }, [currentStep, onStepChange]);
+        onStepChange,
+    );
 
     const getCircleClass = (idx: number) => {
         if (idx < currentStep) return 'bg-blue-500 text-white';
         if (idx === currentStep)
             return 'bg-white border-2 border-blue-500 text-blue-500';
         return 'bg-neutral-200 text-blue-900';
+    };
+    const handleStepClick = (stepIndex: number) => {
+        const maxIndex = Math.max(0, steps.length - 1);
+        const newStep = Math.min(Math.max(stepIndex, 0), maxIndex);
+        setCurrentStep(newStep);
     };
 
     return (
@@ -56,7 +58,7 @@ export const Stepper: React.FC<StepperProps> = ({
                                 currentStep === idx ? 'step' : undefined
                             }
                             disabled={currentStep === idx}
-                            onClick={() => goToStep(idx)}
+                            onClick={() => handleStepClick(idx)}
                         >
                             {idx < currentStep ? (
                                 <HiCheck
