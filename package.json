@@ -11,7 +11,8 @@
     "serve": "vite preview",
     "test": "vitest",
     "type-check": "tsc --noEmit",
-    "fakeapi": "npx json-server --watch fake_api_db.json --port 8000"
+    "fakeapi": "npx json-server --watch fake_api_db.json --port 8000",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -69,6 +70,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@eslint/js": "^9.34.0",
     "@tailwindcss/typography": "^0.5.8",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -83,23 +85,27 @@
     "@types/uuid": "^8.3.4",
     "@vitejs/plugin-react-swc": "^3.8.1",
     "autoprefixer": "^10.4.7",
+    "eslint": "^9.34.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "git-commit-msg-linter": "^5.0.8",
+    "husky": "^9.1.7",
     "jsdom": "^26.0.0",
+    "lint-staged": "^16.1.5",
     "postcss": "^8.4.14",
-    "prettier": "^2.7.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^3.1.6",
     "typescript": "^4.4.2",
+    "typescript-eslint": "^8.41.0",
     "vite": "^6.2.2",
     "vite-plugin-commonjs": "^0.10.4",
     "vitest": "^3.0.9"
   },
   "engines": {
     "node": ">=20"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "homepage": "https://vagas.soujunior.tech",
   "keywords": [

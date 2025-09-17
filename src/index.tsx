@@ -17,23 +17,23 @@ import './index.css';
 setupGlobalErrorHandler();
 
 const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement,
+  document.getElementById('root') as HTMLElement,
 );
 
 const queryClient = new QueryClient();
 
 root.render(
-    <React.StrictMode>
-        <ErrorBoundary>
-            <QueryClientProvider client={queryClient}>
-                <AuthProvider>
-                    <ThemeProvider theme={mainTheme}>
-                        <GlobalStyle />
-                        <Router />
-                        <ToastContainer />
-                    </ThemeProvider>
-                </AuthProvider>
-            </QueryClientProvider>
-        </ErrorBoundary>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <ThemeProvider theme={mainTheme}>
+            <GlobalStyle />
+            <Router />
+            <ToastContainer />
+          </ThemeProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  </React.StrictMode>,
 );
