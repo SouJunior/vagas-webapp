@@ -1,13 +1,13 @@
+import { Turn as Hamburger } from 'hamburger-react';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Turn as Hamburger } from 'hamburger-react';
 
-import MobileMenu from './MobileMenu';
-import MenuLinks from './MenuLinks';
 import Logo from './Logo';
+import MenuLinks from './MenuLinks';
+import MobileMenu from './MobileMenu';
 
 interface HeaderDefaultProps {
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 const HeaderDefault: React.FC<HeaderDefaultProps> = ({ isActive }) => {
@@ -31,7 +31,7 @@ const HeaderDefault: React.FC<HeaderDefaultProps> = ({ isActive }) => {
         onClose={() => setMobileOpen(false)}
         isHomePage={isHomePage}
       />
-      <header className="fixed top-0 z-40 flex h-28 w-full items-center justify-between bg-white px-4">
+      <header className="sticky top-0 z-[999] flex h-28 w-full items-center justify-between bg-white px-4">
         <Logo onClick={handleLogoClick} />
         <nav className="hidden md:block">
           <MenuLinks isHomePage={isHomePage} />

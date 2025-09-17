@@ -1,8 +1,8 @@
-import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 
-import HeaderDefault from '../components/HeaderDefault';
 import FooterDefault from '../components/FooterDefault';
+import HeaderDefault from '../components/HeaderDefault';
 
 const DefaultLayout = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -34,7 +34,7 @@ const DefaultLayout = () => {
 
   return (
     <>
-      <HeaderDefault isActive={isActive} />
+      <HeaderDefault />
       <Outlet />
       <FooterDefault />
     </>

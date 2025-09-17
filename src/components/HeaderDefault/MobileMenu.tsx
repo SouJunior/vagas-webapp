@@ -13,7 +13,7 @@ const MobileMenu = ({ isOpen, onClose, isHomePage }: MobileMenuProps) => {
   return (
     <>
       <div
-        className="fixed right-0 top-0 z-[999] h-80 w-64 bg-white drop-shadow-2xl"
+        className="absolute right-0 top-28 z-[1001] h-80 w-64 bg-white drop-shadow-2xl"
         role="dialog"
         aria-modal="true"
       >
