@@ -1,4 +1,4 @@
 export interface SubtitleSmProps {
-    children: React.ReactNode;
-    transform?: string;
+  children: React.ReactNode;
+  transform?: string;
 }

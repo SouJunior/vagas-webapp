@@ -13,16 +13,16 @@ import Team from '../assets/hireIcons/Team.svg';
 import Growth from '../assets/hireIcons/Cost.svg';
 
 export {
-    Cost,
-    Mindset,
-    Idea,
-    Team,
-    Growth,
-    Facebook,
-    Github,
-    Instragram,
-    Linkedin,
-    Telegram,
-    Tiktok,
-    Youtube,
+  Cost,
+  Mindset,
+  Idea,
+  Team,
+  Growth,
+  Facebook,
+  Github,
+  Instragram,
+  Linkedin,
+  Telegram,
+  Tiktok,
+  Youtube,
 };
