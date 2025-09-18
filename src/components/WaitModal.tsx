@@ -1,12 +1,12 @@
 function WaitModal() {
-    return (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white p-8 rounded-lg">
-                {' '}
-                <p>Aguarde, você será redirecionado em breve...</p>
-            </div>
-        </div>
-    );
+  return (
+    <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+      <div className="rounded-lg bg-white p-8">
+        {' '}
+        <p>Aguarde, você será redirecionado em breve...</p>
+      </div>
+    </div>
+  );
 }
 
 export default WaitModal;

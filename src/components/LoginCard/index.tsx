@@ -10,41 +10,39 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Container, Card, LoginTypeButton, DivLogo } from './styles';
 
 enum UserType {
-    COMPANY = 'COMPANY',
-    USER = 'USER',
+  COMPANY = 'COMPANY',
+  USER = 'USER',
 }
 
 const LoginCard = () => {
-    const [loginType, setLoginType] = useState<UserType>(UserType.USER);
+  const [loginType, setLoginType] = useState<UserType>(UserType.USER);
 
-    return (
-        <Container>
-            <Card>
-                <LoginTypeButton>
-                    <button onClick={() => setLoginType(UserType.USER)}>
-                        <img src={CandidatoIcon} alt="Candidato" />
-                        Candidato
-                    </button>
-                    <button onClick={() => setLoginType(UserType.COMPANY)}>
-                        <img src={EmpresaIcon} alt="Empresa" />
-                        Empresa
-                    </button>
-                </LoginTypeButton>
-                <DivLogo>
-                    <LogoIcon />
-                </DivLogo>
+  return (
+    <Container>
+      <Card>
+        <LoginTypeButton>
+          <button onClick={() => setLoginType(UserType.USER)}>
+            <img src={CandidatoIcon} alt="Candidato" />
+            Candidato
+          </button>
+          <button onClick={() => setLoginType(UserType.COMPANY)}>
+            <img src={EmpresaIcon} alt="Empresa" />
+            Empresa
+          </button>
+        </LoginTypeButton>
+        <DivLogo>
+          <LogoIcon />
+        </DivLogo>
 
-                {loginType === UserType.COMPANY && (
-                    <CompanyForms type={UserType.COMPANY} />
-                )}
+        {loginType === UserType.COMPANY && (
+          <CompanyForms type={UserType.COMPANY} />
+        )}
 
-                {loginType === UserType.USER && (
-                    <UserForms type={UserType.USER} />
-                )}
-            </Card>
-            <ToastContainer />
-        </Container>
-    );
+        {loginType === UserType.USER && <UserForms type={UserType.USER} />}
+      </Card>
+      <ToastContainer />
+    </Container>
+  );
 };
 
 export default LoginCard;

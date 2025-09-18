@@ -1,177 +1,42 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import React from 'react';
 
-import {
-    Title,
-    Main,
-    JobsInfo,
-    MainSearchFilter,
-    Image,
-    OurSitesSection,
-    CardWrapper,
-    TestimonialSection,
-    TestimonialWrapper,
-    CircleImage,
-    Circle,
-    MainContent,
-    SecondaryTitle,
-} from './styles/Home.styles';
-
-import OurSitesCard from '../components/Home/OurSitesSection/OurSites';
-
-import ImageHome from '../assets/imgs/home-image.svg';
-import Blog from '../assets/imgs/blogSouJunior-img.svg';
-import NosAcompanhe from '../assets/imgs/followUs-img.svg';
-import doubleCircles from '../assets/imgs/DoubleCircle.svg';
-import circle from '../assets/imgs/circle.svg';
-
-import Testimonials from '../components/Home/Testimonials';
-import JobFilter from '../components/Home/HomeJobFilter';
-import { Testimonial } from '../Mocks/Testimonial';
-import { TestimonialType } from '../@types/testimonial-type';
-import JourneySection from '../components/JourneySection/index';
-import useJobs from '../hooks/useJobs';
-import { FeatureCards } from '../components/Home/feature-cards';
 import { CandidateSection } from '../components/Home/candidate-section/candidate-section';
 import { CareerTransitionSection } from '../components/Home/career-transition-section/index';
+import { FeatureCards } from '../components/Home/feature-cards';
+
+import { EnterprisesSection } from '../components/Home/enterprises-section';
+import TestimonialSection from '../components/Home/testimonial-section/index';
+import { AnimationEntry } from '../components/Ui/animation-entry';
 
 export interface AreaProps {
-    id: string;
-    name: string;
-    icon: React.ReactNode;
+  id: string;
+  name: string;
+  icon: React.ReactNode;
 }
 
 export const Home: React.FC = () => {
-    const { filteredJobsCount } = useJobs();
+  return (
+    <>
+      <main className="bg-blue-lightTransparent p-4 md:py-6 lg:p-8 lg:pb-0">
+        <AnimationEntry>
+          <EnterprisesSection />
+        </AnimationEntry>
+      </main>
+      <AnimationEntry>
+        <FeatureCards />
+      </AnimationEntry>
 
-    return (
-        <>
-            <Main>
-                <MainContent>
-                    <MainSearchFilter>
-                        <Title>
-                            Um portal de vagas <span>exclusivo</span> para
-                            profissionais <span>em início de carreira!</span>
-                        </Title>
+      <AnimationEntry>
+        <CandidateSection />
+      </AnimationEntry>
 
-                        <JobFilter />
+      <AnimationEntry>
+        <CareerTransitionSection />
+      </AnimationEntry>
 
-                        <JobsInfo>
-                            Mais de {filteredJobsCount} vagas disponíveis para
-                            você!
-                        </JobsInfo>
-
-                        <Image src={ImageHome}></Image>
-                    </MainSearchFilter>
-                </MainContent>
-                <Circle src={circle} />
-                <CircleImage src={doubleCircles} />
-            </Main>
-            <FeatureCards />
-
-            <CandidateSection />
-            <CareerTransitionSection />
-            <OurSitesSection>
-                <SecondaryTitle className="SecondaryTitle2">
-                    Seja o profissional que as empresas desejam
-                </SecondaryTitle>
-
-                <CardWrapper>
-                    <OurSitesCard
-                        Link="https://blog.soujunior.tech/"
-                        Title="Blog da SouJunior"
-                        Img={Blog}
-                        Description="Conheça nossos artigos."
-                    />
-                    <OurSitesCard
-                        Link="https://docs.google.com/forms/d/e/1FAIpQLSd1IspO3Hwylce2kHtIsmyBAkH7p3VFmdYUmdL75YXZ-DSNBA/viewform"
-                        Title="SouJunior Labs"
-                        Img={NosAcompanhe}
-                        Description="Aqui você conseguirá por em prática seus conhecimentos, participando de projetos."
-                    />
-                </CardWrapper>
-            </OurSitesSection>
-
-            <JourneySection />
-
-            {/* <JourneySection>
-                <JourneyContainer>
-                    <JourneyTitle>Vamos juntos nessa jornada</JourneyTitle>
-                    <JourneyCardWrapper>
-                        {Journey.map((journey) => (
-                            <div key={journey.Id} tabIndex={0} role="button">
-                                <JourneyCard
-                                    Img={journey.Img}
-                                    Description={journey.Description}
-                                />
-                            </div>
-                        ))}
-                    </JourneyCardWrapper>
-                </JourneyContainer>
-            </JourneySection> */}
-
-            {/* <AppBannerContainer>
-                <AppBannerContainerInfo>
-                    <h1>
-                        Baixe nosso aplicativo
-                        <br />
-                        no seu dispositivo <span>Android</span>
-                        <br />
-                        e fique por dentro das <br />
-                        novidades!
-                    </h1>
-                    <a
-                        href="https://play.google.com/store/apps?hl=pt_BR&gl=US"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <GooglePlayButton src={googlePlayBadge} />
-                    </a>
-                </AppBannerContainerInfo>
-                <BannerMobileImage src={BannerMobile} />
-                <CircleImage src={doubleCircles} />
-            </AppBannerContainer> */}
-
-            <TestimonialSection>
-                <Swiper
-                    modules={[Navigation, Autoplay, Pagination]}
-                    loop
-                    centeredSlides={true}
-                    spaceBetween={100}
-                    autoplay={{
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    }}
-                    pagination={{
-                        clickable: true,
-                        bulletClass: 'swiper-pagination-bullet',
-                    }}
-                    style={{
-                        width: '95%',
-                        maxWidth: '1080px',
-                        height: 'auto',
-                        margin: '0 auto',
-                        padding: '80px 0',
-                    }}
-                    className="mySwiper"
-                >
-                    <TestimonialWrapper>
-                        {Testimonial.map((deposition: TestimonialType) => (
-                            <SwiperSlide key={deposition.Author}>
-                                <Testimonials
-                                    Text={deposition.Text}
-                                    Author={deposition.Author}
-                                    Workplace={deposition.Workplace}
-                                    Profile={deposition.Profile}
-                                />
-                            </SwiperSlide>
-                        ))}
-                    </TestimonialWrapper>
-                </Swiper>
-            </TestimonialSection>
-        </>
-    );
+      <AnimationEntry>
+        <TestimonialSection />
+      </AnimationEntry>
+    </>
+  );
 };

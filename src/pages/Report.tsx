@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Container } from '../components/styles/Container.styled';
@@ -7,241 +8,204 @@ import mailIcon from '../assets/imgs/mail.svg';
 import importantIcon from '../assets/imgs/important_vector.png';
 
 const Report = () => {
-    const [count, setCount] = useState(0);
-    const [message, setMessage] = useState('');
+  const [count, setCount] = useState(0);
+  const [message, setMessage] = useState('');
 
-    const handleMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setMessage(() => e.target.value);
-        setCount(e.target.value.length);
-    };
+  const handleMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(() => e.target.value);
+    setCount(e.target.value.length);
+  };
 
-    const MAX_LENGTH = 2000;
-    return (
-        <div>
-            <Header pageName="Central de denúncias" backTo="/" />
-            <Container>
-                <header className="text-center align-middle">
-                    <h4 className="font-semibold text-gray-600 text-3xl tracking-wide mt-24">
-                        Informe a equipe do SouJunior o problema desta vaga
-                    </h4>
-                    <h4 className="mb-[28px]">
-                        Após denunciar a vaga nossa equipe ira tomar as devidas
-                        providências em relação a denúncia.
-                    </h4>
-                    <hr className="mb-7" />
-                </header>
+  const MAX_LENGTH = 2000;
+  return (
+    <div>
+      <Header pageName="Central de denúncias" backTo="/" />
+      <Container>
+        <header className="text-center align-middle">
+          <h4 className="mt-24 text-3xl font-semibold tracking-wide text-gray-600">
+            Informe a equipe do SouJunior o problema desta vaga
+          </h4>
+          <h4 className="mb-[28px]">
+            Após denunciar a vaga nossa equipe ira tomar as devidas providências
+            em relação a denúncia.
+          </h4>
+          <hr className="mb-7" />
+        </header>
 
-                <Outlet />
+        <Outlet />
 
-                <section className="min-h-[530px] sm:flex sm:justify-between gap-5 relative mb-[77px]">
-                    <div className="relative flex ">
-                        <div className="h-9 w-full bg-red-700 rounded-t-md absolute flex justify-between items-center px-2">
-                            <p className="text-white font-semibold text-base">
-                                Denunciar está vaga
-                            </p>
-                            <img src={importantIcon} alt="Warning Icon" />
-                        </div>
-                        <div className="flex flex-col flex-1 mb-5 sm:mb-0">
-                            <div className="flex h-[600px] max-w-[583px] rounded-t-none border-2 border-red-700 mt-9 relative rounded-md h-96 overflow-scroll z-50">
-                                <div className="px-5 my-4 w-full ">
-                                    <h2 className="font-bold text-2xl text-gray-para text-gray-600">
-                                        UX Designer Junior
-                                    </h2>
-                                    <p className="text-gray-600 font-semibold">
-                                        Empresa Verde
-                                    </p>
-                                    <p className="text-gray-600 text-sm mb-7">
-                                        Bento Gonçalves, Rio Grande do Sul,
-                                        Brasil
-                                    </p>
-                                    <h4 className="text-gray-600 text-sm font-semibold">
-                                        REMOTO - JUNIOR - PJ
-                                    </h4>
-                                    <div className="py-4 px-5 border rounded my-3 text-sm text-gray-600">
-                                        <p>Tempo Integral</p>
-                                        <p>51-200 funcionários</p>
+        <section className="relative mb-[77px] min-h-[530px] gap-5 sm:flex sm:justify-between">
+          <div className="relative flex">
+            <div className="absolute flex h-9 w-full items-center justify-between rounded-t-md bg-red-700 px-2">
+              <p className="text-base font-semibold text-white">
+                Denunciar está vaga
+              </p>
+              <img src={importantIcon} alt="Warning Icon" />
+            </div>
+            <div className="mb-5 flex flex-1 flex-col sm:mb-0">
+              <div className="relative z-50 mt-9 flex h-96 h-[600px] max-w-[583px] overflow-scroll rounded-md rounded-t-none border-2 border-red-700">
+                <div className="my-4 w-full px-5">
+                  <h2 className="text-gray-para text-2xl font-bold text-gray-600">
+                    UX Designer Junior
+                  </h2>
+                  <p className="font-semibold text-gray-600">Empresa Verde</p>
+                  <p className="mb-7 text-sm text-gray-600">
+                    Bento Gonçalves, Rio Grande do Sul, Brasil
+                  </p>
+                  <h4 className="text-sm font-semibold text-gray-600">
+                    REMOTO - JUNIOR - PJ
+                  </h4>
+                  <div className="my-3 rounded border px-5 py-4 text-sm text-gray-600">
+                    <p>Tempo Integral</p>
+                    <p>51-200 funcionários</p>
 
-                                        <Link to="/" className="text-blue-500">
-                                            Recrutando agora
-                                        </Link>
-                                    </div>
-                                    <p className="text-gray-600 text-sm">
-                                        Procuramos um profissional para ocupar a
-                                        posição de UX Designer em um cliente
-                                        referência no setor de produção de
-                                        imunobiológicos (vacinas) e análises
-                                        laboratoriais veterinários.
-                                    </p>
-                                    <p className="font-medium text-gray-600 my-3">
-                                        Culturalmente, procuramos uma pessoa
-                                        que:
-                                    </p>
-                                    <ul className="list-disc ml-5 text-gray-600 text-sm">
-                                        <li>seja curiosa por natureza;</li>
-                                        <li>perfil mão na massa e ágil;</li>
-                                        <li>sabe ouvir e se comunicar;</li>
-                                        <li>
-                                            busca e tenha um histórico de
-                                            aprendizado contínuo;
-                                        </li>
-                                        <li>
-                                            busca e fomenta a colaboração, mas
-                                            também tenha as suas contribuições
-                                            individuais inovadoras;
-                                        </li>
-                                        <li>
-                                            entenda o objetivo e propósito da
-                                            empresa, e consiga atuar com
-                                            autonomia dentro de suas
-                                            responsabilidades.
-                                        </li>
-                                    </ul>
-                                    <p className="font-medium text-gray-600 my-3">
-                                        {' '}
-                                        Responsabilidades e atribuições:
-                                    </p>
-                                    <p className="font-medium text-gray-600 my-3">
-                                        Culturalmente, procuramos uma pessoa
-                                        que:
-                                    </p>
-                                    <ul className="list-disc ml-5 text-gray-600 text-sm">
-                                        <li>seja curiosa por natureza;</li>
-                                        <li>perfil mão na massa e ágil;</li>
-                                        <li>sabe ouvir e se comunicar;</li>
-                                        <li>
-                                            busca e tenha um histórico de
-                                            aprendizado contínuo;
-                                        </li>
-                                        <li>
-                                            busca e fomenta a colaboração, mas
-                                            também tenha as suas contribuições
-                                            individuais inovadoras;
-                                        </li>
-                                        <li>
-                                            entenda o objetivo e propósito da
-                                            empresa, e consiga atuar com
-                                            autonomia dentro de suas
-                                            responsabilidades.
-                                        </li>
-                                    </ul>
-                                    <p className="font-medium text-gray-600 my-3">
-                                        {' '}
-                                        Responsabilidades e atribuições:
-                                    </p>
-                                    <p className="font-medium text-gray-600 my-3">
-                                        Culturalmente, procuramos uma pessoa
-                                        que:
-                                    </p>
-                                    <ul className="list-disc ml-5 text-gray-600 text-sm">
-                                        <li>seja curiosa por natureza;</li>
-                                        <li>perfil mão na massa e ágil;</li>
-                                        <li>sabe ouvir e se comunicar;</li>
-                                        <li>
-                                            busca e tenha um histórico de
-                                            aprendizado contínuo;
-                                        </li>
-                                        <li>
-                                            busca e fomenta a colaboração, mas
-                                            também tenha as suas contribuições
-                                            individuais inovadoras;
-                                        </li>
-                                        <li>
-                                            entenda o objetivo e propósito da
-                                            empresa, e consiga atuar com
-                                            autonomia dentro de suas
-                                            responsabilidades.
-                                        </li>
-                                    </ul>
-                                    <p className="font-medium text-gray-600 my-3">
-                                        {' '}
-                                        Responsabilidades e atribuições:
-                                    </p>
-                                    <p className="font-medium text-gray-600 my-3">
-                                        Culturalmente, procuramos uma pessoa
-                                        que:
-                                    </p>
-                                    <ul className="list-disc ml-5 text-gray-600 text-sm">
-                                        <li>seja curiosa por natureza;</li>
-                                        <li>perfil mão na massa e ágil;</li>
-                                        <li>sabe ouvir e se comunicar;</li>
-                                        <li>
-                                            busca e tenha um histórico de
-                                            aprendizado contínuo;
-                                        </li>
-                                        <li>
-                                            busca e fomenta a colaboração, mas
-                                            também tenha as suas contribuições
-                                            individuais inovadoras;
-                                        </li>
-                                        <li>
-                                            entenda o objetivo e propósito da
-                                            empresa, e consiga atuar com
-                                            autonomia dentro de suas
-                                            responsabilidades.
-                                        </li>
-                                    </ul>
-                                    <p className="font-medium text-gray-600 my-3">
-                                        {' '}
-                                        Responsabilidades e atribuições:
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="bg-[#FCFCFC] border rounded-lg mt-6 py-4 px-6 flex items-center justify-between hidden md:flex">
-                                <div>
-                                    <h4 className="font-semibold text-gray-600">
-                                        Contate o suporte SouJunior
-                                    </h4>
-                                    <Link
-                                        to="/suporte"
-                                        className="underline text-blue-500"
-                                    >
-                                        https://www.soujunior/suporte
-                                    </Link>
-                                    <p className="text-gray-600">
-                                        soujunior@suporte.com
-                                    </p>
-                                </div>
-                                <div>
-                                    <img src={mailIcon} alt="Mail Icon" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex flex-1 border md:px-6 py-7 px-3 rounded-md flex-col">
-                        <h4 className="font-bold md:text-2xl text-xl mb-2 md:mb-1 text-gray-para text-gray-600 tracking-wide">
-                            Por que está denúnciando está vaga?
-                        </h4>
-                        <p className="font-normal text-sm mb-4">
-                            Informe abaixo a informação mais relevante para a
-                            denuncia da vaga!
-                        </p>
-                        <hr />
-                        <div className="relative mb-8">
-                            <textarea
-                                name="message_report"
-                                placeholder="Descreva a causa da denúncia?"
-                                className="px-4 border py-4 rounded-lg mt-5 min-h-[527px] resize-none w-full"
-                                value={message}
-                                onChange={handleMessage}
-                                maxLength={MAX_LENGTH}
-                            ></textarea>
-                            <span className="text-sm text-gray-600 absolute bottom-4 right-4">
-                                {count}/{MAX_LENGTH}
-                            </span>
-                        </div>
-                        <div className="w-full md:flex">
-                            <button className="bg-red-600 md:flex md:flex-1 md:w-auto w-full hover:bg-red-700 text-white py-3 px-6 font-semibold rounded md:mb-0 mb-4 md:mb-0 flex flex-1 justify-center items-center md:mr-4 mr-0">
-                                Denunciar
-                            </button>
-                            <button className="bg-transparent border border-blue-600 py-3 px-6 md:flex md:flex-1 md:w-auto w-full rounded md:mr-0 mr-0 text-blue-600 flex flex-1 justify-center items-center">
-                                Cancelar
-                            </button>
-                        </div>
-                    </div>
-                </section>
-            </Container>
-        </div>
-    );
+                    <Link to="/" className="text-blue-500">
+                      Recrutando agora
+                    </Link>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Procuramos um profissional para ocupar a posição de UX
+                    Designer em um cliente referência no setor de produção de
+                    imunobiológicos (vacinas) e análises laboratoriais
+                    veterinários.
+                  </p>
+                  <p className="my-3 font-medium text-gray-600">
+                    Culturalmente, procuramos uma pessoa que:
+                  </p>
+                  <ul className="ml-5 list-disc text-sm text-gray-600">
+                    <li>seja curiosa por natureza;</li>
+                    <li>perfil mão na massa e ágil;</li>
+                    <li>sabe ouvir e se comunicar;</li>
+                    <li>busca e tenha um histórico de aprendizado contínuo;</li>
+                    <li>
+                      busca e fomenta a colaboração, mas também tenha as suas
+                      contribuições individuais inovadoras;
+                    </li>
+                    <li>
+                      entenda o objetivo e propósito da empresa, e consiga atuar
+                      com autonomia dentro de suas responsabilidades.
+                    </li>
+                  </ul>
+                  <p className="my-3 font-medium text-gray-600">
+                    {' '}
+                    Responsabilidades e atribuições:
+                  </p>
+                  <p className="my-3 font-medium text-gray-600">
+                    Culturalmente, procuramos uma pessoa que:
+                  </p>
+                  <ul className="ml-5 list-disc text-sm text-gray-600">
+                    <li>seja curiosa por natureza;</li>
+                    <li>perfil mão na massa e ágil;</li>
+                    <li>sabe ouvir e se comunicar;</li>
+                    <li>busca e tenha um histórico de aprendizado contínuo;</li>
+                    <li>
+                      busca e fomenta a colaboração, mas também tenha as suas
+                      contribuições individuais inovadoras;
+                    </li>
+                    <li>
+                      entenda o objetivo e propósito da empresa, e consiga atuar
+                      com autonomia dentro de suas responsabilidades.
+                    </li>
+                  </ul>
+                  <p className="my-3 font-medium text-gray-600">
+                    {' '}
+                    Responsabilidades e atribuições:
+                  </p>
+                  <p className="my-3 font-medium text-gray-600">
+                    Culturalmente, procuramos uma pessoa que:
+                  </p>
+                  <ul className="ml-5 list-disc text-sm text-gray-600">
+                    <li>seja curiosa por natureza;</li>
+                    <li>perfil mão na massa e ágil;</li>
+                    <li>sabe ouvir e se comunicar;</li>
+                    <li>busca e tenha um histórico de aprendizado contínuo;</li>
+                    <li>
+                      busca e fomenta a colaboração, mas também tenha as suas
+                      contribuições individuais inovadoras;
+                    </li>
+                    <li>
+                      entenda o objetivo e propósito da empresa, e consiga atuar
+                      com autonomia dentro de suas responsabilidades.
+                    </li>
+                  </ul>
+                  <p className="my-3 font-medium text-gray-600">
+                    {' '}
+                    Responsabilidades e atribuições:
+                  </p>
+                  <p className="my-3 font-medium text-gray-600">
+                    Culturalmente, procuramos uma pessoa que:
+                  </p>
+                  <ul className="ml-5 list-disc text-sm text-gray-600">
+                    <li>seja curiosa por natureza;</li>
+                    <li>perfil mão na massa e ágil;</li>
+                    <li>sabe ouvir e se comunicar;</li>
+                    <li>busca e tenha um histórico de aprendizado contínuo;</li>
+                    <li>
+                      busca e fomenta a colaboração, mas também tenha as suas
+                      contribuições individuais inovadoras;
+                    </li>
+                    <li>
+                      entenda o objetivo e propósito da empresa, e consiga atuar
+                      com autonomia dentro de suas responsabilidades.
+                    </li>
+                  </ul>
+                  <p className="my-3 font-medium text-gray-600">
+                    {' '}
+                    Responsabilidades e atribuições:
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 flex hidden items-center justify-between rounded-lg border bg-[#FCFCFC] px-6 py-4 md:flex">
+                <div>
+                  <h4 className="font-semibold text-gray-600">
+                    Contate o suporte SouJunior
+                  </h4>
+                  <Link to="/suporte" className="text-blue-500 underline">
+                    https://www.soujunior/suporte
+                  </Link>
+                  <p className="text-gray-600">soujunior@suporte.com</p>
+                </div>
+                <div>
+                  <img src={mailIcon} alt="Mail Icon" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-1 flex-col rounded-md border px-3 py-7 md:px-6">
+            <h4 className="text-gray-para mb-2 text-xl font-bold tracking-wide text-gray-600 md:mb-1 md:text-2xl">
+              Por que está denúnciando está vaga?
+            </h4>
+            <p className="mb-4 text-sm font-normal">
+              Informe abaixo a informação mais relevante para a denuncia da
+              vaga!
+            </p>
+            <hr />
+            <div className="relative mb-8">
+              <textarea
+                name="message_report"
+                placeholder="Descreva a causa da denúncia?"
+                className="mt-5 min-h-[527px] w-full resize-none rounded-lg border px-4 py-4"
+                value={message}
+                onChange={handleMessage}
+                maxLength={MAX_LENGTH}
+              ></textarea>
+              <span className="absolute bottom-4 right-4 text-sm text-gray-600">
+                {count}/{MAX_LENGTH}
+              </span>
+            </div>
+            <div className="w-full md:flex">
+              <button className="mb-4 mr-0 flex w-full flex-1 items-center justify-center rounded bg-red-600 px-6 py-3 font-semibold text-white hover:bg-red-700 md:mb-0 md:mr-4 md:flex md:w-auto md:flex-1">
+                Denunciar
+              </button>
+              <button className="mr-0 flex w-full flex-1 items-center justify-center rounded border border-blue-600 bg-transparent px-6 py-3 text-blue-600 md:mr-0 md:flex md:w-auto md:flex-1">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </section>
+      </Container>
+    </div>
+  );
 };
 
 export default Report;
