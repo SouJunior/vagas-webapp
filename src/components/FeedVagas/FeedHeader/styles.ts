@@ -1,9 +1,8 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 interface NavItemProps {
-    active: boolean;
-  }
+  active: boolean;
+}
 
 export const Container = styled.nav`
   display: flex;
@@ -12,11 +11,10 @@ export const Container = styled.nav`
   gap: 12px;
 `;
 
-
 export const NavItem = styled.div<NavItemProps>`
   border: none;
-  color: ${props => (props.active ? "#333" : "#78716c")};
-  font-weight: ${props => (props.active ? "bold" : "normal")};
+  color: ${(props) => (props.active ? '#333' : '#78716c')};
+  font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
   font-size: 16px;
   cursor: pointer;
 
@@ -31,6 +29,6 @@ export const NavItem = styled.div<NavItemProps>`
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    border-bottom: ${props => (props.active ? "3px solid #333" : "none")};
+    border-bottom: ${(props) => (props.active ? '3px solid #333' : 'none')};
   }
 `;

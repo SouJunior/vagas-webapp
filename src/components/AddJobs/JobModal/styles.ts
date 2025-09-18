@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
   position: fixed;
@@ -29,21 +29,21 @@ export const ModalContent = styled.div`
 `;
 
 export const ModalTitle = styled.h2`
-    font-size: 24px;
-    line-height: 29px;
+  font-size: 24px;
+  line-height: 29px;
   margin-bottom: 50px;
   font-weight: 600;
   color: #515050;
 `;
 
 export const ButtonContainer = styled.div`
-    display: flex;
-    gap: 45px;
-    margin-top: 50px;
+  display: flex;
+  gap: 45px;
+  margin-top: 50px;
 `;
 
 export const ViewJobButton = styled.button`
-  background-color: #008CBA;
+  background-color: #008cba;
   color: white;
   padding: 8px 14px;
   border: none;
@@ -53,7 +53,7 @@ export const ViewJobButton = styled.button`
 `;
 
 export const BackButton = styled(ViewJobButton)`
-    background-color: transparent;
-    color: #1165BA;
-    border: 1px solid #1165BA;
+  background-color: transparent;
+  color: #1165ba;
+  border: 1px solid #1165ba;
 `;
