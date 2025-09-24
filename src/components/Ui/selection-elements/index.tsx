@@ -53,18 +53,18 @@ export function ElementsGroup({
             checked={selectedValues.includes(option.value)}
             onChange={() => handleChange(option.value, option.disabled)}
             disabled={option.disabled}
-            className="peer hidden"
+            className="peer sr-only"
           />
 
           {type === 'radio' && (
             <span
-              className={`relative h-[24px] w-[24px] rounded-full border-2 border-[#ACACAC] after:absolute after:inset-[0.1rem] after:rounded-full after:bg-[#003986] after:opacity-0 after:content-[''] peer-checked:border-[#003986] peer-checked:after:opacity-100 peer-hover:border-[#003986] peer-disabled:border-gray-300 peer-disabled:bg-gray-200`}
+              className={`relative h-[24px] w-[24px] rounded-full border-2 border-[#ACACAC] after:absolute after:inset-[0.1rem] after:rounded-full after:bg-[#003986] after:opacity-0 after:content-[''] peer-checked:border-[#003986] peer-checked:after:opacity-100 peer-hover:border-[#003986] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#003986] peer-disabled:border-gray-300 peer-disabled:bg-gray-200`}
             />
           )}
 
           {type === 'checkbox' && (
             <span
-              className={`flex h-[24px] w-[24px] items-center justify-center rounded border-2 border-gray-400 peer-checked:border-[#003986] peer-checked:bg-[#003986] peer-hover:border-[#003986] peer-disabled:border-gray-300 peer-disabled:bg-gray-200`}
+              className={`flex h-[24px] w-[24px] items-center justify-center rounded border-2 border-gray-400 peer-checked:border-[#003986] peer-checked:bg-[#003986] peer-hover:border-[#003986] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#003986] peer-disabled:border-gray-300 peer-disabled:bg-gray-200`}
             >
               <LazyImage
                 src={Check}
