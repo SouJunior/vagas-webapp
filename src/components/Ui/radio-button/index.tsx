@@ -32,7 +32,7 @@ export function RadioGroup({
       {options.map((option) => (
         <label
           key={option.value}
-          className={`flex items-center gap-2 ${
+          className={`group flex items-center gap-2 ${
             option.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
           }`}
         >
@@ -43,11 +43,11 @@ export function RadioGroup({
             checked={value === option.value}
             onChange={() => !option.disabled && setValue(option.value)}
             disabled={option.disabled}
-            className="peer hidden"
+            className="peer sr-only"
           />
 
           <span
-            className={`relative h-[24px] w-[24px] rounded-full border-2 border-[#ACACAC] after:absolute after:inset-[0.1rem] after:rounded-full after:bg-[#003986] after:opacity-0 after:content-[''] peer-checked:border-[#003986] peer-checked:after:opacity-100 peer-hover:border-[#003986] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#003986] peer-disabled:border-gray-300 peer-disabled:bg-gray-200`}
+            className={`relative h-[24px] w-[24px] rounded-full border-2 border-[#ACACAC] after:absolute after:inset-[0.1rem] after:rounded-full after:bg-[#003986] after:opacity-0 after:content-[''] group-hover:border-[#003986] peer-checked:border-[#003986] peer-checked:after:opacity-100 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#003986] peer-disabled:border-gray-300 peer-disabled:bg-gray-200`}
           />
 
           {option.label}
