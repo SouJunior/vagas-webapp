@@ -22,6 +22,7 @@
     "@mui/material": "^5.16.6",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@phosphor-icons/react": "^2.0.9",
+    "@radix-ui/react-use-controllable-state": "^1.2.2",
     "@react-input/mask": "^2.0.4",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.206",
     "@tiptap/extension-bullet-list": "^2.0.0-beta.209",
