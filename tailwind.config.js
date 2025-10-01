@@ -27,6 +27,8 @@ module.exports = {
           200: '#003986',
           300: '#002C66',
           400: '#001633',
+          600: '#338AFF',
+          800: '#003986',
         },
         gray: {
           light: '#FCFCFC',
@@ -34,6 +36,15 @@ module.exports = {
           dark: '#C1C1C1',
           darker: '#515050',
           disabled: '#DEDEDE',
+          background: '#CCC',
+        },
+        green: {
+          600: '#72C270',
+          800: '#149911',
+        },
+        red: {
+          600: '#FF1F00',
+          800: '#A31400',
         },
       },
       backgroundImage: {

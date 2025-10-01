@@ -2,9 +2,8 @@ import React from 'react';
 
 import { CandidateSection } from '../components/Home/candidate-section/candidate-section';
 import { CareerTransitionSection } from '../components/Home/career-transition-section/index';
-import { FeatureCards } from '../components/Home/feature-cards';
-
 import { EnterprisesSection } from '../components/Home/enterprises-section';
+import { FeatureCards } from '../components/Home/feature-cards';
 import TestimonialSection from '../components/Home/testimonial-section/index';
 import { AnimationEntry } from '../components/Ui/animation-entry';
 
