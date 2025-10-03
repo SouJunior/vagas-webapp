@@ -83,10 +83,7 @@ module.exports = {
           5: 'hsl(var(--chart-5))',
         },
       },
-      backgroundImage: {
-        'hero-pattern': 'url(',
-        https: '',
-      },
+      backgroundImage: {},
       screens: {
         sm: '640px',
         hd: '1456px',
