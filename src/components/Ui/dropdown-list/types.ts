@@ -10,11 +10,11 @@ export interface DropdownListContextValue {
   setIsOpen: (open: boolean) => void;
 }
 
-import type React from 'react';
-
-export interface DropdownListOption {
-  value: string;
-  label: string;
+export interface DropdownListRootProps {
+  children: React.ReactNode;
+  value?: string[];
+  defaultValue?: string[];
+  onValueChange?: (value: string[]) => void;
 }
 
 export interface DropdownListTriggerProps {
@@ -33,11 +33,4 @@ export interface DropdownListItemProps {
   value: string;
   label: string;
   disabled?: boolean;
-}
-
-export interface DropdownListRootProps {
-  children: React.ReactNode;
-  value?: string[];
-  defaultValue?: string[];
-  onValueChange?: (values: string[]) => void;
 }
