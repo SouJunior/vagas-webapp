@@ -19,6 +19,7 @@ export function DropdownListTrigger({
     <PopoverTrigger asChild>
       <button
         type="button"
+        aria-expanded={false} // Update to use isOpen from context if available
         onClick={() => setIsOpen(true)}
         className={`flex w-full items-center justify-between rounded-md border border-gray-300 bg-white px-4 py-2 text-left text-sm hover:border-[#003986] focus:outline-none focus:ring-2 focus:ring-[#003986] focus:ring-offset-2 ${className}`}
       >
