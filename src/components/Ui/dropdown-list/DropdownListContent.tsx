@@ -1,7 +1,8 @@
 import { PopoverContent } from '@/components/ui/popover';
+import { memo } from 'react';
 import type { DropdownListContentProps } from './types';
 
-export function DropdownListContent({
+export const DropdownListContent = memo(function DropdownListContent({
   children,
   className = '',
 }: DropdownListContentProps) {
@@ -10,4 +11,4 @@ export function DropdownListContent({
       <div className="flex flex-col gap-2">{children}</div>
     </PopoverContent>
   );
-}
+});

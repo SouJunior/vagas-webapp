@@ -1,14 +1,14 @@
 import { Checkbox } from '@/components/Ui/checkbox';
+import { memo } from 'react';
 import { useDropdownListContext } from './context';
 import type { DropdownListItemProps } from './types';
 
-export function DropdownListItem({
+export const DropdownListItem = memo(function DropdownListItem({
   value,
   label,
   disabled = false,
 }: DropdownListItemProps) {
   const { selectedValues, onValueChange } = useDropdownListContext();
-
   const isChecked = selectedValues.includes(value);
 
   const handleChange = () => {
@@ -28,4 +28,4 @@ export function DropdownListItem({
       />
     </div>
   );
-}
+});

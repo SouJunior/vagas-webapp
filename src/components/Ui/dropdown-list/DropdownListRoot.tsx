@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { useControllableState } from '@/hooks/useControllableState';
 
@@ -19,13 +19,16 @@ export function DropdownListRoot({
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleValueChange = (itemValue: string) => {
-    const newValues = selectedValues.includes(itemValue)
-      ? selectedValues.filter((v) => v !== itemValue)
-      : [...selectedValues, itemValue];
+  const handleValueChange = useCallback(
+    (itemValue: string) => {
+      const newValues = selectedValues.includes(itemValue)
+        ? selectedValues.filter((v: string) => v !== itemValue)
+        : [...selectedValues, itemValue];
 
-    setSelectedValues(newValues);
-  };
+      setSelectedValues(newValues);
+    },
+    [selectedValues, setSelectedValues],
+  );
 
   return (
     <DropdownListContext.Provider
