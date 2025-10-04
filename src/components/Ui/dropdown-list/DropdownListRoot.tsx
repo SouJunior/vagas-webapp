@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import { useControllableState } from '@/hooks/useControllableState';
 
@@ -10,6 +10,9 @@ export function DropdownListRoot({
   value,
   defaultValue = [],
   onValueChange,
+  open,
+  defaultOpen = false,
+  onOpenChange,
 }: DropdownListRootProps) {
   const [selectedValues, setSelectedValues] = useControllableState(
     value,
@@ -17,7 +20,11 @@ export function DropdownListRoot({
     onValueChange,
   );
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useControllableState(
+    open,
+    defaultOpen,
+    onOpenChange,
+  );
 
   const handleValueChange = useCallback(
     (itemValue: string) => {
