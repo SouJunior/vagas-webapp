@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 export interface DropdownListOption {
   value: string;
   label: string;
@@ -11,7 +12,7 @@ export interface DropdownListContextValue {
 }
 
 export interface DropdownListRootProps {
-  children: React.ReactNode;
+  children: ReactNode;
   value?: string[];
   defaultValue?: string[];
   onValueChange?: (value: string[]) => void;
@@ -21,14 +22,14 @@ export interface DropdownListRootProps {
 }
 
 export interface DropdownListTriggerProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   label?: string;
   placeholder?: string;
   className?: string;
 }
 
 export interface DropdownListContentProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
