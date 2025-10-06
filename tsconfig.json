@@ -29,7 +29,8 @@
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
       "@validations/*": ["validations/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@/*": ["./*"]
     }
   },
   "include": ["src"],
