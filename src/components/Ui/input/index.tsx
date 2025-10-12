@@ -1,5 +1,6 @@
 import { cva, cx, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
+import { Label } from '../label';
 
 const inputVariants = cva(
   'border-gray-background w-full rounded-[4px] border px-4 py-3 font-canada text-base outline-none focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800',
@@ -16,7 +17,7 @@ const inputVariants = cva(
 export type InputVariantProps = VariantProps<typeof inputVariants>;
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className'>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, ''>,
     VariantProps<typeof inputVariants> {
   className?: string;
   error?: string;
@@ -35,7 +36,7 @@ export const Input: React.FC<InputProps> = ({
   return (
     <>
       <input
-        className={inputVariants({ intent: computedIntent, className })}
+        className={cx(inputVariants({ intent: computedIntent }), className)}
         placeholder={placeholder}
         {...props}
       />
