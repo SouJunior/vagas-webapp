@@ -8,3 +8,5 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
+    
+    user: '1001:1001'

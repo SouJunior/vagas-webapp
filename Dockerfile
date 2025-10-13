@@ -1,18 +1,25 @@
-FROM oven/bun:1.2.5-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package.json bun.lock ./
-RUN bun install --ignore-scripts
+COPY package.json yarn.lock ./
+
+RUN yarn install --ignore-scripts
 
 COPY src/ ./src/
 COPY public/ ./public/
+COPY index.html vite.config.js tsconfig.json ./
 
-# Create directories and set permissions for the bun user
+RUN yarn build
+
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001 && \
+    chown -R nodejs:nodejs /app
+
 RUN mkdir -p node_modules/.cache node_modules/.vite && \
-    chown -R bun:bun /app && \
     chmod -R 755 /app
 
-USER bun
+USER nodejs
+
 EXPOSE 3000
-CMD ["bun", "run", "dev", "--host"]
+CMD ["yarn", "serve", "--host", "0.0.0.0", "--port", "3000"]
