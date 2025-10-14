@@ -24,8 +24,10 @@ export interface CompaniesHeaderProps extends BaseHeaderProps {
 
 export interface PortalCompanyHeaderProps extends BaseHeaderProps {
   variant: 'portalCompany';
-  showUserMenu?: boolean;
-  onMenuClick?: () => void;
+  companyName?: string;
+  email?: string;
+  profileImage?: string;
+  onLogout?: () => void;
 }
 
 export interface NavigationHeaderProps extends BaseHeaderProps {
@@ -45,4 +47,18 @@ export interface HeaderStyleProps {
   isActive?: boolean;
   isMobileOpen?: boolean;
   feedJob?: boolean;
+}
+
+export interface HeaderUserMenuProps {
+  companyName: string;
+  email: string;
+  profileImage?: string;
+  onLogout?: () => void;
+}
+
+export interface PortalCompanyHeaderComponentProps {
+  companyName?: string;
+  email?: string;
+  profileImage?: string;
+  onLogout?: () => void;
 }
