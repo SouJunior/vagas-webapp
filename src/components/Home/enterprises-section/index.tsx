@@ -2,8 +2,8 @@ import { Button } from '../../Ui/button';
 
 import { LazyImage } from '../../Ui/lazy-image';
 
-import enterprisesHome from '../../../assets/imgs/hero-home.svg';
 import decorateHome from '../../../assets/imgs/decorate-home.svg';
+import enterprisesHome from '../../../assets/imgs/hero-home.svg';
 
 function EnterprisesLazyImage() {
   return (
@@ -27,7 +27,7 @@ function EnterprisesLazyBackgroundImage() {
 
 export function EnterprisesSection() {
   return (
-    <div className={`container relative mx-auto`}>
+    <div className={`container relative`}>
       <p className="font-canada text-base font-medium text-blue-200 md:text-xl">
         Para empresas
       </p>

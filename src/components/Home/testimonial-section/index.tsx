@@ -1,10 +1,10 @@
 import React, { useId } from 'react';
-import { useTestimonials } from '../../../hooks/useTestimonials';
 import { useCarousel } from '../../../hooks/useCarousel';
+import { useTestimonials } from '../../../hooks/useTestimonials';
 import { ACCESSIBILITY_CLASSES } from '../../../utils/accessibility';
 import {
-  TestimonialHeaderDefault as TestimonialHeader,
   TestimonialCard,
+  TestimonialHeaderDefault as TestimonialHeader,
 } from './components';
 import type { TestimonialSectionProps } from './types';
 
@@ -90,7 +90,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
                 {testimonials.map((testimonial, index) => (
                   <div
                     key={testimonial.id}
-                    className="flex w-full shrink-0 justify-center px-3 md:px-3 lg:px-4"
+                    className="flex w-full justify-center px-3 md:px-3 lg:px-4"
                     role="group"
                     aria-roledescription="slide"
                     aria-label={`${index + 1} de ${testimonials.length}`}
