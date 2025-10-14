@@ -2,8 +2,7 @@ import React from 'react';
 import * as s from '../styles/HomeCompaniesStyles';
 
 import { Link } from 'react-router-dom';
-import HireImage from '../../assets/imgs/companies.png';
-import Logo from '../../assets/imgs/soujunior-empresas.png';
+import HireImage from '../../assets/imgs/companies.svg';
 
 import img from './assets/Learn.png';
 
@@ -18,6 +17,7 @@ import logoGlobo from './assets/empresas-parceiras/Logo-Globo.png';
 import logoHp from './assets/empresas-parceiras/Logo-HP.png';
 import logoPositivo from './assets/empresas-parceiras/Logo-Positivo.png';
 
+import Header from '@components/Header/index';
 import useEmblaCarousel from 'embla-carousel-react';
 
 export default function Companies() {
@@ -78,23 +78,7 @@ export default function Companies() {
 
   return (
     <>
-      <s.Header>
-        <s.Container>
-          <s.HeaderWrapper>
-            <img src={Logo} alt="Sou Junior empresas" />
-            <nav aria-label="navegação principal">
-              <s.HeaderNavigation>
-                <s.ListItem>
-                  <Link to="/">Home</Link>
-                </s.ListItem>
-                <s.ListItem>
-                  <Link to="#">Sobre nós</Link>
-                </s.ListItem>
-              </s.HeaderNavigation>
-            </nav>{' '}
-          </s.HeaderWrapper>
-        </s.Container>
-      </s.Header>
+      <Header variant="companies" />
 
       <s.HireJuniorsSection>
         <s.Container>
