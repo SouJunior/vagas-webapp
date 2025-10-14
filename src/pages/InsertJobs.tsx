@@ -1,14 +1,14 @@
 import type { ChangeEvent, FormEvent, FunctionComponent } from 'react';
 import { useRef, useState } from 'react';
 // import JobCard from '../components/JobCard';
-import { v4 as uuidv4 } from 'uuid';
+import Header from '@components/Header/index';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
-import Header from '../components/Header';
 import {
   RiArrowDropDownLine as ArrowDropdown,
   RiInformationLine,
 } from 'react-icons/ri';
+import { v4 as uuidv4 } from 'uuid';
 import Tiptap from '../components/Tiptap';
 
 export interface JobData {
@@ -100,7 +100,7 @@ export const InsertJobs: FunctionComponent<any> = () => {
 
   return (
     <>
-      <Header pageName="Criar vaga" backTo={'/'} />
+      <Header variant="navigation" pageName="Criar vaga" backTo={'/'} />
 
       <main className="mx-auto mb-0.5 mt-[6.1875rem] grid w-full max-w-[74.5625rem] grid-cols-1 gap-7 border-b md:grid-cols-2">
         <div className="col-span-full">
