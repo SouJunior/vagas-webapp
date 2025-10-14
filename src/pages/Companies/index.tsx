@@ -1,14 +1,12 @@
 import React from 'react';
 import * as s from '../styles/HomeCompaniesStyles';
 
-import { Link } from 'react-router-dom';
 import HireImage from '../../assets/imgs/companies.svg';
 
 import img from './assets/Learn.png';
 
 import { Card } from './components/Card';
 
-import logoFooter from '../../assets/imgs/Logo-blue-souJunior.svg';
 import * as I from './components/Icons';
 
 import logoClaro from './assets/empresas-parceiras/Logo-claro.png';
@@ -17,6 +15,7 @@ import logoGlobo from './assets/empresas-parceiras/Logo-Globo.png';
 import logoHp from './assets/empresas-parceiras/Logo-HP.png';
 import logoPositivo from './assets/empresas-parceiras/Logo-Positivo.png';
 
+import FooterDefault from '@components/FooterDefault';
 import Header from '@components/Header/index';
 import useEmblaCarousel from 'embla-carousel-react';
 
@@ -202,62 +201,7 @@ export default function Companies() {
         </s.Container>
       </s.SecaoCarrossel>
 
-      <footer>
-        <s.Container>
-          <s.ContentWrapper>
-            <img src={logoFooter} alt="Sou Junior" />
-
-            <s.LinksWrapper>
-              <div>
-                <s.LinkHeading>Institucional</s.LinkHeading>
-                <s.Links>
-                  <Link to={'#'}>SJ Site</Link>
-                  <Link to={'#'}>SJ Vagas</Link>
-                  <Link to={'#'}>SJ Empresas</Link>
-                </s.Links>
-              </div>
-
-              <div>
-                <s.LinkHeading>Canais SouJunior</s.LinkHeading>
-                <s.Links>
-                  <Link to={'#'}>SouJunior Labs</Link>
-                  <Link to={'#'}>SouJunior Talks</Link>
-                  <Link to={'#'}>Blog SouJunior</Link>
-                </s.Links>
-              </div>
-
-              <div>
-                <s.LinkHeading>Redes Sociais</s.LinkHeading>
-                <s.Links>
-                  <Link to={'#'}>
-                    <img src={I.Facebook} alt="Facebook sou junior" />
-                  </Link>
-                  <Link to={'#'}>
-                    <img src={I.Instragram} alt="Instagram sou junior" />
-                  </Link>
-
-                  <Link to={'#'}>
-                    <img src={I.Youtube} alt="Youtube sou junior" />
-                  </Link>
-
-                  <Link to={'#'}>
-                    <img src={I.Tiktok} alt="TikTok sou junior" />
-                  </Link>
-                  <Link to={'#'}>
-                    <img src={I.Github} alt="Github sou junior" />
-                  </Link>
-                  <Link to={'#'}>
-                    <img src={I.Linkedin} alt="Linkedin sou junior" />
-                  </Link>
-                  <Link to={'#'}>
-                    <img src={I.Telegram} alt="Telegram sou junior" />
-                  </Link>
-                </s.Links>
-              </div>
-            </s.LinksWrapper>
-          </s.ContentWrapper>
-        </s.Container>
-      </footer>
+      <FooterDefault />
     </>
   );
 }

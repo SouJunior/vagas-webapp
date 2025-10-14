@@ -1,11 +1,10 @@
+import Header from '@components/Header/index';
 import type { ChangeEvent } from 'react';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import { Container } from '../components/styles/Container.styled';
-import Header from '../components/Header';
-import mailIcon from '../assets/imgs/mail.svg';
+import { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import importantIcon from '../assets/imgs/important_vector.png';
+import mailIcon from '../assets/imgs/mail.svg';
+import { Container } from '../components/styles/Container.styled';
 
 const Report = () => {
   const [count, setCount] = useState(0);
@@ -19,7 +18,7 @@ const Report = () => {
   const MAX_LENGTH = 2000;
   return (
     <div>
-      <Header pageName="Central de denúncias" backTo="/" />
+      <Header variant="navigation" pageName="Central de denúncias" backTo="/" />
       <Container>
         <header className="text-center align-middle">
           <h4 className="mt-24 text-3xl font-semibold tracking-wide text-gray-600">
