@@ -29,7 +29,7 @@ export const PortalCompanyHeader: React.FC<PortalCompanyHeaderProps> = ({
   const userData = auth?.user || mockCompanyData;
 
   const handleClick = () => {
-    if (auth.user) {
+    if (auth?.user) {
       setVisible(!visible);
       onMenuClick?.();
     } else {
@@ -86,7 +86,7 @@ export const PortalCompanyHeader: React.FC<PortalCompanyHeaderProps> = ({
         )}
       </HeaderWrapper>
       {showUserMenu && (
-        <span onMouseLeave={() => setVisible(!visible)}>
+        <span onMouseLeave={() => setVisible(false)}>
           {visible && <Menu />}
         </span>
       )}

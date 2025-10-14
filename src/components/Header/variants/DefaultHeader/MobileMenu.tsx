@@ -13,9 +13,10 @@ const MobileMenu = ({ isOpen, onClose, isHomePage }: MobileMenuProps) => {
   return (
     <>
       <div
-        className="absolute right-0 top-28 z-[1001] h-80 w-64 bg-white drop-shadow-2xl"
+        className="fixed right-0 top-28 z-[1001] h-80 w-64 bg-white drop-shadow-2xl"
         role="dialog"
         aria-modal="true"
+        aria-label="Menu de navegação"
       >
         <div className="m-4 flex items-start justify-between">
           <button onClick={onClose} aria-label="Fechar menu" type="button">

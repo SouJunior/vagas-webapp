@@ -28,8 +28,8 @@ export const CompaniesHeader: React.FC<CompaniesHeaderProps> = ({
           {showNavigation && (
             <nav className="hidden md:block">
               <ul className="flex items-center gap-6">
-                {navigationItems.map((item, index) => (
-                  <li key={index} className="list-none">
+                {navigationItems.map((item) => (
+                  <li key={item.href} className="list-none">
                     <Link
                       to={item.href}
                       className="text-base font-semibold text-[#002C66] transition-colors hover:text-[#338AFF] lg:text-xl"

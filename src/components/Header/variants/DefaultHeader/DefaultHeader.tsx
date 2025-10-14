@@ -43,7 +43,7 @@ export const DefaultHeader: React.FC<DefaultHeaderProps> = ({
             toggle={setMobileOpen}
             color="#323232"
             size={24}
-            label="Abrir menu"
+            label={isMobileOpen ? 'Fechar menu' : 'Abrir menu'}
           />
         </div>
       </header>
