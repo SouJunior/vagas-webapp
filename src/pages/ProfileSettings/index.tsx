@@ -1,33 +1,32 @@
-import { Form, ProfileImgWrapper } from './style';
+import { Button } from '../../components/Button';
+import InputWrapper from '../../components/InputWrapper';
+import { Select } from '../../components/Select';
 import {
   Container,
   Main,
   Position,
-  Row,
   ProfileImg,
+  Row,
 } from '../styles/CompanyPortalStyles';
-import InputWrapper from '../../components/InputWrapper';
-import { Select } from '../../components/Select';
-import { Button } from '../../components/Button';
+import { Form, ProfileImgWrapper } from './style';
 
+import { useContext, useEffect, useState } from 'react';
+import Footer from '../../components/Portal/Footer';
+import Header from '../../components/Portal/Header';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { useApi } from '../../hooks/useApi';
+import companyType from './data/companyType';
 import inputConfigs from './data/inputSettings';
 import location from './data/location';
-import companyType from './data/companyType';
-import {} from '../../components/HeaderDefault/styles';
+import { checkImgZise } from './utils/checkImgSize';
+import { handleImgFile } from './utils/handleImgFile';
 import { HandleInputsRender } from './utils/handleInputsRender';
 import { HandleOptionsRender } from './utils/handleOptionsRender';
-import { useContext, useEffect, useState } from 'react';
-import { useApi } from '../../hooks/useApi';
-import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { handleSubmitForm } from './utils/handleSubimitForm';
-import { handleImgFile } from './utils/handleImgFile';
-import { checkImgZise } from './utils/checkImgSize';
-import Header from '../../components/Portal/Header';
-import Footer from '../../components/Portal/Footer';
 
 import { useForm } from 'react-hook-form';
-import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
+import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
 
 export const ProfileSettings: React.FC = () => {
   const [charCount, setCharCount] = useState(0);
