@@ -1,28 +1,28 @@
-import React, { useContext, useState } from 'react';
+import FooterDefault from '@components/FooterDefault';
+import Header from '@components/Header';
+import { useContext, useState } from 'react';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import type { Job } from '../@types/jobs';
 import Applicant from '../components/Applicant';
+import JobCard from '../components/JobCard';
+import NoJobsSelectedCard from '../components/NoJobSelectedCard';
+import QuickFilter from '../components/QuickFilter';
+import { AuthContext } from '../contexts/Auth/AuthContext';
+import { useApi } from '../hooks/useApi';
 import {
   ApplicantsContainer,
   ApplicantsList,
-  PageTitle,
   Container,
-  JobList,
   ContentWrapper,
   DetailsJobTitle,
+  JobHeadText,
+  JobList,
+  PageTitle,
+  QuickFilterContainer,
   Subtitle,
   Text,
-  JobHeadText,
-  QuickFilterContainer,
 } from './styles/CompanyApplicationsStyles';
-import { AuthContext } from '../contexts/Auth/AuthContext';
-import { useQuery } from 'react-query';
-import { useApi } from '../hooks/useApi';
-import JobCard from '../components/JobCard';
-import type { Job } from '../@types/jobs';
-import NoJobsSelectedCard from '../components/NoJobSelectedCard';
-import QuickFilter from '../components/QuickFilter';
-import { useNavigate } from 'react-router-dom';
-import Header from '../components/Portal/Header';
-import Footer from '../components/Portal/Footer';
 
 const CompanyApplications = () => {
   const [selectedJob, setSelectedJob] = useState<string | null>('');
@@ -64,7 +64,7 @@ const CompanyApplications = () => {
 
   return (
     <>
-      <Header />
+      <Header variant="portalCompany" />
       <Container>
         <PageTitle>Candidaturas</PageTitle>
         <ContentWrapper>
@@ -156,7 +156,7 @@ const CompanyApplications = () => {
             <NoJobsSelectedCard />
           )}
         </ContentWrapper>
-        <Footer />
+        <FooterDefault />
       </Container>
     </>
   );

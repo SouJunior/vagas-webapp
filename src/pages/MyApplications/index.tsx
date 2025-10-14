@@ -1,17 +1,17 @@
-import Header from '../../components/Portal/Header';
-import {
-  ContainerTitle,
-  Title,
-  SubTitle,
-  ContainerStatus,
-  Status,
-} from './styles';
+import Header from '@components/Header';
 import BasicTabs from '../../components/BasicTabs';
+import {
+  ContainerStatus,
+  ContainerTitle,
+  Status,
+  SubTitle,
+  Title,
+} from './styles';
 
 const MyApplications = () => {
   return (
     <>
-      <Header />
+      <Header variant="portalCompany" />
       <ContainerTitle>
         <Title>Minhas candidaturas</Title>
         <SubTitle>Veja o status de suas candidaturas.</SubTitle>

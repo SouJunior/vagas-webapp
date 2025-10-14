@@ -1,11 +1,11 @@
-import { Main, Container, Row, Position } from './styles/CandidatePortalStyles';
+import { Container, Main, Position, Row } from './styles/CandidatePortalStyles';
 
-import Header from '../components/Portal/Header';
-import { AuthContext } from '../contexts/Auth/AuthContext';
+import FooterDefault from '@components/FooterDefault';
+import Header from '@components/Header';
 import { useContext } from 'react';
-import Footer from '../components/Portal/Footer';
-import PopUpAntiFraudMessage from '../components/LoginCard/PopUpAntiFraudMessage';
 import JobFilterPerfil from '../components/JobFilterPerfil';
+import PopUpAntiFraudMessage from '../components/LoginCard/PopUpAntiFraudMessage';
+import { AuthContext } from '../contexts/Auth/AuthContext';
 
 const CandidatePortal = () => {
   const { popUpAntiFraudOpen } = useContext(AuthContext);
@@ -13,7 +13,7 @@ const CandidatePortal = () => {
 
   return (
     <Container>
-      <Header />
+      <Header variant="portalCompany" />
       {popUpAntiFraudOpen && <PopUpAntiFraudMessage />}
       <Main>
         <JobFilterPerfil />
@@ -21,7 +21,7 @@ const CandidatePortal = () => {
         <h1>Olá, {auth.user.name}</h1>
       </Main>
       <Position>
-        <Footer />
+        <FooterDefault />
       </Position>
     </Container>
   );

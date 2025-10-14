@@ -1,16 +1,16 @@
-import AllJobs from './components/AllJobs';
-import Pagination from '../../components/Ui/Pagination';
 import SelectedJobVacancy from '../../components/SelectedJobVacancy';
+import Pagination from '../../components/Ui/Pagination';
+import AllJobs from './components/AllJobs';
 import Select from './components/Select';
 
 import useJobs from '../../hooks/useJobs';
 
-import * as S from './style';
-import Loading from '../../components/Loading';
-import Header from '../../components/Portal/Header';
-import JobFilterPerfil from '../../components/JobFilterPerfil';
+import Header from '@components/Header';
 import { useLocation } from 'react-router-dom';
 import FooterDefault from '../../components/FooterDefault';
+import JobFilterPerfil from '../../components/JobFilterPerfil';
+import Loading from '../../components/Loading';
+import * as S from './style';
 
 const FeedJobs = () => {
   const location = useLocation();
@@ -55,7 +55,7 @@ const FeedJobs = () => {
 
   return (
     <div>
-      {isJobPage && <Header />}
+      {isJobPage && <Header variant="portalCompany" />}
       <S.Container noPadding={isJobPage}>
         {isJobPage && <JobFilterPerfil />}
         <S.SectionFilters>

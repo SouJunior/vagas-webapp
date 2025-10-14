@@ -1,18 +1,11 @@
 import { Button } from '../../components/Button';
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
-import {
-  Container,
-  Main,
-  Position,
-  ProfileImg,
-  Row,
-} from '../styles/CompanyPortalStyles';
+// Removed SharedStyles import - migrated to Tailwind CSS
 import { Form, ProfileImgWrapper } from './style';
 
+import Header from '@components/Header';
 import { useContext, useEffect, useState } from 'react';
-import Footer from '../../components/Portal/Footer';
-import Header from '../../components/Portal/Header';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useApi } from '../../hooks/useApi';
 import companyType from './data/companyType';
@@ -24,6 +17,7 @@ import { HandleInputsRender } from './utils/handleInputsRender';
 import { HandleOptionsRender } from './utils/handleOptionsRender';
 import { handleSubmitForm } from './utils/handleSubimitForm';
 
+import FooterDefault from '@components/FooterDefault';
 import { useForm } from 'react-hook-form';
 import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
 import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
@@ -63,16 +57,16 @@ export const ProfileSettings: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Header />
+    <div className="flex min-h-screen flex-col bg-[#fdfffc] text-center font-canada">
+      <Header variant="portalCompany" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ProfileImgWrapper>
-          <ProfileImg
+          <img
             src={
               imagePreview || (auth.user.profile ?? '/assets/profile-image.svg')
             }
             alt="Foto de perfil"
-            width={'10%'}
+            className="mx-4 aspect-square w-[10%] cursor-default rounded-full object-cover"
           />
           <div className="upload">
             <label htmlFor="profiPic">Alterar foto</label>
@@ -96,9 +90,9 @@ export const ProfileSettings: React.FC = () => {
           <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
           <span className="img__error">{checkImgZise(selectedImage)}</span>
         </ProfileImgWrapper>
-        <Main>
-          <Row />
-        </Main>
+        <main className="pt-15 flex flex-col items-center justify-center px-2.5 pb-10 text-center">
+          <div className="mb-auto w-[90%] border-t-2 border-[#979797] opacity-20" />
+        </main>
         <Form charQtde={currChar}>
           <div className="form__left">
             <InputWrapper>
@@ -193,10 +187,10 @@ export const ProfileSettings: React.FC = () => {
       {cancelModal && (
         <CancelModal setCancelModal={setCancelModal} open={isModalOpen} />
       )}
-      <Position>
-        <Main />
-        <Footer />
-      </Position>
-    </Container>
+      <div className="mt-auto">
+        <main className="pt-15 flex flex-col items-center justify-center px-2.5 pb-10 text-center" />
+        <FooterDefault />
+      </div>
+    </div>
   );
 };

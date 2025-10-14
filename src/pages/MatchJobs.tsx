@@ -1,19 +1,19 @@
+import FooterDefault from '@components/FooterDefault';
+import Header from '@components/Header';
+import { FiDownloadCloud } from 'react-icons/fi';
+import { useLocation } from 'react-router-dom';
+import MatchCard from '../components/MatchCard';
 import {
+  Cards,
   Container,
+  DownloadBtn,
   LeftContainer,
+  PageTitle,
+  PaymentInfo,
   ResumePreview,
   RightContainer,
   Wrapper,
-  Cards,
-  PaymentInfo,
-  PageTitle,
-  DownloadBtn,
 } from './styles/MatchJobs';
-import MatchCard from '../components/MatchCard';
-import { FiDownloadCloud } from 'react-icons/fi';
-import { useLocation } from 'react-router-dom';
-import Header from '../components/Portal/Header';
-import { Footer } from '../components/Portal/Footer/styles';
 
 function MatchJobs() {
   const location = useLocation();
@@ -23,7 +23,7 @@ function MatchJobs() {
 
   return (
     <>
-      <Header />
+      <Header variant="portalCompany" />
       <Container>
         <PageTitle>Match de Vagas</PageTitle>
         <Wrapper>
@@ -85,7 +85,7 @@ function MatchJobs() {
             </PaymentInfo>
           </RightContainer>
         </Wrapper>
-        <Footer />
+        <FooterDefault />
       </Container>
     </>
   );
