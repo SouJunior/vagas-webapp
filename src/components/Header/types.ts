@@ -1,4 +1,8 @@
-export type HeaderVariant = 'default' | 'companies' | 'portalCompany';
+export type HeaderVariant =
+  | 'default'
+  | 'companies'
+  | 'portalCompany'
+  | 'navigation';
 
 export interface BaseHeaderProps {
   variant: HeaderVariant;
@@ -24,10 +28,17 @@ export interface PortalCompanyHeaderProps extends BaseHeaderProps {
   onMenuClick?: () => void;
 }
 
+export interface NavigationHeaderProps extends BaseHeaderProps {
+  variant: 'navigation';
+  backTo: string;
+  pageName: string;
+}
+
 export type HeaderProps =
   | DefaultHeaderProps
   | CompaniesHeaderProps
-  | PortalCompanyHeaderProps;
+  | PortalCompanyHeaderProps
+  | NavigationHeaderProps;
 
 export interface HeaderStyleProps {
   variant: HeaderVariant;

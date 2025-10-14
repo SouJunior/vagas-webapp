@@ -1,6 +1,6 @@
+import logoSouJunior from '@assets/imgs/Logotipo-SouJunior Empresas.svg';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoSouJunior from '../../../assets/imgs/Logotipo-SouJunior Empresas.svg';
 import type { CompaniesHeaderProps } from '../types';
 
 export const CompaniesHeader: React.FC<CompaniesHeaderProps> = ({

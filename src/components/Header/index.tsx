@@ -2,6 +2,7 @@ import React from 'react';
 import type { HeaderProps } from './types';
 import { CompaniesHeader } from './variants/CompaniesHeader';
 import { DefaultHeader } from './variants/DefaultHeader/DefaultHeader';
+import { NavigationHeader } from './variants/NavigationHeader';
 import { PortalCompanyHeader } from './variants/PortalCompanyHeader';
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -12,6 +13,8 @@ const Header: React.FC<HeaderProps> = (props) => {
       return <CompaniesHeader {...props} />;
     case 'portalCompany':
       return <PortalCompanyHeader {...props} />;
+    case 'navigation':
+      return <NavigationHeader {...props} />;
     default:
       return <DefaultHeader variant="default" />;
   }
