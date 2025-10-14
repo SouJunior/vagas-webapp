@@ -2,15 +2,11 @@ import { Turn as Hamburger } from 'hamburger-react';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Logo from './Logo';
-import MenuLinks from './MenuLinks';
-import MobileMenu from './MobileMenu';
+import Logo from '@components/Header/variants/DefaultHeader/Logo';
+import MenuLinks from '@components/Header/variants/DefaultHeader/MenuLinks';
+import MobileMenu from '@components/Header/variants/DefaultHeader/MobileMenu';
 
-interface HeaderDefaultProps {
-  isActive?: boolean;
-}
-
-const HeaderDefault: React.FC<HeaderDefaultProps> = ({ isActive }) => {
+const HeaderDefault: React.FC = () => {
   const [isMobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
