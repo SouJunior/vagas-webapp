@@ -120,7 +120,7 @@ export const ButtonRegister = styled.button`
   border: none;
   color: #fff;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 
   width: auto;
   max-width: 322px;
@@ -132,7 +132,7 @@ export const ButtonRegister = styled.button`
   border-radius: 10px;
 
   &:hover {
-    opacity: 0.8;
+    background-color: #035ba8;
   }
 
   margin-top: 58px;
