@@ -118,3 +118,17 @@ div {
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom animation for mobile header */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    height: 0px;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    height: 100vh;
+    transform: translateX(0%);
+  }
+}
