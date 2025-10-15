@@ -1,7 +1,7 @@
 export type HeaderVariant =
   | 'default'
   | 'companies'
-  | 'portalCompany'
+  | 'loggedInUser'
   | 'navigation';
 
 export interface BaseHeaderProps {
@@ -22,9 +22,9 @@ export interface CompaniesHeaderProps extends BaseHeaderProps {
   }>;
 }
 
-export interface PortalCompanyHeaderProps extends BaseHeaderProps {
-  variant: 'portalCompany';
-  companyName?: string;
+export interface LoggedInUserHeaderProps extends BaseHeaderProps {
+  variant: 'loggedInUser';
+  userName?: string;
   email?: string;
   profileImage?: string;
   onLogout?: () => void;
@@ -39,7 +39,7 @@ export interface NavigationHeaderProps extends BaseHeaderProps {
 export type HeaderProps =
   | DefaultHeaderProps
   | CompaniesHeaderProps
-  | PortalCompanyHeaderProps
+  | LoggedInUserHeaderProps
   | NavigationHeaderProps;
 
 export interface HeaderStyleProps {
@@ -50,15 +50,8 @@ export interface HeaderStyleProps {
 }
 
 export interface HeaderUserMenuProps {
-  companyName: string;
+  userName: string;
   email: string;
-  profileImage?: string;
-  onLogout?: () => void;
-}
-
-export interface PortalCompanyHeaderComponentProps {
-  companyName?: string;
-  email?: string;
   profileImage?: string;
   onLogout?: () => void;
 }
