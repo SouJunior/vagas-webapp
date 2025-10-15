@@ -2,10 +2,7 @@ import { LazyImage } from '@components/Ui/lazy-image';
 import { ACCESSIBILITY_CLASSES } from '@utils/accessibility';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  AuthContext,
-  type AuthContextType,
-} from '../../../../contexts/Auth/AuthContext';
+import { AuthContext } from '../../../../contexts/Auth/AuthContext';
 
 import LogoSouJunior from '../../../../assets/imgs/Logotipo-SouJunior.svg';
 import type { LoggedInUserHeaderProps } from '../../types';
@@ -17,7 +14,11 @@ export const LoggedInUserHeader: React.FC<LoggedInUserHeaderProps> = ({
   profileImage,
   onLogout,
 }) => {
-  const auth = useContext(AuthContext) as AuthContextType;
+  const auth = useContext(AuthContext);
+
+  if (!auth) {
+    throw new Error('LoggedInUserHeader must be used within an AuthProvider');
+  }
 
   const handleLogout = () => {
     if (onLogout) {

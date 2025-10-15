@@ -14,7 +14,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   return (
     <>
       {isMobileOpen && (
-        <nav className="fixed inset-0 z-[998] h-screen max-h-[40px] w-screen max-w-[40px] max-[320px]:h-[40px] max-[320px]:w-[40px]">
+        <nav className="fixed inset-0 z-[998]">
           <div className="fixed left-0 top-0 flex h-screen w-[350px] animate-[fadeIn_0.5s_both] flex-col items-center justify-between bg-white text-left opacity-0 transition-all duration-200 max-[500px]:!w-[90vw] max-[330px]:!w-screen min-[835px]:hidden">
             <ul className="mt-6 flex w-4/5 flex-col items-start justify-center">
               <li className="my-[5px] flex cursor-pointer items-center gap-2 bg-gradient-to-r from-blue-900 to-blue-900 bg-[length:0%_3px] bg-[50%_calc(100%-0px)] bg-no-repeat px-[15px] py-[5px] text-[22pt] font-semibold capitalize text-blue-900 transition-[background-size] duration-300 hover:bg-[length:100%_3px] max-md:text-[18pt]">
@@ -39,7 +39,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
         </nav>
       )}
       <div
-        className={`fixed left-0 right-0 top-0 z-[99999] mb-4 flex h-[6.1875rem] flex-row items-center justify-around border-b border-gray bg-gray-light p-5 max-[700px]:justify-center ${className}`}
+        className={`fixed left-0 right-0 top-0 z-[999] mb-4 flex h-[6.1875rem] flex-row items-center justify-around border-b border-gray bg-gray-light p-5 max-[700px]:justify-center ${className}`}
       >
         <div className="ham-menu hidden text-blue-900 max-[835px]:flex max-[700px]:absolute max-[700px]:left-5">
           <Hamburger toggled={isMobileOpen} toggle={setMobileOpen} />

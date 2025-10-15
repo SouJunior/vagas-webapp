@@ -14,15 +14,17 @@ const Logo = ({ onClick }: LogoProps) => {
 
   return (
     <div className="h-8 w-52">
-      <img
-        src={logoSouJunior}
-        alt="Logo SouJunior"
+      <button
         onClick={onClick}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        className="cursor-pointer"
-        role="button"
-      />
+        className="h-8 w-52 cursor-pointer border-0 bg-transparent p-0 focus:outline-none"
+        aria-label="Logo SouJunior"
+      >
+        <img
+          src={logoSouJunior}
+          alt="Logo SouJunior"
+          className="h-full w-full object-contain"
+        />
+      </button>
     </div>
   );
 };

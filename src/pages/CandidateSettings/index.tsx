@@ -461,7 +461,6 @@ export const CandidateSettings: React.FC = () => {
         <CancelModal setCancelModal={setCancelModal} open={isModalOpen} />
       )}
       <div className="mt-auto">
-        <main className="pt-15 flex flex-col items-center justify-center px-2.5 pb-5 text-center" />
         <FooterDefault />
       </div>
     </Container>

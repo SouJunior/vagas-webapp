@@ -30,7 +30,7 @@ const MobileMenu = ({ isOpen, onClose, isHomePage }: MobileMenuProps) => {
         </div>
       </div>
       <div
-        className="absolute z-30 h-full w-full backdrop-blur-md"
+        className="fixed z-30 h-full w-full backdrop-blur-md"
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();

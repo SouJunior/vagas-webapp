@@ -10,7 +10,7 @@ import { useApi } from '../../hooks/useApi';
 import companyType from './data/companyType';
 import inputConfigs from './data/inputSettings';
 import location from './data/location';
-import { checkImgZise } from './utils/checkImgSize';
+import { checkImgSize } from './utils/checkImgSize';
 import { handleImgFile } from './utils/handleImgFile';
 import { HandleInputsRender } from './utils/handleInputsRender';
 import { HandleOptionsRender } from './utils/handleOptionsRender';
@@ -91,7 +91,7 @@ export const ProfileSettings: React.FC = () => {
             />
           </div>
           <p>Aceitável somente os formatos .jpg, .jpeg e .png</p>
-          <span className="img__error">{checkImgZise(selectedImage)}</span>
+          <span className="img__error">{checkImgSize(selectedImage)}</span>
         </ProfileImgWrapper>
         <main className="pt-15 flex flex-col items-center justify-center px-2.5 pb-10 text-center">
           <div className="mb-auto w-[90%] border-t-2 border-[#979797] opacity-20" />
