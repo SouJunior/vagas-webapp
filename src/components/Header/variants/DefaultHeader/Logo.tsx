@@ -16,6 +16,7 @@ const Logo = ({ onClick }: LogoProps) => {
     <>
       <button
         onClick={onClick}
+        onKeyDown={handleKeyDown}
         className="h-8 w-52 cursor-pointer border-0 bg-transparent p-0 focus:outline-none"
         aria-label="Logo SouJunior"
       >
