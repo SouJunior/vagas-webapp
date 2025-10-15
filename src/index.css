@@ -120,15 +120,20 @@ div {
 }
 
 /* Custom animation for mobile header */
-@keyframes fadeIn {
+@keyframes header-mobile-enter {
   from {
     opacity: 0;
-    height: 0px;
     transform: translateX(-100%);
   }
   to {
     opacity: 1;
-    height: 100vh;
-    transform: translateX(0%);
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes header-mobile-enter {
+    from { opacity: 1; transform: none; }
+    to   { opacity: 1; transform: none; }
   }
 }
