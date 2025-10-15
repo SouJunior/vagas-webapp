@@ -13,7 +13,7 @@ const Logo = ({ onClick }: LogoProps) => {
   };
 
   return (
-    <div className="h-8 w-52">
+    <>
       <button
         onClick={onClick}
         className="h-8 w-52 cursor-pointer border-0 bg-transparent p-0 focus:outline-none"
@@ -22,10 +22,10 @@ const Logo = ({ onClick }: LogoProps) => {
         <img
           src={logoSouJunior}
           alt="Logo SouJunior"
-          className="h-full w-full object-contain"
+          className="h-10 w-full object-contain"
         />
       </button>
-    </div>
+    </>
   );
 };
 

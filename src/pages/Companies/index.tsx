@@ -9,15 +9,14 @@ import { Card } from './components/Card';
 
 import * as I from './components/Icons';
 
+import FooterDefault from '@components/FooterDefault';
+import Header from '@components/Header/index';
+import useEmblaCarousel from 'embla-carousel-react';
 import logoClaro from './assets/empresas-parceiras/Logo-claro.png';
 import logoCoca from './assets/empresas-parceiras/Logo-Coca.png';
 import logoGlobo from './assets/empresas-parceiras/Logo-Globo.png';
 import logoHp from './assets/empresas-parceiras/Logo-HP.png';
 import logoPositivo from './assets/empresas-parceiras/Logo-Positivo.png';
-
-import FooterDefault from '@components/FooterDefault';
-import Header from '@components/Header/index';
-import useEmblaCarousel from 'embla-carousel-react';
 
 export default function Companies() {
   const [emblaRef, emblaApi] = useEmblaCarousel();
