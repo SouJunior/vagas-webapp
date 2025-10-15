@@ -57,7 +57,11 @@ export const ProfileSettings: React.FC = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#fdfffc] text-center font-canada">
-      <Header variant="loggedInUser" />
+      <Header
+        variant="loggedInUser"
+        userName={auth?.user?.name}
+        email={auth?.user?.email}
+      />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ProfileImgWrapper>
           <img

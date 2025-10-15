@@ -74,7 +74,11 @@ const JobsPanel = () => {
 
   return (
     <>
-      <Header variant="loggedInUser" />
+      <Header
+        variant="loggedInUser"
+        userName={auth?.user?.name}
+        email={auth?.user?.email}
+      />
       <Container>
         <PageTitle>Painel de Vagas</PageTitle>
         <ContentWrapper>

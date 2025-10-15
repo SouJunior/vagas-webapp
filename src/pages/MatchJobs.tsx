@@ -23,7 +23,7 @@ function MatchJobs() {
 
   return (
     <>
-      <Header variant="loggedInUser" />
+      <Header variant="loggedInUser" userName={''} email={''} />
       <Container>
         <PageTitle>Match de Vagas</PageTitle>
         <Wrapper>

@@ -13,12 +13,15 @@ const CandidatePortal = () => {
 
   return (
     <Container>
-      <Header variant="loggedInUser" />
+      <Header
+        variant="loggedInUser"
+        userName={auth?.user?.name}
+        email={auth?.user?.email}
+      />
       {popUpAntiFraudOpen && <PopUpAntiFraudMessage />}
       <Main>
         <JobFilterPerfil />
         <Row />
-        <h1>Olá, {auth?.user?.name || 'Visitante'}</h1>
       </Main>
       <Position>
         <FooterDefault />

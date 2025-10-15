@@ -11,7 +11,7 @@ import {
 const MyApplications = () => {
   return (
     <>
-      <Header variant="loggedInUser" />
+      <Header variant="loggedInUser" userName={''} email={''} />
       <ContainerTitle>
         <Title>Minhas candidaturas</Title>
         <SubTitle>Veja o status de suas candidaturas.</SubTitle>

@@ -81,7 +81,7 @@ const ChangePassword = () => {
 
   return (
     <Container>
-      <Header variant="loggedInUser" />
+      <Header variant="loggedInUser" userName={''} email={''} />
       <Form onSubmit={handleSubmit(onSubmitHandler)}>
         <h1>Alterar senha</h1>
         <Border />

@@ -40,13 +40,14 @@ export const LoggedInUserHeader: React.FC<LoggedInUserHeaderProps> = ({
           ariaLabel="Logo da SouJunior"
         />
       </Link>
-
-      <HeaderUserMenu
-        userName={userName}
-        email={email}
-        profileImage={profileImage}
-        onLogout={handleLogout}
-      />
+      {userName && email && (
+        <HeaderUserMenu
+          userName={userName}
+          email={email}
+          profileImage={profileImage}
+          onLogout={handleLogout}
+        />
+      )}
     </header>
   );
 };

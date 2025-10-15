@@ -64,7 +64,11 @@ const CompanyApplications = () => {
 
   return (
     <>
-      <Header variant="loggedInUser" />
+      <Header
+        variant="loggedInUser"
+        userName={auth?.user?.name}
+        email={auth?.user?.email}
+      />
       <Container>
         <PageTitle>Candidaturas</PageTitle>
         <ContentWrapper>

@@ -55,7 +55,7 @@ const FeedJobs = () => {
 
   return (
     <div>
-      {isJobPage && <Header variant="loggedInUser" />}
+      {isJobPage && <Header variant="loggedInUser" userName={''} email={''} />}
       <S.Container noPadding={isJobPage}>
         {isJobPage && <JobFilterPerfil />}
         <S.SectionFilters>

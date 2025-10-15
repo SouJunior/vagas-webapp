@@ -240,7 +240,11 @@ export const CandidateSettings: React.FC = () => {
 
   return (
     <Container>
-      <Header variant="loggedInUser" />
+      <Header
+        variant="loggedInUser"
+        userName={auth?.user?.name}
+        email={auth?.user?.email}
+      />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ProfilePicWrapper>
           <img
