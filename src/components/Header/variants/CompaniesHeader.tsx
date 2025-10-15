@@ -34,15 +34,24 @@ export const CompaniesHeader: React.FC<CompaniesHeaderProps> = ({
             <ul className="flex items-center gap-4 lg:gap-8">
               {navigationItems.map((item) => (
                 <li key={item.href} className="list-none">
-                  <Link
-                    to={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1 rounded-sm text-base font-semibold text-[#082E54] transition-colors hover:text-[#338AFF] lg:text-xl ${ACCESSIBILITY_CLASSES.focusRing}`}
-                    aria-label={`${item.label} (abre em nova aba)`}
-                  >
-                    {item.label}
-                  </Link>
+                  {item.href.startsWith('http') ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1 rounded-sm text-base font-semibold text-[#082E54] transition-colors hover:text-[#338AFF] lg:text-xl ${ACCESSIBILITY_CLASSES.focusRing}`}
+                      aria-label={`${item.label} (abre em nova aba)`}
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={`inline-flex items-center gap-1 rounded-sm text-base font-semibold text-[#082E54] transition-colors hover:text-[#338AFF] lg:text-xl ${ACCESSIBILITY_CLASSES.focusRing}`}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
