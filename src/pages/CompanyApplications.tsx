@@ -64,7 +64,7 @@ const CompanyApplications = () => {
 
   return (
     <>
-      <Header variant="portalCompany" />
+      <Header variant="loggedInUser" />
       <Container>
         <PageTitle>Candidaturas</PageTitle>
         <ContentWrapper>

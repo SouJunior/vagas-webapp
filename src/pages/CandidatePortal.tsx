@@ -13,12 +13,12 @@ const CandidatePortal = () => {
 
   return (
     <Container>
-      <Header variant="portalCompany" />
+      <Header variant="loggedInUser" />
       {popUpAntiFraudOpen && <PopUpAntiFraudMessage />}
       <Main>
         <JobFilterPerfil />
         <Row />
-        <h1>Olá, {auth.user.name}</h1>
+        <h1>Olá, {auth?.user?.name || 'Visitante'}</h1>
       </Main>
       <Position>
         <FooterDefault />

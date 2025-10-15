@@ -81,7 +81,7 @@ const ChangePassword = () => {
 
   return (
     <Container>
-      <Header variant="portalCompany" />
+      <Header variant="loggedInUser" />
       <Form onSubmit={handleSubmit(onSubmitHandler)}>
         <h1>Alterar senha</h1>
         <Border />

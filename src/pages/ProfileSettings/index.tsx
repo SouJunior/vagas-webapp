@@ -1,7 +1,6 @@
 import { Button } from '../../components/Button';
 import InputWrapper from '../../components/InputWrapper';
 import { Select } from '../../components/Select';
-// Removed SharedStyles import - migrated to Tailwind CSS
 import { Form, ProfileImgWrapper } from './style';
 
 import Header from '@components/Header';
@@ -58,7 +57,7 @@ export const ProfileSettings: React.FC = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#fdfffc] text-center font-canada">
-      <Header variant="portalCompany" />
+      <Header variant="loggedInUser" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ProfileImgWrapper>
           <img
@@ -188,7 +187,6 @@ export const ProfileSettings: React.FC = () => {
         <CancelModal setCancelModal={setCancelModal} open={isModalOpen} />
       )}
       <div className="mt-auto">
-        <main className="pt-15 flex flex-col items-center justify-center px-2.5 pb-10 text-center" />
         <FooterDefault />
       </div>
     </div>

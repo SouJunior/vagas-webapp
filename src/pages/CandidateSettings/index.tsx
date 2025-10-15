@@ -240,7 +240,7 @@ export const CandidateSettings: React.FC = () => {
 
   return (
     <Container>
-      <Header variant="portalCompany" />
+      <Header variant="loggedInUser" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ProfilePicWrapper>
           <img

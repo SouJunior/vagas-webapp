@@ -74,7 +74,7 @@ const JobsPanel = () => {
 
   return (
     <>
-      <Header variant="portalCompany" />
+      <Header variant="loggedInUser" />
       <Container>
         <PageTitle>Painel de Vagas</PageTitle>
         <ContentWrapper>

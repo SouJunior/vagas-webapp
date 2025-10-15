@@ -23,7 +23,7 @@ function MatchJobs() {
 
   return (
     <>
-      <Header variant="portalCompany" />
+      <Header variant="loggedInUser" />
       <Container>
         <PageTitle>Match de Vagas</PageTitle>
         <Wrapper>
