@@ -24,8 +24,8 @@ export interface CompaniesHeaderProps extends BaseHeaderProps {
 
 export interface LoggedInUserHeaderProps extends BaseHeaderProps {
   variant: 'loggedInUser';
-  userName?: string;
-  email?: string;
+  userName: string;
+  email: string;
   profileImage?: string;
   onLogout?: () => void;
 }

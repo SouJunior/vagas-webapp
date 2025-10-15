@@ -12,8 +12,8 @@ import type { LoggedInUserHeaderProps } from '../../types';
 import { HeaderUserMenu } from './HeaderUserMenu';
 
 export const LoggedInUserHeader: React.FC<LoggedInUserHeaderProps> = ({
-  userName = 'João Silva',
-  email = 'joao.silva@email.com',
+  userName,
+  email,
   profileImage,
   onLogout,
 }) => {

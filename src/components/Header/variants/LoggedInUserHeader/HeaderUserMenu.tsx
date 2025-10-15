@@ -31,6 +31,7 @@ export const HeaderUserMenu = ({
         <PopoverTrigger asChild>
           <button
             aria-label="Opções do usuário"
+            type="button"
             className="h-8 w-8 cursor-pointer rounded-md border-none bg-transparent p-0 text-blue-950 transition-colors hover:bg-gray-100"
           >
             <DotsThreeVertical size={32} weight="bold" />
