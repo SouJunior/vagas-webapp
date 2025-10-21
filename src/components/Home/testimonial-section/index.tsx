@@ -103,7 +103,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             aria-roledescription="carrossel"
             aria-label="Carrossel de depoimentos"
             tabIndex={0}
-            aria-keyshortcuts="Home End"
+            aria-keyshortcuts="ArrowLeft ArrowRight Home End"
             onKeyDown={handleCarouselKeyDown}
           >
             <div className="overflow-hidden" ref={emblaRef}>
