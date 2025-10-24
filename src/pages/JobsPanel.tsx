@@ -1,18 +1,21 @@
-import React, { useContext, useState } from 'react';
-import {
-  PageTitle,
-  Container,
-  JobList,
-  ContentWrapper,
-  QuickFilterContainer,
-} from './styles/CompanyApplicationsStyles';
-import { AuthContext } from '../contexts/Auth/AuthContext';
+import FooterDefault from '@components/FooterDefault';
+import Header from '@components/Header';
+import { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
-import { useApi } from '../hooks/useApi';
-import JobCard from '../components/JobCard';
 import type { Job } from '../@types/jobs';
+import EndJobModal from '../components/EndJobModal';
+import JobCard from '../components/JobCard';
 import NoJobsSelectedCard from '../components/NoJobSelectedCard';
 import QuickFilter from '../components/QuickFilter';
+import { AuthContext } from '../contexts/Auth/AuthContext';
+import { useApi } from '../hooks/useApi';
+import {
+  Container,
+  ContentWrapper,
+  JobList,
+  PageTitle,
+  QuickFilterContainer,
+} from './styles/CompanyApplicationsStyles';
 import {
   AboutColumn,
   DescriptionContainer,
@@ -21,9 +24,6 @@ import {
   JobInfoContainer,
   OptionsBtn,
 } from './styles/JobsPanel';
-import EndJobModal from '../components/EndJobModal';
-import Header from '../components/Portal/Header';
-import Footer from '../components/Portal/Footer';
 
 const JobsPanel = () => {
   const [selectedJob, setSelectedJob] = useState<string | null>('');
@@ -74,7 +74,11 @@ const JobsPanel = () => {
 
   return (
     <>
-      <Header />
+      <Header
+        variant="loggedInUser"
+        userName={auth?.user?.name}
+        email={auth?.user?.email}
+      />
       <Container>
         <PageTitle>Painel de Vagas</PageTitle>
         <ContentWrapper>
@@ -201,7 +205,7 @@ const JobsPanel = () => {
             <NoJobsSelectedCard />
           )}
         </ContentWrapper>
-        <Footer />
+        <FooterDefault />
       </Container>
     </>
   );

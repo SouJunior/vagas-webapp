@@ -1,7 +1,15 @@
+import Header from '@components/Header/index';
 import { useState } from 'react';
+import { useMutation, useQuery } from 'react-query';
+import { useNavigate, useParams } from 'react-router-dom';
+import ChooseResume from '../components/ApplyJob/ChooseResume';
+import JobApplyDetails from '../components/ApplyJob/JobApplyDetails';
+import Modal from '../components/ApplyJob/Modal';
+import FeedSearch from '../components/FeedVagas/FeedSearch';
+import JobCard from '../components/JobCard';
+import { useApi } from '../hooks/useApi';
 import type { Job } from '../hooks/useJobList';
 import { useJobList } from '../hooks/useJobList';
-import JobCard from '../components/JobCard';
 import {
   ApplyButton,
   ButtonContainer,
@@ -13,20 +21,11 @@ import {
   PageTitle,
   ResumeContainer,
   ResumePreview,
-  UserArea,
-  Wrapper,
   SimilarJobs,
   Title,
+  UserArea,
+  Wrapper,
 } from './styles/ApplyJobs.styles';
-import Header from '../components/Header';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useApi } from '../hooks/useApi';
-import JobApplyDetails from '../components/ApplyJob/JobApplyDetails';
-import ChooseResume from '../components/ApplyJob/ChooseResume';
-import { useMutation, useQuery } from 'react-query';
-import Modal from '../components/ApplyJob/Modal';
-import FeedSearch from '../components/FeedVagas/FeedSearch';
-// import SouJuniorLogo from '../assets/imgs/logo-name-h.svg';
 
 const JobApply = () => {
   const {
@@ -146,7 +145,11 @@ const JobApply = () => {
 
   return (
     <JobApplyContainer>
-      <Header pageName="Feed de Vagas" backTo={'/jobs'}></Header>
+      <Header
+        variant="navigation"
+        pageName="Feed de Vagas"
+        backTo={'/jobs'}
+      ></Header>
       <Content>
         <FilterContainer>
           <div>

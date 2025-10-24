@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef } from 'react';
+import React, { useId } from 'react';
 import { useCarousel } from '../../../hooks/useCarousel';
 import { useTestimonials } from '../../../hooks/useTestimonials';
 import { ACCESSIBILITY_CLASSES } from '../../../utils/accessibility';
@@ -14,7 +14,6 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
 }) => {
   const sectionId = useId();
   const headerId = `testimonials-title-${sectionId}`;
-  const dotButtonsRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const { testimonials: hookTestimonials, announceMessage } = useTestimonials();
 
@@ -31,38 +30,12 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     [testimonials.length],
   );
 
-  const { emblaRef, selectedIndex, scrollTo, isPlaying } = useCarousel({
-    autoplayDelay: 5000,
-    stopOnInteraction: true,
-    emblaOptions,
-  });
-
-  const handleCarouselKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Home') {
-      e.preventDefault();
-      scrollToWithFocus(0);
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      scrollToWithFocus(testimonials.length - 1);
-    } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-      // Prevent default behavior for up/down arrows to avoid unwanted navigation
-      e.preventDefault();
-    }
-  };
-
-  const scrollToWithFocus = (index: number) => {
-    scrollTo(index);
-    setTimeout(() => {
-      dotButtonsRefs.current[index]?.focus();
-    }, 50);
-  };
-
-  useEffect(() => {
-    dotButtonsRefs.current = dotButtonsRefs.current.slice(
-      0,
-      testimonials.length,
-    );
-  }, [testimonials.length]);
+  const { emblaRef, selectedIndex, scrollTo, isPlaying, handleKeyDown } =
+    useCarousel({
+      autoplayDelay: 5000,
+      stopOnInteraction: true,
+      emblaOptions,
+    });
 
   return (
     <>
@@ -103,15 +76,15 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             aria-roledescription="carrossel"
             aria-label="Carrossel de depoimentos"
             tabIndex={0}
-            aria-keyshortcuts="ArrowLeft ArrowRight Home End"
-            onKeyDown={handleCarouselKeyDown}
+            aria-keyshortcuts="ArrowLeft ArrowRight"
+            onKeyDown={handleKeyDown}
           >
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
                 {testimonials.map((testimonial, index) => (
                   <div
                     key={testimonial.id}
-                    className="flex w-full justify-center px-3 md:px-3 lg:px-4"
+                    className="flex w-full shrink-0 justify-center px-3 md:px-3 lg:px-4"
                     role="group"
                     aria-roledescription="slide"
                     aria-label={`${index + 1} de ${testimonials.length}`}
@@ -135,37 +108,16 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
-                    ref={(el) => {
-                      dotButtonsRefs.current[index] = el;
-                    }}
-                    onClick={() => scrollToWithFocus(index)}
-                    onFocus={() => {
-                      if (index !== selectedIndex) {
-                        scrollTo(index);
-                      }
-                    }}
+                    onClick={() => scrollTo(index)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        scrollToWithFocus(index);
-                      } else if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        const prevIndex =
-                          index > 0 ? index - 1 : testimonials.length - 1;
-                        scrollToWithFocus(prevIndex);
-                      } else if (e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        const nextIndex =
-                          index < testimonials.length - 1 ? index + 1 : 0;
-                        scrollToWithFocus(nextIndex);
-                      } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                        // Prevent default behavior for up/down arrows to avoid unwanted navigation
-                        e.preventDefault();
+                        scrollTo(index);
                       }
                     }}
-                    className={`h-4 w-4 cursor-pointer rounded-full transition-all duration-300 hover:scale-110 ${ACCESSIBILITY_CLASSES.focusRing} ${
+                    className={`h-4 w-4 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                       index === selectedIndex
-                        ? 'scale-110 bg-blue-600 shadow-lg'
+                        ? 'scale-110 bg-blue-600'
                         : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                     {...(index === selectedIndex && {
@@ -188,11 +140,9 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             </div>
 
             <div className="sr-only">
-              Use as bolinhas abaixo para navegar pelos depoimentos. Você pode
-              usar Tab para navegar entre as bolinhas e as teclas de seta (← →)
-              para navegar quando uma bolinha estiver focada. Use Home/End para
-              ir ao primeiro/último depoimento. O carrossel avança
-              automaticamente e pausa quando você interage com ele.
+              Use as bolinhas abaixo ou as teclas de seta do teclado para
+              navegar pelos depoimentos. O carrossel avança automaticamente e
+              pausa quando você interage com ele.
             </div>
           </div>
         )}

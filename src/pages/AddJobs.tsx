@@ -1,15 +1,23 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import type { FieldValues, SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useApi } from '../hooks/useApi';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { createJobForm } from '../validations/JobFormValidations';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useApi } from '../hooks/useApi';
+import { createJobForm } from '../validations/JobFormValidations';
 
-import Header from '../components/Header';
+import Header from '@components/Header/index';
+import StepOne from '../components/AddJobs/FormSteps/StepOne';
+import StepThree from '../components/AddJobs/FormSteps/StepThree';
+import StepTwo from '../components/AddJobs/FormSteps/StepTwo';
+import JobModal from '../components/AddJobs/JobModal';
+import CancelModal from '../components/CancelModal';
+import JobPreview from '../components/PreviewAddJobs';
+import WaitModal from '../components/WaitModal';
 import {
+  Container,
   Form,
   FormHeader,
   FormSection,
@@ -17,22 +25,14 @@ import {
   FormTitle,
   HeaderContainer,
   HorizontalLine,
+  Icon,
+  InnerContainer,
   LogoImage,
   MainGrid,
-  NoJobsContainer,
-  InnerContainer,
-  Icon,
-  Title,
   Message,
-  Container,
+  NoJobsContainer,
+  Title,
 } from './styles/AddJobsStyles';
-import JobPreview from '../components/PreviewAddJobs';
-import JobModal from '../components/AddJobs/JobModal';
-import CancelModal from '../components/CancelModal';
-import WaitModal from '../components/WaitModal';
-import StepOne from '../components/AddJobs/FormSteps/StepOne';
-import StepTwo from '../components/AddJobs/FormSteps/StepTwo';
-import StepThree from '../components/AddJobs/FormSteps/StepThree';
 
 interface FormData extends FieldValues {
   title: string;
@@ -159,7 +159,11 @@ const AddJobs = () => {
 
   return (
     <Container>
-      <Header pageName="Criar vaga" backTo={'/company-portal'}></Header>
+      <Header
+        variant="navigation"
+        pageName="Criar vaga"
+        backTo={'/company-portal'}
+      ></Header>
       <HeaderContainer>
         <LogoImage
           src="/assets/logo-name-empresa.svg"
