@@ -1,6 +1,5 @@
 import React from 'react';
 import type { TestimonialCardProps } from '../types';
-import { ITestimonial } from '../types';
 
 export const TestimonialCard: React.FC<TestimonialCardProps> = ({
   testimonial,
