@@ -12,7 +12,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
   CarouselPartnerCompaniesProps
 > = ({ logos = DEFAULT_PARTNERS, autoplayDelay = 5000 }) => {
   const device = useBreakpoint();
-  const chunkSize = device === 'desktop' ? 5 : device === 'tablet' ? 3 : 2;
+  const chunkSize = device === 'desktop' ? 5 : 3;
   const getGroupedLogos = useMemo(() => {
     return chunkArray(logos, chunkSize);
   }, [logos, chunkSize]);
@@ -35,7 +35,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
 
   return (
     <section className="bg-gray-50 py-10">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto md:px-4">
         <h2 className="mb-14 text-center text-2xl font-bold">
           Empresas parceiras
         </h2>
@@ -48,7 +48,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
             onFocus={scrollPrev}
             aria-label="Slide anterior"
             aria-hidden="false"
-            className={`absolute left-0 top-1/2 z-50 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg ${ACCESSIBILITY_CLASSES.focusRing}`}
+            className={`absolute left-5 top-1/2 z-50 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg md:left-0 ${ACCESSIBILITY_CLASSES.focusRing}`}
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === 'ArrowLeft') {
@@ -77,7 +77,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
               {getGroupedLogos.map((group, index) => (
                 <div
                   key={index}
-                  className="min-w-full flex-shrink-0 px-12 transition-opacity duration-300 lg:px-28"
+                  className="min-w-full transition-opacity duration-300 md:flex-shrink-0 md:px-12 lg:px-28"
                   style={{
                     opacity: selectedIndex === index ? 1 : 0.5,
                   }}
@@ -96,7 +96,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
             onFocus={scrollNext}
             aria-label="Próximo slide"
             aria-hidden="false"
-            className={`absolute right-0 top-1/2 z-50 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg ${ACCESSIBILITY_CLASSES.focusRing}`}
+            className={`absolute right-5 top-1/2 z-50 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg md:right-0 ${ACCESSIBILITY_CLASSES.focusRing}`}
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === 'ArrowRight') {

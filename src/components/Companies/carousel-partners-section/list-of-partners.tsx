@@ -11,13 +11,13 @@ export const ListOfPartners: React.FC<ListOfPartnersProps> = ({ logos }) => {
           key={idx}
           className="w-full flex-shrink-0 transition-opacity duration-500"
         >
-          <div className="flex h-full w-full items-center justify-evenly">
+          <div className="flex h-full w-full items-center justify-between md:justify-evenly">
             {group.map((logo) => (
               <div key={logo.id}>
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="mx-auto h-20 w-20 object-contain md:h-24 md:w-24"
+                  className="mx-auto h-24 w-24 object-contain md:h-24 md:w-24"
                 />
               </div>
             ))}
