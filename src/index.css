@@ -118,3 +118,22 @@ div {
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom animation for mobile header */
+@keyframes header-mobile-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes header-mobile-enter {
+    from { opacity: 1; transform: none; }
+    to   { opacity: 1; transform: none; }
+  }
+}

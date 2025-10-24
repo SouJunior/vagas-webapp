@@ -1,8 +1,6 @@
 import * as s from '../styles/HomeCompaniesStyles';
 
-import { Link } from 'react-router-dom';
-import HireImage from '../../assets/imgs/companies.png';
-import Logo from '../../assets/imgs/soujunior-empresas.png';
+import HireImage from '../../assets/imgs/companies.svg';
 
 import img from './assets/Learn.png';
 
@@ -13,26 +11,11 @@ import * as I from './components/Icons';
 import { CarouselPartnerCompaniesSection } from '@components/Companies/carousel-partners-section';
 import FooterDefault from '@components/FooterDefault';
 
+
 export default function Companies() {
   return (
     <>
-      <s.Header>
-        <s.Container>
-          <s.HeaderWrapper>
-            <img src={Logo} alt="Sou Junior empresas" />
-            <nav aria-label="navegação principal">
-              <s.HeaderNavigation>
-                <s.ListItem>
-                  <Link to="/">Home</Link>
-                </s.ListItem>
-                <s.ListItem>
-                  <Link to="#">Sobre nós</Link>
-                </s.ListItem>
-              </s.HeaderNavigation>
-            </nav>{' '}
-          </s.HeaderWrapper>
-        </s.Container>
-      </s.Header>
+      <Header variant="companies" />
 
       <s.HireJuniorsSection>
         <s.Container>

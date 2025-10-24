@@ -1,17 +1,8 @@
-import {
-  Main,
-  Container,
-  Position,
-  JobButton,
-  Row,
-  Copyright,
-} from './styles/CompanyPortalStyles';
-import PlusSignImage from '../assets/imgs/plus-sign.png';
-
-import Header from '../components/Portal/Header';
+import FooterDefault from '@components/FooterDefault';
+import Header from '@components/Header';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth/AuthContext';
-import { useContext, useEffect, useState } from 'react';
 import { useApi } from '../hooks/useApi';
 
 const CompanyPortal = () => {
@@ -29,39 +20,15 @@ const CompanyPortal = () => {
   }, []);
 
   return (
-    <Container>
-      <Header />
-      {jobs?.length !== 0 ? (
-        <Main>
-          <h2>Vagas cadastradas:</h2>
-          {jobs.map((job, index) => (
-            <ul key={index}>
-              <li>Título da vaga: {job.title}</li>
-              <li>Pré-requisitos: {job.prerequisites}</li>
-            </ul>
-          ))}
-        </Main>
-      ) : (
-        <Main>
-          <h1>{auth.user.companyName}, anuncie sua primeira vaga!</h1>
-          <JobButton onClick={() => navigate('/addjobs')}>
-            <div>
-              <img src={PlusSignImage} alt="mais" />
-            </div>
-            <div>Anunciar vaga</div>
-          </JobButton>
-        </Main>
-      )}
-      <Position>
-        <Main>
-          <Row />
-        </Main>
-        <Main>
-          <Row />
-        </Main>
-      </Position>
-      <Copyright>&copy; 2023 SouJunior</Copyright>
-    </Container>
+    <>
+      <Header
+        variant="loggedInUser"
+        userName={auth.user.name}
+        email={auth.user.email}
+        profileImage={auth.user.profileImage}
+      />
+      <FooterDefault />
+    </>
   );
 };
 

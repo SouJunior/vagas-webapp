@@ -1,4 +1,4 @@
-export const checkImgZise = (img: File) => {
+export const checkImgSize = (img: File) => {
   if (!img || img === null) return;
 
   if (img && img.size > 8 * Math.pow(10, 6)) {

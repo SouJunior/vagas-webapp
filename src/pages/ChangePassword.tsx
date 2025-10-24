@@ -1,26 +1,27 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useApi } from '../hooks/useApi';
 import { ChangePasswordSchema } from '../validations/ConfirmPasswordValidation';
 import {
-  Container,
-  Form,
-  StyledIconOpenEyes,
-  StyledIconClosedEyes,
-  Button,
-  Checklist,
-  List,
-  ErrorMessages,
-  MessageChecklist,
-  ChangePasswordErrorMessage,
   Border,
+  Button,
+  ChangePasswordErrorMessage,
+  Checklist,
+  Container,
+  ErrorMessages,
+  Form,
+  List,
+  MessageChecklist,
+  StyledIconClosedEyes,
+  StyledIconOpenEyes,
 } from './styles/ChangePasswordStyles';
-import { useApi } from '../hooks/useApi';
-import Header from '../components/Portal/Header';
-import Footer from '../components/Portal/Footer';
-import ChangePasswordModal from '../components/Portal/ProfileModal/ChangePasswordModal';
+
+import FooterDefault from '@components/FooterDefault';
+import Header from '@components/Header';
 import CancelModal from '../components/Portal/ProfileModal/CancelModal';
+import ChangePasswordModal from '../components/Portal/ProfileModal/ChangePasswordModal';
 
 interface ChangePasswordForm {
   oldPassword: string;
@@ -80,7 +81,7 @@ const ChangePassword = () => {
 
   return (
     <Container>
-      <Header />
+      <Header variant="loggedInUser" userName={''} email={''} />
       <Form onSubmit={handleSubmit(onSubmitHandler)}>
         <h1>Alterar senha</h1>
         <Border />
@@ -209,7 +210,7 @@ const ChangePassword = () => {
       {cancelModal && (
         <CancelModal setCancelModal={setCancelModal} open={isModalOpen} />
       )}
-      <Footer />
+      <FooterDefault />
     </Container>
   );
 };

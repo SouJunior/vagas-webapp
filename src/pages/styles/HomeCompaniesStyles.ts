@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Button } from '../../components/HeaderDefault/components/JobFilter/styles';
 import devices from '../styles/devices';
 
 import imageBackground from '../../assets/imgs/background-companies.png';
@@ -16,8 +15,6 @@ export const Container = styled.div`
     padding-inline: 16px;
   }
 `;
-
-export const Header = styled.header``;
 
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -118,8 +115,12 @@ export const HireDescription = styled.p`
   }
 `;
 
-export const ButtonRegister = styled(Button)`
+export const ButtonRegister = styled.button`
   background-color: #046ad0;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
 
   width: auto;
   max-width: 322px;
@@ -129,6 +130,10 @@ export const ButtonRegister = styled(Button)`
 
   padding: 24px 24px;
   border-radius: 10px;
+
+  &:hover {
+    background-color: #035ba8;
+  }
 
   margin-top: 58px;
   font-family: ${font};

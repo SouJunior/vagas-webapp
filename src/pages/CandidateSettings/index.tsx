@@ -1,38 +1,36 @@
+import FooterDefault from '@components/FooterDefault';
+import Header from '@components/Header';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { InputMask } from '@react-input/mask';
+import { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import trashPicture from '../../assets/imgs/trash.svg';
+import { Button } from '../../components/Button';
+import InputWrapper from '../../components/InputWrapper';
+import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
+import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
+import { Select } from '../../components/Select';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { useApi } from '../../hooks/useApi';
+import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
+import location from '../ProfileSettings/data/location';
+import { handleImgFile } from '../ProfileSettings/utils/handleImgFile';
+import inputConfigCandidate from './data/inputConfigCandidate';
 import {
+  Buttons,
   Container,
-  Form,
-  ProfilePicWrapper,
-  Title,
   CurriculoWrapper,
   CurriculumLink,
-  Trash,
-  ExtraLine,
-  Required,
-  Buttons,
   ErrorMessages,
+  ExtraLine,
+  Form,
+  ProfilePicWrapper,
+  Required,
   Spacing,
+  Title,
+  Trash,
 } from './style';
-import { Position, Main, Row } from '../styles/CandidatePortalStyles';
-import InputWrapper from '../../components/InputWrapper';
-import { Select } from '../../components/Select';
-import { InputMask } from '@react-input/mask';
-import { Button } from '../../components/Button';
-import location from '../ProfileSettings/data/location';
 import { HandleInputsRenderCandidate } from './utils/handleInputsRenderCandidate';
-import inputConfigCandidate from './data/inputConfigCandidate';
-import { useState, useContext, useEffect } from 'react';
-import ConfirmModal from '../../components/Portal/ProfileModal/ConfirmModal';
-import CancelModal from '../../components/Portal/ProfileModal/CancelModal';
-import { handleImgFile } from '../ProfileSettings/utils/handleImgFile';
-import { useApi } from '../../hooks/useApi';
-import { AuthContext } from '../../contexts/Auth/AuthContext';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { CandidateUpdateFormSchema } from '../../validations/CandidateUpdateFormValidation';
-import { ProfileImg } from '../styles/CompanyPortalStyles';
-import Header from '../../components/Portal/Header';
-import Footer from '../../components/Portal/Footer';
 
 export const CandidateSettings: React.FC = () => {
   const HandleOptionsRender = (arr: any): [] => {
@@ -242,15 +240,19 @@ export const CandidateSettings: React.FC = () => {
 
   return (
     <Container>
-      <Header />
+      <Header
+        variant="loggedInUser"
+        userName={auth?.user?.name}
+        email={auth?.user?.email}
+      />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ProfilePicWrapper>
-          <ProfileImg
+          <img
             src={
               imagePreview || (auth.user.profile ?? '/assets/profile-image.svg')
             }
             alt="Foto de perfil"
-            width={'138px'}
+            className="mx-4 aspect-square w-[138px] cursor-pointer rounded-full object-cover"
           />
           <div className="upload">
             <label htmlFor="profPic">Alterar foto</label>
@@ -276,9 +278,9 @@ export const CandidateSettings: React.FC = () => {
             </ErrorMessages>
           </div>
         </ProfilePicWrapper>
-        <Main>
-          <Row />
-        </Main>
+        <main className="pt-15 flex flex-col items-center justify-center px-2.5 pb-5 text-center">
+          <div className="mt-7.5 mb-auto w-[90%] border-t-2 border-[#979797] opacity-20" />
+        </main>
         <Title>Dados Pessoais</Title>
         <Form>
           <div className="form__left">
@@ -356,9 +358,9 @@ export const CandidateSettings: React.FC = () => {
             </InputWrapper>
           </div>
         </Form>
-        <Main>
-          <Row />
-        </Main>
+        <main className="pt-15 flex flex-col items-center justify-center px-2.5 pb-5 text-center">
+          <div className="mt-7.5 mb-auto w-[90%] border-t-2 border-[#979797] opacity-20" />
+        </main>
         <Title>Dados Profissionais</Title>
         <Form>
           <div className="form__left">
@@ -437,9 +439,9 @@ export const CandidateSettings: React.FC = () => {
             </CurriculoWrapper>
           </div>
         </Form>
-        <Main>
-          <Row />
-        </Main>
+        <main className="pt-15 flex flex-col items-center justify-center px-2.5 pb-5 text-center">
+          <div className="mt-7.5 mb-auto w-[90%] border-t-2 border-[#979797] opacity-20" />
+        </main>
         <Buttons>
           <div>
             <Button type="submit">Atualizar</Button>
@@ -451,17 +453,16 @@ export const CandidateSettings: React.FC = () => {
           </div>
         </Buttons>
         <ExtraLine>
-          <Row />
+          <div className="mt-7.5 mb-auto w-[90%] border-t-2 border-[#979797] opacity-20" />
         </ExtraLine>
       </form>
       {confirmModal && <ConfirmModal setConfirmModal={setConfirmModal} />}
       {cancelModal && (
         <CancelModal setCancelModal={setCancelModal} open={isModalOpen} />
       )}
-      <Position>
-        <Main />
-        <Footer />
-      </Position>
+      <div className="mt-auto">
+        <FooterDefault />
+      </div>
     </Container>
   );
 };
