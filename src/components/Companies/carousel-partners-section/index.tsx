@@ -13,7 +13,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
 > = ({ logos = DEFAULT_PARTNERS, autoplayDelay = 5000 }) => {
   const device = useBreakpoint();
   const chunkSize = device === 'desktop' ? 5 : 3;
-  const getGroupedLogos = useMemo(() => {
+  const groupedLogos = useMemo(() => {
     return chunkArray(logos, chunkSize);
   }, [logos, chunkSize]);
 
@@ -47,7 +47,6 @@ export const CarouselPartnerCompaniesSection: React.FC<
             onClick={scrollPrev}
             onFocus={scrollPrev}
             aria-label="Slide anterior"
-            aria-hidden="false"
             className={`absolute left-5 top-1/2 z-50 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg md:left-0 ${ACCESSIBILITY_CLASSES.focusRing}`}
             tabIndex={0}
             onKeyDown={(e) => {
@@ -74,7 +73,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
             aria-keyshortcuts="ArrowLeft ArrowRight"
           >
             <div className="flex">
-              {getGroupedLogos.map((group, index) => (
+              {groupedLogos.map((group, index) => (
                 <div
                   key={index}
                   className="min-w-full transition-opacity duration-300 md:flex-shrink-0 md:px-12 lg:px-28"
@@ -95,7 +94,6 @@ export const CarouselPartnerCompaniesSection: React.FC<
             onClick={scrollNext}
             onFocus={scrollNext}
             aria-label="Próximo slide"
-            aria-hidden="false"
             className={`absolute right-5 top-1/2 z-50 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg md:right-0 ${ACCESSIBILITY_CLASSES.focusRing}`}
             tabIndex={0}
             onKeyDown={(e) => {
@@ -132,7 +130,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
             aria-label="Navegação por slides de empresas"
             className="flex gap-3"
           >
-            {getGroupedLogos.map((_, index) => (
+            {groupedLogos.map((_, index) => (
               <button
                 key={index}
                 onClick={() => scrollTo(index)}
@@ -150,7 +148,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
                     scrollTo(index);
                   }
                 }}
-                aria-label={`Ir para slide ${index + 1} de ${getGroupedLogos.length}`}
+                aria-label={`Ir para slide ${index + 1} de ${groupedLogos.length}`}
                 type="button"
               />
             ))}
@@ -159,7 +157,7 @@ export const CarouselPartnerCompaniesSection: React.FC<
 
         {/* Mensagens para Leitores de Tela */}
         <div className="sr-only" aria-live="polite" aria-atomic="true">
-          Slide {selectedIndex + 1} de {getGroupedLogos.length}
+          Slide {selectedIndex + 1} de {groupedLogos.length}
         </div>
         <div className="sr-only">
           Use os botões laterais ou as teclas de seta do teclado para navegar

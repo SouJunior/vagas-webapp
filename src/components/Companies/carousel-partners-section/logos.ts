@@ -10,7 +10,7 @@ export const DEFAULT_PARTNERS = [
   { id: 'globo', src: logoGlobo, alt: 'Logo Globo' },
   { id: 'hp', src: logoHp, alt: 'Logo HP' },
   { id: 'positivo', src: logoPositivo, alt: 'Logo Positivo Tecnologia' },
-  { id: 'claro', src: logoClaro, alt: 'Logo Claro' },
-  { id: 'coca', src: logoCoca, alt: 'Logo Coca-Cola' },
-  { id: 'globo', src: logoGlobo, alt: 'Logo Globo' },
+  { id: 'claro1', src: logoClaro, alt: 'Logo Claro' },
+  { id: 'coca1', src: logoCoca, alt: 'Logo Coca-Cola' },
+  { id: 'globo1', src: logoGlobo, alt: 'Logo Globo' },
 ];
