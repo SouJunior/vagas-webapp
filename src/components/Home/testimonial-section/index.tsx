@@ -30,18 +30,12 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     [testimonials.length],
   );
 
-  const {
-    emblaRef,
-    emblaApi,
-    selectedIndex,
-    scrollTo,
-    isPlaying,
-    handleKeyDown,
-  } = useCarousel({
-    autoplayDelay: 5000,
-    stopOnInteraction: true,
-    emblaOptions,
-  });
+  const { emblaRef, selectedIndex, scrollTo, isPlaying, handleKeyDown } =
+    useCarousel({
+      autoplayDelay: 5000,
+      stopOnInteraction: true,
+      emblaOptions,
+    });
 
   return (
     <>
@@ -90,7 +84,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
                 {testimonials.map((testimonial, index) => (
                   <div
                     key={testimonial.id}
-                    className="flex w-full justify-center px-3 md:px-3 lg:px-4"
+                    className="flex w-full shrink-0 justify-center px-3 md:px-3 lg:px-4"
                     role="group"
                     aria-roledescription="slide"
                     aria-label={`${index + 1} de ${testimonials.length}`}
