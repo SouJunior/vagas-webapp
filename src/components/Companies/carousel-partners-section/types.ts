@@ -7,7 +7,6 @@ export interface Logo {
 export interface CarouselPartnerCompaniesProps {
   logos?: Logo[];
   autoplayDelay?: number;
-  intervaloEntreSlides?: number;
 }
 
 export interface ListOfPartnersProps {

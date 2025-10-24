@@ -2,9 +2,7 @@ import { useCarousel } from '@hooks/useCarousel';
 import { ACCESSIBILITY_CLASSES } from '@utils/accessibility';
 
 import { useBreakpoint } from '@hooks/useBreakpoint';
-import { chunkArray } from '@utils/chunkArray';
 import React, { useMemo } from 'react';
-import { ListOfPartners } from './list-of-partners';
 import { DEFAULT_PARTNERS } from './logos';
 import type { CarouselPartnerCompaniesProps } from './types';
 
@@ -12,9 +10,13 @@ export const CarouselPartnerCompaniesSection: React.FC<
   CarouselPartnerCompaniesProps
 > = ({ logos = DEFAULT_PARTNERS, autoplayDelay = 5000 }) => {
   const device = useBreakpoint();
-  const chunkSize = device === 'desktop' ? 5 : 3;
+  const chunkSize = device === 'desktop' ? 5 : 1;
   const groupedLogos = useMemo(() => {
-    return chunkArray(logos, chunkSize);
+    const result = [];
+    for (let i = 0; i < logos.length; i += chunkSize) {
+      result.push(logos.slice(i, i + chunkSize));
+    }
+    return result;
   }, [logos, chunkSize]);
 
   const emblaOptions = useMemo(
@@ -76,13 +78,23 @@ export const CarouselPartnerCompaniesSection: React.FC<
               {groupedLogos.map((group, index) => (
                 <div
                   key={index}
-                  className="min-w-full transition-opacity duration-300 md:flex-shrink-0 md:px-12 lg:px-28"
+                  className="w-fit flex-shrink-0 transition-opacity duration-300 md:px-12 lg:min-w-full lg:px-28"
                   style={{
                     opacity: selectedIndex === index ? 1 : 0.5,
                   }}
                 >
-                  <div className="w-full lg:px-4">
-                    <ListOfPartners logos={group} />
+                  <div className="mx-8 flex w-fit lg:mx-0 lg:w-full lg:px-4">
+                    <div className="flex h-full w-full items-center justify-center overflow-hidden md:justify-evenly lg:justify-between">
+                      {group.map((logo) => (
+                        <div key={logo.id}>
+                          <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            className="mx-auto h-24 w-24 object-contain md:h-24 md:w-24"
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
