@@ -1,10 +1,10 @@
 import React, { useId } from 'react';
-import { useTestimonials } from '../../../hooks/useTestimonials';
 import { useCarousel } from '../../../hooks/useCarousel';
+import { useTestimonials } from '../../../hooks/useTestimonials';
 import { ACCESSIBILITY_CLASSES } from '../../../utils/accessibility';
 import {
-  TestimonialHeaderDefault as TestimonialHeader,
   TestimonialCard,
+  TestimonialHeaderDefault as TestimonialHeader,
 } from './components';
 import type { TestimonialSectionProps } from './types';
 
@@ -30,18 +30,12 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     [testimonials.length],
   );
 
-  const {
-    emblaRef,
-    emblaApi,
-    selectedIndex,
-    scrollTo,
-    isPlaying,
-    handleKeyDown,
-  } = useCarousel({
-    autoplayDelay: 5000,
-    stopOnInteraction: true,
-    emblaOptions,
-  });
+  const { emblaRef, selectedIndex, scrollTo, isPlaying, handleKeyDown } =
+    useCarousel({
+      autoplayDelay: 5000,
+      stopOnInteraction: true,
+      emblaOptions,
+    });
 
   return (
     <>
