@@ -3,65 +3,40 @@ import React, { useState } from 'react';
 import { Button } from '@components/Ui/button';
 import { Label } from '@components/Ui/label';
 
-export interface AreaProps {
-  id: string;
-  name: string;
-  icon: React.ReactNode;
-}
+import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
-export const JobPosting: React.FC = () => {
-  function toggleStep(value: string, checked: boolean) {
-    updateField(
-      'steps',
-      checked
-        ? [...formData.steps, value]
-        : formData.steps.filter((v: string) => v !== value),
-    );
-  }
+import { useApi } from '@hooks/useApi';
+import type { FormDataType } from '../data/FormDataType';
 
-  const [formData, setFormData] = useState<{
-    companyName: string;
-    companyWebsite: string;
-    aboutTheCompany: string;
-    position: string;
-    areaOfActivity: string;
-    jobDescription: string;
-    responsibilities: string;
-    requirements: string;
-    location: string;
-    wage: string;
-    benefits: string;
-    categories: string[];
-    workingDay: string;
-    workModel: string;
-    workRegime: string;
-    steps: string[];
-    affirmativeVacancies: string;
-  }>({
-    affirmativeVacancies: '',
-    companyName: '',
-    companyWebsite: '',
-    aboutTheCompany: '',
-    position: '',
-    areaOfActivity: '',
-    jobDescription: '',
-    responsibilities: '',
-    requirements: '',
-    location: '',
-    wage: '',
-    benefits: '',
-    categories: [],
-    workingDay: '',
-    workModel: '',
-    workRegime: '',
-    steps: [],
-  });
+export const VacancyReview: React.FC = () => {
+  const navigate = useNavigate();
 
-  function updateField(field: string, value: any) {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+  const { state: formData } = useLocation() as {
+    state: FormDataType;
+  };
+
+  const [loading, setLoading] = useState(false);
+  const api = useApi();
+
+  async function handlePublish() {
+    try {
+      setLoading(true);
+
+      const payload = {
+        ...formData,
+        wage: formData.wage.replace('R$', '').trim(),
+      };
+
+      await api.publishVacancy(payload);
+
+      navigate('/sucesso');
+    } catch (error) {
+      console.error(error);
+      alert('Erro ao publicar a vaga');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -84,7 +59,7 @@ export const JobPosting: React.FC = () => {
                   Nome da empresa
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  SouJunior
+                  {formData.companyName}
                 </p>
               </div>
 
@@ -95,8 +70,8 @@ export const JobPosting: React.FC = () => {
                 >
                   Site da empresa
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  https://www.soujunior.tech
+                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4]">
+                  {formData.companyWebsite}
                 </p>
               </div>
               <div className="flex w-[442px] flex-col items-start">
@@ -106,19 +81,26 @@ export const JobPosting: React.FC = () => {
                 >
                   Sobre a empresa
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  A SouJunior é uma iniciativa sem fins lucrativos dedicada a
-                  capacitar profissionais no início de carreira, oferecendo uma
-                  oportunidade única de desenvolvimento para quem deseja
-                  ingressar no mercado de trabalho. Nosso objetivo é fornecer a
-                  esses talentos iniciais as ferramentas e a experiência prática
-                  necessárias para se destacarem no competitivo mundo
-                  profissional.
+                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4]">
+                  {formData.aboutTheCompany}
                 </p>
               </div>
             </div>
             <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline">
-              <a href="">Editar</a>
+              <a
+                href=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/register-vacancy', {
+                    state: {
+                      formData,
+                      stepForEditing: 0,
+                    },
+                  });
+                }}
+              >
+                Editar
+              </a>
             </div>
           </div>
 
@@ -129,127 +111,121 @@ export const JobPosting: React.FC = () => {
               </h1>
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="position"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Cargo
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  Desenvolvedor Front-end
+                  {formData.position}
                 </p>
               </div>
-
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="areaOfActivity"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Área de atuação
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  Tecnologia
+                  {formData.areaOfActivity}
                 </p>
               </div>
 
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="jobDescription"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Descrição da vaga
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  Buscamos Desenvolvedor(a) Front-End Júnior para atuar na
-                  criação e manutenção de interfaces web responsivas,
-                  colaborando com o time de design e back-end. É importante ter
-                  conhecimento em HTML, CSS, JavaScript e frameworks modernos.
-                  Valorizamos pessoas colaborativas e com vontade de aprender e
-                  crescer junto com o time.
+                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4]">
+                  {formData.jobDescription}
                 </p>
               </div>
 
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="responsibilities"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Responsabilidades
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  Colaborar com o time de design e back-end na implementação de
-                  novas funcionalidades. Corrigir bugs, realizar testes básicos
-                  e aplicar boas práticas de código. Apoiar na documentação e
-                  evolução contínua dos projetos, aprendendo e se desenvolvendo
-                  junto à equipe.
+                  {formData.responsibilities}
                 </p>
               </div>
-
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="requirements"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Requisitos
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  Conhecimento em HTML, CSS e JavaScript; noções de frameworks
-                  como React, Vue ou Angular; versionamento com Git;
-                  desenvolvimento responsivo; noções de consumo de APIs REST;
-                  boa lógica de programação e atenção a detalhes.
+                  {formData.requirements}
                 </p>
               </div>
-
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="location"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Local
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  São Paulo, SP
+                  {formData.location}
                 </p>
               </div>
-
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="wage"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Salário
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  R$ 3.500,00
+                  R$ {formData.wage}
                 </p>
               </div>
-
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="benefits"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Benefícios
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  Vale alimentação, vale refeição, convênio médico, Wellhub,
-                  bolsa de estudos com instuições parceiras.
+                  {formData.benefits}
                 </p>
               </div>
-
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="affirmativeVacancies"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Vaga afirmativa
                 </Label>
                 <p className="mb-4 text-start text-[16px] font-light leading-[1.4]">
-                  Mulheres, Pessoas negras, LGBTQIAP+
+                  {formData.affirmativeVacancies.join(', ')}
                 </p>
               </div>
             </div>
             <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline">
-              <a href="">Editar</a>
+              <a
+                href=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/register-vacancy', {
+                    state: {
+                      formData,
+                      stepForEditing: 1,
+                    },
+                  });
+                }}
+              >
+                Editar
+              </a>
             </div>
           </div>
 
@@ -260,41 +236,54 @@ export const JobPosting: React.FC = () => {
               </h1>
               <div className="flex flex-col items-start">
                 <Label
-                  htmlFor="companyName"
+                  htmlFor="workingDay"
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
                 >
                   Jornada de trabalho
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  Integral
+                  {formData.workingDay}
                 </p>
               </div>
 
               <div className="flex flex-col items-start">
                 <Label
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
-                  htmlFor="companyWebsite"
+                  htmlFor="workModel"
                 >
                   Modalidade de trabalho
                 </Label>
                 <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
-                  Remoto
+                  {formData.workModel}
                 </p>
               </div>
               <div className="flex w-[442px] flex-col items-start">
                 <Label
                   className="mb-2 text-[16px] font-medium leading-[1.2]"
-                  htmlFor="aboutTheCompany"
+                  htmlFor="workRegime"
                 >
                   Regime de trabalho
                 </Label>
                 <p className="mb-2 text-start text-[16px] font-light leading-[1.4]">
-                  CLT
+                  {formData.workRegime}
                 </p>
               </div>
             </div>
             <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline">
-              <a href="">Editar</a>
+              <a
+                href=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/register-vacancy', {
+                    state: {
+                      formData,
+                      stepForEditing: 2,
+                    },
+                  });
+                }}
+              >
+                Editar
+              </a>
             </div>
           </div>
 
@@ -304,42 +293,45 @@ export const JobPosting: React.FC = () => {
                 Etapas do processo seletivo
               </h1>
               <div className="flex flex-col items-start">
-                <p className="mb-4 text-start text-[16px] font-light leading-[1.4]">
-                  Análise de currículo
-                </p>
-                <p className="mb-4 text-start text-[16px] font-light leading-[1.4]">
-                  Entrevista com RH
-                </p>
-                <p className="mb-4 text-start text-[16px] font-light leading-[1.4]">
-                  Entrevista técnica
-                </p>
-                <p className="mb-4 text-start text-[16px] font-light leading-[1.4]">
-                  Entrevista com o gestor
-                </p>
+                {formData.steps.map((o) => (
+                  <p className="mb-4 text-start text-[16px] font-light leading-[1.4]">
+                    {o}
+                  </p>
+                ))}
               </div>
             </div>
             <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline">
-              <a href="">Editar</a>
+              <a
+                href=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/register-vacancy', {
+                    state: {
+                      formData,
+                      stepForEditing: 3,
+                    },
+                  });
+                }}
+              >
+                Editar
+              </a>
             </div>
           </div>
 
           <div className="mb-8 flex w-[676px] justify-end pt-4">
             <Button intent="tertiary">Cancelar</Button>
 
-            <Button
-              // onClick={() => setStep(step - 1)}
-              intent="secondary"
-              className="ml-6 text-[#003986]"
-            >
+            <Button intent="secondary" className="ml-6 text-[#003986]">
               Salvar para depois
             </Button>
 
             <Button
               intent="primary"
-              // onClick={() => setStep(step + 1)}
               className="ml-6"
+              disabled={loading}
+              onClick={handlePublish}
             >
-              Publicar
+              {loading ? 'Publicando...' : 'Publicar'}
             </Button>
           </div>
         </section>
