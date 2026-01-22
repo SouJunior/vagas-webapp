@@ -11,12 +11,14 @@ type RadioGroupProps = {
   options: Option[];
   selectedValue?: string;
   defaultValue?: string;
+  className?: string;
   onChange?: (value: string | undefined) => void;
 };
 
 export function RadioGroup({
   name,
   options,
+  className,
   selectedValue: controlledValue,
   defaultValue,
   onChange,
@@ -32,7 +34,7 @@ export function RadioGroup({
       {options.map((option) => (
         <label
           key={option.value}
-          className={`group flex items-center gap-2 ${
+          className={`group flex items-center gap-2 ${className} ${
             option.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
           }`}
         >

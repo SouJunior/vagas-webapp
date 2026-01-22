@@ -25,7 +25,7 @@ export function DropdownListTrigger({
         {children || (
           <div className="flex flex-col gap-1">
             {label && (
-              <span className="text-xs font-medium text-gray-600">{label}</span>
+              <span className={`text-gray-600 ${className}`}>{label}</span>
             )}
             <span className="text-sm font-normal text-gray-900">
               {displayText}
