@@ -86,7 +86,7 @@ export const VacancyReview: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="ml-8 w-full max-w-[442px] pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
+            <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
               <a
                 href=""
                 onClick={(e) => {
@@ -211,7 +211,7 @@ export const VacancyReview: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="ml-8 w-full max-w-[442px] pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
+            <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
               <a
                 href=""
                 onClick={(e) => {
@@ -300,7 +300,7 @@ export const VacancyReview: React.FC = () => {
                 ))}
               </div>
             </div>
-            <div className="ml-8 w-full max-w-[442px] pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
+            <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
               <a
                 href=""
                 onClick={(e) => {
