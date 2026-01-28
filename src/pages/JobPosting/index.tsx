@@ -139,7 +139,7 @@ export const JobPosting: React.FC = () => {
   return (
     <>
       <header className={`sticky top-0 z-[999] bg-white`}>
-        <div className="mx-auto w-full px-4 py-6 lg:px-8">
+        <div className="mx-auto w-full py-6 lg:px-8">
           <div className="flex items-center justify-between">
             <Link
               to="/"
@@ -149,7 +149,7 @@ export const JobPosting: React.FC = () => {
               <LazyImage
                 src={logoSouJunior}
                 alt="Logo SouJunior Empresas"
-                className="h-[40px] w-[320px] lg:h-16"
+                className="h-[40px] w-[320px] max-[391px]:h-[32px] max-[391px]:w-[222px] lg:h-16"
                 ariaLabel="Logo da SouJunior Empresas"
               />
             </Link>
@@ -161,7 +161,7 @@ export const JobPosting: React.FC = () => {
                 className="h-[42px] w-[42px] lg:h-16"
                 ariaLabel="Logo da SouJunior Empresas"
               />
-              <div className="ml-2 flex flex-col justify-center text-[#002C66]">
+              <div className="ml-2 flex flex-col justify-center text-[#002C66] max-[391px]:hidden">
                 <p className="text-[20px] font-medium leading-[120%]">
                   Empresa
                 </p>
@@ -180,8 +180,8 @@ export const JobPosting: React.FC = () => {
         </div>
       </header>
 
-      <main className="flex items-center justify-center bg-[#FBFDFF] font-canada">
-        <section className="flex h-full w-[676px] flex-col items-center justify-center p-4 text-center md:py-6 lg:p-8 lg:pb-0">
+      <main className="flex w-full items-center justify-center bg-[#FBFDFF] font-canada">
+        <section className="flex h-full w-[676px] flex-col items-center justify-center px-4 text-center max-[391px]:w-[390px] max-[391px]:pl-4 sm:max-w-[80%] sm:px-6 md:max-w-[80%] md:py-4 lg:p-8 lg:pb-0">
           <h1 className="text-[32px] font-[500] text-[#001633]">
             Cadastro de Vaga
           </h1>
@@ -190,7 +190,7 @@ export const JobPosting: React.FC = () => {
             deseja publicar agora ou salvar para publicar depois.
           </p>
 
-          <div className="mt-6 flex w-[676px] flex-col items-center justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pt-6">
+          <div className="mt-6 flex w-[676px] flex-col items-center justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pt-6 max-[391px]:pl-4">
             <Stepper
               steps={steps}
               step={step}
@@ -211,7 +211,7 @@ export const JobPosting: React.FC = () => {
                     Nome da empresa
                   </Label>
                   <Input
-                    className={`mb-1 h-[46px] w-[443px] ${errors.companyName ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px] ${errors.companyName ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="companyName"
                     type="text"
                     placeholder="Nome da empresa"
@@ -233,7 +233,7 @@ export const JobPosting: React.FC = () => {
                     Site da empresa
                   </Label>
                   <Input
-                    className={`w-[443px]" ${errors.companyWebsite ? 'border-[#FF1F00] placeholder:text-red-500' : ''} mb-1 h-[46px]`}
+                    className={`w-full max-w-[443px] max-[391px]:max-w-[326px] ${errors.companyWebsite ? 'border-[#FF1F00] placeholder:text-red-500' : ''} mb-1 h-[46px]`}
                     id="companyWebsite"
                     type="text"
                     placeholder="Site da empresa"
@@ -257,7 +257,7 @@ export const JobPosting: React.FC = () => {
                     Sobre a empresa
                   </Label>
                   <Textarea
-                    className={`mb-1 h-[140px] w-[443px] placeholder:font-canada placeholder:text-[16px] placeholder:font-normal placeholder:leading-[22px] placeholder:text-[#9CA3AF] focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800 ${errors.aboutTheCompany ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[140px] w-full max-w-[443px] placeholder:font-canada placeholder:text-[16px] placeholder:font-normal placeholder:leading-[22px] placeholder:text-[#9CA3AF] focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800 max-[391px]:max-w-[326px] ${errors.aboutTheCompany ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="aboutTheCompany"
                     placeholder="Insira um breve resumo sobre a empresa e sua cultura"
                     value={formData.aboutTheCompany}
@@ -265,7 +265,7 @@ export const JobPosting: React.FC = () => {
                       updateField('aboutTheCompany', e.target.value)
                     }
                   />
-                  <div className="mb-8 flex">
+                  <div className="mb-8 flex max-[391px]:mb-4">
                     <p
                       className={`mr-2 text-[12px] font-normal ${formData.aboutTheCompany.length > 500 ? 'text-red-500' : 'text-[#9CA3AF]'}`}
                     >
@@ -296,7 +296,7 @@ export const JobPosting: React.FC = () => {
                     Cargo
                   </Label>
                   <Input
-                    className={`mb-1 h-[46px] w-[443px] ${errors.position ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px] ${errors.position ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="position"
                     type="text"
                     placeholder="Ex. Product Manager"
@@ -318,7 +318,7 @@ export const JobPosting: React.FC = () => {
                     Área de atuação
                   </Label>
                   <Input
-                    className={`mb-1 h-[46px] w-[443px] ${errors.areaOfActivity ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px] ${errors.areaOfActivity ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="areaOfActivity"
                     type="text"
                     placeholder="Ex. Produtos"
@@ -342,7 +342,7 @@ export const JobPosting: React.FC = () => {
                     Descrição da Vaga
                   </Label>
                   <Textarea
-                    className={`mb-1 h-[140px] w-full placeholder:font-canada placeholder:text-[16px] placeholder:font-normal placeholder:leading-[22px] placeholder:text-[#9CA3AF] focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800 ${errors.jobDescription ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[140px] w-full max-w-[443px] placeholder:font-canada placeholder:text-[16px] placeholder:font-normal placeholder:leading-[22px] placeholder:text-[#9CA3AF] focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800 max-[391px]:max-w-[326px] ${errors.jobDescription ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="jobDescription"
                     placeholder="Insira um breve resumo sobre a vaga"
                     value={formData.jobDescription}
@@ -373,7 +373,7 @@ export const JobPosting: React.FC = () => {
                     Responsabilidades
                   </Label>
                   <Input
-                    className={`mb-1 h-[46px] w-[443px] ${errors.responsibilities ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px] ${errors.responsibilities ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="responsibilities"
                     type="text"
                     placeholder="Insira quais responsabilidades a vaga requer"
@@ -397,7 +397,7 @@ export const JobPosting: React.FC = () => {
                     Requisitos
                   </Label>
                   <Input
-                    className={`mb-1 h-[46px] w-[443px] ${errors.requirements ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px] ${errors.requirements ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="requirements"
                     type="text"
                     placeholder="Insira os requisitos necessários da vaga"
@@ -421,7 +421,7 @@ export const JobPosting: React.FC = () => {
                     Local
                   </Label>
                   <Input
-                    className={`mb-1 h-[46px] w-[443px] ${errors.location ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px] ${errors.location ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="location"
                     type="text"
                     placeholder="Ex. São Paulo"
@@ -448,7 +448,7 @@ export const JobPosting: React.FC = () => {
                     </p>
                   </div>
                   <Input
-                    className="mb-1 h-[46px] w-[443px]"
+                    className="mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px]"
                     id="wage"
                     type="text"
                     placeholder="R$5.000,00"
@@ -465,7 +465,7 @@ export const JobPosting: React.FC = () => {
                     Benefícios
                   </Label>
                   <Input
-                    className={`mb-1 h-[46px] w-[443px] ${errors.benefits ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px] ${errors.benefits ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="benefits"
                     type="text"
                     placeholder="Ex. Vale refeição, alimentação..."
@@ -626,7 +626,7 @@ export const JobPosting: React.FC = () => {
                 <div className="flex flex-col gap-2">
                   {stagesSelectionProcess.map((o) => (
                     <Checkbox
-                      className="m-2 text-[22px]"
+                      className="m-2 text-[22px] max-[391px]:text-[16px]"
                       key={o.value}
                       label={o.label}
                       checked={formData.steps.includes(o.value)}
@@ -680,7 +680,10 @@ export const JobPosting: React.FC = () => {
           </div>
           <div className="mb-8 flex w-[676px] justify-between pt-4">
             {step === 0 && (
-              <Button className="text-[#003986]" intent="secondary">
+              <Button
+                className="text-[#003986] max-[391px]:h-[36px]"
+                intent="secondary"
+              >
                 Voltar
               </Button>
             )}
@@ -689,7 +692,7 @@ export const JobPosting: React.FC = () => {
               <Button
                 onClick={() => setStep(step - 1)}
                 intent="secondary"
-                className="mb-8 mt-4 text-[#003986]"
+                className="mb-8 text-[#003986] max-[391px]:h-[36px]"
               >
                 Retornar
               </Button>
@@ -707,7 +710,7 @@ export const JobPosting: React.FC = () => {
                     setErrors(result.errors);
                   }
                 }}
-                className="mb-8 mt-4"
+                className="mb-8 max-[391px]:h-[36px]"
               >
                 Avançar
               </Button>

@@ -42,13 +42,13 @@ export const VacancyReview: React.FC = () => {
   return (
     <>
       <main className="flex items-center justify-center bg-[#FBFDFF] font-canada">
-        <section className="flex h-full w-[676px] flex-col items-center justify-center p-4 text-center md:py-6 lg:p-8 lg:pb-0">
-          <h1 className="mt-8 text-[32px] font-medium leading-[120%] text-[#001633]">
+        <section className="flex h-full w-[676px] flex-col items-center justify-center p-4 text-center max-[391px]:max-w-[326px] sm:max-w-[80%] md:py-6 lg:p-8 lg:pb-0">
+          <h1 className="mt-8 text-[32px] font-medium leading-[120%] text-[#001633] max-[391px]:text-[20px]">
             Revisão da Vaga
           </h1>
-          <div className="mt-6 flex w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6">
-            <div className="w-[442px] pl-10">
-              <h1 className="mb-6 text-start text-[24px] font-medium leading-[120%]">
+          <div className="mt-6 flex w-full max-w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6 max-[391px]:relative max-[391px]:w-[358px] max-[391px]:pl-0">
+            <div className="w-[442px] pl-10 max-[391px]:max-w-[326px] max-[391px]:pl-2">
+              <h1 className="mb-6 text-start text-[24px] font-medium leading-[120%] max-[391px]:text-[20px]">
                 Sobre a empresa
               </h1>
               <div className="flex flex-col items-start">
@@ -58,7 +58,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Nome da empresa
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.companyName}
                 </p>
               </div>
@@ -70,7 +70,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Site da empresa
                 </Label>
-                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.companyWebsite}
                 </p>
               </div>
@@ -81,12 +81,12 @@ export const VacancyReview: React.FC = () => {
                 >
                   Sobre a empresa
                 </Label>
-                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.aboutTheCompany}
                 </p>
               </div>
             </div>
-            <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline">
+            <div className="ml-8 w-full max-w-[442px] pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
               <a
                 href=""
                 onClick={(e) => {
@@ -104,10 +104,10 @@ export const VacancyReview: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-3 flex w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6">
-            <div className="w-[442px] pl-10">
-              <h1 className="mb-6 text-start text-[24px] font-medium leading-[120%]">
-                Modelo de trabalho
+          <div className="mt-3 flex w-full max-w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6 max-[391px]:relative max-[391px]:w-[358px] max-[391px]:pl-0">
+            <div className="w-[442px] pl-10 max-[391px]:max-w-[326px] max-[391px]:pl-2">
+              <h1 className="mb-6 text-start text-[24px] font-medium leading-[120%] max-[391px]:text-[20px]">
+                Sobre a vaga
               </h1>
               <div className="flex flex-col items-start">
                 <Label
@@ -116,7 +116,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Cargo
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.position}
                 </p>
               </div>
@@ -127,7 +127,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Área de atuação
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.areaOfActivity}
                 </p>
               </div>
@@ -139,7 +139,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Descrição da vaga
                 </Label>
-                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 break-all text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.jobDescription}
                 </p>
               </div>
@@ -151,7 +151,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Responsabilidades
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.responsibilities}
                 </p>
               </div>
@@ -162,7 +162,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Requisitos
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.requirements}
                 </p>
               </div>
@@ -173,7 +173,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Local
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.location}
                 </p>
               </div>
@@ -184,7 +184,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Salário
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   R$ {formData.wage}
                 </p>
               </div>
@@ -195,7 +195,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Benefícios
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.benefits}
                 </p>
               </div>
@@ -206,12 +206,12 @@ export const VacancyReview: React.FC = () => {
                 >
                   Vaga afirmativa
                 </Label>
-                <p className="mb-4 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-4 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.affirmativeVacancies.join(', ')}
                 </p>
               </div>
             </div>
-            <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline">
+            <div className="ml-8 w-full max-w-[442px] pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
               <a
                 href=""
                 onClick={(e) => {
@@ -229,9 +229,9 @@ export const VacancyReview: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-3 flex w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6">
-            <div className="w-[442px] pl-10">
-              <h1 className="mb-6 text-start text-[24px] font-medium leading-[120%]">
+          <div className="mt-3 flex w-full max-w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6 max-[391px]:relative max-[391px]:w-[358px] max-[391px]:pl-0">
+            <div className="w-[442px] pl-10 max-[391px]:max-w-[326px] max-[391px]:pl-2">
+              <h1 className="mb-6 text-start text-[24px] font-medium leading-[120%] max-[391px]:text-[20px]">
                 Modelo de trabalho
               </h1>
               <div className="flex flex-col items-start">
@@ -241,7 +241,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Jornada de trabalho
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.workingDay}
                 </p>
               </div>
@@ -253,7 +253,7 @@ export const VacancyReview: React.FC = () => {
                 >
                   Modalidade de trabalho
                 </Label>
-                <p className="mb-6 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-6 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.workModel}
                 </p>
               </div>
@@ -264,12 +264,12 @@ export const VacancyReview: React.FC = () => {
                 >
                   Regime de trabalho
                 </Label>
-                <p className="mb-2 text-start text-[16px] font-light leading-[1.4]">
+                <p className="mb-2 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                   {formData.workRegime}
                 </p>
               </div>
             </div>
-            <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline">
+            <div className="ml-8 w-full max-w-[442px] pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
               <a
                 href=""
                 onClick={(e) => {
@@ -287,20 +287,20 @@ export const VacancyReview: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-3 flex w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6">
-            <div className="w-[442px] pl-10">
-              <h1 className="mb-6 text-start text-[24px] font-medium leading-[120%]">
+          <div className="mt-3 flex w-full max-w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6 max-[391px]:relative max-[391px]:w-[358px] max-[391px]:pl-0">
+            <div className="w-[442px] pl-10 max-[391px]:max-w-[326px] max-[391px]:pl-2">
+              <h1 className="mb-6 w-[240px] text-start text-[24px] font-medium leading-[120%] max-[391px]:text-[20px]">
                 Etapas do processo seletivo
               </h1>
               <div className="flex flex-col items-start">
                 {formData.steps.map((o) => (
-                  <p className="mb-4 text-start text-[16px] font-light leading-[1.4]">
+                  <p className="mb-4 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
                     {o}
                   </p>
                 ))}
               </div>
             </div>
-            <div className="ml-8 pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline">
+            <div className="ml-8 w-full max-w-[442px] pr-8 text-[16px] font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:text-[14px]">
               <a
                 href=""
                 onClick={(e) => {
@@ -318,16 +318,19 @@ export const VacancyReview: React.FC = () => {
             </div>
           </div>
 
-          <div className="mb-8 flex w-[676px] justify-end pt-4">
+          <div className="mb-8 flex w-full max-w-[676px] justify-end pt-4 max-[391px]:h-[156px] max-[391px]:flex-col max-[391px]:items-center max-[391px]:justify-between">
             <Button intent="tertiary">Cancelar</Button>
 
-            <Button intent="secondary" className="ml-6 text-[#003986]">
+            <Button
+              intent="secondary"
+              className="ml-6 text-center text-[#003986] max-[391px]:w-[186px]"
+            >
               Salvar para depois
             </Button>
 
             <Button
               intent="primary"
-              className="ml-6"
+              className="ml-6 max-[391px]:w-[186px]"
               disabled={loading}
               onClick={handlePublish}
             >
