@@ -110,9 +110,11 @@ export const JobPosting: React.FC = () => {
       return { valid: true, errors: {} };
     } catch (err: any) {
       const formattedErrors: Record<string, string> = {};
-      err.inner.forEach((e: any) => {
-        formattedErrors[e.path] = e.message;
-      });
+      if (err.inner && Array.isArray(err.inner)) {
+        err.inner.forEach((e: any) => {
+          formattedErrors[e.path] = e.message;
+        });
+      }
       return { valid: false, errors: formattedErrors };
     }
   }
