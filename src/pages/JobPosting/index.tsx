@@ -173,9 +173,9 @@ export const JobPosting: React.FC = () => {
               </div>
               <LazyImage
                 src={menu}
-                alt="Logo SouJunior Empresas"
+                alt="Menu de opções"
                 className="h-[32px] w-[32px] lg:h-16"
-                ariaLabel="Logo da SouJunior Empresas"
+                ariaLabel="Abrir menu de opções"
               />
             </div>
           </div>
