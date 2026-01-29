@@ -11,24 +11,34 @@ import type { FormDataType } from '../data/FormDataType';
 
 export const VacancyReview: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const formData = location.state as FormDataType | null;
 
-  const { state: formData } = useLocation() as {
-    state: FormDataType;
-  };
+  React.useEffect(() => {
+    if (!formData) {
+      navigate('/register-vacancy');
+    }
+  }, [formData, navigate]);
 
   const [loading, setLoading] = useState(false);
   const api = useApi();
+
+  if (!formData) {
+    return null;
+  }
 
   async function handlePublish() {
     try {
       setLoading(true);
 
-      const payload = {
-        ...formData,
-        wage: formData.wage.replace('R$', '').trim(),
-      };
+      if (formData) {
+        const payload = {
+          ...formData,
+          wage: formData.wage.replace('R$', '').trim(),
+        };
 
-      await api.publishVacancy(payload);
+        await api.publishVacancy(payload);
+      }
 
       navigate('/sucesso');
     } catch (error) {
@@ -293,9 +303,12 @@ export const VacancyReview: React.FC = () => {
                 Etapas do processo seletivo
               </h1>
               <div className="flex flex-col items-start">
-                {formData.steps.map((o) => (
-                  <p className="mb-4 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]">
-                    {o}
+                {formData.processSteps.map((processStep) => (
+                  <p
+                    key={processStep}
+                    className="mb-4 text-start text-[16px] font-light leading-[1.4] max-[391px]:text-[14px]"
+                  >
+                    {processStep}
                   </p>
                 ))}
               </div>
@@ -319,7 +332,14 @@ export const VacancyReview: React.FC = () => {
           </div>
 
           <div className="mb-8 flex w-full max-w-[676px] justify-end pt-4 max-[391px]:h-[156px] max-[391px]:flex-col max-[391px]:items-center max-[391px]:justify-between">
-            <Button intent="tertiary">Cancelar</Button>
+            <Button
+              intent="tertiary"
+              onClick={async () => {
+                navigate('/', { state: formData });
+              }}
+            >
+              Cancelar
+            </Button>
 
             <Button
               intent="secondary"

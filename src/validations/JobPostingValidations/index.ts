@@ -33,5 +33,7 @@ export const step2Schema = Yup.object().shape({
 });
 
 export const step3Schema = Yup.object().shape({
-  steps: Yup.array().min(1, 'Selecione pelo menos uma etapa.').required(),
+  processSteps: Yup.array()
+    .min(1, 'Selecione pelo menos uma etapa.')
+    .required('Campo obrigatório'),
 });

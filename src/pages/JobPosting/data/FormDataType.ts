@@ -14,6 +14,6 @@ export interface FormDataType {
   workingDay: string;
   workModel: string;
   workRegime: string;
-  steps: string[];
+  processSteps: string[];
   affirmativeVacancies: string[];
 }

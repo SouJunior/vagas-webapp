@@ -57,7 +57,7 @@ export const JobPosting: React.FC = () => {
         workingDay: '',
         workModel: '',
         workRegime: '',
-        steps: ['Análise de currículo'],
+        processSteps: ['Análise de currículo'],
       }
     );
   });
@@ -88,10 +88,10 @@ export const JobPosting: React.FC = () => {
 
   function toggleStep(value: string, checked: boolean) {
     updateField(
-      'steps',
+      'processSteps',
       checked
-        ? [...formData.steps, value]
-        : formData.steps.filter((v: string) => v !== value),
+        ? [...formData.processSteps, value]
+        : formData.processSteps.filter((v: string) => v !== value),
     );
   }
 
@@ -629,7 +629,7 @@ export const JobPosting: React.FC = () => {
                       className="m-2 text-[22px] max-[391px]:text-[16px]"
                       key={o.value}
                       label={o.label}
-                      checked={formData.steps.includes(o.value)}
+                      checked={formData.processSteps.includes(o.value)}
                       onChange={(e) => {
                         if (
                           o.value === 'Análise de currículo' &&
@@ -652,7 +652,9 @@ export const JobPosting: React.FC = () => {
               {step === steps.length - 1 && (
                 <Button
                   intent="secondary"
-                  onClick={() => setStep(step - 1)}
+                  onClick={async () => {
+                    navigate('/', { state: formData });
+                  }}
                   className="h-[44] w-[113] text-[#003986]"
                 >
                   Cancelar

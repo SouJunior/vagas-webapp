@@ -14,7 +14,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
   return (
     <label
-      className={`group flex items-center gap-2 font-canada text-[16px] font-normal ${className} ${
+      className={`group flex items-center gap-2 font-canada text-[16px] font-normal ${className ?? ''} ${
         disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
       }`}
     >
