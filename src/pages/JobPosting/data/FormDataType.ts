@@ -10,7 +10,6 @@ export interface FormDataType {
   location: string;
   wage: string;
   benefits: string;
-  categories: string[];
   workingDay: string;
   workModel: string;
   workRegime: string;

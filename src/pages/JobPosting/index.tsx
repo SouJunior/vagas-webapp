@@ -642,9 +642,9 @@ export const JobPosting: React.FC = () => {
                       }}
                     />
                   ))}
-                  {errors.steps && (
+                  {errors.processSteps && (
                     <p className="mb-4 ml-2 text-start text-[12px] text-red-500">
-                      {errors.steps}
+                      {errors.processSteps}
                     </p>
                   )}
                 </div>
