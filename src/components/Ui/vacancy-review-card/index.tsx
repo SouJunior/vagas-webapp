@@ -9,10 +9,15 @@ import type { FormDataType } from '../../../pages/JobPosting/data/FormDataType';
 
 import { ACCESSIBILITY_CLASSES } from '@utils/accessibility';
 
-type ReviewItem = {
-  label?: string;
-  value: string | string[] | React.ReactElement;
-};
+type ReviewItem =
+  | {
+      label: string;
+      value: string | React.ReactElement;
+    }
+  | {
+      label?: undefined;
+      value: string[];
+    };
 
 type VacancyReviewCardProps = {
   cardTitle: string;
@@ -52,17 +57,17 @@ export function VacancyReviewCard({
               </p>
             )}
 
-            {!item.label && (
-              <p className="mb-4 text-start text-base font-light leading-relaxed max-[391px]:text-base">
-                {item.value.map((processStep) => (
-                  <p
-                    key={processStep}
-                    className="mb-4 break-all text-start text-base font-light leading-relaxed max-[391px]:text-base"
+            {!item.label && Array.isArray(item.value) && (
+              <ul>
+                {item.value.map((processStep: string, index: number) => (
+                  <li
+                    key={index}
+                    className="mb-4 ml-0 list-none break-all text-start text-base font-light leading-relaxed max-[391px]:text-base"
                   >
                     {processStep}
-                  </p>
+                  </li>
                 ))}
-              </p>
+              </ul>
             )}
           </div>
         ))}
@@ -76,12 +81,12 @@ export function VacancyReviewCard({
             navigate('/register-vacancy', {
               state: {
                 formData,
-                stepForEditing: stepForEditing,
+                stepForEditing: stepForEditing ?? 0,
               },
             });
           }}
           className={`flex-shrink-0 rounded-sm ${ACCESSIBILITY_CLASSES.focusRing}`}
-          aria-label={`Voltar para o step ${stepForEditing + 1}`}
+          aria-label={`Voltar para o step ${(stepForEditing ?? 0) + 1}`}
         >
           Editar
         </Link>
