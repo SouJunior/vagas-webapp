@@ -164,10 +164,8 @@ export const JobPosting: React.FC = () => {
                 ariaLabel="Logo da SouJunior Empresas"
               />
               <div className="ml-2 flex flex-col justify-center text-[#002C66] max-[391px]:hidden">
-                <p className="text-[20px] font-medium leading-[120%]">
-                  Empresa
-                </p>
-                <p className="mt-1 text-[14px] leading-[120%]">
+                <p className="text-lg font-medium leading-tight">Empresa</p>
+                <p className="mt-1 text-sm leading-tight">
                   empresa@example.com
                 </p>
               </div>
@@ -184,10 +182,10 @@ export const JobPosting: React.FC = () => {
 
       <main className="flex w-full items-center justify-center bg-[#FBFDFF] font-canada">
         <section className="flex h-full w-[676px] flex-col items-center justify-center px-4 text-center max-[391px]:w-[390px] max-[391px]:pl-4 sm:max-w-[80%] sm:px-6 md:max-w-[80%] md:py-4 lg:p-8 lg:pb-0">
-          <h1 className="text-[32px] font-[500] text-[#001633]">
+          <h1 className="text-2xl font-[500] text-[#001633]">
             Cadastro de Vaga
           </h1>
-          <p className="text-[16px] font-normal leading-[140%]">
+          <p className="text-base font-normal leading-relaxed">
             Preencha os campos para cadastrar sua vaga. Depois, escolha se
             deseja publicar agora ou salvar para publicar depois.
           </p>
@@ -201,14 +199,14 @@ export const JobPosting: React.FC = () => {
 
             {step === 0 && (
               <div className="w-[443px] space-y-4">
-                <h1 className="mb-6 mt-6 text-start text-[24px] font-medium leading-[120%]">
+                <h2 className="mb-6 mt-6 text-start text-xl font-medium leading-tight">
                   Sobre a empresa
-                </h1>
+                </h2>
 
                 <div className="flex flex-col items-start">
                   <Label
                     htmlFor="companyName"
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                   >
                     Nome da empresa
                   </Label>
@@ -229,7 +227,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="companyWebsite"
                   >
                     Site da empresa
@@ -253,13 +251,13 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="aboutTheCompany"
                   >
                     Sobre a empresa
                   </Label>
                   <Textarea
-                    className={`mb-1 h-[140px] w-full max-w-[443px] placeholder:font-canada placeholder:text-[16px] placeholder:font-normal placeholder:leading-[22px] placeholder:text-[#9CA3AF] focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800 max-[391px]:max-w-[326px] ${errors.aboutTheCompany ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[140px] w-full max-w-[443px] placeholder:font-canada placeholder:text-base placeholder:font-normal placeholder:leading-[22px] placeholder:text-[#9CA3AF] focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800 max-[391px]:max-w-[326px] ${errors.aboutTheCompany ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="aboutTheCompany"
                     placeholder="Insira um breve resumo sobre a empresa e sua cultura"
                     value={formData.aboutTheCompany}
@@ -286,14 +284,14 @@ export const JobPosting: React.FC = () => {
 
             {step === 1 && (
               <div className="w-[443px] space-y-4">
-                <h1 className="mb-6 mt-6 text-start text-[24px] font-medium leading-[120%]">
+                <h2 className="mb-6 mt-6 text-start text-xl font-medium leading-tight">
                   Sobre a vaga
-                </h1>
+                </h2>
 
                 <div className="flex flex-col items-start">
                   <Label
                     htmlFor="position"
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                   >
                     Cargo
                   </Label>
@@ -314,7 +312,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="areaOfActivity"
                   >
                     Área de atuação
@@ -338,13 +336,13 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="jobDescription"
                   >
                     Descrição da Vaga
                   </Label>
                   <Textarea
-                    className={`mb-1 h-[140px] w-full max-w-[443px] placeholder:font-canada placeholder:text-[16px] placeholder:font-normal placeholder:leading-[22px] placeholder:text-[#9CA3AF] focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800 max-[391px]:max-w-[326px] ${errors.jobDescription ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
+                    className={`mb-1 h-[140px] w-full max-w-[443px] placeholder:font-canada placeholder:text-base placeholder:font-normal placeholder:leading-[22px] placeholder:text-[#9CA3AF] focus:border-blue-light300 focus:text-blue-800 focus:placeholder:text-blue-800 max-[391px]:max-w-[326px] ${errors.jobDescription ? 'border-[#FF1F00] placeholder:text-red-500' : ''}`}
                     id="jobDescription"
                     placeholder="Insira um breve resumo sobre a vaga"
                     value={formData.jobDescription}
@@ -369,7 +367,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="responsibilities"
                   >
                     Responsabilidades
@@ -393,7 +391,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="requirements"
                   >
                     Requisitos
@@ -417,7 +415,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="location"
                   >
                     Local
@@ -440,12 +438,12 @@ export const JobPosting: React.FC = () => {
                 <div className="flex flex-col items-start">
                   <div className="justify-cente flex items-center">
                     <Label
-                      className="mb-1 text-[16px] font-medium leading-[20px]"
+                      className="mb-1 text-base font-medium leading-[20px]"
                       htmlFor="wage"
                     >
                       Salário
                     </Label>
-                    <p className="mb-1 ml-1 text-[16px] font-normal leading-[20px]">
+                    <p className="mb-1 ml-1 text-base font-normal leading-[20px]">
                       (Opcional)
                     </p>
                   </div>
@@ -461,7 +459,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="benefits"
                   >
                     Benefícios
@@ -483,7 +481,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="affirmativeVacancies"
                   >
                     Vaga Afirmativa
@@ -500,10 +498,10 @@ export const JobPosting: React.FC = () => {
                         <DropdownList.Trigger
                           placeholder=""
                           label="Selecione"
-                          className={`flex h-full w-[443px] text-[16px] text-[#A2A9B4] ${errors.affirmativeVacancies ? 'border-[#FF1F00] text-red-500' : ''}`}
+                          className={`flex h-full w-[443px] text-base text-[#A2A9B4] ${errors.affirmativeVacancies ? 'border-[#FF1F00] text-red-500' : ''}`}
                         />
 
-                        <DropdownList.Content className="font-canada text-[16px] placeholder:text-red-700">
+                        <DropdownList.Content className="font-canada text-base placeholder:text-red-700">
                           <DropdownList.Item
                             value="Não se aplica"
                             label="Não se aplica"
@@ -535,12 +533,12 @@ export const JobPosting: React.FC = () => {
             )}
             {step === 2 && (
               <div className="mb-4 w-[443px] space-y-4">
-                <h1 className="mb-6 mt-6 text-start text-[24px] font-medium leading-[120%]">
+                <h2 className="mb-6 mt-6 text-start text-xl font-medium leading-tight">
                   Modelo de trabalho
-                </h1>
+                </h2>
                 <div className="mt-2 flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="workingDay"
                   >
                     Jornada de Trabalho
@@ -566,7 +564,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="mt-2 flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="workModel"
                   >
                     Modelo de Trabalho
@@ -591,7 +589,7 @@ export const JobPosting: React.FC = () => {
 
                 <div className="mt-2 flex flex-col items-start">
                   <Label
-                    className="mb-1 text-[16px] font-medium leading-[20px]"
+                    className="mb-1 text-base font-medium leading-[20px]"
                     htmlFor="workRegime"
                   >
                     Regime de Trabalho
@@ -616,10 +614,10 @@ export const JobPosting: React.FC = () => {
             )}
             {step === 3 && (
               <div className="w-[443px] space-y-4 font-canada">
-                <h1 className="mt-10 pl-1 text-start text-[24px] font-medium leading-[120%]">
+                <h2 className="mt-10 pl-1 text-start text-xl font-medium leading-tight">
                   Etapas do processo seletivo
-                </h1>
-                <div className="pl-1 text-start text-[16px] font-normal leading-[140%] text-[#666666]">
+                </h2>
+                <div className="pl-1 text-start text-base font-normal leading-relaxed text-[#666666]">
                   <p>Selecione as etapas do processo seletivo para a vaga.</p>
                   <p className="mb-6">
                     Apenas a análise de currículo é obrigatória.
@@ -628,7 +626,7 @@ export const JobPosting: React.FC = () => {
                 <div className="flex flex-col gap-2">
                   {stagesSelectionProcess.map((o) => (
                     <Checkbox
-                      className="m-2 text-[22px] max-[391px]:text-[16px]"
+                      className="m-2 text-[22px] max-[391px]:text-base"
                       key={o.value}
                       label={o.label}
                       checked={formData.processSteps.includes(o.value)}
