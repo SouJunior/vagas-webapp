@@ -1,13 +1,8 @@
-import React from 'react';
-
 import { Label } from '@components/Ui/label';
-
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
-
-import type { FormDataType } from '../../../pages/JobPosting/data/FormDataType';
-
 import { ACCESSIBILITY_CLASSES } from '@utils/accessibility';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import type { FormDataType } from '../../../pages/JobPosting/data/FormDataType';
 
 type ReviewItem =
   | {
@@ -32,8 +27,6 @@ export function VacancyReviewCard({
   formData,
   stepForEditing,
 }: VacancyReviewCardProps) {
-  const navigate = useNavigate();
-
   return (
     <div className="mb-4 flex w-full max-w-[676px] items-start justify-center rounded-2xl border border-[#DEDEDE] bg-[#FFFFFF] pb-2 pl-10 pt-6 max-[391px]:relative max-[391px]:w-[358px] max-[391px]:pl-0">
       <div className="w-[442px] pl-10 max-[391px]:max-w-[326px] max-[391px]:pl-2">
@@ -44,7 +37,7 @@ export function VacancyReviewCard({
           <div key={index} className="flex flex-col items-start">
             {item.label && (
               <Label
-                htmlFor="companyName"
+                htmlFor={item.label}
                 className="mb-2 text-base font-medium leading-[1.2]"
               >
                 {item.label}
@@ -75,18 +68,13 @@ export function VacancyReviewCard({
 
       <div className="ml-8 pr-8 text-base font-medium leading-[120%] text-[#003986] underline max-[391px]:absolute max-[391px]:left-28 max-[391px]:top-7 max-[391px]:w-full max-[391px]:max-w-[442px] max-[391px]:text-base">
         <Link
-          to=""
-          onClick={(e) => {
-            e.preventDefault();
-            navigate('/register-vacancy', {
-              state: {
-                formData,
-                stepForEditing: stepForEditing ?? 0,
-              },
-            });
+          to="/register-vacancy"
+          state={{
+            formData,
+            stepForEditing: stepForEditing ?? 0,
           }}
           className={`flex-shrink-0 rounded-sm ${ACCESSIBILITY_CLASSES.focusRing}`}
-          aria-label={`Voltar para o step ${(stepForEditing ?? 0) + 1}`}
+          aria-label={`Editar seção ${cardTitle}`}
         >
           Editar
         </Link>

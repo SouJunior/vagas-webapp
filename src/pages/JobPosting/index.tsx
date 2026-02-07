@@ -69,23 +69,6 @@ export const JobPosting: React.FC = () => {
     { label: 'Etapas do processo seletivo' },
   ];
 
-  const formatCurrency = (value: string) => {
-    const numeric = value.replace(/\D/g, '');
-    const number = parseFloat(numeric) / 100;
-
-    if (!number) return '';
-
-    return number.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
-  };
-
-  const handleWageChange = (value: string) => {
-    const formatted = formatCurrency(value);
-    updateField('wage', formatted);
-  };
-
   function toggleStep(value: string, checked: boolean) {
     updateField(
       'processSteps',
@@ -448,12 +431,24 @@ export const JobPosting: React.FC = () => {
                     </p>
                   </div>
                   <Input
-                    className="mb-1 h-[46px] w-full max-w-[443px] max-[391px]:max-w-[326px]"
                     id="wage"
                     type="text"
-                    placeholder="R$5.000,00"
+                    placeholder="R$ 5.000,00"
                     value={formData.wage}
-                    onChange={(e) => handleWageChange(e.target.value)}
+                    onChange={(e) => {
+                      const raw = e.target.value.replace(/\D/g, '');
+                      const number = Number(raw) / 100;
+
+                      updateField(
+                        'wage',
+                        raw
+                          ? number.toLocaleString('pt-BR', {
+                              style: 'currency',
+                              currency: 'BRL',
+                            })
+                          : '',
+                      );
+                    }}
                   />
                 </div>
 
@@ -655,7 +650,7 @@ export const JobPosting: React.FC = () => {
                   onClick={async () => {
                     navigate('/', { state: formData });
                   }}
-                  className="h-[44] w-[113] text-[#003986]"
+                  className="h-[44px] w-[113px] text-[#003986]"
                 >
                   Cancelar
                 </Button>
@@ -664,7 +659,7 @@ export const JobPosting: React.FC = () => {
               {step === steps.length - 1 && (
                 <Button
                   intent="primary"
-                  className="h-[44] w-[113]"
+                  className="h-[44px] w-[113px]"
                   onClick={async () => {
                     const result = await validateStep();
                     if (result.valid) {

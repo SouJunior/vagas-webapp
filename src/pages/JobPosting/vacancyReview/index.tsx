@@ -62,8 +62,8 @@ export const VacancyReview: React.FC = () => {
         value: formData.companyWebsite,
       },
       {
-        label: 'Nome da empresa',
-        value: formData.companyName,
+        label: 'Sobre a empresa',
+        value: formData.aboutTheCompany,
       },
     ],
   };
@@ -97,7 +97,7 @@ export const VacancyReview: React.FC = () => {
       },
       {
         label: 'Salário',
-        value: `R$ ${formData.wage}`,
+        value: formData.wage,
       },
       { label: 'Benefícios', value: formData.benefits },
       {
