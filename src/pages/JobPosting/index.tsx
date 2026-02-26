@@ -17,10 +17,10 @@ import menu from '@assets/imgs/menu-reticencias.svg';
 import { stagesSelectionProcess } from './data/stagesSelectionProcess';
 
 import {
-  step0Schema,
-  step1Schema,
-  step2Schema,
-  step3Schema,
+  aboutCompanySchema,
+  jobSchema,
+  processStepsSchema,
+  workModelSchema,
 } from '@validations/JobPostingValidations';
 
 import type { FormDataType } from './data/FormDataType';
@@ -85,19 +85,29 @@ export const JobPosting: React.FC = () => {
     }));
   }
 
-  const schemas = [step0Schema, step1Schema, step2Schema, step3Schema];
+  const stepSchemas = [
+    aboutCompanySchema,
+    jobSchema,
+    workModelSchema,
+    processStepsSchema,
+  ];
 
   async function validateStep() {
     try {
-      await schemas[step].validate(formData, { abortEarly: false });
+      await stepSchemas[step].validate(formData, {
+        abortEarly: false,
+      });
+
       return { valid: true, errors: {} };
     } catch (err: any) {
       const formattedErrors: Record<string, string> = {};
+
       if (err.inner && Array.isArray(err.inner)) {
         err.inner.forEach((e: any) => {
           formattedErrors[e.path] = e.message;
         });
       }
+
       return { valid: false, errors: formattedErrors };
     }
   }

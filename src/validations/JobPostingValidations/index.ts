@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const step0Schema = Yup.object().shape({
+export const aboutCompanySchema = Yup.object({
   companyName: Yup.string().required('Campo obrigatório.'),
   companyWebsite: Yup.string()
     .url('URL inválida.')
@@ -10,7 +10,7 @@ export const step0Schema = Yup.object().shape({
     .max(500, 'Limite atingido.'),
 });
 
-export const step1Schema = Yup.object().shape({
+export const jobSchema = Yup.object({
   position: Yup.string().required('Campo obrigatório.'),
   areaOfActivity: Yup.string().required('Campo obrigatório.'),
   jobDescription: Yup.string()
@@ -26,13 +26,13 @@ export const step1Schema = Yup.object().shape({
     .required('Campo obrigatório'),
 });
 
-export const step2Schema = Yup.object().shape({
+export const workModelSchema = Yup.object({
   workingDay: Yup.string().required('Campo obrigatório.'),
   workModel: Yup.string().required('Campo obrigatório.'),
   workRegime: Yup.string().required('Campo obrigatório.'),
 });
 
-export const step3Schema = Yup.object().shape({
+export const processStepsSchema = Yup.object({
   processSteps: Yup.array()
     .min(1, 'Selecione pelo menos uma etapa.')
     .required('Campo obrigatório'),
