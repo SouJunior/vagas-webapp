@@ -1,5 +1,7 @@
 import api from '../services/api';
 
+import type { FormDataType } from '../pages/JobPosting/data/FormDataType';
+
 type ChangePasswordResponse = {
   success: boolean;
   message: string;
@@ -273,5 +275,13 @@ export const useApi = () => ({
     } catch (error) {
       throw new Error('Erro ao atualizar favorito');
     }
+  },
+
+  publishVacancy: async (formData: FormDataType) => {
+    const response = await api.post(
+      'https://x8ki-letl-twmt.n7.xano.io/api:T9s4xK7V/vacancies',
+      formData,
+    );
+    return response.data;
   },
 });

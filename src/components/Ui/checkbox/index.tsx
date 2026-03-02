@@ -8,12 +8,13 @@ interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   label,
+  className,
   disabled,
   ...props
 }) => {
   return (
     <label
-      className={`group flex items-center gap-2 font-canada text-[16px] font-normal ${
+      className={`group flex items-center gap-2 font-canada text-[16px] font-normal ${className ?? ''} ${
         disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
       }`}
     >

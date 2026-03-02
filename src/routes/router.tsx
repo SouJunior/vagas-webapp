@@ -17,6 +17,8 @@ import ErrorPage from '../pages/ErrorPage';
 import FeedJobs from '../pages/FeedJobs';
 import { Home } from '../pages/Home';
 import { InsertJobs } from '../pages/InsertJobs';
+import { JobPosting } from '../pages/JobPosting';
+import { VacancyReview } from '../pages/JobPosting/vacancyReview/';
 import JobSelected from '../pages/JobSelected';
 import JobsPanel from '../pages/JobsPanel';
 import Login from '../pages/Login';
@@ -39,6 +41,9 @@ const NavRoutes: React.FC = () => {
           <Route path="job/:searchTerm" element={<FeedJobs />} />
           <Route path="job/selected/:id" element={<JobSelected />} />
         </Route>
+
+        <Route path="/register-vacancy" element={<JobPosting />} />
+        <Route path="/vacancy-review" element={<VacancyReview />} />
 
         <Route element={<LoginLayout />}>
           <Route path="/login" element={<Login />} />

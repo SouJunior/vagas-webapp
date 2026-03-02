@@ -8,9 +8,10 @@ import { Card } from './components/Card';
 
 import * as I from './components/Icons';
 
+import Header from '@components/Header';
+
 import { CarouselPartnerCompaniesSection } from '@components/Companies/carousel-partners-section';
 import FooterDefault from '@components/FooterDefault';
-
 
 export default function Companies() {
   return (
