@@ -3,7 +3,7 @@
   "author": "SouJunior Core",
   "name": "vagas-webapp",
   "description": "Vagas Frontend - Projeto Opensource que visa melhorar o match entre os profissionais Juniors e empresas",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite",
